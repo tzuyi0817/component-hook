@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import usePicker from "@/hooks/usePicker";
-import { PickerOptions } from "@/types";
+import type { PickerOptions, PickData } from '@/types';
+import { isObject } from '@/utils/checkType';
 
 interface Props {
-  data: Array<unknown>;
+  data: PickData;
   isShowPicker: boolean;
-  anchor: number;
   options?: Partial<PickerOptions>;
+  anchor: Array<number>;
+  showKey?: Array<string>;
+  swipeTime?: number
 };
 
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   isShowPicker: false,
-  anchor: 0,
   options: () => ({}),
+  swipeTime: 500,
 });
 
-const emit = defineEmits(["update:isShowPicker"]);
+const emit = defineEmits(["update:isShowPicker", 'cancel', 'confirm']);
 const options = computed(() => ({
   cancelClass: '',
   confirmClass: '',
@@ -35,10 +38,12 @@ const confirmColor = computed(() => options.value.confirmColor);
 const titleColor = computed(() => options.value.titleColor);
 
 const {
+  pickerData,
+  wheelWrapper,
   cancel,
   confirm,
   closePicker,
-} = usePicker(emit);
+} = usePicker(props, emit);
 </script>
 
 <template>
@@ -57,11 +62,13 @@ const {
         <div class="picker_mask_top"></div>
         <div class="picker_mask_bottom"></div>
         <div class="picker_wheel_wrapper" ref="wheelWrapper">
-          <!-- <div class="picker_wheel" v-for="(wheel, index) in pickerData" :key="index">
+          <div class="picker_wheel" v-for="(wheel, wheelIndex) in pickerData" :key="wheelIndex">
             <ul class="picker_wheel_scroll">
-              <li class="picker_wheel_item" v-for="(item, index) in wheel" :key="index">{{ item }}</li>
+              <li class="picker_wheel_item" v-for="(item, index) in wheel" :key="index">
+                {{ showKey?.[wheelIndex] && isObject(item) ? item[showKey[wheelIndex]] : item }}
+              </li>
             </ul>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -214,6 +221,7 @@ const {
 
     &_scroll {
       margin-top: 72px;
+      padding: 0;
     }
 
     &_item {

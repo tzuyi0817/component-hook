@@ -12,18 +12,27 @@ const dataList = ref([
 ]);
 
 const options = reactive({
-  confirmColor: '',
+  confirmColor: '#000',
+  cancelClass: 'test',
+  titleText: 'Title',
 });
 
 const anchor = computed(() => {
   const index = dataList.value.findIndex(({ langType }) => langType === currentSelect.value?.langType);
-  const checkIndex = index > -1 ? index : 0;
+  const checkIndex = index > -1 ? index : 2;
   return checkIndex;
 });
 
+function confirm(value: LangType) {
+  currentSelect.value = value;
+}
+
+function cancel() {
+  console.log('cancel');
+}
+
 function toggle() {
   isShowPicker.value = true;
-  options.confirmColor = 'red';
 }
 </script>
 
@@ -31,8 +40,12 @@ function toggle() {
   <picker 
     v-model:isShowPicker="isShowPicker"
     :data="dataList"
-    :anchor="anchor"
+    :anchor="[anchor]"
+    :showKey="['original']"
     :options="options"
+    :swipeTime="500"
+    @confirm="confirm"
+    @cancel="cancel"
   />
 
   <button @click="toggle">toggle</button>
