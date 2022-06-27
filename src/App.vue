@@ -1,12 +1,54 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, computed, reactive } from "vue";
+import Picker from '@/components/Picker.vue';
+import type { LangType } from "@/types";
+
+const currentSelect = ref<LangType>({})
+const isShowPicker = ref(false);
+const dataList = ref([
+  { langType: 2, code: "vi", original: "Tiếng Việt", version: 80 },
+  { langType: 0, code: "en", original: "English", version: 95 },
+  { langType: 1, code: "cn", original: "中文", version: 85 },
+]);
+
+const options = reactive({
+  confirmColor: '#000',
+  cancelClass: 'test',
+  titleText: 'Title',
+});
+
+const anchor = computed(() => {
+  const index = dataList.value.findIndex(({ langType }) => langType === currentSelect.value?.langType);
+  const checkIndex = index > -1 ? index : 2;
+  return checkIndex;
+});
+
+function confirm(value: LangType) {
+  currentSelect.value = value;
+}
+
+function cancel() {
+  console.log('cancel');
+}
+
+function toggle() {
+  isShowPicker.value = true;
+}
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <picker 
+    v-model:isShowPicker="isShowPicker"
+    :data="dataList"
+    :anchor="[anchor]"
+    :showKey="['original']"
+    :options="options"
+    :swipeTime="500"
+    @confirm="confirm"
+    @cancel="cancel"
+  />
+
+  <button @click="toggle">toggle</button>
 </template>
 
 <style>
