@@ -1,30 +1,38 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import usePicker from "@/hooks/usePicker";
+import { PickerOptions } from "@/types";
 
 interface Props {
   data: Array<unknown>;
   isShowPicker: boolean;
   anchor: number;
-  cancelClass?: string;
-  confirmClass?: string;
-  titleClass?: string;
-  cancelText?: string;
-  confirmText?: string;
-  titleText?: string;
+  options?: Partial<PickerOptions>;
 };
 
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   isShowPicker: false,
-  cancelClass: "",
-  confirmClass: "",
-  titleClass: "",
-  cancelText: "Cancel",
-  confirmText: "Confirm",
-  titleText: "Title",
+  anchor: 0,
+  options: () => ({}),
 });
 
 const emit = defineEmits(["update:isShowPicker"]);
+const options = computed(() => ({
+  cancelClass: '',
+  confirmClass: '',
+  titleClass: '',
+  cancelColor: '#999',
+  confirmColor: '#42b983',
+  titleColor: '',
+  cancelText: 'Cancel',
+  confirmText: 'Confirm',
+  titleText: '',
+  ...props.options,
+}));
+const cancelColor = computed(() => options.value.cancelColor);
+const confirmColor = computed(() => options.value.confirmColor);
+const titleColor = computed(() => options.value.titleColor);
 
 const {
   cancel,
@@ -41,9 +49,9 @@ const {
   <transition name="slide">
     <div class="picker" v-show="isShowPicker">
       <div class="picker_title">
-        <button :class="['picker_cancel', cancelClass]" @click="cancel">{{ cancelText }}</button>
-        <button :class="['picker_confirm', confirmClass]" @click="confirm">{{ confirmText }}</button>
-        <h4 :class="[titleClass]">{{ titleText }}</h4>
+        <button :class="['picker_cancel', options.cancelClass]" @click="cancel">{{ options.cancelText }}</button>
+        <button :class="['picker_confirm', options.confirmClass]" @click="confirm">{{ options.confirmText }}</button>
+        <h4 :class="[options.titleClass]">{{ options.titleText }}</h4>
       </div>
       <div class="picker_panel">
         <div class="picker_mask_top"></div>
@@ -61,15 +69,20 @@ const {
 </template>
 
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active, .slide-enter-active, .slide-leave-active {
+.fade-enter-active,
+.fade-leave-active,
+.slide-enter-active,
+.slide-leave-active {
   transition: all 0.3s ease;
 }
 
-.fade-enter-from, .fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 
-.slide-enter-from, .slide-leave-to {
+.slide-enter-from,
+.slide-leave-to {
   opacity: 0.5;
   transform: translate3d(0, 270px, 0);
 }
@@ -92,10 +105,12 @@ const {
   height: 270px;
   z-index: 10000;
   background: #fff;
+
   &_title {
     position: relative;
     height: 44px;
     color: #333;
+
     &::after {
       content: '';
       display: block;
@@ -122,17 +137,18 @@ const {
       height: 44px;
       line-height: 44px;
       text-align: center;
+      color: v-bind(titleColor);
     }
   }
 
   &_cancel {
     left: 0;
-    color: #999;
+    color: v-bind(cancelColor);
   }
 
   &_confirm {
     right: 0;
-    color: #42b983;
+    color: v-bind(confirmColor);
   }
 
   &_panel {
@@ -142,7 +158,8 @@ const {
     box-sizing: border-box;
   }
 
-  &_mask_top, &_mask_bottom {
+  &_mask_top,
+  &_mask_bottom {
     position: absolute;
     left: 0;
     right: 0;
@@ -155,7 +172,8 @@ const {
 
   &_mask_top {
     top: 24px;
-    background: linear-gradient(to bottom, rgba(255,255,255,.9), rgba(255,255,255,.5));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .9), rgba(255, 255, 255, .5));
+
     &:after {
       content: '';
       display: block;
@@ -170,7 +188,8 @@ const {
 
   &_mask_bottom {
     bottom: 24px;
-    background: linear-gradient(to top, rgba(255,255,255,.9), rgba(255,255,255,.5));
+    background: linear-gradient(to top, rgba(255, 255, 255, .9), rgba(255, 255, 255, .5));
+
     &::before {
       content: '';
       display: block;
@@ -186,6 +205,7 @@ const {
   &_wheel {
     flex: 1;
     overflow: hidden;
+
     &_wrapper {
       display: flex;
       align-items: stretch;

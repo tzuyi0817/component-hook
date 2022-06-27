@@ -6,3 +6,15 @@ export interface LangType {
   original?: string;
   version?: number;
 };
+
+export interface PickerOptions {
+  cancelClass: string;
+  confirmClass: string;
+  titleClass: string;
+  cancelColor: string,
+  confirmColor: string,
+  titleColor: string,
+  cancelText: string;
+  confirmText: string;
+  titleText: string;
+}
