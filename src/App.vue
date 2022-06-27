@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 import Picker from '@/components/Picker.vue';
 import type { LangType } from "@/types";
 
@@ -11,11 +11,20 @@ const dataList = ref([
   { langType: 1, code: "cn", original: "中文", version: 85 },
 ]);
 
+const options = reactive({
+  confirmColor: '',
+});
+
 const anchor = computed(() => {
   const index = dataList.value.findIndex(({ langType }) => langType === currentSelect.value?.langType);
   const checkIndex = index > -1 ? index : 0;
   return checkIndex;
 });
+
+function toggle() {
+  isShowPicker.value = true;
+  options.confirmColor = 'red';
+}
 </script>
 
 <template>
@@ -23,9 +32,10 @@ const anchor = computed(() => {
     v-model:isShowPicker="isShowPicker"
     :data="dataList"
     :anchor="anchor"
+    :options="options"
   />
 
-  <button @click="() => isShowPicker = true">toggle</button>
+  <button @click="toggle">toggle</button>
 </template>
 
 <style>
