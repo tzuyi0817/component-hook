@@ -136,5 +136,5 @@ options | false | Object | Custom text, color and class | See below for details 
 ### Events
 Event | Description | Return Parameters |
 :--- | :--- | :--- |
-confirm | true | Selected Value |
-cancel | true | noe |
+confirm | Triggered when the confirm button is clicked | Selected Value |
+cancel | Triggered when the cancel button is clicked | none |
