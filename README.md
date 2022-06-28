@@ -1,6 +1,6 @@
 # vue3-picker
 
-Vue3 Picker component
+Vue3 Picker component ([DEMO](https://tzuyi0817.github.io/vue3-picker/))
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=vue3-picker">
@@ -111,7 +111,7 @@ function toggle() {
 Name | Required | Type | Description | Default |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | control picker show |
-data | true | Array | picker list |
+data | true | Array | picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
 anchor | true | Number or Array | picker current select position (single-column for Number、 concatenated for Array)
 showKey | false | String or Array | wheel options name (object key) |
 swipeTime | false | Number | wheel swipe Time | 500 |
