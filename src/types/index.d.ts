@@ -8,18 +8,18 @@ export type PickData = OriginData | Array<OriginData>;
 export interface PickerProps {
   data: PickData;
   isShowPicker: boolean;
-  anchor: Array<number>;
+  anchor: number | Array<number>;
   options?: Partial<PickerOptions>;
-  showKey?: Array<string>;
+  showKey?: string | Array<string>;
   swipeTime?: number;
-};
+}
 
 export interface LangType {
   langType?: number;
   code?: string;
   original?: string;
   version?: number;
-};
+}
 
 export interface PickerOptions {
   cancelClass: string;

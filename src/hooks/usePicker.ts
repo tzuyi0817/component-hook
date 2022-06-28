@@ -1,4 +1,4 @@
-import { watch, ref, nextTick, computed, Ref } from 'vue';
+import { watch, ref, nextTick, computed } from 'vue';
 import BScroll from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
 import { isArray } from '@/utils/checkType';
@@ -10,6 +10,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
   const wheelWrapper = ref();
   const wheels = ref<Array<BScroll>>([]);
   const isCascadeData = computed(() => isArray(props.data[0]));
+  const pickerAnchors = computed(() => isArray(props.anchor) ? props.anchor : [props.anchor]);
 
   async function setPickerData(isUpdate = false) {
     isUpdate && updatePickerData();
@@ -44,7 +45,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
 
   function scrollToAnchor() {
     wheels.value.forEach((wheel, index) => {
-      const targetPos = props.anchor[index]; 
+      const targetPos = pickerAnchors.value?.[index]; 
       wheel.wheelTo(targetPos ?? 0);
     });
   }

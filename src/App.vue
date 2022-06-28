@@ -40,8 +40,8 @@ function toggle() {
   <picker 
     v-model:isShowPicker="isShowPicker"
     :data="dataList"
-    :anchor="[anchor]"
-    :showKey="['original']"
+    :anchor="anchor"
+    showKey="original"
     :options="options"
     :swipeTime="500"
     @confirm="confirm"
