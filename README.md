@@ -108,12 +108,12 @@ function toggle() {
 
 ### Props
 
-Name | Required | Type | Description | Default |
+Name | Required | Type | Description | <div style="width: 130pt">Default</div> |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | control picker show |
 data | true | Array | picker list |
 anchor | true | Number or Array | picker current select position (single-column for Number、 concatenated for Array)
 showKey | false | String or Array | wheel options name (object key) |
 swipeTime | false | Number | wheel swipe Time | 500 |
-options | false | Object | Custom text, color and class | cancelClass: ""<br>confirmClass: ""<br>titleClass: ""<br> cancelColor: "#999"<br>confirmColor: "#42b983"<br> titleColor: ""<br>cancelText: "Cancel"<br>confirmText: "Confirm"<br>titleText: ""|
+options | false | Object | Custom text, color and class | cancelClass: ""<br>confirmClass: ""<br>titleClass: ""<br> cancelColor: "#999"<br>confirmColor: "#42b983"<br> titleColor: ""<br>cancelText: "Cancel"<br>confirmText: "Confirm"<br>titleText: "" |
 
