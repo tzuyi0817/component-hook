@@ -2,16 +2,16 @@
 import { computed } from "vue";
 import usePicker from "@/hooks/usePicker";
 import type { PickerOptions, PickData } from '@/types';
-import { isObject } from '@/utils/checkType';
+import { isObject, isArray } from '@/utils/checkType';
 
 interface Props {
   data: PickData;
   isShowPicker: boolean;
   options?: Partial<PickerOptions>;
-  anchor: Array<number>;
-  showKey?: Array<string>;
+  anchor: number | Array<number>;
+  showKey?: string | Array<string>;
   swipeTime?: number
-};
+}
 
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
@@ -36,6 +36,7 @@ const options = computed(() => ({
 const cancelColor = computed(() => options.value.cancelColor);
 const confirmColor = computed(() => options.value.confirmColor);
 const titleColor = computed(() => options.value.titleColor);
+const showKeys = computed(() => isArray(props.showKey) ? props.showKey : [props.showKey]);
 
 const {
   pickerData,
@@ -65,7 +66,7 @@ const {
           <div class="picker_wheel" v-for="(wheel, wheelIndex) in pickerData" :key="wheelIndex">
             <ul class="picker_wheel_scroll">
               <li class="picker_wheel_item" v-for="(item, index) in wheel" :key="index">
-                {{ showKey?.[wheelIndex] && isObject(item) ? item[showKey[wheelIndex]] : item }}
+                {{ showKeys?.[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]!] : item }}
               </li>
             </ul>
           </div>
