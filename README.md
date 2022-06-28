@@ -108,7 +108,7 @@ function toggle() {
 
 ### Props
 
-Name | Required | Type | Description | <div style="width: 130pt">Default</div> |
+Name | Required | Type | Description | <div style="min-width: 130pt">Default</div> |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | control picker show |
 data | true | Array | picker list |
