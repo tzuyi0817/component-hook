@@ -96,7 +96,7 @@ function toggle() {
   isShowPicker.value = true;
 }
 
-function date() {
+function openDate() {
   isShowDate.value = true;
 }
 </script>
@@ -122,7 +122,7 @@ function date() {
   />
 
   <button @click="toggle">toggle</button>
-  <button @click="date">date</button>
+  <button @click="openDate">date</button>
 </template>
 ```
 
@@ -131,9 +131,9 @@ function date() {
 Name | Required | Type | Description | Default |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | Control picker show |
-data | true | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
-type | false | String | Built-in picker type, no need to pass in data - (date) |
-anchor | true | Number or Array | Picker current select position (single column for Number、 multiple columns for Array)
+data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
+type | false | String | Built-in picker type, no need to pass in data (date) |
+anchor | true | Number or Array | Picker current select index (single column for Number、 multiple columns for Array)
 showKey | false | String or Array | Wheel options name (object key) |
 swipeTime | false | Number | Wheel swipe Time | 500 |
 options | false | Object | Custom text, color and class | See below for details |
@@ -157,5 +157,5 @@ options | false | Object | Custom text, color and class | See below for details 
 ### Events
 Event | Description | Return Parameters |
 :--- | :--- | :--- |
-confirm | Triggered when the confirm button is clicked | Selected Value |
-cancel | Triggered when the cancel button is clicked | none |
+confirm | Triggered when the confirm button is clicked | Selected value |
+cancel | Triggered when the cancel button is clicked | None |
