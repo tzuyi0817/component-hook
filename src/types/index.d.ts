@@ -12,6 +12,7 @@ export interface PickerProps {
   options?: Partial<PickerOptions>;
   showKey?: string | Array<string>;
   swipeTime?: number;
+  type: string;
 }
 
 export interface LangType {
