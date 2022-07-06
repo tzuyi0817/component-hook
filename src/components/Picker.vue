@@ -5,12 +5,13 @@ import type { PickerOptions, PickData } from '@/types';
 import { isObject, isArray } from '@/utils/checkType';
 
 interface Props {
-  data: PickData;
+  data?: PickData;
   isShowPicker: boolean;
   options?: Partial<PickerOptions>;
   anchor: number | Array<number>;
   showKey?: string | Array<string>;
-  swipeTime?: number
+  swipeTime?: number;
+  type?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -18,6 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   isShowPicker: false,
   options: () => ({}),
   swipeTime: 500,
+  type: "",
 });
 
 const emit = defineEmits(["update:isShowPicker", 'cancel', 'confirm']);
