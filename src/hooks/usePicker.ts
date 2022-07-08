@@ -39,11 +39,11 @@ export default (props: PickerProps, emit: PickerEmit) => {
   }
 
   function updatePickerData() {
-    const defaultData = {
+    const builtInData = {
       date: dateList,
     };
-    const type = props.type as keyof typeof defaultData;
-    pickerData.value = defaultData[type]?.value ?? (isCascadeData.value ? [...props.data] as Array<OriginData> : [props.data]);
+    const type = props.type as keyof typeof builtInData;
+    pickerData.value = builtInData[type]?.value ?? (isCascadeData.value ? [...props.data] as Array<OriginData> : [props.data]);
   }
 
   function createWheel(index: number) {
