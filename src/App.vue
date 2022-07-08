@@ -4,9 +4,11 @@ import Picker from '@/components/Picker.vue';
 import type { LangType } from "@/types";
 
 const currentSelect = ref<LangType>({});
-const currentDate = ref([2022, 7, 7]);
+const currentDate = ref<Array<number>>([]);
+const currentTime = ref();
 const isShowPicker = ref(false);
-const isShowDate = ref(false);
+const isShowDate = ref(false); 
+const isShowTime = ref(false);
 const dataList = ref([
   { langType: 2, code: "vi", original: "Tiếng Việt", version: 80 },
   { langType: 0, code: "en", original: "English", version: 95 },
@@ -33,6 +35,10 @@ function confirmDate(value: Array<number>) {
   currentDate.value = value;
 }
 
+function confirmTime(value: Array<number>) {
+  currentTime.value = value;
+}
+
 function cancel() {
   console.log('cancel');
 }
@@ -41,8 +47,12 @@ function toggle() {
   isShowPicker.value = true;
 }
 
-function date() {
+function openDate() {
   isShowDate.value = true;
+}
+
+function openTime() {
+  isShowTime.value = true;
 }
 </script>
 
@@ -66,8 +76,17 @@ function date() {
     @confirm="confirmDate"
   />
 
+  <picker 
+    v-model:isShowPicker="isShowTime"
+    :anchor="currentTime"
+    type="time"
+    :options="{ titleText: 'time selector' }"
+    @confirm="confirmTime"
+  />
+
   <button @click="toggle">toggle</button>
-  <button @click="date">date</button>
+  <button @click="openDate">date</button>
+  <button @click="openTime">time</button>
 </template>
 
 <style>
