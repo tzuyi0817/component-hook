@@ -1,4 +1,6 @@
 import { ref, computed } from "vue";
+import { isHaveValue } from '@/utils/common';
+import type { PickerProps } from "@/types";
 
 export default () => {
   const START_YEAR = 1900;
@@ -33,16 +35,31 @@ export default () => {
 
   function generateList(start: number, end: number) {
     const result: Array<number> = [];
-    for (let year = start; year <= end; year++) {
-      result.push(year);
+    for (let index = start; index <= end; index++) {
+      result.push(index);
     }
     return result;
+  }
+
+  function getDateAnchors(anchor: PickerProps['anchor']) {
+    const anchors = isHaveValue(anchor) ? anchor : [defaultYear, defaultMonth, defaultDay];
+    return anchors.map((target, index) => {
+      const pos = dateList.value[index].indexOf(target);
+      return pos > -1 ? pos : 0;
+    });
+  }
+
+  function updateDateSelect(pickerAnchors: Array<number>) {
+    const [year, month] = pickerAnchors;
+    selectYear.value = dateList.value[0][year];
+    selectMonth.value = dateList.value[1][month];
   }
 
   return {
     selectYear,
     selectMonth,
     dateList,
-    defaultAnchors: [defaultYear, defaultMonth, defaultDay],
+    updateDateSelect,
+    getDateAnchors,
   }
 }
