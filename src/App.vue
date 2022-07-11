@@ -5,14 +5,14 @@ import type { LangType } from "@/types";
 
 const currentSelect = ref<LangType>({});
 const currentDate = ref<Array<number>>([]);
-const currentTime = ref();
+const currentTime = ref<Array<number>>([]);
 const isShowPicker = ref(false);
 const isShowDate = ref(false); 
 const isShowTime = ref(false);
 const dataList = ref([
-  { langType: 2, code: "vi", original: "Tiếng Việt", version: 80 },
-  { langType: 0, code: "en", original: "English", version: 95 },
-  { langType: 1, code: "cn", original: "中文", version: 85 },
+  { langType: 2, code: "vi", original: "Tiếng Việt" },
+  { langType: 0, code: "en", original: "English" },
+  { langType: 1, code: "cn", original: "中文" },
 ]);
 
 const options = reactive({

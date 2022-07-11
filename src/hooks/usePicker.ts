@@ -2,7 +2,9 @@ import { watch, ref, nextTick, computed } from 'vue';
 import BScroll from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
 import { isArray } from '@/utils/checkType';
+import { isHaveValue } from '@/utils/common';
 import useDate from "@/hooks/useDate";
+import useTime from "@/hooks/useTime";
 import type { PickerEmit, PickerProps, OriginData, NormalData } from "@/types";
 BScroll.use(Wheel);
 
@@ -10,16 +12,13 @@ export default (props: PickerProps, emit: PickerEmit) => {
   const pickerData = ref<Array<OriginData>>([]);
   const wheelWrapper = ref();
   const wheels = ref<Array<BScroll>>([]);
-  const { selectYear, selectMonth, dateList, defaultAnchors } = useDate();
+  const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate();
+  const { timeList, updateDefaultTime, getTimeAnchors } = useTime();
   const isCascadeData = computed(() => isArray(props.data[0]));
   const pickerAnchors = computed(() => {
-    if (props.type === 'date') {
-      const anchors = isArray(props.anchor) && props.anchor.length === 3 ? props.anchor : defaultAnchors;
-      return anchors.map((target, index) => {
-        const pos = dateList.value[index].indexOf(target);
-        return pos > -1 ? pos : 0;
-      });
-    }
+    if (props.type === 'date') return getDateAnchors(props.anchor);
+    if (props.type === 'time') return getTimeAnchors(props.anchor);
+
     return isArray(props.anchor) ? props.anchor : [props.anchor];
   });
 
@@ -31,19 +30,18 @@ export default (props: PickerProps, emit: PickerEmit) => {
     checkWheels();
   }
 
-  function updateSelect() {
-    if (props.type !== 'date') return;
-    const [year, month] = pickerAnchors.value;
-    selectYear.value = dateList.value[0][year];
-    selectMonth.value = dateList.value[1][month];
+  function updatePickerData() {
+    const builtIn = {
+      date: dateList.value,
+      time: timeList,
+    };
+    const type = props.type as keyof typeof builtIn;
+    pickerData.value = builtIn[type] ?? (isCascadeData.value ? [...props.data] as Array<OriginData> : [props.data]);
   }
 
-  function updatePickerData() {
-    const builtInData = {
-      date: dateList,
-    };
-    const type = props.type as keyof typeof builtInData;
-    pickerData.value = builtInData[type]?.value ?? (isCascadeData.value ? [...props.data] as Array<OriginData> : [props.data]);
+  function updateSelect() {
+    props.type === 'date' && updateDateSelect(pickerAnchors.value);
+    props.type === 'time' && !isHaveValue(props.anchor) && updateDefaultTime();
   }
 
   function createWheel(index: number) {
@@ -112,7 +110,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
     const items = wheels.value.reduce((result, wheel, index) => {
       const position = wheel.getSelectedIndex();
       const item = pickerData.value[index][position];
-      result.push(item);
+      result.push(props.type === 'time' ? +item : item);
       return result;
     }, [] as Array<NormalData>);
     return items.length > 1 ? items : items[0];
