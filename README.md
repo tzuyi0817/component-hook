@@ -157,6 +157,18 @@ showKey | false | String or String[] | Wheel options name (object key) |
 swipeTime | false | Number | Wheel swipe Time | 500 |
 options | false | Object | Custom text, color and class | See below for details |
 
+</div>
+
+<style>
+table th:first-of-type {
+  width: 210px;
+}
+
+table th:nth-of-type(5) {
+  width: 460px;
+}
+</style>
+
 #### options
 
 ```object
