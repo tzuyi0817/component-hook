@@ -19,7 +19,7 @@ Vue3 Picker component ([DEMO](https://tzuyi0817.github.io/vue3-picker/))
 - Scroll wheel 3D effect
 - Custom title, confirm and cancel text, class and color
 - Custom wheel swipe Time
-- Built-in date data and time
+- Built-in date and time data
 - Supports typescript
 
 ## Getting started
@@ -147,7 +147,7 @@ function openTime() {
 
 ### Props
 
-Name | Required | Type | Description | Default |
+<div style="width:160px">Name</div> | Required | Type | Description | <div style="width:130px">Default</div> |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | Control picker show |
 data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
@@ -156,8 +156,6 @@ anchor | true | Number or Number[] | Picker current select index (single column 
 showKey | false | String or String[] | Wheel options name (object key) |
 swipeTime | false | Number | Wheel swipe Time | 500 |
 options | false | Object | Custom text, color and class | See below for details |
-
-</style>
 
 #### options
 
