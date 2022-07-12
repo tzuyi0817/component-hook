@@ -147,29 +147,64 @@ function openTime() {
 
 ### Props
 
-<style>
-.props > table th:first-of-type {
-  min-width: 160px;
-}
-
-.props > table th:nth-of-type(5) {
-  min-width: 130px;
-}
-</style>
-
-<div class="props">
-
-| Name | Required | Type | Description | Default |
-| :--- | :--- | :--- | :--- | :--- |
-| v-model:isShowPicker | true | Boolean | Control picker show |
-| data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
-| type | false | String | Built-in picker type, no need to pass in data (date, time) | date: current date <br/> time: current time |
-| anchor | true | Number or Number[] | Picker current select index (single column for Number、 multiple columns for Array) | date: [2022, 7, 12] <br/> time: [10, 13, 20] |
-| showKey | false | String or String[] | Wheel options name (object key) |
-| swipeTime | false | Number | Wheel swipe Time | 500 |
-| options | false | Object | Custom text, color and class | See below for details |
-
-</div>
+<table width="100%">
+  <tr>
+    <th style="min-width:160px">Name</th>
+    <th>Required</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th style="min-width:130px">Default</th>
+  </tr>
+  <tr>
+    <td>v-model:isShowPicker</td>
+    <td>true</td>
+    <td>Boolean</td>
+    <td>Control picker show</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>false</td>
+    <td>Array</td>
+    <td>Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td>false</td>
+    <td>String</td>
+    <td>Built-in picker type, no need to pass in data (date, time)</td>
+    <td>date: current date <br/> time: current time</td>
+  </tr>
+  <tr>
+    <td>anchor</td>
+    <td>true</td>
+    <td>Number or Number[]</td>
+    <td>Picker current select index (single column for Number、 multiple columns for Array)</td>
+    <td>date: [2022, 7, 12] <br/> time: [10, 13, 20]</td>
+  </tr>
+  <tr>
+    <td>showKey</td>
+    <td>false</td>
+    <td>String or String[]</td>
+    <td>Wheel options name (object key)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>swipeTime</td>
+    <td>false</td>
+    <td>Number</td>
+    <td>Wheel swipe Time</td>
+    <td>500</td>
+  </tr>
+  <tr>
+    <td>options</td>
+    <td>false</td>
+    <td>Object</td>
+    <td>Custom text, color and class</td>
+    <td>See below for details</td>
+  </tr>
+</table>
 
 #### options
 
