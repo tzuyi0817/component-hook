@@ -151,8 +151,8 @@ Name | Required | Type | Description | Default |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | Control picker show |
 data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
-type | false | String | Built-in picker type, no need to pass in data (date, time) |
-anchor | true | Number or Number[] | Picker current select index (single column for Number、 multiple columns for Array)
+type | false | String | Built-in picker type, no need to pass in data (date, time) | date: current date <br/> time: current time
+anchor | true | Number or Number[] | Picker current select index (single column for Number、 multiple columns for Array) | date: [2022, 7, 12] <br/> time: [10, 13, 20]
 showKey | false | String or String[] | Wheel options name (object key) |
 swipeTime | false | Number | Wheel swipe Time | 500 |
 options | false | Object | Custom text, color and class | See below for details |
