@@ -1,5 +1,5 @@
 import { isArray } from '@/utils/checkType';
 
-export function isHaveValue(anchor: unknown): anchor is Array<unknown> {
-  return isArray(anchor) && anchor.length === 3;
+export function isHaveValue(value: unknown): value is Array<unknown> {
+  return isArray(value) && value.length === 3;
 }

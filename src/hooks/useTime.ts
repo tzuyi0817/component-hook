@@ -2,7 +2,9 @@ import { ref } from 'vue';
 import { isHaveValue } from '@/utils/common';
 import type { PickerProps } from "@/types";
 
-export default () => {
+export default (isTime: boolean) => {
+  if (!isTime) return {};
+
   const hours = generateTime(0, 23);
   const minutes = generateTime(0, 59);
   const seconds = generateTime(0, 59);
@@ -35,5 +37,5 @@ export default () => {
     timeList: [hours, minutes, seconds],
     updateDefaultTime,
     getTimeAnchors,
-  }
+  };
 }
