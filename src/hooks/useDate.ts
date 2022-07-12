@@ -2,7 +2,9 @@ import { ref, computed } from "vue";
 import { isHaveValue } from '@/utils/common';
 import type { PickerProps } from "@/types";
 
-export default () => {
+export default (isDate: boolean) => {
+  if (!isDate) return {};
+
   const START_YEAR = 1900;
   const END_YEAR = 2100;
   const date = new Date();
@@ -61,5 +63,5 @@ export default () => {
     dateList,
     updateDateSelect,
     getDateAnchors,
-  }
+  };
 }

@@ -12,12 +12,14 @@ export default (props: PickerProps, emit: PickerEmit) => {
   const pickerData = ref<Array<OriginData>>([]);
   const wheelWrapper = ref();
   const wheels = ref<Array<BScroll>>([]);
-  const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate();
-  const { timeList, updateDefaultTime, getTimeAnchors } = useTime();
   const isCascadeData = computed(() => isArray(props.data[0]));
+  const isDate = computed(() => props.type === 'date');
+  const isTime = computed(() => props.type === 'time');
+  const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate(isDate.value);
+  const { timeList, updateDefaultTime, getTimeAnchors } = useTime(isTime.value);
   const pickerAnchors = computed(() => {
-    if (props.type === 'date') return getDateAnchors(props.anchor);
-    if (props.type === 'time') return getTimeAnchors(props.anchor);
+    if (isDate.value) return getDateAnchors!(props.anchor);
+    if (isTime.value) return getTimeAnchors!(props.anchor);
 
     return isArray(props.anchor) ? props.anchor : [props.anchor];
   });
@@ -32,7 +34,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
 
   function updatePickerData() {
     const builtIn = {
-      date: dateList.value,
+      date: dateList?.value,
       time: timeList,
     };
     const type = props.type as keyof typeof builtIn;
@@ -40,8 +42,8 @@ export default (props: PickerProps, emit: PickerEmit) => {
   }
 
   function updateSelect() {
-    props.type === 'date' && updateDateSelect(pickerAnchors.value);
-    props.type === 'time' && !isHaveValue(props.anchor) && updateDefaultTime();
+    isDate.value && updateDateSelect!(pickerAnchors.value);
+    isTime.value && !isHaveValue(props.anchor) && updateDefaultTime!();
   }
 
   function createWheel(index: number) {
@@ -64,11 +66,11 @@ export default (props: PickerProps, emit: PickerEmit) => {
   }
 
   function handleScrollEnd(index: number) {
-    if (props.type !== 'date' || index === 2) return;
+    if (!isDate.value || index === 2) return;
     const position = wheels.value[index].getSelectedIndex();
-    const value = dateList.value[index][position];
-    if (index === 0) selectYear.value = value;
-    if (index === 1) selectMonth.value = value;
+    const value = dateList!.value[index][position];
+    if (index === 0) selectYear!.value = value;
+    if (index === 1) selectMonth!.value = value;
     setPickerData(true);
   }
 
@@ -110,7 +112,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
     const items = wheels.value.reduce((result, wheel, index) => {
       const position = wheel.getSelectedIndex();
       const item = pickerData.value[index][position];
-      result.push(props.type === 'time' ? +item : item);
+      result.push(isTime.value ? +item : item);
       return result;
     }, [] as Array<NormalData>);
     return items.length > 1 ? items : items[0];
