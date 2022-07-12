@@ -147,15 +147,29 @@ function openTime() {
 
 ### Props
 
-<div style="width:160px">Name</div> | Required | Type | Description | <div style="width:130px">Default</div> |
-:--- | :--- | :--- | :--- | :--- |
-v-model:isShowPicker | true | Boolean | Control picker show |
-data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
-type | false | String | Built-in picker type, no need to pass in data (date, time) | date: current date <br/> time: current time
-anchor | true | Number or Number[] | Picker current select index (single column for Number、 multiple columns for Array) | date: [2022, 7, 12] <br/> time: [10, 13, 20]
-showKey | false | String or String[] | Wheel options name (object key) |
-swipeTime | false | Number | Wheel swipe Time | 500 |
-options | false | Object | Custom text, color and class | See below for details |
+<style>
+.props > table th:first-of-type {
+  min-width: 160px;
+}
+
+.props > table th:nth-of-type(5) {
+  min-width: 130px;
+}
+</style>
+
+<div class="props">
+
+| Name | Required | Type | Description | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| v-model:isShowPicker | true | Boolean | Control picker show |
+| data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
+| type | false | String | Built-in picker type, no need to pass in data (date, time) | date: current date <br/> time: current time |
+| anchor | true | Number or Number[] | Picker current select index (single column for Number、 multiple columns for Array) | date: [2022, 7, 12] <br/> time: [10, 13, 20] |
+| showKey | false | String or String[] | Wheel options name (object key) |
+| swipeTime | false | Number | Wheel swipe Time | 500 |
+| options | false | Object | Custom text, color and class | See below for details |
+
+</div>
 
 #### options
 
