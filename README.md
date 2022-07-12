@@ -19,7 +19,7 @@ Vue3 Picker component ([DEMO](https://tzuyi0817.github.io/vue3-picker/))
 - Scroll wheel 3D effect
 - Custom title, confirm and cancel text, class and color
 - Custom wheel swipe Time
-- Built-in date data
+- Built-in date data and time
 - Supports typescript
 
 ## Getting started
@@ -60,8 +60,10 @@ import { Picker } from 'vue3-picker';
 
 const currentSelect = ref({})
 const currentDate = ref([2022, 7, 7]);
+const currentTime = ref([]);
 const isShowPicker = ref(false);
 const isShowDate = ref(false);
+const isShowTime = ref(false);
 const dataList = ref([
   { langType: 2, code: "vi", original: "Tiếng Việt" },
   { langType: 0, code: "en", original: "English" },
@@ -88,6 +90,10 @@ function confirmDate(value) {
   currentDate.value = value;
 }
 
+function confirmTime(value) {
+  currentTime.value = value;
+}
+
 function cancel() {
   console.log('cancel');
 }
@@ -98,6 +104,10 @@ function toggle() {
 
 function openDate() {
   isShowDate.value = true;
+}
+
+function openTime() {
+  isShowTime.value = true;
 }
 </script>
 
@@ -121,8 +131,17 @@ function openDate() {
     @confirm="confirmDate"
   />
 
+  <picker 
+    v-model:isShowPicker="isShowTime"
+    :anchor="currentTime"
+    type="time"
+    :options="{ titleText: 'time selector' }"
+    @confirm="confirmTime"
+  />
+
   <button @click="toggle">toggle</button>
   <button @click="openDate">date</button>
+  <button @click="openTime">time</button>
 </template>
 ```
 
@@ -132,9 +151,9 @@ Name | Required | Type | Description | Default |
 :--- | :--- | :--- | :--- | :--- |
 v-model:isShowPicker | true | Boolean | Control picker show |
 data | false | Array | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]` |
-type | false | String | Built-in picker type, no need to pass in data (date) |
-anchor | true | Number or Array | Picker current select index (single column for Number、 multiple columns for Array)
-showKey | false | String or Array | Wheel options name (object key) |
+type | false | String | Built-in picker type, no need to pass in data (date, time) |
+anchor | true | Number or Number[] | Picker current select index (single column for Number、 multiple columns for Array)
+showKey | false | String or String[] | Wheel options name (object key) |
 swipeTime | false | Number | Wheel swipe Time | 500 |
 options | false | Object | Custom text, color and class | See below for details |
 
