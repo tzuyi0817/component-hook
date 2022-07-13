@@ -87,6 +87,12 @@ function openTime() {
   <button @click="toggle">toggle</button>
   <button @click="openDate">date</button>
   <button @click="openTime">time</button>
+
+  <div class="anchors">
+    <p>toggle: {{ `[${anchor}]` }}</p>
+    <p>date: {{ `[${currentDate}]` }}</p>
+    <p>time: {{ `[${currentTime}]` }}</p>
+  </div>
 </template>
 
 <style>
@@ -97,5 +103,9 @@ function openTime() {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.anchors {
+  margin-top: 100px;
 }
 </style>
