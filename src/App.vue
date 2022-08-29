@@ -1,19 +1,41 @@
 <script setup lang="ts">
-import { ref, computed, reactive } from "vue";
+import { ref, reactive } from "vue";
 import Picker from '@/components/Picker.vue';
 import type { LangType } from "@/types";
 
-const currentSelect = ref<LangType>({});
+const currentSelect = ref<Array<LangType>>([]);
+const anchor = ref([0, 1, 2]);
+const currentSingle = ref<LangType>({});
+const anchorSingle = ref(1);
 const currentDate = ref<Array<number>>([]);
 const currentTime = ref<Array<number>>([]);
 const isShowPicker = ref(false);
+const isShowSingle = ref(false);
 const isShowDate = ref(false); 
 const isShowTime = ref(false);
 const dataList = ref([
+  [
+    { langType: 2, code: "vi", original: "Tiếng Việt" },
+    { langType: 0, code: "en", original: "English" },
+    { langType: 1, code: "cn", original: "中文" }, 
+  ],
+  [
+    { langType: 2, code: "vi", original: "Tiếng Việt" },
+    { langType: 0, code: "en", original: "English" },
+    { langType: 1, code: "cn", original: "中文" }, 
+  ],
+  [
+    { langType: 2, code: "vi", original: "Tiếng Việt" },
+    { langType: 0, code: "en", original: "English" },
+    { langType: 1, code: "cn", original: "中文" }, 
+  ],
+]);
+
+const singleData = [
   { langType: 2, code: "vi", original: "Tiếng Việt" },
   { langType: 0, code: "en", original: "English" },
   { langType: 1, code: "cn", original: "中文" },
-]);
+];
 
 const options = reactive({
   confirmColor: '#000',
@@ -21,22 +43,21 @@ const options = reactive({
   titleText: 'Title',
 });
 
-const anchor = computed(() => {
-  const index = dataList.value.findIndex(({ langType }) => langType === currentSelect.value?.langType);
-  const checkIndex = index > -1 ? index : 2;
-  return checkIndex;
-});
 
-function confirm(value: LangType) {
+function confirm(value: Array<LangType>) {
   currentSelect.value = value;
 }
 
+function confirmSingle(value: LangType) {
+  currentSingle.value = value;
+}
+
 function confirmDate(value: Array<number>) {
-  currentDate.value = value;
+  console.log({ date: value });
 }
 
 function confirmTime(value: Array<number>) {
-  currentTime.value = value;
+  console.log({ time: value });
 }
 
 function cancel() {
@@ -45,6 +66,10 @@ function cancel() {
 
 function toggle() {
   isShowPicker.value = true;
+}
+
+function openSingle() {
+  isShowSingle.value = true;
 }
 
 function openDate() {
@@ -59,9 +84,9 @@ function openTime() {
 <template>
   <picker 
     v-model:isShowPicker="isShowPicker"
+    v-model:anchor="anchor"
     :data="dataList"
-    :anchor="anchor"
-    showKey="original"
+    :showKey="['original', 'original', 'original']"
     :options="options"
     :swipeTime="500"
     @confirm="confirm"
@@ -69,8 +94,17 @@ function openTime() {
   />
 
   <picker 
+    v-model:isShowPicker="isShowSingle"
+    v-model:anchor="anchorSingle"
+    :data="singleData"
+    showKey="original"
+    :options="options"
+    @confirm="confirmSingle"
+  />
+
+  <picker 
     v-model:isShowPicker="isShowDate"
-    :anchor="currentDate"
+    v-model:anchor="currentDate"
     type="date"
     :options="{ titleText: 'date selector' }"
     @confirm="confirmDate"
@@ -78,20 +112,38 @@ function openTime() {
 
   <picker 
     v-model:isShowPicker="isShowTime"
-    :anchor="currentTime"
+    v-model:anchor="currentTime"
     type="time"
     :options="{ titleText: 'time selector' }"
     @confirm="confirmTime"
   />
 
-  <button @click="toggle">toggle</button>
-  <button @click="openDate">date</button>
-  <button @click="openTime">time</button>
+  <button class="btn" @click="toggle">toggle</button>
+  <button class="btn" @click="openSingle">single</button>
+  <button class="btn" @click="openDate">date</button>
+  <button class="btn" @click="openTime">time</button>
 
   <div class="anchors">
-    <p>toggle: {{ `[${anchor}]` }}</p>
-    <p>date: {{ `[${currentDate}]` }}</p>
-    <p>time: {{ `[${currentTime}]` }}</p>
+    <ul>
+      <h3>toggle</h3>
+      <li>anchor：{{ anchor }}</li>
+      <li>select：{{ currentSelect }}</li>
+    </ul>
+    <ul>
+      <h3>single</h3>
+      <li>anchor：{{ anchorSingle }}</li>
+      <li>select：{{ currentSingle }}</li>
+    </ul>
+    <ul>
+      <h3>date</h3>
+      <li>anchor：{{ currentDate }}</li>
+      <li>select：{{ currentDate }}</li>
+    </ul>
+    <ul>
+      <h3>time</h3>
+      <li>anchor：{{ currentTime }}</li>
+      <li>select：{{ currentTime }}</li>
+    </ul>
   </div>
 </template>
 
@@ -105,7 +157,21 @@ function openTime() {
   margin-top: 60px;
 }
 
+.btn {
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background-color: rgb(53, 53, 250);
+  color: white;
+}
+
 .anchors {
-  margin-top: 100px;
+  margin-top: 50px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
 }
 </style>

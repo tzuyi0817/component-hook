@@ -5,7 +5,7 @@ import { isArray } from '@/utils/checkType';
 import { isHaveValue } from '@/utils/common';
 import useDate from "@/hooks/useDate";
 import useTime from "@/hooks/useTime";
-import type { PickerEmit, PickerProps, OriginData, NormalData } from "@/types";
+import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from "@/types";
 BScroll.use(Wheel);
 
 export default (props: PickerProps, emit: PickerEmit) => {
@@ -96,7 +96,9 @@ export default (props: PickerProps, emit: PickerEmit) => {
   function confirm() {
     const isInTransition = wheels.value.some(wheel => wheel.isInTransition);
     isInTransition && stopWheels();
-    emit('confirm', getSelectedItem());
+    const { item, anchor } = getSelectedItem();
+    emit('confirm', item);
+    emit('update:anchor', anchor);
     closePicker();
   }
 
@@ -109,13 +111,15 @@ export default (props: PickerProps, emit: PickerEmit) => {
   }
 
   function getSelectedItem() {
-    const items = wheels.value.reduce((result, wheel, index) => {
+    const { item, anchor } = wheels.value.reduce((result, wheel, index) => {
       const position = wheel.getSelectedIndex();
       const item = pickerData.value[index][position];
-      result.push(isTime.value ? +item : item);
+      result.item.push(isTime.value ? +item : item);
+      result.anchor.push(position);
       return result;
-    }, [] as Array<NormalData>);
-    return items.length > 1 ? items : items[0];
+    }, { item: [], anchor: [] } as PickerSelectItems);
+
+    return item.length > 1 ? { item, anchor } : { item: item[0], anchor: anchor[0] };
   }
 
   watch(() => props.data, () => setPickerData(true), { immediate: true });

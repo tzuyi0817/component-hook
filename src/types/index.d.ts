@@ -1,4 +1,4 @@
-type EmitKey = 'update:isShowPicker' | 'cancel' | 'confirm';
+type EmitKey = 'update:isShowPicker' | 'update:anchor' | 'cancel' | 'confirm';
 export type PickerEmit = (event: EmitKey, ...args: any[]) => void;
 
 export type NormalData = Record<any, any> | string | number;
@@ -32,4 +32,9 @@ export interface PickerOptions {
   cancelText: string;
   confirmText: string;
   titleText: string;
+}
+
+export interface PickerSelectItems {
+  item: Array<NormalData>,
+  anchor:  Array<number>,
 }

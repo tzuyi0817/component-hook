@@ -1,6 +1,6 @@
 {
   "name": "vue3-picker",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A simple picker with vue3",
   "license": "MIT",
   "files": [
@@ -21,8 +21,10 @@
     "url": "git+https://github.com/tzuyi0817/vue3-picker"
   },
   "keywords": [
+    "vue",
     "vue3",
-    "picker"
+    "picker",
+    "better-scroll"
   ],
   "scripts": {
     "dev": "vite",

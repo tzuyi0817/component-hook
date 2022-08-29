@@ -22,7 +22,13 @@ const props = withDefaults(defineProps<Props>(), {
   type: "",
 });
 
-const emit = defineEmits(["update:isShowPicker", 'cancel', 'confirm']);
+const emit = defineEmits([
+  'update:isShowPicker',
+  'update:anchor',
+  'cancel',
+  'confirm'
+]);
+
 const options = computed(() => ({
   cancelClass: '',
   confirmClass: '',
