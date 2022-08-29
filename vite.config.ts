@@ -18,21 +18,21 @@ export default defineConfig({
       "@": resolvePath("src"),
     }
   },
-  build: {
-    lib: {
-      entry: resolvePath("src/index.ts"),
-      name: 'vue3-picker',
-      fileName: (format) => `vue3-picker.${format}.js`
-    },
-    cssCodeSplit: true,
-    rollupOptions: {
-      external: ['vue'],
-      output: {
-        sourcemap: false,
-        globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  }
+  // build: {
+  //   lib: {
+  //     entry: resolvePath("src/index.ts"),
+  //     name: 'vue3-picker',
+  //     fileName: (format) => `vue3-picker.${format}.js`
+  //   },
+  //   cssCodeSplit: true,
+  //   rollupOptions: {
+  //     external: ['vue'],
+  //     output: {
+  //       sourcemap: false,
+  //       globals: {
+  //         vue: 'Vue'
+  //       }
+  //     }
+  //   }
+  // }
 })
