@@ -58,28 +58,43 @@ defineConfig({
 import { ref, computed, reactive } from "vue";
 import { Picker } from 'vue3-picker';
 
-const currentSelect = ref({})
+const currentSelect = ref({});
+const anchor = ref([0, 1, 2]);
+const currentSingle = ref<LangType>({});
+const anchorSingle = ref(1);
 const currentDate = ref([2022, 7, 7]);
 const currentTime = ref([]);
 const isShowPicker = ref(false);
 const isShowDate = ref(false);
 const isShowTime = ref(false);
 const dataList = ref([
+  [
+    { langType: 2, code: "vi", original: "Tiếng Việt" },
+    { langType: 0, code: "en", original: "English" },
+    { langType: 1, code: "cn", original: "中文" }, 
+  ],
+  [
+    { langType: 2, code: "vi", original: "Tiếng Việt" },
+    { langType: 0, code: "en", original: "English" },
+    { langType: 1, code: "cn", original: "中文" }, 
+  ],
+  [
+    { langType: 2, code: "vi", original: "Tiếng Việt" },
+    { langType: 0, code: "en", original: "English" },
+    { langType: 1, code: "cn", original: "中文" }, 
+  ],
+]);
+
+const singleData = [
   { langType: 2, code: "vi", original: "Tiếng Việt" },
   { langType: 0, code: "en", original: "English" },
   { langType: 1, code: "cn", original: "中文" },
-]);
+];
 
 const options = reactive({
   confirmColor: '#000',
   cancelClass: 'test',
   titleText: 'Title',
-});
-
-const anchor = computed(() => {
-  const index = dataList.value.findIndex(({ langType }) => langType === currentSelect.value?.langType);
-  const checkIndex = index > -1 ? index : 2;
-  return checkIndex;
 });
 
 function confirm(value) {
@@ -102,6 +117,10 @@ function toggle() {
   isShowPicker.value = true;
 }
 
+function openSingle() {
+  isShowSingle.value = true;
+}
+
 function openDate() {
   isShowDate.value = true;
 }
@@ -114,13 +133,22 @@ function openTime() {
 <template>
   <picker 
     v-model:isShowPicker="isShowPicker"
+    v-model:anchor="anchor"
     :data="dataList"
-    :anchor="anchor"
-    showKey="original"
+    :showKey="['original', 'original', 'original']"
     :options="options"
     :swipeTime="500"
     @confirm="confirm"
     @cancel="cancel"
+  />
+
+  <picker 
+    v-model:isShowPicker="isShowSingle"
+    v-model:anchor="anchorSingle"
+    :data="singleData"
+    showKey="original"
+    :options="options"
+    @confirm="confirmSingle"
   />
 
   <picker 
@@ -140,6 +168,7 @@ function openTime() {
   />
 
   <button @click="toggle">toggle</button>
+  <button @click="openSingle">single</button>
   <button @click="openDate">date</button>
   <button @click="openTime">time</button>
 </template>
@@ -163,6 +192,13 @@ function openTime() {
     <td></td>
   </tr>
   <tr>
+    <td>v-model:anchor</td>
+    <td>true</td>
+    <td>Number or Number[]</td>
+    <td>Picker current select index (single column for Number、 multiple columns for Array)</td>
+    <td>date: [2022, 7, 12] <br/> time: [10, 13, 20]</td>
+  </tr>
+  <tr>
     <td>data</td>
     <td>false</td>
     <td>Array</td>
@@ -175,13 +211,6 @@ function openTime() {
     <td>String</td>
     <td>Built-in picker type, no need to pass in data (date, time)</td>
     <td>date: current date <br/> time: current time</td>
-  </tr>
-  <tr>
-    <td>anchor</td>
-    <td>true</td>
-    <td>Number or Number[]</td>
-    <td>Picker current select index (single column for Number、 multiple columns for Array)</td>
-    <td>date: [2022, 7, 12] <br/> time: [10, 13, 20]</td>
   </tr>
   <tr>
     <td>showKey</td>
