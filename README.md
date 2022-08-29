@@ -101,14 +101,6 @@ function confirm(value) {
   currentSelect.value = value;
 }
 
-function confirmDate(value) {
-  currentDate.value = value;
-}
-
-function confirmTime(value) {
-  currentTime.value = value;
-}
-
 function cancel() {
   console.log('cancel');
 }
@@ -153,18 +145,16 @@ function openTime() {
 
   <picker 
     v-model:isShowPicker="isShowDate"
-    :anchor="currentDate"
+    v-model:anchor="currentDate"
     type="date"
     :options="{ titleText: 'date selector' }"
-    @confirm="confirmDate"
   />
 
   <picker 
     v-model:isShowPicker="isShowTime"
-    :anchor="currentTime"
+    v-model:anchor="currentTime"
     type="time"
     :options="{ titleText: 'time selector' }"
-    @confirm="confirmTime"
   />
 
   <button @click="toggle">toggle</button>
