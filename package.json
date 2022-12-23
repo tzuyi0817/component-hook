@@ -1,6 +1,6 @@
 {
   "name": "vue3-picker",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A simple picker with vue3",
   "license": "MIT",
   "files": [
@@ -32,7 +32,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "better-scroll": "^2.4.2",
+    "@better-scroll/core": "^2.5.0",
+    "@better-scroll/wheel": "^2.5.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {

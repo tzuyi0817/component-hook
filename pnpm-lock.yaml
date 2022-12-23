@@ -1,10 +1,11 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
+  '@better-scroll/core': ^2.5.0
+  '@better-scroll/wheel': ^2.5.0
   '@rollup/plugin-typescript': ^8.3.3
   '@types/node': ^18.0.0
   '@vitejs/plugin-vue': ^2.3.3
-  better-scroll: ^2.4.2
   sass: ^1.53.0
   sass-loader: ^13.0.0
   tslib: ^2.4.0
@@ -15,11 +16,12 @@ specifiers:
   vue-tsc: ^0.34.7
 
 dependencies:
-  better-scroll: 2.4.2
+  '@better-scroll/core': 2.5.0
+  '@better-scroll/wheel': 2.5.0
   vue: 3.2.37
 
 devDependencies:
-  '@rollup/plugin-typescript': 8.3.3_tslib@2.4.0+typescript@4.7.4
+  '@rollup/plugin-typescript': 8.3.3_xglhvrpkxkkdzawzolnhxfl3di
   '@types/node': 18.0.0
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.12+vue@3.2.37
   sass: 1.53.0
@@ -32,97 +34,43 @@ devDependencies:
 
 packages:
 
+  /@babel/helper-string-parser/7.19.4:
+    resolution: {integrity: sha512-nHtDoQcuqFmwYNYPz3Rah5ph2p8PFeFCsZk9A/48dPc/rGocJ5J3hAAZ7pb76VWX3fZKu+uEr/FhH5jLx7umrw==}
+    engines: {node: '>=6.9.0'}
+
+  /@babel/helper-validator-identifier/7.19.1:
+    resolution: {integrity: sha512-awrNfaMtnHUr653GgGEs++LlAvW6w+DcPrOliSMXWCKo597CwL5Acf/wWdNkf/tfEQE3mjkeD1YOVZOUV/od1w==}
+    engines: {node: '>=6.9.0'}
+
   /@babel/parser/7.18.5:
     resolution: {integrity: sha512-YZWVaglMiplo7v8f1oMQ5ZPQr0vn7HPeZXxXWsxXJRjGVrzUFn9OxFQl1sb5wzfootjA/yChhW84BV+383FSOw==}
     engines: {node: '>=6.0.0'}
     hasBin: true
-
-  /@better-scroll/core/2.4.2:
-    resolution: {integrity: sha512-IqVZLnh04YpaEAy9wJDxtFK/stxVQjB9A9Wcr3Uwkj7Av1TtFpin+t/TObl53diNDG5ZJ+vck/OAthphpuugLA==}
     dependencies:
-      '@better-scroll/shared-utils': 2.4.2
+      '@babel/types': 7.20.7
+
+  /@babel/types/7.20.7:
+    resolution: {integrity: sha512-69OnhBxSSgK0OzTJai4kyPDiKTIe3j+ctaHdIGVbRahTLAT7L3R9oeXHC2aVSuGYt3cVnoAMDmOCgJ2yaiLMvg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-string-parser': 7.19.4
+      '@babel/helper-validator-identifier': 7.19.1
+      to-fast-properties: 2.0.0
+
+  /@better-scroll/core/2.5.0:
+    resolution: {integrity: sha512-+3aKf8T3kUl4Gj1M7NKV3fNFhsrBpTWwHoDClkXVmQ8S3TxMMHf6Kyw6l1zKsg4r+9ukW5lDDkyif7/gY76qXQ==}
+    dependencies:
+      '@better-scroll/shared-utils': 2.5.0
     dev: false
 
-  /@better-scroll/indicators/2.4.2:
-    resolution: {integrity: sha512-dScI0HIt06L1thLO+1W7w1enqRtegWF1izKYhswiyTXLgagLh2QbAi+oexNiPSOGBuNz8w1mO7hZvVJez/ZFkw==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
+  /@better-scroll/shared-utils/2.5.0:
+    resolution: {integrity: sha512-5bfR/cwzIFtgWAU5E0CPKcOUvyd7KcgDZyAbOJQT6qqJeUBmTpG4Z8R7qO8uvqdZ0yIXxRPOu4te2Qt6ihGhkQ==}
     dev: false
 
-  /@better-scroll/infinity/2.4.2:
-    resolution: {integrity: sha512-KGpCWLTyMzcGBT59c3N/JaVauLmi0jG2YZApdnqON+Oz4AJiHnzGkzWc4EJxcxR3Vy+m5Jp91y6xrpsvRmOdIg==}
+  /@better-scroll/wheel/2.5.0:
+    resolution: {integrity: sha512-+cru8CtMtgGGMv3yOxn33ApbtatOZBVUCa7+X3UqVVyaxi6FbCrcSZCBlXhXpsFhJo1R282O6nQyik6KUidvoA==}
     dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/mouse-wheel/2.4.2:
-    resolution: {integrity: sha512-dLc8vlYkSYN9AQEo4NDPQloPhscCV17TY98JUBcio4I2STDlYYIQqofqm1GQPfByfK9f057DnrcgZ/bPVx7PTA==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/movable/2.4.2:
-    resolution: {integrity: sha512-y4FbKx9FTUfAfM6wW+PCKA3CONc4nfjaE4N1ImGsIorzkSWV2eGO+LTD6FVv5+gVINI/o9Xj/gHmEJUaupUeSg==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/nested-scroll/2.4.2:
-    resolution: {integrity: sha512-JnC2sqtDqVkj9F5J39u52b6qDsMqXbnURG67dHf97tYoYP2dluwjkvhhxjSFrghREoQzT/KWcDbkfcGy47lQwQ==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/observe-dom/2.4.2:
-    resolution: {integrity: sha512-eeS77CZs+V72dkya10e5ptndBAbhQVcXoYGvfoIihOJgCPqO5MdYTpzRmlbshYCEE5juUMLe82Kx8FSbOejpAw==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/observe-image/2.4.2:
-    resolution: {integrity: sha512-ToYVf5vn0cio5B9uaL5NyvFX3JNU6L0Po20Lw7uxa0+FE+kMvSAMJN+9POg6G+cfIqI8GVHhyyR+4Ev8v2Nl5Q==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/pull-down/2.4.2:
-    resolution: {integrity: sha512-bqMLk33o4oesTXIIOteBKHQgfVKjIVvity39TM/MfzkbY1WDBxD+HFS7ySgoqw7Kl2Wiv/U76Wfqzmm6yDdg7Q==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/pull-up/2.4.2:
-    resolution: {integrity: sha512-07Cke3oa96lN9/inxJZ0ixh0nBbbqxOi2IKcBGtD6dP+susiMcdhgd/c7zNRjXkwlw0vzTNfXTgExIOEWzLHYg==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/scroll-bar/2.4.2:
-    resolution: {integrity: sha512-zZd0+sWfzTCXJeuA001o5bea7AvLYz7BCE7dolxFbPTIPnV5V5UEH8LLdXQ/HIwgxI0Pj9PoY9njSuhooh6lfg==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/shared-utils/2.4.2:
-    resolution: {integrity: sha512-Gy/Jfbpu+hq0u+PcjkTqyXGqAf+0dexTzEZ5IDXEVwJVLmd3cx8A73oTcAZ8QZgk4wSHvlMjXecSaptkhnNPEw==}
-    dev: false
-
-  /@better-scroll/slide/2.4.2:
-    resolution: {integrity: sha512-VfdFHm/meo4nEyfx0JLn8rUHfQdQCnoBHs/BsV+vmjVivKg+cVgfS+QaytrIulWKqNAWNlfXbAaNtZMv8gNKZg==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/wheel/2.4.2:
-    resolution: {integrity: sha512-oJw68glWbrYBbRK8RJnKo3Fw9bU7Cd4zDbBHbKZ062/YJAJUZW9wF/3Lout4PnolkjuJIp2TZiEgJNtuRd+Njg==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-    dev: false
-
-  /@better-scroll/zoom/2.4.2:
-    resolution: {integrity: sha512-rN/BTE3lf2sNNvKowGL/tUKZ/BgdZcZa0pjE/rVW0tBL/7x68cBowWQD5HF2Z2Bge8OPXRjkwN/xN1aFYhEtWA==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
+      '@better-scroll/core': 2.5.0
     dev: false
 
   /@microsoft/api-extractor-model/7.20.2:
@@ -185,7 +133,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-typescript/8.3.3_tslib@2.4.0+typescript@4.7.4:
+  /@rollup/plugin-typescript/8.3.3_xglhvrpkxkkdzawzolnhxfl3di:
     resolution: {integrity: sha512-55L9SyiYu3r/JtqdjhwcwaECXP7JeJ9h1Sg1VWRJKIutla2MdZQodTgcCNybXLMCnqpNLEhS2vGENww98L1npg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -362,7 +310,6 @@ packages:
     dependencies:
       '@vue/reactivity': 3.2.37
       '@vue/shared': 3.2.37
-    dev: false
 
   /@vue/runtime-dom/3.2.37:
     resolution: {integrity: sha512-HimKdh9BepShW6YozwRKAYjYQWg9mQn63RGEiSswMbW+ssIht1MILYlVGkAGGQbkhSh31PCdoUcfiu4apXJoPw==}
@@ -370,7 +317,6 @@ packages:
       '@vue/runtime-core': 3.2.37
       '@vue/shared': 3.2.37
       csstype: 2.6.20
-    dev: false
 
   /@vue/server-renderer/3.2.37_vue@3.2.37:
     resolution: {integrity: sha512-kLITEJvaYgZQ2h47hIzPh2K3jG8c1zCVbp/o/bzQOyvzaKiCquKS7AaioPI28GNxIsE/zSx+EwWYsNxDCX95MA==}
@@ -380,7 +326,6 @@ packages:
       '@vue/compiler-ssr': 3.2.37
       '@vue/shared': 3.2.37
       vue: 3.2.37
-    dev: false
 
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
@@ -418,25 +363,6 @@ packages:
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
-
-  /better-scroll/2.4.2:
-    resolution: {integrity: sha512-I/JzJNUay2vMAkczBa/4x52QBdUGA3Bs/QtrKrxVjSbBHUMG6yR14srQr4aCAWlIra1FBmuddwGRfI6zRagI9Q==}
-    dependencies:
-      '@better-scroll/core': 2.4.2
-      '@better-scroll/indicators': 2.4.2
-      '@better-scroll/infinity': 2.4.2
-      '@better-scroll/mouse-wheel': 2.4.2
-      '@better-scroll/movable': 2.4.2
-      '@better-scroll/nested-scroll': 2.4.2
-      '@better-scroll/observe-dom': 2.4.2
-      '@better-scroll/observe-image': 2.4.2
-      '@better-scroll/pull-down': 2.4.2
-      '@better-scroll/pull-up': 2.4.2
-      '@better-scroll/scroll-bar': 2.4.2
-      '@better-scroll/slide': 2.4.2
-      '@better-scroll/wheel': 2.4.2
-      '@better-scroll/zoom': 2.4.2
-    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
@@ -509,7 +435,6 @@ packages:
 
   /csstype/2.6.20:
     resolution: {integrity: sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA==}
-    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -1121,6 +1046,10 @@ packages:
     resolution: {integrity: sha512-qsdtZH+vMoCARQtyod4imc2nIJwg9Cc7lPRrw9CzF8ZKR0khdr8+2nX80PBhET3tcyTtJDxAffGh2rXH4tyU8A==}
     dev: true
 
+  /to-fast-properties/2.0.0:
+    resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
+    engines: {node: '>=4'}
+
   /to-regex-range/5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -1237,7 +1166,6 @@ packages:
       '@vue/runtime-dom': 3.2.37
       '@vue/server-renderer': 3.2.37_vue@3.2.37
       '@vue/shared': 3.2.37
-    dev: false
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}

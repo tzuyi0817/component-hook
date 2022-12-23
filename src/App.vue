@@ -11,7 +11,7 @@ const currentDate = ref<Array<number>>([]);
 const currentTime = ref<Array<number>>([]);
 const isShowPicker = ref(false);
 const isShowSingle = ref(false);
-const isShowDate = ref(false); 
+const isShowDate = ref(false);
 const isShowTime = ref(false);
 const dataList = ref([
   [

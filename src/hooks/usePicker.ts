@@ -103,7 +103,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
   }
 
   function closePicker() {
-    emit("update:isShowPicker", false);
+    emit('update:isShowPicker', false);
   }
 
   function stopWheels() {
@@ -115,7 +115,7 @@ export default (props: PickerProps, emit: PickerEmit) => {
       const position = wheel.getSelectedIndex();
       const item = pickerData.value[index][position];
       result.item.push(isTime.value ? +item : item);
-      result.anchor.push(position);
+      result.anchor.push(isDate.value ? item : position);
       return result;
     }, { item: [], anchor: [] } as PickerSelectItems);
 
