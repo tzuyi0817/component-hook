@@ -63,9 +63,13 @@ const {
   <transition name="slide">
     <div class="picker" v-show="isShowPicker">
       <div class="picker_title">
-        <button :class="['picker_cancel', options.cancelClass]" @click="cancel">{{ options.cancelText }}</button>
-        <button :class="['picker_confirm', options.confirmClass]" @click="confirm">{{ options.confirmText }}</button>
-        <h4 :class="[options.titleClass]">{{ options.titleText }}</h4>
+        <button :class="['picker_cancel', options.cancelClass]" :style="{ color: cancelColor }" @click="cancel">
+          {{ options.cancelText }}
+        </button>
+        <button :class="['picker_confirm', options.confirmClass]" :style="{ color: confirmColor }" @click="confirm">
+          {{ options.confirmText }}
+        </button>
+        <h4 :class="[options.titleClass]" :style="{ color: titleColor }">{{ options.titleText }}</h4>
       </div>
       <div class="picker_panel">
         <div class="picker_mask_top"></div>
@@ -153,18 +157,15 @@ const {
       height: 44px;
       line-height: 44px;
       text-align: center;
-      color: v-bind(titleColor);
     }
   }
 
   &_cancel {
     left: 0;
-    color: v-bind(cancelColor);
   }
 
   &_confirm {
     right: 0;
-    color: v-bind(confirmColor);
   }
 
   &_panel {
