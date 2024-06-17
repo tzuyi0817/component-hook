@@ -3,6 +3,7 @@
   "version": "0.4.3",
   "description": "A simple picker with vue3",
   "license": "MIT",
+  "packageManager": "pnpm@9.3.0",
   "author": "Tzuyi <a0988426059@gmail.com>",
   "files": [
     "dist"
