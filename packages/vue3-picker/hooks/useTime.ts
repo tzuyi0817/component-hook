@@ -1,8 +1,8 @@
 import { ref } from 'vue';
-import { isHaveValue } from '@/utils/common';
-import type { PickerProps } from "@/types";
+import { isHaveValue } from '../utils/common';
+import type { PickerProps } from "../types/picker";
 
-export default (isTime: boolean) => {
+export default function useTime(isTime: boolean) {
   if (!isTime) return {};
 
   const hours = generateTime(0, 23);

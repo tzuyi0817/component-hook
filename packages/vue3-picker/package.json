@@ -1,0 +1,52 @@
+{
+  "name": "vue3-picker",
+  "version": "0.4.3",
+  "description": "Picker component with vue3",
+  "license": "MIT",
+  "packageManager": "pnpm@9.3.0",
+  "type": "module",
+  "author": "Tzuyi <a0988426059@gmail.com>",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue3-picker.umd.js",
+  "module": "./dist/vue3-picker.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-picker.es.js",
+      "require": "./dist/vue3-picker.umd.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzuyi0817/vue3-picker.git"
+  },
+  "homepage": "https://github.com/tzuyi0817/vue3-picker#readme",
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/vue3-picker/issues"
+  },
+  "publishConfig": {
+    "tag": "latest"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "picker",
+    "better-scroll"
+  ],
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@better-scroll/core": "^2.5.1",
+    "@better-scroll/wheel": "^2.5.1"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.29"
+  },
+  "devDependencies": {
+    "vite-plugin-dts": "^3.9.1"
+  }
+}

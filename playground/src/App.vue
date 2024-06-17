@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-import Picker from '@/components/Picker.vue';
-import type { LangType } from "@/types";
+import { Picker } from 'vue3-picker';
+
+interface LangType {
+  langType?: number;
+  code?: string;
+  original?: string;
+  version?: number;
+}
 
 const currentSelect = ref<Array<LangType>>([]);
 const anchor = ref([0, 1, 2]);

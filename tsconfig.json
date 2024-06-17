@@ -1,30 +1,8 @@
 {
-  "compilerOptions": {
-    "typeRoots": [
-      "node_modules/@types",
-      "src/types"
-    ],
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "skipLibCheck": true,
-    "outDir": "dist",
-    // "declaration": true,
-    // "declarationDir": ".",
-    "baseUrl": "./",
-    "paths":{
-      "@/*": ["src/*"],
-    }
-  },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["dist"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "extends": "./tsconfig.base.json",
+  "include": [ "packages/*/tests" ],
+  "references": [
+		{ "path": "./packages/vue3-picker/tsconfig.json" },
+		{ "path": "./playground/tsconfig.json" }
+	],
 }

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { Picker } from '../index';
+import Picker from '../index';
 
 describe('test Picker', () => {
   it('render Picker', () => {

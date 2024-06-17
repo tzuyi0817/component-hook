@@ -1,8 +1,8 @@
 import { ref, computed } from "vue";
-import { isHaveValue } from '@/utils/common';
-import type { PickerProps } from "@/types";
+import { isHaveValue } from '../utils/common';
+import type { PickerProps } from "../types/picker";
 
-export default (isDate: boolean) => {
+export default function useDate(isDate: boolean) {
   if (!isDate) return {};
 
   const START_YEAR = 1900;

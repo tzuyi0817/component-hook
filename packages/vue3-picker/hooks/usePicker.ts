@@ -1,17 +1,18 @@
 import { watch, ref, nextTick, computed } from 'vue';
-import BScroll from '@better-scroll/core';
+import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
-import { isArray } from '@/utils/checkType';
-import { isHaveValue } from '@/utils/common';
-import useDate from "@/hooks/useDate";
-import useTime from "@/hooks/useTime";
-import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from "@/types";
+import { isArray } from '../utils/checkType';
+import { isHaveValue } from '../utils/common';
+import useDate from "./useDate";
+import useTime from "./useTime";
+import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from "../types/picker";
+
 BScroll.use(Wheel);
 
-export default (props: PickerProps, emit: PickerEmit) => {
-  const pickerData = ref<Array<OriginData>>([]);
-  const wheelWrapper = ref();
-  const wheels = ref<Array<BScroll>>([]);
+export default function usePicker(props: PickerProps, emit: PickerEmit) {
+  const pickerData = ref<OriginData[]>([]);
+  const wheelWrapper = ref<HTMLElement | undefined>();
+  const wheels = ref<BScroll[]>([]);
   const isCascadeData = computed(() => isArray(props.data[0]));
   const isDate = computed(() => props.type === 'date');
   const isTime = computed(() => props.type === 'time');
@@ -55,13 +56,15 @@ export default (props: PickerProps, emit: PickerEmit) => {
     if (wheel) {
       wheel.refresh();
     } else {
-      wheel = wheels.value[index] = new BScroll(node, {
+      const bScroll = createBScroll(node, {
         wheel: {
           selectedIndex: 0,
           rotate: 25
         },
-        swipeTime: props.swipeTime,
+        swipeTime: props.swipeTime ?? 500,
       });
+
+      wheel = wheels.value[index] = bScroll;
       wheel.on('scrollEnd', () => handleScrollEnd(index));
     }
     return wheel;
@@ -78,7 +81,8 @@ export default (props: PickerProps, emit: PickerEmit) => {
 
   function scrollToAnchor() {
     wheels.value.forEach((wheel, index) => {
-      const targetPos = pickerAnchors.value?.[index]; 
+      const targetPos = pickerAnchors.value?.[index];
+
       wheel.wheelTo(targetPos ?? 0);
     });
   }
@@ -116,8 +120,9 @@ export default (props: PickerProps, emit: PickerEmit) => {
     const { item, anchor } = wheels.value.reduce((result, wheel, index) => {
       const position = wheel.getSelectedIndex();
       const item = pickerData.value[index][position];
+
       result.item.push(isTime.value ? +item : item);
-      result.anchor.push(isDate.value ? item : position);
+      result.anchor.push(isDate.value ? +item : position);
       return result;
     }, { item: [], anchor: [] } as PickerSelectItems);
 
@@ -128,7 +133,6 @@ export default (props: PickerProps, emit: PickerEmit) => {
   watch(() => props.isShowPicker, (isShow: boolean) => isShow && setPickerData());
 
   return {
-    wheels,
     pickerData,
     wheelWrapper,
     cancel,
