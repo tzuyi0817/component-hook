@@ -9,7 +9,9 @@
     "build:vue3-picker": "pnpm -C packages/vue3-picker build",
     "build:playground": "pnpm -C playground build",
     "preview": "pnpm -C playground preview",
-    "test": "pnpm -C vue3-picker test"
+    "test": "pnpm -C vue3-picker test",
+    "ts-check": "bash -c vue-tsc --noEmit",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -34,5 +36,16 @@
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
     "vue-tsc": "^2.0.21"
+  },
+  "lint-staged": {
+    "*.{ts,js,vue}": [
+      "pnpm ts-check"
+    ]
+  },
+  "optionalDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7"
   }
 }
