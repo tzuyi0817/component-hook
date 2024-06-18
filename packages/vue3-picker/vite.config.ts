@@ -9,7 +9,7 @@ export default defineConfig({
       rollupTypes: true,
     }),
   ],
-  base: "./",
+  base: './',
   optimizeDeps: {
     include: [
       'typescript',
@@ -32,4 +32,4 @@ export default defineConfig({
       external: ['vue'],
     }
   }
-})
+});

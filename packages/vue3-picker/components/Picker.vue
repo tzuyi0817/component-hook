@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import usePicker from "../hooks/usePicker";
+import { computed } from 'vue';
+import usePicker from '../hooks/usePicker';
 import type { PickerOptions, PickData } from '../types/picker';
 import { isObject, isArray } from '../utils/checkType';
 
@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   isShowPicker: false,
   options: () => ({}),
   swipeTime: 500,
-  type: "",
+  type: '',
 });
 
 const emit = defineEmits([
@@ -57,11 +57,11 @@ const {
 
 <template>
   <transition name="fade">
-    <div class="mask" v-show="isShowPicker" @click="closePicker"></div>
+    <div v-show="isShowPicker" class="mask" @click="closePicker"></div>
   </transition>
 
   <transition name="slide">
-    <div class="picker" v-show="isShowPicker">
+    <div v-show="isShowPicker" class="picker">
       <div class="picker_title">
         <button :class="['picker_cancel', options.cancelClass]" :style="{ color: cancelColor }" @click="cancel">
           {{ options.cancelText }}
@@ -74,10 +74,10 @@ const {
       <div class="picker_panel">
         <div class="picker_mask_top"></div>
         <div class="picker_mask_bottom"></div>
-        <div class="picker_wheel_wrapper" ref="wheelWrapper">
-          <div class="picker_wheel" v-for="(wheel, wheelIndex) in pickerData" :key="wheelIndex">
+        <div ref="wheelWrapper" class="picker_wheel_wrapper">
+          <div v-for="(wheel, wheelIndex) in pickerData" :key="wheelIndex" class="picker_wheel">
             <ul class="picker_wheel_scroll">
-              <li class="picker_wheel_item" v-for="(item, index) in wheel" :key="index">
+              <li v-for="(item, index) in wheel" :key="index" class="picker_wheel_item">
                 {{ showKeys?.[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]!] : item }}
               </li>
             </ul>
@@ -247,4 +247,3 @@ const {
   }
 }
 </style>
-../types/test../types/picker

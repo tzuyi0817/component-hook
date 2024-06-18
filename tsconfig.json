@@ -1,8 +1,4 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": [ "packages/*/tests" ],
-  "references": [
-		{ "path": "./packages/vue3-picker/tsconfig.json" },
-		{ "path": "./playground/tsconfig.json" }
-	],
+  "include": ["packages/*/tests"]
 }

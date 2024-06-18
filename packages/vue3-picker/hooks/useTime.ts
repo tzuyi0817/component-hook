@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { isHaveValue } from '../utils/common';
-import type { PickerProps } from "../types/picker";
+import type { PickerProps } from '../types/picker';
 
 export default function useTime(isTime: boolean) {
   if (!isTime) return {};
@@ -24,8 +24,9 @@ export default function useTime(isTime: boolean) {
     const date = new Date();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    const seconds = date.getSeconds();
-    defaultTime.value = [hour, minute, seconds];
+    const second = date.getSeconds();
+
+    defaultTime.value = [hour, minute, second];
   }
 
   function getTimeAnchors(anchor: PickerProps['anchor']) {

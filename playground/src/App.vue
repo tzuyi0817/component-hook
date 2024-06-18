@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive } from 'vue';
 import { Picker } from 'vue3-picker';
 
 interface LangType {
@@ -19,36 +19,18 @@ const isShowPicker = ref(false);
 const isShowSingle = ref(false);
 const isShowDate = ref(false);
 const isShowTime = ref(false);
-const dataList = ref([
-  [
-    { langType: 2, code: "vi", original: "Tiếng Việt" },
-    { langType: 0, code: "en", original: "English" },
-    { langType: 1, code: "cn", original: "中文" }, 
-  ],
-  [
-    { langType: 2, code: "vi", original: "Tiếng Việt" },
-    { langType: 0, code: "en", original: "English" },
-    { langType: 1, code: "cn", original: "中文" }, 
-  ],
-  [
-    { langType: 2, code: "vi", original: "Tiếng Việt" },
-    { langType: 0, code: "en", original: "English" },
-    { langType: 1, code: "cn", original: "中文" }, 
-  ],
-]);
-
 const singleData = [
-  { langType: 2, code: "vi", original: "Tiếng Việt" },
-  { langType: 0, code: "en", original: "English" },
-  { langType: 1, code: "cn", original: "中文" },
-];
+  { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+  { langType: 0, code: 'en', original: 'English' },
+  { langType: 1, code: 'cn', original: '中文' },
+] as const;
+const dataList = ref([singleData, singleData, singleData]);
 
 const options = reactive({
   confirmColor: '#000',
   cancelClass: 'test',
   titleText: 'Title',
 });
-
 
 function confirm(value: Array<LangType>) {
   currentSelect.value = value;
@@ -88,27 +70,27 @@ function openTime() {
 </script>
 
 <template>
-  <picker 
+  <picker
     v-model:isShowPicker="isShowPicker"
     v-model:anchor="anchor"
     :data="dataList"
-    :showKey="['original', 'original', 'original']"
+    :show-key="['original', 'original', 'original']"
     :options="options"
-    :swipeTime="500"
+    :swipe-time="500"
     @confirm="confirm"
     @cancel="cancel"
   />
 
-  <picker 
+  <picker
     v-model:isShowPicker="isShowSingle"
     v-model:anchor="anchorSingle"
     :data="singleData"
-    showKey="original"
+    show-key="original"
     :options="options"
     @confirm="confirmSingle"
   />
 
-  <picker 
+  <picker
     v-model:isShowPicker="isShowDate"
     v-model:anchor="currentDate"
     type="date"
@@ -116,7 +98,7 @@ function openTime() {
     @confirm="confirmDate"
   />
 
-  <picker 
+  <picker
     v-model:isShowPicker="isShowTime"
     v-model:anchor="currentTime"
     type="time"
@@ -124,10 +106,30 @@ function openTime() {
     @confirm="confirmTime"
   />
 
-  <button class="btn" @click="toggle">toggle</button>
-  <button class="btn" @click="openSingle">single</button>
-  <button class="btn" @click="openDate">date</button>
-  <button class="btn" @click="openTime">time</button>
+  <button
+    class="btn"
+    @click="toggle"
+  >
+    toggle
+  </button>
+  <button
+    class="btn"
+    @click="openSingle"
+  >
+    single
+  </button>
+  <button
+    class="btn"
+    @click="openDate"
+  >
+    date
+  </button>
+  <button
+    class="btn"
+    @click="openTime"
+  >
+    time
+  </button>
 
   <div class="anchors">
     <ul>

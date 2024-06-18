@@ -1,20 +1,20 @@
 module.exports = {
-  preset: "ts-jest",
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   testMatch:[
-    "**/?(*.)+(spec|test|unit).[jt]s?(x)"
+    '**/?(*.)+(spec|test|unit).[jt]s?(x)'
   ],
   transform: {
-    "^.+\\.[j|t]sx?$": "babel-jest",
-    "^.+\\.vue?$": "@vue/vue3-jest",
-    "^.+\\.tsx$": "ts-jest"
+    '^.+\\.[j|t]sx?$': 'babel-jest',
+    '^.+\\.vue?$': '@vue/vue3-jest',
+    '^.+\\.tsx$': 'ts-jest'
   },
-  transformIgnorePatterns: ["/node_modules/"],
+  transformIgnorePatterns: ['/node_modules/'],
   testEnvironmentOptions: {
-    customExportConditions: ["node", "node-addons"],
+    customExportConditions: ['node', 'node-addons'],
   },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
-  moduleFileExtensions: ["js", "vue", "ts"],
-}
+  moduleFileExtensions: ['js', 'vue', 'ts'],
+};

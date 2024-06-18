@@ -1,6 +1,6 @@
 type EmitKey = 'update:isShowPicker' | 'update:anchor' | 'cancel' | 'confirm';
-export type PickerEmit = (event: EmitKey, ...args: any[]) => void;
-export type NormalData = Record<any, any> | string | number;
+export type PickerEmit = (event: EmitKey, ...args: unknown[]) => void;
+export type NormalData = Record<PropertyKey, unknown> | string | number;
 export type OriginData = Array<NormalData>;
 export type PickData = OriginData | Array<OriginData>;
 
