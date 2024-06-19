@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-import { Picker } from 'vue3-picker';
+import Picker from 'vue3-picker';
 
 interface LangType {
   langType?: number;
@@ -23,7 +23,7 @@ const singleData = [
   { langType: 2, code: 'vi', original: 'Tiếng Việt' },
   { langType: 0, code: 'en', original: 'English' },
   { langType: 1, code: 'cn', original: '中文' },
-] as const;
+];
 const dataList = ref([singleData, singleData, singleData]);
 
 const options = reactive({

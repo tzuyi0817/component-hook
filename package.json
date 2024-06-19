@@ -12,7 +12,9 @@
     "preview": "pnpm -C playground preview",
     "test:vue3-picker": "pnpm -C vue3-picker test",
     "lint": "eslint --fix .",
-    "typecheck": "bash -c vue-tsc --noEmit",
+    "typecheck": "pnpm typecheck:playground && pnpm typecheck:vue3-picker",
+    "typecheck:playground": "pnpm -C playground typecheck",
+    "typecheck:vue3-picker": "pnpm -C packages/vue3-picker typecheck",
     "prepare": "husky"
   },
   "devDependencies": {

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "pnpm typecheck && vite build",
-    "typecheck:": "vue-tsc --noEmit",
+    "typecheck": "bash -c vue-tsc --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {
