@@ -1,6 +1,6 @@
 {
   "name": "vue3-picker",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Picker component with vue3",
   "license": "MIT",
   "packageManager": "pnpm@9.3.0",
