@@ -6,9 +6,6 @@
   "packageManager": "pnpm@9.3.0",
   "type": "module",
   "author": "Tzuyi <a0988426059@gmail.com>",
-  "files": [
-    "dist"
-  ],
   "main": "./dist/vue3-picker.umd.js",
   "module": "./dist/vue3-picker.es.js",
   "types": "./dist/index.d.ts",
@@ -19,6 +16,9 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tzuyi0817/vue3-picker.git"
