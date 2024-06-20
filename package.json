@@ -9,6 +9,7 @@
     "dev": "pnpm -C playground dev",
     "build": "pnpm -C playground build",
     "build:vue3-picker": "pnpm -C packages/vue3-picker build",
+    "release:vue3-picker": "pnpm -C packages/vue3-picker release",
     "preview": "pnpm -C playground preview",
     "test:vue3-picker": "pnpm -C vue3-picker test",
     "lint": "eslint --fix .",

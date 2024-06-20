@@ -5,7 +5,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.3.0",
   "type": "module",
-  "author": "Tzuyi <a0988426059@gmail.com>",
+  "author": "Tzuyi",
   "main": "./dist/vue3-picker.umd.js",
   "module": "./dist/vue3-picker.es.js",
   "types": "./dist/index.d.ts",
@@ -21,11 +21,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tzuyi0817/vue3-picker.git"
+    "url": "git+https://github.com/tzuyi0817/vue-componet-library.git",
+    "directory": "packages/vue3-picker"
   },
-  "homepage": "https://github.com/tzuyi0817/vue3-picker#readme",
+  "homepage": "https://github.com/tzuyi0817/vue-componet-library#readme",
   "bugs": {
-    "url": "https://github.com/tzuyi0817/vue3-picker/issues"
+    "url": "https://github.com/tzuyi0817/vue-componet-library/issues"
   },
   "publishConfig": {
     "tag": "latest"
@@ -39,7 +40,8 @@
   "scripts": {
     "build": "pnpm typecheck && vite build",
     "typecheck": "bash -c vue-tsc --noEmit",
-    "test": "jest"
+    "test": "jest",
+    "release": "npm publish"
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
