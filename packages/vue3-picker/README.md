@@ -66,29 +66,12 @@ const currentTime = ref([]);
 const isShowPicker = ref(false);
 const isShowDate = ref(false);
 const isShowTime = ref(false);
-const dataList = ref([
-  [
-    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
-    { langType: 0, code: 'en', original: 'English' },
-    { langType: 1, code: 'cn', original: '中文' },
-  ],
-  [
-    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
-    { langType: 0, code: 'en', original: 'English' },
-    { langType: 1, code: 'cn', original: '中文' },
-  ],
-  [
-    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
-    { langType: 0, code: 'en', original: 'English' },
-    { langType: 1, code: 'cn', original: '中文' },
-  ],
-]);
-
 const singleData = [
   { langType: 2, code: 'vi', original: 'Tiếng Việt' },
   { langType: 0, code: 'en', original: 'English' },
   { langType: 1, code: 'cn', original: '中文' },
 ];
+const dataList = ref([singleData, singleData, singleData]);
 
 const options = reactive({
   confirmColor: '#000',

@@ -1,5 +1,5 @@
 {
-  "name": "vue3-picker/playground",
+  "name": "playground",
   "license": "MIT",
   "packageManager": "pnpm@9.3.0",
   "type": "module",

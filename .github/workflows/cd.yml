@@ -20,6 +20,10 @@ jobs:
       - name: setup environment
         uses: tzuyi0817/coding-standards/.github/actions/setup-environment@main
 
+      - name: build packages
+        run: |
+          pnpm build:vue3-picker
+
       - name: build project
         run: pnpm build
 
