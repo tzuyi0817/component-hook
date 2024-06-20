@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.4.4](https://github.com/tzuyi0817/vue-componet-library/compare/6b1558a9b0de1202d3c306ebd808836e65f65f06...v0.4.4) (2024-06-19)
+## [0.4.5](https://github.com/tzuyi0817/vue-componet-library/compare/6b1558a9b0de1202d3c306ebd808836e65f65f06...v0.4.5) (2024-06-19)
 
 ### Bug Fixes
 
