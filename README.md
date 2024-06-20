@@ -4,7 +4,7 @@ This is a Vue.js component library that includes a collection of common and usef
 
 # Packages
 
-- [vue3-picker](https://github.com/tzuyi0817/vue-componet-library/tree/master/packages/vue3-picker): Customizable picker components that can be easily integrated into any Vue 3 application.
+- **[vue3-picker](https://github.com/tzuyi0817/vue-componet-library/tree/master/packages/vue3-picker):** Customizable picker components that can be easily integrated into any Vue 3 application.
 
 # License
 
