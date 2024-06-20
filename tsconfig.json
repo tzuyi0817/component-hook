@@ -1,4 +1,8 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": ["packages/*/tests"]
+  "include": ["**/__tests__/**/*"],
+  "compilerOptions": {
+    "lib": [],
+    "types": ["node", "vitest/globals"]
+  }
 }

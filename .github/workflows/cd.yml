@@ -1,0 +1,48 @@
+name: CD-Pipeline
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'playground/**'
+      - 'pnpm-lock.yaml'
+      - 'package.json'
+
+jobs:
+  CI:
+    uses: './.github/workflows/ci.yml'
+
+  build:
+    needs: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup environment
+        uses: tzuyi0817/coding-standards/.github/actions/setup-environment@main
+
+      - name: build project
+        run: pnpm build
+
+      - name: upload production-ready build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

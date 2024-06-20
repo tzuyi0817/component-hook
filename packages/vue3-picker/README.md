@@ -1,6 +1,6 @@
 # vue3-picker
 
-Vue3 Picker component ([DEMO](https://tzuyi0817.github.io/vue3-picker/))
+Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/vue-componet-library/))
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=vue3-picker">
@@ -10,7 +10,6 @@ Vue3 Picker component ([DEMO](https://tzuyi0817.github.io/vue3-picker/))
     <img src="https://img.shields.io/npm/v/vue3-picker.svg" alt="npm"/>
   </a>
 </p>
-
 
 ## Features
 
@@ -55,12 +54,12 @@ defineConfig({
 
 ```vue
 <script setup>
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive } from 'vue';
 import { Picker } from 'vue3-picker';
 
 const currentSelect = ref({});
 const anchor = ref([0, 1, 2]);
-const currentSingle = ref<LangType>({});
+const currentSingle = ref < LangType > {};
 const anchorSingle = ref(1);
 const currentDate = ref([2022, 7, 7]);
 const currentTime = ref([]);
@@ -69,26 +68,26 @@ const isShowDate = ref(false);
 const isShowTime = ref(false);
 const dataList = ref([
   [
-    { langType: 2, code: "vi", original: "Tiếng Việt" },
-    { langType: 0, code: "en", original: "English" },
-    { langType: 1, code: "cn", original: "中文" }, 
+    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+    { langType: 0, code: 'en', original: 'English' },
+    { langType: 1, code: 'cn', original: '中文' },
   ],
   [
-    { langType: 2, code: "vi", original: "Tiếng Việt" },
-    { langType: 0, code: "en", original: "English" },
-    { langType: 1, code: "cn", original: "中文" }, 
+    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+    { langType: 0, code: 'en', original: 'English' },
+    { langType: 1, code: 'cn', original: '中文' },
   ],
   [
-    { langType: 2, code: "vi", original: "Tiếng Việt" },
-    { langType: 0, code: "en", original: "English" },
-    { langType: 1, code: "cn", original: "中文" }, 
+    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+    { langType: 0, code: 'en', original: 'English' },
+    { langType: 1, code: 'cn', original: '中文' },
   ],
 ]);
 
 const singleData = [
-  { langType: 2, code: "vi", original: "Tiếng Việt" },
-  { langType: 0, code: "en", original: "English" },
-  { langType: 1, code: "cn", original: "中文" },
+  { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+  { langType: 0, code: 'en', original: 'English' },
+  { langType: 1, code: 'cn', original: '中文' },
 ];
 
 const options = reactive({
@@ -123,7 +122,7 @@ function openTime() {
 </script>
 
 <template>
-  <picker 
+  <picker
     v-model:isShowPicker="isShowPicker"
     v-model:anchor="anchor"
     :data="dataList"
@@ -134,7 +133,7 @@ function openTime() {
     @cancel="cancel"
   />
 
-  <picker 
+  <picker
     v-model:isShowPicker="isShowSingle"
     v-model:anchor="anchorSingle"
     :data="singleData"
@@ -143,14 +142,14 @@ function openTime() {
     @confirm="confirmSingle"
   />
 
-  <picker 
+  <picker
     v-model:isShowPicker="isShowDate"
     v-model:anchor="currentDate"
     type="date"
     :options="{ titleText: 'date selector' }"
   />
 
-  <picker 
+  <picker
     v-model:isShowPicker="isShowTime"
     v-model:anchor="currentTime"
     type="time"
@@ -242,7 +241,8 @@ function openTime() {
 ```
 
 ### Events
-Event | Description | Return Parameters |
-:--- | :--- | :--- |
-confirm | Triggered when the confirm button is clicked | Selected value |
-cancel | Triggered when the cancel button is clicked | None |
+
+| Event   | Description                                  | Return Parameters |
+| :------ | :------------------------------------------- | :---------------- |
+| confirm | Triggered when the confirm button is clicked | Selected value    |
+| cancel  | Triggered when the cancel button is clicked  | None              |

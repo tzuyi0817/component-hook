@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tzuyi0817/vue-componet-library.git",
+    "url": "https://github.com/tzuyi0817/vue-componet-library.git",
     "directory": "packages/vue3-picker"
   },
   "homepage": "https://github.com/tzuyi0817/vue-componet-library#readme",
@@ -40,7 +40,6 @@
   "scripts": {
     "build": "pnpm typecheck && vite build",
     "typecheck": "bash -c vue-tsc --noEmit",
-    "test": "jest",
     "release": "npm publish"
   },
   "dependencies": {
