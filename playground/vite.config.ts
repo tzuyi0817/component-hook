@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
-      '@component-library/picker': resolve(rootDir, 'packages/picker/index.ts'),
+      '@component-hook/picker': resolve(rootDir, 'packages/picker/index.ts'),
     },
   },
 });

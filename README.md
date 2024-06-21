@@ -4,8 +4,8 @@ This is a Vue.js component library that includes a collection of common and usef
 
 # Packages
 
-- **[@component-library/picker](https://github.com/tzuyi0817/vue-componet-library/tree/master/packages/picker):** Customizable picker components that can be easily integrated into any Vue 3 application.
+- **[@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker):** Customizable picker components that can be easily integrated into any Vue 3 application.
 
 # License
 
-This component library is licensed under the MIT License. For more details, please refer to the [LICENSE](https://github.com/tzuyi0817/vue-componet-library/blob/master/LICENSE) file.
+This component library is licensed under the MIT License. For more details, please refer to the [LICENSE](https://github.com/tzuyi0817/component-hook/blob/master/LICENSE) file.

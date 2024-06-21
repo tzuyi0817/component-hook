@@ -140,7 +140,7 @@ importers:
 
   playground:
     dependencies:
-      '@component-library/picker':
+      '@component-hook/picker':
         specifier: workspace:*
         version: link:../packages/picker
       vue:

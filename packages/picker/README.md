@@ -1,13 +1,13 @@
-# @component-library/picker
+# @component-hook/picker
 
-Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/vue-componet-library/))
+Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/component-hook/))
 
 <p>
-  <a href="https://npm-stat.com/charts.html?package=@component-library/picker">
-    <img src="https://img.shields.io/npm/dm/@component-library/picker.svg" alt="npm"/>
+  <a href="https://npm-stat.com/charts.html?package=@component-hook/picker">
+    <img src="https://img.shields.io/npm/dm/@component-hook/picker.svg" alt="npm"/>
   </a>
-  <a href="https://www.npmjs.com/package/@component-library/picker">
-    <img src="https://img.shields.io/npm/v/@component-library/picker.svg" alt="npm"/>
+  <a href="https://www.npmjs.com/package/@component-hook/picker">
+    <img src="https://img.shields.io/npm/v/@component-hook/picker.svg" alt="npm"/>
   </a>
 </p>
 
@@ -28,13 +28,13 @@ Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/vue-componet-libr
 First step is to install it using `yarn`、`npm` or `pnpm`:
 
 ```bash
-npm install @component-library/picker
+npm install @component-hook/picker
 
 # or use yarn
-yarn add @component-library/picker
+yarn add @component-hook/picker
 
 # or use pnpm
-pnpm install @component-library/picker
+pnpm install @component-hook/picker
 ```
 
 ### Precautions
@@ -55,7 +55,7 @@ defineConfig({
 ```vue
 <script setup>
 import { ref, computed, reactive } from 'vue';
-import Picker from '@component-library/picker';
+import Picker from '@component-hook/picker';
 
 const currentSelect = ref({});
 const anchor = ref([0, 1, 2]);

@@ -1,5 +1,5 @@
 {
-  "name": "@component-library/playground",
+  "name": "@component-hook/playground",
   "license": "MIT",
   "private": true,
   "packageManager": "pnpm@9.3.0",
@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "vue": "^3.4.29",
-    "@component-library/picker": "workspace:*"
+    "@component-hook/picker": "workspace:*"
   }
 }
