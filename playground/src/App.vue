@@ -25,7 +25,6 @@ const singleData = [
   { langType: 1, code: 'cn', original: '中文' },
 ];
 const dataList = ref([singleData, singleData, singleData]);
-
 const options = reactive({
   confirmColor: '#000',
   cancelClass: 'test',

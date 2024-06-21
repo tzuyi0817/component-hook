@@ -1,13 +1,13 @@
-# vue3-picker
+# @component-library/picker
 
 Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/vue-componet-library/))
 
 <p>
-  <a href="https://npm-stat.com/charts.html?package=vue3-picker">
-    <img src="https://img.shields.io/npm/dm/vue3-picker.svg" alt="npm"/>
+  <a href="https://npm-stat.com/charts.html?package=@component-library/picker">
+    <img src="https://img.shields.io/npm/dm/@component-library/picker.svg" alt="npm"/>
   </a>
-  <a href="https://www.npmjs.com/package/vue3-picker">
-    <img src="https://img.shields.io/npm/v/vue3-picker.svg" alt="npm"/>
+  <a href="https://www.npmjs.com/package/@component-library/picker">
+    <img src="https://img.shields.io/npm/v/@component-library/picker.svg" alt="npm"/>
   </a>
 </p>
 
@@ -28,13 +28,13 @@ Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/vue-componet-libr
 First step is to install it using `yarn`、`npm` or `pnpm`:
 
 ```bash
-npm install vue3-picker
+npm install @component-library/picker
 
 # or use yarn
-yarn add vue3-picker
+yarn add @component-library/picker
 
 # or use pnpm
-pnpm install vue3-picker
+pnpm install @component-library/picker
 ```
 
 ### Precautions
