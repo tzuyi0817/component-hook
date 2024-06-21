@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.0](https://github.com/tzuyi0817/component-hook/compare/6b1558a9b0de1202d3c306ebd808836e65f65f06...v0.0.0) (2024-06-21)
+## [0.1.0](https://github.com/tzuyi0817/component-hook/compare/6b1558a9b0de1202d3c306ebd808836e65f65f06...v0.1.0) (2024-06-21)
 
 ### Features
 
