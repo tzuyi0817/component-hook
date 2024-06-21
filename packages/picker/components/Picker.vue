@@ -22,12 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   type: '',
 });
 
-const emit = defineEmits([
-  'update:isShowPicker',
-  'update:anchor',
-  'cancel',
-  'confirm'
-]);
+const emit = defineEmits(['update:isShowPicker', 'update:anchor', 'cancel', 'confirm']);
 
 const options = computed(() => ({
   cancelClass: '',
@@ -44,40 +39,65 @@ const options = computed(() => ({
 const cancelColor = computed(() => options.value.cancelColor);
 const confirmColor = computed(() => options.value.confirmColor);
 const titleColor = computed(() => options.value.titleColor);
-const showKeys = computed(() => isArray(props.showKey) ? props.showKey : [props.showKey]);
+const showKeys = computed(() => (isArray(props.showKey) ? props.showKey : [props.showKey]));
 
-const {
-  pickerData,
-  wheelWrapper,
-  cancel,
-  confirm,
-  closePicker,
-} = usePicker(props, emit);
+const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker(props, emit);
 </script>
 
 <template>
   <transition name="fade">
-    <div v-show="isShowPicker" class="mask" @click="closePicker"></div>
+    <div
+      v-show="isShowPicker"
+      class="mask"
+      @click="closePicker"
+    ></div>
   </transition>
 
   <transition name="slide">
-    <div v-show="isShowPicker" class="picker">
+    <div
+      v-show="isShowPicker"
+      class="picker"
+    >
       <div class="picker_title">
-        <button :class="['picker_cancel', options.cancelClass]" :style="{ color: cancelColor }" @click="cancel">
+        <button
+          :class="['picker_cancel', options.cancelClass]"
+          :style="{ color: cancelColor }"
+          @click="cancel"
+        >
           {{ options.cancelText }}
         </button>
-        <button :class="['picker_confirm', options.confirmClass]" :style="{ color: confirmColor }" @click="confirm">
+        <button
+          :class="['picker_confirm', options.confirmClass]"
+          :style="{ color: confirmColor }"
+          @click="confirm"
+        >
           {{ options.confirmText }}
         </button>
-        <h4 :class="[options.titleClass]" :style="{ color: titleColor }">{{ options.titleText }}</h4>
+        <h4
+          :class="[options.titleClass]"
+          :style="{ color: titleColor }"
+        >
+          {{ options.titleText }}
+        </h4>
       </div>
       <div class="picker_panel">
         <div class="picker_mask_top"></div>
         <div class="picker_mask_bottom"></div>
-        <div ref="wheelWrapper" class="picker_wheel_wrapper">
-          <div v-for="(wheel, wheelIndex) in pickerData" :key="wheelIndex" class="picker_wheel">
+        <div
+          ref="wheelWrapper"
+          class="picker_wheel_wrapper"
+        >
+          <div
+            v-for="(wheel, wheelIndex) in pickerData"
+            :key="wheelIndex"
+            class="picker_wheel"
+          >
             <ul class="picker_wheel_scroll">
-              <li v-for="(item, index) in wheel" :key="index" class="picker_wheel_item">
+              <li
+                v-for="(item, index) in wheel"
+                :key="index"
+                class="picker_wheel_item"
+              >
                 {{ showKeys?.[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]!] : item }}
               </li>
             </ul>
@@ -114,7 +134,7 @@ const {
   bottom: 0;
   left: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, .2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .picker {
@@ -125,6 +145,7 @@ const {
   height: 270px;
   z-index: 10000;
   background: #fff;
+  user-select: none;
 
   &_title {
     position: relative;
@@ -162,10 +183,20 @@ const {
 
   &_cancel {
     left: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      filter: brightness(110%);
+    }
   }
 
   &_confirm {
     right: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      filter: brightness(110%);
+    }
   }
 
   &_panel {
@@ -189,7 +220,7 @@ const {
 
   &_mask_top {
     top: 24px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, .9), rgba(255, 255, 255, .5));
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
 
     &:after {
       content: '';
@@ -199,13 +230,13 @@ const {
       right: 0;
       bottom: 0;
       border-bottom: 1px solid #ebebeb;
-      transform: scaleY(.5);
+      transform: scaleY(0.5);
     }
   }
 
   &_mask_bottom {
     bottom: 24px;
-    background: linear-gradient(to top, rgba(255, 255, 255, .9), rgba(255, 255, 255, .5));
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
 
     &::before {
       content: '';
@@ -215,7 +246,7 @@ const {
       right: 0;
       top: 0;
       border-bottom: 1px solid #ebebeb;
-      transform: scaleY(.5);
+      transform: scaleY(0.5);
     }
   }
 
