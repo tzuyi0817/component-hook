@@ -1,6 +1,7 @@
 {
-  "name": "playground",
+  "name": "@component-library/playground",
   "license": "MIT",
+  "private": true,
   "packageManager": "pnpm@9.3.0",
   "type": "module",
   "scripts": {
@@ -11,6 +12,6 @@
   },
   "dependencies": {
     "vue": "^3.4.29",
-    "vue3-picker": "workspace:*"
+    "@component-library/picker": "workspace:*"
   }
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-import Picker from 'vue3-picker';
+import Picker from '@component-library/picker';
 
 interface LangType {
   langType?: number;

@@ -1,12 +1,12 @@
-name: CD-Pipeline
+name: Deploy Playground
 
 on:
   push:
     branches: [master]
     paths:
-      - 'playground/**'
+      - 'playground/src/**'
+      - 'playground/package.json'
       - 'pnpm-lock.yaml'
-      - 'package.json'
 
 jobs:
   CI:
@@ -22,7 +22,7 @@ jobs:
 
       - name: build packages
         run: |
-          pnpm build:vue3-picker
+          pnpm build:picker
 
       - name: build project
         run: pnpm build
@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: production-files
-          path: ./dist
+          path: ./playground/dist
 
   deploy:
     needs: build
@@ -43,10 +43,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: production-files
-          path: ./dist
+          path: ./playground/dist
 
       - name: deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./playground/dist

@@ -55,7 +55,7 @@ defineConfig({
 ```vue
 <script setup>
 import { ref, computed, reactive } from 'vue';
-import { Picker } from 'vue3-picker';
+import Picker from '@component-library/picker';
 
 const currentSelect = ref({});
 const anchor = ref([0, 1, 2]);

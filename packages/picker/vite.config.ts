@@ -8,7 +8,7 @@ const patchCssFile: Plugin = {
   name: 'patch-css-file',
   apply: 'build',
   writeBundle(_, bundle) {
-    const file = 'vue3-picker.es.js';
+    const file = 'picker.es.js';
 
     if (!bundle[file]) return;
     const outDir = path.resolve('dist');
@@ -34,8 +34,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'index.ts',
-      name: 'vue3-picker',
-      fileName: format => `vue3-picker.${format}.js`,
+      name: 'picker',
+      fileName: format => `picker.${format}.js`,
     },
     cssCodeSplit: true,
     rollupOptions: {

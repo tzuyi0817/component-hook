@@ -1,21 +1,23 @@
 {
   "license": "MIT",
   "packageManager": "pnpm@9.3.0",
+  "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "playground"
   ],
   "scripts": {
     "dev": "pnpm -C playground dev",
     "build": "pnpm -C playground build",
-    "build:vue3-picker": "pnpm -C packages/vue3-picker build",
-    "release:vue3-picker": "pnpm -C packages/vue3-picker release",
+    "build:picker": "pnpm -C packages/picker build",
+    "release:picker": "pnpm -C packages/picker release",
     "preview": "pnpm -C playground preview",
     "test:unit": "vitest --coverage",
     "lint": "eslint --fix .",
-    "typecheck": "pnpm typecheck:playground && pnpm typecheck:vue3-picker",
+    "typecheck": "pnpm typecheck:playground && pnpm typecheck:picker",
     "typecheck:playground": "pnpm -C playground typecheck",
-    "typecheck:vue3-picker": "pnpm -C packages/vue3-picker typecheck",
+    "typecheck:picker": "pnpm -C packages/picker typecheck",
     "prepare": "husky"
   },
   "peerDependencies": {

@@ -1,18 +1,18 @@
 {
-  "name": "vue3-picker",
-  "version": "0.4.5",
+  "name": "@component-library/picker",
+  "version": "0.1.0",
   "description": "Picker component with vue3",
   "license": "MIT",
   "packageManager": "pnpm@9.3.0",
   "type": "module",
-  "author": "Tzuyi",
-  "main": "./dist/vue3-picker.umd.js",
-  "module": "./dist/vue3-picker.es.js",
+  "author": "Tzuyi Yang",
+  "main": "./dist/picker.umd.js",
+  "module": "./dist/picker.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/vue3-picker.es.js",
-      "require": "./dist/vue3-picker.umd.js",
+      "import": "./dist/picker.es.js",
+      "require": "./dist/picker.umd.js",
       "types": "./dist/index.d.ts"
     }
   },
@@ -22,7 +22,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tzuyi0817/vue-componet-library.git",
-    "directory": "packages/vue3-picker"
+    "directory": "packages/picker"
   },
   "homepage": "https://github.com/tzuyi0817/vue-componet-library#readme",
   "bugs": {
