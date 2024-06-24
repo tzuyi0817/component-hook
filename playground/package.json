@@ -2,7 +2,7 @@
   "name": "@component-hook/playground",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.29",
+    "vue": "^3.4.30",
     "@component-hook/picker": "workspace:*"
   }
 }

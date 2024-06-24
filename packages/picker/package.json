@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Picker component with vue3",
   "license": "MIT",
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.4.0",
   "type": "module",
   "author": "Tzuyi",
   "main": "./dist/picker.umd.js",
