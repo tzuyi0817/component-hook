@@ -1,4 +1,4 @@
-# My Vue Component Library
+# Component Hook
 
 This is a Vue.js component library that includes a collection of common and useful Vue components, designed to help developers quickly build Vue.js applications.
 

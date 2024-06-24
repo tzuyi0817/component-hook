@@ -15,8 +15,8 @@ export default function usePicker(props: PickerProps, emit: PickerEmit) {
   const wheels = ref<BScroll[]>([]);
   const isDate = computed(() => props.type === 'date');
   const isTime = computed(() => props.type === 'time');
-  const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate(isDate.value);
-  const { timeList, updateDefaultTime, getTimeAnchors } = useTime(isTime.value);
+  const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate();
+  const { timeList, updateDefaultTime, getTimeAnchors } = useTime();
   const pickerAnchors = computed(() => {
     if (isDate.value) return getDateAnchors!(props.anchor);
     if (isTime.value) return getTimeAnchors!(props.anchor);
@@ -45,8 +45,9 @@ export default function usePicker(props: PickerProps, emit: PickerEmit) {
   }
 
   function updateSelect() {
-    isDate.value && updateDateSelect!(pickerAnchors.value);
-    isTime.value && !isHaveValue(props.anchor) && updateDefaultTime!();
+    if (!isDate.value && !isTime.value) return;
+    isDate.value && updateDateSelect(pickerAnchors.value);
+    isTime.value && !isHaveValue(props.anchor) && updateDefaultTime();
   }
 
   function createWheel(index: number) {
@@ -139,9 +140,18 @@ export default function usePicker(props: PickerProps, emit: PickerEmit) {
     () => setPickerData(true),
     { immediate: true },
   );
+
   watch(
     () => props.isShowPicker,
     (isShow: boolean) => isShow && setPickerData(),
+  );
+
+  watch(
+    () => props.type,
+    () => {
+      updateSelect();
+      setPickerData(true);
+    },
   );
 
   return {

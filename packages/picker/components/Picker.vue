@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import usePicker from '../hooks/usePicker';
-import type { PickerOptions, PickData } from '../types/picker';
+import type { PickerOptions, PickData, PickerBuiltIn } from '../types/picker';
 import { isObject, isArray } from '../utils/checkType';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   anchor: number | Array<number>;
   showKey?: string | Array<string>;
   swipeTime?: number;
-  type?: string;
+  type?: PickerBuiltIn;
 }
 
 const props = withDefaults(defineProps<Props>(), {

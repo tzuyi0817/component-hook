@@ -2,9 +2,7 @@ import { ref, computed } from 'vue';
 import { isHaveValue } from '../utils/common';
 import type { PickerProps } from '../types/picker';
 
-export default function useDate(isDate: boolean) {
-  if (!isDate) return {};
-
+export default function useDate() {
   const START_YEAR = 1900;
   const END_YEAR = 2100;
   const date = new Date();
@@ -23,7 +21,9 @@ export default function useDate(isDate: boolean) {
       ? 30
       : thirtyOne.includes(selectMonth.value)
         ? 31
-        : isLeapYear(selectYear.value) ? 29 : 28;
+        : isLeapYear(selectYear.value)
+          ? 29
+          : 28;
     return generateList(1, days);
   });
 
@@ -45,6 +45,7 @@ export default function useDate(isDate: boolean) {
 
   function getDateAnchors(anchor: PickerProps['anchor']) {
     const anchors = isHaveValue(anchor) ? anchor : [defaultYear, defaultMonth, defaultDay];
+
     return anchors.map((target, index) => {
       const pos = dateList.value[index].indexOf(target);
       return pos > -1 ? pos : 0;
