@@ -12,6 +12,17 @@
   },
   "dependencies": {
     "vue": "^3.4.30",
-    "@component-hook/picker": "workspace:*"
+    "vue-router": "^4.4.0",
+    "@component-hook/picker": "workspace:*",
+    "@component-hook/pdf-canvas": "workspace:*"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "cssnano": "^7.0.3",
+    "postcss": "^8.4.38",
+    "postcss-import": "^16.1.0",
+    "postcss-nesting": "^12.1.5",
+    "postcss-pxtorem": "^6.1.0",
+    "tailwindcss": "^3.4.4"
   }
 }

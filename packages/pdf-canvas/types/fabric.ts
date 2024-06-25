@@ -1,5 +1,4 @@
-import { fabric } from 'fabric';
-import type { PDF } from '@/types/pdf';
+import type { fabric } from 'fabric';
 
 export type TOCoord = fabric.Point & {
   corner: TCornerPoint;

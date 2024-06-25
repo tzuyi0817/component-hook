@@ -11,13 +11,15 @@
     "dev": "pnpm -C playground dev",
     "build": "pnpm -C playground build",
     "build:picker": "pnpm -C packages/picker build",
+    "build:pdf-canvas": "pnpm -C packages/pdf-canvas build",
     "release:picker": "pnpm -C packages/picker release",
     "preview": "pnpm -C playground preview",
     "test:unit": "vitest --coverage",
     "lint": "eslint --fix .",
-    "typecheck": "pnpm typecheck:playground && pnpm typecheck:picker",
+    "typecheck": "pnpm typecheck:playground && pnpm typecheck:picker && pnpm typecheck:pdf-canvas",
     "typecheck:playground": "pnpm -C playground typecheck",
     "typecheck:picker": "pnpm -C packages/picker typecheck",
+    "typecheck:pdf-canvas": "pnpm -C packages/pdf-canvas typecheck",
     "prepare": "husky"
   },
   "peerDependencies": {

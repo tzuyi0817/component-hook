@@ -13,6 +13,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
       '@component-hook/picker': resolve(rootDir, 'packages/picker/index.ts'),
+      '@component-hook/pdf-canvas': resolve(rootDir, 'packages/pdf-canvas/index.ts'),
     },
   },
 });

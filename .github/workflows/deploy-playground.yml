@@ -23,6 +23,7 @@ jobs:
       - name: build packages
         run: |
           pnpm build:picker
+          pnpm build:pdf-canvas
 
       - name: build project
         run: pnpm build
