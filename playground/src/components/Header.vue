@@ -2,7 +2,7 @@
 
 <template>
   <header class="fixed w-full top-0 left-0 px-4 border-b border-b-border-color lg:px-12">
-    <nav class="flex items-center bg-primary text-white">
+    <nav class="flex items-center text-white">
       <router-link
         to="/home"
         class="link-item"
@@ -24,9 +24,9 @@
 
 <style lang="postcss" scoped>
 .link-item {
-  @apply transition-colors hover:text-secondary p-4 border-b-2 border-transparent;
+  @apply transition-colors hover:text-primary p-4 border-b-2 border-transparent;
   &.router-link-active {
-    @apply border-secondary;
+    @apply border-primary;
   }
 }
 </style>

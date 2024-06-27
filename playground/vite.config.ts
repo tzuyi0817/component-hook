@@ -2,18 +2,22 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'node:path';
-
-const currentUrl = new URL(import.meta.url);
-const rootDir = resolve(fileURLToPath(currentUrl), '..', '..');
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import { pickerPackage, pdfCanvasPackage } from '../internal/paths.ts';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
+    }),
+  ],
   base: './',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
-      '@component-hook/picker': resolve(rootDir, 'packages/picker/index.ts'),
-      '@component-hook/pdf-canvas': resolve(rootDir, 'packages/pdf-canvas/index.ts'),
+      '@component-hook/picker': pickerPackage,
+      '@component-hook/pdf-canvas': pdfCanvasPackage,
     },
   },
 });

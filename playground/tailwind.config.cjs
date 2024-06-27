@@ -8,6 +8,7 @@ module.exports = {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         'border-color': 'var(--border-color)',
+        'code-bg': 'var(--code-bg)',
       },
       backgroundImage: {},
       animation: {},
