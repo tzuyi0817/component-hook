@@ -37,19 +37,6 @@ yarn add @component-hook/picker
 pnpm install @component-hook/picker
 ```
 
-### Precautions
-
-If you use Vite Tooling and report an error (TypeError: Cannot read properties of null (reading 'setupContext')):
-
-```bash
-defineConfig({
-  ...
-  resolve: {
-    dedupe: ['vue'],
-  },
-});
-```
-
 ### Basic Using
 
 ```vue
@@ -85,22 +72,6 @@ function confirm(value) {
 
 function cancel() {
   console.log('cancel');
-}
-
-function toggle() {
-  isShowPicker.value = true;
-}
-
-function openSingle() {
-  isShowSingle.value = true;
-}
-
-function openDate() {
-  isShowDate.value = true;
-}
-
-function openTime() {
-  isShowTime.value = true;
 }
 </script>
 
@@ -138,15 +109,10 @@ function openTime() {
     type="time"
     :options="{ titleText: 'time selector' }"
   />
-
-  <button @click="toggle">toggle</button>
-  <button @click="openSingle">single</button>
-  <button @click="openDate">date</button>
-  <button @click="openTime">time</button>
 </template>
 ```
 
-### Props
+### Attributes
 
 <table width="100%">
   <tr>

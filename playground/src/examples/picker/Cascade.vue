@@ -6,7 +6,6 @@ interface LangType {
   langType?: number;
   code?: string;
   original?: string;
-  version?: number;
 }
 
 const currentSelect = ref<Array<LangType>>([]);
@@ -39,4 +38,8 @@ function onCancel() {
     @cancel="onCancel"
   />
   <button @click="isShowPicker = true">toggle cascade picker</button>
+
+  <code class="mt-6 block">Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}</code>
+  <code class="mt-3 block">Selected language2: {{ currentSelect[1]?.original ?? 'not selected yet' }}</code>
+  <code class="mt-3 block">Selected language3: {{ currentSelect[2]?.original ?? 'not selected yet' }}</code>
 </template>

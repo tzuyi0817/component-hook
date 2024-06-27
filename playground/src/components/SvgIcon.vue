@@ -17,7 +17,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`);
   <svg
     aria-hidden="true"
     :title="symbolId"
-    class="w-4 h-4 text-gray-400 hover:text-gray-200 transition-colors cursor-pointer"
+    class="w-4 h-4 text-gray-400 hover:text-icon-hover-color transition-colors cursor-pointer"
   >
     <use :href="symbolId" />
   </svg>

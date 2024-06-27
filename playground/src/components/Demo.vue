@@ -29,19 +29,19 @@ async function toggleSource() {
 </script>
 
 <template>
-  <div class="demo-wrapper">
+  <div class="demo-wrapper mb-9">
     <h2>{{ title }}</h2>
 
     <p class="mb-4">
       <slot name="description"></slot>
     </p>
 
-    <div class="example-wrapper border border-border-color rounded lg:max-w-4xl">
+    <div class="example-wrapper border border-border-color rounded">
       <div class="p-6 border-b border-b-border-color">
         <slot></slot>
       </div>
 
-      <div class="px-4 py-2 flex justify-end items-center">
+      <div class="px-4 py-3 flex justify-end items-center">
         <svg-icon
           name="source"
           @click="toggleSource"
@@ -61,6 +61,14 @@ async function toggleSource() {
 
 <style lang="postcss" scoped>
 .example-source-wrapper {
-  @apply p-4 bg-code-bg transition-transform origin-top border-x border-b rounded-b border-border-color lg:max-w-4xl;
+  @apply p-4
+  bg-code-bg
+  transition-all
+  origin-top
+  border-x
+  border-b
+  rounded-b
+  border-border-color
+  overflow-x-auto;
 }
 </style>

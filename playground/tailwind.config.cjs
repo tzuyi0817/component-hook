@@ -9,6 +9,7 @@ module.exports = {
         secondary: 'var(--secondary)',
         'border-color': 'var(--border-color)',
         'code-bg': 'var(--code-bg)',
+        'icon-hover-color': 'var(--icon-hover-color)',
       },
       backgroundImage: {},
       animation: {},

@@ -2,7 +2,7 @@
 
 <template>
   <header class="fixed w-full top-0 left-0 px-4 border-b border-b-border-color lg:px-12">
-    <nav class="flex items-center text-white">
+    <nav class="flex items-center">
       <router-link
         to="/home"
         class="link-item"
