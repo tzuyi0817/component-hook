@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
+        'bg-color': 'var(--bg-color)',
         'border-color': 'var(--border-color)',
         'code-bg-color': 'var(--code-bg-color)',
         'icon-hover-color': 'var(--icon-hover-color)',
