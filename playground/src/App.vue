@@ -4,7 +4,7 @@ import HeaderContainer from '@/components/Header.vue';
 
 <template>
   <header-container />
-  <main class="h-dvh overflow-y-auto p-8 lg:p-12">
+  <main class="h-dvh overflow-y-auto flex flex-col items-center p-8 lg:p-12">
     <router-view />
   </main>
 </template>

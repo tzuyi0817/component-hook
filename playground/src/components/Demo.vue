@@ -29,7 +29,7 @@ async function toggleSource() {
 </script>
 
 <template>
-  <div class="demo-wrapper mb-9">
+  <div class="demo-wrapper">
     <h2>{{ title }}</h2>
 
     <p class="mb-4">
@@ -61,9 +61,7 @@ async function toggleSource() {
 
 <style lang="postcss" scoped>
 .example-source-wrapper {
-  @apply p-4
-  bg-code-bg
-  transition-all
+  @apply transition-all
   origin-top
   border-x
   border-b

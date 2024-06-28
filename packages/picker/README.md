@@ -21,23 +21,21 @@ Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/component-hook/))
 - Built-in date and time data
 - Supports typescript
 
-## Getting started
-
-### Installation
+## Installation
 
 First step is to install it using `yarn`、`npm` or `pnpm`:
 
 ```bash
-npm install @component-hook/picker
+$ npm install @component-hook/picker
 
 # or use yarn
-yarn add @component-hook/picker
+$ yarn add @component-hook/picker
 
 # or use pnpm
-pnpm install @component-hook/picker
+$ pnpm install @component-hook/picker
 ```
 
-### Basic Using
+## Basic Usage
 
 ```vue
 <script setup>
@@ -66,11 +64,11 @@ const options = reactive({
   titleText: 'Title',
 });
 
-function confirm(value) {
+function onConfirm(value) {
   currentSelect.value = value;
 }
 
-function cancel() {
+function onCancel() {
   console.log('cancel');
 }
 </script>
@@ -83,8 +81,8 @@ function cancel() {
     :showKey="['original', 'original', 'original']"
     :options="options"
     :swipeTime="500"
-    @confirm="confirm"
-    @cancel="cancel"
+    @confirm="onConfirm"
+    @cancel="onCancel"
   />
 
   <picker
@@ -93,7 +91,6 @@ function cancel() {
     :data="singleData"
     showKey="original"
     :options="options"
-    @confirm="confirmSingle"
   />
 
   <picker
@@ -112,70 +109,21 @@ function cancel() {
 </template>
 ```
 
-### Attributes
+## Attributes
 
-<table width="100%">
-  <tr>
-    <th style="min-width:160px">Name</th>
-    <th>Required</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th style="min-width:130px">Default</th>
-  </tr>
-  <tr>
-    <td>v-model:isShowPicker</td>
-    <td>true</td>
-    <td>Boolean</td>
-    <td>Control picker show</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>v-model:anchor</td>
-    <td>true</td>
-    <td>Number or Number[]</td>
-    <td>Picker current select index (single column for Number、 multiple columns for Array)</td>
-    <td>date: [2022, 7, 12] <br/> time: [10, 13, 20]</td>
-  </tr>
-  <tr>
-    <td>data</td>
-    <td>false</td>
-    <td>Array</td>
-    <td>Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>type</td>
-    <td>false</td>
-    <td>String</td>
-    <td>Built-in picker type, no need to pass in data (date, time)</td>
-    <td>date: current date <br/> time: current time</td>
-  </tr>
-  <tr>
-    <td>showKey</td>
-    <td>false</td>
-    <td>String or String[]</td>
-    <td>Wheel options name (object key)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>swipeTime</td>
-    <td>false</td>
-    <td>Number</td>
-    <td>Wheel swipe Time</td>
-    <td>500</td>
-  </tr>
-  <tr>
-    <td>options</td>
-    <td>false</td>
-    <td>Object</td>
-    <td>Custom text, color and class</td>
-    <td>See below for details</td>
-  </tr>
-</table>
+| Name                 | Required | Type                  | Description                                                                         | Default               |
+| -------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------- | --------------------- |
+| v-model:isShowPicker | true     | `boolean`             | Control picker show                                                                 | —                     |
+| v-model:anchor       | true     | `number` / `number[]` | Picker current select index (single column for Number、 multiple columns for Array) | —                     |
+| data                 | false    | `array`               | Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]                                     | —                     |
+| type                 | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                          | —                     |
+| showKey              | false    | `string` / `string[]` | Wheel options name (object key)                                                     | —                     |
+| swipeTime            | false    | `number`              | Wheel swipe Time                                                                    | 500                   |
+| options              | false    | `object`              | Custom text, color and class                                                        | See below for details |
 
-#### options
+## Options Attribute
 
-```object
+```javascript
 {
   cancelClass: '',
   confirmClass: '',
@@ -189,7 +137,7 @@ function cancel() {
 }
 ```
 
-### Events
+## Events
 
 | Event   | Description                                  | Return Parameters |
 | :------ | :------------------------------------------- | :---------------- |

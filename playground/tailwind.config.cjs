@@ -8,7 +8,7 @@ module.exports = {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         'border-color': 'var(--border-color)',
-        'code-bg': 'var(--code-bg)',
+        'code-bg-color': 'var(--code-bg-color)',
         'icon-hover-color': 'var(--icon-hover-color)',
       },
       backgroundImage: {},

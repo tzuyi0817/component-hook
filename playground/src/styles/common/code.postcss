@@ -4,7 +4,10 @@
 @import url('prism-themes/themes/prism-vsc-dark-plus.css') screen and (prefers-color-scheme: dark);
 
 @layer components {
-  code {
-    @apply text-sm;
+  pre[class*='language-'] {
+    @apply !m-0 !bg-code-bg-color !border-0;
+    code[class*='language-'] {
+      @apply text-sm;
+    }
   }
 }

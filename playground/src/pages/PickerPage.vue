@@ -9,52 +9,58 @@ import dateSource from '@/examples/picker/Date.vue?raw';
 import TimePicker from '@/examples/picker/Time.vue';
 import timeSource from '@/examples/picker/Time.vue?raw';
 import installationMd from '@/markdowns/picker/installation.md?raw';
+import attributesMd from '@/markdowns/picker/attributes.md?raw';
+import otherMd from '@/markdowns/picker/other.md?raw';
 import { md } from '@/utils/highlight';
 </script>
 
 <template>
-  <h1>Picker</h1>
+  <div class="container">
+    <h1>Picker</h1>
 
-  <p class="mb-5">Picker component with vue3.</p>
+    <p>Picker component with vue3.</p>
 
-  <h2>Installation</h2>
+    <div v-html="md.render(installationMd)"></div>
 
-  <div
-    class="bg-code-bg rounded-md mb-4 p-4"
-    v-html="md.render(installationMd)"
-  ></div>
+    <demo
+      title="Cascade Picker"
+      :source="cascadeSource"
+    >
+      <template #description>Use cascade data to define picker.</template>
+      <cascade-picker />
+    </demo>
 
-  <demo
-    title="Cascade Picker"
-    :source="cascadeSource"
-  >
-    <template #description>Use cascade data to define picker.</template>
-    <cascade-picker />
-  </demo>
+    <demo
+      title="Single Picker"
+      :source="singleSource"
+    >
+      <template #description>Use single data to define picker.</template>
+      <single-picker />
+    </demo>
 
-  <demo
-    title="Single Picker"
-    :source="singleSource"
-  >
-    <template #description>Use single data to define picker.</template>
-    <single-picker />
-  </demo>
+    <demo
+      title="Built-in Date Picker"
+      :source="dateSource"
+    >
+      <template #description>Use built-in date picker.</template>
+      <date-picker />
+    </demo>
 
-  <demo
-    title="Built-in Date Picker"
-    :source="dateSource"
-  >
-    <template #description>Use built-in date picker.</template>
-    <date-picker />
-  </demo>
+    <demo
+      title="Built-in Time Picker"
+      :source="timeSource"
+    >
+      <template #description>Use built-in time picker.</template>
+      <time-picker />
+    </demo>
 
-  <demo
-    title="Built-in Time Picker"
-    :source="timeSource"
-  >
-    <template #description>Use built-in time picker.</template>
-    <time-picker />
-  </demo>
+    <div
+      class="overflow-x-auto"
+      v-html="md.render(attributesMd)"
+    ></div>
+
+    <div v-html="md.render(otherMd)"></div>
+  </div>
 </template>
 
 <style lang="postcss" scoped></style>

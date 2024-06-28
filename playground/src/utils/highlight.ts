@@ -4,12 +4,12 @@ import markdownit from 'markdown-it';
 
 export const md = markdownit({ highlight });
 
-function wrap(code: string) {
-  return `<pre v-pre><code>${code}</code></pre>`;
+function wrap(code: string, lang: string) {
+  return `<pre v-pre class="language-${lang}"><code>${code}</code></pre>`;
 }
 
 export function highlight(source: string, lang = 'markup') {
   const code = prism.highlight(source, prism.languages[lang], lang);
 
-  return wrap(code);
+  return wrap(code, lang);
 }

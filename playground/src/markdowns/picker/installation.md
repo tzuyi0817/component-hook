@@ -1,9 +1,11 @@
+## Installation
+
 ```bash
-npm install @component-hook/picker
+$ npm install @component-hook/picker
 
 # or use yarn
-yarn add @component-hook/picker
+$ yarn add @component-hook/picker
 
 # or use pnpm
-pnpm install @component-hook/picker
+$ pnpm install @component-hook/picker
 ```
