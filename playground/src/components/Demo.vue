@@ -72,22 +72,44 @@ async function copySource() {
 
     <div
       v-show="isDisplaySource"
-      :class="['example-source-wrapper', isShowSource ? 'scale-y-100' : 'scale-y-0']"
+      :class="['example-source-wrapper h-0', isShowSource ? 'scale-y-100 h-full' : 'scale-y-0']"
       @transitionend="isDisplaySource = isShowSource"
     >
       <source-code :source="encode(source)" />
+    </div>
+
+    <div
+      v-show="isShowSource"
+      :class="['example-source-collapse', isShowSource ? 'opacity-100' : 'opacity-0']"
+      @click="toggleSource"
+    >
+      Collapse source
     </div>
   </div>
 </template>
 
 <style lang="postcss" scoped>
-.example-source-wrapper {
-  @apply transition-all
-  origin-top
-  border-x
-  border-b
-  rounded-b
-  border-border-color
-  overflow-x-auto;
+.example-source {
+  &-wrapper {
+    @apply transition-all
+    origin-top
+    border-x
+    border-border-color
+    overflow-x-auto;
+  }
+  &-collapse {
+    @apply text-center
+    border
+    border-border-color
+    rounded-b
+    text-sm
+    transition-opacity
+    cursor-pointer
+    sticky
+    bottom-3
+    bg-black
+    p-3
+    hover:text-primary;
+  }
 }
 </style>

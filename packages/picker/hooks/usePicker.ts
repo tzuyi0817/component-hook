@@ -52,7 +52,7 @@ export default function usePicker(props: PickerProps, emit: PickerEmit) {
 
   function createWheel(index: number) {
     const node = wheelWrapper.value?.children[index] as HTMLElement;
-    if (!node) throw new Error('It\'s not find wheelWrapper');
+    if (!node) return;
 
     let wheel = wheels.value[index];
 
