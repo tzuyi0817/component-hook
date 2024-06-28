@@ -25,5 +25,5 @@ function onCancel() {
   />
   <button @click="isShowPicker = true">toggle date picker</button>
 
-  <code class="mt-6 block">Selected date: {{ currentDate.join('/') || 'not selected yet' }}</code>
+  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join('/') || 'not selected yet' }}</p>
 </template>

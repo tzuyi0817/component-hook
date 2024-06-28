@@ -25,7 +25,7 @@ function onCancel() {
   />
   <button @click="isShowPicker = true">toggle time picker</button>
 
-  <code class="mt-6 block"
-    >Selected time: {{ currentTime.map(num => `${num}`.padStart(2, '0')).join(':') || 'not selected yet' }}</code
-  >
+  <p class="mt-6 text-sm font-mono">
+    Selected time: {{ currentTime.map(num => `${num}`.padStart(2, '0')).join(':') || 'not selected yet' }}
+  </p>
 </template>

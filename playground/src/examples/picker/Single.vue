@@ -38,5 +38,5 @@ function onCancel() {
   />
   <button @click="isShowPicker = true">toggle single picker</button>
 
-  <code class="mt-6 block">Selected language: {{ currentSelect?.original ?? 'not selected yet' }}</code>
+  <p class="mt-6 text-sm font-mono">Selected language: {{ currentSelect?.original ?? 'not selected yet' }}</p>
 </template>

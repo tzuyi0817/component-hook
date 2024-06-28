@@ -39,7 +39,7 @@ function onCancel() {
   />
   <button @click="isShowPicker = true">toggle cascade picker</button>
 
-  <code class="mt-6 block">Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}</code>
-  <code class="mt-3 block">Selected language2: {{ currentSelect[1]?.original ?? 'not selected yet' }}</code>
-  <code class="mt-3 block">Selected language3: {{ currentSelect[2]?.original ?? 'not selected yet' }}</code>
+  <p class="mt-6 text-sm font-mono">Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}</p>
+  <p class="mt-3 text-sm font-mono">Selected language2: {{ currentSelect[1]?.original ?? 'not selected yet' }}</p>
+  <p class="mt-3 text-sm font-mono">Selected language3: {{ currentSelect[2]?.original ?? 'not selected yet' }}</p>
 </template>
