@@ -63,7 +63,7 @@ function dropImage(event: DragEvent) {
   value.startsWith('data:image') ? addFabric(value, position) : addTextFabric(value, position);
 }
 
-watch(() => props.fileScale, setPDF);
+watch([() => props.fileScale, () => props.page, () => props.file], setPDF);
 onBeforeUnmount(deleteCanvas);
 defineExpose({ addFabric, addTextFabric, clearActive, deleteCanvas, canvasDom });
 </script>

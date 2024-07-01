@@ -1,16 +1,21 @@
-import type { fabric } from 'fabric';
+import type {
+  Point,
+  Canvas,
+  FabricImage,
+  FabricText,
+  TEvent,
+  FabricObject,
+  FabricObjectProps,
+  SerializedObjectProps,
+  ObjectEvents,
+} from 'fabric';
 
-export type TOCoord = fabric.Point & {
-  corner: TCornerPoint;
-  touchCorner: TCornerPoint;
-};
-
-export type TCornerPoint = {
-  tl: fabric.Point;
-  tr: fabric.Point;
-  bl: fabric.Point;
-  br: fabric.Point;
-};
+export interface TCornerPoint {
+  tl: Point;
+  tr: Point;
+  bl: Point;
+  br: Point;
+}
 
 export interface SpecifyPageArgs {
   page: number;
@@ -25,9 +30,15 @@ export interface RenderImageArgs {
 }
 
 export interface CreateCloseSvgArgs {
-  canvas: fabric.Canvas;
-  event: fabric.IEvent<Event>;
-  fab: fabric.Image | fabric.Text;
+  canvas: Canvas;
+  event: SelectedEvent;
+  fabric: FabricImage | FabricText;
   stroke?: string;
   uuid?: number;
 }
+
+export type SelectedEvent = Partial<TEvent> & {
+  target: FabricObject<Partial<FabricObjectProps>, SerializedObjectProps, ObjectEvents>;
+};
+
+export type SupportFileType = 'application/pdf' | 'image/png' | 'image/jpeg';

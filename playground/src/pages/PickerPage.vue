@@ -62,5 +62,3 @@ import { md } from '@/utils/highlight';
     <div v-html="md.render(otherMd)"></div>
   </div>
 </template>
-
-<style lang="postcss" scoped></style>
