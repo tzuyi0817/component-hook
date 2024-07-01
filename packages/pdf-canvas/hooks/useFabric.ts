@@ -1,8 +1,19 @@
 import { toRaw } from 'vue';
-import { Canvas, FabricImage, FabricText, loadSVGFromURL, util, type FabricObject } from 'fabric';
+import {
+  Canvas,
+  FabricImage,
+  FabricText,
+  loadSVGFromURL,
+  util,
+  type FabricObject,
+  type TOptions,
+  type ImageProps,
+  type TextProps,
+} from 'fabric';
 import { printPDF, getPDFDocument } from '../utils/pdfJs';
 import { createImageSrc, convertToBase64 } from '../utils/image';
 import { isDesktop, CSS_UNITS } from '../utils/common';
+import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS } from '../configs';
 import type {
   SelectedEvent,
   SpecifyPageArgs,
@@ -132,38 +143,23 @@ export default function useFabric(id = '') {
     canvas.renderAll();
   }
 
-  async function addFabric(src: string, position = { x: 100, y: 50 }) {
+  async function addFabric(src: string, options?: TOptions<ImageProps>) {
     const canvas = fabricMap.get(id);
 
     if (!canvas) return;
-    const image = await FabricImage.fromURL(src);
+    const image = await FabricImage.fromURL(src, {}, { ...DEFAULT_IMAGE_OPTIONS, ...options });
 
-    image.top = position.y;
-    image.left = position.x;
-    image.scaleX = 0.5;
-    image.scaleY = 0.5;
-    image.borderColor = 'black';
-    image.cornerStrokeColor = 'black';
-    image.cornerSize = 8;
-    image.selectionBackgroundColor = 'rgba(245, 245, 245, 0.8)';
     canvas.add(image);
     setFabric(canvas, image);
   }
 
-  function addTextFabric(text: string, position = { x: 100, y: 50 }) {
+  function addTextFabric(text: string, options?: TOptions<TextProps>) {
     const canvas = fabricMap.get(id);
 
     if (!canvas) return;
     const textFabric = new FabricText(text, {
-      top: position.y,
-      left: position.x,
-      fontFamily: 'helvetica',
-      borderColor: 'black',
-      cornerStrokeColor: 'black',
-      scaleX: 0.7,
-      scaleY: 0.7,
-      cornerSize: 8,
-      selectionBackgroundColor: 'rgba(245, 245, 245, 0.8)',
+      ...DEFAULT_TEXT_OPTIONS,
+      ...options,
     });
 
     canvas.add(textFabric);
@@ -181,7 +177,7 @@ export default function useFabric(id = '') {
   async function createCloseSvg({ canvas, event, fabric, stroke = '#000', uuid = Date.now() }: CreateCloseSvgArgs) {
     if (closeSvg?.stroke === `${stroke}-${uuid}`) return;
 
-    const src = createImageSrc('icon/ic_close_s.svg');
+    const src = createImageSrc('close.svg');
     const { objects, options } = await loadSVGFromURL(src);
     const filterObjects = objects.filter((object): object is NonNullable<typeof object> => object !== null);
     const group = util.groupSVGElements(filterObjects, options);

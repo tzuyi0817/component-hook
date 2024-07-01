@@ -1,5 +1,5 @@
 export function createImageSrc(url: string) {
-  return new URL(`/src/assets/${url}`, import.meta.url).href;
+  return new URL(`../assets/${url}`, import.meta.url).href;
 }
 
 export function convertToBase64(file: File): Promise<string> {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick, watch, onBeforeUnmount } from 'vue';
+import type { ImageProps, TextProps } from 'fabric';
 import useFabric from '../hooks/useFabric';
 import type { PDF } from '../types/pdf';
 
@@ -13,6 +14,8 @@ interface Props {
   canvasClass?: string;
   isDropImage?: boolean;
   password?: string;
+  dropTextOptions?: TextProps;
+  dropImageOptions?: ImageProps;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -56,13 +59,14 @@ function dropImage(event: DragEvent) {
   const { dataTransfer, offsetX, offsetY } = event;
   const text = dataTransfer.getData('text');
   const imageSrc = dataTransfer.getData('image');
-  const position = {
-    x: offsetX - 71,
-    y: offsetY - 55,
-  };
-  console.log(dataTransfer);
-  if (imageSrc) addFabric(imageSrc, position);
-  if (text) addTextFabric(text, position);
+  const position = { left: offsetX - 71, top: offsetY - 55 };
+
+  if (imageSrc) {
+    addFabric(imageSrc, { ...position, ...props.dropImageOptions });
+  }
+  if (text) {
+    addTextFabric(text, { ...position, ...props.dropTextOptions });
+  }
 }
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);

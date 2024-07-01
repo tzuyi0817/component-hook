@@ -37,6 +37,7 @@ function dragImage(event: DragEvent) {
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
+      :drop-image-options="{ scaleX: 0.1, scaleY: 0.1 }"
       is-drop-image
     />
 
