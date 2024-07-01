@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas';
+import { ref, defineAsyncComponent } from 'vue';
+import { useFabric, type PDF } from '@component-hook/pdf-canvas';
+import Loading from '@/components/Loading.vue';
 
 const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
+const PdfCanvas = defineAsyncComponent(() => import('@component-hook/pdf-canvas'));
 
 async function uploadFile(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -20,22 +22,38 @@ async function uploadFile(event: Event) {
 
 <template>
   <div class="w-fit flex flex-col items-center gap-3">
-    <pdf-canvas
+    <ul
       v-if="currentPdf"
-      :file="currentPdf"
-    />
+      class="flex flex-wrap gap-3"
+    >
+      <li
+        v-for="page in currentPdf.pages"
+        :key="page"
+      >
+        <suspense>
+          <pdf-canvas
+            :file="currentPdf"
+            canvas-id="multiple"
+            :page="page"
+          />
+          <template #fallback>
+            <loading />
+          </template>
+        </suspense>
+      </li>
+    </ul>
 
     <p
       v-else
       class="font-mono text-sm"
     >
-      Please select a PDF file or image.
+      Please select a multiple page PDF file.
     </p>
 
     <button class="relative">
       <input
         type="file"
-        accept="application/pdf, .jpg, .png"
+        accept="application/pdf"
         class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
         @change="uploadFile"
       />

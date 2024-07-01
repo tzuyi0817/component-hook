@@ -4,6 +4,8 @@ import DrawPdf from '@/examples/pdf-canvas/Draw.vue';
 import drawSource from '@/examples/pdf-canvas/Draw.vue?raw';
 import EncryptedPdf from '@/examples/pdf-canvas/Encrypted.vue';
 import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
+import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
+import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
 // import { md } from '@/utils/highlight';
 </script>
 
@@ -29,6 +31,14 @@ import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
     >
       <template #description>Select the encrypted PDF file and draw on the canvas.</template>
       <encrypted-pdf />
+    </demo>
+
+    <demo
+      title="Multiple page PDF"
+      :source="multipleSource"
+    >
+      <template #description>Select the multiple page PDF file and draw on the canvas.</template>
+      <multiple-pdf />
     </demo>
 
     <!-- <div

@@ -45,16 +45,12 @@ function submitPassword() {
 
 <template>
   <div class="w-fit flex flex-col items-center gap-3">
-    <suspense v-if="currentPdf">
-      <pdf-canvas
-        :file="currentPdf"
-        :password="password"
-        canvas-id="encrypted"
-      />
-      <template #fallback>
-        <p>Loading...</p>
-      </template>
-    </suspense>
+    <pdf-canvas
+      v-if="currentPdf"
+      :file="currentPdf"
+      :password="password"
+      canvas-id="encrypted"
+    />
 
     <p
       v-else
@@ -84,12 +80,12 @@ function submitPassword() {
     <teleport to="body">
       <div
         v-if="isShowPasswordPopup"
-        class="modal"
+        class="dialog"
         @click.self="isShowPasswordPopup = false"
       >
-        <div class="modal-content">
+        <div class="dialog-content">
           <span
-            class="modal-close"
+            class="dialog-close"
             @click="isShowPasswordPopup = false"
             >&times;</span
           >
@@ -98,6 +94,7 @@ function submitPassword() {
             v-model="modalPassword"
             type="password"
             placeholder="please entry password"
+            autofocus
           />
           <button
             class="float-right"
