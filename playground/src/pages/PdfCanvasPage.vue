@@ -6,6 +6,8 @@ import EncryptedPdf from '@/examples/pdf-canvas/Encrypted.vue';
 import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
 import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
 import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
+import DropImage from '@/examples/pdf-canvas/DropImage.vue';
+import dropImageSource from '@/examples/pdf-canvas/DropImage.vue?raw';
 // import { md } from '@/utils/highlight';
 </script>
 
@@ -39,6 +41,14 @@ import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
     >
       <template #description>Select the multiple page PDF file and draw on the canvas.</template>
       <multiple-pdf />
+    </demo>
+
+    <demo
+      title="Drag and drop image"
+      :source="dropImageSource"
+    >
+      <template #description>Drag and drop the image onto the canvas.</template>
+      <drop-image />
     </demo>
 
     <!-- <div

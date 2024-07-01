@@ -52,16 +52,17 @@ async function setPDF() {
 }
 
 function dropImage(event: DragEvent) {
-  if (!props.isDropImage) return;
+  if (!props.isDropImage || !event.dataTransfer) return;
   const { dataTransfer, offsetX, offsetY } = event;
-  const value = dataTransfer?.getData('text/plain');
-  if (!value) return;
+  const text = dataTransfer.getData('text');
+  const imageSrc = dataTransfer.getData('image');
   const position = {
     x: offsetX - 71,
     y: offsetY - 55,
   };
-
-  value.startsWith('data:image') ? addFabric(value, position) : addTextFabric(value, position);
+  console.log(dataTransfer);
+  if (imageSrc) addFabric(imageSrc, position);
+  if (text) addTextFabric(text, position);
 }
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
