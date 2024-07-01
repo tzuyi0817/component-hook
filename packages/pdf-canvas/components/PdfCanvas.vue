@@ -12,6 +12,7 @@ interface Props {
   canvasScale?: number;
   canvasClass?: string;
   isDropImage?: boolean;
+  password?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -46,7 +47,7 @@ async function setPDF() {
       renderImage({ url, scale: scale / scaleDown });
       return;
     }
-    await specifyPage({ page, PDFBase64: file.PDFBase64, scale });
+    await specifyPage({ page, PDFBase64: file.PDFBase64, scale, password: props.password });
   });
 }
 
@@ -63,7 +64,7 @@ function dropImage(event: DragEvent) {
   value.startsWith('data:image') ? addFabric(value, position) : addTextFabric(value, position);
 }
 
-watch([() => props.fileScale, () => props.page, () => props.file], setPDF);
+watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
 onBeforeUnmount(deleteCanvas);
 defineExpose({ addFabric, addTextFabric, clearActive, deleteCanvas, canvasDom });
 </script>

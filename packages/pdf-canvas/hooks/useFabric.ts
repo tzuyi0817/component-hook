@@ -26,7 +26,7 @@ export default function useFabric(id = '') {
     return canvas;
   }
 
-  function loadFile(file: File) {
+  function loadFile(file: File, password?: string) {
     const fileType = file.type as SupportFileType;
     const loadFileMap = {
       'application/pdf': drawPDF,
@@ -34,10 +34,10 @@ export default function useFabric(id = '') {
       'image/jpeg': drawImage,
     };
 
-    return loadFileMap[fileType](file) ?? Promise.reject(new Error(`Unsupported ${fileType} file type.`));
+    return loadFileMap[fileType](file, password) ?? Promise.reject(new Error(`Unsupported ${fileType} file type.`));
   }
 
-  async function drawPDF(file: File) {
+  async function drawPDF(file: File, password?: string) {
     const PDFBase64 = await printPDF(file);
 
     if (!PDFBase64) return;
@@ -51,7 +51,7 @@ export default function useFabric(id = '') {
     };
 
     try {
-      await specifyPage({ page: 1, PDFBase64, scale: 0.8 });
+      await specifyPage({ page: 1, PDFBase64, scale: 0.8, password });
       return { ...PDF, pages };
     } catch (error) {
       return Promise.reject(error);

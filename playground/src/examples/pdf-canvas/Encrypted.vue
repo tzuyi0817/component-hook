@@ -4,17 +4,42 @@ import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas';
 
 const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
+const password = ref<string>('');
+const isShowPasswordPopup = ref(false);
+const modalPassword = ref<string>('');
+let currentFile: File | null = null;
 
-async function uploadFile(event: Event) {
+function uploadFile(event: Event) {
   const target = event.target as HTMLInputElement;
   const { files } = target;
 
   if (!files) return;
-  const file = files[0];
-  const content = await loadFile(file);
-
-  currentPdf.value = content;
+  currentFile = files[0];
+  renderFile(currentFile);
   target.value = '';
+}
+
+function renderFile(file: File | null) {
+  if (!file) return;
+
+  loadFile(file, modalPassword.value)
+    .then(content => {
+      password.value = modalPassword.value;
+      currentPdf.value = content;
+      modalPassword.value = '';
+    })
+    .catch(error => {
+      console.log(`${error}`);
+      if (!`${error}`.includes('PasswordException')) return;
+      isShowPasswordPopup.value = true;
+      if (`${error}` !== 'PasswordException: Incorrect Password') return;
+      alert('Incorrect password! Please try again.');
+    });
+}
+
+function submitPassword() {
+  isShowPasswordPopup.value = false;
+  renderFile(currentFile);
 }
 </script>
 
@@ -23,6 +48,7 @@ async function uploadFile(event: Event) {
     <suspense v-if="currentPdf">
       <pdf-canvas
         :file="currentPdf"
+        :password="password"
         canvas-id="encrypted"
       />
       <template #fallback>
@@ -54,5 +80,33 @@ async function uploadFile(event: Event) {
       <p>total pages: {{ currentPdf?.pages ?? 'null' }}</p>
       <p>update date: {{ currentPdf?.updateDate ?? 'null' }}</p>
     </div>
+
+    <teleport to="body">
+      <div
+        v-if="isShowPasswordPopup"
+        class="modal"
+        @click.self="isShowPasswordPopup = false"
+      >
+        <div class="modal-content">
+          <span
+            class="modal-close"
+            @click="isShowPasswordPopup = false"
+            >&times;</span
+          >
+          <h3>Enter Your Password</h3>
+          <input
+            v-model="modalPassword"
+            type="password"
+            placeholder="please entry password"
+          />
+          <button
+            class="float-right"
+            @click="submitPassword"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </teleport>
   </div>
 </template>

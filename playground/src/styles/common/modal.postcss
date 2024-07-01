@@ -1,0 +1,29 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .modal {
+    @apply fixed z-10 left-0 top-0 w-full h-full overflow-auto bg-black bg-opacity-40 flex items-center justify-center;
+
+    &-content {
+      @apply relative 
+      bg-white
+      m-auto 
+      p-4 
+      rounded-lg 
+      bg-bg-color 
+      w-[80%] 
+      max-w-[400px] 
+      border 
+      border-border-color
+      shadow;
+
+      input {
+        @apply border-border-color border-2 rounded-md p-1 w-[80%] mt-5 mb-10 outline-none;
+      }
+    }
+
+    &-close {
+      @apply absolute top-5 right-4 cursor-pointer text-gray-400 hover:text-icon-hover-color text-2xl transition-colors font-bold;
+    }
+  }
+}
