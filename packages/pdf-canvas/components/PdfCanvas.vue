@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, watch, onBeforeUnmount } from 'vue';
+import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps } from 'fabric';
 import useFabric from '../hooks/useFabric';
 import type { PDF } from '../types/pdf';
@@ -31,8 +31,17 @@ const props = withDefaults(defineProps<Props>(), {
 
 const canvasDom = ref<HTMLCanvasElement | null>(null);
 const canvasId = `${props.canvasId}-${props.page - 1}`;
-const { createCanvas, specifyPage, addFabric, addTextFabric, renderImage, clearActive, deleteCanvas } =
-  useFabric(canvasId);
+const containerScale = computed(() => props.fileZoom * props.canvasScale);
+const {
+  createCanvas,
+  specifyPage,
+  addFabric,
+  addTextFabric,
+  renderImage,
+  clearActive,
+  deleteCanvas,
+  scaleCloseFabric,
+} = useFabric(canvasId);
 
 setPDF();
 
@@ -70,13 +79,14 @@ function dropImage(event: DragEvent) {
 }
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
+watch(containerScale, scaleCloseFabric, { immediate: true });
 onBeforeUnmount(deleteCanvas);
 defineExpose({ addFabric, addTextFabric, clearActive, deleteCanvas, canvasDom });
 </script>
 
 <template>
   <div
-    :style="{ transform: `scale(${props.fileZoom * canvasScale})` }"
+    :style="{ transform: `scale(${containerScale})` }"
     @dragover.stop.prevent
     @dragenter.stop.prevent
     @drop.stop.prevent="dropImage"

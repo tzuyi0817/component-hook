@@ -29,7 +29,7 @@ export interface RenderImageArgs {
   scale?: number;
 }
 
-export interface CreateCloseSvgArgs {
+export interface CreateCloseFabricArgs {
   canvas: Canvas;
   event: SelectedEvent;
   fabric: FabricImage | FabricText;

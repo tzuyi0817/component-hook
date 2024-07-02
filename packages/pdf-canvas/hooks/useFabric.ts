@@ -18,7 +18,7 @@ import type {
   SelectedEvent,
   SpecifyPageArgs,
   RenderImageArgs,
-  CreateCloseSvgArgs,
+  CreateCloseFabricArgs,
   SupportFileType,
 } from '../types/fabric';
 
@@ -26,14 +26,15 @@ const fabricMap = new Map<string, Canvas>();
 
 export default function useFabric(id = '') {
   let pages = 0;
-  let closeSvg: FabricObject | null = null;
+  let closeFabric: FabricObject | null = null;
+  let closeFabricScale = 1;
 
   function createCanvas() {
     if (!id || fabricMap.has(id)) return;
     const canvas = new Canvas(id);
 
     fabricMap.set(id, canvas);
-    canvas.on('selection:cleared', () => deleteCloseSvg(canvas));
+    canvas.on('selection:cleared', () => deleteCloseFabric(canvas));
     return canvas;
   }
 
@@ -167,15 +168,21 @@ export default function useFabric(id = '') {
   }
 
   function setFabric(canvas: Canvas, fabric: FabricImage | FabricText) {
-    fabric.on('selected', event => createCloseSvg({ canvas, event, fabric }));
-    fabric.on('modified', event => moveCloseSvg(event.target));
-    fabric.on('scaling', event => moveCloseSvg(event.transform.target));
-    fabric.on('moving', event => moveCloseSvg(event.transform.target));
-    fabric.on('rotating', event => moveCloseSvg(event.transform.target));
+    fabric.on('selected', event => createCloseFabric({ canvas, event, fabric }));
+    fabric.on('modified', event => moveCloseFabric(event.target));
+    fabric.on('scaling', event => moveCloseFabric(event.transform.target));
+    fabric.on('moving', event => moveCloseFabric(event.transform.target));
+    fabric.on('rotating', event => moveCloseFabric(event.transform.target));
   }
 
-  async function createCloseSvg({ canvas, event, fabric, stroke = '#000', uuid = Date.now() }: CreateCloseSvgArgs) {
-    if (closeSvg?.stroke === `${stroke}-${uuid}`) return;
+  async function createCloseFabric({
+    canvas,
+    event,
+    fabric,
+    stroke = '#000',
+    uuid = Date.now(),
+  }: CreateCloseFabricArgs) {
+    if (closeFabric?.stroke === `${stroke}-${uuid}`) return;
 
     const src = createImageSrc('close.svg');
     const { objects, options } = await loadSVGFromURL(src);
@@ -187,44 +194,53 @@ export default function useFabric(id = '') {
     });
     group.hoverCursor = 'pointer';
     group.stroke = `${stroke}-${uuid}`;
-    deleteCloseSvg(canvas);
-    closeSvg = group;
-    onCloseSvg(canvas, fabric, event, uuid);
-    moveCloseSvg(event.target);
+    deleteCloseFabric(canvas);
+    closeFabric = group;
+    onCloseFabric(canvas, fabric, event, uuid);
+    scaleCloseFabric(closeFabricScale);
+    moveCloseFabric(event.target);
     canvas.add(group);
   }
 
-  function onCloseSvg(canvas: Canvas, fabric: FabricImage | FabricText, event: SelectedEvent, uuid: number) {
-    if (!closeSvg) return;
+  function onCloseFabric(canvas: Canvas, fabric: FabricImage | FabricText, event: SelectedEvent, uuid: number) {
+    if (!closeFabric) return;
 
-    closeSvg.on('selected', () => {
+    closeFabric.on('selected', () => {
       canvas.remove(fabric);
-      deleteCloseSvg(canvas);
+      deleteCloseFabric(canvas);
     });
-    closeSvg.on('mouseover', () => {
-      createCloseSvg({ canvas, event, fabric, stroke: '#B7EC5D', uuid });
+    closeFabric.on('mouseover', () => {
+      createCloseFabric({ canvas, event, fabric, stroke: '#B7EC5D', uuid });
     });
-    closeSvg.on('mouseout', () => {
-      createCloseSvg({ canvas, event, fabric, stroke: '#000', uuid });
+    closeFabric.on('mouseout', () => {
+      createCloseFabric({ canvas, event, fabric, stroke: '#000', uuid });
     });
   }
 
-  function moveCloseSvg(target: FabricObject) {
-    if (!closeSvg) return;
-    const { oCoords, cornerSize = 1 } = target;
+  function moveCloseFabric(target: FabricObject) {
+    if (!closeFabric) return;
+    const { oCoords } = target;
 
     if (!oCoords) return;
     const { x, y } = oCoords.tl.touchCorner.tl;
+    const { height, width } = closeFabric;
 
-    closeSvg.top = y - cornerSize * 3;
-    closeSvg.left = x - cornerSize * 3;
-    closeSvg.setCoords();
+    closeFabric.top = y - height / 2;
+    closeFabric.left = x - width / 2;
+    closeFabric.setCoords();
   }
 
-  function deleteCloseSvg(canvas: Canvas) {
-    if (!closeSvg) return;
-    canvas.remove(closeSvg);
-    closeSvg = null;
+  function scaleCloseFabric(scale: number) {
+    closeFabricScale = scale;
+    if (!closeFabric) return;
+    closeFabric.scale(1 / scale);
+    closeFabric.setCoords();
+  }
+
+  function deleteCloseFabric(canvas: Canvas) {
+    if (!closeFabric) return;
+    canvas.remove(closeFabric);
+    closeFabric = null;
   }
 
   function clearActive() {
@@ -252,5 +268,6 @@ export default function useFabric(id = '') {
     addTextFabric,
     clearActive,
     deleteCanvas,
+    scaleCloseFabric,
   };
 }
