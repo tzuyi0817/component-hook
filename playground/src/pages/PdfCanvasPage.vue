@@ -17,7 +17,7 @@ import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
   <div class="container">
     <h1>PDF Canvas</h1>
 
-    <p>PDF to canvas component with vue3.</p>
+    <p>Rendering PDF documents onto a canvas with vue3 component.</p>
 
     <!-- <div v-html="md.render(installationMd)"></div> -->
 
@@ -54,10 +54,10 @@ import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
     </demo>
 
     <demo
-      title="Manual add images and text"
+      title="Manually add images and text"
       :source="manualSource"
     >
-      <template #description>Manual add the images and text onto the canvas.</template>
+      <template #description>Manually add the images and text onto the canvas.</template>
       <manual-pdf />
     </demo>
 
