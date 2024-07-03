@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
-import type { ImageProps, TextProps } from 'fabric';
+import type { ImageProps, TextProps, TOptions } from 'fabric';
 import useFabric from '../hooks/useFabric';
 import type { PDF } from '../types/pdf';
 
@@ -14,8 +14,8 @@ interface Props {
   canvasClass?: string;
   isDrop?: boolean;
   password?: string;
-  dropTextOptions?: TextProps;
-  dropImageOptions?: ImageProps;
+  dropTextOptions?: TOptions<TextProps>;
+  dropImageOptions?: TOptions<ImageProps>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -70,18 +70,22 @@ function dropImage(event: DragEvent) {
   const imageSrc = dataTransfer.getData('image');
   const position = { left: offsetX - 71, top: offsetY - 55 };
 
-  if (imageSrc) {
-    addFabric(imageSrc, { ...position, ...props.dropImageOptions });
-  }
-  if (text) {
-    addTextFabric(text, { ...position, ...props.dropTextOptions });
-  }
+  if (imageSrc) addImage(imageSrc, position);
+  if (text) addText(text, position);
+}
+
+function addImage(src: string, options?: TOptions<ImageProps>) {
+  addFabric(src, { ...options, ...props.dropImageOptions });
+}
+
+function addText(text: string, options?: TOptions<TextProps>) {
+  addTextFabric(text, { ...options, ...props.dropTextOptions });
 }
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
 watch(containerScale, scale => scaleCloseFabric(scale), { immediate: true });
 onBeforeUnmount(deleteCanvas);
-defineExpose({ addFabric, addTextFabric, clearActive, deleteCanvas, canvasDom });
+defineExpose({ addImage, addText, clearActive, deleteCanvas, canvasDom });
 </script>
 
 <template>

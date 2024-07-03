@@ -8,6 +8,8 @@ import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
 import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
 import DropPdf from '@/examples/pdf-canvas/Drop.vue';
 import dropSource from '@/examples/pdf-canvas/Drop.vue?raw';
+import ManualPdf from '@/examples/pdf-canvas/Manual.vue';
+import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
 // import { md } from '@/utils/highlight';
 </script>
 
@@ -49,6 +51,14 @@ import dropSource from '@/examples/pdf-canvas/Drop.vue?raw';
     >
       <template #description>Drag and drop the images and text onto the canvas.</template>
       <drop-pdf />
+    </demo>
+
+    <demo
+      title="Manual add images and text"
+      :source="manualSource"
+    >
+      <template #description>Manual add the images and text onto the canvas.</template>
+      <manual-pdf />
     </demo>
 
     <!-- <div
