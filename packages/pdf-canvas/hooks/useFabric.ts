@@ -27,7 +27,8 @@ const fabricMap = new Map<string, Canvas>();
 export default function useFabric(id = '') {
   let pages = 0;
   let closeFabric: FabricObject | null = null;
-  let closeFabricScale = 1;
+  let selectedFabric: FabricObject | null = null;
+  let canvasScale = 1;
 
   function createCanvas() {
     if (!id || fabricMap.has(id)) return;
@@ -196,9 +197,9 @@ export default function useFabric(id = '') {
     group.stroke = `${stroke}-${uuid}`;
     deleteCloseFabric(canvas);
     closeFabric = group;
+    selectedFabric = event.target;
     onCloseFabric(canvas, fabric, event, uuid);
-    scaleCloseFabric(closeFabricScale);
-    moveCloseFabric(event.target);
+    scaleCloseFabric(canvasScale, true);
     canvas.add(group);
   }
 
@@ -223,24 +224,27 @@ export default function useFabric(id = '') {
 
     if (!oCoords) return;
     const { x, y } = oCoords.tl.touchCorner.tl;
-    const { height, width } = closeFabric;
+    const { height, width, scaleY, scaleX } = closeFabric;
 
-    closeFabric.top = y - height / 2;
-    closeFabric.left = x - width / 2;
+    closeFabric.top = y - (height * scaleY) / 2;
+    closeFabric.left = x - (width * scaleX) / 2;
     closeFabric.setCoords();
   }
 
-  function scaleCloseFabric(scale: number) {
-    closeFabricScale = scale;
-    if (!closeFabric) return;
+  function scaleCloseFabric(scale: number, isCreate = false) {
+    canvasScale = scale;
+    if (!closeFabric || !selectedFabric) return;
+
     closeFabric.scale(1 / scale);
-    closeFabric.setCoords();
+    moveCloseFabric(selectedFabric);
+    if (isCreate) return;
+    fabricMap.get(id)?.renderAll();
   }
 
   function deleteCloseFabric(canvas: Canvas) {
     if (!closeFabric) return;
     canvas.remove(closeFabric);
-    closeFabric = null;
+    closeFabric = selectedFabric = null;
   }
 
   function clearActive() {

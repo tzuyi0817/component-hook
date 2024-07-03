@@ -79,7 +79,7 @@ function dropImage(event: DragEvent) {
 }
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
-watch(containerScale, scaleCloseFabric, { immediate: true });
+watch(containerScale, scale => scaleCloseFabric(scale), { immediate: true });
 onBeforeUnmount(deleteCanvas);
 defineExpose({ addFabric, addTextFabric, clearActive, deleteCanvas, canvasDom });
 </script>
