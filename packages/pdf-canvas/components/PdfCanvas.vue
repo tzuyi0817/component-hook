@@ -12,7 +12,7 @@ interface Props {
   fileScale?: number;
   canvasScale?: number;
   canvasClass?: string;
-  isDropImage?: boolean;
+  isDrop?: boolean;
   password?: string;
   dropTextOptions?: TextProps;
   dropImageOptions?: ImageProps;
@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
   page: 1,
   fileZoom: 1,
   fileScale: 1,
-  isDropImage: false,
+  isDrop: false,
 });
 
 const canvasDom = ref<HTMLCanvasElement | null>(null);
@@ -64,7 +64,7 @@ async function setPDF() {
 }
 
 function dropImage(event: DragEvent) {
-  if (!props.isDropImage || !event.dataTransfer) return;
+  if (!props.isDrop || !event.dataTransfer) return;
   const { dataTransfer, offsetX, offsetY } = event;
   const text = dataTransfer.getData('text');
   const imageSrc = dataTransfer.getData('image');

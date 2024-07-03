@@ -22,6 +22,12 @@ function dragImage(event: DragEvent) {
 
   event.dataTransfer?.setData('image', target.src);
 }
+
+function dragText(event: DragEvent) {
+  const target = event.target as HTMLParagraphElement;
+
+  event.dataTransfer?.setData('text', target.innerText);
+}
 </script>
 
 <template>
@@ -34,11 +40,20 @@ function dragImage(event: DragEvent) {
       @dragstart="dragImage"
     />
 
+    <p
+      class="font-mono text-sm my-5 bg-code-bg-color p-2 rounded-md cursor-move"
+      draggable="true"
+      @dragstart="dragText"
+    >
+      Can drag the text onto canvas.
+    </p>
+
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
       :drop-image-options="{ scaleX: 0.1, scaleY: 0.1 }"
-      is-drop-image
+      :drop-text-options="{ fontSize: 20 }"
+      is-drop
     />
 
     <p
