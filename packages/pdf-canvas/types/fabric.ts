@@ -1,8 +1,6 @@
 import type {
   Point,
   Canvas,
-  FabricImage,
-  FabricText,
   TEvent,
   FabricObject,
   FabricObjectProps,
@@ -31,8 +29,7 @@ export interface RenderImageArgs {
 
 export interface CreateCloseFabricArgs {
   canvas: Canvas;
-  event: SelectedEvent;
-  fabric: FabricImage | FabricText;
+  target: FabricObject;
   stroke?: string;
   uuid?: number;
 }
@@ -42,3 +39,9 @@ export type SelectedEvent = Partial<TEvent> & {
 };
 
 export type SupportFileType = 'application/pdf' | 'image/png' | 'image/jpeg';
+
+export interface CloseSvgOptions {
+  stroke: string;
+  hoverStroke: string;
+  src: string;
+}

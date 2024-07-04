@@ -139,7 +139,7 @@ function onCancel() {
 
 ## Events
 
-| Event   | Description                                  | Return Parameters |
-| :------ | :------------------------------------------- | :---------------- |
-| confirm | Triggered when the confirm button is clicked | Selected value    |
-| cancel  | Triggered when the cancel button is clicked  | None              |
+| Event   | Description                                  | Type                            |
+| :------ | :------------------------------------------- | :------------------------------ |
+| confirm | Triggered when the confirm button is clicked | `Function () => selected item ` |
+| cancel  | Triggered when the cancel button is clicked  | `Function () => void`           |

@@ -3,6 +3,7 @@ import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps, TOptions } from 'fabric';
 import useFabric from '../hooks/useFabric';
 import type { PDF } from '../types/pdf';
+import type { CloseSvgOptions } from '../types/fabric';
 
 interface Props {
   file: PDF;
@@ -16,6 +17,7 @@ interface Props {
   password?: string;
   dropTextOptions?: TOptions<TextProps>;
   dropImageOptions?: TOptions<ImageProps>;
+  closeSvgOptions?: CloseSvgOptions;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -29,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
   isDrop: false,
 });
 
-const canvasDom = ref<HTMLCanvasElement | null>(null);
+const canvasRef = ref<HTMLCanvasElement | null>(null);
 const canvasId = `${props.canvasId}-${props.page - 1}`;
 const containerScale = computed(() => props.fileZoom * props.canvasScale);
 const {
@@ -41,6 +43,7 @@ const {
   clearActive,
   deleteCanvas,
   scaleCloseFabric,
+  setCloseSvgOptions,
 } = useFabric(canvasId);
 
 setPDF();
@@ -84,8 +87,9 @@ function addText(text: string, options?: TOptions<TextProps>) {
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
 watch(containerScale, scale => scaleCloseFabric(scale), { immediate: true });
+watch(() => props.closeSvgOptions, setCloseSvgOptions, { immediate: true });
 onBeforeUnmount(deleteCanvas);
-defineExpose({ addImage, addText, clearActive, deleteCanvas, canvasDom });
+defineExpose({ addImage, addText, clearActive, deleteCanvas, canvasRef });
 </script>
 
 <template>
@@ -97,7 +101,7 @@ defineExpose({ addImage, addText, clearActive, deleteCanvas, canvasDom });
   >
     <canvas
       :id="canvasId"
-      ref="canvasDom"
+      ref="canvasRef"
       :class="canvasClass"
     ></canvas>
   </div>
