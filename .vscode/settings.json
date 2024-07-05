@@ -17,5 +17,15 @@
   "terminal.integrated.shellIntegration.enabled": true,
   "files.associations": {},
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["VITE", "pinia", "typecheck", "sonarjs", "postcss", "prismjs", "markdownit"]
+  "cSpell.words": [
+    "VITE",
+    "pinia",
+    "typecheck",
+    "sonarjs",
+    "postcss",
+    "prismjs",
+    "markdownit",
+    "noopener",
+    "noreferrer"
+  ]
 }

@@ -37,6 +37,7 @@ function addText() {
       v-if="currentPdf"
       ref="pdfCanvasRef"
       :file="currentPdf"
+      canvas-id="manual"
       :drop-image-options="{ scaleX: 0.1, scaleY: 0.1 }"
       :drop-text-options="{ fontSize: 20 }"
       is-drop
@@ -49,7 +50,7 @@ function addText() {
       Please select a PDF file or image.
     </p>
 
-    <div class="flex gap-3">
+    <div class="flex gap-3 flex-wrap">
       <button class="relative">
         <input
           type="file"

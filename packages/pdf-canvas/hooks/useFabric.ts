@@ -13,7 +13,7 @@ import {
 import { printPDF, getPDFDocument } from '../utils/pdfJs';
 import { createImageSrc, convertToBase64 } from '../utils/image';
 import { isDesktop, CSS_UNITS } from '../utils/common';
-import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS } from '../configs';
+import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../configs';
 import type {
   SpecifyPageArgs,
   RenderImageArgs,
@@ -29,11 +29,7 @@ export default function useFabric(id = '') {
   let closeFabric: FabricObject | null = null;
   let selectedFabric: FabricObject | null = null;
   let canvasScale = 1;
-  let closeOptions: CloseSvgOptions = {
-    stroke: '#000',
-    hoverStroke: '#B7EC5D',
-    src: '',
-  };
+  let closeOptions: CloseSvgOptions = { ...DEFAULT_CLOSE_OPTIONS };
 
   function createCanvas() {
     if (!id || fabricMap.has(id)) return;

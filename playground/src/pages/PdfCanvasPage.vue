@@ -10,7 +10,11 @@ import DropPdf from '@/examples/pdf-canvas/Drop.vue';
 import dropSource from '@/examples/pdf-canvas/Drop.vue?raw';
 import ManualPdf from '@/examples/pdf-canvas/Manual.vue';
 import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
-// import { md } from '@/utils/highlight';
+import installationMd from '@/markdowns/pdf-canvas/installation.md?raw';
+import attributesMd from '@/markdowns/pdf-canvas/attributes.md?raw';
+import exposesMd from '@/markdowns/pdf-canvas/exposes.md?raw';
+import useFabricMd from '@/markdowns/pdf-canvas/useFabric.md?raw';
+import { md } from '@/utils/highlight';
 </script>
 
 <template>
@@ -18,8 +22,18 @@ import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
     <h1>PDF Canvas</h1>
 
     <p>Rendering PDF documents onto a canvas with vue3 component.</p>
+    <p>
+      Implementation depository:
+      <a
+        href="https://github.com/tzuyi0817/PDF-signature"
+        class="link"
+        target="_blank"
+        rel="noopener noreferrer"
+        >PDF-signature</a
+      >
+    </p>
 
-    <!-- <div v-html="md.render(installationMd)"></div> -->
+    <div v-html="md.render(installationMd)"></div>
 
     <demo
       title="Basic Usage"
@@ -61,11 +75,19 @@ import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
       <manual-pdf />
     </demo>
 
-    <!-- <div
+    <div
       class="overflow-x-auto"
       v-html="md.render(attributesMd)"
     ></div>
 
-    <div v-html="md.render(otherMd)"></div> -->
+    <div
+      class="overflow-x-auto"
+      v-html="md.render(exposesMd)"
+    ></div>
+
+    <div
+      class="overflow-x-auto"
+      v-html="md.render(useFabricMd)"
+    ></div>
   </div>
 </template>

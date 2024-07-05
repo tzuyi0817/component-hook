@@ -23,8 +23,6 @@ Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/component-hook/#/
 
 ## Installation
 
-First step is to install it using `yarn`、`npm` or `pnpm`:
-
 ```bash
 $ npm install @component-hook/picker
 
@@ -139,7 +137,7 @@ function onCancel() {
 
 ## Events
 
-| Event   | Description                                  | Type                            |
-| :------ | :------------------------------------------- | :------------------------------ |
-| confirm | Triggered when the confirm button is clicked | `Function () => selected item ` |
-| cancel  | Triggered when the cancel button is clicked  | `Function () => void`           |
+| Event   | Description                                  | Type                           |
+| :------ | :------------------------------------------- | :----------------------------- |
+| confirm | Triggered when the confirm button is clicked | `Function () => selected item` |
+| cancel  | Triggered when the cancel button is clicked  | `Function () => void`          |

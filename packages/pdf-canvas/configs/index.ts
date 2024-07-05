@@ -20,3 +20,9 @@ export const DEFAULT_TEXT_OPTIONS = {
   cornerSize: 8,
   selectionBackgroundColor: 'rgba(245, 245, 245, 0.8)',
 };
+
+export const DEFAULT_CLOSE_OPTIONS = {
+  stroke: '#000',
+  hoverStroke: '#B7EC5D',
+  src: '',
+};

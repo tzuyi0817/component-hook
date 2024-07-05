@@ -51,6 +51,7 @@ function dragText(event: DragEvent) {
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
+      canvas-id="drop"
       :drop-image-options="{ scaleX: 0.1, scaleY: 0.1 }"
       :drop-text-options="{ fontSize: 20 }"
       is-drop

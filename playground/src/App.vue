@@ -1,14 +1,25 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import HeaderContainer from '@/components/Header.vue';
+
+const mainRef = ref<HTMLBaseElement | null>(null);
+
+function scrollToTop() {
+  mainRef.value?.scrollTo({ top: 0 });
+}
 </script>
 
 <template>
   <header-container />
-  <main class="h-dvh overflow-y-auto flex flex-col items-center p-8 lg:p-12">
+  <main
+    ref="mainRef"
+    class="h-dvh overflow-y-auto flex flex-col items-center p-8 lg:p-12"
+  >
     <router-view v-slot="{ Component }">
       <transition
         name="fade"
         mode="out-in"
+        @before-enter="scrollToTop"
       >
         <component :is="Component" />
       </transition>
