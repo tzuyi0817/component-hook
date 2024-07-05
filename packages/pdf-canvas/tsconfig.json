@@ -1,5 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "include": ["**/*.ts", "**/*.d.ts", "**/*.tsx", "**/*.vue"],
-  "exclude": ["dist", "node_modules", "__tests__/*"]
+  "exclude": ["dist", "node_modules", "__tests__/*"],
+  "references": [{ "path": "../../tsconfig.node.json" }]
 }

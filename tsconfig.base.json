@@ -13,7 +13,6 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "skipLibCheck": true,
-    "outDir": "dist",
-  },
-  "references": [{ "path": "./tsconfig.node.json" }]
+    "outDir": "dist"
+  }
 }

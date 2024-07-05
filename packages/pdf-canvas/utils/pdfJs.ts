@@ -1,8 +1,11 @@
 import * as pdfjsLib from 'pdfjs-dist';
 // import * as pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs';
 import { readfile } from './reader';
+import { dependencies } from '../package.json';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
+const version = dependencies['pdfjs-dist'].replace('^', '');
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
 
 export async function printPDF(file: File): Promise<string | void> {
   const Base64Prefix = 'data:application/pdf;base64,';
