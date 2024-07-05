@@ -12,7 +12,7 @@
     "build": "pnpm -C playground build",
     "build:picker": "pnpm -C packages/picker build",
     "build:pdf-canvas": "pnpm -C packages/pdf-canvas build",
-    "release:picker": "pnpm -C packages/picker release",
+    "publish:packages": "pnpm publish --recursive --access public --no-git-checks",
     "preview": "pnpm -C playground preview",
     "test:unit": "vitest --coverage",
     "lint": "eslint --fix .",
