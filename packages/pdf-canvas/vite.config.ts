@@ -1,32 +1,10 @@
-import { defineConfig, type Plugin } from 'vite';
-import path from 'node:path';
-import fs from 'node:fs';
+import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
-
-const patchCssFile: Plugin = {
-  name: 'patch-css-file',
-  apply: 'build',
-  writeBundle(_, bundle) {
-    const file = 'pdf-canvas.es.js';
-
-    if (!bundle[file]) return;
-    const outDir = path.resolve('dist');
-    const filePath = path.resolve(outDir, file);
-    const content = fs.readFileSync(filePath, 'utf-8');
-
-    fs.writeFileSync(filePath, `import "./index.css";\n${content}`);
-  },
-};
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    dts({
-      rollupTypes: true,
-    }),
-    patchCssFile,
-  ],
+  plugins: [vue(), dts({ rollupTypes: true }), visualizer({ gzipSize: true })],
   base: './',
   optimizeDeps: {
     include: ['typescript'],
