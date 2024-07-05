@@ -44,8 +44,8 @@
     "release": "npm publish --access public"
   },
   "dependencies": {
-    "fabric": "^6.0.0",
-    "pdfjs-dist": "^4.3.136"
+    "fabric": "^6.0.1",
+    "pdfjs-dist": "^4.4.168"
   },
   "peerDependencies": {
     "vue": "^3.4.29"
