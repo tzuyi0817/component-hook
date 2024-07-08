@@ -2,7 +2,7 @@
   "name": "@component-hook/playground",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,7 +20,7 @@
     "@types/markdown-it": "^14.1.1",
     "@types/prismjs": "^1.26.4",
     "autoprefixer": "^10.4.19",
-    "cssnano": "^7.0.3",
+    "cssnano": "^7.0.4",
     "markdown-it": "^14.1.0",
     "postcss": "^8.4.39",
     "postcss-import": "^16.1.0",
