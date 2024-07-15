@@ -5,19 +5,19 @@
   "type": "module",
   "workspaces": [
     "packages/*",
-    "playground"
+    "docs"
   ],
   "scripts": {
-    "dev": "pnpm -C playground dev",
-    "build": "pnpm -C playground build",
+    "dev": "pnpm -C docs dev",
+    "build": "pnpm -C docs build",
     "build:picker": "pnpm -C packages/picker build",
     "build:pdf-canvas": "pnpm -C packages/pdf-canvas build",
     "publish:packages": "pnpm publish --recursive --access public --no-git-checks",
-    "preview": "pnpm -C playground preview",
+    "preview": "pnpm -C docs preview",
     "test:unit": "vitest --coverage",
     "lint": "eslint --fix .",
-    "typecheck": "pnpm typecheck:playground && pnpm typecheck:picker && pnpm typecheck:pdf-canvas",
-    "typecheck:playground": "pnpm -C playground typecheck",
+    "typecheck": "pnpm typecheck:docs && pnpm typecheck:picker && pnpm typecheck:pdf-canvas",
+    "typecheck:docs": "pnpm -C docs typecheck",
     "typecheck:picker": "pnpm -C packages/picker typecheck",
     "typecheck:pdf-canvas": "pnpm -C packages/pdf-canvas typecheck",
     "prepare": "husky"

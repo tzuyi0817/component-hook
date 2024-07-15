@@ -125,39 +125,7 @@ importers:
         specifier: ^2.0.26
         version: 2.0.26(typescript@5.5.3)
 
-  packages/pdf-canvas:
-    dependencies:
-      fabric:
-        specifier: ^6.0.2
-        version: 6.0.2
-      pdfjs-dist:
-        specifier: ^4.4.168
-        version: 4.4.168
-      vue:
-        specifier: ^3.4.29
-        version: 3.4.30(typescript@5.5.3)
-    devDependencies:
-      vite-plugin-dts:
-        specifier: ^3.9.1
-        version: 3.9.1(@types/node@20.14.10)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.3(@types/node@20.14.10)(sass@1.77.6)(terser@5.31.1))
-
-  packages/picker:
-    dependencies:
-      '@better-scroll/core':
-        specifier: ^2.5.1
-        version: 2.5.1
-      '@better-scroll/wheel':
-        specifier: ^2.5.1
-        version: 2.5.1
-      vue:
-        specifier: ^3.4.29
-        version: 3.4.29(typescript@5.5.3)
-    devDependencies:
-      vite-plugin-dts:
-        specifier: ^3.9.1
-        version: 3.9.1(@types/node@20.14.10)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.3(@types/node@20.14.10)(sass@1.77.6)(terser@5.31.1))
-
-  playground:
+  docs:
     dependencies:
       '@component-hook/pdf-canvas':
         specifier: workspace:*
@@ -211,6 +179,38 @@ importers:
       vite-plugin-svg-icons:
         specifier: ^2.0.1
         version: 2.0.1(vite@5.3.3(@types/node@20.14.10)(sass@1.77.6)(terser@5.31.1))
+
+  packages/pdf-canvas:
+    dependencies:
+      fabric:
+        specifier: ^6.0.2
+        version: 6.0.2
+      pdfjs-dist:
+        specifier: ^4.4.168
+        version: 4.4.168
+      vue:
+        specifier: ^3.4.29
+        version: 3.4.30(typescript@5.5.3)
+    devDependencies:
+      vite-plugin-dts:
+        specifier: ^3.9.1
+        version: 3.9.1(@types/node@20.14.10)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.3(@types/node@20.14.10)(sass@1.77.6)(terser@5.31.1))
+
+  packages/picker:
+    dependencies:
+      '@better-scroll/core':
+        specifier: ^2.5.1
+        version: 2.5.1
+      '@better-scroll/wheel':
+        specifier: ^2.5.1
+        version: 2.5.1
+      vue:
+        specifier: ^3.4.29
+        version: 3.4.29(typescript@5.5.3)
+    devDependencies:
+      vite-plugin-dts:
+        specifier: ^3.9.1
+        version: 3.9.1(@types/node@20.14.10)(rollup@4.18.0)(typescript@5.5.3)(vite@5.3.3(@types/node@20.14.10)(sass@1.77.6)(terser@5.31.1))
 
 packages:
 
