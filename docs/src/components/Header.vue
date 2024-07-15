@@ -3,11 +3,13 @@
 <template>
   <header class="fixed w-full top-0 left-0 px-4 border-b border-b-border-color lg:px-12">
     <nav class="flex items-center">
-      <router-link
-        to="/home"
-        class="link-item"
-        >Home</router-link
-      >
+      <router-link to="/home">
+        <img
+          class="w-8 mr-2"
+          src="/logo.png"
+          alt="Component Hook Logo"
+        />
+      </router-link>
       <router-link
         to="/picker"
         class="link-item"

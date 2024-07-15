@@ -2,11 +2,18 @@
 
 <template>
   <div class="container">
-    <h1>Component Hook</h1>
-    <p>
-      This is a Vue.js component library that includes a collection of common and useful Vue components, designed to
-      help developers quickly build Vue.js applications.
-    </p>
+    <section class="text-center mb-10">
+      <h1>Component Hook</h1>
+
+      <p>Component library with Vue or React.</p>
+      <em>(React may be supported in the future)</em>
+    </section>
+
+    <!-- <img
+      class="m-auto w-full max-w-xl"
+      src="/cover.jpeg"
+      alt="Component Hook Schematic Diagram"
+    /> -->
   </div>
 </template>
 

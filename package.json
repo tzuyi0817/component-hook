@@ -60,6 +60,9 @@
     "vitest": "^2.0.2",
     "vue-tsc": "^2.0.26"
   },
+  "engines": {
+    "node": ">= 18"
+  },
   "lint-staged": {
     "*.{ts,js,vue}": [
       "pnpm lint",
