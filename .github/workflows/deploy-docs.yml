@@ -1,11 +1,11 @@
-name: Deploy Playground
+name: Deploy Docs
 
 on:
   push:
     branches: [master]
     paths:
-      - 'playground/src/**'
-      - 'playground/package.json'
+      - 'docs/src/**'
+      - 'docs/package.json'
       - 'pnpm-lock.yaml'
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: production-files
-          path: ./playground/dist
+          path: ./docs/dist
 
   deploy:
     needs: build
@@ -44,10 +44,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: production-files
-          path: ./playground/dist
+          path: ./docs/dist
 
       - name: deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./playground/dist
+          publish_dir: ./docs/dist
