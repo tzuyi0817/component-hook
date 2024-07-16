@@ -25,6 +25,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Cascade Picker"
       :source="cascadeSource"
+      playground="6696355db9ac0e0085f0eb29"
     >
       <template #description>Use cascade data to define picker.</template>
       <cascade-picker />
@@ -33,6 +34,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Single Picker"
       :source="singleSource"
+      playground="668e32b73e8416c068f2f92f"
     >
       <template #description>Use single data to define picker.</template>
       <single-picker />
@@ -41,6 +43,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Built-in Date Picker"
       :source="dateSource"
+      playground="669635e2b9ac0e0085f0eb2e"
     >
       <template #description>Use built-in date picker.</template>
       <date-picker />
@@ -49,6 +52,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Built-in Time Picker"
       :source="timeSource"
+      playground="66963635b9ac0e0085f0eb32"
     >
       <template #description>Use built-in time picker.</template>
       <time-picker />

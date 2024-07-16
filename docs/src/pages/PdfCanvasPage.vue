@@ -38,6 +38,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Basic Usage"
       :source="drawSource"
+      playground="668e33253e8416c068f2f93b"
     >
       <template #description>Select the PDF file and draw on the canvas.</template>
       <draw-pdf />
@@ -46,6 +47,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Encrypted PDF"
       :source="encryptedSource"
+      playground="66963e7d2b23250eadd65180"
     >
       <template #description>Select the encrypted PDF file and draw on the canvas.</template>
       <encrypted-pdf />
@@ -54,6 +56,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Multiple page PDF"
       :source="multipleSource"
+      playground="669646038ae98c93b96a2e78"
     >
       <template #description>Select the multiple page PDF file and draw on the canvas.</template>
       <multiple-pdf />
@@ -62,6 +65,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Drag and drop images and text"
       :source="dropSource"
+      playground="6696466d8ae98c93b96a2e9b"
     >
       <template #description>Drag and drop the images and text onto the canvas.</template>
       <drop-pdf />
@@ -70,6 +74,7 @@ import { md } from '@/utils/highlight';
     <demo
       title="Manually add images and text"
       :source="manualSource"
+      playground="669646c68ae98c93b96a2eb2"
     >
       <template #description>Manually add the images and text onto the canvas.</template>
       <manual-pdf />

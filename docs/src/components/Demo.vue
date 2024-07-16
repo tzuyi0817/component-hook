@@ -8,6 +8,7 @@ import { sleep } from '@/utils/common';
 interface Props {
   title: string;
   source: string;
+  playground: string;
 }
 
 const props = defineProps<Props>();
@@ -49,18 +50,22 @@ async function copySource() {
       </div>
 
       <div class="px-4 py-3 flex justify-end items-center gap-3">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          :href="`https://code-immediate.vercel.app/${playground}`"
+        >
+          <svg-icon name="playground" />
+        </a>
+
         <div
           class="relative"
           @click="copySource"
         >
           <svg-icon name="copy" />
-          <span
-            :class="[
-              'absolute -top-5 left-1/2 font-mono text-sm opacity-0 -translate-x-1/2 transition-all pointer-events-none duration-300',
-              { 'opacity-100 -translate-y-3': isCopied },
-            ]"
-            >Copied!</span
-          >
+          <span :class="['example-source-copy-prompt opacity-0', { 'opacity-100 -translate-y-3': isCopied }]">
+            Copied!
+          </span>
         </div>
 
         <svg-icon
@@ -112,6 +117,17 @@ async function copySource() {
     bg-bg-color
     p-3
     hover:text-primary;
+  }
+  &-copy-prompt {
+    @apply absolute
+    -top-5
+    left-1/2
+    font-mono
+    text-sm
+    -translate-x-1/2
+    transition-all
+    pointer-events-none
+    duration-300;
   }
 }
 </style>
