@@ -45,67 +45,69 @@ const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker(pro
 </script>
 
 <template>
-  <transition name="fade">
-    <div
-      v-show="isShowPicker"
-      class="mask"
-      @click="closePicker"
-    ></div>
-  </transition>
+  <div>
+    <transition name="fade">
+      <div
+        v-show="isShowPicker"
+        class="mask"
+        @click="closePicker"
+      ></div>
+    </transition>
 
-  <transition name="slide">
-    <div
-      v-show="isShowPicker"
-      class="picker"
-    >
-      <div class="picker_title">
-        <button
-          :class="['picker_cancel', options.cancelClass]"
-          :style="{ color: cancelColor }"
-          @click="cancel"
-        >
-          {{ options.cancelText }}
-        </button>
-        <button
-          :class="['picker_confirm', options.confirmClass]"
-          :style="{ color: confirmColor }"
-          @click="confirm"
-        >
-          {{ options.confirmText }}
-        </button>
-        <h4
-          :class="[options.titleClass]"
-          :style="{ color: titleColor }"
-        >
-          {{ options.titleText }}
-        </h4>
-      </div>
-      <div class="picker_panel">
-        <div class="picker_mask_top"></div>
-        <div class="picker_mask_bottom"></div>
-        <div
-          ref="wheelWrapper"
-          class="picker_wheel_wrapper"
-        >
-          <div
-            v-for="(wheel, wheelIndex) in pickerData"
-            :key="wheelIndex"
-            class="picker_wheel"
+    <transition name="slide">
+      <div
+        v-show="isShowPicker"
+        class="picker"
+      >
+        <div class="picker_title">
+          <button
+            :class="['picker_cancel', options.cancelClass]"
+            :style="{ color: cancelColor }"
+            @click="cancel"
           >
-            <ul class="picker_wheel_scroll">
-              <li
-                v-for="(item, index) in wheel"
-                :key="index"
-                class="picker_wheel_item"
-              >
-                {{ showKeys?.[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]!] : item }}
-              </li>
-            </ul>
+            {{ options.cancelText }}
+          </button>
+          <button
+            :class="['picker_confirm', options.confirmClass]"
+            :style="{ color: confirmColor }"
+            @click="confirm"
+          >
+            {{ options.confirmText }}
+          </button>
+          <h4
+            :class="[options.titleClass]"
+            :style="{ color: titleColor }"
+          >
+            {{ options.titleText }}
+          </h4>
+        </div>
+        <div class="picker_panel">
+          <div class="picker_mask_top"></div>
+          <div class="picker_mask_bottom"></div>
+          <div
+            ref="wheelWrapper"
+            class="picker_wheel_wrapper"
+          >
+            <div
+              v-for="(wheel, wheelIndex) in pickerData"
+              :key="wheelIndex"
+              class="picker_wheel"
+            >
+              <ul class="picker_wheel_scroll">
+                <li
+                  v-for="(item, index) in wheel"
+                  :key="index"
+                  class="picker_wheel_item"
+                >
+                  {{ showKeys?.[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]!] : item }}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </div>
 </template>
 
 <style lang="scss" scoped>
