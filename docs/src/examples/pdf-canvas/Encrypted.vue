@@ -93,7 +93,7 @@ function submitPassword() {
           <input
             v-model="modalPassword"
             type="password"
-            placeholder="please entry password"
+            placeholder="Please entry password"
             autofocus
           />
           <button

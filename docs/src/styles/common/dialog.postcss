@@ -2,28 +2,60 @@
 
 @layer components {
   .dialog {
-    @apply fixed z-10 left-0 top-0 w-full h-full overflow-auto bg-black bg-opacity-40 flex items-center justify-center;
+    @apply fixed
+    z-10
+    left-0
+    top-0
+    w-full
+    h-full
+    overflow-hidden
+    bg-black/20
+    flex items-center
+    justify-center
+    animate-[popup_0.3s];
 
     &-content {
       @apply relative 
-      bg-white
       m-auto 
       p-4 
       rounded-lg 
       bg-bg-color 
       w-[80%] 
-      max-w-[400px] 
-      border 
-      border-border-color
-      shadow;
+      max-w-[400px]
+      border
+      border-white/20
+      shadow-lg;
 
       input {
-        @apply border-border-color border-2 rounded-md p-1 w-[80%] mt-5 mb-10 outline-none;
+        @apply border-border-color 
+        border
+        rounded-md 
+        py-1
+        px-3 
+        w-[80%] 
+        mt-5 
+        mb-10 
+        outline-none 
+        transition-all
+        placeholder:text-[#8d9095]
+        focus:border-primary
+        hover:border-white/30;
       }
     }
 
     &-close {
       @apply absolute top-5 right-4 cursor-pointer text-gray-400 hover:text-icon-hover-color text-2xl transition-colors font-bold;
+    }
+  }
+
+  @keyframes popup {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
