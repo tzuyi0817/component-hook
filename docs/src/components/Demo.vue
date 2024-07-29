@@ -113,7 +113,7 @@ async function copySource() {
     transition-opacity
     cursor-pointer
     sticky
-    bottom-3
+    bottom-0
     bg-bg-color
     p-3
     hover:text-primary;

@@ -13,7 +13,7 @@ function scrollToTop() {
   <header-container />
   <main
     ref="mainRef"
-    class="h-dvh overflow-y-auto flex flex-col items-center p-8 lg:p-12"
+    class="w-screen pt-16"
   >
     <router-view v-slot="{ Component }">
       <transition
