@@ -13,22 +13,22 @@
   "dependencies": {
     "@component-hook/pdf-canvas": "workspace:*",
     "@component-hook/picker": "workspace:*",
-    "vue": "^3.4.33",
+    "vue": "^3.4.34",
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
-    "@types/markdown-it": "^14.1.1",
+    "@types/markdown-it": "^14.1.2",
     "@types/prismjs": "^1.26.4",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.4",
     "markdown-it": "^14.1.0",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.40",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^12.1.5",
     "postcss-pxtorem": "^6.1.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
-    "tailwindcss": "^3.4.6",
+    "tailwindcss": "^3.4.7",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
