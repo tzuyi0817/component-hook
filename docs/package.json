@@ -13,13 +13,13 @@
   "dependencies": {
     "@component-hook/pdf-canvas": "workspace:*",
     "@component-hook/picker": "workspace:*",
-    "vue": "^3.4.34",
-    "vue-router": "^4.4.0"
+    "vue": "^3.4.35",
+    "vue-router": "^4.4.2"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
     "@types/prismjs": "^1.26.4",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.4",
     "markdown-it": "^14.1.0",
     "postcss": "^8.4.40",
