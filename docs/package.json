@@ -24,7 +24,7 @@
     "markdown-it": "^14.1.0",
     "postcss": "^8.4.40",
     "postcss-import": "^16.1.0",
-    "postcss-nesting": "^12.1.5",
+    "postcss-nesting": "^13.0.0",
     "postcss-pxtorem": "^6.1.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
