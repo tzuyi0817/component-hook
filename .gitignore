@@ -25,3 +25,6 @@ coverage
 
 # Visualizer
 stats.html
+
+# Turbo
+.turbo
