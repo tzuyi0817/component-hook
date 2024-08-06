@@ -1,3 +1,3 @@
-import componentHookPlugin from './packages/eslint-plugin/dist/index.js';
+import componentHookPlugin from '@component-hook/eslint-plugin';
 
 export default [...componentHookPlugin.configs.vue];

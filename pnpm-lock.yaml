@@ -37,6 +37,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.24.7
         version: 7.24.7(@babel/core@7.25.2)
+      '@component-hook/eslint-plugin':
+        specifier: workspace:^
+        version: link:packages/eslint-plugin
       '@testing-library/jest-dom':
         specifier: ^6.4.8
         version: 6.4.8
