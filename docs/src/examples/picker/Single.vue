@@ -36,7 +36,11 @@ function onCancel() {
     @confirm="onConfirm"
     @cancel="onCancel"
   />
-  <button @click="isShowPicker = true">toggle single picker</button>
+  <button @click="isShowPicker = true">
+    toggle single picker
+  </button>
 
-  <p class="mt-6 text-sm font-mono">Selected language: {{ currentSelect?.original ?? 'not selected yet' }}</p>
+  <p class="mt-6 text-sm font-mono">
+    Selected language: {{ currentSelect?.original ?? 'not selected yet' }}
+  </p>
 </template>

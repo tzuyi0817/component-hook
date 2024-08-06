@@ -23,7 +23,11 @@ function onCancel() {
     @confirm="onConfirm"
     @cancel="onCancel"
   />
-  <button @click="isShowPicker = true">toggle date picker</button>
+  <button @click="isShowPicker = true">
+    toggle date picker
+  </button>
 
-  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join('/') || 'not selected yet' }}</p>
+  <p class="mt-6 text-sm font-mono">
+    Selected date: {{ currentDate.join('/') || 'not selected yet' }}
+  </p>
 </template>

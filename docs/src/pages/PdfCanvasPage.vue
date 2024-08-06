@@ -29,8 +29,7 @@ import { md } from '@/utils/highlight';
         class="link"
         target="_blank"
         rel="noopener noreferrer"
-        >PDF-signature</a
-      >
+      >PDF-signature</a>
     </p>
 
     <div v-html="md.render(installationMd)"></div>
@@ -40,7 +39,9 @@ import { md } from '@/utils/highlight';
       :source="drawSource"
       playground="668e33253e8416c068f2f93b"
     >
-      <template #description>Select the PDF file and draw on the canvas.</template>
+      <template #description>
+        Select the PDF file and draw on the canvas.
+      </template>
       <draw-pdf />
     </demo>
 
@@ -49,7 +50,9 @@ import { md } from '@/utils/highlight';
       :source="encryptedSource"
       playground="66963e7d2b23250eadd65180"
     >
-      <template #description>Select the encrypted PDF file and draw on the canvas.</template>
+      <template #description>
+        Select the encrypted PDF file and draw on the canvas.
+      </template>
       <encrypted-pdf />
     </demo>
 
@@ -58,7 +61,9 @@ import { md } from '@/utils/highlight';
       :source="multipleSource"
       playground="669646038ae98c93b96a2e78"
     >
-      <template #description>Select the multiple page PDF file and draw on the canvas.</template>
+      <template #description>
+        Select the multiple page PDF file and draw on the canvas.
+      </template>
       <multiple-pdf />
     </demo>
 
@@ -67,7 +72,9 @@ import { md } from '@/utils/highlight';
       :source="dropSource"
       playground="6696466d8ae98c93b96a2e9b"
     >
-      <template #description>Drag and drop the images and text onto the canvas.</template>
+      <template #description>
+        Drag and drop the images and text onto the canvas.
+      </template>
       <drop-pdf />
     </demo>
 
@@ -76,7 +83,9 @@ import { md } from '@/utils/highlight';
       :source="manualSource"
       playground="669646c68ae98c93b96a2eb2"
     >
-      <template #description>Manually add the images and text onto the canvas.</template>
+      <template #description>
+        Manually add the images and text onto the canvas.
+      </template>
       <manual-pdf />
     </demo>
 

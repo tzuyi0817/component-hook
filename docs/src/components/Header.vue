@@ -13,13 +13,15 @@
       <router-link
         to="/picker"
         class="link-item"
-        >Picker</router-link
       >
+        Picker
+      </router-link>
       <router-link
         to="/pdf-canvas"
         class="link-item"
-        >PDF Canvas</router-link
       >
+        PDF Canvas
+      </router-link>
     </nav>
   </header>
 </template>

@@ -1,0 +1,53 @@
+{
+  "name": "@component-hook/eslint-plugin",
+  "version": "0.1.2",
+  "description": "ESLint config for component hook",
+  "license": "MIT",
+  "packageManager": "pnpm@9.6.0",
+  "type": "module",
+  "author": "Tzuyi",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tzuyi0817/component-hook.git",
+    "directory": "packages/eslint-plugin"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "tag": "latest"
+  },
+  "keywords": [
+    "eslint",
+    "eslintplugin"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit --skipLibCheck"
+  },
+  "peerDependencies": {
+    "eslint": "^9.8.0"
+  },
+  "dependencies": {
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-sonarjs": "^1.0.4",
+    "eslint-plugin-testing-library": "^6.2.2",
+    "eslint-plugin-vue": "^9.27.0",
+    "globals": "^15.9.0",
+    "typescript-eslint": "^8.0.0",
+    "vue-eslint-parser": "^9.4.3"
+  },
+  "devDependencies": {
+    "@types/eslint__js": "^8.42.3",
+    "@types/eslint": "^9.6.0",
+    "tsup": "^8.2.4"
+  }
+}

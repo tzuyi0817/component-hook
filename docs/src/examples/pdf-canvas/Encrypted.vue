@@ -87,8 +87,7 @@ function submitPassword() {
           <span
             class="dialog-close"
             @click="isShowPasswordPopup = false"
-            >&times;</span
-          >
+          >&times;</span>
           <h3>Enter Your Password</h3>
           <input
             v-model="modalPassword"

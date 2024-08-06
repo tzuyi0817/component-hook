@@ -40,8 +40,7 @@
   ],
   "scripts": {
     "build": "pnpm typecheck && vite build",
-    "typecheck": "bash -c vue-tsc --noEmit",
-    "release": "npm publish --access public"
+    "typecheck": "bash -c vue-tsc --noEmit"
   },
   "dependencies": {
     "fabric": "^6.1.0",

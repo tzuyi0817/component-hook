@@ -61,8 +61,12 @@ function addText() {
         select file
       </button>
 
-      <button @click="addImage">add image</button>
-      <button @click="addText">add text</button>
+      <button @click="addImage">
+        add image
+      </button>
+      <button @click="addText">
+        add text
+      </button>
     </div>
   </div>
 </template>

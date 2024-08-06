@@ -37,9 +37,17 @@ function onCancel() {
     @confirm="onConfirm"
     @cancel="onCancel"
   />
-  <button @click="isShowPicker = true">toggle cascade picker</button>
+  <button @click="isShowPicker = true">
+    toggle cascade picker
+  </button>
 
-  <p class="mt-6 text-sm font-mono">Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}</p>
-  <p class="mt-3 text-sm font-mono">Selected language2: {{ currentSelect[1]?.original ?? 'not selected yet' }}</p>
-  <p class="mt-3 text-sm font-mono">Selected language3: {{ currentSelect[2]?.original ?? 'not selected yet' }}</p>
+  <p class="mt-6 text-sm font-mono">
+    Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}
+  </p>
+  <p class="mt-3 text-sm font-mono">
+    Selected language2: {{ currentSelect[1]?.original ?? 'not selected yet' }}
+  </p>
+  <p class="mt-3 text-sm font-mono">
+    Selected language3: {{ currentSelect[2]?.original ?? 'not selected yet' }}
+  </p>
 </template>
