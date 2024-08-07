@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import typescriptEslint from 'typescript-eslint';
-import pluginVue from 'eslint-plugin-vue';
-import vueParser from 'vue-eslint-parser';
-
-export { globals, pluginJs, typescriptEslint, pluginVue, vueParser };
+export { default as globals } from 'globals';
+export { default as pluginJs } from '@eslint/js';
+export { default as typescriptEslint } from 'typescript-eslint';
+export { default as pluginVue } from 'eslint-plugin-vue';
+export { default as vueParser } from 'vue-eslint-parser';
+export { default as configPrettier } from 'eslint-config-prettier';
+export { default as pluginPrettier } from 'eslint-plugin-prettier';

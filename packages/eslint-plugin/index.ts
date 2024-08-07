@@ -1,11 +1,13 @@
 import { globals } from './plugins';
 import pluginJs from './configs/javascript';
 import pluginTypescript from './configs/typescript';
+import pluginPrettier from './configs/prettier';
 import pluginVue from './configs/vue';
 
 const pluginBase = [
   ...pluginJs,
   ...pluginTypescript,
+  ...pluginPrettier,
   // pluginSonarjs.configs.recommended,
   // pluginSecurity.configs.recommended,
   {

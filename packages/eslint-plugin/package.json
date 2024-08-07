@@ -37,6 +37,8 @@
     "eslint": "^9.8.0"
   },
   "dependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-testing-library": "^6.2.2",
@@ -46,8 +48,9 @@
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
-    "@types/eslint__js": "^8.42.3",
     "@types/eslint": "^9.6.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__js": "^8.42.3",
     "tsup": "^8.2.4"
   }
 }

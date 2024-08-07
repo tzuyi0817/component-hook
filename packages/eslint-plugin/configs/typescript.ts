@@ -1,7 +1,7 @@
 import type { Linter } from 'eslint';
 import { typescriptEslint } from '../plugins';
 
-export const rules: Linter.Config<Linter.RulesRecord>['rules'] = {
+export const rules: Linter.RulesRecord = {
   '@typescript-eslint/no-unused-expressions': 'off',
   '@typescript-eslint/ban-ts-comment': 'off',
   '@typescript-eslint/no-shadow': 'error',
