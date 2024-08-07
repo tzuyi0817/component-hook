@@ -2,14 +2,14 @@ import { globals } from './plugins';
 import pluginJs from './configs/javascript';
 import pluginTypescript from './configs/typescript';
 import pluginPrettier from './configs/prettier';
+import pluginSonarjs from './configs/sonarjs';
+import pluginSecurity from './configs/security';
 import pluginVue from './configs/vue';
 
 const pluginBase = [
   ...pluginJs,
   ...pluginTypescript,
   ...pluginPrettier,
-  // pluginSonarjs.configs.recommended,
-  // pluginSecurity.configs.recommended,
   {
     languageOptions: {
       ecmaVersion: 'latest',
@@ -51,6 +51,8 @@ const pluginBase = [
 
 const configs = {
   vue: [...pluginBase, ...pluginVue],
+  sonarjs: pluginSonarjs,
+  security: pluginSecurity,
 };
 
 export default { configs };

@@ -22,4 +22,4 @@ const rules = {
   eqeqeq: 'error',
 };
 
-export default [pluginJs.configs.recommended, { files: ['**/*.js', '**/*.jsx'] }, { rules }];
+export default [pluginJs.configs.recommended, { rules }];
