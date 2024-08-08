@@ -20,10 +20,10 @@ jobs:
       - name: setup environment
         uses: tzuyi0817/coding-standards/.github/actions/setup-environment@main
 
-      - name: build packages
+      - name: prepack packages
         run: |
-          pnpm build:picker
-          pnpm build:pdf-canvas
+          pnpm prepack:picker
+          pnpm prepack:pdf-canvas
 
       - name: build project
         run: pnpm build

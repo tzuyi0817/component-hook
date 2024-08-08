@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/eslint-plugin",
-  "version": "0.1.2",
+  "version": "0.1.2-alpha.0",
   "description": "ESLint config for component hook",
   "license": "MIT",
   "packageManager": "pnpm@9.6.0",
@@ -30,6 +30,7 @@
     "eslintplugin"
   ],
   "scripts": {
+    "dev": "eslint-config-inspector --config ../../eslint.config.js",
     "build": "tsup",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
@@ -49,6 +50,7 @@
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
+    "@eslint/config-inspector": "^0.5.2",
     "@types/eslint": "^9.6.0",
     "@types/eslint-plugin-security": "^3.0.0",
     "@types/eslint__js": "^8.42.3",

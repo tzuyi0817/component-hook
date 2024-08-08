@@ -13,12 +13,14 @@ import {
   pluginTestingLibraryAngular,
   pluginTestingLibraryMarko,
 } from './configs/testing-library';
+import ignores from './configs/ignores';
 
 const pluginBase = [
   ...pluginJs,
   ...pluginTypescript,
   ...pluginPrettier,
   {
+    name: 'component-hook/globals',
     languageOptions: {
       ecmaVersion: 'latest',
       globals: {
@@ -27,17 +29,7 @@ const pluginBase = [
       },
     },
   },
-  {
-    ignores: [
-      '**/node_modules/*',
-      '**/dist/*',
-      '**/pnpm-lock.yaml',
-      '.github/*',
-      '**/*.config.ts',
-      '**/*.d.ts',
-      '**/public/*',
-    ],
-  },
+  ignores,
 ];
 
 const configs = {

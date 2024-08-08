@@ -42,8 +42,12 @@ const rules = {
   'vue/no-setup-props-reactivity-loss': 'off',
 };
 
+const extendsTypescript = typescriptEslint.configs.recommended
+  .filter(({ name }) => name !== 'typescript-eslint/base')
+  .map(config => ({ ...config, name: `component-hook/vue/${config.name}` }));
+
 const eslintConfigTypescript = typescriptEslint.config({
-  extends: [...typescriptEslint.configs.recommended],
+  extends: extendsTypescript,
   files: ['**/*.vue'],
   name: 'component-hook/vue/typescript',
   rules: pluginTypescriptRules,
@@ -52,6 +56,7 @@ const eslintConfigTypescript = typescriptEslint.config({
 export default [
   ...eslintConfigTypescript,
   {
+    name: 'component-hook/vue/globals',
     languageOptions: {
       globals: {
         defineProps: 'readonly',
