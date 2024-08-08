@@ -6,6 +6,13 @@ import pluginSonarjs from './configs/sonarjs';
 import pluginSecurity from './configs/security';
 import pluginVue from './configs/vue';
 import pluginPlaywright from './configs/playwright';
+import {
+  pluginTestingLibraryDom,
+  pluginTestingLibraryVue,
+  pluginTestingLibraryReact,
+  pluginTestingLibraryAngular,
+  pluginTestingLibraryMarko,
+} from './configs/testing-library';
 
 const pluginBase = [
   ...pluginJs,
@@ -20,23 +27,6 @@ const pluginBase = [
       },
     },
   },
-  // {
-  //   files: ['**/__tests__/unit/**/*.test.[jt]s?(x)'],
-  //   ...compat.extends('plugin:testing-library/vue')[0],
-  //   rules: {
-  //     // Waiting for eslint-plugin-testing-library to support eslint flat pattern
-  //     // 'testing-library/await-async-queries': 'error',
-  //     'testing-library/await-async-queries': 'off',
-
-  //     'testing-library/no-await-sync-queries': 'error',
-
-  //     // Waiting for eslint-plugin-testing-library to support eslint flat pattern
-  //     // 'testing-library/no-debugging-utils': 'warn',
-  //     'testing-library/no-debugging-utils': 'off',
-
-  //     'testing-library/no-dom-import': 'off',
-  //   },
-  // },
   {
     ignores: [
       '**/node_modules/*',
@@ -56,6 +46,11 @@ const configs = {
   sonarjs: pluginSonarjs,
   security: pluginSecurity,
   playwright: pluginPlaywright,
+  ['testing-library/dom']: pluginTestingLibraryDom,
+  ['testing-library/vue']: pluginTestingLibraryVue,
+  ['testing-library/react']: pluginTestingLibraryReact,
+  ['testing-library/angular']: pluginTestingLibraryAngular,
+  ['testing-library/marko']: pluginTestingLibraryMarko,
 };
 
 export default { configs };
