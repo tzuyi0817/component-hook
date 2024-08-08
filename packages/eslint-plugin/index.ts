@@ -5,6 +5,7 @@ import pluginPrettier from './configs/prettier';
 import pluginSonarjs from './configs/sonarjs';
 import pluginSecurity from './configs/security';
 import pluginVue from './configs/vue';
+import pluginPlaywright from './configs/playwright';
 
 const pluginBase = [
   ...pluginJs,
@@ -50,9 +51,11 @@ const pluginBase = [
 ];
 
 const configs = {
-  vue: [...pluginBase, ...pluginVue],
+  recommended: pluginBase,
+  vue: pluginVue,
   sonarjs: pluginSonarjs,
   security: pluginSecurity,
+  playwright: pluginPlaywright,
 };
 
 export default { configs };

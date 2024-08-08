@@ -1,9 +1,11 @@
 import { pluginJs } from '../plugins';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const rules = {
   'no-var': 'error',
-  'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-  'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+  'no-console': isProduction ? 'warn' : 'off',
+  'no-debugger': isProduction ? 'warn' : 'off',
   'no-trailing-spaces': 'error',
   'no-eval': 'error',
   'no-loop-func': 'error',
@@ -22,4 +24,12 @@ const rules = {
   eqeqeq: 'error',
 };
 
-export default [pluginJs.configs.recommended, { rules }];
+export default [
+  {
+    name: 'component-hook/javascript',
+    rules: {
+      ...pluginJs.configs.recommended.rules,
+      ...rules,
+    },
+  },
+];

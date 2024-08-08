@@ -5,6 +5,7 @@ const recommended = pluginPrettier.configs?.recommended as Linter.Config<Linter.
 
 export default [
   {
+    name: 'component-hook/prettier',
     plugins: {
       prettier: pluginPrettier,
     },

@@ -37,6 +37,7 @@
     "eslint": "^9.8.0"
   },
   "dependencies": {
+    "eslint-plugin-playwright": "^1.6.2",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-sonarjs": "^1.0.4",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^9.6.0",
+    "@types/eslint-plugin-security": "^3.0.0",
     "@types/eslint__js": "^8.42.3",
     "tsup": "^8.2.4"
   }

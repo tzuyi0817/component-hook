@@ -8,3 +8,4 @@ export { default as vueParser } from 'vue-eslint-parser';
 export { default as pluginPrettier } from 'eslint-plugin-prettier';
 export { default as pluginSonarjs } from 'eslint-plugin-sonarjs';
 export { default as pluginSecurity } from 'eslint-plugin-security';
+export { default as pluginPlaywright } from 'eslint-plugin-playwright';

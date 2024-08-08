@@ -60,7 +60,7 @@
     "vue-tsc": "^2.0.29"
   },
   "engines": {
-    "node": ">= 20.16.0"
+    "node": ">= 20.15.1"
   },
   "lint-staged": {
     "docs/**/*.{ts,js,vue}": [

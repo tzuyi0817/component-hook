@@ -45,6 +45,7 @@ const rules = {
 const eslintConfigTypescript = typescriptEslint.config({
   extends: [...typescriptEslint.configs.recommended],
   files: ['**/*.vue'],
+  name: 'component-hook/vue/typescript',
   rules: pluginTypescriptRules,
 });
 
@@ -69,6 +70,7 @@ export default [
     },
   },
   {
+    name: 'component-hook/vue',
     files: ['**/*.vue'],
     plugins: {
       '@typescript-eslint': typescriptEslint.plugin,

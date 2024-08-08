@@ -11,5 +11,6 @@ export const rules: Linter.RulesRecord = {
 export default typescriptEslint.config({
   extends: [...typescriptEslint.configs.recommended],
   files: ['**/*.ts', '**/*.tsx'],
+  name: 'component-hook/typescript',
   rules,
 }) as Linter.Config[];
