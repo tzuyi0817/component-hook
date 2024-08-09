@@ -16,7 +16,7 @@ const rules = {
   eqeqeq: 'error',
 };
 
-export default [
+export const jsConfigs = [
   {
     name: 'component-hook/javascript',
     rules: {

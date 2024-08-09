@@ -53,7 +53,7 @@ const eslintConfigTypescript = typescriptEslint.config({
   rules: pluginTypescriptRules,
 });
 
-export default [
+export const vueConfigs = [
   ...eslintConfigTypescript,
   {
     name: 'component-hook/vue/globals',

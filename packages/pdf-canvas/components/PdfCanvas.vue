@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps, TOptions } from 'fabric';
-import useFabric from '../hooks/useFabric';
+import { useFabric } from '../hooks/useFabric';
 import type { PDF } from '../types/pdf';
 import type { CloseSvgOptions } from '../types/fabric';
 

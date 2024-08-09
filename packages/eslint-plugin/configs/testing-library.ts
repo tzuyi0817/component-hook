@@ -12,7 +12,7 @@ const rules = {
   'testing-library/no-dom-import': 'off',
 };
 
-export const pluginTestingLibraryDom: Linter.Config = {
+export const testingLibraryDomConfig: Linter.Config = {
   name: 'component-hook/testing-library/dom',
   plugins,
   rules: {
@@ -21,7 +21,7 @@ export const pluginTestingLibraryDom: Linter.Config = {
   },
 };
 
-export const pluginTestingLibraryAngular: Linter.Config = {
+export const testingLibraryAngularConfig: Linter.Config = {
   name: 'component-hook/testing-library/angular',
   plugins,
   rules: {
@@ -30,7 +30,7 @@ export const pluginTestingLibraryAngular: Linter.Config = {
   },
 };
 
-export const pluginTestingLibraryReact: Linter.Config = {
+export const testingLibraryReactConfig: Linter.Config = {
   name: 'component-hook/testing-library/react',
   plugins,
   rules: {
@@ -39,7 +39,7 @@ export const pluginTestingLibraryReact: Linter.Config = {
   },
 };
 
-export const pluginTestingLibraryVue: Linter.Config = {
+export const testingLibraryVueConfig: Linter.Config = {
   name: 'component-hook/testing-library/vue',
   plugins,
   rules: {
@@ -48,7 +48,7 @@ export const pluginTestingLibraryVue: Linter.Config = {
   },
 };
 
-export const pluginTestingLibraryMarko: Linter.Config = {
+export const testingLibraryMarkoConfig: Linter.Config = {
   name: 'component-hook/testing-library/marko',
   plugins,
   rules: {

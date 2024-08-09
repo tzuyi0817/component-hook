@@ -1,7 +1,7 @@
 import type { Linter } from 'eslint';
 import { pluginSonarjs } from '../plugins';
 
-export default {
+export const sonarjsConfig: Linter.Config = {
   ...pluginSonarjs.configs.recommended,
   name: 'component-hook/sonarjs',
-} as Linter.Config;
+};

@@ -1,26 +1,28 @@
 import { globals } from './plugins';
-import pluginJs from './configs/javascript';
-import pluginTypescript from './configs/typescript';
-import pluginRegexp from './configs/regexp';
-import pluginPrettier from './configs/prettier';
-import pluginSonarjs from './configs/sonarjs';
-import pluginSecurity from './configs/security';
-import pluginVue from './configs/vue';
-import pluginPlaywright from './configs/playwright';
+import { jsConfigs } from './configs/javascript';
+import { typescriptConfigs } from './configs/typescript';
+import { importConfigs } from './configs/import';
+import { regexpConfig } from './configs/regexp';
+import { prettierConfig } from './configs/prettier';
+import { sonarjsConfig } from './configs/sonarjs';
+import { securityConfig } from './configs/security';
+import { vueConfigs } from './configs/vue';
+import { playwrightConfig } from './configs/playwright';
 import {
-  pluginTestingLibraryDom,
-  pluginTestingLibraryVue,
-  pluginTestingLibraryReact,
-  pluginTestingLibraryAngular,
-  pluginTestingLibraryMarko,
+  testingLibraryDomConfig,
+  testingLibraryAngularConfig,
+  testingLibraryMarkoConfig,
+  testingLibraryReactConfig,
+  testingLibraryVueConfig,
 } from './configs/testing-library';
-import ignores from './configs/ignores';
+import { ignores } from './configs/ignores';
 
 const pluginBase = [
-  ...pluginJs,
-  ...pluginTypescript,
-  pluginRegexp,
-  pluginPrettier,
+  ...jsConfigs,
+  ...typescriptConfigs,
+  ...importConfigs,
+  regexpConfig,
+  prettierConfig,
   {
     name: 'component-hook/globals',
     languageOptions: {
@@ -36,15 +38,15 @@ const pluginBase = [
 
 const configs = {
   recommended: pluginBase,
-  vue: pluginVue,
-  sonarjs: pluginSonarjs,
-  security: pluginSecurity,
-  playwright: pluginPlaywright,
-  ['testing-library/dom']: pluginTestingLibraryDom,
-  ['testing-library/vue']: pluginTestingLibraryVue,
-  ['testing-library/react']: pluginTestingLibraryReact,
-  ['testing-library/angular']: pluginTestingLibraryAngular,
-  ['testing-library/marko']: pluginTestingLibraryMarko,
+  vue: vueConfigs,
+  sonarjs: sonarjsConfig,
+  security: securityConfig,
+  playwright: playwrightConfig,
+  ['testing-library/dom']: testingLibraryDomConfig,
+  ['testing-library/vue']: testingLibraryVueConfig,
+  ['testing-library/react']: testingLibraryReactConfig,
+  ['testing-library/angular']: testingLibraryAngularConfig,
+  ['testing-library/marko']: testingLibraryMarkoConfig,
 };
 
 export default { configs };

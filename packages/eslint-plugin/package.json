@@ -27,7 +27,8 @@
   },
   "keywords": [
     "eslint",
-    "eslintplugin"
+    "eslintplugin",
+    "eslint-plugin"
   ],
   "scripts": {
     "dev": "eslint-config-inspector --config ../../eslint.config.js",
@@ -39,6 +40,7 @@
   },
   "dependencies": {
     "@eslint/compat": "^1.1.1",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-playwright": "^1.6.2",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-regexp": "^2.6.0",

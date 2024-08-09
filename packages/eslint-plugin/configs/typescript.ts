@@ -8,7 +8,7 @@ export const rules: Linter.RulesRecord = {
   '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '_' }],
 };
 
-export default typescriptEslint.config({
+export const typescriptConfigs = typescriptEslint.config({
   extends: [...typescriptEslint.configs.recommended],
   files: ['**/*.ts', '**/*.tsx'],
   name: 'component-hook/typescript',

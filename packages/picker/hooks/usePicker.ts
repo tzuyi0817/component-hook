@@ -3,13 +3,13 @@ import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
 import { isArray } from '../utils/checkType';
 import { isHaveValue } from '../utils/common';
-import useDate from './useDate';
-import useTime from './useTime';
 import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from '../types/picker';
+import { useDate } from './useDate';
+import { useTime } from './useTime';
 
 BScroll.use(Wheel);
 
-export default function usePicker(props: PickerProps, emit: PickerEmit) {
+export function usePicker(props: PickerProps, emit: PickerEmit) {
   const pickerData = ref<OriginData[]>([]);
   const wheelWrapper = ref<HTMLElement | undefined>();
   const wheels = ref<BScroll[]>([]);

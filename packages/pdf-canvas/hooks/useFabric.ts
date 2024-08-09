@@ -24,7 +24,7 @@ import type {
 
 const fabricMap = new Map<string, Canvas>();
 
-export default function useFabric(id = '') {
+export function useFabric(id = '') {
   let pages = 0;
   let closeFabric: FabricObject | null = null;
   let selectedFabric: FabricObject | null = null;

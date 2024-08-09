@@ -1,4 +1,4 @@
-export default {
+export const ignores = {
   name: 'component-hook/ignores',
   ignores: [
     '**/node_modules',

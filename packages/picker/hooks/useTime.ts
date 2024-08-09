@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { isHaveValue } from '../utils/common';
 import type { PickerProps } from '../types/picker';
 
-export default function useTime() {
+export function useTime() {
   const hours = generateTime(0, 23);
   const minutes = generateTime(0, 59);
   const seconds = generateTime(0, 59);

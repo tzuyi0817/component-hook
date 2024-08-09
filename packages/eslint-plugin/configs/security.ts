@@ -1,7 +1,7 @@
 import type { Linter } from 'eslint';
 import { pluginSecurity } from '../plugins';
 
-export default {
+export const securityConfig: Linter.Config = {
   ...pluginSecurity.configs.recommended,
   name: 'component-hook/security',
-} as Linter.Config;
+};
