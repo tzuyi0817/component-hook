@@ -11,3 +11,4 @@ export { default as pluginSonarjs } from 'eslint-plugin-sonarjs';
 export { default as pluginSecurity } from 'eslint-plugin-security';
 export { default as pluginPlaywright } from 'eslint-plugin-playwright';
 export { default as pluginTestingLibrary } from 'eslint-plugin-testing-library';
+export { default as pluginRegexp } from 'eslint-plugin-regexp';

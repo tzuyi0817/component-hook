@@ -1,6 +1,7 @@
 import { globals } from './plugins';
 import pluginJs from './configs/javascript';
 import pluginTypescript from './configs/typescript';
+import pluginRegexp from './configs/regexp';
 import pluginPrettier from './configs/prettier';
 import pluginSonarjs from './configs/sonarjs';
 import pluginSecurity from './configs/security';
@@ -18,7 +19,8 @@ import ignores from './configs/ignores';
 const pluginBase = [
   ...pluginJs,
   ...pluginTypescript,
-  ...pluginPrettier,
+  pluginRegexp,
+  pluginPrettier,
   {
     name: 'component-hook/globals',
     languageOptions: {

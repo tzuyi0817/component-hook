@@ -27,8 +27,6 @@ export default {
     '**/__snapshots__',
     '**/auto-import?(s).d.ts',
     '**/components.d.ts',
-
-    '**/.github',
-    '**/*.config.ts',
+    '**/.turbo',
   ],
 };
