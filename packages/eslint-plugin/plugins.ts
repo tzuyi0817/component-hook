@@ -4,6 +4,7 @@ export { default as globals } from 'globals';
 export { default as pluginJs } from '@eslint/js';
 export { fixupPluginRules } from '@eslint/compat';
 export { default as typescriptEslint } from 'typescript-eslint';
+export { default as pluginReact } from 'eslint-plugin-react';
 export { default as pluginVue } from 'eslint-plugin-vue';
 export { default as vueParser } from 'vue-eslint-parser';
 export { default as pluginPrettier } from 'eslint-plugin-prettier';

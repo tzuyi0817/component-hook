@@ -6,6 +6,7 @@ import { regexpConfig } from './configs/regexp';
 import { prettierConfig } from './configs/prettier';
 import { sonarjsConfig } from './configs/sonarjs';
 import { securityConfig } from './configs/security';
+import { reactConfig } from './configs/react';
 import { vueConfigs } from './configs/vue';
 import { playwrightConfig } from './configs/playwright';
 import {
@@ -38,6 +39,7 @@ const pluginBase = [
 
 const configs = {
   recommended: pluginBase,
+  react: reactConfig,
   vue: vueConfigs,
   sonarjs: sonarjsConfig,
   security: securityConfig,
