@@ -42,7 +42,7 @@ import Picker from '@component-hook/picker';
 
 const currentSelect = ref({});
 const anchor = ref([0, 1, 2]);
-const currentSingle = ref < LangType > {};
+const currentSingle = ref({});
 const anchorSingle = ref(1);
 const currentDate = ref([2022, 7, 7]);
 const currentTime = ref([]);
@@ -76,9 +76,9 @@ function onCancel() {
     v-model:isShowPicker="isShowPicker"
     v-model:anchor="anchor"
     :data="dataList"
-    :showKey="['original', 'original', 'original']"
+    :show-key="['original', 'original', 'original']"
     :options="options"
-    :swipeTime="500"
+    :swipe-time="500"
     @confirm="onConfirm"
     @cancel="onCancel"
   />
@@ -87,7 +87,7 @@ function onCancel() {
     v-model:isShowPicker="isShowSingle"
     v-model:anchor="anchorSingle"
     :data="singleData"
-    showKey="original"
+    show-key="original"
     :options="options"
   />
 
@@ -121,17 +121,17 @@ function onCancel() {
 
 ## Options Attribute
 
-```javascript
+```json
 {
-  cancelClass: '',
-  confirmClass: '',
-  titleClass: '',
-  cancelColor: '#999',
-  confirmColor: '#42b983',
-  titleColor: '',
-  cancelText: 'Cancel',
-  confirmText: 'Confirm',
-  titleText: '',
+  "cancelClass": "",
+  "confirmClass": "",
+  "titleClass": "",
+  "cancelColor": "#999",
+  "confirmColor": "#42b983",
+  "titleColor": "",
+  "cancelText": "Cancel",
+  "confirmText": "Confirm",
+  "titleText": ""
 }
 ```
 

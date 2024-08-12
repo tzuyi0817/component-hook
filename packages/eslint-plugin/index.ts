@@ -2,6 +2,7 @@ import { globals } from './plugins';
 import { jsConfigs } from './configs/javascript';
 import { typescriptConfigs } from './configs/typescript';
 import { importConfigs } from './configs/import';
+import { markdownConfigs } from './configs/markdown';
 import { regexpConfig } from './configs/regexp';
 import { prettierConfig } from './configs/prettier';
 import { sonarjsConfig } from './configs/sonarjs';
@@ -41,14 +42,15 @@ const configs = {
   recommended: pluginBase,
   react: reactConfig,
   vue: vueConfigs,
+  markdown: markdownConfigs,
   sonarjs: sonarjsConfig,
   security: securityConfig,
   playwright: playwrightConfig,
-  ['testing-library/dom']: testingLibraryDomConfig,
-  ['testing-library/vue']: testingLibraryVueConfig,
-  ['testing-library/react']: testingLibraryReactConfig,
-  ['testing-library/angular']: testingLibraryAngularConfig,
-  ['testing-library/marko']: testingLibraryMarkoConfig,
+  'testing-library/dom': testingLibraryDomConfig,
+  'testing-library/vue': testingLibraryVueConfig,
+  'testing-library/react': testingLibraryReactConfig,
+  'testing-library/angular': testingLibraryAngularConfig,
+  'testing-library/marko': testingLibraryMarkoConfig,
 };
 
 export default { configs };

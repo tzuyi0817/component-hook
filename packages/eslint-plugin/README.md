@@ -14,10 +14,11 @@ and Prettier.
 
 ## Features
 
-- Support TypeScript, Vue and React out-of-box
-- Support Sonarjs, Security, Playwright and Testing-library...
+- Support `TypeScript`, `Vue` and `React` out-of-box.
+- Built-in `markdown`, `Sonarjs`, `Security`, `Playwright` and `Testing-library` configs can be referenced for respective needs.
 - Format with Prettier.
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
+- Reasonable defaults, best practices, and just a few lines of configuration.
 
 ## Installation
 
@@ -41,6 +42,7 @@ import componentHookPlugin from '@component-hook/eslint-plugin';
 export default [
   ...componentHookPlugin.configs.recommended,
   ...componentHookPlugin.configs.vue,
+  ...componentHookPlugin.configs.markdown,
   componentHookPlugin.configs.sonarjs,
   componentHookPlugin.configs.security,
   {
@@ -51,6 +53,7 @@ export default [
     files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
     ...componentHookPlugin.configs.playwright,
   },
+  // ...your custom config
 ];
 ```
 
@@ -58,11 +61,12 @@ See [recommended](./index.ts) for more details.
 
 ## Configs
 
-| Name                    | Type              | References                                                                                                             |
+| Name                    | Type              | Reference                                                                                                              |
 | ----------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | recommended             | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-import`, `eslint-plugin-regexp` and `eslint-plugin-prettier` |
 | vue                     | `Linter.Config[]` | `eslint-plugin-vue`                                                                                                    |
 | react                   | `Linter.Config`   | `eslint-plugin-react/recommended`                                                                                      |
+| markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                   |
 | sonarjs                 | `Linter.Config`   | `eslint-plugin-sonarjs/recommended`                                                                                    |
 | security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                   |
 | playwright              | `Linter.Config`   | `eslint-plugin-playwright/flat/recommended`                                                                            |
@@ -72,7 +76,7 @@ See [recommended](./index.ts) for more details.
 | testing-library/angular | `Linter.Config`   | `eslint-plugin-testing-library/angular`                                                                                |
 | testing-library/marko   | `Linter.Config`   | `eslint-plugin-testing-library/marko`                                                                                  |
 
-## Eslint Plugin References
+## Reference eslint plugin
 
 - [eslint-recommended](https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-recommended.js)
 - [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
@@ -81,6 +85,7 @@ See [recommended](./index.ts) for more details.
 - [eslint-plugin-prettier/recommended](https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js)
 - [eslint-plugin-react/recommended](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/configs/recommended.js)
 - [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)
+- [eslint-plugin-markdown/recommended](https://github.com/eslint/markdown/blob/main/src/index.js)
 - [eslint-plugin-sonarjs/recommended](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/src/index.ts)
 - [eslint-plugin-security/recommended](https://github.com/eslint-community/eslint-plugin-security/blob/main/index.js)
 - [eslint-plugin-testing-library/dom](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/dom.ts)

@@ -14,3 +14,4 @@ export { default as pluginPlaywright } from 'eslint-plugin-playwright';
 export { default as pluginTestingLibrary } from 'eslint-plugin-testing-library';
 export { default as pluginRegexp } from 'eslint-plugin-regexp';
 export { default as pluginImport } from 'eslint-plugin-import';
+export { default as pluginMarkdown } from 'eslint-plugin-markdown';

@@ -1,16 +1,16 @@
 ## Options Attribute
 
-```javascript
+```json
 {
-  cancelClass: '',
-  confirmClass: '',
-  titleClass: '',
-  cancelColor: '#999',
-  confirmColor: '#42b983',
-  titleColor: '',
-  cancelText: 'Cancel',
-  confirmText: 'Confirm',
-  titleText: '',
+  "cancelClass": "",
+  "confirmClass": "",
+  "titleClass": "",
+  "cancelColor": "#999",
+  "confirmColor": "#42b983",
+  "titleColor": "",
+  "cancelText": "Cancel",
+  "confirmText": "Confirm",
+  "titleText": ""
 }
 ```
 
