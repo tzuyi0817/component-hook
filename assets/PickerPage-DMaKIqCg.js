@@ -1,4 +1,4 @@
-import{D as Q,m as vt}from"./Demo-D3oje0IB.js";import{r as T,c as x,w as mt,n as ce,d as U,a as B,b as P,e as D,T as _t,o as _,f as At,v as Mt,g as v,u as g,h as yt,i as gt,t as A,F as $,j as Yt,p as he,k as ue,_ as pe,l as tt}from"./index-C6aRQ9Bi.js";/*!
+import{D as Q,m as vt}from"./Demo-CP4XcJFv.js";import{r as T,c as x,w as mt,n as ce,d as U,a as B,b as P,e as D,T as _t,o as _,f as At,v as Mt,g as v,u as g,h as yt,i as gt,t as A,F as $,j as Yt,p as he,k as ue,_ as pe,l as tt}from"./index-BROBWEY-.js";/*!
  * better-scroll / core
  * (c) 2016-2023 ustbhuangyi
  * Released under the MIT License.
@@ -197,17 +197,17 @@ $ pnpm install @component-hook/picker
 \`\`\`
 `,An="## Attributes\n\n| Name                 | Required | Type                  | Description                                                                         | Default               |\n| -------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------- | --------------------- |\n| v-model:isShowPicker | true     | `boolean`             | Control picker show                                                                 | —                     |\n| v-model:anchor       | true     | `number` / `number[]` | Picker current select index (single column for Number、 multiple columns for Array) | —                     |\n| data                 | false    | `array`               | Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]                                     | —                     |\n| type                 | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                          | —                     |\n| showKey              | false    | `string` / `string[]` | Wheel options name (object key)                                                     | —                     |\n| swipeTime            | false    | `number`              | Wheel swipe Time                                                                    | 500                   |\n| options              | false    | `object`              | Custom text, color and class                                                        | See below for details |\n",Mn=`## Options Attribute
 
-\`\`\`javascript
+\`\`\`json
 {
-  cancelClass: '',
-  confirmClass: '',
-  titleClass: '',
-  cancelColor: '#999',
-  confirmColor: '#42b983',
-  titleColor: '',
-  cancelText: 'Cancel',
-  confirmText: 'Confirm',
-  titleText: '',
+  "cancelClass": "",
+  "confirmClass": "",
+  "titleClass": "",
+  "cancelColor": "#999",
+  "confirmColor": "#42b983",
+  "titleColor": "",
+  "cancelText": "Cancel",
+  "confirmText": "Confirm",
+  "titleText": ""
 }
 \`\`\`
 
