@@ -15,7 +15,7 @@ and Prettier.
 ## Features
 
 - Support `TypeScript`, `Vue` and `React` out-of-box.
-- Built-in `markdown`, `Sonarjs`, `Security`, `Playwright` and `Testing-library` configs can be referenced for respective needs.
+- Built-in `Markdown`, `Sonarjs`, `Security`, `Playwright` and `Testing-library` configs can be referenced for respective needs.
 - Format with Prettier.
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
 - Reasonable defaults, best practices, and just a few lines of configuration.
@@ -65,7 +65,7 @@ See [recommended](./index.ts) for more details.
 | ----------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | recommended             | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-import`, `eslint-plugin-regexp` and `eslint-plugin-prettier` |
 | vue                     | `Linter.Config[]` | `eslint-plugin-vue`                                                                                                    |
-| react                   | `Linter.Config`   | `eslint-plugin-react/recommended`                                                                                      |
+| react                   | `Linter.Config`   | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`       |
 | markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                   |
 | sonarjs                 | `Linter.Config`   | `eslint-plugin-sonarjs/recommended`                                                                                    |
 | security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                   |
@@ -84,6 +84,8 @@ See [recommended](./index.ts) for more details.
 - [eslint-plugin-regexp/flat/recommended](https://github.com/ota-meshi/eslint-plugin-regexp/blob/master/lib/configs/flat/recommended.ts)
 - [eslint-plugin-prettier/recommended](https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js)
 - [eslint-plugin-react/recommended](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/configs/recommended.js)
+- [eslint-plugin-react-hooks/recommended](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js)
+- [eslint-plugin-jsx-a11y/recommended](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js)
 - [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)
 - [eslint-plugin-markdown/recommended](https://github.com/eslint/markdown/blob/main/src/index.js)
 - [eslint-plugin-sonarjs/recommended](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/src/index.ts)
