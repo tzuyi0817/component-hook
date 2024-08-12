@@ -40,7 +40,7 @@ Require ESLint >= 9.0.0
 import componentHookPlugin from '@component-hook/eslint-plugin';
 
 export default [
-  ...componentHookPlugin.configs.recommended,
+  ...componentHookPlugin.configs.basic,
   ...componentHookPlugin.configs.vue,
   ...componentHookPlugin.configs.markdown,
   componentHookPlugin.configs.sonarjs,
@@ -57,15 +57,26 @@ export default [
 ];
 ```
 
-See [recommended](./index.ts) for more details.
+See [basic](./index.ts) for more details.
+
+## Presets Usage
+
+```js
+import {
+  reactRecommended, // Includes basic, react, markdown, sonarjs, security configs
+  vueRecommended, // Includes basic, vue, markdown, sonarjs, security configs
+} from '@component-hook/eslint-plugin';
+
+export default reactRecommended;
+```
 
 ## Configs
 
 | Name                    | Type              | Reference                                                                                                              |
 | ----------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| recommended             | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-import`, `eslint-plugin-regexp` and `eslint-plugin-prettier` |
+| basic                   | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-import`, `eslint-plugin-regexp` and `eslint-plugin-prettier` |
 | vue                     | `Linter.Config[]` | `eslint-plugin-vue`                                                                                                    |
-| react                   | `Linter.Config`   | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`       |
+| react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`       |
 | markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                   |
 | sonarjs                 | `Linter.Config`   | `eslint-plugin-sonarjs/recommended`                                                                                    |
 | security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                   |

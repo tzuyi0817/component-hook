@@ -19,7 +19,7 @@ import {
 } from './configs/testing-library';
 import { ignores } from './configs/ignores';
 
-const pluginBase = [
+const pluginBasic = [
   ...jsConfigs,
   ...typescriptConfigs,
   ...importConfigs,
@@ -39,7 +39,7 @@ const pluginBase = [
 ];
 
 const configs = {
-  recommended: pluginBase,
+  basic: pluginBasic,
   react: reactConfig,
   vue: vueConfigs,
   markdown: markdownConfigs,
@@ -54,3 +54,25 @@ const configs = {
 };
 
 export default { configs };
+
+const recommendedBasic = [...markdownConfigs, sonarjsConfig, securityConfig];
+
+export const reactRecommended = [...pluginBasic, ...reactConfig, ...recommendedBasic];
+export const vueRecommended = [...pluginBasic, ...vueConfigs, ...recommendedBasic];
+export const vueSkyline = [
+  ...vueRecommended,
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/block-order': ['error', { order: ['template', 'script', 'style'] }],
+    },
+  },
+  {
+    files: ['**/__tests__/unit/**/*.test.[jt]s?(x)'],
+    ...testingLibraryVueConfig,
+  },
+  {
+    files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
+    ...playwrightConfig,
+  },
+];
