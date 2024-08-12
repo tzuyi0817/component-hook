@@ -28,5 +28,6 @@ export const ignores = {
     '**/auto-import?(s).d.ts',
     '**/components.d.ts',
     '**/.turbo',
+    '**/mockServiceWorker.js',
   ],
 };

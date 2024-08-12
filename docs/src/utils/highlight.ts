@@ -1,5 +1,6 @@
 import prism from 'prismjs';
 import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-json';
 import markdownit from 'markdown-it';
 
 export const md = markdownit({ highlight });

@@ -75,4 +75,7 @@ export const vueSkyline = [
     files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
     ...playwrightConfig,
   },
+  {
+    ignores: ['**/vite-env.d.ts'],
+  },
 ];
