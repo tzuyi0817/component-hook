@@ -35,6 +35,7 @@ export const importConfigs: Linter.Config[] = [
     name: 'component-hook/allow-default-export',
     files: [
       '**/*.d.ts',
+      '**/*.md/**',
       `**/*config*.?([cm])[jt]s?(x)`,
       `**/{views,pages,routes,middleware,plugins,api}/**/*.?([cm])[jt]s?(x)`,
       `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack}.ts`,

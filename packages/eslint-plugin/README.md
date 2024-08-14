@@ -57,17 +57,17 @@ export default [
 ];
 ```
 
-See [basic](./index.ts) for more details.
+See [basic](./index.ts) and [ignores](./configs/ignores.ts) for more details.
 
 ## Presets Usage
 
 ```js
 import {
-  reactRecommended, // Includes basic, react, markdown, sonarjs, security configs
-  vueRecommended, // Includes basic, vue, markdown, sonarjs, security configs
+  reactPreset, // Includes basic, react, markdown, sonarjs, security configs
+  vuePreset, // Includes basic, vue, markdown, sonarjs, security configs
 } from '@component-hook/eslint-plugin';
 
-export default reactRecommended;
+export default reactPreset;
 ```
 
 ## Configs

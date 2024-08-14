@@ -55,12 +55,12 @@ const configs = {
 
 export default { configs };
 
-const recommendedBasic = [...markdownConfigs, sonarjsConfig, securityConfig];
+const basicPreset = [...markdownConfigs, sonarjsConfig, securityConfig];
 
-export const reactRecommended = [...pluginBasic, ...reactConfig, ...recommendedBasic];
-export const vueRecommended = [...pluginBasic, ...vueConfigs, ...recommendedBasic];
+export const reactPreset = [...pluginBasic, ...reactConfig, ...basicPreset];
+export const vuePreset = [...pluginBasic, ...vueConfigs, ...basicPreset];
 export const vueSkyline = [
-  ...vueRecommended,
+  ...vuePreset,
   {
     files: ['**/*.vue'],
     rules: {
@@ -74,8 +74,5 @@ export const vueSkyline = [
   {
     files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
     ...playwrightConfig,
-  },
-  {
-    ignores: ['**/vite-env.d.ts'],
   },
 ];

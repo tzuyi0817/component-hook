@@ -27,6 +27,8 @@ export const ignores = {
     '**/__snapshots__',
     '**/auto-import?(s).d.ts',
     '**/components.d.ts',
+    '**/vite-env.d.ts',
+    '**/shims-vue.d.ts',
     '**/.turbo',
     '**/mockServiceWorker.js',
   ],
