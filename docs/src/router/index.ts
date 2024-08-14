@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
-import Home from '@/pages/HomePage.vue';
+import Home from '@/pages/Home.vue';
+import Component from '@/pages/Component.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,14 +13,28 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: '/picker',
-    name: 'picker',
-    component: () => import('@/pages/PickerPage.vue'),
-  },
-  {
-    path: '/pdf-canvas',
-    name: 'pdf-canvas',
-    component: () => import('@/pages/PdfCanvasPage.vue'),
+    path: '/component',
+    name: 'component',
+    component: Component,
+    redirect: '/component/picker',
+    children: [
+      {
+        path: 'picker',
+        name: 'component-picker',
+        component: () => import('@/components/component/ComponentPicker.vue'),
+        meta: {
+          title: 'Picker',
+        },
+      },
+      {
+        path: 'pdf-canvas',
+        name: 'component-pdf-canvas',
+        component: () => import('@/components/component/ComponentPdfCanvas.vue'),
+        meta: {
+          title: 'PDF Canvas',
+        },
+      },
+    ],
   },
 ];
 

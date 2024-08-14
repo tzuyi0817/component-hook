@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import HeaderContainer from '@/components/Header.vue';
 
-const mainRef = ref<HTMLBaseElement | null>(null);
-
 function scrollToTop() {
-  mainRef.value?.scrollTo({ top: 0 });
+  document.body.scrollTo({ top: 0 });
 }
 </script>
 
 <template>
   <header-container />
-  <main
-    ref="mainRef"
-    class="w-screen pt-16"
-  >
+  <main class="w-screen pt-16">
     <router-view v-slot="{ Component }">
       <transition
         name="fade"

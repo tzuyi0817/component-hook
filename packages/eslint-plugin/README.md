@@ -1,7 +1,6 @@
 # @component-hook/eslint-plugin
 
-A opinionated ESLint config preset for JavaScript, TypeScript, Vue,
-and Prettier.
+A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier.
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/picker">

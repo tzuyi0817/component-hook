@@ -18,7 +18,7 @@ import { md } from '@/utils/highlight';
 </script>
 
 <template>
-  <div class="container">
+  <div>
     <h1>PDF Canvas</h1>
 
     <p>Rendering PDF documents onto a canvas with vue3 component.</p>

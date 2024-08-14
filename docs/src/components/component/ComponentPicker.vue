@@ -15,7 +15,7 @@ import { md } from '@/utils/highlight';
 </script>
 
 <template>
-  <div class="container">
+  <div>
     <h1>Picker</h1>
 
     <p>Picker component with vue3.</p>
