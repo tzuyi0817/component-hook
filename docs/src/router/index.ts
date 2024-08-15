@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
 import Home from '@/pages/Home.vue';
 import Component from '@/pages/Component.vue';
+import Eslint from '@/pages/Eslint.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
     ],
+  },
+  {
+    path: '/eslint',
+    name: 'eslint',
+    component: Eslint,
   },
 ];
 

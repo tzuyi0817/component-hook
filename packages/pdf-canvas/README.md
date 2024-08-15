@@ -23,13 +23,13 @@ Implementation depository: [PDF-signature](https://github.com/tzuyi0817/PDF-sign
 ## Installation
 
 ```bash
-npm install @component-hook/pdf-canvas
+$ npm install @component-hook/pdf-canvas
 
 # or use yarn
-yarn add @component-hook/pdf-canvas
+$ yarn add @component-hook/pdf-canvas
 
 # or use pnpm
-pnpm install @component-hook/pdf-canvas
+$ pnpm install @component-hook/pdf-canvas
 ```
 
 ## Basic Usage

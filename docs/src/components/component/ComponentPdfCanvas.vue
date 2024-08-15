@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Demo from '@/components/Demo.vue';
+import ExternalLink from '@/components/ExternalLink.vue';
 import DrawPdf from '@/examples/pdf-canvas/Draw.vue';
 import drawSource from '@/examples/pdf-canvas/Draw.vue?raw';
 import EncryptedPdf from '@/examples/pdf-canvas/Encrypted.vue';
@@ -24,12 +25,9 @@ import { md } from '@/utils/highlight';
     <p>Rendering PDF documents onto a canvas with vue3 component.</p>
     <p>
       Implementation repository:
-      <a
-        href="https://github.com/tzuyi0817/PDF-signature"
-        class="link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >PDF-signature</a>
+      <external-link href="https://github.com/tzuyi0817/PDF-signature">
+        PDF-signature
+      </external-link>
     </p>
 
     <div v-html="md.render(installationMd)"></div>

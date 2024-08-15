@@ -20,11 +20,11 @@
           Component
         </router-link>
         <router-link
-          to="/pdf-canvas"
+          to="/eslint"
           class="link-item"
           active-class="active"
         >
-          Eslint Plugin
+          ESLint Plugin
         </router-link>
       </nav>
     </div>

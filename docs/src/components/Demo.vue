@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import SourceCode from '@/components/SourceCode.vue';
 import SvgIcon from '@/components/SvgIcon.vue';
+import CopySource from '@/components/CopySource.vue';
 import { highlight } from '@/utils/highlight';
 import { sleep } from '@/utils/common';
 
@@ -11,10 +12,9 @@ interface Props {
   playground: string;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 const isShowSource = ref(false);
 const isDisplaySource = ref(false);
-const isCopied = ref(false);
 
 function encode(source: string, isHighlight = true) {
   const code = isHighlight ? highlight(source) : source;
@@ -26,13 +26,6 @@ async function toggleSource() {
   isDisplaySource.value = true;
   await sleep(150);
   isShowSource.value = !isShowSource.value;
-}
-
-async function copySource() {
-  navigator.clipboard.writeText(props.source);
-  isCopied.value = true;
-  await sleep(1500);
-  isCopied.value = false;
 }
 </script>
 
@@ -58,15 +51,7 @@ async function copySource() {
           <svg-icon name="playground" />
         </a>
 
-        <div
-          class="relative"
-          @click="copySource"
-        >
-          <svg-icon name="copy" />
-          <span :class="['example-source-copy-prompt opacity-0', { 'opacity-100 -translate-y-3': isCopied }]">
-            Copied!
-          </span>
-        </div>
+        <copy-source :source="source" />
 
         <svg-icon
           name="source"
@@ -117,17 +102,6 @@ async function copySource() {
     bg-bg-color
     p-3
     hover:text-primary;
-  }
-  &-copy-prompt {
-    @apply absolute
-    -top-5
-    left-1/2
-    font-mono
-    text-sm
-    -translate-x-1/2
-    transition-all
-    pointer-events-none
-    duration-300;
   }
 }
 </style>

@@ -3,10 +3,10 @@
 A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier.
 
 <p>
-  <a href="https://npm-stat.com/charts.html?package=@component-hook/picker">
+  <a href="https://npm-stat.com/charts.html?package=@component-hook/eslint-plugin">
     <img src="https://img.shields.io/npm/dm/@component-hook/eslint-plugin.svg" alt="npm"/>
   </a>
-  <a href="https://www.npmjs.com/package/@component-hook/picker">
+  <a href="https://www.npmjs.com/package/@component-hook/eslint-plugin">
     <img src="https://img.shields.io/npm/v/@component-hook/eslint-plugin.svg" alt="npm"/>
   </a>
 </p>
@@ -74,7 +74,7 @@ export default reactPreset;
 | Name                    | Type              | Reference                                                                                                              |
 | ----------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | basic                   | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-import`, `eslint-plugin-regexp` and `eslint-plugin-prettier` |
-| vue                     | `Linter.Config[]` | `eslint-plugin-vue`                                                                                                    |
+| vue                     | `Linter.Config[]` | `eslint-plugin-vue`, `typescript-eslint`                                                                               |
 | react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`       |
 | markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                   |
 | sonarjs                 | `Linter.Config`   | `eslint-plugin-sonarjs/recommended`                                                                                    |
