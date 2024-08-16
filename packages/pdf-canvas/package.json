@@ -50,6 +50,6 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^4.0.3"
   }
 }
