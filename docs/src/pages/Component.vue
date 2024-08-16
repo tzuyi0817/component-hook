@@ -8,7 +8,7 @@ function scrollToTop() {
 
 <template>
   <div>
-    <sidebar class="w-72 hidden lg:block" />
+    <sidebar />
     <div class="p-8 w-full lg:p-12 lg:ml-60 lg:w-[calc(100%-240px)]">
       <router-view v-slot="{ Component }">
         <transition

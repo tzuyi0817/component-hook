@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <header class="fixed w-full top-0 left-0 px-4 border-b border-b-border-color bg-bg-color z-10 lg:px-12">
+  <header class="w-full top-0 left-0 px-4 border-b border-b-border-color bg-bg-color z-10 lg:px-12 lg:fixed">
     <div class="flex items-center justify-between text-sm">
       <router-link to="/home">
         <img

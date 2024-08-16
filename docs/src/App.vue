@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeaderContainer from '@/components/Header.vue';
+import HeaderContainer from '@/components/layout/Header.vue';
 
 function scrollToTop() {
   document.body.scrollTo({ top: 0 });
@@ -8,7 +8,8 @@ function scrollToTop() {
 
 <template>
   <header-container />
-  <main class="w-screen pt-16">
+
+  <main class="w-screen lg:pt-14">
     <router-view v-slot="{ Component }">
       <transition
         name="fade"
