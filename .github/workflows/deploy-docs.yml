@@ -21,9 +21,7 @@ jobs:
         uses: tzuyi0817/coding-standards/.github/actions/setup-environment@main
 
       - name: prepack packages
-        run: |
-          pnpm prepack:picker
-          pnpm prepack:pdf-canvas
+        run: pnpm prepack
 
       - name: build project
         run: pnpm build
