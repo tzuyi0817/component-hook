@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import HeaderContainer from '@/components/layout/Header.vue';
-
-function scrollToTop() {
-  document.body.scrollTo({ top: 0 });
-}
+import { scrollToTop } from '@/utils/common';
 </script>
 
 <template>
@@ -14,7 +11,7 @@ function scrollToTop() {
       <transition
         name="fade"
         mode="out-in"
-        @before-enter="scrollToTop"
+        @before-enter="() => scrollToTop()"
       >
         <component :is="Component" />
       </transition>

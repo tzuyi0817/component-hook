@@ -1,28 +1,42 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref } from 'vue';
 import CopySource from '@/components/CopySource.vue';
 
 interface Props {
   source: string;
-  raw?: string;
+  raw: string;
 }
 
-const props = defineProps<Props>();
-const decoded = computed(() => decodeURIComponent(props.source));
+defineProps<Props>();
+const isShowCopyIcon = ref(false);
+
+function onHoverCode() {
+  isShowCopyIcon.value = true;
+}
+
+function onLeaveCode() {
+  isShowCopyIcon.value = false;
+}
 </script>
 
 <template>
-  <div class="source-code-wrapper relative">
+  <div
+    class="source-code-wrapper relative"
+    @mouseenter="onHoverCode"
+    @mouseleave="onLeaveCode"
+  >
     <copy-source
-      v-if="raw"
-      :source="raw"
+      :source="decodeURIComponent(raw)"
       is-absolute
-      class="top-2 right-2"
+      :class="[
+        'bg-bg-color p-0.5 rounded transition-opacity duration-300 top-3 right-3 z-10 lg:top-4 lg:right-4',
+        { 'pointer-events-none opacity-0': !isShowCopyIcon },
+      ]"
     />
 
     <div
       class="source-code"
-      v-html="decoded"
+      v-html="decodeURIComponent(source)"
     ></div>
   </div>
 </template>

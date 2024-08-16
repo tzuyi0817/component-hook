@@ -32,7 +32,7 @@ function encode(source: string, filetype: string) {
     </p>
     <source-code
       :source="encode(basicUsage, 'javascript')"
-      :raw="basicUsage"
+      :raw="encodeURIComponent(basicUsage)"
     />
     <p class="font-mono text-xs my-4">
       See
@@ -48,7 +48,7 @@ function encode(source: string, filetype: string) {
     </p>
     <source-code
       :source="encode(reactPresets, 'javascript')"
-      :raw="reactPresets"
+      :raw="encodeURIComponent(reactPresets)"
     />
 
     <h2>Vue Presets Usage</h2>
@@ -57,7 +57,7 @@ function encode(source: string, filetype: string) {
     </p>
     <source-code
       :source="encode(vuePresets, 'javascript')"
-      :raw="vuePresets"
+      :raw="encodeURIComponent(vuePresets)"
     />
 
     <h2>Build-in Configs</h2>

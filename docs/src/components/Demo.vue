@@ -66,7 +66,10 @@ async function toggleSource() {
         :class="['example-source-wrapper h-0', isShowSource ? 'scale-y-100 h-full' : 'scale-y-0']"
         @transitionend="isDisplaySource = isShowSource"
       >
-        <source-code :source="encode(source)" />
+        <source-code
+          :source="encode(source)"
+          :raw="encodeURIComponent(source)"
+        />
       </div>
 
       <div
@@ -86,8 +89,7 @@ async function toggleSource() {
     @apply transition-all
     origin-top
     border-x
-    border-border-color
-    overflow-x-auto;
+    border-border-color;
   }
   &-collapse {
     @apply text-center

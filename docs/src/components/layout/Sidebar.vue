@@ -1,11 +1,27 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import SvgIcon from '@/components/SvgIcon.vue';
+import { scrollToTop } from '@/utils/common';
 
 const isSidebarOpen = ref(false);
+const isShowBackToTop = ref(false);
 const route = useRoute();
 const children = route.matched[0].children;
+const observer = new IntersectionObserver(intersectionObserverCallback);
+
+function intersectionObserverCallback(entries: IntersectionObserverEntry[]) {
+  entries.forEach(entry => {
+    isShowBackToTop.value = !entry.isIntersecting;
+  });
+}
+
+onMounted(() => {
+  const header = document.querySelector('header');
+
+  if (!header) return;
+  observer.observe(header);
+});
 </script>
 
 <template>
@@ -21,6 +37,14 @@ const children = route.matched[0].children;
       />
       Menu
     </div>
+
+    <p
+      role="button"
+      :class="['text-sm transition-opacity duration-300', { 'opacity-0 pointer-events-none': !isShowBackToTop }]"
+      @click="() => scrollToTop('smooth')"
+    >
+      Back to top
+    </p>
   </div>
 
   <div
@@ -52,7 +76,7 @@ const children = route.matched[0].children;
     @apply fixed w-full h-full inset-0 bg-black/60 z-10 lg:hidden animate-[fadeIn_0.6s];
   }
   &-nav {
-    @apply sticky top-0 z-10 px-4 py-3.5 border-b border-b-border-color bg-bg-color lg:hidden;
+    @apply sticky flex justify-between top-0 z-10 px-4 py-3.5 border-b border-b-border-color bg-bg-color lg:hidden;
   }
 }
 

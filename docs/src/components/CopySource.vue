@@ -12,6 +12,7 @@ const props = defineProps<Props>();
 const isCopied = ref(false);
 
 async function copySource() {
+  if (isCopied.value) return;
   navigator.clipboard.writeText(props.source);
   isCopied.value = true;
   await sleep(1500);
@@ -32,13 +33,14 @@ async function copySource() {
 <style lang="postcss" scoped>
 .copy-prompt {
   @apply absolute
-  -top-5
+  -top-4
   left-1/2
   font-mono
-  text-sm
+  text-xs
   -translate-x-1/2
   transition-all
   pointer-events-none
+  select-none
   duration-300;
 }
 </style>
