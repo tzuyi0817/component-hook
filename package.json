@@ -63,20 +63,19 @@
     "node": ">= 20.15.1"
   },
   "lint-staged": {
+    "**/*.{ts,js,vue}": [
+      "pnpm lint"
+    ],
     "docs/**/*.{ts,js,vue}": [
-      "pnpm lint",
       "pnpm typecheck:docs"
     ],
     "packages/picker/*.{ts,js,vue}": [
-      "pnpm lint",
       "pnpm typecheck:picker"
     ],
     "packages/pdf-canvas/*.{ts,js,vue}": [
-      "pnpm lint",
       "pnpm typecheck:pdf-canvas"
     ],
     "packages/eslint-plugin/*.{ts,js}": [
-      "pnpm lint",
       "pnpm typecheck:eslint-plugin"
     ]
   },

@@ -24,9 +24,9 @@ This is a component library that includes a collection of common and useful comp
 
 ## Packages
 
-- **[@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker):** Customizable picker components that can be easily integrated into Vue 3 application.
-- **[@component-hook/pdf-canvas](https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas):** Rendering PDF documents onto a canvas with Vue 3 component.
-- **[@component-hook/eslint-plugin](https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin):** A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier.
+- **[@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker):** Customizable picker components that can be easily integrated into `Vue 3` application.
+- **[@component-hook/pdf-canvas](https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas):** Rendering PDF documents onto a canvas with `Vue 3` component.
+- **[@component-hook/eslint-plugin](https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin):** A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue`, and `Prettier`.
 
 ## License
 
