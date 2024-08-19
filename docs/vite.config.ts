@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import { pickerPackage, pdfCanvasPackage } from '../internal/paths.ts';
+import { pickerPackage, pdfCanvasPackage } from '../internal/paths';
 
 export default defineConfig({
   plugins: [

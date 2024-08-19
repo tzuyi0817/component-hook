@@ -1,6 +1,6 @@
 # @component-hook/pdf-canvas
 
-Rendering PDF documents onto a canvas with vue3 component ([DEMO](https://tzuyi0817.github.io/component-hook/#/pdf-canvas))  
+Rendering PDF documents onto a canvas with vue3 component ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/pdf-canvas))  
 Implementation depository: [PDF-signature](https://github.com/tzuyi0817/PDF-signature)
 
 <p>
