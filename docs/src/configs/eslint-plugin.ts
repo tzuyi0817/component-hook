@@ -10,23 +10,31 @@ export const CONFIGS_MAP = {
         name: 'eslint-recommended',
         url: 'https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-recommended.js',
       },
-      { name: 'typescript-eslint', url: 'https://github.com/typescript-eslint/typescript-eslint' },
-      { name: 'eslint-plugin-import', url: 'https://github.com/import-js/eslint-plugin-import' },
+      {
+        name: 'typescript-eslint',
+        url: 'https://github.com/typescript-eslint/typescript-eslint',
+      },
+      {
+        name: 'eslint-plugin-import',
+        url: 'https://github.com/import-js/eslint-plugin-import',
+      },
       {
         name: 'eslint-plugin-regexp',
         url: 'https://github.com/ota-meshi/eslint-plugin-regexp/blob/master/lib/configs/flat/recommended.ts',
-      },
-      {
-        name: 'eslint-plugin-prettier',
-        url: 'https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js',
       },
     ],
   },
   vue: {
     url: `${BASE_URL}/configs/vue.ts`,
     plugins: [
-      { name: 'eslint-plugin-vue', url: 'https://github.com/vuejs/eslint-plugin-vue' },
-      { name: 'typescript-eslint', url: 'https://github.com/typescript-eslint/typescript-eslint' },
+      {
+        name: 'eslint-plugin-vue',
+        url: 'https://github.com/vuejs/eslint-plugin-vue',
+      },
+      {
+        name: 'typescript-eslint',
+        url: 'https://github.com/typescript-eslint/typescript-eslint',
+      },
     ],
   },
   react: {
@@ -48,7 +56,25 @@ export const CONFIGS_MAP = {
   },
   markdown: {
     url: `${BASE_URL}/configs/markdown.ts`,
-    plugins: [{ name: 'eslint-plugin-markdown', url: 'https://github.com/eslint/markdown/blob/main/src/index.js' }],
+    plugins: [
+      {
+        name: 'eslint-plugin-markdown',
+        url: 'https://github.com/eslint/markdown/blob/main/src/index.js',
+      },
+    ],
+  },
+  prettier: {
+    url: `${BASE_URL}/configs/prettier.ts`,
+    plugins: [
+      {
+        name: 'eslint-plugin-prettier',
+        url: 'https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js',
+      },
+      {
+        name: 'eslint-config-prettier',
+        url: 'https://github.com/prettier/eslint-config-prettier/blob/main/index.js',
+      },
+    ],
   },
   sonarjs: {
     url: `${BASE_URL}/configs/sonarjs.ts`,

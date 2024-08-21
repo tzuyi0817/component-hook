@@ -211,7 +211,12 @@ export function useFabric(id = '') {
       deleteCloseFabric(canvas);
     });
     closeFabric.on('mouseover', () => {
-      createCloseFabric({ canvas, target, stroke: closeOptions.hoverStroke, uuid });
+      createCloseFabric({
+        canvas,
+        target,
+        stroke: closeOptions.hoverStroke,
+        uuid,
+      });
     });
     closeFabric.on('mouseout', () => {
       createCloseFabric({ canvas, target, stroke: closeOptions.stroke, uuid });

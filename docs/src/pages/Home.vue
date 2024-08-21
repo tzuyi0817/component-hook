@@ -3,9 +3,7 @@
 <template>
   <div class="py-12 lg:py-20">
     <section class="flex flex-col gap-3 justify-center items-center text-center mb-12 px-4 lg:mb-16">
-      <h1 class="font-serif">
-        Component Hook
-      </h1>
+      <h1 class="font-serif">Component Hook</h1>
       <p>A component library that includes a collection of common and useful components</p>
 
       <img
@@ -23,12 +21,8 @@
           alt="Feature Component Image"
           width="128"
         />
-        <h3 class="feature-title">
-          Component
-        </h3>
-        <p class="feature-content">
-          Designed to help developers quickly build applications.
-        </p>
+        <h3 class="feature-title">Component</h3>
+        <p class="feature-content">Designed to help developers quickly build applications.</p>
         <router-link
           to="component/picker"
           class="feature-footer"
@@ -43,12 +37,8 @@
           alt="Feature Plugin Image"
           width="220"
         />
-        <h3 class="feature-title">
-          ESLint Plugin
-        </h3>
-        <p class="feature-content">
-          Reasonable defaults, best practices, and just a few lines of configuration.
-        </p>
+        <h3 class="feature-title">ESLint Plugin</h3>
+        <p class="feature-content">Reasonable defaults, best practices, and just a few lines of configuration.</p>
         <router-link
           to="/eslint"
           class="feature-footer"
@@ -82,7 +72,7 @@
     @apply px-6 duration-300 group-hover:text-primary;
   }
   &-content {
-    @apply px-6 pt-4 pb-10 text-gray-500 duration-300 group-hover:text-[var(--text-color)];
+    @apply px-6 pt-4 pb-10 text-gray-500 duration-300 group-hover:text-text-color;
   }
   &-footer {
     @apply w-full

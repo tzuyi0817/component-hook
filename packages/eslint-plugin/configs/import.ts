@@ -21,7 +21,12 @@ export const importConfigs: Linter.Config[] = [
     plugins,
     languageOptions,
     rules: {
-      'import/order': ['error', { groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'] }],
+      'import/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        },
+      ],
       'import/first': 'error',
       'import/no-default-export': 'error',
       'import/no-duplicates': 'error',

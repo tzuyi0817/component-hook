@@ -7,7 +7,7 @@ import { regexpConfig } from './configs/regexp';
 import { prettierConfig } from './configs/prettier';
 import { sonarjsConfig } from './configs/sonarjs';
 import { securityConfig } from './configs/security';
-import { reactConfig } from './configs/react';
+import { reactConfigs } from './configs/react';
 import { vueConfigs } from './configs/vue';
 import { playwrightConfig } from './configs/playwright';
 import {
@@ -19,12 +19,11 @@ import {
 } from './configs/testing-library';
 import { ignores } from './configs/ignores';
 
-const pluginBasic = [
+const basicConfigs = [
   ...jsConfigs,
   ...typescriptConfigs,
   ...importConfigs,
   regexpConfig,
-  prettierConfig,
   {
     name: 'component-hook/globals',
     languageOptions: {
@@ -39,10 +38,11 @@ const pluginBasic = [
 ];
 
 const configs = {
-  basic: pluginBasic,
-  react: reactConfig,
+  basic: basicConfigs,
+  react: reactConfigs,
   vue: vueConfigs,
   markdown: markdownConfigs,
+  prettier: prettierConfig,
   sonarjs: sonarjsConfig,
   security: securityConfig,
   playwright: playwrightConfig,
@@ -55,10 +55,10 @@ const configs = {
 
 export default { configs };
 
-const basicPreset = [...markdownConfigs, sonarjsConfig, securityConfig];
+const basicPreset = [...markdownConfigs, prettierConfig, sonarjsConfig, securityConfig];
 
-export const reactPreset = [...pluginBasic, ...reactConfig, ...basicPreset];
-export const vuePreset = [...pluginBasic, ...vueConfigs, ...basicPreset];
+export const reactPreset = [...basicConfigs, ...reactConfigs, ...basicPreset];
+export const vuePreset = [...basicConfigs, ...vueConfigs, ...basicPreset];
 export const vueSkyline = [
   ...vuePreset,
   {

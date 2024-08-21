@@ -70,7 +70,10 @@ function submitPassword() {
     </button>
 
     <div class="font-mono text-sm w-full flex flex-col gap-1 mt-5">
-      <p>base64: {{ currentPdf?.PDFBase64 ? `${currentPdf.PDFBase64.slice(0, 30)}...` : 'null' }}</p>
+      <p>
+        base64:
+        {{ currentPdf?.PDFBase64 ? `${currentPdf.PDFBase64.slice(0, 30)}...` : 'null' }}
+      </p>
       <p>file id: {{ currentPdf?.PDFId ?? 'null' }}</p>
       <p>file name: {{ currentPdf?.name ?? 'null' }}</p>
       <p>total pages: {{ currentPdf?.pages ?? 'null' }}</p>
@@ -87,7 +90,8 @@ function submitPassword() {
           <span
             class="dialog-close"
             @click="isShowPasswordPopup = false"
-          >&times;</span>
+            >&times;</span
+          >
           <h3>Enter Your Password</h3>
           <input
             v-model="modalPassword"

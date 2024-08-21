@@ -22,39 +22,29 @@ function encode(source: string, filetype: string) {
     <p>A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier.</p>
 
     <div v-html="md.render(installationMd)"></div>
-    <p class="font-mono text-xs my-4">
-      Require ESLint >= 9.0.0
-    </p>
+    <p class="font-mono text-xs my-4">Require ESLint >= 9.0.0</p>
 
     <h2>Basic Usage</h2>
-    <p class="mb-4">
-      Choose a packaged ESLint config reference based on your needs.
-    </p>
+    <p class="mb-4">Choose a packaged ESLint config reference based on your needs.</p>
     <source-code
       :source="encode(basicUsage, 'javascript')"
       :raw="encodeURIComponent(basicUsage)"
     />
     <p class="font-mono text-xs my-4">
       See
-      <external-link :href="`${BASE_URL}/configs/ignores.ts`">
-        ignores
-      </external-link>
+      <external-link :href="`${BASE_URL}/configs/ignores.ts`"> ignores </external-link>
       for more details.
     </p>
 
     <h2>React Presets Usage</h2>
-    <p class="mb-4">
-      Includes basic, react, markdown, sonarjs, security configs.
-    </p>
+    <p class="mb-4">Includes basic, react, markdown, prettier, sonarjs, security configs.</p>
     <source-code
       :source="encode(reactPresets, 'javascript')"
       :raw="encodeURIComponent(reactPresets)"
     />
 
     <h2>Vue Presets Usage</h2>
-    <p class="mb-4">
-      Includes basic, vue, markdown, sonarjs, security configs.
-    </p>
+    <p class="mb-4">Includes basic, vue, markdown, prettier, sonarjs, security configs.</p>
     <source-code
       :source="encode(vuePresets, 'javascript')"
       :raw="encodeURIComponent(vuePresets)"

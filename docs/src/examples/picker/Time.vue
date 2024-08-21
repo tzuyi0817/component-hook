@@ -23,11 +23,10 @@ function onCancel() {
     @confirm="onConfirm"
     @cancel="onCancel"
   />
-  <button @click="isShowPicker = true">
-    toggle time picker
-  </button>
+  <button @click="isShowPicker = true">toggle time picker</button>
 
   <p class="mt-6 text-sm font-mono">
-    Selected time: {{ currentTime.map(num => `${num}`.padStart(2, '0')).join(':') || 'not selected yet' }}
+    Selected time:
+    {{ currentTime.map(num => `${num}`.padStart(2, '0')).join(':') || 'not selected yet' }}
   </p>
 </template>

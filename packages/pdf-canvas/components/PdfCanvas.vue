@@ -62,7 +62,12 @@ async function setPDF() {
       renderImage({ url, scale: scale / scaleDown });
       return;
     }
-    await specifyPage({ page, PDFBase64: file.PDFBase64, scale, password: props.password });
+    await specifyPage({
+      page,
+      PDFBase64: file.PDFBase64,
+      scale,
+      password: props.password,
+    });
   });
 }
 

@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint';
-import { pluginPrettier } from '../plugins';
+import { pluginPrettier, configPrettier } from '../plugins';
 
 const recommended = pluginPrettier.configs?.recommended as Linter.Config<Linter.RulesRecord>;
 
@@ -9,7 +9,8 @@ export const prettierConfig: Linter.Config = {
     prettier: pluginPrettier,
   },
   rules: {
+    ...configPrettier.rules,
     ...recommended.rules,
-    'prettier/prettier': 'off',
+    'prettier/prettier': 'warn',
   },
 };
