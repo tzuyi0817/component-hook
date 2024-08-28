@@ -4,5 +4,5 @@
     "composite": true,
     "types": ["node"]
   },
-  "include": ["**/package.json"]
+  "include": ["vitest.config.ts", "**/package.json", "**/vite.config.ts"]
 }

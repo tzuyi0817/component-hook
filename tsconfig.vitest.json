@@ -5,5 +5,6 @@
     "isolatedModules": true,
     "types": ["node", "vitest/globals"]
   },
+  "include": ["**/__tests__/**/*"],
   "exclude": ["**/dist", "**/node_modules"]
 }
