@@ -7,6 +7,7 @@ on:
       - 'docs/src/**'
       - 'docs/package.json'
       - 'pnpm-lock.yaml'
+  workflow_dispatch:
 
 jobs:
   CI:
