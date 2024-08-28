@@ -2,6 +2,7 @@
 import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps, TOptions } from 'fabric';
 import { useFabric } from '../hooks/useFabric';
+import { useResize } from '../hooks/useResize';
 import type { PDF } from '../types/pdf';
 import type { CloseSvgOptions } from '../types/fabric';
 
@@ -42,11 +43,12 @@ const {
   renderImage,
   clearActive,
   deleteCanvas,
-  scaleCloseFabric,
+  scaleFabric,
   setCloseSvgOptions,
 } = useFabric(canvasId);
 
 setPDF();
+useResize(setPDF);
 
 async function setPDF() {
   const { file, page, fileScale: scale } = props;
@@ -91,7 +93,7 @@ function addText(text: string, options?: TOptions<TextProps>) {
 }
 
 watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
-watch(containerScale, scale => scaleCloseFabric(scale), { immediate: true });
+watch(containerScale, scale => scaleFabric(scale), { immediate: true });
 watch(() => props.closeSvgOptions, setCloseSvgOptions, { immediate: true });
 onBeforeUnmount(deleteCanvas);
 defineExpose({ addImage, addText, clearActive, deleteCanvas, canvasRef });

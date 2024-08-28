@@ -12,7 +12,7 @@ import {
 } from 'fabric';
 import { printPDF, getPDFDocument } from '../utils/pdfJs';
 import { createImageSrc, convertToBase64 } from '../utils/image';
-import { isDesktop, CSS_UNITS } from '../utils/common';
+import { getPixelsPerPoint } from '../utils/common';
 import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../configs';
 import type {
   SpecifyPageArgs,
@@ -79,6 +79,7 @@ export function useFabric(id = '') {
       const viewport = pdfPage.getViewport({ scale });
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d')!;
+      const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
 
       canvas.width = Math.floor(viewport.width * CSS_UNITS);
       canvas.height = Math.floor(viewport.height * CSS_UNITS);
@@ -126,7 +127,7 @@ export function useFabric(id = '') {
     return { ...PDF, pages: 1 };
   }
 
-  async function renderImage({ url, scale = isDesktop() ? 0.5 : 0.3 }: RenderImageArgs) {
+  async function renderImage({ url, scale = 0.5 }: RenderImageArgs) {
     const canvas = fabricMap.get(id);
 
     if (!canvas) return;
@@ -199,7 +200,7 @@ export function useFabric(id = '') {
     closeFabric = group;
     selectedFabric = target;
     onCloseFabric(canvas, target, uuid);
-    scaleCloseFabric(canvasScale, true);
+    scaleFabric(canvasScale, true);
     canvas.add(group);
   }
 
@@ -236,14 +237,31 @@ export function useFabric(id = '') {
     closeFabric.setCoords();
   }
 
-  function scaleCloseFabric(scale: number, isCreate = false) {
-    canvasScale = scale;
-    if (!closeFabric || !selectedFabric) return;
+  function scaleFabric(scale: number, isCreate = false) {
+    const canvas = fabricMap.get(id);
 
-    closeFabric.scale(1 / scale);
-    moveCloseFabric(selectedFabric);
+    canvasScale = scale;
+    if (!canvas) return;
+    scaleCornerFabric(selectedFabric, scale);
+    scaleCloseFabric(selectedFabric, scale);
     if (isCreate) return;
-    fabricMap.get(id)?.renderAll();
+
+    canvas.renderAll();
+  }
+
+  function scaleCloseFabric(fabric: FabricObject | null, scale: number) {
+    if (!closeFabric || !fabric) return;
+    closeFabric.scale(1 / scale);
+    moveCloseFabric(fabric);
+  }
+
+  function scaleCornerFabric(fabric: FabricObject | null, scale: number) {
+    if (!fabric) return;
+    fabric.borderScaleFactor = 1 / scale;
+    fabric.cornerSize = 6 * (1 / scale);
+    fabric.touchCornerSize = 24 * (1 / scale);
+    fabric.cornerStrokeColor = closeOptions.stroke;
+    fabric.setCoords();
   }
 
   function setCloseSvgOptions(options?: CloseSvgOptions) {
@@ -287,7 +305,7 @@ export function useFabric(id = '') {
     addTextFabric,
     clearActive,
     deleteCanvas,
-    scaleCloseFabric,
+    scaleFabric,
     setCloseSvgOptions,
   };
 }

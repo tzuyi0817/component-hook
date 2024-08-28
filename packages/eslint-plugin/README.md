@@ -14,7 +14,7 @@ A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier
 ## Features
 
 - Support `TypeScript`, `Vue` and `React` out-of-box.
-- Built-in `Markdown`, `Sonarjs`, `Security`, `Playwright` and `Testing-library` configs can be referenced for respective needs.
+- Built-in `Markdown`, `Prettier`, `Sonarjs`, `Security`, `Playwright` and `Testing-library` configs can be referenced for respective needs.
 - Format with Prettier.
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
 - Reasonable defaults, best practices, and just a few lines of configuration.

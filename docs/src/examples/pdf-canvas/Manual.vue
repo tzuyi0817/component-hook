@@ -20,7 +20,6 @@ async function uploadFile(event: Event) {
 
 function addImage() {
   if (!pdfCanvasRef.value) return;
-
   pdfCanvasRef.value.addImage('https://pdf-signature-puce.vercel.app/cover.jpg');
 }
 
