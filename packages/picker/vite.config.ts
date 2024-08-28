@@ -24,7 +24,7 @@ export default defineConfig({
     vue(),
     dts({
       rollupTypes: true,
-      tsconfigPath: './tsconfig.app.json',
+      // tsconfigPath: './tsconfig.app.json',
     }),
     patchCssFile,
   ],

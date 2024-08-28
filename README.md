@@ -13,7 +13,7 @@
     <img alt="GitHub Release" src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff">
   </a>
   <a href="https://github.com/tzuyi0817/component-hook">
-    <img src="https://img.shields.io/badge/node-%20%3E%3D%2020.15.1-47c219" />
+    <img src="https://img.shields.io/badge/node-%20%3E%3D%2020.17.0-47c219" />
   </a>
   <br>
 </p>
