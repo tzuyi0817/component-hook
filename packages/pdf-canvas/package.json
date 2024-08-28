@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "description": "Rendering PDF documents onto a canvas with vue3 component",
   "license": "MIT",
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.9.0",
   "type": "module",
   "author": "Tzuyi",
   "main": "./dist/pdf-canvas.umd.js",
