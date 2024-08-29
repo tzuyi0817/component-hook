@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/tzuyi0817/component-hook/compare/v0.1.2...v0.1.3) (2024-08-29)
+
+### Bug Fixes
+
+- **eslint-plugin:** extract prettier config to solve the problem of reference order ([3b13997](https://github.com/tzuyi0817/component-hook/commit/3b1399720add01929db516cd7138741c655ea0b0))
+- **pdf-canvas:** revise css units calculation method ([bfa7ac6](https://github.com/tzuyi0817/component-hook/commit/bfa7ac6ffbed6c413095e95c3802fee6272756ec))
+
 ## [0.1.2](https://github.com/tzuyi0817/component-hook/compare/v0.1.1...v0.1.2) (2024-08-16)
 
 ### Features
