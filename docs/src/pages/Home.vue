@@ -1,16 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ExternalLink from '@/components/ExternalLink.vue';
+</script>
 
 <template>
   <div class="py-12 lg:py-20">
-    <section class="flex flex-col gap-3 justify-center items-center text-center mb-12 px-4 lg:mb-16">
-      <h1 class="font-serif">Component Hook</h1>
+    <section class="flex flex-col gap-3 justify-center items-center text-center mb-12 px-4 lg:mb-14">
+      <h1>Component Hook</h1>
       <p>A component library that includes a collection of common and useful components</p>
 
-      <img
-        src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
-        alt="GitHub Release"
-        width="50"
-      />
+      <div class="flex gap-2 mt-2">
+        <img
+          src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
+          alt="GitHub Release"
+          width="50"
+        />
+        <external-link href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+          <img
+            src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff"
+            alt="License"
+            width="90"
+          />
+        </external-link>
+      </div>
     </section>
 
     <section class="flex flex-col gap-10 justify-center items-center">

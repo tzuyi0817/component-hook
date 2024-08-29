@@ -16,8 +16,8 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
-  isShowPicker: false,
   options: () => ({}),
+  showKey: '',
   swipeTime: 500,
   type: '',
 });

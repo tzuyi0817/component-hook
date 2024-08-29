@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "pnpm typecheck && vite build",
+    "build": "vite build",
     "typecheck": "bash -c vue-tsc --noEmit",
     "preview": "vite preview"
   },

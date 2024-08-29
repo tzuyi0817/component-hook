@@ -13,9 +13,18 @@
     <img alt="GitHub Release" src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff">
   </a>
   <a href="https://github.com/tzuyi0817/component-hook">
-    <img src="https://img.shields.io/badge/node-%20%3E%3D%2020.17.0-47c219" />
+    <img src="https://img.shields.io/badge/node-%20%3E%3D%2020.17.0-47c219?color=409eff" />
   </a>
+    <a href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff" alt="License">
+    </a>
   <br>
+</p>
+
+<p align="center">
+  <a href="https://tzuyi0817.github.io/component-hook/#/home">
+    <b>Documentation</b>
+  </a>
 </p>
 
 ## Description
