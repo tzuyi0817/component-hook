@@ -116,7 +116,3 @@ export default vuePreset;
 - [eslint-plugin-testing-library/angular](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/angular.ts)
 - [eslint-plugin-testing-library/marko](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/marko.ts)
 - [eslint-plugin-playwright/flat/recommended](https://github.com/playwright-community/eslint-plugin-playwright/blob/main/src/index.ts)
-
-```
-
-```
