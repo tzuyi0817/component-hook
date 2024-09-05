@@ -43,13 +43,13 @@
     "typecheck": "bash -c vue-tsc --noEmit"
   },
   "dependencies": {
-    "fabric": "^6.3.0",
-    "pdfjs-dist": "^4.5.136"
+    "fabric": "^6.4.1",
+    "pdfjs-dist": "^4.6.82"
   },
   "peerDependencies": {
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^4.0.3"
+    "vite-plugin-dts": "^4.1.0"
   }
 }

@@ -49,6 +49,6 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^4.0.3"
+    "vite-plugin-dts": "^4.1.0"
   }
 }
