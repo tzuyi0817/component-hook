@@ -11,6 +11,7 @@ export const ignores = {
 
     '**/output',
     '**/coverage',
+    '**/playwright-report',
     '**/temp',
     '**/fixtures',
     '**/.vitepress/cache',
