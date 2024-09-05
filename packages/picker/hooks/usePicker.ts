@@ -25,10 +25,14 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
   });
 
   async function setPickerData(isUpdate = false) {
-    isUpdate ? updatePickerData() : updateSelect();
+    if (isUpdate) {
+      updatePickerData();
+    } else {
+      updateSelect();
+    }
     await nextTick();
     pickerData.value.forEach((_, index) => createWheel(index));
-    !isUpdate && scrollToAnchor();
+    if (!isUpdate) scrollToAnchor();
     checkWheels();
   }
 
@@ -46,8 +50,10 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
 
   function updateSelect() {
     if (!isDate.value && !isTime.value) return;
-    isDate.value && updateDateSelect(pickerAnchors.value);
-    isTime.value && !isHaveValue(props.anchor) && updateDefaultTime();
+    if (isDate.value) updateDateSelect(pickerAnchors.value);
+    if (isTime.value && !isHaveValue(props.anchor)) {
+      updateDefaultTime();
+    }
   }
 
   function createWheel(index: number) {
@@ -104,8 +110,10 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
 
   function confirm() {
     const isInTransition = wheels.value.some(wheel => wheel.isInTransition);
-    isInTransition && stopWheels();
+
+    if (isInTransition) stopWheels();
     const { item, anchor } = getSelectedItem();
+
     emit('confirm', item);
     emit('update:anchor', anchor);
     closePicker();

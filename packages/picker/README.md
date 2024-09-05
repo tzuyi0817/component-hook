@@ -37,7 +37,7 @@ $ pnpm install @component-hook/picker
 
 ```vue
 <script setup>
-import { ref, computed, reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import Picker from '@component-hook/picker';
 
 const currentSelect = ref({});

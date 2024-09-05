@@ -64,10 +64,17 @@ See [basic](./index.ts) and [ignores](./configs/ignores.ts) for more details.
 ```js
 import {
   reactPreset, // Includes basic, react, markdown, prettier, sonarjs, security configs
-  vuePreset, // Includes basic, vue, markdown, prettier, sonarjs, security configs
 } from '@component-hook/eslint-plugin';
 
 export default reactPreset;
+```
+
+```js
+import {
+  vuePreset, // Includes basic, vue, markdown, prettier, sonarjs, security configs
+} from '@component-hook/eslint-plugin';
+
+export default vuePreset;
 ```
 
 ## Configs
