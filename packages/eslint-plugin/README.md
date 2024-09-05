@@ -64,10 +64,17 @@ See [basic](./index.ts) and [ignores](./configs/ignores.ts) for more details.
 ```js
 import {
   reactPreset, // Includes basic, react, markdown, prettier, sonarjs, security configs
-  vuePreset, // Includes basic, vue, markdown, prettier, sonarjs, security configs
 } from '@component-hook/eslint-plugin';
 
 export default reactPreset;
+```
+
+```js
+import {
+  vuePreset, // Includes basic, vue, markdown, prettier, sonarjs, security configs
+} from '@component-hook/eslint-plugin';
+
+export default vuePreset;
 ```
 
 ## Configs
@@ -109,3 +116,7 @@ export default reactPreset;
 - [eslint-plugin-testing-library/angular](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/angular.ts)
 - [eslint-plugin-testing-library/marko](https://github.com/testing-library/eslint-plugin-testing-library/blob/main/lib/configs/marko.ts)
 - [eslint-plugin-playwright/flat/recommended](https://github.com/playwright-community/eslint-plugin-playwright/blob/main/src/index.ts)
+
+```
+
+```

@@ -17,14 +17,17 @@ export function useDate() {
   const dayList = computed(() => {
     const thirty = [4, 6, 9, 11];
     const thirtyOne = [1, 3, 5, 7, 8, 10, 12];
-    const days = thirty.includes(selectMonth.value)
-      ? 30
-      : thirtyOne.includes(selectMonth.value)
-        ? 31
-        : isLeapYear(selectYear.value)
-          ? 29
-          : 28;
-    return generateList(1, days);
+
+    if (thirty.includes(selectMonth.value)) {
+      return generateList(1, 30);
+    }
+    if (thirtyOne.includes(selectMonth.value)) {
+      return generateList(1, 31);
+    }
+    if (isLeapYear(selectYear.value)) {
+      return generateList(1, 29);
+    }
+    return generateList(1, 28);
   });
 
   const dateList = computed(() => {
