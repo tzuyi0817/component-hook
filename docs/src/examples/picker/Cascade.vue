@@ -29,7 +29,7 @@ function onCancel() {
 
 <template>
   <picker
-    v-model:isShowPicker="isShowPicker"
+    v-model:is-show-picker="isShowPicker"
     v-model:anchor="anchor"
     :data="dataList"
     :show-key="['original', 'original', 'original']"

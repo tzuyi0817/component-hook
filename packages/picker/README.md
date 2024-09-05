@@ -73,7 +73,7 @@ function onCancel() {
 
 <template>
   <picker
-    v-model:isShowPicker="isShowPicker"
+    v-model:is-show-picker="isShowPicker"
     v-model:anchor="anchor"
     :data="dataList"
     :show-key="['original', 'original', 'original']"
@@ -84,7 +84,7 @@ function onCancel() {
   />
 
   <picker
-    v-model:isShowPicker="isShowSingle"
+    v-model:is-show-picker="isShowSingle"
     v-model:anchor="anchorSingle"
     :data="singleData"
     show-key="original"
@@ -92,14 +92,14 @@ function onCancel() {
   />
 
   <picker
-    v-model:isShowPicker="isShowDate"
+    v-model:is-show-picker="isShowDate"
     v-model:anchor="currentDate"
     type="date"
     :options="{ titleText: 'date selector' }"
   />
 
   <picker
-    v-model:isShowPicker="isShowTime"
+    v-model:is-show-picker="isShowTime"
     v-model:anchor="currentTime"
     type="time"
     :options="{ titleText: 'time selector' }"

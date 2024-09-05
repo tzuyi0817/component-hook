@@ -16,7 +16,7 @@ function onCancel() {
 
 <template>
   <picker
-    v-model:isShowPicker="isShowPicker"
+    v-model:is-show-picker="isShowPicker"
     v-model:anchor="currentDate"
     type="date"
     :options="{ titleText: 'date selector' }"
