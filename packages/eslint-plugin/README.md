@@ -43,7 +43,7 @@ export default [
   ...componentHookPlugin.configs.vue,
   ...componentHookPlugin.configs.markdown,
   componentHookPlugin.configs.prettier,
-  componentHookPlugin.configs.sonarjs,
+  ...componentHookPlugin.configs.sonarjs,
   componentHookPlugin.configs.security,
   {
     files: ['**/__tests__/unit/**/*.test.[jt]s?(x)'],
@@ -86,7 +86,7 @@ export default vuePreset;
 | react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended` |
 | markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                             |
 | prettier                | `Linter.Config`   | `eslint-plugin-prettier/recommended`, `eslint-config-prettier`                                                   |
-| sonarjs                 | `Linter.Config`   | `eslint-plugin-sonarjs/recommended`                                                                              |
+| sonarjs                 | `Linter.Config[]` | `eslint-plugin-sonarjs/recommended`                                                                              |
 | security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                             |
 | playwright              | `Linter.Config`   | `eslint-plugin-playwright/flat/recommended`                                                                      |
 | testing-library/dom     | `Linter.Config`   | `eslint-plugin-testing-library/dom`                                                                              |

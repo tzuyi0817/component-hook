@@ -5,7 +5,7 @@ import { importConfigs } from './configs/import';
 import { markdownConfigs } from './configs/markdown';
 import { regexpConfig } from './configs/regexp';
 import { prettierConfig } from './configs/prettier';
-import { sonarjsConfig } from './configs/sonarjs';
+import { sonarjsConfigs } from './configs/sonarjs';
 import { securityConfig } from './configs/security';
 import { reactConfigs } from './configs/react';
 import { vueConfigs } from './configs/vue';
@@ -43,7 +43,7 @@ const configs = {
   vue: vueConfigs,
   markdown: markdownConfigs,
   prettier: prettierConfig,
-  sonarjs: sonarjsConfig,
+  sonarjs: sonarjsConfigs,
   security: securityConfig,
   playwright: playwrightConfig,
   'testing-library/dom': testingLibraryDomConfig,
@@ -55,7 +55,7 @@ const configs = {
 
 export default { configs };
 
-const basicPreset = [...markdownConfigs, prettierConfig, sonarjsConfig, securityConfig];
+const basicPreset = [...markdownConfigs, prettierConfig, ...sonarjsConfigs, securityConfig];
 
 export const reactPreset = [...basicConfigs, ...reactConfigs, ...basicPreset];
 export const vuePreset = [...basicConfigs, ...vueConfigs, ...basicPreset];

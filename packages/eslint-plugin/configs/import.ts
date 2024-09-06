@@ -37,7 +37,7 @@ export const importConfigs: Linter.Config[] = [
     },
   },
   {
-    name: 'component-hook/allow-default-export',
+    name: 'component-hook/import/allow-default-export',
     files: [
       '**/*.d.ts',
       '**/*.md/**',
