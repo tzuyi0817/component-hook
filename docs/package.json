@@ -13,8 +13,8 @@
   "dependencies": {
     "@component-hook/pdf-canvas": "workspace:*",
     "@component-hook/picker": "workspace:*",
-    "vue": "^3.5.4",
-    "vue-router": "^4.4.4"
+    "vue": "^3.5.6",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
@@ -22,7 +22,7 @@
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "markdown-it": "^14.1.0",
-    "postcss": "^8.4.45",
+    "postcss": "^8.4.47",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.0",
     "postcss-pxtorem": "^6.1.0",
