@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/tzuyi0817/component-hook/compare/v0.1.3...v0.1.4) (2024-09-16)
+
+### Features
+
+- **eslint-plugin:** ignores config add `**/playwright-report` ([3c68e07](https://github.com/tzuyi0817/component-hook/commit/3c68e07cf319017cd4ba3a39e683d216ac4e23a3))
+- **eslint-plugin:** upgrade sonarjs config to v2 ([1c3fe33](https://github.com/tzuyi0817/component-hook/commit/1c3fe331d5d1ca45100f8c77e784320ca44ebf87))
+
 ## [0.1.3](https://github.com/tzuyi0817/component-hook/compare/v0.1.2...v0.1.3) (2024-08-29)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/pdf-canvas",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Rendering PDF documents onto a canvas with vue3 component",
   "license": "MIT",
   "packageManager": "pnpm@9.10.0",

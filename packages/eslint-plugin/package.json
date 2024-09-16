@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/eslint-plugin",
-  "version": "0.1.4-alpha.3",
+  "version": "0.1.4",
   "description": "ESLint config for component hook",
   "license": "MIT",
   "packageManager": "pnpm@9.10.0",
