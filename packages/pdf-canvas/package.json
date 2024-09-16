@@ -40,7 +40,7 @@
   ],
   "scripts": {
     "build": "vite build",
-    "typecheck": "bash -c vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "fabric": "^6.4.2",

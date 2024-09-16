@@ -49,23 +49,6 @@
   "engines": {
     "node": ">= 20.17.0"
   },
-  "lint-staged": {
-    "**/*.{ts,js,vue}": [
-      "pnpm lint"
-    ],
-    "docs/**/*.{ts,js,vue}": [
-      "pnpm typecheck:docs"
-    ],
-    "packages/picker/*.{ts,js,vue}": [
-      "pnpm typecheck:picker"
-    ],
-    "packages/pdf-canvas/*.{ts,js,vue}": [
-      "pnpm typecheck:pdf-canvas"
-    ],
-    "packages/eslint-plugin/*.{ts,js}": [
-      "pnpm typecheck:eslint-plugin"
-    ]
-  },
   "optionalDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",

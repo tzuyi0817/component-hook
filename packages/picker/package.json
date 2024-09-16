@@ -39,7 +39,7 @@
   ],
   "scripts": {
     "build": "vite build",
-    "typecheck": "bash -c vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
