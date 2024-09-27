@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "description": "Picker component with vue3",
   "license": "MIT",
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.11.0",
   "type": "module",
   "author": "Tzuyi",
   "main": "./dist/picker.umd.js",
@@ -49,6 +49,6 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^4.2.1"
+    "vite-plugin-dts": "^4.2.2"
   }
 }
