@@ -1,10 +1,11 @@
-import type { Linter } from 'eslint';
+import type { Linter, ESLint } from 'eslint';
 import { pluginTestingLibrary, fixupPluginRules } from '../plugins';
 
 const configs = pluginTestingLibrary.configs;
 const plugins = {
   'testing-library': fixupPluginRules({ rules: pluginTestingLibrary.rules }),
-};
+} as Record<string, ESLint.Plugin>;
+
 const rules = {
   'testing-library/await-async-queries': 'error',
   'testing-library/no-await-sync-queries': 'error',

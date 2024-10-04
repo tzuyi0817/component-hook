@@ -5,6 +5,7 @@ import { importConfigs } from './configs/import';
 import { markdownConfigs } from './configs/markdown';
 import { regexpConfig } from './configs/regexp';
 import { prettierConfig } from './configs/prettier';
+import { commentsConfigs } from './configs/comments';
 import { sonarjsConfigs } from './configs/sonarjs';
 import { securityConfig } from './configs/security';
 import { reactConfigs } from './configs/react';
@@ -22,6 +23,7 @@ import { ignores } from './configs/ignores';
 const basicConfigs = [
   ...jsConfigs,
   ...typescriptConfigs,
+  ...commentsConfigs,
   ...importConfigs,
   regexpConfig,
   {

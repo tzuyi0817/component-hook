@@ -15,6 +15,10 @@ export const CONFIGS_MAP = {
         url: 'https://github.com/typescript-eslint/typescript-eslint',
       },
       {
+        name: 'eslint-plugin-eslint-comments',
+        url: 'https://github.com/eslint-community/eslint-plugin-eslint-comments/blob/main/lib/configs/recommended.js',
+      },
+      {
         name: 'eslint-plugin-import',
         url: 'https://github.com/import-js/eslint-plugin-import',
       },

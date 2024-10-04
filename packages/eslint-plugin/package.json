@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/eslint-plugin",
-  "version": "0.1.4",
+  "version": "0.1.5-alpha.0",
   "description": "ESLint config for component hook",
   "license": "MIT",
   "packageManager": "pnpm@9.12.0",
@@ -39,6 +39,7 @@
     "eslint": "^9.8.0"
   },
   "dependencies": {
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.4.0",
     "@eslint/compat": "^1.1.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
