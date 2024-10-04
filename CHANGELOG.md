@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.5](https://github.com/tzuyi0817/component-hook/compare/v0.1.4...v0.1.5) (2024-10-04)
+
+### Features
+
+- **eslint-plugin:** add `eslint-plugin-eslint-comments` ([1568493](https://github.com/tzuyi0817/component-hook/commit/15684937ac1a85034bafb026b78d373d1f69b7d9))
+
 ## [0.1.4](https://github.com/tzuyi0817/component-hook/compare/v0.1.3...v0.1.4) (2024-09-16)
 
 ### Features

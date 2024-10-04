@@ -15,12 +15,6 @@ export const sonarjsConfigs: Linter.Config[] = [
       ...pluginSonarjs.configs.recommended.rules,
       'sonarjs/no-commented-code': 'warn',
       'sonarjs/no-vue-bypass-sanitization': 'warn',
-
-      // TypeError: Cannot read properties of undefined (reading 'members')
-      'sonarjs/prefer-enum-initializers': 'off',
-
-      // TypeError: Cannot read properties of undefined (reading 'some')
-      'sonarjs/sonar-no-fallthrough': 'off',
     },
     settings,
   },
