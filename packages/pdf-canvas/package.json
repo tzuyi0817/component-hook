@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "description": "Rendering PDF documents onto a canvas with vue3 component",
   "license": "MIT",
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@9.12.0",
   "type": "module",
   "author": "Tzuyi",
   "main": "./dist/pdf-canvas.umd.js",
@@ -43,13 +43,13 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "fabric": "^6.4.2",
+    "fabric": "^6.4.3",
     "pdfjs-dist": "^4.6.82"
   },
   "peerDependencies": {
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^4.2.2"
+    "vite-plugin-dts": "^4.2.3"
   }
 }
