@@ -10,14 +10,6 @@ export function useTime() {
 
   updateDefaultTime();
 
-  function generateTime(start: number, end: number) {
-    const result: Array<string> = [];
-    for (let index = start; index <= end; index++) {
-      result.push(`${index}`.padStart(2, '0'));
-    }
-    return result;
-  }
-
   function updateDefaultTime() {
     const date = new Date();
     const hour = date.getHours();
@@ -37,4 +29,12 @@ export function useTime() {
     updateDefaultTime,
     getTimeAnchors,
   };
+}
+
+function generateTime(start: number, end: number) {
+  const result: Array<string> = [];
+  for (let index = start; index <= end; index++) {
+    result.push(`${index}`.padStart(2, '0'));
+  }
+  return result;
 }

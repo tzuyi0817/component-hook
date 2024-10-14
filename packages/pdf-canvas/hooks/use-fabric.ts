@@ -10,7 +10,7 @@ import {
   type ImageProps,
   type TextProps,
 } from 'fabric';
-import { printPDF, getPDFDocument } from '../utils/pdfJs';
+import { printPDF, getPDFDocument } from '../utils/pdf-js';
 import { createImageSrc, convertToBase64 } from '../utils/image';
 import { getPixelsPerPoint } from '../utils/common';
 import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../configs';
@@ -106,10 +106,6 @@ export function useFabric(id = '') {
     const image = canvasToImage(canvasTemp, scale);
 
     setCanvas(image, scale);
-  }
-
-  function canvasToImage(canvas: HTMLCanvasElement, scale: number) {
-    return new FabricImage(canvas, { scaleX: scale, scaleY: scale });
   }
 
   async function drawImage(file: File) {
@@ -308,4 +304,8 @@ export function useFabric(id = '') {
     scaleFabric,
     setCloseSvgOptions,
   };
+}
+
+function canvasToImage(canvas: HTMLCanvasElement, scale: number) {
+  return new FabricImage(canvas, { scaleX: scale, scaleY: scale });
 }

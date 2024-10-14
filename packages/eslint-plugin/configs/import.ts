@@ -2,7 +2,7 @@ import type { Linter, ESLint } from 'eslint';
 import { pluginImport, vueParser, fixupPluginRules, typescriptEslint } from '../plugins';
 
 const plugins: Record<string, ESLint.Plugin> = {
-  import: fixupPluginRules(pluginImport) as ESLint.Plugin,
+  import: fixupPluginRules(pluginImport),
   '@typescript-eslint': typescriptEslint.plugin as ESLint.Plugin,
 };
 

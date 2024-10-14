@@ -4,10 +4,10 @@ function getPixelsPerInch() {
   const div = document.createElement('div');
 
   div.style.width = '1in';
-  document.body.appendChild(div);
+  document.body.append(div);
   const pixelsPerInch = div.offsetWidth;
 
-  document.body.removeChild(div);
+  div.remove();
   return pixelsPerInch;
 }
 

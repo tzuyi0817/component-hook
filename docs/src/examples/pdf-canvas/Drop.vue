@@ -26,7 +26,7 @@ function dragImage(event: DragEvent) {
 function dragText(event: DragEvent) {
   const target = event.target as HTMLParagraphElement;
 
-  event.dataTransfer?.setData('text', target.innerText);
+  event.dataTransfer?.setData('text', target.textContent ?? '');
 }
 </script>
 

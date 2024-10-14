@@ -34,24 +34,12 @@ export function useDate() {
     return [yearList, monthList, dayList.value];
   });
 
-  function isLeapYear(year: number) {
-    return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
-  }
-
-  function generateList(start: number, end: number) {
-    const result: Array<number> = [];
-    for (let index = start; index <= end; index++) {
-      result.push(index);
-    }
-    return result;
-  }
-
   function getDateAnchors(anchor: PickerProps['anchor']) {
     const anchors = isHaveValue(anchor) ? anchor : [defaultYear, defaultMonth, defaultDay];
 
     return anchors.map((target, index) => {
       const pos = dateList.value[index].indexOf(target);
-      return pos > -1 ? pos : 0;
+      return pos !== -1 ? pos : 0;
     });
   }
 
@@ -68,4 +56,16 @@ export function useDate() {
     updateDateSelect,
     getDateAnchors,
   };
+}
+
+function isLeapYear(year: number) {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+}
+
+function generateList(start: number, end: number) {
+  const result: Array<number> = [];
+  for (let index = start; index <= end; index++) {
+    result.push(index);
+  }
+  return result;
 }

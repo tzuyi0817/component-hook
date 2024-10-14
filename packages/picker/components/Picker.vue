@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { usePicker } from '../hooks/usePicker';
+import { usePicker } from '../hooks/use-picker';
 import type { PickerOptions, PickData, PickerBuiltIn } from '../types/picker';
-import { isObject, isArray } from '../utils/checkType';
+import { isObject, isArray } from '../utils/check-type';
 
 interface Props {
   data?: PickData;

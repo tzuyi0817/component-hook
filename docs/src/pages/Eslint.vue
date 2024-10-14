@@ -2,8 +2,8 @@
 import SourceCode from '@/components/SourceCode.vue';
 import ExternalLink from '@/components/ExternalLink.vue';
 import basicUsage from '@/examples/eslint-plugin/basic.config.ts?raw';
-import reactPresets from '@/examples/eslint-plugin/reactPresets.config.ts?raw';
-import vuePresets from '@/examples/eslint-plugin/vuePresets.config.ts?raw';
+import reactPresets from '@/examples/eslint-plugin/react-presets.config.ts?raw';
+import vuePresets from '@/examples/eslint-plugin/vue-presets.config.ts?raw';
 import installationMd from '@/markdowns/eslint-plugin/installation.md?raw';
 import { md, highlight } from '@/utils/highlight';
 import { BASE_URL, CONFIGS_MAP } from '@/configs/eslint-plugin';

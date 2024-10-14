@@ -2,6 +2,7 @@ import { globals } from './plugins';
 import { jsConfigs } from './configs/javascript';
 import { typescriptConfigs } from './configs/typescript';
 import { importConfigs } from './configs/import';
+import { unicornConfig } from './configs/unicorn';
 import { markdownConfigs } from './configs/markdown';
 import { regexpConfig } from './configs/regexp';
 import { prettierConfig } from './configs/prettier';
@@ -25,6 +26,7 @@ const basicConfigs = [
   ...typescriptConfigs,
   ...commentsConfigs,
   ...importConfigs,
+  unicornConfig,
   regexpConfig,
   {
     name: 'component-hook/globals',

@@ -2,7 +2,7 @@ import type { Linter, ESLint } from 'eslint';
 import { pluginSonarjs, fixupPluginRules } from '../plugins';
 
 const plugins: Record<string, ESLint.Plugin> = {
-  sonarjs: fixupPluginRules(pluginSonarjs) as ESLint.Plugin,
+  sonarjs: fixupPluginRules(pluginSonarjs),
 };
 
 const { settings } = pluginSonarjs.configs.recommended;

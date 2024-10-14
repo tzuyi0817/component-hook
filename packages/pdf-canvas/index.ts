@@ -1,7 +1,7 @@
 import type { DefineComponent } from 'vue';
 import PdfCanvas from './components/PdfCanvas.vue';
 
-export { useFabric } from './hooks/useFabric';
+export { useFabric } from './hooks/use-fabric';
 export type * from './types/fabric';
 export type * from './types/pdf';
 

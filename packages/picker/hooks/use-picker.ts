@@ -1,11 +1,11 @@
 import { watch, ref, nextTick, computed } from 'vue';
 import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
-import { isArray } from '../utils/checkType';
+import { isArray } from '../utils/check-type';
 import { isHaveValue } from '../utils/common';
 import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from '../types/picker';
-import { useDate } from './useDate';
-import { useTime } from './useTime';
+import { useDate } from './use-date';
+import { useTime } from './use-time';
 
 BScroll.use(Wheel);
 
