@@ -2,7 +2,7 @@
   "name": "@component-hook/docs",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@9.12.1",
+  "packageManager": "pnpm@9.12.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -18,17 +18,17 @@
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
-    "@types/prismjs": "^1.26.4",
+    "@types/prismjs": "^1.26.5",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "markdown-it": "^14.1.0",
     "postcss": "^8.4.47",
     "postcss-import": "^16.1.0",
-    "postcss-nesting": "^13.0.0",
+    "postcss-nesting": "^13.0.1",
     "postcss-pxtorem": "^6.1.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.29.0",
-    "tailwindcss": "^3.4.13",
+    "tailwindcss": "^3.4.14",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
