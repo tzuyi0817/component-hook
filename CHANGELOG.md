@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/tzuyi0817/component-hook/compare/v0.1.5...v0.1.6) (2024-10-25)
+
+### Features
+
+- **eslint-plugin:** add `eslint-plugin-unicorn` ([d9b4d78](https://github.com/tzuyi0817/component-hook/commit/d9b4d78d65e0a1db8d84fffbab7897fe7ad164d0))
+- **eslint-plugin:** upgrade `eslint-plugin-react-hooks` to v5 ([65c68b8](https://github.com/tzuyi0817/component-hook/commit/65c68b88f060fd12eb03bd8dc9d4e4515f034957))
+
 ## [0.1.5](https://github.com/tzuyi0817/component-hook/compare/v0.1.4...v0.1.5) (2024-10-04)
 
 ### Features

@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/picker",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Picker component with vue3",
   "license": "MIT",
   "packageManager": "pnpm@9.12.1",
