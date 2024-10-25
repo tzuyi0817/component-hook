@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint';
-import { pluginReact, pluginReactHooks, pluginJsxA11y, fixupPluginRules } from '../plugins';
+import { pluginReact, pluginReactHooks, pluginJsxA11y } from '../plugins';
 
 export const reactConfigs: Linter.Config[] = [
   {
@@ -12,14 +12,9 @@ export const reactConfigs: Linter.Config[] = [
     },
   },
   {
+    ...pluginReactHooks.configs.recommended,
     name: 'component-hook/react-hooks',
     files: ['**/*.[jt]s?(x)'],
-    plugins: {
-      'react-hooks': fixupPluginRules({ rules: pluginReactHooks.rules }),
-    },
-    rules: {
-      ...pluginReactHooks.configs.recommended.rules,
-    },
   },
   {
     ...pluginJsxA11y.flatConfigs.recommended,
