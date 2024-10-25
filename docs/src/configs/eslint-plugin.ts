@@ -23,6 +23,10 @@ export const CONFIGS_MAP = {
         url: 'https://github.com/import-js/eslint-plugin-import',
       },
       {
+        name: 'eslint-plugin-unicorn',
+        url: 'https://github.com/sindresorhus/eslint-plugin-unicorn',
+      },
+      {
         name: 'eslint-plugin-regexp',
         url: 'https://github.com/ota-meshi/eslint-plugin-regexp/blob/master/lib/configs/flat/recommended.ts',
       },

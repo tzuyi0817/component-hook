@@ -79,21 +79,21 @@ export default vuePreset;
 
 ## Configs
 
-| Name                    | Type              | Reference                                                                                                                  |
-| ----------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| basic                   | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-eslint-comments`, `eslint-plugin-import`, `eslint-plugin-regexp` |
-| vue                     | `Linter.Config[]` | `eslint-plugin-vue`, `typescript-eslint`                                                                                   |
-| react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`           |
-| markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                       |
-| prettier                | `Linter.Config`   | `eslint-plugin-prettier/recommended`, `eslint-config-prettier`                                                             |
-| sonarjs                 | `Linter.Config[]` | `eslint-plugin-sonarjs/recommended`                                                                                        |
-| security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                       |
-| playwright              | `Linter.Config`   | `eslint-plugin-playwright/flat/recommended`                                                                                |
-| testing-library/dom     | `Linter.Config`   | `eslint-plugin-testing-library/dom`                                                                                        |
-| testing-library/vue     | `Linter.Config`   | `eslint-plugin-testing-library/vue`                                                                                        |
-| testing-library/react   | `Linter.Config`   | `eslint-plugin-testing-library/react`                                                                                      |
-| testing-library/angular | `Linter.Config`   | `eslint-plugin-testing-library/angular`                                                                                    |
-| testing-library/marko   | `Linter.Config`   | `eslint-plugin-testing-library/marko`                                                                                      |
+| Name                    | Type              | Reference                                                                                                                                           |
+| ----------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| basic                   | `Linter.Config[]` | `eslint-recommended`, `typescript-eslint`, `eslint-plugin-eslint-comments`, `eslint-plugin-import`, `eslint-plugin-unicorn`, `eslint-plugin-regexp` |
+| vue                     | `Linter.Config[]` | `eslint-plugin-vue`, `typescript-eslint`                                                                                                            |
+| react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`                                    |
+| markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                                                |
+| prettier                | `Linter.Config`   | `eslint-plugin-prettier/recommended`, `eslint-config-prettier`                                                                                      |
+| sonarjs                 | `Linter.Config[]` | `eslint-plugin-sonarjs/recommended`                                                                                                                 |
+| security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                                                |
+| playwright              | `Linter.Config`   | `eslint-plugin-playwright/flat/recommended`                                                                                                         |
+| testing-library/dom     | `Linter.Config`   | `eslint-plugin-testing-library/dom`                                                                                                                 |
+| testing-library/vue     | `Linter.Config`   | `eslint-plugin-testing-library/vue`                                                                                                                 |
+| testing-library/react   | `Linter.Config`   | `eslint-plugin-testing-library/react`                                                                                                               |
+| testing-library/angular | `Linter.Config`   | `eslint-plugin-testing-library/angular`                                                                                                             |
+| testing-library/marko   | `Linter.Config`   | `eslint-plugin-testing-library/marko`                                                                                                               |
 
 ## Reference eslint plugin
 
@@ -101,6 +101,7 @@ export default vuePreset;
 - [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
 - [eslint-plugin-eslint-comments](https://github.com/eslint-community/eslint-plugin-eslint-comments/blob/main/lib/configs/recommended.js)
 - [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import)
+- [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
 - [eslint-plugin-regexp/flat/recommended](https://github.com/ota-meshi/eslint-plugin-regexp/blob/master/lib/configs/flat/recommended.ts)
 - [eslint-plugin-prettier/recommended](https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js)
 - [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier/blob/main/index.js)
