@@ -24,6 +24,7 @@ export function addAttributes(markdown: markdownit) {
     token.attrSet('target', '_blank');
     token.attrSet('rel', 'noopener noreferrer');
     token.attrSet('class', 'link');
+
     return self.renderToken(tokens, index, options);
   };
 }
