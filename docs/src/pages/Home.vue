@@ -1,63 +1,68 @@
 <script setup lang="ts">
 import ExternalLink from '@/components/ExternalLink.vue';
+import FooterContainer from '@/components/layout/Footer.vue';
 </script>
 
 <template>
-  <div class="py-12 lg:py-20">
-    <section class="flex flex-col gap-3 justify-center items-center text-center mb-12 px-4 lg:mb-14">
-      <h1>Component Hook</h1>
-      <p>A component library that includes a collection of common and useful components</p>
+  <div>
+    <div class="py-12 lg:py-20">
+      <section class="flex flex-col gap-3 justify-center items-center text-center mb-12 px-4 lg:mb-14">
+        <h1>Component Hook</h1>
+        <p>A component library that includes a collection of common and useful components</p>
 
-      <div class="flex gap-2 mt-2">
-        <img
-          src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
-          alt="GitHub Release"
-          width="50"
-        />
-        <external-link href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+        <div class="flex gap-2 mt-2">
           <img
-            src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff"
-            alt="License"
-            width="90"
+            src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
+            alt="GitHub Release"
+            width="50"
           />
-        </external-link>
-      </div>
-    </section>
+          <external-link href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+            <img
+              src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff"
+              alt="License"
+              width="90"
+            />
+          </external-link>
+        </div>
+      </section>
 
-    <section class="flex flex-col gap-10 justify-center items-center">
-      <div class="feature group">
-        <img
-          class="feature-image"
-          src="@/assets/images/component.png"
-          alt="Feature Component Image"
-          width="128"
-        />
-        <h3 class="feature-title">Component</h3>
-        <p class="feature-content">Designed to help developers quickly build applications.</p>
-        <router-link
-          to="component/picker"
-          class="feature-footer"
-        >
-          Get Started
-        </router-link>
-      </div>
-      <div class="feature group">
-        <img
-          class="feature-image"
-          src="@/assets/images/plugin.png"
-          alt="Feature Plugin Image"
-          width="220"
-        />
-        <h3 class="feature-title">ESLint Plugin</h3>
-        <p class="feature-content">Reasonable defaults, best practices, and just a few lines of configuration.</p>
-        <router-link
-          to="/eslint"
-          class="feature-footer"
-        >
-          Get Started
-        </router-link>
-      </div>
-    </section>
+      <section class="flex flex-col gap-10 justify-center items-center lg:flex-row">
+        <div class="feature group">
+          <img
+            class="feature-image"
+            src="@/assets/images/component.png"
+            alt="Feature Component Image"
+            width="128"
+          />
+          <h3 class="feature-title">Component</h3>
+          <p class="feature-content">Designed to help developers quickly build applications.</p>
+          <router-link
+            to="component/picker"
+            class="feature-footer"
+          >
+            Get Started
+          </router-link>
+        </div>
+        <div class="feature group">
+          <img
+            class="feature-image"
+            src="@/assets/images/plugin.png"
+            alt="Feature Plugin Image"
+            width="220"
+          />
+          <h3 class="feature-title">ESLint Plugin</h3>
+          <p class="feature-content">Reasonable defaults, best practices, and just a few lines of configuration.</p>
+          <router-link
+            to="/eslint"
+            class="feature-footer"
+          >
+            Get Started
+          </router-link>
+        </div>
+      </section>
+    </div>
+
+    <footer-container />
   </div>
 </template>
 

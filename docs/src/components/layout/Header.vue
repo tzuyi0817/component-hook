@@ -3,13 +3,15 @@
 <template>
   <header class="w-full top-0 left-0 px-4 border-b border-b-border-color bg-bg-color z-10 lg:px-12 lg:fixed">
     <div class="flex items-center justify-between text-sm">
-      <router-link to="/home">
-        <img
-          class="w-8 mr-2"
-          src="/logo.png"
-          alt="Component Hook Logo"
-        />
-      </router-link>
+      <div class="flex items-center">
+        <router-link to="/home">
+          <img
+            class="w-8 mr-2"
+            src="/logo.png"
+            alt="Component Hook Logo"
+          />
+        </router-link>
+      </div>
 
       <nav class="flex">
         <router-link
