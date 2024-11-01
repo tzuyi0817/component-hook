@@ -10,6 +10,8 @@ module.exports = {
         secondary: 'var(--secondary)',
 
         'text-color': 'var(--text-color)',
+        'text-color-secondary': 'var(--text-color-secondary)',
+
         'bg-color': 'var(--bg-color)',
         'border-color': 'var(--border-color)',
         'code-bg-color': 'var(--code-bg-color)',

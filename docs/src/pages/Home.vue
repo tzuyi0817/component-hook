@@ -7,23 +7,42 @@ import FooterContainer from '@/components/layout/Footer.vue';
 <template>
   <div>
     <div class="py-12 lg:py-20">
-      <section class="flex flex-col gap-3 justify-center items-center text-center mb-12 px-4 lg:mb-14">
-        <h1>Component Hook</h1>
-        <p>A component library that includes a collection of common and useful components</p>
+      <section class="mb-12 lg:mb-20">
+        <div class="flex flex-col-reverse gap-3 mx-auto lg:max-w-[1152px] lg:flex-row">
+          <div class="main lg:max-w-[592px]">
+            <h1>
+              <span class="name">Component Hook</span>
+            </h1>
 
-        <div class="flex gap-2 mt-2">
-          <img
-            src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
-            alt="GitHub Release"
-            width="50"
-          />
-          <external-link href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+            <p class="text-6xl font-bold lg:text-5xl">Component library with Vue or React.</p>
+            <p class="pt-3 text-text-color-secondary font-medium lg:text-2xl">
+              A component library that includes a collection of common and useful components.
+            </p>
+
+            <div class="flex gap-2 pt-8">
+              <img
+                src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
+                alt="GitHub Release"
+                width="50"
+              />
+              <external-link href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+                <img
+                  src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff"
+                  alt="License"
+                  width="90"
+                />
+              </external-link>
+            </div>
+          </div>
+
+          <div class="logo-container">
+            <div class="logo-background"></div>
             <img
-              src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff"
-              alt="License"
-              width="90"
+              src="/logo.png"
+              alt="Logo"
+              class="logo"
             />
-          </external-link>
+          </div>
         </div>
       </section>
 
@@ -49,3 +68,32 @@ import FooterContainer from '@/components/layout/Footer.vue';
     <footer-container />
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.name {
+  @apply bg-clip-text 
+  [-webkit-text-fill-color:transparent]
+  [background-image:linear-gradient(120deg,var(--primary)__30%,var(--secondary))];
+}
+
+.logo {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:max-w-80 lg:max-h-80;
+
+  &-container {
+    @apply flex flex-1 justify-center items-center relative;
+  }
+
+  &-background {
+    @apply absolute
+    w-2/3
+    h-full
+    top-1/2
+    left-1/2
+    rounded-full
+    -translate-x-1/2
+    -translate-y-1/2
+    [background-image:linear-gradient(-45deg,#5f99d3_50%,#80bfff_50%)]
+    lg:blur-3xl;
+  }
+}
+</style>

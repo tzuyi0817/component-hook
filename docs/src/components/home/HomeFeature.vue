@@ -21,7 +21,7 @@ defineProps<Props>();
       :width="imageWidth"
     />
 
-    <h3 class="home-feature-title">{{ title }}</h3>
+    <h4 class="home-feature-title">{{ title }}</h4>
     <p class="home-feature-content">{{ content }}</p>
 
     <router-link
@@ -55,7 +55,7 @@ defineProps<Props>();
     @apply px-6 duration-300 group-hover:text-primary;
   }
   &-content {
-    @apply px-6 pt-4 pb-10 flex-1 text-[rgba(235,235,245,0.6)] duration-300 group-hover:text-text-color;
+    @apply px-6 pt-4 pb-10 flex-1 text-text-color-secondary duration-300 group-hover:text-text-color;
   }
   &-footer {
     @apply w-full
