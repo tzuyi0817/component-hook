@@ -43,7 +43,7 @@ defineProps<Props>();
   rounded 
   text-center 
   w-[500px] 
-  max-w-[90%]
+  max-w-full
   transition-[transform_colors]
   duration-300
   hover:border-primary-light
