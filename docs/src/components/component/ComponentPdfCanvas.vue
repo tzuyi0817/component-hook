@@ -20,7 +20,7 @@ import { md } from '@/utils/highlight';
 
 <template>
   <div>
-    <h1>PDF Canvas</h1>
+    <h2>PDF Canvas</h2>
 
     <p>Rendering PDF documents onto a canvas with vue3 component.</p>
     <p>

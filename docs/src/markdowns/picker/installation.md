@@ -1,4 +1,4 @@
-## Installation
+### Installation
 
 ```bash
 $ npm install @component-hook/picker

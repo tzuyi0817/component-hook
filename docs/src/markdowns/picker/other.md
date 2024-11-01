@@ -1,4 +1,4 @@
-## Options Attribute
+### Options Attribute
 
 ```json
 {
@@ -14,7 +14,7 @@
 }
 ```
 
-## Events
+### Events
 
 | Event   | Description                                  | Type                           |
 | :------ | :------------------------------------------- | :----------------------------- |

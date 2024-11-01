@@ -31,7 +31,7 @@ async function toggleSource() {
 
 <template>
   <div class="demo-wrapper">
-    <h2>{{ title }}</h2>
+    <h3>{{ title }}</h3>
 
     <p class="mb-4">
       <slot name="description"></slot>
