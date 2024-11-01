@@ -1,4 +1,4 @@
-import{D as Q}from"./Demo-B-C-OHuc.js";import{r as S,c as E,w as mt,n as he,d as V,a as D,b,e as C,T as Mt,o as x,f as Yt,v as Xt,g as v,u as m,h as yt,i as gt,t as B,F as R,j as Lt,_ as ue,m as kt,k as tt}from"./index-DTi8cSjE.js";/*!
+import{D as Q}from"./Demo-K4hCqglc.js";import{r as S,c as E,w as mt,n as he,d as V,a as D,b,e as C,T as Mt,o as x,f as Yt,v as Xt,g as v,u as m,h as yt,i as gt,t as B,F as R,j as Lt,_ as ue,m as kt,k as tt}from"./index-BNaKbN7Q.js";/*!
  * better-scroll / core
  * (c) 2016-2023 ustbhuangyi
  * Released under the MIT License.
@@ -167,7 +167,7 @@ function onCancel() {
     {{ currentTime.map(num => \`\${num}\`.padStart(2, '0')).join(':') || 'not selected yet' }}
   </p>
 </template>
-`,xn=`## Installation
+`,xn=`### Installation
 
 \`\`\`bash
 $ npm install @component-hook/picker
@@ -178,7 +178,7 @@ $ yarn add @component-hook/picker
 # or use pnpm
 $ pnpm install @component-hook/picker
 \`\`\`
-`,Bn="## Attributes\n\n| Name                 | Required | Type                  | Description                                                                         | Default               |\n| -------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------- | --------------------- |\n| v-model:isShowPicker | true     | `boolean`             | Control picker show                                                                 | —                     |\n| v-model:anchor       | true     | `number` / `number[]` | Picker current select index (single column for Number、 multiple columns for Array) | —                     |\n| data                 | false    | `array`               | Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]                                     | —                     |\n| type                 | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                          | —                     |\n| showKey              | false    | `string` / `string[]` | Wheel options name (object key)                                                     | —                     |\n| swipeTime            | false    | `number`              | Wheel swipe Time                                                                    | 500                   |\n| options              | false    | `object`              | Custom text, color and class                                                        | See below for details |\n",An=`## Options Attribute
+`,Bn="### Attributes\n\n| Name                 | Required | Type                  | Description                                                                         | Default               |\n| -------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------- | --------------------- |\n| v-model:isShowPicker | true     | `boolean`             | Control picker show                                                                 | —                     |\n| v-model:anchor       | true     | `number` / `number[]` | Picker current select index (single column for Number、 multiple columns for Array) | —                     |\n| data                 | false    | `array`               | Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]                                     | —                     |\n| type                 | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                          | —                     |\n| showKey              | false    | `string` / `string[]` | Wheel options name (object key)                                                     | —                     |\n| swipeTime            | false    | `number`              | Wheel swipe Time                                                                    | 500                   |\n| options              | false    | `object`              | Custom text, color and class                                                        | See below for details |\n",An=`### Options Attribute
 
 \`\`\`json
 {
@@ -194,10 +194,10 @@ $ pnpm install @component-hook/picker
 }
 \`\`\`
 
-## Events
+### Events
 
 | Event   | Description                                  | Type                           |
 | :------ | :------------------------------------------- | :----------------------------- |
 | confirm | Triggered when the confirm button is clicked | \`Function () => selected item\` |
 | cancel  | Triggered when the cancel button is clicked  | \`Function () => void\`          |
-`,_n=["innerHTML"],Mn=["innerHTML"],Yn=["innerHTML"],On=V({__name:"ComponentPicker",setup(n){return(t,e)=>(x(),D("div",null,[e[4]||(e[4]=v("h1",null,"Picker",-1)),e[5]||(e[5]=v("p",null,"Picker component with vue3.",-1)),v("div",{innerHTML:m(kt).render(m(xn))},null,8,_n),b(Q,{title:"Cascade Picker",source:m(gn),playground:"6696355db9ac0e0085f0eb29"},{description:C(()=>e[0]||(e[0]=[tt(" Use cascade data to define picker. ")])),default:C(()=>[b(yn)]),_:1},8,["source"]),b(Q,{title:"Single Picker",source:m(Sn),playground:"668e32b73e8416c068f2f92f"},{description:C(()=>e[1]||(e[1]=[tt(" Use single data to define picker. ")])),default:C(()=>[b(Tn)]),_:1},8,["source"]),b(Q,{title:"Built-in Date Picker",source:m(Pn),playground:"669635e2b9ac0e0085f0eb2e"},{description:C(()=>e[2]||(e[2]=[tt(" Use built-in date picker. ")])),default:C(()=>[b(bn)]),_:1},8,["source"]),b(Q,{title:"Built-in Time Picker",source:m(Dn),playground:"66963635b9ac0e0085f0eb32"},{description:C(()=>e[3]||(e[3]=[tt(" Use built-in time picker. ")])),default:C(()=>[b(En)]),_:1},8,["source"]),v("div",{class:"overflow-x-auto",innerHTML:m(kt).render(m(Bn))},null,8,Mn),v("div",{innerHTML:m(kt).render(m(An))},null,8,Yn)]))}});export{On as default};
+`,_n=["innerHTML"],Mn=["innerHTML"],Yn=["innerHTML"],On=V({__name:"ComponentPicker",setup(n){return(t,e)=>(x(),D("div",null,[e[4]||(e[4]=v("h2",null,"Picker",-1)),e[5]||(e[5]=v("p",null,"Picker component with vue3.",-1)),v("div",{innerHTML:m(kt).render(m(xn))},null,8,_n),b(Q,{title:"Cascade Picker",source:m(gn),playground:"6696355db9ac0e0085f0eb29"},{description:C(()=>e[0]||(e[0]=[tt(" Use cascade data to define picker. ")])),default:C(()=>[b(yn)]),_:1},8,["source"]),b(Q,{title:"Single Picker",source:m(Sn),playground:"668e32b73e8416c068f2f92f"},{description:C(()=>e[1]||(e[1]=[tt(" Use single data to define picker. ")])),default:C(()=>[b(Tn)]),_:1},8,["source"]),b(Q,{title:"Built-in Date Picker",source:m(Pn),playground:"669635e2b9ac0e0085f0eb2e"},{description:C(()=>e[2]||(e[2]=[tt(" Use built-in date picker. ")])),default:C(()=>[b(bn)]),_:1},8,["source"]),b(Q,{title:"Built-in Time Picker",source:m(Dn),playground:"66963635b9ac0e0085f0eb32"},{description:C(()=>e[3]||(e[3]=[tt(" Use built-in time picker. ")])),default:C(()=>[b(En)]),_:1},8,["source"]),v("div",{class:"overflow-x-auto",innerHTML:m(kt).render(m(Bn))},null,8,Mn),v("div",{innerHTML:m(kt).render(m(An))},null,8,Yn)]))}});export{On as default};
