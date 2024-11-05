@@ -19,7 +19,7 @@ function toggleHamburger() {
 
 <style lang="postcss" scoped>
 .menu-hamburger {
-  @apply w-5 flex flex-col justify-center lg:hidden;
+  @apply w-5 flex flex-col justify-center h-[var(--header-height)] lg:hidden;
 
   span {
     @apply bg-text-color rounded-[10px] h-0.5 w-full my-0.5 transition-[transform_width] duration-300;
