@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineEmits(['closeFullNavbar']);
+</script>
 
 <template>
-  <nav>
+  <nav @click="$emit('closeFullNavbar')">
     <router-link
       to="/component"
       class="link-item"
@@ -21,10 +23,16 @@
 
 <style lang="postcss" scoped>
 .link-item {
-  @apply transition-colors hover:text-primary p-4 border-b-2 border-transparent;
+  @apply transition-colors 
+  hover:text-primary 
+  p-4 
+  border-b
+  border-border-color 
+  lg:border-b-2
+  lg:border-transparent;
 
   &.active {
-    @apply border-primary;
+    @apply text-primary lg:border-primary lg:text-text-color;
   }
 }
 </style>

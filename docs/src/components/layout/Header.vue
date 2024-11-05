@@ -20,7 +20,7 @@ const { lock, cleanup } = useLockScreen();
       </router-link>
 
       <transition
-        name="fade"
+        name="bounce"
         @enter="lock"
         @after-leave="cleanup"
       >
@@ -28,7 +28,10 @@ const { lock, cleanup } = useLockScreen();
           v-if="isShowFullNavbar"
           class="navbar-full-screen"
         >
-          <navbar class="flex flex-col" />
+          <navbar
+            class="flex flex-col"
+            @close-full-navbar="isShowFullNavbar = false"
+          />
         </div>
       </transition>
 
@@ -55,6 +58,26 @@ const { lock, cleanup } = useLockScreen();
 }
 
 .navbar-full-screen {
-  @apply absolute left-0 bg-bg-color w-full h-dvh top-[var(--header-height)] z-[15] px-8;
+  @apply absolute left-0 bg-bg-color w-full h-dvh top-[var(--header-height)] z-[15] px-8 py-6;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
