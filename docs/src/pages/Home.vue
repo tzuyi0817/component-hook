@@ -25,7 +25,10 @@ import FooterContainer from '@/components/layout/Footer.vue';
                 alt="GitHub Release"
                 width="50"
               />
-              <external-link href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
+              <external-link
+                href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE"
+                title="Component Hook License"
+              >
                 <img
                   src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff"
                   alt="License"

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 interface Props {
   href: string;
+  title: string;
 }
 
 defineProps<Props>();
@@ -9,6 +10,7 @@ defineProps<Props>();
 <template>
   <a
     :href="href"
+    :title="title"
     target="_blank"
     rel="noopener noreferrer"
     class="link"

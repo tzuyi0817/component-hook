@@ -25,7 +25,8 @@ defineEmits(['closeFullNavbar']);
 .link-item {
   @apply transition-colors 
   hover:text-primary 
-  p-4 
+  px-3
+  py-4 
   border-b
   border-border-color 
   lg:border-b-2

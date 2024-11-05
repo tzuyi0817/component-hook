@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Hamburger from '../Hamburger.vue';
+import SocialLink from '../SocialLink.vue';
 import Navbar from './Navbar.vue';
 import { useLockScreen } from '@/hooks/use-lock-screen';
 
@@ -35,8 +36,16 @@ const { lock, cleanup } = useLockScreen();
         </div>
       </transition>
 
-      <navbar class="hidden lg:flex" />
-      <hamburger v-model="isShowFullNavbar" />
+      <div class="flex items-center gap-3">
+        <navbar class="hidden lg:flex" />
+
+        <social-link
+          href="https://github.com/tzuyi0817/component-hook"
+          title="GitHub"
+          icon="github"
+        />
+        <hamburger v-model="isShowFullNavbar" />
+      </div>
     </div>
   </header>
 </template>

@@ -25,7 +25,12 @@ import { md } from '@/utils/highlight';
     <p>Rendering PDF documents onto a canvas with vue3 component.</p>
     <p>
       Implementation repository:
-      <external-link href="https://github.com/tzuyi0817/PDF-signature"> PDF-signature </external-link>
+      <external-link
+        href="https://github.com/tzuyi0817/PDF-signature"
+        title="PDF-signature GitHub Page"
+      >
+        PDF-signature
+      </external-link>
     </p>
 
     <div v-html="md.render(installationMd)"></div>

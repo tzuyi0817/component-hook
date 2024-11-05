@@ -32,7 +32,12 @@ function encode(source: string, filetype: string) {
     />
     <p class="font-mono text-xs my-4">
       See
-      <external-link :href="`${BASE_URL}/configs/ignores.ts`"> ignores </external-link>
+      <external-link
+        :href="`${BASE_URL}/configs/ignores.ts`"
+        title="ESLint Plugin Ignores GitHub Page"
+      >
+        ignores
+      </external-link>
       for more details.
     </p>
 
@@ -56,7 +61,10 @@ function encode(source: string, filetype: string) {
         v-for="(config, name) in CONFIGS_MAP"
         :key="name"
       >
-        <external-link :href="config.url">
+        <external-link
+          :href="config.url"
+          :title="`ESLint Plugin ${name} GitHub Page`"
+        >
           {{ name }}
         </external-link>
         <ul>
@@ -64,7 +72,10 @@ function encode(source: string, filetype: string) {
             v-for="plugin of config.plugins"
             :key="plugin.name"
           >
-            <external-link :href="plugin.url">
+            <external-link
+              :href="plugin.url"
+              :title="`${plugin.name} GitHub Page`"
+            >
               {{ plugin.name }}
             </external-link>
           </li>
