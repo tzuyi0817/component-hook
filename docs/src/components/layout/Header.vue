@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Hamburger from '../Hamburger.vue';
+import ThemeSwitcher from '../ThemeSwitcher.vue';
 import SocialLink from '../SocialLink.vue';
 import Navbar from './Navbar.vue';
 import { useLockScreen } from '@/hooks/use-lock-screen';
 
 const isShowFullNavbar = ref(false);
+const isDarkTheme = ref(false);
 const { lock, cleanup } = useLockScreen();
 </script>
 
@@ -36,10 +38,16 @@ const { lock, cleanup } = useLockScreen();
         </div>
       </transition>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center">
         <navbar class="hidden lg:flex" />
 
+        <theme-switcher
+          v-model="isDarkTheme"
+          class="px-3"
+        />
+
         <social-link
+          class="px-3"
           href="https://github.com/tzuyi0817/component-hook"
           title="GitHub"
           icon="github"

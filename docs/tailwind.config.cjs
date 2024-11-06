@@ -16,6 +16,7 @@ module.exports = {
         'border-color': 'var(--border-color)',
         'code-bg-color': 'var(--code-bg-color)',
         'icon-hover-color': 'var(--icon-hover-color)',
+        'switch-bg-color': 'var(--switch-bg-color)',
       },
       backgroundImage: {},
       animation: {},
