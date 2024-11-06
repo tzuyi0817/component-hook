@@ -7,7 +7,6 @@ import Navbar from './Navbar.vue';
 import { useLockScreen } from '@/hooks/use-lock-screen';
 
 const isShowFullNavbar = ref(false);
-const isDarkTheme = ref(false);
 const { lock, cleanup } = useLockScreen();
 </script>
 
@@ -41,10 +40,7 @@ const { lock, cleanup } = useLockScreen();
       <div class="flex items-center">
         <navbar class="hidden lg:flex" />
 
-        <theme-switcher
-          v-model="isDarkTheme"
-          class="px-3"
-        />
+        <theme-switcher class="px-3" />
 
         <social-link
           class="px-3"

@@ -1,18 +1,25 @@
 <script setup lang="ts">
+import { watchEffect } from 'vue';
+import prismVs from 'prism-themes/themes/prism-vs.css?url';
+import prismVscDark from 'prism-themes/themes/prism-vsc-dark-plus.css?url';
 import SvgIcon from './SvgIcon.vue';
+import { useMediaQuery } from '@/hooks/use-media-query';
 
-interface Props {
-  disabled?: boolean;
-}
-
-withDefaults(defineProps<Props>(), {
-  disabled: false,
-});
-const checked = defineModel<boolean>({ required: true });
+const isDarkTheme = useMediaQuery('(prefers-color-scheme: dark)');
 
 function handleChange(event: Event) {
-  checked.value = (event.target as HTMLInputElement).checked;
+  isDarkTheme.value = (event.target as HTMLInputElement).checked;
 }
+
+watchEffect(() => {
+  const themeStylesheet = document.querySelector('#dynamic-theme');
+
+  document.documentElement.classList.toggle('dark-scheme', isDarkTheme.value);
+
+  if (!themeStylesheet || !(themeStylesheet instanceof HTMLLinkElement)) return;
+
+  themeStylesheet.href = isDarkTheme.value ? prismVscDark : prismVs;
+});
 </script>
 
 <template>
@@ -22,17 +29,15 @@ function handleChange(event: Event) {
         type="checkbox"
         class="theme-input absolute w-0 h-0 opacity-0"
         role="switch"
-        :checked="checked"
-        :aria-checked="checked"
-        :aria-disabled="disabled"
+        :checked="isDarkTheme"
+        :aria-checked="isDarkTheme"
+        :aria-disabled="isDarkTheme"
         aria-label="switch between dark and light themes"
-        :disabled="disabled"
-        tabindex="1"
         @change="handleChange"
       />
-      <span :class="['theme-slider', { 'translate-x-5': checked }]">
+      <span :class="['theme-slider', { 'translate-x-5': isDarkTheme }]">
         <svg-icon
-          :name="checked ? 'dark' : 'light'"
+          :name="isDarkTheme ? 'dark' : 'light'"
           class="w-3.5 h-3.5 text-text-color"
         />
       </span>
