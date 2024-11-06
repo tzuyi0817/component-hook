@@ -8,7 +8,7 @@ import FooterContainer from '@/components/layout/Footer.vue';
   <div>
     <div class="py-12 px-6 lg:py-20">
       <section class="mb-12 lg:mb-20">
-        <div class="flex flex-col-reverse gap-3 mx-auto lg:max-w-[1152px] lg:flex-row">
+        <div class="flex flex-col-reverse gap-3 mx-auto items-center lg:max-w-[1152px] lg:flex-row">
           <div class="main text-center lg:text-left lg:max-w-[592px]">
             <h1>
               <span class="name">Component Hook</span>
@@ -49,7 +49,7 @@ import FooterContainer from '@/components/layout/Footer.vue';
         </div>
       </section>
 
-      <section class="flex flex-col gap-10 justify-center items-center lg:flex-row">
+      <section class="flex flex-col gap-10 justify-center items-center lg:flex-row lg:items-stretch">
         <home-feature
           title="Component"
           content="Designed to help developers quickly build applications."

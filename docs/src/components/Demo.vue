@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import SourceCode from '@/components/SourceCode.vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import CopySource from '@/components/CopySource.vue';
+import ExternalLink from '@/components/ExternalLink.vue';
 import { highlight } from '@/utils/highlight';
 import { sleep } from '@/utils/common';
 
@@ -43,13 +44,12 @@ async function toggleSource() {
       </div>
 
       <div class="px-4 py-3 flex justify-end items-center gap-3">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
+        <external-link
           :href="`https://code-immediate.vercel.app/${playground}`"
+          title="Open in Playground"
         >
           <svg-icon name="playground" />
-        </a>
+        </external-link>
 
         <copy-source :source="source" />
 

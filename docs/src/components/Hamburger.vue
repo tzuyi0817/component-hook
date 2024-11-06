@@ -9,6 +9,9 @@ function toggleHamburger() {
 <template>
   <button
     :class="['plain menu-hamburger', { active: isActive }]"
+    aria-label="mobile navigation"
+    :aria-expanded="isActive"
+    aria-controls="navbar-full-screen"
     @click="toggleHamburger"
   >
     <span class="hamburger-1"></span>
