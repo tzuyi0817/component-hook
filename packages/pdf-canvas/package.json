@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "fabric": "^6.4.3",
-    "pdfjs-dist": "^4.7.76"
+    "pdfjs-dist": "^4.8.69"
   },
   "peerDependencies": {
     "vue": "^3.4.29"
