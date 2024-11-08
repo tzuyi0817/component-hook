@@ -55,8 +55,8 @@
     "eslint-plugin-testing-library": "^6.4.0",
     "eslint-plugin-unicorn": "^56.0.0",
     "eslint-plugin-vue": "^9.30.0",
-    "globals": "^15.11.0",
-    "typescript-eslint": "^8.12.2",
+    "globals": "^15.12.0",
+    "typescript-eslint": "^8.13.0",
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
