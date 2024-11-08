@@ -28,10 +28,7 @@ function onLeaveCode() {
     <copy-source
       :source="decodeURIComponent(raw)"
       is-absolute
-      :class="[
-        'bg-bg-color p-0.5 rounded transition-opacity duration-300 top-3 right-3 z-10 lg:top-4 lg:right-4',
-        { 'pointer-events-none opacity-0': !isShowCopyIcon },
-      ]"
+      :class="['copy-source', { 'pointer-events-none opacity-0': !isShowCopyIcon }]"
     />
 
     <div
@@ -40,3 +37,18 @@ function onLeaveCode() {
     ></div>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.copy-source {
+  @apply bg-code-bg-color 
+  p-0.5 
+  rounded 
+  transition-opacity 
+  duration-300 
+  top-3 
+  right-3 
+  z-10 
+  lg:top-4 
+  lg:right-4;
+}
+</style>

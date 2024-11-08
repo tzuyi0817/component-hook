@@ -63,7 +63,7 @@ async function toggleSource() {
     <div>
       <div
         v-show="isDisplaySource"
-        :class="['example-source-wrapper h-0', isShowSource ? 'scale-y-100 h-full' : 'scale-y-0']"
+        :class="['example-source-wrapper h-0', isShowSource ? 'scale-y-100 h-full' : 'scale-y-0 opacity-0']"
         @transitionend="isDisplaySource = isShowSource"
       >
         <source-code

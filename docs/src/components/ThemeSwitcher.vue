@@ -3,9 +3,9 @@ import { watchEffect, useTemplateRef, nextTick } from 'vue';
 import prismVs from 'prism-themes/themes/prism-vs.css?url';
 import prismVscDark from 'prism-themes/themes/prism-vsc-dark-plus.css?url';
 import SvgIcon from './SvgIcon.vue';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { usePrefersTheme } from '@/hooks/use-prefers-theme';
 
-const isDarkTheme = useMediaQuery('(prefers-color-scheme: dark)');
+const isDarkTheme = usePrefersTheme('dark');
 const themeSwitcherRef = useTemplateRef<HTMLLinkElement>('theme-switcher');
 
 async function handleChange(event: Event) {

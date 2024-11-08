@@ -34,13 +34,18 @@ const { lock, cleanup } = useLockScreen();
             class="flex flex-col"
             @close-full-navbar="isShowFullNavbar = false"
           />
+
+          <div class="bg-code-bg-color rounded-lg p-3 mt-4 flex justify-between">
+            <p>Color Theme</p>
+            <theme-switcher class="px-3" />
+          </div>
         </div>
       </transition>
 
       <div class="flex items-center">
         <navbar class="hidden lg:flex" />
 
-        <theme-switcher class="px-3" />
+        <theme-switcher class="px-3 hidden lg:flex" />
 
         <social-link
           class="px-3"
