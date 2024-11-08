@@ -1,14 +1,54 @@
 <script setup lang="ts">
-import { watchEffect } from 'vue';
+import { watchEffect, useTemplateRef, nextTick } from 'vue';
 import prismVs from 'prism-themes/themes/prism-vs.css?url';
 import prismVscDark from 'prism-themes/themes/prism-vsc-dark-plus.css?url';
 import SvgIcon from './SvgIcon.vue';
 import { useMediaQuery } from '@/hooks/use-media-query';
 
 const isDarkTheme = useMediaQuery('(prefers-color-scheme: dark)');
+const themeSwitcherRef = useTemplateRef<HTMLLinkElement>('theme-switcher');
 
-function handleChange(event: Event) {
-  isDarkTheme.value = (event.target as HTMLInputElement).checked;
+async function handleChange(event: Event) {
+  const isDark = (event.target as HTMLInputElement).checked;
+
+  await beforeChange();
+
+  isDarkTheme.value = isDark;
+}
+
+function beforeChange() {
+  return new Promise(resolve => {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (isReducedMotion || !themeSwitcherRef.value) {
+      resolve(true);
+      return;
+    }
+    const rect = themeSwitcherRef.value.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const distalRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+    const transition = document.startViewTransition(async () => {
+      resolve(true);
+      await nextTick();
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [`circle(${distalRadius}px at ${x}px ${y}px)`, `circle(0px at ${x}px ${y}px)`];
+
+      document.documentElement.animate(
+        {
+          clipPath: isDarkTheme.value ? clipPath : [...clipPath].reverse(),
+        },
+        {
+          duration: 300,
+          easing: 'ease-in',
+          pseudoElement: isDarkTheme.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
+        },
+      );
+    });
+  });
 }
 
 watchEffect(() => {
@@ -23,7 +63,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="theme-switcher">
+  <div
+    ref="theme-switcher"
+    class="theme-switcher"
+  >
     <label class="theme-switch">
       <input
         type="checkbox"

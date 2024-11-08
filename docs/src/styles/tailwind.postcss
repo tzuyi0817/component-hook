@@ -36,6 +36,20 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2147483646;
+  }
+
   .dark-scheme {
     --bg-color: #141414;
     --border-color: #4c4d4f;
@@ -48,6 +62,14 @@
     --text-color-secondary: rgba(235, 235, 245, 0.6);
     --scrollbar-thumb-color: rgb(255 255 255 / 0.2);
     --scrollbar-thumb-hovercolor: rgb(255 255 255 / 0.4);
+
+    &::view-transition-old(root) {
+      z-index: 2147483646;
+    }
+
+    &::view-transition-new(root) {
+      z-index: 1;
+    }
   }
 
   body {
