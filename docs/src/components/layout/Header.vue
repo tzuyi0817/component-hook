@@ -5,20 +5,30 @@ import ThemeSwitcher from '../ThemeSwitcher.vue';
 import SocialLink from '../SocialLink.vue';
 import Navbar from './Navbar.vue';
 import { useLockScreen } from '@/hooks/use-lock-screen';
+import { useResize } from '@/hooks/use-resize';
 
 const isShowFullNavbar = ref(false);
 const { lock, cleanup } = useLockScreen();
+
+useResize(isShowFullNavbar, () => {
+  isShowFullNavbar.value = false;
+});
 </script>
 
 <template>
   <header class="header">
     <div class="flex items-center justify-between text-sm">
-      <router-link to="/home">
+      <router-link
+        to="/home"
+        class="flex items-center"
+      >
         <img
           class="w-8 mr-2 drop-shadow"
           src="/logo.png"
           alt="Component Hook Logo"
         />
+
+        <span class="text-base font-medium">Component Hook</span>
       </router-link>
 
       <transition

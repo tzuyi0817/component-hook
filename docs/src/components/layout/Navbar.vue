@@ -24,7 +24,7 @@ defineEmits(['closeFullNavbar']);
 <style lang="postcss" scoped>
 .link-item {
   @apply transition-colors 
-  hover:text-primary 
+  hover:text-primary
   px-3
   py-4 
   border-b
