@@ -38,7 +38,9 @@
     "better-scroll"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "vite build:vue && vite build:react",
+    "build:vue": "FRAMEWORK=vue vite build",
+    "build:react": "FRAMEWORK=react vite build",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
@@ -46,7 +48,8 @@
     "@better-scroll/wheel": "^2.5.1"
   },
   "peerDependencies": {
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "react": "^18.3.1"
   },
   "devDependencies": {
     "vite-plugin-dts": "^4.3.0"

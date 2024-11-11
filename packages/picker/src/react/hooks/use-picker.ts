@@ -1,30 +1,33 @@
-import { watch, ref, nextTick, computed } from 'vue';
+import { useState, useRef, useMemo, useEffect } from 'react';
 import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
-import { isArray } from '../utils/check-type';
-import { isHaveValue } from '../utils/common';
-import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from '../types/picker';
+import { isArray } from '@shared/utils/check-type';
+import { isHaveValue } from '@shared/utils/common';
+import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from '@shared/types/picker';
 import { useDate } from './use-date';
 import { useTime } from './use-time';
 
 BScroll.use(Wheel);
 
 export function usePicker(props: PickerProps, emit: PickerEmit) {
-  const pickerData = ref<OriginData[]>([]);
-  const wheelWrapper = ref<HTMLElement | undefined>();
-  const wheels = ref<BScroll[]>([]);
-  const isDate = computed(() => props.type === 'date');
-  const isTime = computed(() => props.type === 'time');
+  const [pickerData, setPickerData] = useState<OriginData[]>([]);
+  const [wheels, setWheels] = useState<BScroll[]>([]);
+  const wheelWrapper = useRef<HTMLElement | undefined>();
+
   const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate();
   const { timeList, updateDefaultTime, getTimeAnchors } = useTime();
-  const pickerAnchors = computed(() => {
-    if (isDate.value) return getDateAnchors!(props.anchor);
-    if (isTime.value) return getTimeAnchors!(props.anchor);
+
+  const isDate = useMemo(() => props.type === 'date', [props.type]);
+  const isTime = useMemo(() => props.type === 'time', [props.type]);
+
+  const pickerAnchors = useMemo(() => {
+    if (isDate) return getDateAnchors!(props.anchor);
+    if (isTime) return getTimeAnchors!(props.anchor);
 
     return isArray(props.anchor) ? props.anchor : [props.anchor];
-  });
+  }, [isDate, isTime, props.anchor]);
 
-  async function setPickerData(isUpdate = false) {
+  async function setupPickerData(isUpdate = false) {
     if (isUpdate) {
       updatePickerData();
     } else {
@@ -124,17 +127,17 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
   }
 
   function stopWheels() {
-    wheels.value.forEach(wheel => wheel.stop());
+    wheels.forEach(wheel => wheel.stop());
   }
 
   function getSelectedItem() {
-    const { item, anchor } = wheels.value.reduce(
+    const { item, anchor } = wheels.reduce(
       (result, wheel, index) => {
         const position = wheel.getSelectedIndex();
-        const data = pickerData.value[index][position];
+        const data = pickerData[index][position];
 
-        result.item.push(isTime.value ? +data : data);
-        result.anchor.push(isDate.value ? data : position);
+        result.item.push(isTime ? +data : data);
+        result.anchor.push(isDate ? data : position);
         return result;
       },
       { item: [], anchor: [] } as PickerSelectItems,
@@ -143,24 +146,19 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
     return item.length > 1 ? { item, anchor } : { item: item[0], anchor: anchor[0] };
   }
 
-  watch(
-    () => props.data,
-    () => setPickerData(true),
-    { immediate: true },
-  );
+  useEffect(() => {
+    setupPickerData(true);
+  }, [props.data]);
 
-  watch(
-    () => props.isShowPicker,
-    (isShow: boolean) => isShow && setPickerData(),
-  );
+  useEffect(() => {
+    if (!props.isShowPicker) return;
+    setupPickerData();
+  }, [props.isShowPicker]);
 
-  watch(
-    () => props.type,
-    () => {
-      updateSelect();
-      setPickerData(true);
-    },
-  );
+  useEffect(() => {
+    updateSelect();
+    setupPickerData(true);
+  }, [props.type]);
 
   return {
     pickerData,

@@ -1,6 +1,6 @@
 import { ref } from 'vue';
-import { isHaveValue } from '../utils/common';
-import type { PickerProps } from '../types/picker';
+import { isHaveValue, generateTime } from '@shared/utils/common';
+import type { PickerProps } from '@shared/types/picker';
 
 export function useTime() {
   const hours = generateTime(0, 23);
@@ -29,12 +29,4 @@ export function useTime() {
     updateDefaultTime,
     getTimeAnchors,
   };
-}
-
-function generateTime(start: number, end: number) {
-  const result: Array<string> = [];
-  for (let index = start; index <= end; index++) {
-    result.push(`${index}`.padStart(2, '0'));
-  }
-  return result;
 }

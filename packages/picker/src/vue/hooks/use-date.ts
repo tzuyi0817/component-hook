@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
-import { isHaveValue } from '../utils/common';
-import type { PickerProps } from '../types/picker';
+import { isHaveValue, generateList, isLeapYear } from '@shared/utils/common';
+import type { PickerProps } from '@shared/types/picker';
 
 export function useDate() {
   const START_YEAR = 1900;
@@ -56,16 +56,4 @@ export function useDate() {
     updateDateSelect,
     getDateAnchors,
   };
-}
-
-function isLeapYear(year: number) {
-  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
-}
-
-function generateList(start: number, end: number) {
-  const result: Array<number> = [];
-  for (let index = start; index <= end; index++) {
-    result.push(index);
-  }
-  return result;
 }
