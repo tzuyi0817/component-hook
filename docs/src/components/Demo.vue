@@ -4,8 +4,8 @@ import SourceCode from '@/components/SourceCode.vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import CopySource from '@/components/CopySource.vue';
 import ExternalLink from '@/components/ExternalLink.vue';
+import Collapse from '@/components/layout/Collapse.vue';
 import { highlight } from '@/utils/highlight';
-import { sleep } from '@/utils/common';
 
 interface Props {
   title: string;
@@ -15,7 +15,6 @@ interface Props {
 
 defineProps<Props>();
 const isShowSource = ref(false);
-const isDisplaySource = ref(false);
 
 function encode(source: string, isHighlight = true) {
   const code = isHighlight ? highlight(source) : source;
@@ -24,8 +23,6 @@ function encode(source: string, isHighlight = true) {
 }
 
 async function toggleSource() {
-  isDisplaySource.value = true;
-  await sleep(150);
   isShowSource.value = !isShowSource.value;
 }
 </script>
@@ -60,21 +57,20 @@ async function toggleSource() {
       </div>
     </div>
 
-    <div>
-      <div
-        v-show="isDisplaySource"
-        :class="['example-source-wrapper h-0', isShowSource ? 'scale-y-100 h-full' : 'scale-y-0 opacity-0']"
-        @transitionend="isDisplaySource = isShowSource"
-      >
-        <source-code
-          :source="encode(source)"
-          :raw="encodeURIComponent(source)"
-        />
-      </div>
+    <div class="example-source">
+      <collapse :is-show="isShowSource">
+        <div class="example-source-wrapper">
+          <source-code
+            :source="encode(source)"
+            :raw="encodeURIComponent(source)"
+          />
+        </div>
+      </collapse>
 
       <div
-        v-show="isShowSource"
-        :class="['example-source-collapse', isShowSource ? 'opacity-100' : 'opacity-0']"
+        :class="['example-source-collapse', isShowSource ? 'py-3 transition-opacity' : 'transition-none opacity-0 h-0']"
+        role="button"
+        tabindex="0"
         @click="toggleSource"
       >
         Collapse source
@@ -86,23 +82,21 @@ async function toggleSource() {
 <style lang="postcss" scoped>
 .example-source {
   &-wrapper {
-    @apply transition-all
-    origin-top
-    border-x
-    border-border-color;
+    @apply border-x border-border-color;
   }
+
   &-collapse {
     @apply text-center
     border
     border-border-color
     rounded-b
+    duration-300
+    px-3
     text-sm
-    transition-opacity
     cursor-pointer
     sticky
     bottom-0
     bg-bg-color
-    p-3
     hover:text-primary;
   }
 }

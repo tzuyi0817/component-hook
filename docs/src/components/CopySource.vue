@@ -13,8 +13,10 @@ const isCopied = ref(false);
 
 async function copySource() {
   if (isCopied.value) return;
+
   navigator.clipboard.writeText(props.source);
   isCopied.value = true;
+
   await sleep(1500);
   isCopied.value = false;
 }
