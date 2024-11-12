@@ -1,19 +1,21 @@
 {
   "name": "@component-hook/picker",
-  "version": "0.1.6",
+  "version": "0.1.7-alpha.0",
   "description": "Picker component with vue3",
   "license": "MIT",
   "packageManager": "pnpm@9.12.3",
   "type": "module",
   "author": "Tzuyi",
-  "main": "./dist/picker.umd.js",
-  "module": "./dist/picker.es.js",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/picker.es.js",
-      "require": "./dist/picker.umd.js",
-      "types": "./dist/index.d.ts"
+    "./vue": {
+      "import": "./dist/vue/picker.es.js",
+      "require": "./dist/vue/picker.umd.js",
+      "types": "./dist/vue/picker.es.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react/picker.es.js",
+      "require": "./dist/react/picker.umd.js",
+      "types": "./dist/react/picker.es.d.ts"
     }
   },
   "files": [
@@ -38,7 +40,7 @@
     "better-scroll"
   ],
   "scripts": {
-    "build": "vite build:vue && vite build:react",
+    "build": "pnpm build:vue && pnpm build:react",
     "build:vue": "FRAMEWORK=vue vite build",
     "build:react": "FRAMEWORK=react vite build",
     "typecheck": "vue-tsc --noEmit"

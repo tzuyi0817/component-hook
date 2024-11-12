@@ -1,8 +1,9 @@
-import { useMemo, isValidElement } from 'react';
+import { useMemo } from 'react';
 import { usePicker } from '../hooks/use-picker';
-import { isObject, isArray } from '@shared/utils/check-type';
-import type { PickerComponentProps } from '@shared/types/picker';
-import type { PickerEmit } from '@shared/types/react-picker';
+import { isObject, isArray, isString, isNumber } from '../../shared/utils/check-type';
+import '../../shared/index.scss';
+import type { PickerComponentProps } from '../../shared/types/picker';
+import type { PickerEmit } from '../../shared/types/react-picker';
 
 function Picker({
   data = [],
@@ -100,7 +101,7 @@ function Picker({
                     {wheel.map((item, index) => {
                       const value = showKeys[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]] : item;
 
-                      if (!value || !isValidElement(value)) return null;
+                      if (!isString(value) && !isNumber(value)) return null;
 
                       return (
                         <li

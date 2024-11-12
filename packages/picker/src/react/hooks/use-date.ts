@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import { isHaveValue, generateList, isLeapYear } from '@shared/utils/common';
-import type { PickerProps } from '@shared/types/picker';
+import { isHaveValue, generateList, isLeapYear } from '../../shared/utils/common';
+import type { PickerProps } from '../../shared/types/picker';
 
 export function useDate() {
   const START_YEAR = 1900;

@@ -1,12 +1,13 @@
 export type NormalData = Record<PropertyKey, unknown> | string | number;
 export type OriginData = Array<NormalData>;
-export type PickData = OriginData | Array<OriginData>;
+export type PickerData = OriginData | Array<OriginData>;
 export type PickerBuiltIn = 'date' | 'time' | '';
+export type PickerAnchor = number | Array<number>;
 
 export interface PickerProps {
-  data: PickData;
+  data: PickerData;
   isShowPicker: boolean;
-  anchor: number | Array<number>;
+  anchor: PickerAnchor;
   options?: Partial<PickerOptions>;
   showKey?: string | Array<string>;
   swipeTime?: number;
@@ -31,10 +32,10 @@ export interface PickerSelectItems {
 }
 
 export interface PickerComponentProps {
-  data?: PickData;
+  data?: PickerData;
   isShowPicker: boolean;
   options?: Partial<PickerOptions>;
-  anchor: number | Array<number>;
+  anchor: PickerAnchor;
   showKey?: string | Array<string>;
   swipeTime?: number;
   type?: PickerBuiltIn;

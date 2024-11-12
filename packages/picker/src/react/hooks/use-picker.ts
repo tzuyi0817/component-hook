@@ -1,10 +1,10 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
 import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
-import { isArray } from '@shared/utils/check-type';
-import { isHaveValue } from '@shared/utils/common';
-import type { PickerProps, OriginData, PickerSelectItems } from '@shared/types/picker';
-import type { PickerEmit } from '@shared/types/react-picker';
+import { isArray } from '../../shared/utils/check-type';
+import { isHaveValue } from '../../shared/utils/common';
+import type { PickerProps, OriginData, PickerSelectItems } from '../../shared/types/picker';
+import type { PickerEmit } from '../../shared/types/react-picker';
 import { useDate } from './use-date';
 import { useTime } from './use-time';
 
@@ -38,17 +38,26 @@ export function usePicker({
     return isArray(anchor) ? anchor : [anchor];
   }, [isDate, isTime, anchor]);
 
-  function setupPickerData(isUpdate = false) {
-    if (isUpdate) {
-      updatePickerData();
-    } else {
-      updateSelect();
-    }
+  useEffect(() => {
+    updatePickerData();
+  }, [data]);
 
+  useEffect(() => {
+    if (!isShowPicker) return;
+
+    updateSelect();
+  }, [isShowPicker]);
+
+  useEffect(() => {
+    updateSelect();
+    updatePickerData();
+  }, [type]);
+
+  useEffect(() => {
     pickerData.forEach((_, index) => createWheel(index));
-    if (!isUpdate) scrollToAnchor();
+    scrollToAnchor();
     checkWheels();
-  }
+  }, [pickerData]);
 
   function updatePickerData() {
     const builtIn = {
@@ -104,7 +113,7 @@ export function usePicker({
     if (index === 0) setSelectYear(value);
     if (index === 1) setSelectMonth(value);
 
-    setupPickerData(true);
+    updatePickerData();
   }
 
   function scrollToAnchor() {
@@ -126,7 +135,7 @@ export function usePicker({
   }
 
   function cancel() {
-    onCancel();
+    onCancel?.();
     closePicker();
   }
 
@@ -136,7 +145,7 @@ export function usePicker({
     if (isInTransition) stopWheels();
     const { item, anchor } = getSelectedItem();
 
-    onConfirm(item);
+    onConfirm?.(item);
     setAnchor(anchor);
     closePicker();
   }
@@ -164,21 +173,6 @@ export function usePicker({
 
     return item.length > 1 ? { item, anchor } : { item: item[0], anchor: anchor[0] };
   }
-
-  useEffect(() => {
-    setupPickerData(true);
-  }, [data]);
-
-  useEffect(() => {
-    if (!isShowPicker) return;
-
-    setupPickerData();
-  }, [isShowPicker]);
-
-  useEffect(() => {
-    updateSelect();
-    setupPickerData(true);
-  }, [type]);
 
   return {
     pickerData,

@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import SinglePicker from '@/components/single-picker';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
+  return (
+    <>
+      <SinglePicker />
+    </>
+  );
 }
 
 export default App;

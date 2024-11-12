@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import Picker from '@component-hook/picker';
+import Picker from '@component-hook/picker/vue';
 
 interface LangType {
   langType?: number;

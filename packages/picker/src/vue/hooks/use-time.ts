@@ -1,6 +1,6 @@
 import { ref } from 'vue';
-import { isHaveValue, generateTime } from '@shared/utils/common';
-import type { PickerProps } from '@shared/types/picker';
+import { isHaveValue, generateTime } from '../../shared/utils/common';
+import type { PickerProps } from '../../shared/types/picker';
 
 export function useTime() {
   const hours = generateTime(0, 23);
