@@ -3,67 +3,78 @@ import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
 import { isArray } from '@shared/utils/check-type';
 import { isHaveValue } from '@shared/utils/common';
-import type { PickerEmit, PickerProps, OriginData, PickerSelectItems } from '@shared/types/picker';
+import type { PickerProps, OriginData, PickerSelectItems } from '@shared/types/picker';
+import type { PickerEmit } from '@shared/types/react-picker';
 import { useDate } from './use-date';
 import { useTime } from './use-time';
 
 BScroll.use(Wheel);
 
-export function usePicker(props: PickerProps, emit: PickerEmit) {
+export function usePicker({
+  data,
+  isShowPicker,
+  anchor,
+  swipeTime,
+  type,
+  setShowPicker,
+  setAnchor,
+  onCancel,
+  onConfirm,
+}: PickerProps & PickerEmit) {
   const [pickerData, setPickerData] = useState<OriginData[]>([]);
   const [wheels, setWheels] = useState<BScroll[]>([]);
-  const wheelWrapper = useRef<HTMLElement | undefined>();
+  const wheelWrapper = useRef<HTMLDivElement | null>(null);
 
-  const { selectYear, selectMonth, dateList, updateDateSelect, getDateAnchors } = useDate();
+  const { dateList, setSelectYear, setSelectMonth, updateDateSelect, getDateAnchors } = useDate();
   const { timeList, updateDefaultTime, getTimeAnchors } = useTime();
 
-  const isDate = useMemo(() => props.type === 'date', [props.type]);
-  const isTime = useMemo(() => props.type === 'time', [props.type]);
+  const isDate = useMemo(() => type === 'date', [type]);
+  const isTime = useMemo(() => type === 'time', [type]);
 
   const pickerAnchors = useMemo(() => {
-    if (isDate) return getDateAnchors!(props.anchor);
-    if (isTime) return getTimeAnchors!(props.anchor);
+    if (isDate) return getDateAnchors!(anchor);
+    if (isTime) return getTimeAnchors!(anchor);
 
-    return isArray(props.anchor) ? props.anchor : [props.anchor];
-  }, [isDate, isTime, props.anchor]);
+    return isArray(anchor) ? anchor : [anchor];
+  }, [isDate, isTime, anchor]);
 
-  async function setupPickerData(isUpdate = false) {
+  function setupPickerData(isUpdate = false) {
     if (isUpdate) {
       updatePickerData();
     } else {
       updateSelect();
     }
-    await nextTick();
-    pickerData.value.forEach((_, index) => createWheel(index));
+
+    pickerData.forEach((_, index) => createWheel(index));
     if (!isUpdate) scrollToAnchor();
     checkWheels();
   }
 
   function updatePickerData() {
     const builtIn = {
-      date: dateList?.value,
+      date: dateList,
       time: timeList,
     };
-    const type = props.type as keyof typeof builtIn;
-    const isCascadeData = isArray(props.data[0]);
-    const data = (isCascadeData ? [...props.data] : [props.data]) as OriginData[];
+    const pickerType = type as keyof typeof builtIn;
+    const isCascadeData = isArray(data[0]);
+    const pickerData = (isCascadeData ? [...data] : [data]) as OriginData[];
 
-    pickerData.value = builtIn[type] ?? data;
+    setPickerData(builtIn[pickerType] ?? pickerData);
   }
 
   function updateSelect() {
-    if (!isDate.value && !isTime.value) return;
-    if (isDate.value) updateDateSelect(pickerAnchors.value);
-    if (isTime.value && !isHaveValue(props.anchor)) {
+    if (!isDate && !isTime) return;
+    if (isDate) updateDateSelect(pickerAnchors);
+    if (isTime && !isHaveValue(anchor)) {
       updateDefaultTime();
     }
   }
 
   function createWheel(index: number) {
-    const node = wheelWrapper.value?.children[index] as HTMLElement;
-    if (!node) return;
+    const node = wheelWrapper.current?.children[index] as HTMLElement;
 
-    let wheel = wheels.value[index];
+    if (!node) return;
+    let wheel = wheels[index];
 
     if (wheel) {
       wheel.refresh();
@@ -73,57 +84,65 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
           selectedIndex: 0,
           rotate: 25,
         },
-        swipeTime: props.swipeTime ?? 500,
+        swipeTime,
       });
 
-      wheel = wheels.value[index] = bScroll;
+      setWheels(wheels => {
+        return [...wheels, bScroll];
+      });
+      wheel = bScroll;
       wheel.on('scrollEnd', () => handleScrollEnd(index));
     }
     return wheel;
   }
 
   function handleScrollEnd(index: number) {
-    if (!isDate.value || index === 2) return;
-    const position = wheels.value[index].getSelectedIndex();
-    const value = dateList!.value[index][position];
-    if (index === 0) selectYear!.value = value;
-    if (index === 1) selectMonth!.value = value;
-    setPickerData(true);
+    if (!isDate || index === 2) return;
+    const position = wheels[index].getSelectedIndex();
+    const value = dateList![index][position];
+
+    if (index === 0) setSelectYear(value);
+    if (index === 1) setSelectMonth(value);
+
+    setupPickerData(true);
   }
 
   function scrollToAnchor() {
-    wheels.value.forEach((wheel, index) => {
-      const targetPos = pickerAnchors.value?.[index];
+    wheels.forEach((wheel, index) => {
+      const targetPos = pickerAnchors?.[index];
 
       wheel.wheelTo(targetPos ?? 0);
     });
   }
 
   function checkWheels() {
-    const DATA_LENGTH = pickerData.value.length;
-    if (wheels.value.length <= DATA_LENGTH) return;
-    const extraWheels = wheels.value.splice(DATA_LENGTH);
+    const DATA_LENGTH = pickerData.length;
+
+    if (wheels.length <= DATA_LENGTH) return;
+    const extraWheels = wheels.splice(DATA_LENGTH);
+
+    setWheels(wheels => wheels.slice(0, DATA_LENGTH));
     extraWheels.forEach(wheel => wheel.destroy());
   }
 
   function cancel() {
-    emit('cancel');
+    onCancel();
     closePicker();
   }
 
   function confirm() {
-    const isInTransition = wheels.value.some(wheel => wheel.isInTransition);
+    const isInTransition = wheels.some(wheel => wheel.isInTransition);
 
     if (isInTransition) stopWheels();
     const { item, anchor } = getSelectedItem();
 
-    emit('confirm', item);
-    emit('update:anchor', anchor);
+    onConfirm(item);
+    setAnchor(anchor);
     closePicker();
   }
 
   function closePicker() {
-    emit('update:isShowPicker', false);
+    setShowPicker(false);
   }
 
   function stopWheels() {
@@ -148,17 +167,18 @@ export function usePicker(props: PickerProps, emit: PickerEmit) {
 
   useEffect(() => {
     setupPickerData(true);
-  }, [props.data]);
+  }, [data]);
 
   useEffect(() => {
-    if (!props.isShowPicker) return;
+    if (!isShowPicker) return;
+
     setupPickerData();
-  }, [props.isShowPicker]);
+  }, [isShowPicker]);
 
   useEffect(() => {
     updateSelect();
     setupPickerData(true);
-  }, [props.type]);
+  }, [type]);
 
   return {
     pickerData,

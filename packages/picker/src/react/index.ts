@@ -1,10 +1,6 @@
-import type { DefineComponent } from 'vue';
-import Picker from './components/Picker.vue';
+import Picker from './components/Picker';
 
 export type * from '@shared/types/picker';
-
-Picker.install = function (Vue: DefineComponent) {
-  Vue.component('Picker', Picker);
-};
+export type * from '@shared/types/react-picker';
 
 export default Picker;

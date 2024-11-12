@@ -3,7 +3,7 @@ import { pluginReact, pluginReactHooks, pluginJsxA11y } from '../plugins';
 
 export const reactConfigs: Linter.Config[] = [
   {
-    ...pluginReact.configs.flat.recommended,
+    ...pluginReact.configs.recommended,
     name: 'component-hook/react',
     settings: {
       react: {

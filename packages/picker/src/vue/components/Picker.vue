@@ -1,20 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { usePicker } from '../hooks/use-picker';
-import type { PickerOptions, PickData, PickerBuiltIn } from '@shared/types/picker';
+import type { PickerComponentProps } from '@shared/types/picker';
 import { isObject, isArray } from '@shared/utils/check-type';
 
-interface Props {
-  data?: PickData;
-  isShowPicker: boolean;
-  options?: Partial<PickerOptions>;
-  anchor: number | Array<number>;
-  showKey?: string | Array<string>;
-  swipeTime?: number;
-  type?: PickerBuiltIn;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<PickerComponentProps>(), {
   data: () => [],
   options: () => ({}),
   showKey: '',

@@ -10,6 +10,7 @@ export function isLeapYear(year: number) {
 
 export function generateList(start: number, end: number) {
   const result: Array<number> = [];
+
   for (let index = start; index <= end; index++) {
     result.push(index);
   }
@@ -18,6 +19,7 @@ export function generateList(start: number, end: number) {
 
 export function generateTime(start: number, end: number) {
   const result: Array<string> = [];
+
   for (let index = start; index <= end; index++) {
     result.push(`${index}`.padStart(2, '0'));
   }

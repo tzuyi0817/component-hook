@@ -52,9 +52,9 @@ export function useDate() {
   }
 
   return {
-    selectYear,
-    selectMonth,
     dateList,
+    setSelectYear,
+    setSelectMonth,
     updateDateSelect,
     getDateAnchors,
   };
