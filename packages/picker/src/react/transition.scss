@@ -1,0 +1,30 @@
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.slide-enter {
+  opacity: 0.5;
+  transform: translate3d(0, 270px, 0);
+}
+
+.slide-enter-active {
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-exit-active {
+  transition: all 0.3s ease;
+  opacity: 0.5;
+  transform: translate3d(0, 270px, 0);
+}

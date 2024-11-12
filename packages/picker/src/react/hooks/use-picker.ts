@@ -1,16 +1,16 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
 import BScroll, { createBScroll } from '@better-scroll/core';
 import Wheel from '@better-scroll/wheel';
-import { isArray } from '../../shared/utils/check-type';
-import { isHaveValue } from '../../shared/utils/common';
-import type { PickerProps, OriginData, PickerSelectItems } from '../../shared/types/picker';
-import type { PickerEmit } from '../../shared/types/react-picker';
 import { useDate } from './use-date';
 import { useTime } from './use-time';
+import { isArray } from '../../shared/utils/check-type';
+import { isHaveValue } from '../../shared/utils/common';
+import type { PickerProps, NormalData, PickerSelectItems } from '../../shared/types/picker';
+import type { PickerEmit } from '../../shared/types/react-picker';
 
 BScroll.use(Wheel);
 
-export function usePicker({
+export function usePicker<T = NormalData>({
   data,
   isShowPicker,
   anchor,
@@ -20,8 +20,8 @@ export function usePicker({
   setAnchor,
   onCancel,
   onConfirm,
-}: PickerProps & PickerEmit) {
-  const [pickerData, setPickerData] = useState<OriginData[]>([]);
+}: PickerProps & PickerEmit<T>) {
+  const [pickerData, setPickerData] = useState<NormalData[][]>([]);
   const [wheels, setWheels] = useState<BScroll[]>([]);
   const wheelWrapper = useRef<HTMLDivElement | null>(null);
 
@@ -46,6 +46,7 @@ export function usePicker({
     if (!isShowPicker) return;
 
     updateSelect();
+    scrollToAnchor();
   }, [isShowPicker]);
 
   useEffect(() => {
@@ -55,9 +56,12 @@ export function usePicker({
 
   useEffect(() => {
     pickerData.forEach((_, index) => createWheel(index));
+  }, [pickerData]);
+
+  useEffect(() => {
     scrollToAnchor();
     checkWheels();
-  }, [pickerData]);
+  }, [wheels]);
 
   function updatePickerData() {
     const builtIn = {
@@ -66,14 +70,15 @@ export function usePicker({
     };
     const pickerType = type as keyof typeof builtIn;
     const isCascadeData = isArray(data[0]);
-    const pickerData = (isCascadeData ? [...data] : [data]) as OriginData[];
+    const pickerData = (isCascadeData ? [...data] : [data]) as NormalData[][];
 
     setPickerData(builtIn[pickerType] ?? pickerData);
   }
 
   function updateSelect() {
-    if (!isDate && !isTime) return;
-    if (isDate) updateDateSelect(pickerAnchors);
+    if (isDate) {
+      updateDateSelect(pickerAnchors);
+    }
     if (isTime && !isHaveValue(anchor)) {
       updateDefaultTime();
     }
@@ -117,10 +122,12 @@ export function usePicker({
   }
 
   function scrollToAnchor() {
-    wheels.forEach((wheel, index) => {
-      const targetPos = pickerAnchors?.[index];
+    setTimeout(() => {
+      wheels.forEach((wheel, index) => {
+        const targetPos = pickerAnchors?.[index];
 
-      wheel.wheelTo(targetPos ?? 0);
+        wheel.wheelTo(targetPos ?? 0);
+      });
     });
   }
 
@@ -145,7 +152,7 @@ export function usePicker({
     if (isInTransition) stopWheels();
     const { item, anchor } = getSelectedItem();
 
-    onConfirm?.(item);
+    onConfirm?.(item as T);
     setAnchor(anchor);
     closePicker();
   }
@@ -164,11 +171,11 @@ export function usePicker({
         const position = wheel.getSelectedIndex();
         const data = pickerData[index][position];
 
-        result.item.push(isTime ? +data : data);
+        result.item.push((isTime ? +data : data) as T);
         result.anchor.push(isDate ? data : position);
         return result;
       },
-      { item: [], anchor: [] } as PickerSelectItems,
+      { item: [], anchor: [] } as PickerSelectItems<T>,
     );
 
     return item.length > 1 ? { item, anchor } : { item: item[0], anchor: anchor[0] };

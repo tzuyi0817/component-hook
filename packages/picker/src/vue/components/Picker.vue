@@ -2,6 +2,8 @@
 import { computed } from 'vue';
 import { usePicker } from '../hooks/use-picker';
 import { isObject, isArray } from '../../shared/utils/check-type';
+import '../../shared/index.scss';
+import '../transition.scss';
 import type { PickerComponentProps } from '../../shared/types/picker';
 
 const props = withDefaults(defineProps<PickerComponentProps>(), {

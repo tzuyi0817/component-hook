@@ -1,11 +1,13 @@
 import { useMemo } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { usePicker } from '../hooks/use-picker';
 import { isObject, isArray, isString, isNumber } from '../../shared/utils/check-type';
 import '../../shared/index.scss';
+import '../transition.scss';
 import type { PickerComponentProps } from '../../shared/types/picker';
 import type { PickerEmit } from '../../shared/types/react-picker';
 
-function Picker({
+function Picker<T>({
   data = [],
   isShowPicker,
   options = {},
@@ -17,8 +19,8 @@ function Picker({
   setAnchor,
   onCancel,
   onConfirm,
-}: PickerComponentProps & PickerEmit) {
-  const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker({
+}: PickerComponentProps & PickerEmit<T>) {
+  const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker<T>({
     data,
     isShowPicker,
     options,
@@ -55,13 +57,24 @@ function Picker({
 
   return (
     <div>
-      {isShowPicker && (
+      <CSSTransition
+        in={isShowPicker}
+        classNames="fade"
+        timeout={300}
+        unmountOnExit
+      >
         <div
           className="mask"
           onClick={closePicker}
         />
-      )}
-      {isShowPicker && (
+      </CSSTransition>
+
+      <CSSTransition
+        in={isShowPicker}
+        classNames="slide"
+        timeout={300}
+        unmountOnExit
+      >
         <div className="picker">
           <div className="picker_title">
             <button
@@ -118,7 +131,7 @@ function Picker({
             </div>
           </div>
         </div>
-      )}
+      </CSSTransition>
     </div>
   );
 }

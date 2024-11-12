@@ -46,9 +46,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         chunkFileNames: 'chunks/[name]-[hash].js',
-        globals: isVue ? { vue: 'Vue' } : { react: 'React' },
+        globals: isVue ? { vue: 'Vue' } : { react: 'React', 'react-dom': 'ReactDOM' },
       },
-      external: isVue ? ['vue'] : ['react'],
+      external: isVue ? ['vue'] : ['react', 'react-dom'],
     },
   },
 });

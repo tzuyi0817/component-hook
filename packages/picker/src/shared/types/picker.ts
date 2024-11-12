@@ -26,8 +26,8 @@ export interface PickerOptions {
   titleText: string;
 }
 
-export interface PickerSelectItems {
-  item: Array<NormalData>;
+export interface PickerSelectItems<T = NormalData> {
+  item: Array<T>;
   anchor: Array<number>;
 }
 

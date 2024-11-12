@@ -1,9 +1,9 @@
 import type { Dispatch, SetStateAction } from 'react';
-import type { NormalData, PickerComponentProps } from './picker';
+import type { PickerComponentProps } from './picker';
 
-export interface PickerEmit {
+export interface PickerEmit<T> {
   setShowPicker: Dispatch<SetStateAction<PickerComponentProps['isShowPicker']>>;
   setAnchor: Dispatch<SetStateAction<PickerComponentProps['anchor']>>;
   onCancel?: () => void;
-  onConfirm?: (value: NormalData | NormalData[]) => void;
+  onConfirm?: (value: T) => void;
 }
