@@ -4,10 +4,10 @@ export type PickerData = OriginData | Array<OriginData>;
 export type PickerBuiltIn = 'date' | 'time' | '';
 export type PickerAnchor = number | Array<number>;
 
-export interface PickerProps {
+export interface PickerProps<T = PickerAnchor> {
   data: PickerData;
   isShowPicker: boolean;
-  anchor: PickerAnchor;
+  anchor: T;
   options?: Partial<PickerOptions>;
   showKey?: string | Array<string>;
   swipeTime?: number;
@@ -31,11 +31,11 @@ export interface PickerSelectItems<T = NormalData> {
   anchor: Array<number>;
 }
 
-export interface PickerComponentProps {
+export interface PickerComponentProps<T = PickerAnchor> {
   data?: PickerData;
   isShowPicker: boolean;
   options?: Partial<PickerOptions>;
-  anchor: PickerAnchor;
+  anchor: T;
   showKey?: string | Array<string>;
   swipeTime?: number;
   type?: PickerBuiltIn;

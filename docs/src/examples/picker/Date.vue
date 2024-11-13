@@ -6,7 +6,7 @@ const currentDate = ref<Array<number>>([]);
 const isShowPicker = ref(false);
 
 function onConfirm(value: Array<number>) {
-  currentDate.value = value;
+  console.log(value);
 }
 
 function onCancel() {

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Picker, { type PickerAnchor } from '@component-hook/picker/react';
+import { useState, useEffect } from 'react';
+import Picker from '@component-hook/picker/react';
 
 interface LangType {
   langType?: number;
@@ -9,13 +9,13 @@ interface LangType {
 
 function SinglePicker() {
   const [isShowPicker, setShowPicker] = useState(false);
-  const [anchor, setAnchor] = useState<PickerAnchor>(1);
+  const [anchor, setAnchor] = useState(1);
   const [currentSelect, setCurrentSelect] = useState<LangType>({});
-  const singleData = [
+  const [singleData] = useState([
     { langType: 2, code: 'vi', original: 'Tiếng Việt' },
     { langType: 0, code: 'en', original: 'English' },
     { langType: 1, code: 'cn', original: '中文' },
-  ];
+  ]);
 
   function onConfirm(value: LangType) {
     setCurrentSelect(value);

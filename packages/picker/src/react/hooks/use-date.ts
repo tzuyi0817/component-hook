@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { isHaveValue, generateList, isLeapYear } from '../../shared/utils/common';
-import type { PickerProps } from '../../shared/types/picker';
+import { isNumber } from '../../shared/utils/check-type';
+import type { PickerAnchor } from '../../shared/types/picker';
 
 export function useDate() {
   const START_YEAR = 1900;
@@ -35,11 +36,13 @@ export function useDate() {
     return [yearList, monthList, dayList];
   }, [dayList]);
 
-  function getDateAnchors(anchor: PickerProps['anchor']) {
+  function getDateAnchors<T = PickerAnchor>(anchor: T) {
     const anchors = isHaveValue(anchor) ? anchor : [defaultYear, defaultMonth, defaultDay];
 
     return anchors.map((target, index) => {
+      if (!isNumber(target)) return 0;
       const pos = dateList[index].indexOf(target);
+
       return pos !== -1 ? pos : 0;
     });
   }

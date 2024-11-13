@@ -21,10 +21,10 @@ export function useTime() {
     setDefaultTime([hour, minute, second]);
   }
 
-  function getTimeAnchors(anchor: PickerAnchor) {
+  function getTimeAnchors<T = PickerAnchor>(anchor: T) {
     const anchors = isHaveValue(anchor) ? anchor : defaultTime;
 
-    return anchors.map(target => +target);
+    return anchors.map(target => Number(target));
   }
 
   return {

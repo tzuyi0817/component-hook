@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Picker, { type PickerAnchor } from '@component-hook/picker/react';
+import Picker from '@component-hook/picker/react';
 
 interface LangType {
   langType?: number;
@@ -7,31 +7,31 @@ interface LangType {
   original?: string;
 }
 
+const singleData = [
+  { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+  { langType: 0, code: 'en', original: 'English' },
+  { langType: 1, code: 'cn', original: '中文' },
+];
+
 function CascadePicker() {
   const [currentSelect, setCurrentSelect] = useState<Array<LangType>>([]);
   const [isShowPicker, setShowPicker] = useState(false);
-  const [anchor, setAnchor] = useState<PickerAnchor>([0, 1, 2]);
+  const [anchor, setAnchor] = useState([0, 1, 2]);
+  const [cascadeData] = useState([singleData, singleData, singleData]);
 
-  const singleData = [
-    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
-    { langType: 0, code: 'en', original: 'English' },
-    { langType: 1, code: 'cn', original: '中文' },
-  ];
-  const dataList = [singleData, singleData, singleData];
-
-  const handleConfirm = (value: Array<LangType>) => {
+  function handleConfirm(value: Array<LangType>) {
     setCurrentSelect(value);
-  };
+  }
 
-  const handleCancel = () => {
+  function handleCancel() {
     console.log('cancel');
-  };
+  }
 
   return (
     <div>
       <Picker
         isShowPicker={isShowPicker}
-        data={dataList}
+        data={cascadeData}
         showKey={['original', 'original', 'original']}
         options={{ titleText: 'cascade selector' }}
         anchor={anchor}

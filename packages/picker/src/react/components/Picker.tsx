@@ -5,13 +5,16 @@ import { isObject, isArray, isString, isNumber } from '../../shared/utils/check-
 import { BASE_OPTIONS } from '../../shared/configs/options';
 import '../../shared/index.scss';
 import '../transition.scss';
-import type { PickerComponentProps } from '../../shared/types/picker';
+import type { PickerComponentProps, NormalData, PickerAnchor } from '../../shared/types/picker';
 import type { PickerEmit } from '../../shared/types/react-picker';
 
-function Picker<T>({
-  data = [],
+const defaultData: NormalData[] = [];
+const defaultOptions = {};
+
+function Picker<T = NormalData, D = PickerAnchor>({
+  data = defaultData,
   isShowPicker,
-  options = {},
+  options = defaultOptions,
   anchor,
   showKey = '',
   swipeTime = 500,
@@ -20,10 +23,10 @@ function Picker<T>({
   onClose,
   onCancel,
   onConfirm,
-}: PickerComponentProps & PickerEmit<T>) {
+}: PickerComponentProps<D> & PickerEmit<T, D>) {
   const pickerRef = useRef<HTMLDivElement | null>(null);
   const maskRef = useRef<HTMLDivElement | null>(null);
-  const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker<T>({
+  const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker<T, D>({
     data,
     isShowPicker,
     options,
