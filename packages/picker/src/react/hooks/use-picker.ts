@@ -23,10 +23,11 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
 }: PickerProps<D> & PickerEmit<T, D>) {
   const [pickerData, setPickerData] = useState<NormalData[][]>([]);
   const [wheels, setWheels] = useState<BScroll[]>([]);
+  const [updateAnchor, setUpdateAnchor] = useState(false);
   const wheelWrapper = useRef<HTMLDivElement | null>(null);
 
   const { dateList, setSelectYear, setSelectMonth, updateDateSelect, getDateAnchors } = useDate();
-  const { timeList, updateDefaultTime, getTimeAnchors } = useTime();
+  const { timeList, getTimeAnchors } = useTime();
 
   const isDate = type === 'date';
   const isTime = type === 'time';
@@ -36,7 +37,7 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
     if (isTime) return getTimeAnchors(anchor);
 
     return isArray(anchor) ? anchor : [anchor];
-  }, [isDate, isTime, anchor]);
+  }, [isDate, isTime, anchor, updateAnchor]);
 
   useEffect(() => {
     updatePickerData();
@@ -46,8 +47,8 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
     if (!isShowPicker) return;
 
     createOrRefreshWheels();
-    scrollToAnchor();
     updateSelect();
+    scrollToAnchor();
   }, [isShowPicker]);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
       updateDateSelect(pickerAnchors as number[]);
     }
     if (isTime && !isHaveValue(anchor)) {
-      updateDefaultTime();
+      setUpdateAnchor(!updateAnchor);
     }
   }
 
@@ -122,7 +123,7 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
   function scrollToAnchor() {
     setTimeout(() => {
       wheels.forEach((wheel, index) => {
-        const targetPos = pickerAnchors?.[index];
+        const targetPos = pickerAnchors[index];
 
         wheel.wheelTo(targetPos ?? 0);
       });
