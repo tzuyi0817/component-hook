@@ -14,7 +14,7 @@ import FooterContainer from '@/components/layout/Footer.vue';
               <span class="name">Component Hook</span>
             </h1>
 
-            <p class="text-4xl font-bold lg:text-5xl">Component library with Vue or React.</p>
+            <p class="text-4xl font-bold lg:text-5xl">Component library with Vue and React.</p>
             <p class="pt-3 text-text-color-secondary font-medium lg:text-2xl">
               A component library that includes a collection of common and useful components.
             </p>

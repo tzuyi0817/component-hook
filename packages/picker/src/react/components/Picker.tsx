@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { usePicker } from '../hooks/use-picker';
 import { isObject, isArray, isString, isNumber } from '../../shared/utils/check-type';
+import { BASE_OPTIONS } from '../../shared/configs/options';
 import '../../shared/index.scss';
 import '../transition.scss';
 import type { PickerComponentProps } from '../../shared/types/picker';
@@ -15,11 +16,13 @@ function Picker<T>({
   showKey = '',
   swipeTime = 500,
   type = '',
-  setShowPicker,
-  setAnchor,
+  onChangeAnchor,
+  onClose,
   onCancel,
   onConfirm,
 }: PickerComponentProps & PickerEmit<T>) {
+  const pickerRef = useRef<HTMLDivElement | null>(null);
+  const maskRef = useRef<HTMLDivElement | null>(null);
   const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker<T>({
     data,
     isShowPicker,
@@ -28,32 +31,24 @@ function Picker<T>({
     showKey,
     swipeTime,
     type,
-    setShowPicker,
-    setAnchor,
+    onClose,
+    onChangeAnchor,
     onCancel,
     onConfirm,
   });
 
-  const mergedOptions = useMemo(
-    () => ({
-      cancelClass: '',
-      confirmClass: '',
-      titleClass: '',
-      cancelColor: '#999',
-      confirmColor: '#42b983',
-      titleColor: '',
-      cancelText: 'Cancel',
-      confirmText: 'Confirm',
-      titleText: '',
-      ...options,
-    }),
-    [options],
-  );
+  const mergedOptions = useMemo(() => ({ ...BASE_OPTIONS, ...options }), [options]);
 
   const cancelColor = mergedOptions.cancelColor;
   const confirmColor = mergedOptions.confirmColor;
   const titleColor = mergedOptions.titleColor;
   const showKeys = useMemo(() => (isArray(showKey) ? showKey : [showKey]), [showKey]);
+
+  function setPickerRefDisplay(value: string) {
+    if (!pickerRef.current) return;
+
+    pickerRef.current.style.setProperty('display', value);
+  }
 
   return (
     <div>
@@ -61,9 +56,11 @@ function Picker<T>({
         in={isShowPicker}
         classNames="fade"
         timeout={300}
+        nodeRef={maskRef}
         unmountOnExit
       >
         <div
+          ref={maskRef}
           className="mask"
           onClick={closePicker}
         />
@@ -73,9 +70,15 @@ function Picker<T>({
         in={isShowPicker}
         classNames="slide"
         timeout={300}
-        unmountOnExit
+        nodeRef={pickerRef}
+        onEnter={() => setPickerRefDisplay('')}
+        onExited={() => setPickerRefDisplay('none')}
       >
-        <div className="picker">
+        <div
+          ref={pickerRef}
+          className="picker"
+          style={{ display: 'none' }}
+        >
           <div className="picker_title">
             <button
               className={`picker_cancel ${mergedOptions.cancelClass}`}

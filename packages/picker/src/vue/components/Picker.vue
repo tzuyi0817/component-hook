@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { usePicker } from '../hooks/use-picker';
 import { isObject, isArray } from '../../shared/utils/check-type';
+import { BASE_OPTIONS } from '../../shared/configs/options';
 import '../../shared/index.scss';
 import '../transition.scss';
 import type { PickerComponentProps } from '../../shared/types/picker';
@@ -16,18 +17,7 @@ const props = withDefaults(defineProps<PickerComponentProps>(), {
 
 const emit = defineEmits(['update:isShowPicker', 'update:anchor', 'cancel', 'confirm']);
 
-const options = computed(() => ({
-  cancelClass: '',
-  confirmClass: '',
-  titleClass: '',
-  cancelColor: '#999',
-  confirmColor: '#42b983',
-  titleColor: '',
-  cancelText: 'Cancel',
-  confirmText: 'Confirm',
-  titleText: '',
-  ...props.options,
-}));
+const options = computed(() => ({ ...BASE_OPTIONS, ...props.options }));
 const cancelColor = computed(() => options.value.cancelColor);
 const confirmColor = computed(() => options.value.confirmColor);
 const titleColor = computed(() => options.value.titleColor);

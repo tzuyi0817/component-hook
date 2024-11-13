@@ -16,8 +16,8 @@ export function usePicker<T = NormalData>({
   anchor,
   swipeTime,
   type,
-  setShowPicker,
-  setAnchor,
+  onChangeAnchor,
+  onClose,
   onCancel,
   onConfirm,
 }: PickerProps & PickerEmit<T>) {
@@ -153,12 +153,12 @@ export function usePicker<T = NormalData>({
     const { item, anchor } = getSelectedItem();
 
     onConfirm?.(item as T);
-    setAnchor(anchor);
+    onChangeAnchor(anchor);
     closePicker();
   }
 
   function closePicker() {
-    setShowPicker(false);
+    onClose();
   }
 
   function stopWheels() {

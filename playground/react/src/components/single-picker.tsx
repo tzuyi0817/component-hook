@@ -7,7 +7,7 @@ interface LangType {
   original?: string;
 }
 
-function App() {
+function SinglePicker() {
   const [isShowPicker, setShowPicker] = useState(false);
   const [anchor, setAnchor] = useState<PickerAnchor>(1);
   const [currentSelect, setCurrentSelect] = useState<LangType>({});
@@ -31,10 +31,10 @@ function App() {
         data={singleData}
         isShowPicker={isShowPicker}
         anchor={anchor}
-        setShowPicker={setShowPicker}
-        setAnchor={setAnchor}
         showKey="original"
         options={{ titleText: 'single selector' }}
+        onChangeAnchor={setAnchor}
+        onClose={() => setShowPicker(false)}
         onConfirm={onConfirm}
         onCancel={onCancel}
       />
@@ -46,4 +46,4 @@ function App() {
   );
 }
 
-export default App;
+export default SinglePicker;

@@ -5,7 +5,7 @@
 <h1 align="center">Component Hook</h1>
 
 <p align="center">
-  Component library with Vue or React.
+  Component library with Vue and React.
 </p>
 
 <p align="center">
@@ -32,8 +32,8 @@ This is a component library that includes a collection of common and useful comp
 
 ## Packages
 
-- **[@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker):** Customizable picker components that can be easily integrated into `Vue 3` application.
-- **[@component-hook/pdf-canvas](https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas):** Rendering PDF documents onto a canvas with `Vue 3` component.
+- **[@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker):** Customizable picker components that can be easily integrated.
+- **[@component-hook/pdf-canvas](https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas):** Rendering PDF documents onto a canvas.
 - **[@component-hook/eslint-plugin](https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin):** A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue`, `React`.
 
 ## License
