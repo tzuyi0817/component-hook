@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/vue';
 import Picker from '../../index';
 
-describe('Picker.vue', () => {
+describe('Picker Component', () => {
   it('render correctly', () => {
     const titleText = 'date selector';
 

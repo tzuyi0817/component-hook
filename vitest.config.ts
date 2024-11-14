@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), react()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -10,7 +11,7 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
-      exclude: ['docs/**', '**/*.config.cjs'],
+      exclude: ['docs/**', '**/*.config.cjs', 'dist/**'],
     },
   },
 });
