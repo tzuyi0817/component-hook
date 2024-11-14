@@ -1,29 +1,28 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig, type PluginOption } from 'vite';
 import dts from 'vite-plugin-dts';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { vitePlugin, libEntry, outDir, rollupGlobals, rollupExternal } from '../../internal/build-config';
 
 export default defineConfig({
-  plugins: [vue(), dts({ rollupTypes: true }), visualizer({ gzipSize: true })],
+  plugins: [vitePlugin(), dts({ rollupTypes: true }), visualizer({ gzipSize: true }) as PluginOption],
   base: './',
   optimizeDeps: {
     include: ['typescript'],
   },
   build: {
     lib: {
-      entry: 'index.ts',
+      entry: libEntry,
       name: 'pdf-canvas',
       fileName: format => `pdf-canvas.${format}.js`,
     },
+    outDir,
     cssCodeSplit: true,
     rollupOptions: {
       output: {
         chunkFileNames: 'chunks/[name]-[hash].js',
-        globals: {
-          vue: 'Vue',
-        },
+        globals: rollupGlobals,
       },
-      external: ['vue'],
+      external: rollupExternal,
     },
   },
 });

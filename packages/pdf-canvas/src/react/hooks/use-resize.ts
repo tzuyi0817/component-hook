@@ -1,5 +1,5 @@
 import { onMounted, onBeforeUnmount } from 'vue';
-import { debounce } from '../utils/common';
+import { debounce } from '../../shared/utils/common';
 
 export function useResize(callback: () => void) {
   let previousWidth = 0;

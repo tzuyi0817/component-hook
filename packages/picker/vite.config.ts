@@ -1,12 +1,8 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import { defineConfig, type Plugin } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
-
-const { FRAMEWORK } = process.env;
-const isVue = FRAMEWORK === 'vue';
+import { FRAMEWORK, vitePlugin, libEntry, outDir, rollupGlobals, rollupExternal } from '../../internal/build-config';
 
 const patchCssFile: Plugin = {
   name: 'patch-css-file',
@@ -25,7 +21,7 @@ const patchCssFile: Plugin = {
 
 export default defineConfig({
   plugins: [
-    isVue ? vue() : react(),
+    vitePlugin(),
     dts({
       rollupTypes: true,
     }),
@@ -37,18 +33,18 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: `src/${FRAMEWORK}/index.ts`,
+      entry: libEntry,
       name: 'picker',
       fileName: format => `picker.${format}.js`,
     },
-    outDir: `dist/${FRAMEWORK}`,
+    outDir,
     cssCodeSplit: true,
     rollupOptions: {
       output: {
         chunkFileNames: 'chunks/[name]-[hash].js',
-        globals: isVue ? { vue: 'Vue' } : { react: 'React', 'react-dom': 'ReactDOM' },
+        globals: rollupGlobals,
       },
-      external: isVue ? ['vue'] : ['react', 'react-dom'],
+      external: rollupExternal,
     },
   },
 });

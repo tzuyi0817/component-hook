@@ -3,8 +3,8 @@ import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps, TOptions } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
-import type { PDF } from '../types/pdf';
-import type { CloseSvgOptions } from '../types/fabric';
+import type { PDF } from '../../shared/types/pdf';
+import type { CloseSvgOptions } from '../../shared/types/fabric';
 
 interface Props {
   file: PDF;

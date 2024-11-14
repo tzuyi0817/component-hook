@@ -10,17 +10,17 @@ import {
   type ImageProps,
   type TextProps,
 } from 'fabric';
-import { printPDF, getPDFDocument } from '../utils/pdf-js';
-import { createImageSrc, convertToBase64 } from '../utils/image';
-import { getPixelsPerPoint } from '../utils/common';
-import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../configs';
+import { printPDF, getPDFDocument } from '../../shared/utils/pdf-js';
+import { createImageSrc, convertToBase64 } from '../../shared/utils/image';
+import { getPixelsPerPoint } from '../../shared/utils/common';
+import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../../shared/configs';
 import type {
   SpecifyPageArgs,
   RenderImageArgs,
   CreateCloseFabricArgs,
   SupportFileType,
   CloseSvgOptions,
-} from '../types/fabric';
+} from '../../shared/types/fabric';
 
 const fabricMap = new Map<string, Canvas>();
 
