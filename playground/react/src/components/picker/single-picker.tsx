@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Picker from '@component-hook/picker/react';
 
 interface LangType {
@@ -7,29 +7,26 @@ interface LangType {
   original?: string;
 }
 
-function SinglePicker() {
-  const [isShowPicker, setShowPicker] = useState(false);
+const singleData = [
+  { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+  { langType: 0, code: 'en', original: 'English' },
+  { langType: 1, code: 'cn', original: '中文' },
+];
+
+export function SinglePicker() {
+  const [showPicker, setShowPicker] = useState(false);
   const [anchor, setAnchor] = useState(1);
   const [currentSelect, setCurrentSelect] = useState<LangType>({});
-  const [singleData] = useState([
-    { langType: 2, code: 'vi', original: 'Tiếng Việt' },
-    { langType: 0, code: 'en', original: 'English' },
-    { langType: 1, code: 'cn', original: '中文' },
-  ]);
 
   function onConfirm(value: LangType) {
     setCurrentSelect(value);
-  }
-
-  function onCancel() {
-    console.log('cancel');
   }
 
   return (
     <>
       <Picker
         data={singleData}
-        isShowPicker={isShowPicker}
+        isShowPicker={showPicker}
         anchor={anchor}
         showKey="original"
         options={{ titleText: 'single selector' }}
@@ -46,4 +43,6 @@ function SinglePicker() {
   );
 }
 
-export default SinglePicker;
+function onCancel() {
+  console.log('cancel');
+}

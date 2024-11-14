@@ -1,14 +1,11 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
-import BScroll, { createBScroll } from '@better-scroll/core';
-import Wheel from '@better-scroll/wheel';
-import { useDate } from './use-date';
-import { useTime } from './use-time';
+import { BScroll, createBScroll } from '../../shared/utils/better-scroll';
 import { isArray } from '../../shared/utils/check-type';
 import { isHaveValue } from '../../shared/utils/common';
 import type { PickerProps, NormalData, PickerSelectItems, PickerAnchor } from '../../shared/types/picker';
 import type { PickerEmit } from '../../shared/types/react-picker';
-
-BScroll.use(Wheel);
+import { useTime } from './use-time';
+import { useDate } from './use-date';
 
 export function usePicker<T = NormalData, D = PickerAnchor>({
   data,
@@ -55,6 +52,10 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
     createOrRefreshWheels();
   }, [pickerData]);
 
+  useEffect(() => {
+    scrollToAnchor();
+  }, [pickerAnchors]);
+
   function createOrRefreshWheels() {
     pickerData.forEach((_, index) => createWheel(index));
     checkWheels();
@@ -73,12 +74,13 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
   }
 
   function updateSelect() {
+    if (!isDate && !isTime) return;
+
     if (isDate) {
       updateDateSelect(pickerAnchors as number[]);
     }
-    if (isTime && !isHaveValue(anchor)) {
-      setUpdateAnchor(!updateAnchor);
-    }
+    if (isHaveValue(anchor)) return;
+    setUpdateAnchor(!updateAnchor);
   }
 
   function createWheel(index: number) {
@@ -98,8 +100,8 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
         swipeTime,
       });
 
-      setWheels(wheels => {
-        const cloneWheels = [...wheels];
+      setWheels(oldWheels => {
+        const cloneWheels = [...oldWheels];
 
         cloneWheels[index] = bScroll;
         return cloneWheels;
@@ -136,7 +138,7 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
     if (wheels.length <= DATA_LENGTH) return;
     const extraWheels = wheels.splice(DATA_LENGTH);
 
-    setWheels(wheels => wheels.slice(0, DATA_LENGTH));
+    setWheels(oldWheels => oldWheels.slice(0, DATA_LENGTH));
     extraWheels.forEach(wheel => wheel.destroy());
   }
 
@@ -149,10 +151,10 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
     const isInTransition = wheels.some(wheel => wheel.isInTransition);
 
     if (isInTransition) stopWheels();
-    const { item, anchor } = getSelectedItem();
+    const { item, anchor: currentAnchor } = getSelectedItem();
 
     onConfirm?.(item as T);
-    onChangeAnchor(anchor as D);
+    onChangeAnchor(currentAnchor as D);
     closePicker();
   }
 
@@ -165,19 +167,19 @@ export function usePicker<T = NormalData, D = PickerAnchor>({
   }
 
   function getSelectedItem() {
-    const { item, anchor } = wheels.reduce(
+    const { item, anchor: currentAnchor } = wheels.reduce(
       (result, wheel, index) => {
         const position = wheel.getSelectedIndex();
-        const data = pickerData[index][position];
+        const current = pickerData[index][position];
 
-        result.item.push((isTime ? +data : data) as T);
-        result.anchor.push(isDate ? data : position);
+        result.item.push((isTime ? +current : current) as T);
+        result.anchor.push(isDate ? current : position);
         return result;
       },
       { item: [], anchor: [] } as PickerSelectItems<T>,
     );
 
-    return item.length > 1 ? { item, anchor } : { item: item[0], anchor: anchor[0] };
+    return item.length > 1 ? { item, anchor: currentAnchor } : { item: item[0], anchor: currentAnchor[0] };
   }
 
   return {

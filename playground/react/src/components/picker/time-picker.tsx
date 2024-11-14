@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import Picker from '@component-hook/picker/react';
 
-function TimePicker() {
+export function TimePicker() {
   const [currentTime, setCurrentTime] = useState<number[]>([]);
   const [isShowPicker, setIsShowPicker] = useState(false);
-
-  function handleConfirm(value: Array<number>) {
-    console.log(value);
-  }
-
-  const handleCancel = () => {
-    console.log('cancel');
-  };
 
   return (
     <div>
@@ -35,4 +27,10 @@ function TimePicker() {
   );
 }
 
-export default TimePicker;
+function handleConfirm(value: Array<number>) {
+  console.log(value);
+}
+
+function handleCancel() {
+  console.log('cancel');
+}

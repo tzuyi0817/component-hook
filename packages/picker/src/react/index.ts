@@ -1,4 +1,4 @@
-import Picker from './components/Picker';
+import { Picker } from './components/Picker';
 
 export type * from '../shared/types/picker';
 export type * from '../shared/types/react-picker';

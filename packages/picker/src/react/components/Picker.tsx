@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-array-index-key */
 import { useMemo, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { usePicker } from '../hooks/use-picker';
@@ -11,7 +12,7 @@ import type { PickerEmit } from '../../shared/types/react-picker';
 const defaultData: NormalData[] = [];
 const defaultOptions = {};
 
-function Picker<T = NormalData, D = PickerAnchor>({
+export function Picker<T = NormalData, D = PickerAnchor>({
   data = defaultData,
   isShowPicker,
   options = defaultOptions,
@@ -64,8 +65,14 @@ function Picker<T = NormalData, D = PickerAnchor>({
       >
         <div
           ref={maskRef}
+          role="presentation"
           className="mask"
           onClick={closePicker}
+          onKeyDown={event => {
+            if (event.key === 'Escape') {
+              closePicker();
+            }
+          }}
         />
       </CSSTransition>
 
@@ -141,5 +148,3 @@ function Picker<T = NormalData, D = PickerAnchor>({
     </div>
   );
 }
-
-export default Picker;

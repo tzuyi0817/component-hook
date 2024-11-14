@@ -13,24 +13,21 @@ const singleData = [
   { langType: 1, code: 'cn', original: '中文' },
 ];
 
-function CascadePicker() {
+const cascadeData = [singleData, singleData, singleData];
+
+export function CascadePicker() {
   const [currentSelect, setCurrentSelect] = useState<Array<LangType>>([]);
-  const [isShowPicker, setShowPicker] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
   const [anchor, setAnchor] = useState([0, 1, 2]);
-  const [cascadeData] = useState([singleData, singleData, singleData]);
 
   function handleConfirm(value: Array<LangType>) {
     setCurrentSelect(value);
   }
 
-  function handleCancel() {
-    console.log('cancel');
-  }
-
   return (
     <div>
       <Picker
-        isShowPicker={isShowPicker}
+        isShowPicker={showPicker}
         data={cascadeData}
         showKey={['original', 'original', 'original']}
         options={{ titleText: 'cascade selector' }}
@@ -49,4 +46,6 @@ function CascadePicker() {
   );
 }
 
-export default CascadePicker;
+function handleCancel() {
+  console.log('cancel');
+}

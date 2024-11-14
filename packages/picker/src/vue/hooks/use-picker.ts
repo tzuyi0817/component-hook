@@ -1,14 +1,11 @@
 import { watch, ref, nextTick, computed } from 'vue';
-import BScroll, { createBScroll } from '@better-scroll/core';
-import Wheel from '@better-scroll/wheel';
-import { useDate } from './use-date';
-import { useTime } from './use-time';
+import { BScroll, createBScroll } from '../../shared/utils/better-scroll';
 import { isArray } from '../../shared/utils/check-type';
 import { isHaveValue } from '../../shared/utils/common';
 import type { PickerProps, OriginData, PickerSelectItems } from '../../shared/types/picker';
 import type { PickerEmit } from '../../shared/types/vue-picker';
-
-BScroll.use(Wheel);
+import { useTime } from './use-time';
+import { useDate } from './use-date';
 
 export function usePicker(props: PickerProps, emit: PickerEmit) {
   const pickerData = ref<OriginData[]>([]);

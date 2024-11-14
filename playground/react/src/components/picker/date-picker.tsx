@@ -1,22 +1,14 @@
 import { useState } from 'react';
 import Picker from '@component-hook/picker/react';
 
-function DatePicker() {
+export function DatePicker() {
   const [currentDate, setCurrentDate] = useState<number[]>([]);
-  const [isShowPicker, setShowPicker] = useState(false);
-
-  function handleConfirm(value: number[]) {
-    console.log(value);
-  }
-
-  function handleCancel() {
-    console.log('cancel');
-  }
+  const [showPicker, setShowPicker] = useState(false);
 
   return (
     <div>
       <Picker
-        isShowPicker={isShowPicker}
+        isShowPicker={showPicker}
         onClose={() => setShowPicker(false)}
         anchor={currentDate}
         type="date"
@@ -32,4 +24,10 @@ function DatePicker() {
   );
 }
 
-export default DatePicker;
+function handleConfirm(value: number[]) {
+  console.log(value);
+}
+
+function handleCancel() {
+  console.log('cancel');
+}
