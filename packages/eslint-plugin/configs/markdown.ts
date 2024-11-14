@@ -29,6 +29,9 @@ export const markdownConfigs: Linter.Config[] = pluginMarkdown.configs.recommend
       '@typescript-eslint/no-use-before-define': 'off',
 
       'import/no-default-export': 'off',
+
+      'sonarjs/no-dead-store': 'off',
+      'sonarjs/sonar-no-unused-vars': 'off',
     };
   }
   return baseConfig;

@@ -5,6 +5,7 @@
 ### Features
 
 - **eslint-plugin:** upgrade `eslint-plugin-playwright` to v2 ([aabd4e3](https://github.com/tzuyi0817/component-hook/commit/aabd4e3fff5a63f8fdea669530c7076c1d3a877d))
+- **picker:** add `React` picker component
 
 ## [0.1.6](https://github.com/tzuyi0817/component-hook/compare/v0.1.5...v0.1.6) (2024-10-25)
 

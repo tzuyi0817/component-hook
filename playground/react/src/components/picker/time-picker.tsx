@@ -3,13 +3,13 @@ import Picker from '@component-hook/picker/react';
 
 export function TimePicker() {
   const [currentTime, setCurrentTime] = useState<number[]>([]);
-  const [isShowPicker, setIsShowPicker] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
 
   return (
     <div>
       <Picker
-        isShowPicker={isShowPicker}
-        onClose={() => setIsShowPicker(false)}
+        isShowPicker={showPicker}
+        onClose={() => setShowPicker(false)}
         anchor={currentTime}
         type="time"
         options={{ titleText: 'time selector' }}
@@ -17,7 +17,7 @@ export function TimePicker() {
         onCancel={handleCancel}
         onChangeAnchor={setCurrentTime}
       />
-      <button onClick={() => setIsShowPicker(true)}>toggle time picker</button>
+      <button onClick={() => setShowPicker(true)}>toggle time picker</button>
 
       <p>
         Selected time:{' '}

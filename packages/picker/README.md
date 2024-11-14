@@ -1,6 +1,6 @@
 # @component-hook/picker
 
-Picker component with vue3 ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/picker))
+Picker component with vue3 and react ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/picker))
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/picker">
@@ -33,12 +33,12 @@ $ yarn add @component-hook/picker
 $ pnpm install @component-hook/picker
 ```
 
-## Basic Usage
+## Usage with Vue
 
 ```vue
 <script setup>
 import { ref, reactive } from 'vue';
-import Picker from '@component-hook/picker';
+import Picker from '@component-hook/picker/vue';
 
 const currentSelect = ref({});
 const anchor = ref([0, 1, 2]);
@@ -107,17 +107,108 @@ function onCancel() {
 </template>
 ```
 
-## Attributes
+## Usage with React
 
-| Name                 | Required | Type                  | Description                                                                         | Default               |
-| -------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------- | --------------------- |
-| v-model:isShowPicker | true     | `boolean`             | Control picker show                                                                 | —                     |
-| v-model:anchor       | true     | `number` / `number[]` | Picker current select index (single column for Number、 multiple columns for Array) | —                     |
-| data                 | false    | `array`               | Picker list [1, 2, 3] or [[1, 2, 3], [1, 2, 3]]                                     | —                     |
-| type                 | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                          | —                     |
-| showKey              | false    | `string` / `string[]` | Wheel options name (object key)                                                     | —                     |
-| swipeTime            | false    | `number`              | Wheel swipe Time                                                                    | 500                   |
-| options              | false    | `object`              | Custom text, color and class                                                        | See below for details |
+```jsx
+import { useState } from 'react';
+import Picker from '@component-hook/picker/react';
+
+const singleData = [
+  { langType: 2, code: 'vi', original: 'Tiếng Việt' },
+  { langType: 0, code: 'en', original: 'English' },
+  { langType: 1, code: 'cn', original: '中文' },
+];
+const cascadeData = [singleData, singleData, singleData];
+
+const options = {
+  confirmColor: '#000',
+  cancelClass: 'test',
+  titleText: 'Title',
+};
+
+function PickerExample() {
+  const [currentSelect, setCurrentSelect] = useState({});
+  const [anchor, setAnchor] = useState([0, 1, 2]);
+  const [anchorSingle, setAnchorSingle] = useState(0);
+  const [currentDate, setCurrentDate] = useState([2022, 7, 7]);
+  const [currentTime, setCurrentTime] = useState([]);
+  const [showPicker, setShowPicker] = useState(false);
+  const [showSingle, setShowSingle] = useState(false);
+  const [showDate, setShowDate] = useState(false);
+  const [showTime, setShowTime] = useState(false);
+
+  function onConfirm(value) {
+    setCurrentSelect(value);
+  }
+
+  return (
+    <>
+      <Picker
+        isShowPicker={showPicker}
+        data={cascadeData}
+        showKey={['original', 'original', 'original']}
+        options={{ titleText: 'cascade selector' }}
+        anchor={anchor}
+        onChangeAnchor={setAnchor}
+        onClose={() => setShowPicker(false)}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+      />
+
+      <Picker
+        data={singleData}
+        isShowPicker={showSingle}
+        anchor={anchorSingle}
+        showKey="original"
+        options={{ titleText: 'single selector' }}
+        onChangeAnchor={setAnchorSingle}
+        onClose={() => setShowSingle(false)}
+      />
+
+      <Picker
+        isShowPicker={showDate}
+        onClose={() => setShowDate(false)}
+        anchor={currentDate}
+        type="date"
+        options={{ titleText: 'date selector' }}
+        onChangeAnchor={setCurrentDate}
+      />
+
+      <Picker
+        isShowPicker={showTime}
+        onClose={() => setShowTime(false)}
+        anchor={currentTime}
+        type="time"
+        options={{ titleText: 'time selector' }}
+        onChangeAnchor={setCurrentTime}
+      />
+    </>
+  );
+}
+
+function onCancel() {
+  console.log('cancel');
+}
+```
+
+## Attributes (Common)
+
+| Name         | Required | Type                  | Description                                                                                                  | Default               |
+| ------------ | -------- | --------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------- |
+| isShowPicker | true     | `boolean`             | Control picker show (`vue` use `v-model`)                                                                    | —                     |
+| anchor       | true     | `number` / `number[]` | Picker current select index (single column for `number`、 multiple columns for `Array`, `vue` use `v-model`) | —                     |
+| data         | false    | `array`               | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]`                                                          | —                     |
+| type         | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                                                   | —                     |
+| showKey      | false    | `string` / `string[]` | Wheel options name (object key)                                                                              | —                     |
+| swipeTime    | false    | `number`              | Wheel swipe Time                                                                                             | 500                   |
+| options      | false    | `object`              | Custom text, color and class                                                                                 | See below for details |
+
+## Attributes (React)
+
+| Name           | Required | Type                                             | Description                                        | Default |
+| -------------- | -------- | ------------------------------------------------ | -------------------------------------------------- | ------- |
+| onClose        | true     | `Function () => void`                            | close picker show (need to update state)           | —       |
+| onChangeAnchor | true     | `Function (anchor: number` / `number[]) => void` | update picker anchor (need to update anchor state) | —       |
 
 ## Options Attribute
 
@@ -137,7 +228,7 @@ function onCancel() {
 
 ## Events
 
-| Event   | Description                                  | Type                                      |
-| :------ | :------------------------------------------- | :---------------------------------------- |
-| confirm | Triggered when the confirm button is clicked | `Function (value: selected item) => void` |
-| cancel  | Triggered when the cancel button is clicked  | `Function () => void`                     |
+| Event                              | Description                                  | Type                                      |
+| :--------------------------------- | :------------------------------------------- | :---------------------------------------- |
+| confirm(`vue`), onConfirm(`react`) | Triggered when the confirm button is clicked | `Function (value: selected item) => void` |
+| cancel(`vue`), onClose(`react`)    | Triggered when the cancel button is clicked  | `Function () => void`                     |
