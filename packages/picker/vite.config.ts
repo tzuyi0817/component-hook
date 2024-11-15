@@ -11,8 +11,8 @@ const patchCssFile: Plugin = {
     const file = 'picker.es.js';
 
     if (!bundle[file]) return;
-    const outDir = path.resolve('dist');
-    const filePath = path.resolve(outDir, `${FRAMEWORK}/${file}`);
+    const dist = path.resolve('dist');
+    const filePath = path.resolve(dist, `${FRAMEWORK}/${file}`);
     const content = fs.readFileSync(filePath, 'utf-8');
 
     fs.writeFileSync(filePath, `import "./index.css";\n${content}`);

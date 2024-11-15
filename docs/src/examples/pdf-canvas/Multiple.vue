@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue';
-import { useFabric, type PDF } from '@component-hook/pdf-canvas';
+import { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
 import Loading from '@/components/Loading.vue';
 
 const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
-const PdfCanvas = defineAsyncComponent(() => import('@component-hook/pdf-canvas'));
+const PdfCanvas = defineAsyncComponent(() => import('@component-hook/pdf-canvas/vue'));
 
 async function uploadFile(event: Event) {
   const target = event.target as HTMLInputElement;

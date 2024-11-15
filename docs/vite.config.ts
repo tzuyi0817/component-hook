@@ -17,7 +17,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
       '@component-hook/picker': `${pickerPackage}/src`,
-      '@component-hook/pdf-canvas': pdfCanvasPackage,
+      '@component-hook/pdf-canvas': `${pdfCanvasPackage}/src`,
     },
   },
 });

@@ -4,7 +4,7 @@ import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
 import type { ComponentProps } from '../../shared/types/common';
 
-interface PdfCanvasHandle {
+export interface PdfCanvasHandle {
   addImage: (src: string, options?: TOptions<ImageProps>) => void;
   addText: (text: string, options?: TOptions<TextProps>) => void;
   clearActive: () => void;
