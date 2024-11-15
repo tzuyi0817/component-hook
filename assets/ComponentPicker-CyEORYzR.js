@@ -1,4 +1,4 @@
-import{D as J}from"./Demo-BGZ_HJUr.js";import{r as S,c as E,w as mt,n as he,d as j,o as D,a as x,b,e as C,f as Mt,v as Yt,g as v,u as m,T as Xt,h as yt,i as gt,t as B,F as R,j as Ot,m as kt,k as Q}from"./index-BB_O2iuQ.js";/*!
+import{D as J}from"./Demo-D2IgoJQS.js";import{r as S,c as E,w as mt,n as he,d as j,o as D,a as x,b,e as C,f as Mt,v as Yt,g as v,u as m,T as Xt,h as yt,i as gt,t as B,F as R,j as Ot,m as kt,k as Q}from"./index-BQLXRpH9.js";/*!
  * better-scroll / core
  * (c) 2016-2023 ustbhuangyi
  * Released under the MIT License.
