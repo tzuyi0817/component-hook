@@ -1,6 +1,6 @@
 # @component-hook/pdf-canvas
 
-Rendering PDF documents onto a canvas with vue3 component ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/pdf-canvas))  
+Rendering PDF documents onto a canvas with vue3 and react component ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/pdf-canvas))  
 Implementation depository: [PDF-signature](https://github.com/tzuyi0817/PDF-signature)
 
 <p>
@@ -32,12 +32,12 @@ $ yarn add @component-hook/pdf-canvas
 $ pnpm install @component-hook/pdf-canvas
 ```
 
-## Basic Usage
+## Usage with Vue
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas';
+import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
 
 const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
@@ -80,6 +80,47 @@ async function uploadFile(event: Event) {
     </button>
   </div>
 </template>
+```
+
+## Usage with React
+
+```jsx
+import { useState, type ChangeEvent } from 'react';
+import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
+
+export function DrawPdf() {
+  const { loadFile } = useFabric();
+  const [currentPdf, setCurrentPdf] = useState<PDF>();
+
+  const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
+    const target = event.target;
+    const { files } = target;
+
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    const content = await loadFile(file);
+
+    setCurrentPdf(content);
+    target.value = '';
+  };
+
+  return (
+    <div>
+      {currentPdf ? <PdfCanvas file={currentPdf} /> : <p>Please select a PDF file or image.</p>}
+
+      <button>
+        <input
+          type="file"
+          accept="application/pdf, .jpg, .png"
+          onChange={uploadFile}
+        />
+        select file
+      </button>
+    </div>
+  );
+}
+
 ```
 
 ## Attributes
