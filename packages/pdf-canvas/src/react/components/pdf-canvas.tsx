@@ -51,7 +51,7 @@ function PdfCanvasComponent(
 
   async function setPDF() {
     window.requestAnimationFrame(async () => {
-      await createCanvas();
+      createCanvas();
 
       if (file.PDFBase64.startsWith('data:image') || file.canvas) {
         const { canvas } = file;
@@ -96,7 +96,6 @@ function PdfCanvasComponent(
 
   useEffect(() => {
     setPDF();
-    return () => deleteCanvas();
   }, [fileScale, page, file, password]);
 
   useEffect(() => {
@@ -106,6 +105,10 @@ function PdfCanvasComponent(
   useEffect(() => {
     setCloseSvgOptions(closeSvgOptions);
   }, [closeSvgOptions]);
+
+  useEffect(() => {
+    return () => deleteCanvas();
+  }, []);
 
   return (
     <div
