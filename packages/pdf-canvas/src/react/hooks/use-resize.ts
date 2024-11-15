@@ -1,19 +1,18 @@
-import { onMounted, onBeforeUnmount } from 'vue';
+import { useEffect } from 'react';
 import { debounce } from '../../shared/utils/common';
 
 export function useResize(callback: () => void) {
   let previousWidth = 0;
+
   const debounceCallback = debounce(() => {
     if (previousWidth === window.innerWidth) return;
     previousWidth = window.innerWidth;
     callback();
   });
 
-  onMounted(() => {
+  useEffect(() => {
     window.addEventListener('resize', debounceCallback);
-  });
 
-  onBeforeUnmount(() => {
-    window.removeEventListener('resize', debounceCallback);
-  });
+    return () => window.removeEventListener('resize', debounceCallback);
+  }, []);
 }

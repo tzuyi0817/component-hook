@@ -3,27 +3,10 @@ import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps, TOptions } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
-import type { PDF } from '../../shared/types/pdf';
-import type { CloseSvgOptions } from '../../shared/types/fabric';
+import type { ComponentProps } from '../../shared/types/common';
 
-interface Props {
-  file: PDF;
-  page?: number;
-  canvasId?: string;
-  fileZoom?: number;
-  fileScale?: number;
-  canvasScale?: number;
-  canvasClass?: string;
-  isDrop?: boolean;
-  password?: string;
-  dropTextOptions?: TOptions<TextProps>;
-  dropImageOptions?: TOptions<ImageProps>;
-  closeSvgOptions?: CloseSvgOptions;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<ComponentProps>(), {
   canvasId: 'PDF-canvas',
-  class: '',
   canvasClass: '',
   canvasScale: 1,
   page: 1,

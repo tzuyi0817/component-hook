@@ -1,115 +1,124 @@
-<script setup lang="ts">
-import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
+import { useRef, useEffect, useMemo, useImperativeHandle, forwardRef, type Ref } from 'react';
 import type { ImageProps, TextProps, TOptions } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
-import type { PDF } from '../../shared/types/pdf';
-import type { CloseSvgOptions } from '../../shared/types/fabric';
+import type { ComponentProps } from '../../shared/types/common';
 
-interface Props {
-  file: PDF;
-  page?: number;
-  canvasId?: string;
-  fileZoom?: number;
-  fileScale?: number;
-  canvasScale?: number;
-  canvasClass?: string;
-  isDrop?: boolean;
-  password?: string;
-  dropTextOptions?: TOptions<TextProps>;
-  dropImageOptions?: TOptions<ImageProps>;
-  closeSvgOptions?: CloseSvgOptions;
+interface PdfCanvasHandle {
+  addImage: (src: string, options?: TOptions<ImageProps>) => void;
+  addText: (text: string, options?: TOptions<TextProps>) => void;
+  clearActive: () => void;
+  deleteCanvas: () => void;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  canvasId: 'PDF-canvas',
-  class: '',
-  canvasClass: '',
-  canvasScale: 1,
-  page: 1,
-  fileZoom: 1,
-  fileScale: 1,
-  isDrop: false,
-});
+export const PdfCanvas = forwardRef<PdfCanvasHandle, ComponentProps>(PdfCanvasComponent);
 
-const canvasRef = ref<HTMLCanvasElement | null>(null);
-const canvasId = `${props.canvasId}-${props.page - 1}`;
-const containerScale = computed(() => props.fileZoom * props.canvasScale);
-const {
-  createCanvas,
-  specifyPage,
-  addFabric,
-  addTextFabric,
-  renderImage,
-  clearActive,
-  deleteCanvas,
-  scaleFabric,
-  setCloseSvgOptions,
-} = useFabric(canvasId);
+function PdfCanvasComponent(
+  {
+    file,
+    page = 1,
+    canvasId = 'PDF-canvas',
+    fileZoom = 1,
+    fileScale = 1,
+    canvasScale = 1,
+    canvasClass = '',
+    isDrop = false,
+    password,
+    dropTextOptions,
+    dropImageOptions,
+    closeSvgOptions,
+  }: ComponentProps,
+  ref: Ref<PdfCanvasHandle>,
+) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const computedCanvasId = `${canvasId}-${page - 1}`;
+  const containerScale = useMemo(() => fileZoom * canvasScale, [fileZoom, canvasScale]);
 
-setPDF();
-useResize(setPDF);
+  const {
+    createCanvas,
+    specifyPage,
+    addFabric,
+    addTextFabric,
+    renderImage,
+    clearActive,
+    deleteCanvas,
+    scaleFabric,
+    setCloseSvgOptions,
+  } = useFabric(computedCanvasId);
 
-async function setPDF() {
-  const { file, page, fileScale: scale } = props;
+  useResize(setPDF);
 
-  window.requestAnimationFrame(async () => {
-    await nextTick();
-    createCanvas();
-    if (file.PDFBase64.startsWith('data:image') || file.canvas) {
-      const { canvas } = file;
-      const scaleDown = canvas ? 7 : 3;
-      const url = canvas?.length ? canvas[page - 1] : file.PDFBase64;
+  async function setPDF() {
+    window.requestAnimationFrame(async () => {
+      await createCanvas();
 
-      renderImage({ url, scale: scale / scaleDown });
-      return;
-    }
-    await specifyPage({
-      page,
-      PDFBase64: file.PDFBase64,
-      scale,
-      password: props.password,
+      if (file.PDFBase64.startsWith('data:image') || file.canvas) {
+        const { canvas } = file;
+        const scaleDown = canvas ? 7 : 3;
+        const url = canvas?.length ? canvas[page - 1] : file.PDFBase64;
+
+        renderImage({ url, scale: fileScale / scaleDown });
+        return;
+      }
+      await specifyPage({
+        page,
+        PDFBase64: file.PDFBase64,
+        scale: fileScale,
+        password,
+      });
     });
-  });
+  }
+
+  function dropImage(event: React.DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!isDrop || !event.dataTransfer) return;
+
+    const { dataTransfer, clientX, clientY } = event;
+    const text = dataTransfer.getData('text');
+    const imageSrc = dataTransfer.getData('image');
+    const position = { left: clientX - 71, top: clientY - 55 };
+
+    if (imageSrc) addImage(imageSrc, position);
+    if (text) addText(text, position);
+  }
+
+  function addImage(src: string, options?: TOptions<ImageProps>) {
+    addFabric(src, { ...options, ...dropImageOptions });
+  }
+
+  function addText(text: string, options?: TOptions<TextProps>) {
+    addTextFabric(text, { ...options, ...dropTextOptions });
+  }
+
+  useImperativeHandle(ref, () => ({ addImage, addText, clearActive, deleteCanvas, canvasRef }));
+
+  useEffect(() => {
+    setPDF();
+    return () => deleteCanvas();
+  }, [fileScale, page, file, password]);
+
+  useEffect(() => {
+    scaleFabric(containerScale);
+  }, [containerScale]);
+
+  useEffect(() => {
+    setCloseSvgOptions(closeSvgOptions);
+  }, [closeSvgOptions]);
+
+  return (
+    <div
+      style={{ transform: `scale(${containerScale})` }}
+      onDragOver={e => e.preventDefault()}
+      onDragEnter={e => e.preventDefault()}
+      onDrop={dropImage}
+    >
+      <canvas
+        id={computedCanvasId}
+        ref={canvasRef}
+        className={canvasClass}
+      ></canvas>
+    </div>
+  );
 }
-
-function dropImage(event: DragEvent) {
-  if (!props.isDrop || !event.dataTransfer) return;
-  const { dataTransfer, offsetX, offsetY } = event;
-  const text = dataTransfer.getData('text');
-  const imageSrc = dataTransfer.getData('image');
-  const position = { left: offsetX - 71, top: offsetY - 55 };
-
-  if (imageSrc) addImage(imageSrc, position);
-  if (text) addText(text, position);
-}
-
-function addImage(src: string, options?: TOptions<ImageProps>) {
-  addFabric(src, { ...options, ...props.dropImageOptions });
-}
-
-function addText(text: string, options?: TOptions<TextProps>) {
-  addTextFabric(text, { ...options, ...props.dropTextOptions });
-}
-
-watch([() => props.fileScale, () => props.page, () => props.file, () => props.password], setPDF);
-watch(containerScale, scale => scaleFabric(scale), { immediate: true });
-watch(() => props.closeSvgOptions, setCloseSvgOptions, { immediate: true });
-onBeforeUnmount(deleteCanvas);
-defineExpose({ addImage, addText, clearActive, deleteCanvas, canvasRef });
-</script>
-
-<template>
-  <div
-    :style="{ transform: `scale(${containerScale})` }"
-    @dragover.stop.prevent
-    @dragenter.stop.prevent
-    @drop.stop.prevent="dropImage"
-  >
-    <canvas
-      :id="canvasId"
-      ref="canvasRef"
-      :class="canvasClass"
-    ></canvas>
-  </div>
-</template>

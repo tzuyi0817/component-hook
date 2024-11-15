@@ -1,4 +1,3 @@
-import { toRaw } from 'vue';
 import {
   Canvas,
   FabricImage,
@@ -75,7 +74,7 @@ export function useFabric(id = '') {
   async function specifyPage({ page, PDFBase64, scale, password }: SpecifyPageArgs) {
     try {
       const pdfDoc = await getPDFDocument(PDFBase64, password);
-      const pdfPage = await toRaw(pdfDoc).getPage(page);
+      const pdfPage = await pdfDoc.getPage(page);
       const viewport = pdfPage.getViewport({ scale });
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d')!;
