@@ -1,6 +1,6 @@
 # @component-hook/picker
 
-Picker component with vue3 and react ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/vue/picker))
+Picker component with vue3 and react ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/vue-picker))
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/picker">

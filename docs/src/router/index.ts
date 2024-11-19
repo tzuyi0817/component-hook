@@ -17,32 +17,44 @@ const routes: Array<RouteRecordRaw> = [
     path: '/component',
     name: 'component',
     component: Component,
-    redirect: '/component/vue',
+    redirect: '/component/vue-picker',
     children: [
       {
-        path: 'vue',
-        redirect: '/component/vue/picker',
+        path: 'vue-picker',
+        name: 'component-vue-picker',
+        component: () => import('@/components/component/vue/VuePicker.vue'),
         meta: {
-          title: 'Vue',
+          title: 'Picker',
+          group: 'Vue',
         },
-        children: [
-          {
-            path: 'picker',
-            name: 'component-vue-picker',
-            component: () => import('@/components/component/vue/VuePicker.vue'),
-            meta: {
-              title: 'Picker',
-            },
-          },
-          {
-            path: 'pdf-canvas',
-            name: 'component-vue-pdf-canvas',
-            component: () => import('@/components/component/vue/VuePdfCanvas.vue'),
-            meta: {
-              title: 'PDF Canvas',
-            },
-          },
-        ],
+      },
+      {
+        path: 'vue-pdf-canvas',
+        name: 'component-vue-pdf-canvas',
+        component: () => import('@/components/component/vue/VuePdfCanvas.vue'),
+        meta: {
+          title: 'PDF Canvas',
+          group: 'Vue',
+        },
+      },
+
+      {
+        path: 'react-picker',
+        name: 'component-react-picker',
+        component: () => import('@/components/component/react/ReactPicker.vue'),
+        meta: {
+          title: 'Picker',
+          group: 'React',
+        },
+      },
+      {
+        path: 'react-pdf-canvas',
+        name: 'component-react-pdf-canvas',
+        component: () => import('@/components/component/react/ReactPdfCanvas.vue'),
+        meta: {
+          title: 'PDF Canvas',
+          group: 'React',
+        },
       },
     ],
   },

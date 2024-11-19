@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import { pickerPackage, pdfCanvasPackage } from '../internal/paths';
+import { pickerPackage, pdfCanvasPackage, reactPlayground } from '../internal/paths';
 
 export default defineConfig({
   plugins: [
@@ -18,6 +18,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('src', import.meta.url)),
       '@component-hook/picker': `${pickerPackage}/src`,
       '@component-hook/pdf-canvas': `${pdfCanvasPackage}/src`,
+      '@react-playground': reactPlayground,
     },
   },
 });
