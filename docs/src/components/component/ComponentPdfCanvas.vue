@@ -24,6 +24,7 @@ interface Props {
   dropPlayground: string;
   manualSource: string;
   manualPlayground: string;
+  language?: string;
 }
 
 defineProps<Props>();
@@ -50,6 +51,7 @@ defineProps<Props>();
       title="Basic Usage"
       :source="drawSource"
       :playground="drawPlayground"
+      :language="language"
     >
       <template #description> Select the PDF file and draw on the canvas. </template>
       <draw-pdf />
@@ -59,6 +61,7 @@ defineProps<Props>();
       title="Encrypted PDF"
       :source="encryptedSource"
       :playground="encryptedPlayground"
+      :language="language"
     >
       <template #description> Select the encrypted PDF file and draw on the canvas. </template>
       <encrypted-pdf />
@@ -68,6 +71,7 @@ defineProps<Props>();
       title="Multiple page PDF"
       :source="multipleSource"
       :playground="multiplePlayground"
+      :language="language"
     >
       <template #description> Select the multiple page PDF file and draw on the canvas. </template>
       <multiple-pdf />
@@ -77,6 +81,7 @@ defineProps<Props>();
       title="Drag and drop images and text"
       :source="dropSource"
       :playground="dropPlayground"
+      :language="language"
     >
       <template #description> Drag and drop the images and text onto the canvas. </template>
       <drop-pdf />
@@ -86,6 +91,7 @@ defineProps<Props>();
       title="Manually add images and text"
       :source="manualSource"
       :playground="manualPlayground"
+      :language="language"
     >
       <template #description> Manually add the images and text onto the canvas. </template>
       <manual-pdf />

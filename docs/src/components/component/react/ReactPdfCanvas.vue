@@ -1,24 +1,25 @@
 <script setup lang="ts">
+import drawSource from '@react-playground/pdf-canvas/draw-pdf?raw';
+import encryptedSource from '@react-playground/pdf-canvas/encrypted-pdf?raw';
+import multipleSource from '@react-playground/pdf-canvas/multiple-pdf?raw';
+import dropSource from '@react-playground/pdf-canvas/drop-pdf?raw';
+import manualSource from '@react-playground/pdf-canvas/manual-pdf?raw';
 import ComponentPdfCanvas from '../ComponentPdfCanvas.vue';
-import drawSource from '@/examples/pdf-canvas/Draw.vue?raw';
-import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
-import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
-import dropSource from '@/examples/pdf-canvas/Drop.vue?raw';
-import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
 </script>
 
 <template>
   <component-pdf-canvas
-    description="Rendering PDF documents onto a canvas with vue3 component."
+    description="Rendering PDF documents onto a canvas with react component."
     :draw-source="drawSource"
-    draw-playground="668e33253e8416c068f2f93b"
+    draw-playground=""
     :encrypted-source="encryptedSource"
-    encrypted-playground="66963e7d2b23250eadd65180"
+    encrypted-playground=""
     :multiple-source="multipleSource"
-    multiple-playground="669646038ae98c93b96a2e78"
+    multiple-playground=""
     :drop-source="dropSource"
-    drop-playground="6696466d8ae98c93b96a2e9b"
+    drop-playground=""
     :manual-source="manualSource"
-    manual-playground="669646c68ae98c93b96a2eb2"
+    manual-playground=""
+    language="tsx"
   />
 </template>
