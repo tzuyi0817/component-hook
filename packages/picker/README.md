@@ -1,6 +1,6 @@
 # @component-hook/picker
 
-Picker component with vue3 and react ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/picker))
+Picker component with vue3 and react ([DEMO](https://tzuyi0817.github.io/component-hook/#/component/vue/picker))
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/picker">
@@ -193,15 +193,15 @@ function onCancel() {
 
 ## Attributes (Common)
 
-| Name         | Required | Type                  | Description                                                                                                  | Default               |
-| ------------ | -------- | --------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------- |
-| isShowPicker | true     | `boolean`             | Control picker show (`vue` use `v-model`)                                                                    | —                     |
-| anchor       | true     | `number` / `number[]` | Picker current select index (single column for `number`、 multiple columns for `Array`, `vue` use `v-model`) | —                     |
-| data         | false    | `array`               | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]`                                                          | —                     |
-| type         | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                                                   | —                     |
-| showKey      | false    | `string` / `string[]` | Wheel options name (object key)                                                                              | —                     |
-| swipeTime    | false    | `number`              | Wheel swipe Time                                                                                             | 500                   |
-| options      | false    | `object`              | Custom text, color and class                                                                                 | See below for details |
+| Name         | Required | Type                  | Description                                                                                                     | Default               |
+| ------------ | -------- | --------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------- |
+| isShowPicker | true     | `boolean`             | Control picker show (`vue` use `v-model`)                                                                       | —                     |
+| anchor       | true     | `number` / `number[]` | Picker current select index (single column for `number`、 multiple columns for `number[]`, `vue` use `v-model`) | —                     |
+| data         | false    | `array`               | Picker list `[1, 2, 3]` or `[[1, 2, 3], [1, 2, 3]]`                                                             | —                     |
+| type         | false    | `string`              | Built-in picker type, no need to pass in data (date, time)                                                      | —                     |
+| showKey      | false    | `string` / `string[]` | Wheel options name (object key)                                                                                 | —                     |
+| swipeTime    | false    | `number`              | Wheel swipe Time                                                                                                | 500                   |
+| options      | false    | `object`              | Custom text, color and class                                                                                    | See below for details |
 
 ## Attributes (React)
 

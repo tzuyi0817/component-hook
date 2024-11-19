@@ -29,7 +29,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'picker',
             name: 'component-vue-picker',
-            component: () => import('@/components/component/vue/ComponentPicker.vue'),
+            component: () => import('@/components/component/vue/VuePicker.vue'),
             meta: {
               title: 'Picker',
             },
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'pdf-canvas',
             name: 'component-vue-pdf-canvas',
-            component: () => import('@/components/component/vue/ComponentPdfCanvas.vue'),
+            component: () => import('@/components/component/vue/VuePdfCanvas.vue'),
             meta: {
               title: 'PDF Canvas',
             },
