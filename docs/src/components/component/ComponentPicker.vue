@@ -20,6 +20,7 @@ interface Props {
   timePlayground: string;
   attributesMd: string;
   eventsMd: string;
+  language?: string;
 }
 
 defineProps<Props>();
@@ -37,6 +38,7 @@ defineProps<Props>();
       title="Cascade Picker"
       :source="cascadeSource"
       :playground="cascadePlayground"
+      :language="language"
     >
       <template #description> Use cascade data to define picker. </template>
       <cascade-picker />
@@ -46,6 +48,7 @@ defineProps<Props>();
       title="Single Picker"
       :source="singleSource"
       :playground="singlePlayground"
+      :language="language"
     >
       <template #description> Use single data to define picker. </template>
       <single-picker />
@@ -55,6 +58,7 @@ defineProps<Props>();
       title="Built-in Date Picker"
       :source="dateSource"
       :playground="datePlayground"
+      :language="language"
     >
       <template #description> Use built-in date picker. </template>
       <date-picker />
@@ -64,6 +68,7 @@ defineProps<Props>();
       title="Built-in Time Picker"
       :source="timeSource"
       :playground="timePlayground"
+      :language="language"
     >
       <template #description> Use built-in time picker. </template>
       <time-picker />

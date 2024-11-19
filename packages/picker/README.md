@@ -231,4 +231,4 @@ function onCancel() {
 | Event                              | Description                                  | Type                                      |
 | :--------------------------------- | :------------------------------------------- | :---------------------------------------- |
 | confirm(`vue`), onConfirm(`react`) | Triggered when the confirm button is clicked | `Function (value: selected item) => void` |
-| cancel(`vue`), onClose(`react`)    | Triggered when the cancel button is clicked  | `Function () => void`                     |
+| cancel(`vue`), onCancel(`react`)   | Triggered when the cancel button is clicked  | `Function () => void`                     |

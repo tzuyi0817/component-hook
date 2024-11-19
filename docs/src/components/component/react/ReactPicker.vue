@@ -1,25 +1,26 @@
 <script setup lang="ts">
+import cascadeSource from '@react-playground/picker/cascade-picker?raw';
+import singleSource from '@react-playground/picker/single-picker?raw';
+import dateSource from '@react-playground/picker/date-picker?raw';
+import timeSource from '@react-playground/picker/time-picker?raw';
 import ComponentPicker from '../ComponentPicker.vue';
-import cascadeSource from '@/examples/picker/Cascade.vue?raw';
-import singleSource from '@/examples/picker/Single.vue?raw';
-import dateSource from '@/examples/picker/Date.vue?raw';
-import timeSource from '@/examples/picker/Time.vue?raw';
-import attributesMd from '@/markdowns/picker/vue/attributes.md?raw';
-import eventsMd from '@/markdowns/picker/vue/events.md?raw';
+import attributesMd from '@/markdowns/picker/react/attributes.md?raw';
+import eventsMd from '@/markdowns/picker/react/events.md?raw';
 </script>
 
 <template>
   <component-picker
-    description="Picker component with vue3."
+    description="Picker component with react."
     :cascade-source="cascadeSource"
-    cascade-playground="6696355db9ac0e0085f0eb29"
+    cascade-playground=""
     :single-source="singleSource"
-    single-playground="668e32b73e8416c068f2f92f"
+    single-playground=""
     :date-source="dateSource"
-    date-playground="669635e2b9ac0e0085f0eb2e"
+    date-playground=""
     :time-source="timeSource"
-    time-playground="66963635b9ac0e0085f0eb32"
+    time-playground=""
     :attributes-md="attributesMd"
     :events-md="eventsMd"
+    language="tsx"
   />
 </template>

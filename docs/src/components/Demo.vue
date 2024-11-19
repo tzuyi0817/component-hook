@@ -11,13 +11,14 @@ interface Props {
   title: string;
   source: string;
   playground: string;
+  language?: string;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 const isShowSource = ref(false);
 
 function encode(source: string, isHighlight = true) {
-  const code = isHighlight ? highlight(source) : source;
+  const code = isHighlight ? highlight(source, props.language) : source;
 
   return encodeURIComponent(code);
 }
