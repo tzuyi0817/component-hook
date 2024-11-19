@@ -84,7 +84,7 @@ async function uploadFile(event: Event) {
 
 ## Usage with React
 
-```jsx
+```tsx
 import { useState, type ChangeEvent } from 'react';
 import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
 
@@ -120,7 +120,6 @@ export function DrawPdf() {
     </div>
   );
 }
-
 ```
 
 ## Attributes

@@ -56,7 +56,7 @@ export function useFabric(id = '') {
       'image/jpeg': drawImage,
     };
 
-    return loadFileMap[fileType](file, password) ?? Promise.reject(new Error(`Unsupported ${fileType} file type.`));
+    return loadFileMap[fileType]?.(file, password) ?? Promise.reject(new Error(`Unsupported ${fileType} file type.`));
   }
 
   async function drawPDF(file: File, password?: string) {

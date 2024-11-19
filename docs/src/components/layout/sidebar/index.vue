@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import SidebarItem from './SidebarItem.vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import { scrollToTop } from '@/utils/common';
 
-const isSidebarOpen = ref(false);
-const isShowBackToTop = ref(false);
 const route = useRoute();
 const children = route.matched[0].children;
+const isSidebarOpen = ref(false);
+const isShowBackToTop = ref(false);
 const observer = new IntersectionObserver(intersectionObserverCallback);
 
 function intersectionObserverCallback(entries: IntersectionObserverEntry[]) {
@@ -49,23 +50,17 @@ onMounted(() => {
 
   <div
     :class="['sidebar-mask', { hidden: !isSidebarOpen }]"
+    aria-hidden="true"
     @click="isSidebarOpen = false"
   ></div>
 
   <ul :class="['sidebar', { '-translate-x-full': !isSidebarOpen }]">
-    <li
-      v-for="child of children"
-      :key="child.name"
-      class="flex"
-    >
-      <router-link
-        :to="child.path"
-        class="flex-1 px-4 py-2.5 rounded-lg text-sm hover:text-primary transition-colors"
-        @click="isSidebarOpen = false"
-      >
-        {{ child.meta?.title }}
-      </router-link>
-    </li>
+    <sidebar-item
+      v-for="item of children"
+      :key="item.name"
+      :item="item"
+      @close-sidebar="isSidebarOpen = false"
+    />
   </ul>
 </template>
 
@@ -78,10 +73,6 @@ onMounted(() => {
   &-nav {
     @apply sticky flex justify-between top-0 z-10 px-4 py-3.5 border-b border-b-border-color bg-bg-color lg:hidden;
   }
-}
-
-.router-link-active {
-  @apply text-primary bg-blue-500/15;
 }
 
 @keyframes fadeIn {
