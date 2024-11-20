@@ -59,7 +59,7 @@ const configs = {
 
 export default { configs };
 
-const basicPreset = [...markdownConfigs, prettierConfig, ...sonarjsConfigs, securityConfig];
+const basicPreset = [prettierConfig, ...sonarjsConfigs, securityConfig, ...markdownConfigs];
 
 export const reactPreset = [...basicConfigs, ...reactConfigs, ...basicPreset];
 export const vuePreset = [...basicConfigs, ...vueConfigs, ...basicPreset];

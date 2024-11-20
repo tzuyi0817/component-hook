@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1](https://github.com/tzuyi0817/component-hook/compare/v0.2.0...v0.2.1) (2024-11-20)
+
+### Features
+
+- **docs:** add react demo demonstration
+
 ## [0.2.0](https://github.com/tzuyi0817/component-hook/compare/v0.1.6...v0.2.0) (2024-11-15)
 
 ### Features
