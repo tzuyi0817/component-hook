@@ -55,7 +55,7 @@ import FooterContainer from '@/components/layout/Footer.vue';
           content="Designed to help developers quickly build applications."
           image="component.png"
           :image-width="128"
-          link="/component/picker"
+          link="/component/vue-picker"
         />
 
         <home-feature
