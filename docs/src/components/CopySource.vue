@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import SvgIcon from '@/components/SvgIcon.vue';
+import Describedby from '@/components/Describedby.vue';
 import { sleep } from '@/utils/common';
 
 interface Props {
   source: string;
   isAbsolute?: boolean;
+  title?: string;
 }
 
 const props = defineProps<Props>();
@@ -25,9 +27,28 @@ async function copySource() {
 <template>
   <div
     :class="[isAbsolute ? 'absolute' : 'relative']"
-    @click="copySource"
+    :aria-label="title"
   >
-    <svg-icon name="copy" />
+    <describedby
+      v-if="title"
+      :title="title"
+      v-slot="{ handleMouseEnter, handleMouseLeave }"
+    >
+      <svg-icon
+        name="copy"
+        role="button"
+        @click="copySource"
+        @mouseenter="handleMouseEnter"
+        @mouseleave="handleMouseLeave"
+      />
+    </describedby>
+
+    <svg-icon
+      v-else
+      name="copy"
+      role="button"
+      @click="copySource"
+    />
     <span :class="['copy-prompt opacity-0', { 'opacity-100 -translate-y-3': isCopied }]"> Copied! </span>
   </div>
 </template>

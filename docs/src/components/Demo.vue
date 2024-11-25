@@ -49,7 +49,10 @@ async function toggleSource() {
           <svg-icon name="playground" />
         </external-link>
 
-        <copy-source :source="source" />
+        <copy-source
+          :source="source"
+          title="Copy source code"
+        />
 
         <svg-icon
           name="source"

@@ -10,10 +10,10 @@ defineProps<Props>();
 <template>
   <a
     :href="href"
-    :title="title"
     target="_blank"
     rel="noopener noreferrer"
     class="link"
+    :aria-label="title"
   >
     <slot></slot>
   </a>
