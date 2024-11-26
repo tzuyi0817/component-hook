@@ -2,7 +2,8 @@
 import { ref } from 'vue';
 
 interface Props {
-  title: string;
+  title?: string;
+  isAbsolute?: boolean;
 }
 
 defineProps<Props>();
@@ -19,13 +20,17 @@ function handleMouseLeave() {
 </script>
 
 <template>
-  <div class="relative">
-    <slot
-      :handleMouseEnter="handleMouseEnter"
-      :handleMouseLeave="handleMouseLeave"
-    ></slot>
+  <div
+    :class="[isAbsolute ? 'absolute' : 'relative']"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
+  >
+    <slot></slot>
 
-    <p :class="['describedby', { 'opacity-0': !isShowDescription }]">
+    <p
+      v-if="title"
+      :class="['describedby', { 'opacity-0': !isShowDescription }]"
+    >
       {{ title }}
     </p>
   </div>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import Describedby from '@/components/Describedby.vue';
 import SourceCode from '@/components/SourceCode.vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import CopySource from '@/components/CopySource.vue';
@@ -42,16 +43,18 @@ async function toggleSource() {
       </div>
 
       <div class="px-4 py-3 flex justify-end items-center gap-3">
-        <external-link
-          :href="`https://code-immediate.vercel.app/${playground}`"
-          title="Open in Playground"
-        >
-          <svg-icon name="playground" />
-        </external-link>
+        <describedby title="Open in Playground">
+          <external-link
+            :href="`https://code-immediate.vercel.app/${playground}`"
+            title="Open in Playground"
+          >
+            <svg-icon name="playground" />
+          </external-link>
+        </describedby>
 
         <copy-source
           :source="source"
-          title="Copy source code"
+          title="Copy Source Code"
         />
 
         <svg-icon

@@ -25,32 +25,19 @@ async function copySource() {
 </script>
 
 <template>
-  <div
-    :class="[isAbsolute ? 'absolute' : 'relative']"
+  <describedby
+    :title="title"
+    :is-absolute="isAbsolute"
     :aria-label="title"
   >
-    <describedby
-      v-if="title"
-      :title="title"
-      v-slot="{ handleMouseEnter, handleMouseLeave }"
-    >
-      <svg-icon
-        name="copy"
-        role="button"
-        @click="copySource"
-        @mouseenter="handleMouseEnter"
-        @mouseleave="handleMouseLeave"
-      />
-    </describedby>
-
     <svg-icon
-      v-else
       name="copy"
       role="button"
       @click="copySource"
     />
+
     <span :class="['copy-prompt opacity-0', { 'opacity-100 -translate-y-3': isCopied }]"> Copied! </span>
-  </div>
+  </describedby>
 </template>
 
 <style lang="postcss" scoped>
