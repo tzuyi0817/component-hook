@@ -62,15 +62,6 @@ export const CONFIGS_MAP = {
       },
     ],
   },
-  markdown: {
-    url: `${BASE_URL}/configs/markdown.ts`,
-    plugins: [
-      {
-        name: 'eslint-plugin-markdown',
-        url: 'https://github.com/eslint/markdown/blob/main/src/index.js',
-      },
-    ],
-  },
   prettier: {
     url: `${BASE_URL}/configs/prettier.ts`,
     plugins: [
@@ -99,6 +90,15 @@ export const CONFIGS_MAP = {
       {
         name: 'eslint-plugin-security',
         url: 'https://github.com/eslint-community/eslint-plugin-security/blob/main/index.js',
+      },
+    ],
+  },
+  markdown: {
+    url: `${BASE_URL}/configs/markdown.ts`,
+    plugins: [
+      {
+        name: 'eslint-plugin-markdown',
+        url: 'https://github.com/eslint/markdown/blob/main/src/index.js',
       },
     ],
   },

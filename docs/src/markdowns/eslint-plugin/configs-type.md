@@ -1,0 +1,15 @@
+| Name                    | Type              |
+| ----------------------- | ----------------- |
+| basic                   | `Linter.Config[]` |
+| vue                     | `Linter.Config[]` |
+| react                   | `Linter.Config[]` |
+| prettier                | `Linter.Config`   |
+| sonarjs                 | `Linter.Config[]` |
+| security                | `Linter.Config`   |
+| markdown                | `Linter.Config[]` |
+| playwright              | `Linter.Config`   |
+| testing-library/dom     | `Linter.Config`   |
+| testing-library/vue     | `Linter.Config`   |
+| testing-library/react   | `Linter.Config`   |
+| testing-library/angular | `Linter.Config`   |
+| testing-library/marko   | `Linter.Config`   |

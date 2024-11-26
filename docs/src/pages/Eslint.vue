@@ -5,6 +5,7 @@ import basicUsage from '@/examples/eslint-plugin/basic.config.ts?raw';
 import reactPresets from '@/examples/eslint-plugin/react-presets.config.ts?raw';
 import vuePresets from '@/examples/eslint-plugin/vue-presets.config.ts?raw';
 import installationMd from '@/markdowns/eslint-plugin/installation.md?raw';
+import configsTypeMd from '@/markdowns/eslint-plugin/configs-type.md?raw';
 import { md, highlight } from '@/utils/highlight';
 import { BASE_URL, CONFIGS_MAP } from '@/configs/eslint-plugin';
 
@@ -55,7 +56,10 @@ function encode(source: string, filetype: string) {
       :raw="encodeURIComponent(vuePresets)"
     />
 
-    <h3>Build-in Configs</h3>
+    <h3>Build-in Configs Type</h3>
+    <div v-html="md.render(configsTypeMd)"></div>
+
+    <h3>Build-in Configs Reference</h3>
     <ol>
       <li
         v-for="(config, name) in CONFIGS_MAP"

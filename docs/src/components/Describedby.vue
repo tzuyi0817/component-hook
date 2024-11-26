@@ -17,10 +17,8 @@ async function handleMouseEnter() {
   if (!title) return;
 
   isDisplayDescription.value = true;
-
-  window.requestAnimationFrame(() => {
-    isShowDescription.value = true;
-  });
+  await sleep(0);
+  isShowDescription.value = true;
 }
 
 async function handleMouseLeave() {
