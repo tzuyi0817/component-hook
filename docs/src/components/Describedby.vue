@@ -1,34 +1,49 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { v4 } from 'uuid';
+import { sleep } from '@/utils/common';
 
 interface Props {
   title?: string;
   isAbsolute?: boolean;
 }
 
-defineProps<Props>();
-
+const { title } = defineProps<Props>();
 const isShowDescription = ref(false);
+const isDisplayDescription = ref(false);
+const id = v4();
 
-function handleMouseEnter() {
-  isShowDescription.value = true;
+async function handleMouseEnter() {
+  if (!title) return;
+
+  isDisplayDescription.value = true;
+
+  window.requestAnimationFrame(() => {
+    isShowDescription.value = true;
+  });
 }
 
-function handleMouseLeave() {
+async function handleMouseLeave() {
+  if (!title) return;
+
   isShowDescription.value = false;
+  await sleep();
+  isDisplayDescription.value = false;
 }
 </script>
 
 <template>
   <div
     :class="[isAbsolute ? 'absolute' : 'relative']"
+    :aria-describedby="isDisplayDescription ? id : undefined"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <slot></slot>
 
     <p
-      v-if="title"
+      v-if="isDisplayDescription"
+      :id="id"
       :class="['describedby', { 'opacity-0': !isShowDescription }]"
     >
       {{ title }}

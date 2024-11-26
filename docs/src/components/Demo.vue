@@ -54,13 +54,18 @@ async function toggleSource() {
 
         <copy-source
           :source="source"
-          title="Copy Source Code"
+          title="Copy Code"
         />
 
-        <svg-icon
-          name="source"
-          @click="toggleSource"
-        />
+        <describedby
+          title="View Source"
+          aria-label="View Source"
+        >
+          <svg-icon
+            name="source"
+            @click="toggleSource"
+          />
+        </describedby>
       </div>
     </div>
 
