@@ -15,6 +15,10 @@ export const sonarjsConfigs: Linter.Config[] = [
       ...pluginSonarjs.configs.recommended.rules,
       'sonarjs/no-commented-code': 'warn',
       'sonarjs/no-vue-bypass-sanitization': 'warn',
+
+      // TypeError: Error while loading at eslint v9.15.0
+      'sonarjs/no-empty-function': 'off',
+      'sonarjs/no-unused-expressions': 'off',
     },
     settings,
   },

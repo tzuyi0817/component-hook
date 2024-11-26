@@ -13,6 +13,10 @@ export default [
     ...componentHookPlugin.configs['testing-library/vue'],
   },
   {
+    files: ['**/__tests__/unit/**/*.test.[jt]s?(x)'],
+    ...componentHookPlugin.configs['testing-library/react'],
+  },
+  {
     files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
     ...componentHookPlugin.configs.playwright,
   },

@@ -1,24 +1,16 @@
-import type { Linter, ESLint } from 'eslint';
-import { pluginTestingLibrary, fixupPluginRules } from '../plugins';
+import type { Linter } from 'eslint';
+import { pluginTestingLibrary } from '../plugins';
 
 const configs = pluginTestingLibrary.configs;
 const plugins = {
-  'testing-library': fixupPluginRules({ rules: pluginTestingLibrary.rules }),
-} as Record<string, ESLint.Plugin>;
-
-const rules = {
-  'testing-library/await-async-queries': 'error',
-  'testing-library/no-await-sync-queries': 'error',
-  'testing-library/no-debugging-utils': 'warn',
-  'testing-library/no-dom-import': 'off',
+  'testing-library': pluginTestingLibrary,
 };
 
 export const testingLibraryDomConfig: Linter.Config = {
   name: 'component-hook/testing-library/dom',
   plugins,
   rules: {
-    ...configs.dom.rules,
-    ...rules,
+    ...configs['flat/dom'].rules,
   },
 };
 
@@ -26,8 +18,7 @@ export const testingLibraryAngularConfig: Linter.Config = {
   name: 'component-hook/testing-library/angular',
   plugins,
   rules: {
-    ...configs.angular.rules,
-    ...rules,
+    ...configs['flat/angular'].rules,
   },
 };
 
@@ -35,8 +26,7 @@ export const testingLibraryReactConfig: Linter.Config = {
   name: 'component-hook/testing-library/react',
   plugins,
   rules: {
-    ...configs.react.rules,
-    ...rules,
+    ...configs['flat/react'].rules,
   },
 };
 
@@ -44,8 +34,7 @@ export const testingLibraryVueConfig: Linter.Config = {
   name: 'component-hook/testing-library/vue',
   plugins,
   rules: {
-    ...configs.vue.rules,
-    ...rules,
+    ...configs['flat/vue'].rules,
   },
 };
 
@@ -53,7 +42,6 @@ export const testingLibraryMarkoConfig: Linter.Config = {
   name: 'component-hook/testing-library/marko',
   plugins,
   rules: {
-    ...configs.marko.rules,
-    ...rules,
+    ...configs['flat/marko'].rules,
   },
 };
