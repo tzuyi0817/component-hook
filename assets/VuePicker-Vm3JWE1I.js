@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-HhaSY6Fc.js";import{d as t,c as o,u as n,o as c}from"./index-BEXRGZx9.js";import"./Demo-qEDrAROM.js";const r=`<script lang="ts" setup>
+import{_ as e}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-gpPkQsRb.js";import{d as t,c as o,u as n,o as c}from"./index-C0KMf9MA.js";import"./Demo-BK4K_HgN.js";const r=`<script lang="ts" setup>
 import { ref } from 'vue';
 import Picker from '@component-hook/picker/vue';
 
