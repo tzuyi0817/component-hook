@@ -1,11 +1,11 @@
 # Changelog
 
-<!-- ## [0.2.2](https://github.com/tzuyi0817/component-hook/compare/v0.2.1...v0.2.2) (2024-12-05)
+## [0.2.2](https://github.com/tzuyi0817/component-hook/compare/v0.2.1...v0.2.2) (2024-12-05)
 
 ### Features
 
 - **eslint-plugin:** upgrade `eslint-plugin-testing-library` to v7 ([a3dac01](https://github.com/tzuyi0817/component-hook/commit/a3dac01d9647e93ddd093f4517d0c45da25f355f))
-- **eslint-plugin:** upgrade `eslint-plugin-testing-library` to v7 ([a3dac01](https://github.com/tzuyi0817/component-hook/commit/a3dac01d9647e93ddd093f4517d0c45da25f355f)) -->
+- **eslint-plugin:** upgrade `eslint-plugin-sonarjs` to v3 ([d6c8cb2](https://github.com/tzuyi0817/component-hook/commit/d6c8cb2a33f19eec2b4d66a70508c21b16f2f739))
 
 ## [0.2.1](https://github.com/tzuyi0817/component-hook/compare/v0.2.0...v0.2.1) (2024-11-20)
 
