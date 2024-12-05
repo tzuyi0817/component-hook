@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/eslint-plugin",
-  "version": "0.2.2-alpha.1",
+  "version": "0.2.2",
   "description": "ESLint config for component hook",
   "license": "MIT",
   "packageManager": "pnpm@9.14.4",
@@ -51,7 +51,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-security": "^3.0.1",
-    "eslint-plugin-sonarjs": "^2.0.4",
+    "eslint-plugin-sonarjs": "^3.0.0",
     "eslint-plugin-testing-library": "^7.0.0",
     "eslint-plugin-unicorn": "^56.0.1",
     "eslint-plugin-vue": "^9.32.0",

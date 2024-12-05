@@ -15,19 +15,16 @@ export const sonarjsConfigs: Linter.Config[] = [
       ...pluginSonarjs.configs.recommended.rules,
       'sonarjs/no-commented-code': 'warn',
       'sonarjs/no-vue-bypass-sanitization': 'warn',
-
-      // TypeError: Error while loading at eslint v9.15.0
-      'sonarjs/no-empty-function': 'off',
-      'sonarjs/no-unused-expressions': 'off',
     },
     settings,
   },
   {
-    name: 'component-hook/sonarjs/allow-unused-import',
+    name: 'component-hook/sonarjs/allow-in-markdown',
     files: ['**/*.md/**'],
     plugins,
     rules: {
       'sonarjs/unused-import': 'off',
+      'sonarjs/no-unused-vars': 'off',
     },
     settings,
   },

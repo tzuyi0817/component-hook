@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-array-index-key */
 import { useMemo, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { usePicker } from '../hooks/use-picker';
