@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.3](https://github.com/tzuyi0817/component-hook/compare/v0.2.2...v0.2.3) (2024-12-06)
+
+### Bug Fixes
+
+- **pdf-canvas:** because the cdn `pdf.worker` of `pdfjs-dist` does not support the latest version, it falls back to v4.8.69 ([3558f07](https://github.com/tzuyi0817/component-hook/commit/3558f071702ab47e1507885af5ae6b085f0c2228))
+
 ## [0.2.2](https://github.com/tzuyi0817/component-hook/compare/v0.2.1...v0.2.2) (2024-12-05)
 
 ### Features
