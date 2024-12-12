@@ -43,7 +43,7 @@ export const importConfigs: Linter.Config[] = [
       '**/*.md/**',
       `**/*config*.?([cm])[jt]s?(x)`,
       `**/{views,pages,routes,middleware,plugins,api}/**/*.?([cm])[jt]s?(x)`,
-      `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack}.ts`,
+      `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack,farm}.ts`,
     ],
     plugins,
     languageOptions,
