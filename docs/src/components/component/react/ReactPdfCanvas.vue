@@ -11,15 +11,15 @@ import ComponentPdfCanvas from '../ComponentPdfCanvas.vue';
   <component-pdf-canvas
     description="Rendering PDF documents onto a canvas with react component."
     :draw-source="drawSource"
-    draw-playground=""
+    draw-playground="675f9a7a08325367664ebf7a"
     :encrypted-source="encryptedSource"
-    encrypted-playground=""
+    encrypted-playground="675f9e9b4b3b90d00991becc"
     :multiple-source="multipleSource"
-    multiple-playground=""
+    multiple-playground="675fbbb198c7cde44e724bae"
     :drop-source="dropSource"
-    drop-playground=""
+    drop-playground="675fbf06bf0c4e6c39359d60"
     :manual-source="manualSource"
-    manual-playground=""
+    manual-playground="675fbfdcbf0c4e6c39359d7d"
     language="tsx"
   />
 </template>
