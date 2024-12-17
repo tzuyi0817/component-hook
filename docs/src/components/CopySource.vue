@@ -32,6 +32,7 @@ async function copySource() {
   >
     <svg-icon
       name="copy"
+      class="w-4 h-4"
       role="button"
       @click="copySource"
     />

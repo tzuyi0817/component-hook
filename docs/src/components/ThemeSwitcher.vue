@@ -1,22 +1,25 @@
 <script setup lang="ts">
-import { watchEffect, useTemplateRef, nextTick } from 'vue';
+import { useTemplateRef, onMounted } from 'vue';
 import prismVs from 'prism-themes/themes/prism-vs.css?url';
 import prismVscDark from 'prism-themes/themes/prism-vsc-dark-plus.css?url';
 import SvgIcon from './SvgIcon.vue';
 import { usePrefersTheme } from '@/hooks/use-prefers-theme';
+import { sleep } from '@/utils/common';
 
+const TRANSITION_DURATION = 300;
 const isDarkTheme = usePrefersTheme('dark');
 const themeSwitcherRef = useTemplateRef<HTMLLinkElement>('theme-switcher');
 
 async function handleChange(event: Event) {
   const isDark = (event.target as HTMLInputElement).checked;
 
-  await beforeChange();
-
+  await beforeChange(isDark);
+  changeTheme(isDark);
+  await sleep(TRANSITION_DURATION / 2);
   isDarkTheme.value = isDark;
 }
 
-function beforeChange() {
+function beforeChange(isDark: boolean) {
   return new Promise(resolve => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -29,9 +32,8 @@ function beforeChange() {
     const y = rect.top + rect.height / 2;
     const distalRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
-    const transition = document.startViewTransition(async () => {
+    const transition = document.startViewTransition(() => {
       resolve(true);
-      await nextTick();
     });
 
     transition.ready.then(() => {
@@ -39,26 +41,30 @@ function beforeChange() {
 
       document.documentElement.animate(
         {
-          clipPath: isDarkTheme.value ? clipPath : [...clipPath].reverse(),
+          clipPath: isDark ? clipPath : [...clipPath].reverse(),
         },
         {
-          duration: 300,
+          duration: TRANSITION_DURATION,
           easing: 'ease-in',
-          pseudoElement: isDarkTheme.value ? '::view-transition-old(root)' : '::view-transition-new(root)',
+          pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
         },
       );
     });
   });
 }
 
-watchEffect(() => {
+function changeTheme(isDark: boolean) {
   const themeStylesheet = document.querySelector('#dynamic-theme');
 
-  document.documentElement.classList.toggle('dark-scheme', isDarkTheme.value);
+  document.documentElement.classList.toggle('dark-scheme', isDark);
 
   if (!themeStylesheet || !(themeStylesheet instanceof HTMLLinkElement)) return;
 
-  themeStylesheet.href = isDarkTheme.value ? prismVscDark : prismVs;
+  themeStylesheet.href = isDark ? prismVscDark : prismVs;
+}
+
+onMounted(() => {
+  changeTheme(isDarkTheme.value);
 });
 </script>
 

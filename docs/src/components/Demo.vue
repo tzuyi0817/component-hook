@@ -48,7 +48,10 @@ async function toggleSource() {
             :href="`https://code-immediate.vercel.app/${playground}`"
             title="Open in Playground"
           >
-            <svg-icon name="playground" />
+            <svg-icon
+              name="playground"
+              class="w-4 h-4"
+            />
           </external-link>
         </describedby>
 
@@ -63,6 +66,7 @@ async function toggleSource() {
         >
           <svg-icon
             name="source"
+            class="w-4 h-4"
             @click="toggleSource"
           />
         </describedby>
