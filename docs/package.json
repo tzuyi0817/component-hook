@@ -19,10 +19,12 @@
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
+    "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.5",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "markdown-it": "^14.1.0",
+    "markdown-it-container": "^4.0.0",
     "postcss": "^8.4.49",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.1",

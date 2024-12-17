@@ -1,11 +1,17 @@
 ### Installation
 
-```bash
+::: group
+
+```bash [npm]
 $ npm install @component-hook/picker
+```
 
-# or use yarn
+```bash [yarn]
 $ yarn add @component-hook/picker
+```
 
-# or use pnpm
+```bash [pnpm]
 $ pnpm install @component-hook/picker
 ```
+
+:::

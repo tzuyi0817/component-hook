@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import HeaderContainer from '@/components/layout/Header.vue';
+import { useMarkdownGroup } from '@/hooks/use-markdown-group';
 import { scrollToTop } from '@/utils/common';
+
+useMarkdownGroup();
 </script>
 
 <template>

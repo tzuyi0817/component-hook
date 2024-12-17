@@ -81,7 +81,7 @@ watchEffect(() => {
       <span :class="['theme-slider', { 'translate-x-5': isDarkTheme }]">
         <svg-icon
           :name="isDarkTheme ? 'dark' : 'light'"
-          class="w-3.5 h-3.5 text-text-color"
+          class="w-3 h-3 text-text-color"
         />
       </span>
     </label>
@@ -105,6 +105,6 @@ watchEffect(() => {
 }
 
 .theme-slider {
-  @apply w-3.5 h-3.5 absolute rounded-full left-0.5 transition-transform duration-300 bg-bg-color;
+  @apply w-3.5 h-3.5 top-[3px] absolute rounded-full left-0.5 transition-transform duration-300 bg-bg-color;
 }
 </style>

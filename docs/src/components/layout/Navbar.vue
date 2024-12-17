@@ -29,11 +29,12 @@ defineEmits(['closeFullNavbar']);
   py-4 
   border-b
   border-border-color 
+  font-medium
   lg:border-b-2
   lg:border-transparent;
 
   &.active {
-    @apply text-primary lg:border-primary lg:text-text-color;
+    @apply text-primary lg:border-primary lg:text-text-color hover:text-primary;
   }
 }
 </style>

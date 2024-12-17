@@ -1,0 +1,31 @@
+@import 'tailwindcss/components';
+
+@layer components {
+  .group-panel {
+    @apply bg-code-bg-color rounded-md;
+
+    pre[class*='language-'] {
+      @apply hidden;
+      &.active {
+        @apply block;
+      }
+    }
+  }
+
+  .group-tabs {
+    @apply border-b border-border-color px-3;
+
+    .group-label {
+      @apply relative cursor-pointer px-3 py-2 leading-[48px] text-sm font-medium transition-colors hover:text-primary;
+      &:has(input:checked) {
+        @apply after:bg-primary;
+      }
+      &::after {
+        @apply content-[''] absolute w-full h-0.5 bg-transparent -bottom-2.5 left-0 transition-colors;
+      }
+    }
+    input {
+      @apply opacity-0 absolute pointer-events-none;
+    }
+  }
+}

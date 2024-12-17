@@ -1,11 +1,17 @@
 ### Installation
 
-```bash
+::: group
+
+```bash [npm]
 $ npm install @component-hook/pdf-canvas
+```
 
-# or use yarn
+```bash [yarn]
 $ yarn add @component-hook/pdf-canvas
+```
 
-# or use pnpm
+```bash [pnpm]
 $ pnpm install @component-hook/pdf-canvas
 ```
+
+:::

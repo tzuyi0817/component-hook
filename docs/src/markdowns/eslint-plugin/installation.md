@@ -1,11 +1,17 @@
 ### Installation
 
-```bash
+::: group
+
+```bash [npm]
 $ npm install @component-hook/eslint-plugin --save-dev
+```
 
-# or use yarn
+```bash [yarn]
 $ yarn add @component-hook/eslint-plugin --dev
+```
 
-# or use pnpm
+```bash [pnpm]
 $ pnpm install @component-hook/eslint-plugin --save-dev
 ```
+
+:::
