@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { useTemplateRef, onMounted } from 'vue';
-import prismVs from 'prism-themes/themes/prism-vs.css?url';
-import prismVscDark from 'prism-themes/themes/prism-vsc-dark-plus.css?url';
 import SvgIcon from './SvgIcon.vue';
 import { usePrefersTheme } from '@/hooks/use-prefers-theme';
 import { sleep } from '@/utils/common';
@@ -54,13 +52,7 @@ function beforeChange(isDark: boolean) {
 }
 
 function changeTheme(isDark: boolean) {
-  const themeStylesheet = document.querySelector('#dynamic-theme');
-
   document.documentElement.classList.toggle('dark-scheme', isDark);
-
-  if (!themeStylesheet || !(themeStylesheet instanceof HTMLLinkElement)) return;
-
-  themeStylesheet.href = isDark ? prismVscDark : prismVs;
 }
 
 onMounted(() => {

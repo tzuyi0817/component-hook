@@ -37,18 +37,17 @@ function linkPlugin(markdown: markdownit) {
 function groupPlugin() {
   return {
     render(tokens: Token[], index: number) {
-      const token = tokens[index];
       const name = `group-${v4()}`;
       let tabs = '';
       let checked = 'checked';
 
-      if (token.nesting !== 1) return '</div></div>\n';
+      if (tokens[index].nesting !== 1) return '</div></div>\n';
 
       for (let i = index + 1; i < tokens.length - 1; i++) {
         const token = tokens[i];
 
         if (token.type !== 'fence' || token.tag !== 'code') continue;
-        const regex = /\[(.*)\]/;
+        const regex = /\[([^\]]{0,100})\]/;
         const title = token.info.match(regex)?.[1];
 
         if (!title) continue;

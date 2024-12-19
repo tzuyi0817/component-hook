@@ -8,7 +8,7 @@ export function useMarkdownGroup() {
     if (!group) return;
     const index = Array.from(group.children).indexOf(element);
 
-    if (index < 0) return;
+    if (index === -1) return;
     const blocks = group.parentElement?.querySelector('.group-blocks');
 
     if (!blocks) return;
