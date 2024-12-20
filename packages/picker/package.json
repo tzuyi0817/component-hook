@@ -3,7 +3,7 @@
   "version": "0.2.3",
   "description": "Picker component with vue3 and react",
   "license": "MIT",
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@9.15.1",
   "type": "module",
   "author": "Tzuyi",
   "exports": {
@@ -57,7 +57,7 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "@types/react-transition-group": "^4.4.11",
-    "vite-plugin-dts": "^4.3.0"
+    "@types/react-transition-group": "^4.4.12",
+    "vite-plugin-dts": "^4.4.0"
   }
 }
