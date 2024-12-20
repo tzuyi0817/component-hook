@@ -1,4 +1,4 @@
-import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-D2QgmEoc.js";import{d as t,c as o,u as e,o as r}from"./index-u2Yh17Oh.js";import"./Demo-Cf_KFZhA.js";const c=`import { useState } from 'react';
+import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-By0-od3Y.js";import{d as t,c as o,u as e,o as r}from"./index-BK0tQSDc.js";import"./Demo-Dp_5I8Un.js";const c=`import { useState } from 'react';
 import Picker from '@component-hook/picker/react';
 
 interface LangType {
