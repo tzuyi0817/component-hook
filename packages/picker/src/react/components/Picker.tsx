@@ -57,7 +57,7 @@ export function Picker<T = NormalData, D = PickerAnchor>({
     <div>
       <CSSTransition
         in={isShowPicker}
-        classNames="fade"
+        classNames="component-hook-picker-fade"
         timeout={300}
         nodeRef={maskRef}
         unmountOnExit
@@ -65,7 +65,7 @@ export function Picker<T = NormalData, D = PickerAnchor>({
         <div
           ref={maskRef}
           role="presentation"
-          className="mask"
+          className="component-hook-picker-mask"
           onClick={closePicker}
           onKeyDown={event => {
             if (event.key === 'Escape') {
@@ -77,7 +77,7 @@ export function Picker<T = NormalData, D = PickerAnchor>({
 
       <CSSTransition
         in={isShowPicker}
-        classNames="slide"
+        classNames="component-hook-picker-slide"
         timeout={300}
         nodeRef={pickerRef}
         onEnter={() => setPickerRefDisplay('')}
@@ -85,19 +85,19 @@ export function Picker<T = NormalData, D = PickerAnchor>({
       >
         <div
           ref={pickerRef}
-          className="picker"
+          className="component-hook-picker"
           style={{ display: 'none' }}
         >
-          <div className="picker_title">
+          <div className="component-hook-picker_title">
             <button
-              className={`picker_cancel ${mergedOptions.cancelClass}`}
+              className={`component-hook-picker_cancel ${mergedOptions.cancelClass}`}
               style={{ color: cancelColor }}
               onClick={cancel}
             >
               {mergedOptions.cancelText}
             </button>
             <button
-              className={`picker_confirm ${mergedOptions.confirmClass}`}
+              className={`component-hook-picker_confirm ${mergedOptions.confirmClass}`}
               style={{ color: confirmColor }}
               onClick={confirm}
             >
@@ -110,19 +110,19 @@ export function Picker<T = NormalData, D = PickerAnchor>({
               {mergedOptions.titleText}
             </h4>
           </div>
-          <div className="picker_panel">
-            <div className="picker_mask_top" />
-            <div className="picker_mask_bottom" />
+          <div className="component-hook-picker_panel">
+            <div className="component-hook-picker_mask_top" />
+            <div className="component-hook-picker_mask_bottom" />
             <div
               ref={wheelWrapper}
-              className="picker_wheel_wrapper"
+              className="component-hook-picker_wheel_wrapper"
             >
               {pickerData.map((wheel, wheelIndex) => (
                 <div
                   key={wheelIndex}
-                  className="picker_wheel"
+                  className="component-hook-picker_wheel"
                 >
-                  <ul className="picker_wheel_scroll">
+                  <ul className="component-hook-picker_wheel_scroll">
                     {wheel.map((item, index) => {
                       const value = showKeys[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]] : item;
 
@@ -131,7 +131,7 @@ export function Picker<T = NormalData, D = PickerAnchor>({
                       return (
                         <li
                           key={index}
-                          className="picker_wheel_item"
+                          className="component-hook-picker_wheel_item"
                         >
                           {value}
                         </li>

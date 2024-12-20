@@ -1,6 +1,6 @@
 import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 // import * as pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs';
-import { dependencies } from '../../../package.json';
+import { dependencies } from '../../../package.json' with { type: 'json' };
 import { readfile } from './reader';
 
 const version = dependencies['pdfjs-dist'].replace('^', '');

@@ -28,29 +28,29 @@ const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker(pro
 
 <template>
   <div>
-    <transition name="fade">
+    <transition name="component-hook-picker-fade">
       <div
         v-show="isShowPicker"
-        class="mask"
+        class="component-hook-picker-mask"
         @click="closePicker"
       ></div>
     </transition>
 
-    <transition name="slide">
+    <transition name="component-hook-picker-slide">
       <div
         v-show="isShowPicker"
-        class="picker"
+        class="component-hook-picker"
       >
-        <div class="picker_title">
+        <div class="component-hook-picker_title">
           <button
-            :class="['picker_cancel', options.cancelClass]"
+            :class="['component-hook-picker_cancel', options.cancelClass]"
             :style="{ color: cancelColor }"
             @click="cancel"
           >
             {{ options.cancelText }}
           </button>
           <button
-            :class="['picker_confirm', options.confirmClass]"
+            :class="['component-hook-picker_confirm', options.confirmClass]"
             :style="{ color: confirmColor }"
             @click="confirm"
           >
@@ -63,23 +63,23 @@ const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker(pro
             {{ options.titleText }}
           </h4>
         </div>
-        <div class="picker_panel">
-          <div class="picker_mask_top"></div>
-          <div class="picker_mask_bottom"></div>
+        <div class="component-hook-picker_panel">
+          <div class="component-hook-picker_mask_top"></div>
+          <div class="component-hook-picker_mask_bottom"></div>
           <div
             ref="wheelWrapper"
-            class="picker_wheel_wrapper"
+            class="component-hook-picker_wheel_wrapper"
           >
             <div
               v-for="(wheel, wheelIndex) in pickerData"
               :key="wheelIndex"
-              class="picker_wheel"
+              class="component-hook-picker_wheel"
             >
-              <ul class="picker_wheel_scroll">
+              <ul class="component-hook-picker_wheel_scroll">
                 <li
                   v-for="(item, index) in wheel"
                   :key="index"
-                  class="picker_wheel_item"
+                  class="component-hook-picker_wheel_item"
                 >
                   {{ showKeys?.[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]!] : item }}
                 </li>
