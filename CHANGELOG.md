@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.4](https://github.com/tzuyi0817/component-hook/compare/v0.2.3...v0.2.4) (2024-12-20)
+
+### Features
+
+- **docs:** optimize syntax highlighting display
+
+### Bug Fixes
+
+- **picker:** customize class names to avoid being overwritten ([afc752d](https://github.com/tzuyi0817/component-hook/commit/afc752d72f10916364d56130b6d4d816dc33acd4))
+- **eslint-plugin:** allow default export for farm.ts ([d74d943](https://github.com/tzuyi0817/component-hook/commit/d74d943153fb473fc298b57b9458288b648f85e2))
+
 ## [0.2.3](https://github.com/tzuyi0817/component-hook/compare/v0.2.2...v0.2.3) (2024-12-06)
 
 ### Bug Fixes
