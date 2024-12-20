@@ -5,7 +5,7 @@
 
 @layer components {
   pre[class*='language-'] {
-    @apply !m-0 !bg-code-bg-color !border-0 rounded-md p-5 text-[var(--code-base)];
+    @apply !m-0 !bg-code-bg-color !border-0 rounded-md p-5 text-[var(--code-base)] overflow-x-auto;
 
     code {
       @apply text-sm;
@@ -76,6 +76,10 @@
 
       &.plain-text {
         @apply text-[var(--code-plain-text)];
+      }
+
+      &.comment {
+        @apply text-[var(--code-comment)];
       }
     }
   }

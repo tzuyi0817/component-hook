@@ -64,7 +64,7 @@ function groupPlugin() {
         checked = '';
       }
 
-      return `<div class="group-panel">\n<div class="group-tabs">${tabs}</div><div class="group-blocks"">\n`;
+      return `<div class="group-panel">\n<div class="group-tabs">${tabs}</div><div class="group-blocks">\n`;
     },
   };
 }
