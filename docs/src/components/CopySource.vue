@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import Describedby from '@/components/Describedby.vue';
-import { sleep } from '@/utils/common';
+import { sleep, copyToClipboard } from '@/utils/common';
 
 interface Props {
   source: string;
@@ -16,7 +16,7 @@ const isCopied = ref(false);
 async function copySource() {
   if (isCopied.value) return;
 
-  navigator.clipboard.writeText(props.source);
+  await copyToClipboard(props.source);
   isCopied.value = true;
 
   await sleep(1500);
