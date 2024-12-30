@@ -13,7 +13,12 @@ export const md = markdownit({ highlight });
 md.use(linkPlugin).use(container, 'group', groupPlugin()).use(fencePlugin);
 
 function wrap(code: string, lang: string, classAttr: string) {
-  return `<pre v-pre class="language-${lang} ${classAttr}"><code>${code}</code></pre>`;
+  return (
+    `<pre v-pre class="language-${lang} ${classAttr}">` +
+    `<code>${code}</code>` +
+    `<button class="copy-code plain"></button>` +
+    `</pre>`
+  );
 }
 
 export function highlight(source: string, lang = 'markup', classAttr = '') {
