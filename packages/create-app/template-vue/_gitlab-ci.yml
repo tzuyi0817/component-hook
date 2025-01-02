@@ -1,0 +1,22 @@
+stages:
+  - test
+  # - deploy
+
+include:
+  - local: '.gitlab/setup.yml'
+
+run_test:
+  stage: test
+  image: mcr.microsoft.com/playwright:focal
+  script:
+    - npx playwright install --with-deps
+    - pnpm test:unit
+    - pnpm test:ci-e2e
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      changes:
+        - 'src/**'
+        - 'pnpm-lock.yaml'
+        - 'package.json'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - when: manual

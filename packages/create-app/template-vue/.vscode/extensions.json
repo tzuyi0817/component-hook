@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "vue.volar",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "csstools.postcss",
+    "cpylua.language-postcss",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
