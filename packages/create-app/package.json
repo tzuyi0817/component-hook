@@ -1,0 +1,44 @@
+{
+  "name": "@component-hook/create-app",
+  "version": "0.2.4",
+  "description": "Scaffolding your basic project",
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.2",
+  "author": "Tzuyi",
+  "bin": {
+    "create-component-hook": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "template-*",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "unbuild --stub",
+    "build": "unbuild",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tzuyi0817/component-hook.git",
+    "directory": "packages/create-app"
+  },
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
+  "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "@types/prompts": "^2.4.9",
+    "cross-spawn": "^7.0.6",
+    "minimist": "^1.2.8",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
+    "unbuild": "^3.0.1"
+  }
+}
