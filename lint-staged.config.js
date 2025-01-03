@@ -4,4 +4,5 @@ export default {
   'packages/picker/*.{ts,js,vue}': () => ['pnpm typecheck:picker'],
   'packages/pdf-canvas/*.{ts,js,vue}': () => ['pnpm typecheck:pdf-canvas'],
   'packages/eslint-plugin/*.{ts,js}': () => ['pnpm typecheck:eslint-plugin'],
+  'packages/create-app/*.{ts,js}': () => ['pnpm typecheck:create-app'],
 };

@@ -8,10 +8,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     include: ['**/__tests__/unit/**/*.test.ts'],
+    exclude: ['packages/create-app/template-*/**', '**/dist', '**/node_modules'],
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
-      exclude: ['docs/**', '**/*.config.cjs', 'dist/**'],
+      exclude: ['internal', '**/dist', '**/*.config.?(c){js,ts}', 'packages/create-app/template-*/**'],
     },
   },
 });

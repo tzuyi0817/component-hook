@@ -12,8 +12,8 @@
   <a href="https://tzuyi0817.github.io/component-hook/#/home">
     <img alt="GitHub Release" src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff">
   </a>
-  <a href="https://github.com/tzuyi0817/component-hook">
-    <img src="https://img.shields.io/badge/node-%20%3E%3D%2020.17.0-47c219?color=409eff" />
+  <a href="https://nodejs.org/en/about/previous-releases">
+    <img src="https://img.shields.io/badge/node-%5E18.0.0%20%7C%7C%20%5E20.0.0%20%7C%7C%20%3E%3D22.0.0-409eff" alt="Node Compatibility" />
   </a>
   <a href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff" alt="License">
@@ -33,7 +33,7 @@ This is a component library that includes a collection of common and useful comp
 ## Packages
 
 | Package                                                                                                         | Description                                                       |
-| --------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
+| :-------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
 | [@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker)               | Customizable picker components that can be easily integrated      |
 | [@component-hook/pdf-canvas](https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas)       | Rendering PDF documents onto a canvas                             |
 | [@component-hook/eslint-plugin](https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin) | A opinionated ESLint config preset for `JS`, `TS`, `Vue`, `React` |
