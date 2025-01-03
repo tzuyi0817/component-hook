@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "include": ["**/*.ts", "**/*.d.ts"],
-  "exclude": ["dist", "node_modules"],
+  "exclude": ["dist", "node_modules", "template-*"],
   "references": [
     {
       "path": "../../tsconfig.node.json"

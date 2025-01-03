@@ -37,7 +37,7 @@ This is a component library that includes a collection of common and useful comp
 | [@component-hook/picker](https://github.com/tzuyi0817/component-hook/tree/master/packages/picker)               | Customizable picker components that can be easily integrated      |
 | [@component-hook/pdf-canvas](https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas)       | Rendering PDF documents onto a canvas                             |
 | [@component-hook/eslint-plugin](https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin) | A opinionated ESLint config preset for `JS`, `TS`, `Vue`, `React` |
-| [@component-hook/create-app]()                                                                                  | Scaffolding your basic project                                    |
+| [@component-hook/create-app](https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app)       | Scaffolding a basic typescript project                                    |
 
 ## License
 

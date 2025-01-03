@@ -17,11 +17,6 @@
     "prepack:create-app": "pnpm -C packages/create-app build",
     "release": "pnpm publish --recursive --access public --no-git-checks",
     "typecheck": "turbo run typecheck",
-    "typecheck:docs": "pnpm -C docs typecheck",
-    "typecheck:picker": "pnpm -C packages/picker typecheck",
-    "typecheck:pdf-canvas": "pnpm -C packages/pdf-canvas typecheck",
-    "typecheck:eslint-plugin": "pnpm -C packages/eslint-plugin typecheck",
-    "typecheck:create-app": "pnpm -C packages/create-app typecheck",
     "playground:react": "pnpm -C playground/react dev",
     "prepare": "husky"
   },

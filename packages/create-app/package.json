@@ -1,7 +1,7 @@
 {
   "name": "@component-hook/create-app",
   "version": "0.2.4",
-  "description": "Scaffolding your basic project",
+  "description": "Scaffolding a basic typescript project",
   "type": "module",
   "license": "MIT",
   "packageManager": "pnpm@9.15.2",
@@ -33,9 +33,12 @@
   },
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9",
+    "art-template": "^4.13.2",
     "cross-spawn": "^7.0.6",
+    "fs-extra": "^11.2.0",
     "minimist": "^1.2.8",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
