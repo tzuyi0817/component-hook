@@ -1,17 +1,19 @@
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import minimist from 'minimist';
-import prompts, { type PromptObject } from 'prompts';
 import colors from 'picocolors';
 import { readdir, readFile, writeFile, copy, ensureDirSync } from 'fs-extra';
 import artTemplate from 'art-template';
+import { operationPrompts } from './prompts';
+import { getPkgManagerInfo, formatTargetDir } from './common';
+import { DEFAULT_PROJECT_NAME } from './config';
 
-const DEFAULT_PROJECT_NAME = 'basic-project';
-const TEMPLATES = ['vue'];
 const cwd = process.cwd();
 
 const argv = minimist(process.argv.slice(2), {
   default: { gitlab: false, help: false },
   alias: { t: 'template', lab: 'gitlab', h: 'help' },
+  string: ['_'],
 });
 
 const renameFiles: Record<string, string> = {
@@ -34,67 +36,11 @@ Available templates:
   ${colors.green('vue')}
 `;
 
-function formatTargetDir(targetDir?: string) {
-  if (!targetDir) return targetDir;
-
-  targetDir = targetDir.trim();
-
-  if (targetDir[0] === '/') {
-    targetDir = targetDir.slice(1);
+function getProjectName(targetDir?: string) {
+  if (!targetDir) {
+    return DEFAULT_PROJECT_NAME;
   }
-  if (targetDir.at(-1) === '/') {
-    targetDir = targetDir.slice(0, -1);
-  }
-  return targetDir;
-}
-
-function onCancel() {
-  throw new Error(`${colors.red('✖')} Operation cancelled`);
-}
-
-function builtinTemplate(template: string) {
-  return template && TEMPLATES.includes(template);
-}
-
-function styleTitle(title: string) {
-  return colors.bold(colors.magenta(title));
-}
-
-function operationPrompts() {
-  const targetDir = formatTargetDir(argv._[0]);
-  const template = argv.t || argv.template;
-
-  const projectName: PromptObject<'projectName'> = {
-    type: targetDir ? null : 'text',
-    name: 'projectName',
-    message: styleTitle('Project name:'),
-    initial: DEFAULT_PROJECT_NAME,
-  };
-
-  const framework: PromptObject<'framework'> = {
-    type: builtinTemplate(template) ? null : 'select',
-    name: 'framework',
-    message: template
-      ? styleTitle(`${colors.red(template)} isn't a valid template. Please choose from below:`)
-      : styleTitle('Select a framework:'),
-    initial: 0,
-    choices: [
-      { title: colors.green('Vue'), value: 'vue' },
-      // { title: 'colors.blue('React'), value: 'react' },
-    ],
-  };
-
-  return prompts([projectName, framework], { onCancel });
-}
-
-function getPkgManagerInfo() {
-  const userAgent = process.env.npm_config_user_agent;
-
-  if (!userAgent) return;
-  const [pkgManager] = userAgent.split(' ');
-  const [name, version] = pkgManager.split('/');
-
-  return { name, version };
+  return path.basename(path.resolve(targetDir));
 }
 
 async function copyTemplateFolder(root: string, templateDir: string, projectName: string) {
@@ -147,8 +93,11 @@ async function createApp() {
     console.log(helpMessage);
     return;
   }
-  const result = await operationPrompts();
-  const { projectName, framework } = result;
+  const targetDir = formatTargetDir(argv._[0]);
+  const template = argv.t || argv.template;
+  const result = await operationPrompts(targetDir, template);
+  const projectName = result.projectName || getProjectName(targetDir);
+  const framework = result.framework || template;
   const root = path.join(cwd, projectName);
   const pkgManagerInfo = getPkgManagerInfo();
   const pkgManager = pkgManagerInfo?.name ?? 'npm';
@@ -156,7 +105,7 @@ async function createApp() {
   ensureDirSync(root);
 
   console.log(`\nScaffolding project in ${colors.cyan(root)}...`);
-  const templateDir = path.join(cwd, `../template-${framework}`);
+  const templateDir = path.resolve(fileURLToPath(import.meta.url), '../..', `template-${framework}`);
 
   await copyTemplateFolder(root, templateDir, projectName);
   console.log(pkgManager);
