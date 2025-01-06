@@ -10,13 +10,29 @@ const TEMPLATES = ['vue'];
 const cwd = process.cwd();
 
 const argv = minimist(process.argv.slice(2), {
-  alias: { t: 'template', lab: 'gitlab' },
+  default: { gitlab: false, help: false },
+  alias: { t: 'template', lab: 'gitlab', h: 'help' },
 });
 
 const renameFiles: Record<string, string> = {
   _gitignore: '.gitignore',
   '_gitlab-ci.yml': '.gitlab-ci.yml',
 };
+
+const helpMessage = `
+Usage: create-component-hook [project name] [options]
+
+Create a new project in TypeScript.
+With no arguments, start the CLI in interactive mode.
+
+Options:
+  -t, --template [name]  Choose a framework template
+  -lab, --gitlab  Use Gitlab CI/CD
+  -h, --help  Display this help message
+
+Available templates:
+  ${colors.green('vue')}
+`;
 
 function formatTargetDir(targetDir?: string) {
   if (!targetDir) return targetDir;
@@ -125,6 +141,12 @@ async function copyTemplateFolder(root: string, templateDir: string, projectName
 }
 
 async function createApp() {
+  const help = argv.h || argv.help;
+
+  if (help) {
+    console.log(helpMessage);
+    return;
+  }
   const result = await operationPrompts();
   const { projectName, framework } = result;
   const root = path.join(cwd, projectName);
@@ -134,7 +156,7 @@ async function createApp() {
   ensureDirSync(root);
 
   console.log(`\nScaffolding project in ${colors.cyan(root)}...`);
-  const templateDir = path.join(__dirname, `../template-${framework}`);
+  const templateDir = path.join(cwd, `../template-${framework}`);
 
   await copyTemplateFolder(root, templateDir, projectName);
   console.log(pkgManager);
