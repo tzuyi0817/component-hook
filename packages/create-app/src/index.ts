@@ -4,8 +4,9 @@ import minimist from 'minimist';
 import colors from 'picocolors';
 import { readdir, readFile, writeFile, copy, ensureDirSync } from 'fs-extra';
 import artTemplate from 'art-template';
+import ora from 'ora';
 import { operationPrompts } from './prompts';
-import { getPkgManagerInfo, formatTargetDir } from './common';
+import { formatTargetDir } from './common';
 import { DEFAULT_PROJECT_NAME } from './config';
 
 const cwd = process.cwd();
@@ -29,7 +30,7 @@ With no arguments, start the CLI in interactive mode.
 
 Options:
   -t, --template [name]  Choose a framework template
-  -lab, --gitlab  Use Gitlab CI/CD
+  -lab, --gitlab  Use Gitlab CI/CD, default is Github CI/CD
   -h, --help  Display this help message
 
 Available templates:
@@ -83,6 +84,7 @@ async function copyTemplateFolder(root: string, templateDir: string, projectName
   return Promise.all([
     ...filterFiles.map(file => rewriteOrCopyFile(file)),
     rewriteOrCopyFile('package.json', `${JSON.stringify(pkg, null, 2)}\n`),
+    new Promise(resolve => setTimeout(resolve, 300)),
   ]);
 }
 
@@ -99,22 +101,27 @@ async function createApp() {
   const projectName = result.projectName || getProjectName(targetDir);
   const framework = result.framework || template;
   const root = path.join(cwd, projectName);
-  const pkgManagerInfo = getPkgManagerInfo();
-  const pkgManager = pkgManagerInfo?.name ?? 'npm';
+  // const pkgManagerInfo = getPkgManagerInfo();
+  // const pkgManager = pkgManagerInfo?.name ?? 'npm';
+  const spinner = ora();
 
+  spinner.start(colors.yellow(`Scaffolding project...`));
   ensureDirSync(root);
 
-  console.log(`\nScaffolding project in ${colors.cyan(root)}...`);
   const templateDir = path.resolve(fileURLToPath(import.meta.url), '../..', `template-${framework}`);
 
-  await copyTemplateFolder(root, templateDir, projectName);
-  console.log(pkgManager);
+  copyTemplateFolder(root, templateDir, projectName)
+    .then(() => {
+      const cdProjectName = path.relative(cwd, root);
+      const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
 
-  const cdProjectName = path.relative(cwd, root);
-  const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
-
-  console.log(`\nDone. Now run:\n`);
-  console.log(`  cd ${formattedCdProjectName}`);
+      spinner.succeed(`${colors.yellow('Scaffolded project in')} ${colors.cyan(root)}`);
+      console.log(`\nDone. Now run:\n`);
+      console.log(`  cd ${formattedCdProjectName}`);
+    })
+    .catch(() => {
+      spinner.fail(colors.red('Failed to scaffold project'));
+    });
 }
 
 createApp().catch(error => {
