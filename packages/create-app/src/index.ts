@@ -10,7 +10,7 @@ const TEMPLATES = ['vue'];
 const cwd = process.cwd();
 
 const argv = minimist(process.argv.slice(2), {
-  alias: { t: 'template' },
+  alias: { t: 'template', lab: 'gitlab' },
 });
 
 const renameFiles: Record<string, string> = {
@@ -82,11 +82,17 @@ function getPkgManagerInfo() {
 }
 
 async function copyTemplateFolder(root: string, templateDir: string, projectName: string) {
+  const isGitlab = argv.lab || argv.gitlab;
   const [files, pkgJson] = await Promise.all([
     readdir(templateDir),
     readFile(path.join(templateDir, 'package.json'), 'utf-8'),
   ]);
-  const filterFiles = files.filter(file => file !== 'package.json');
+  const filterFiles = files.filter(file => {
+    const filterCi = isGitlab ? '.github' : '.gitlab';
+    const filterCiYml = isGitlab ? '' : '_gitlab-ci.yml';
+
+    return file !== 'package.json' && file !== filterCi && file !== filterCiYml;
+  });
   const pkg = JSON.parse(pkgJson);
 
   const rewriteOrCopyFile = (file: string, content?: string) => {
@@ -100,7 +106,7 @@ async function copyTemplateFolder(root: string, templateDir: string, projectName
     if (file.endsWith('.art')) {
       const name = projectName
         .split('-')
-        .map(str => str.toLowerCase())
+        .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
         .join(' ');
 
       const renderedResult: string = artTemplate(templatePath, { projectName: name });
