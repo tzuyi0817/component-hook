@@ -4,7 +4,7 @@
   "description": "Scaffolding a basic typescript project",
   "type": "module",
   "license": "MIT",
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.3",
   "author": "Tzuyi",
   "bin": {
     "create-component-hook": "bin/index.js"
@@ -43,6 +43,6 @@
     "ora": "^8.1.1",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "unbuild": "^3.0.1"
+    "unbuild": "^3.2.0"
   }
 }
