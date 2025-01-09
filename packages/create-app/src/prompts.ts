@@ -1,7 +1,7 @@
 import prompts, { type PromptObject } from 'prompts';
 import { existsSync } from 'fs-extra';
 import colors from 'picocolors';
-import { isEmptyFolder } from './utils';
+import { isEmptyFolder, isValidPackageName, getProjectName, toValidPackageName } from './utils';
 import { DEFAULT_PROJECT_NAME, TEMPLATES } from './config';
 
 interface PromptsArgs {
@@ -58,6 +58,18 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     name: 'overwriteChecker',
   };
 
+  const packageName: PromptObject<'projectName' | 'packageName'> = {
+    type: (_, { projectName: nameAnswer }) => {
+      return isValidPackageName(getProjectName(nameAnswer)) ? null : 'text';
+    },
+    name: 'projectName',
+    message: styleTitle('Package name:'),
+    initial: (_, { projectName: nameAnswer }) => toValidPackageName(getProjectName(nameAnswer)),
+    validate: (name: string) => {
+      return isValidPackageName(name) || 'Invalid package.json name';
+    },
+  };
+
   const framework: PromptObject<'framework'> = {
     type: builtinTemplate(template) ? null : 'select',
     name: 'framework',
@@ -71,5 +83,5 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     ],
   };
 
-  return prompts([projectName, overwrite, overwriteChecker, framework], { onCancel });
+  return prompts([projectName, overwrite, overwriteChecker, packageName, framework], { onCancel });
 }

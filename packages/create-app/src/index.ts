@@ -6,8 +6,7 @@ import { readdir, readFile, writeFile, copy, ensureDirSync } from 'fs-extra';
 import artTemplate from 'art-template';
 import ora from 'ora';
 import { operationPrompts } from './prompts';
-import { formatTargetDir, clearFolder } from './utils';
-import { DEFAULT_PROJECT_NAME } from './config';
+import { formatTargetDir, clearFolder, getProjectName } from './utils';
 
 interface MinimistParsedArgs {
   _: string[];
@@ -47,14 +46,7 @@ Available templates:
   ${colors.green('vue')}
 `;
 
-function getProjectName(targetDir?: string) {
-  if (!targetDir) {
-    return DEFAULT_PROJECT_NAME;
-  }
-  return path.basename(path.resolve(targetDir));
-}
-
-async function copyTemplateFolder(root: string, templateDir: string, projectName: string) {
+async function copyTemplateFolder(root: string, templateDir: string, packageName: string) {
   const isGitlab = argv.lab || argv.gitlab;
   const [files, pkgJson] = await Promise.all([
     readdir(templateDir),
@@ -77,7 +69,7 @@ async function copyTemplateFolder(root: string, templateDir: string, projectName
     const templatePath = path.join(templateDir, file);
 
     if (file.endsWith('.art')) {
-      const name = projectName
+      const name = packageName
         .split('-')
         .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
         .join(' ');
@@ -89,7 +81,7 @@ async function copyTemplateFolder(root: string, templateDir: string, projectName
     return copy(templatePath, targetPath);
   };
 
-  pkg.name = projectName;
+  pkg.name = packageName;
 
   return Promise.all([
     ...filterFiles.map(file => rewriteOrCopyFile(file)),
@@ -108,9 +100,9 @@ async function createApp() {
   const targetDir = formatTargetDir(argv._[0]);
   const template = argv.t || argv.template;
   const result = await operationPrompts({ targetDir, template });
-  const projectName = result.projectName || getProjectName(targetDir);
+  const packageName = result.packageName || getProjectName(result.projectName);
   const framework = result.framework || template;
-  const root = path.join(cwd, projectName);
+  const root = path.join(cwd, result.projectName);
   // const pkgManagerInfo = getPkgManagerInfo();
   // const pkgManager = pkgManagerInfo?.name ?? 'npm';
   const spinner = ora();
@@ -125,7 +117,7 @@ async function createApp() {
 
   const templateDir = path.resolve(fileURLToPath(import.meta.url), '../..', `template-${framework}`);
 
-  copyTemplateFolder(root, templateDir, projectName)
+  copyTemplateFolder(root, templateDir, packageName)
     .then(() => {
       const cdProjectName = path.relative(cwd, root);
       const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;

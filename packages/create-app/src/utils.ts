@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { readdirSync, existsSync, remove } from 'fs-extra';
+import { DEFAULT_PROJECT_NAME } from './config';
 
 export function formatTargetDir(targetDir?: string) {
   if (!targetDir) return targetDir;
@@ -13,6 +14,26 @@ export function formatTargetDir(targetDir?: string) {
     targetDir = targetDir.slice(0, -1);
   }
   return targetDir;
+}
+
+export function getProjectName(targetDir?: string) {
+  if (!targetDir) {
+    return DEFAULT_PROJECT_NAME;
+  }
+  return path.basename(path.resolve(targetDir));
+}
+
+export function isValidPackageName(projectName: string) {
+  return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(projectName);
+}
+
+export function toValidPackageName(projectName: string) {
+  return projectName
+    .trim()
+    .toLowerCase()
+    .replaceAll(/\s+/g, '-')
+    .replace(/^[._]/, '')
+    .replaceAll(/[^a-z\d\-~]+/g, '-');
 }
 
 export function getPkgManagerInfo() {
