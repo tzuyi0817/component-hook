@@ -6,14 +6,24 @@ import { readdir, readFile, writeFile, copy, ensureDirSync } from 'fs-extra';
 import artTemplate from 'art-template';
 import ora from 'ora';
 import { operationPrompts } from './prompts';
-import { formatTargetDir } from './common';
+import { formatTargetDir, clearFolder } from './utils';
 import { DEFAULT_PROJECT_NAME } from './config';
+
+interface MinimistParsedArgs {
+  _: string[];
+  t?: string;
+  template?: string;
+  lab?: boolean;
+  gitlab?: boolean;
+  h?: boolean;
+  help?: boolean;
+}
 
 const cwd = process.cwd();
 
-const argv = minimist(process.argv.slice(2), {
+const argv = minimist<MinimistParsedArgs>(process.argv.slice(2), {
   default: { gitlab: false, help: false },
-  alias: { t: 'template', lab: 'gitlab', h: 'help' },
+  alias: { t: 'template', l: 'gitlab', h: 'help' },
   string: ['_'],
 });
 
@@ -30,7 +40,7 @@ With no arguments, start the CLI in interactive mode.
 
 Options:
   -t, --template [name]  Choose a framework template
-  -lab, --gitlab  Use Gitlab CI/CD, default is Github CI/CD
+  -l, --gitlab  Use Gitlab CI/CD, default is Github CI/CD
   -h, --help  Display this help message
 
 Available templates:
@@ -97,7 +107,7 @@ async function createApp() {
   }
   const targetDir = formatTargetDir(argv._[0]);
   const template = argv.t || argv.template;
-  const result = await operationPrompts(targetDir, template);
+  const result = await operationPrompts({ targetDir, template });
   const projectName = result.projectName || getProjectName(targetDir);
   const framework = result.framework || template;
   const root = path.join(cwd, projectName);
@@ -106,7 +116,12 @@ async function createApp() {
   const spinner = ora();
 
   spinner.start(colors.yellow(`Scaffolding project...`));
-  ensureDirSync(root);
+
+  if (result.overwrite === 'overwrite') {
+    await clearFolder(root);
+  } else {
+    ensureDirSync(root);
+  }
 
   const templateDir = path.resolve(fileURLToPath(import.meta.url), '../..', `template-${framework}`);
 

@@ -1,3 +1,6 @@
+import path from 'node:path';
+import { readdirSync, existsSync, remove } from 'fs-extra';
+
 export function formatTargetDir(targetDir?: string) {
   if (!targetDir) return targetDir;
 
@@ -20,4 +23,17 @@ export function getPkgManagerInfo() {
   const [name, version] = pkgManager.split('/');
 
   return { name, version };
+}
+
+export function isEmptyFolder(dir: string) {
+  const files = readdirSync(dir);
+
+  return files.length === 0 || (files.length === 1 && files[0] === '.git');
+}
+
+export function clearFolder(dir: string) {
+  if (!existsSync(dir)) return;
+  const files = readdirSync(dir).filter(file => file !== '.git');
+
+  return Promise.all(files.map(file => remove(path.resolve(dir, file))));
 }
