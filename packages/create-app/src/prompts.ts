@@ -9,6 +9,8 @@ interface PromptsArgs {
   template?: string;
 }
 
+type OverwriteAnswer = 'cancel' | 'overwrite' | 'ignore';
+
 function builtinTemplate(template?: string) {
   return template && TEMPLATES.includes(template);
 }
@@ -29,13 +31,13 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     initial: DEFAULT_PROJECT_NAME,
   };
 
-  const overwrite: PromptObject<'projectName' | 'overwrite'> = {
-    type: (_, { projectName: name }) => {
-      return existsSync(name) && !isEmptyFolder(name) ? 'select' : null;
+  const overwrite: PromptObject<'overwrite'> = {
+    type: (nameAnswer: string) => {
+      return existsSync(nameAnswer) && !isEmptyFolder(nameAnswer) ? 'select' : null;
     },
     name: 'overwrite',
-    message: (_, { projectName: name }) => {
-      const isCurrentDir = name === '.';
+    message: (nameAnswer: string) => {
+      const isCurrentDir = nameAnswer === '.';
       const dir = isCurrentDir ? 'current directory' : `Target directory "${targetDir}"`;
 
       return styleTitle(`${dir} is not empty. Please choose how to proceed:`);
@@ -48,8 +50,8 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     ],
   };
 
-  const overwriteChecker: PromptObject<'overwrite' | 'overwriteChecker'> = {
-    type: (_, { overwrite: overwriteAnswer }) => {
+  const overwriteChecker: PromptObject<'overwriteChecker'> = {
+    type: (overwriteAnswer: OverwriteAnswer) => {
       if (overwriteAnswer === 'cancel') onCancel();
       return null;
     },
