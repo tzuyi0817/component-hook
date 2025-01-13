@@ -6,7 +6,7 @@ import { readdir, readFile, writeFile, copy, ensureDirSync } from 'fs-extra';
 import artTemplate from 'art-template';
 import ora from 'ora';
 import { operationPrompts } from './prompts';
-import { formatTargetDir, clearFolder, getProjectName } from './utils';
+import { formatTargetDir, clearFolder, getProjectName, getPkgManagerInfo } from './utils';
 
 interface MinimistParsedArgs {
   _: string[];
@@ -103,10 +103,11 @@ async function createApp() {
   const packageName = result.packageName || getProjectName(result.projectName);
   const framework = result.framework || template;
   const root = path.join(cwd, result.projectName);
-  // const pkgManagerInfo = getPkgManagerInfo();
-  // const pkgManager = pkgManagerInfo?.name ?? 'npm';
+  const pkgManagerInfo = getPkgManagerInfo();
+  const pkgManager = pkgManagerInfo?.name ?? 'npm';
   const spinner = ora();
 
+  console.log();
   spinner.start(colors.yellow(`Scaffolding project...`));
 
   if (result.overwrite === 'overwrite') {
@@ -122,9 +123,18 @@ async function createApp() {
       const cdProjectName = path.relative(cwd, root);
       const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
 
-      spinner.succeed(`${colors.yellow('Scaffolded project in')} ${colors.cyan(root)}`);
-      console.log(`\nDone. Now run:\n`);
-      console.log(`  cd ${formattedCdProjectName}`);
+      spinner.succeed(`${colors.green('Scaffolded project in')} ${root}`);
+      console.log(`\n${colors.green('Done. Now run:')}\n`);
+      console.log(colors.cyan(`  cd ${formattedCdProjectName}`));
+
+      if (pkgManager === 'yarn') {
+        console.log(colors.cyan(`  yarn`));
+        console.log(colors.cyan(`  yarn dev`));
+      } else {
+        console.log(colors.cyan(`  ${pkgManager} install`));
+        console.log(colors.cyan(`  ${pkgManager} run dev`));
+      }
+      console.log();
     })
     .catch(() => {
       spinner.fail(colors.red('Failed to scaffold project'));
