@@ -20,7 +20,10 @@ function encode(source: string, filetype: string) {
   <div class="container">
     <h2>ESLint Plugin</h2>
 
-    <p>A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier.</p>
+    <p>
+      A opinionated ESLint config preset for <code>JavaScript</code>, <code>TypeScript</code>, <code>Vue</code>, and
+      <code>Prettier</code>.
+    </p>
 
     <div v-html="md.render(installationMd)"></div>
     <p class="font-mono text-xs my-4">Require ESLint >= 9.0.0</p>

@@ -4,12 +4,12 @@
 /* @import url('prism-themes/themes/prism-vsc-dark-plus.css') screen and (prefers-color-scheme: dark); */
 
 @layer components {
+  code {
+    @apply bg-code-bg-color px-2 py-0.5 rounded text-sm;
+  }
+
   pre[class*='language-'] {
     @apply !m-0 !bg-code-bg-color !border-0 rounded-md p-5 text-[var(--code-base)] overflow-x-auto relative;
-
-    code {
-      @apply text-sm;
-    }
 
     .token {
       &.keyword {

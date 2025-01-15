@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
 import Home from '@/pages/Home.vue';
 import Component from '@/pages/Component.vue';
+import Cli from '@/pages/Cli.vue';
 import Eslint from '@/pages/Eslint.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -54,6 +55,23 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: 'PDF Canvas',
           group: 'React',
+        },
+      },
+    ],
+  },
+  {
+    path: '/cli',
+    name: 'cli',
+    component: Cli,
+    redirect: '/cli/create-app',
+    children: [
+      {
+        path: 'create-app',
+        name: 'cli-create-app',
+        component: () => import('@/components/cli/CreateApp.vue'),
+        meta: {
+          title: 'Create App',
+          group: 'Scaffold',
         },
       },
     ],

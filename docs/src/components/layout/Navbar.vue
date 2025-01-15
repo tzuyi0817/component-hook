@@ -11,6 +11,15 @@ defineEmits(['closeFullNavbar']);
     >
       Component
     </router-link>
+
+    <router-link
+      to="/cli"
+      class="link-item"
+      active-class="active"
+    >
+      CLI
+    </router-link>
+
     <router-link
       to="/eslint"
       class="link-item"
