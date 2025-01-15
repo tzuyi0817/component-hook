@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.5](https://github.com/tzuyi0817/component-hook/compare/v0.2.4...v0.2.5) (2025-01-15)
+
+### Features
+
+- **create-app:** add `create-app` cli
+
 ## [0.2.4](https://github.com/tzuyi0817/component-hook/compare/v0.2.3...v0.2.4) (2024-12-20)
 
 ### Features
