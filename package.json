@@ -39,6 +39,7 @@
     "jsdom": "^25.0.1",
     "prettier": "^3.4.2",
     "rollup-plugin-visualizer": "^5.13.1",
+    "tsup": "^8.3.5",
     "turbo": "^2.3.3",
     "typescript": "^5.7.3",
     "vite": "^5.4.11",

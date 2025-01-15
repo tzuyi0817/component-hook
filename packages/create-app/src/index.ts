@@ -1,8 +1,9 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import minimist from 'minimist';
 import colors from 'picocolors';
-import { readdir, readFile, writeFile, copy, ensureDirSync } from 'fs-extra';
+import { copy, ensureDirSync } from 'fs-extra/esm';
 import artTemplate from 'art-template';
 import ora from 'ora';
 import { operationPrompts } from './prompts';

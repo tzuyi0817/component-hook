@@ -1,5 +1,5 @@
+import { existsSync } from 'node:fs';
 import prompts, { type PromptObject } from 'prompts';
-import { existsSync } from 'fs-extra';
 import colors from 'picocolors';
 import { isEmptyFolder, isValidPackageName, getProjectName, toValidPackageName } from './utils';
 import { DEFAULT_PROJECT_NAME, TEMPLATES } from './config';

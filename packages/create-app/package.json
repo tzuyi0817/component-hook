@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/create-app",
-  "version": "0.2.4",
+  "version": "0.2.4-alpha.3",
   "description": "Scaffolding a basic typescript project",
   "type": "module",
   "license": "MIT",
@@ -15,10 +15,9 @@
     "dist"
   ],
   "scripts": {
-    "dev": "unbuild --stub",
-    "build": "unbuild",
-    "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
   },
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
@@ -32,17 +31,17 @@
     "url": "https://github.com/tzuyi0817/component-hook/issues"
   },
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
-  "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/minimist": "^1.2.5",
-    "@types/prompts": "^2.4.9",
+  "dependencies": {
     "art-template": "^4.13.2",
-    "cross-spawn": "^7.0.6",
     "fs-extra": "^11.2.0",
     "minimist": "^1.2.8",
     "ora": "^8.1.1",
     "picocolors": "^1.1.1",
-    "prompts": "^2.4.2",
-    "unbuild": "^3.2.0"
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/minimist": "^1.2.5",
+    "@types/prompts": "^2.4.9"
   }
 }

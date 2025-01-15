@@ -1,5 +1,6 @@
 import path from 'node:path';
-import { readdirSync, existsSync, remove } from 'fs-extra';
+import { existsSync, readdirSync } from 'node:fs';
+import { remove } from 'fs-extra/esm';
 import { DEFAULT_PROJECT_NAME } from './config';
 
 export function formatTargetDir(targetDir?: string) {
