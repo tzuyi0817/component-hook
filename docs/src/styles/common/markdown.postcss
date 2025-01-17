@@ -5,5 +5,17 @@
     p {
       @apply my-4;
     }
+
+    .tip {
+      @apply text-sm bg-[var(--tip-bg-color)] border-l-4 border-primary rounded p-4 my-4;
+
+      &-title {
+        @apply font-bold mt-0 text-base text-text-color-secondary;
+      }
+
+      p:last-child {
+        @apply mb-0;
+      }
+    }
   }
 }
