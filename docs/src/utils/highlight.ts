@@ -51,6 +51,7 @@ function groupPlugin() {
       for (let i = index + 1; i < tokens.length - 1; i++) {
         const token = tokens[i];
 
+        if (token.nesting === -1 && token.type === 'container_group_close') break;
         if (token.type !== 'fence' || token.tag !== 'code') continue;
         const regex = /\[([^\]]{0,100})\]/;
         const title = token.info.match(regex)?.[1];
