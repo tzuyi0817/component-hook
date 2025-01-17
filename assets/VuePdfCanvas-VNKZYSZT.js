@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-D8wrhTdg.js";import{d as t,c as a,u as n,o as s}from"./index-4CLG46wp.js";import"./Demo-CyzLnNPF.js";const l=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-D5VUxTji.js";import{d as t,c as a,u as n,o as s}from"./index-D3SVnouL.js";import"./Demo-oPRZF2VC.js";const l=`<script setup lang="ts">
 import { ref } from 'vue';
 import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
 
