@@ -11,6 +11,10 @@
   pre[class*='language-'] {
     @apply !m-0 !bg-code-bg-color !border-0 rounded-md p-5 text-[var(--code-base)] overflow-x-auto relative;
 
+    code {
+      @apply px-0;
+    }
+
     .token {
       &.keyword {
         @apply text-[var(--code-keyword)];

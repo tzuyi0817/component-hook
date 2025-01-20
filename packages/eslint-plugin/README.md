@@ -53,26 +53,28 @@ export default [
     files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
     ...componentHookPlugin.configs.playwright,
   },
-  // ...your custom config
+  // your custom config
 ];
 ```
 
 See [basic](./index.ts) and [ignores](./configs/ignores.ts) for more details.
 
-## Presets Usage
+## React Presets Usage
+
+Includes `basic`, `react`, `markdown`, `prettier`, `sonarjs`, `security` configs.
 
 ```js
-import {
-  reactPreset, // Includes basic, react, markdown, prettier, sonarjs, security configs
-} from '@component-hook/eslint-plugin';
+import { reactPreset } from '@component-hook/eslint-plugin';
 
 export default reactPreset;
 ```
 
+## Vue Presets Usage
+
+Includes `basic`, `vue`, `markdown`, `prettier`, `sonarjs`, `security` configs.
+
 ```js
-import {
-  vuePreset, // Includes basic, vue, markdown, prettier, sonarjs, security configs
-} from '@component-hook/eslint-plugin';
+import { vuePreset } from '@component-hook/eslint-plugin';
 
 export default vuePreset;
 ```

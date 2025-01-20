@@ -25,7 +25,7 @@ defineEmits(['closeFullNavbar']);
       class="link-item"
       active-class="active"
     >
-      ESLint Plugin
+      ESLint
     </router-link>
   </nav>
 </template>
