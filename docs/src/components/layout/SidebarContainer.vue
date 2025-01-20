@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import Sidebar from '@/components/layout/sidebar/index.vue';
+import Sidebar from './sidebar/index.vue';
 import { scrollToTop } from '@/utils/common';
 </script>
 
 <template>
   <div>
     <sidebar />
+
     <div class="sidebar-container">
       <router-view v-slot="{ Component }">
         <transition

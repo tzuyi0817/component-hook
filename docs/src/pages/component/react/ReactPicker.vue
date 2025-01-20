@@ -3,7 +3,7 @@ import cascadeSource from '@react-playground/picker/cascade-picker?raw';
 import singleSource from '@react-playground/picker/single-picker?raw';
 import dateSource from '@react-playground/picker/date-picker?raw';
 import timeSource from '@react-playground/picker/time-picker?raw';
-import ComponentPicker from '../ComponentPicker.vue';
+import ComponentPicker from '@/components/component/ComponentPicker.vue';
 import attributesMd from '@/markdowns/picker/react/attributes.md?raw';
 import eventsMd from '@/markdowns/picker/react/events.md?raw';
 </script>

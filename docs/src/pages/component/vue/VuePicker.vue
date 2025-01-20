@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ComponentPicker from '../ComponentPicker.vue';
+import ComponentPicker from '@/components/component/ComponentPicker.vue';
 import cascadeSource from '@/examples/picker/Cascade.vue?raw';
 import singleSource from '@/examples/picker/Single.vue?raw';
 import dateSource from '@/examples/picker/Date.vue?raw';

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ComponentPdfCanvas from '../ComponentPdfCanvas.vue';
+import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
 import drawSource from '@/examples/pdf-canvas/Draw.vue?raw';
 import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
 import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';

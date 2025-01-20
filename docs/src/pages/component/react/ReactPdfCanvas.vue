@@ -4,7 +4,7 @@ import encryptedSource from '@react-playground/pdf-canvas/encrypted-pdf?raw';
 import multipleSource from '@react-playground/pdf-canvas/multiple-pdf?raw';
 import dropSource from '@react-playground/pdf-canvas/drop-pdf?raw';
 import manualSource from '@react-playground/pdf-canvas/manual-pdf?raw';
-import ComponentPdfCanvas from '../ComponentPdfCanvas.vue';
+import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
 </script>
 
 <template>

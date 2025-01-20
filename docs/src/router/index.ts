@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
+import SidebarContainer from '@/components/layout/SidebarContainer.vue';
 import Home from '@/pages/Home.vue';
-import Component from '@/pages/Component.vue';
-import Cli from '@/pages/Cli.vue';
 import Eslint from '@/pages/Eslint.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -17,13 +16,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/component',
     name: 'component',
-    component: Component,
+    component: SidebarContainer,
     redirect: '/component/vue-picker',
     children: [
       {
         path: 'vue-picker',
         name: 'component-vue-picker',
-        component: () => import('@/components/component/vue/VuePicker.vue'),
+        component: () => import('@/pages/component/vue/VuePicker.vue'),
         meta: {
           title: 'Picker',
           group: 'Vue',
@@ -32,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'vue-pdf-canvas',
         name: 'component-vue-pdf-canvas',
-        component: () => import('@/components/component/vue/VuePdfCanvas.vue'),
+        component: () => import('@/pages/component/vue/VuePdfCanvas.vue'),
         meta: {
           title: 'PDF Canvas',
           group: 'Vue',
@@ -42,7 +41,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'react-picker',
         name: 'component-react-picker',
-        component: () => import('@/components/component/react/ReactPicker.vue'),
+        component: () => import('@/pages/component/react/ReactPicker.vue'),
         meta: {
           title: 'Picker',
           group: 'React',
@@ -51,7 +50,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'react-pdf-canvas',
         name: 'component-react-pdf-canvas',
-        component: () => import('@/components/component/react/ReactPdfCanvas.vue'),
+        component: () => import('@/pages/component/react/ReactPdfCanvas.vue'),
         meta: {
           title: 'PDF Canvas',
           group: 'React',
@@ -62,13 +61,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/cli',
     name: 'cli',
-    component: Cli,
+    component: SidebarContainer,
     redirect: '/cli/create-app',
     children: [
       {
         path: 'create-app',
         name: 'cli-create-app',
-        component: () => import('@/components/cli/CreateApp.vue'),
+        component: () => import('@/pages/cli/CreateApp.vue'),
         meta: {
           title: 'Create App',
           group: 'Scaffold',

@@ -12,13 +12,16 @@ useCopyCode();
   <header-container />
 
   <main class="w-screen lg:pt-14">
-    <router-view v-slot="{ Component }">
+    <router-view v-slot="{ Component, route }">
       <transition
         name="fade"
         mode="out-in"
         @before-enter="() => scrollToTop()"
       >
-        <component :is="Component" />
+        <component
+          :is="Component"
+          :key="route.matched[0]?.name"
+        />
       </transition>
     </router-view>
   </main>
