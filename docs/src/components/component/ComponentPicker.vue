@@ -74,10 +74,7 @@ defineProps<Props>();
       <time-picker />
     </demo>
 
-    <div
-      class="overflow-x-auto"
-      v-html="md.render(attributesMd)"
-    ></div>
+    <div v-html="md.render(attributesMd)"></div>
 
     <div v-html="md.render(optionsMd)"></div>
 

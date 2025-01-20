@@ -97,19 +97,10 @@ defineProps<Props>();
       <manual-pdf />
     </demo>
 
-    <div
-      class="overflow-x-auto"
-      v-html="md.render(attributesMd)"
-    ></div>
+    <div v-html="md.render(attributesMd)"></div>
 
-    <div
-      class="overflow-x-auto"
-      v-html="md.render(exposesMd)"
-    ></div>
+    <div v-html="md.render(exposesMd)"></div>
 
-    <div
-      class="overflow-x-auto"
-      v-html="md.render(useFabricMd)"
-    ></div>
+    <div v-html="md.render(useFabricMd)"></div>
   </div>
 </template>

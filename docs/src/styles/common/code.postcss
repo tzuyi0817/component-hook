@@ -8,8 +8,12 @@
     @apply bg-code-bg-color px-2 py-0.5 rounded text-sm;
   }
 
+  .code-wrapper {
+    @apply relative;
+  }
+
   pre[class*='language-'] {
-    @apply !m-0 !bg-code-bg-color !border-0 rounded-md p-5 text-[var(--code-base)] overflow-x-auto relative;
+    @apply !m-0 !bg-code-bg-color !border-0 rounded-md p-5 text-[var(--code-base)] overflow-x-auto;
 
     code {
       @apply px-0;
