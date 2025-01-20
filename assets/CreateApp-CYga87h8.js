@@ -1,4 +1,4 @@
-import{d as t,b as n,u as e,o,m as s}from"./index-CweM3b4H.js";const a=`## Create App
+import{m as t}from"./index-lsj9E915.js";import{d as n,b as o,u as e,o as s}from"./index-BzS8CcF-.js";const a=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
@@ -86,4 +86,4 @@ You can use \`.\` for the project name to scaffold in the current directory.
   - preview - on pull request
 - Gitlab CI (use \`--gitlab\` command create project)
   - run tests - on branches, merge request and manual
-`,p=["innerHTML"],l=t({__name:"CreateApp",setup(i){return(r,c)=>(o(),n("div",{class:"markdown-doc",innerHTML:e(s).render(e(a))},null,8,p))}});export{l as default};
+`,p=["innerHTML"],u=n({__name:"CreateApp",setup(i){return(r,c)=>(s(),o("div",{class:"markdown-doc",innerHTML:e(t).render(e(a))},null,8,p))}});export{u as default};

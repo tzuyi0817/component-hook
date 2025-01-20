@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-DcLc3xUs.js";import{d as t,c as o,u as n,o as c}from"./index-CweM3b4H.js";import"./Demo-DJT9vnXG.js";const r=`<script lang="ts" setup>
+import{_ as e}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-BRRQS9EI.js";import{d as t,c as o,u as n,o as c}from"./index-BzS8CcF-.js";import"./Demo-qFzwNp6D.js";import"./index-lsj9E915.js";const r=`<script lang="ts" setup>
 import { ref } from 'vue';
 import Picker from '@component-hook/picker/vue';
 
@@ -152,4 +152,4 @@ function onCancel() {
 | :------ | :------------------------------------------- | :---------------------------------------- |
 | confirm | Triggered when the confirm button is clicked | \`Function (value: selected item) => void\` |
 | cancel  | Triggered when the cancel button is clicked  | \`Function () => void\`                     |
-`,h=t({__name:"VuePicker",setup(u){return(p,g)=>(c(),o(e,{description:"Picker component with vue3.","cascade-source":n(r),"cascade-playground":"6696355db9ac0e0085f0eb29","single-source":n(i),"single-playground":"668e32b73e8416c068f2f92f","date-source":n(a),"date-playground":"669635e2b9ac0e0085f0eb2e","time-source":n(l),"time-playground":"66963635b9ac0e0085f0eb32","attributes-md":n(s),"events-md":n(m)},null,8,["cascade-source","single-source","date-source","time-source","attributes-md","events-md"]))}});export{h as default};
+`,y=t({__name:"VuePicker",setup(u){return(p,g)=>(c(),o(e,{description:"Picker component with vue3.","cascade-source":n(r),"cascade-playground":"6696355db9ac0e0085f0eb29","single-source":n(i),"single-playground":"668e32b73e8416c068f2f92f","date-source":n(a),"date-playground":"669635e2b9ac0e0085f0eb2e","time-source":n(l),"time-playground":"66963635b9ac0e0085f0eb32","attributes-md":n(s),"events-md":n(m)},null,8,["cascade-source","single-source","date-source","time-source","attributes-md","events-md"]))}});export{y as default};
