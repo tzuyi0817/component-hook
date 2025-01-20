@@ -49,17 +49,27 @@ import FooterContainer from '@/components/layout/Footer.vue';
         </div>
       </section>
 
-      <section class="flex flex-col gap-10 justify-center items-center lg:flex-row lg:items-stretch">
+      <section
+        class="max-w-[1200px] mx-auto flex flex-col gap-5 justify-center items-center lg:flex-row lg:items-stretch"
+      >
         <home-feature
           title="Component"
-          content="Designed to help developers quickly build applications."
+          content="Use the code encapsulated by the front-end framework to help engineers develop quickly."
           image="component.png"
           :image-width="128"
           link="/component/vue-picker"
         />
 
         <home-feature
-          title="ESLint Plugin"
+          title="CLI"
+          content="Designed to help developers quickly build applications."
+          image="cli.png"
+          :image-width="114"
+          link="/cli"
+        />
+
+        <home-feature
+          title="ESLint"
           content="Reasonable defaults, best practices, and just a few lines of configuration."
           image="plugin.png"
           :image-width="220"

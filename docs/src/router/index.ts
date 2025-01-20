@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
 import SidebarContainer from '@/components/layout/SidebarContainer.vue';
 import Home from '@/pages/Home.vue';
-import Eslint from '@/pages/Eslint.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -78,7 +77,19 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/eslint',
     name: 'eslint',
-    component: Eslint,
+    component: SidebarContainer,
+    redirect: '/eslint/plugin',
+    children: [
+      {
+        path: 'plugin',
+        name: 'eslint-plugin',
+        component: () => import('@/pages/eslint/Plugin.vue'),
+        meta: {
+          title: 'Plugin',
+          group: 'ESLint',
+        },
+      },
+    ],
   },
 ];
 

@@ -4,10 +4,8 @@ import { md } from '@/utils/highlight';
 </script>
 
 <template>
-  <div class="container">
-    <div
-      class="markdown-doc"
-      v-html="md.render(indexMd)"
-    ></div>
-  </div>
+  <div
+    class="markdown-doc"
+    v-html="md.render(indexMd)"
+  ></div>
 </template>
