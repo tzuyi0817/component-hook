@@ -7,7 +7,8 @@ import markdownit from 'markdown-it';
 import container from 'markdown-it-container';
 import { linkPlugin, groupPlugin, tipPlugin } from './plugins';
 
-export const md = markdownit({ highlight });
+// eslint-disable-next-line sonarjs/disabled-auto-escaping
+export const md = markdownit({ highlight, html: true });
 
 md.use(linkPlugin).use(container, 'group', groupPlugin()).use(container, 'tip', tipPlugin(md)).use(fencePlugin);
 
