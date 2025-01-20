@@ -60,7 +60,7 @@
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "^0.7.1",
+    "@eslint/config-inspector": "^1.0.0",
     "@types/eslint": "^9.6.1",
     "@types/eslint-plugin-security": "^3.0.0",
     "@types/eslint__js": "^8.42.3"
