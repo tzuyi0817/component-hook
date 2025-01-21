@@ -4,7 +4,7 @@
   "description": "Scaffolding a basic typescript project",
   "type": "module",
   "license": "MIT",
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.4",
   "author": "Tzuyi",
   "bin": {
     "create-component-hook": "bin/index.js"
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
   "dependencies": {
     "art-template": "^4.13.2",
-    "fs-extra": "^11.2.0",
+    "fs-extra": "^11.3.0",
     "minimist": "^1.2.8",
     "ora": "^8.1.1",
     "picocolors": "^1.1.1",
