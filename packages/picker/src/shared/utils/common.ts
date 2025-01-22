@@ -69,3 +69,13 @@ function isArrayPickerColumn(columns: PickerColumn | PickerColumn[]): columns is
 
   return isArray(column);
 }
+
+export function getDirection(x: number, y: number) {
+  if (x > y) {
+    return 'horizontal';
+  }
+  if (y > x) {
+    return 'vertical';
+  }
+  return '';
+}

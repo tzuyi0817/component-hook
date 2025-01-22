@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Demo from '@/components/Demo.vue';
+import BasePicker from '@/examples/picker/Base.vue';
 import CascadePicker from '@/examples/picker/Cascade.vue';
 import SinglePicker from '@/examples/picker/Single.vue';
 import DatePicker from '@/examples/picker/Date.vue';
@@ -10,6 +11,8 @@ import { md } from '@/utils/highlight';
 
 interface Props {
   description: string;
+  baseSource: string;
+  basePlayground: string;
   cascadeSource: string;
   cascadePlayground: string;
   singleSource: string;
@@ -35,6 +38,16 @@ defineProps<Props>();
     <div v-html="md.render(installationMd)"></div>
 
     <demo
+      title="Base Picker"
+      :source="baseSource"
+      :playground="basePlayground"
+      :language="language"
+    >
+      <template #description> Base to use picker. </template>
+      <base-picker />
+    </demo>
+
+    <demo
       title="Cascade Picker"
       :source="cascadeSource"
       :playground="cascadePlayground"
@@ -45,12 +58,12 @@ defineProps<Props>();
     </demo>
 
     <demo
-      title="Single Picker"
+      title="Customize Columns"
       :source="singleSource"
       :playground="singlePlayground"
       :language="language"
     >
-      <template #description> Use single data to define picker. </template>
+      <template #description>Customize the structure of Columns to use picker. </template>
       <single-picker />
     </demo>
 

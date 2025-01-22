@@ -16,3 +16,5 @@ export type PickerColumn = PickerOption[];
 export type PickerSelectedValues = Array<PickerOption['value']>;
 
 export type PickerColumnsType = 'single' | 'multiple' | 'cascade';
+
+export type Direction = '' | 'vertical' | 'horizontal';
