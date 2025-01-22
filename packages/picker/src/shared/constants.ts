@@ -11,3 +11,5 @@ export const INERTIAL_TIME = 300;
 export const INERTIAL_DISTANCE = 15;
 
 export const INERTIAL_FACTOR = 0.008;
+
+export const TAP_OFFSET = 5;

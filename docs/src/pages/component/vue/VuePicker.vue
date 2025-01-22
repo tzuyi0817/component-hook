@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ComponentPicker from '@/components/component/ComponentPicker.vue';
+import baseSource from '@/examples/picker/Base.vue?raw';
 import cascadeSource from '@/examples/picker/Cascade.vue?raw';
 import singleSource from '@/examples/picker/Single.vue?raw';
 import dateSource from '@/examples/picker/Date.vue?raw';
@@ -11,6 +12,8 @@ import eventsMd from '@/markdowns/picker/vue/events.md?raw';
 <template>
   <component-picker
     description="Picker component with vue3."
+    :base-source="baseSource"
+    base-playground=""
     :cascade-source="cascadeSource"
     cascade-playground="6696355db9ac0e0085f0eb29"
     :single-source="singleSource"

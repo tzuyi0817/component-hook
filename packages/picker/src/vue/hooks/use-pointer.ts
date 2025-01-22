@@ -1,8 +1,7 @@
 import { ref } from 'vue';
-
-const TAP_OFFSET = 5;
-
-type Direction = '' | 'vertical' | 'horizontal';
+import { getDirection } from '../../shared/utils/common';
+import { TAP_OFFSET } from '../../shared/constants';
+import type { Direction } from '../../shared/types';
 
 export function usePointer() {
   const startX = ref(0);
@@ -27,7 +26,7 @@ export function usePointer() {
   };
 
   const start = (event: MouseEvent | TouchEvent) => {
-    const pointer = 'touches' in event ? event.touches[0] : event;
+    const pointer = event instanceof TouchEvent ? event.touches[0] : event;
 
     reset();
     startX.value = pointer.clientX;
@@ -36,7 +35,7 @@ export function usePointer() {
 
   const move = (event: MouseEvent | TouchEvent) => {
     if (!startX.value || !startY.value) return true;
-    const pointer = 'touches' in event ? event.touches[0] : event;
+    const pointer = event instanceof TouchEvent ? event.touches[0] : event;
 
     // safari back will set clientX to negative number
     deltaX.value = Math.max(pointer.clientX, 0) - startX.value;
@@ -77,14 +76,4 @@ export function usePointer() {
     isHorizontal,
     isTap,
   };
-}
-
-function getDirection(x: number, y: number) {
-  if (x > y) {
-    return 'horizontal';
-  }
-  if (y > x) {
-    return 'vertical';
-  }
-  return '';
 }
