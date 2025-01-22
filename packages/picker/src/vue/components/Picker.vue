@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, useTemplateRef, watchEffect } from 'vue';
 import Column from './PickerColumn.vue';
+import '../../shared/index.scss';
+import '../transition.scss';
 import { formatColumnsToCascade, getColumnsType, resetChildrenSelected } from '../../shared/utils/common';
 import type { PickerColumn, PickerSelectedValues } from '../../shared/types';
 
@@ -9,6 +11,9 @@ interface Props {
   columns: PickerColumn | PickerColumn[];
   linkage?: boolean;
   loading?: boolean;
+  teleport?: string;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
 }
 
 interface Emits {
@@ -18,7 +23,11 @@ interface Emits {
   closed: [];
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  teleport: 'body',
+  confirmButtonText: 'confirm',
+  cancelButtonText: 'cancel',
+});
 const emits = defineEmits<Emits>();
 const modelValue = defineModel<PickerSelectedValues>({ default: [] });
 const isShowPicker = defineModel<boolean>('show', { required: true });
@@ -113,66 +122,68 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="component-hook-picker">
-    <transition name="component-hook-picker-fade">
-      <div
-        v-show="isShowPicker"
-        class="component-hook-picker-mask"
-        @click="closePicker"
-      ></div>
-    </transition>
-
-    <transition name="component-hook-picker-slide">
-      <div
-        v-show="isShowPicker"
-        class="component-hook-picker-container"
-      >
-        <div class="component-hook-picker-header">
-          <button
-            class="component-hook-picker-cancel"
-            @click="onCancel"
-          >
-            取消
-          </button>
-          <p class="component-hook-picker-title">{{ title }}</p>
-          <button
-            class="component-hook-picker-confirm"
-            @click="onConfirm"
-          >
-            确定
-          </button>
-        </div>
-
+  <teleport :to="teleport">
+    <div class="component-hook-picker">
+      <transition name="component-hook-picker-fade">
         <div
-          class="component-hook-picker-columns component-hook-picker-columns-backdrop"
-          @touchmove.stop
-        >
-          <slot
-            v-if="!loading && !columns.length"
-            name="empty"
-          ></slot>
+          v-show="isShowPicker"
+          class="component-hook-picker-mask"
+          @click="closePicker"
+        ></div>
+      </transition>
 
-          <template v-else>
-            <Column
-              v-for="(column, index) in currentColumns"
-              :key="index"
-              ref="columnRef"
-              :column="column"
-              :selected-index="selectedIndices[index]"
-              @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
-            />
-
-            <div class="component-hook-picker-mask-backdrop"></div>
-          </template>
-        </div>
-
+      <transition name="component-hook-picker-slide">
         <div
-          v-if="loading"
-          class="component-hook-picker-loading"
+          v-show="isShowPicker"
+          class="component-hook-picker-container"
         >
-          <slot name="loading"></slot>
+          <div class="component-hook-picker-header">
+            <button
+              class="component-hook-picker-cancel"
+              @click="onCancel"
+            >
+              {{ cancelButtonText }}
+            </button>
+            <p class="component-hook-picker-title">{{ title }}</p>
+            <button
+              class="component-hook-picker-confirm"
+              @click="onConfirm"
+            >
+              {{ confirmButtonText }}
+            </button>
+          </div>
+
+          <div
+            class="component-hook-picker-columns component-hook-picker-columns-backdrop"
+            @touchmove.stop
+          >
+            <slot
+              v-if="!loading && !columns.length"
+              name="empty"
+            ></slot>
+
+            <template v-else>
+              <Column
+                v-for="(column, index) in currentColumns"
+                :key="index"
+                ref="columnRef"
+                :column="column"
+                :selected-index="selectedIndices[index]"
+                @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
+              />
+
+              <div class="component-hook-picker-mask-backdrop"></div>
+            </template>
+          </div>
+
+          <div
+            v-if="loading"
+            class="component-hook-picker-loading"
+          >
+            <slot name="loading"></slot>
+          </div>
         </div>
-      </div>
-    </transition>
-  </div>
+      </transition>
+    </div>
+  </teleport>
 </template>

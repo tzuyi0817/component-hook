@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import Picker from '@component-hook/picker/vue';
+// import Picker from '@component-hook/picker/vue';
 
 interface LangType {
   langType?: number;
@@ -28,7 +28,7 @@ function onCancel() {
 </script>
 
 <template>
-  <picker
+  <!-- <picker
     v-model:is-show-picker="isShowPicker"
     v-model:anchor="anchor"
     :data="dataList"
@@ -36,7 +36,7 @@ function onCancel() {
     :options="{ titleText: 'cascade selector' }"
     @confirm="onConfirm"
     @cancel="onCancel"
-  />
+  /> -->
   <button @click="isShowPicker = true">toggle cascade picker</button>
 
   <p class="mt-6 text-sm font-mono">Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}</p>

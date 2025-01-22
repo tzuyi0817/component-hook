@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import Picker from '@component-hook/picker/vue';
+// import Picker from '@component-hook/picker/vue';
 
 const currentTime = ref<Array<number>>([]);
 const isShowPicker = ref(false);
@@ -15,14 +15,14 @@ function onCancel() {
 </script>
 
 <template>
-  <picker
+  <!-- <picker
     v-model:is-show-picker="isShowPicker"
     v-model:anchor="currentTime"
     type="time"
     :options="{ titleText: 'time selector' }"
     @confirm="onConfirm"
     @cancel="onCancel"
-  />
+  /> -->
   <button @click="isShowPicker = true">toggle time picker</button>
 
   <p class="mt-6 text-sm font-mono">
