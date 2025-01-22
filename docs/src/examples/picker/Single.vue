@@ -23,7 +23,8 @@ function onCancel() {
   <picker
     v-model:show="isShowPicker"
     :columns="singleData"
-    title="single selector"
+    title="Single Selector"
+    :columns-field-names="{ label: 'original', value: 'code' }"
     @confirm="onConfirm"
     @cancel="onCancel"
   />

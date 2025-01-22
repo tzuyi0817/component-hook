@@ -2,10 +2,11 @@
 import { toRef } from 'vue';
 import { OPTION_HEIGHT, OPTION_ROTATE_FACTOR } from '../../shared/constants';
 import { useScrollSnap } from '../hooks/use-scroll-snap';
-import type { PickerColumn } from '../../shared/types';
+import type { PickerColumn, PickerFields } from '../../shared/types';
 
 interface Props {
   column: PickerColumn;
+  fields: Required<PickerFields>;
   selectedIndex?: number;
 }
 
@@ -61,8 +62,8 @@ defineExpose({ scrollToSelected });
       @transitionend="stopInertialSliding"
     >
       <li
-        v-for="({ label, value }, index) in column"
-        :key="value"
+        v-for="(option, index) in column"
+        :key="option[fields.value]"
         class="component-hook-picker-column-item"
         @click="onClick(index)"
       >
@@ -72,7 +73,7 @@ defineExpose({ scrollToSelected });
             transform: `rotate3d(1, 0, 0, ${(index * OPTION_HEIGHT + offsetY) * OPTION_ROTATE_FACTOR}deg)`,
           }"
         >
-          {{ label }}
+          {{ option[fields.label] }}
         </p>
       </li>
     </ul>
