@@ -5,8 +5,8 @@ import { isObject, isArray, isString, isNumber } from '../../shared/utils/check-
 import { BASE_OPTIONS } from '../../shared/configs/options';
 import '../../shared/index.scss';
 import '../transition.scss';
-import type { PickerComponentProps, NormalData, PickerAnchor } from '../../shared/types/picker';
-import type { PickerEmit } from '../../shared/types/react-picker';
+import type { PickerComponentProps, NormalData, PickerAnchor } from '../../shared/types';
+import type { PickerEmit } from '../react-picker';
 
 const defaultData: NormalData[] = [];
 const defaultOptions = {};

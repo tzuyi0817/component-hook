@@ -2,8 +2,8 @@ import { useState, useRef, useMemo, useEffect } from 'react';
 import { BScroll, createBScroll } from '../../shared/utils/better-scroll';
 import { isArray } from '../../shared/utils/check-type';
 import { isHaveValue } from '../../shared/utils/common';
-import type { PickerProps, NormalData, PickerSelectItems, PickerAnchor } from '../../shared/types/picker';
-import type { PickerEmit } from '../../shared/types/react-picker';
+import type { PickerProps, NormalData, PickerSelectItems, PickerAnchor } from '../../shared/types';
+import type { PickerEmit } from '../react-picker';
 import { useTime } from './use-time';
 import { useDate } from './use-date';
 

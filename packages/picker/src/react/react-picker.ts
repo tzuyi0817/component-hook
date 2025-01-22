@@ -1,4 +1,4 @@
-import type { NormalData, PickerAnchor } from '../../shared/types/picker';
+import type { NormalData, PickerAnchor } from '../shared/types';
 
 export interface PickerEmit<T = NormalData, D = PickerAnchor> {
   onClose: () => void;

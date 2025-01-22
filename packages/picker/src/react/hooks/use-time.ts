@@ -1,5 +1,5 @@
 import { isHaveValue, generateTime } from '../../shared/utils/common';
-import type { PickerAnchor } from '../../shared/types/picker';
+import type { PickerAnchor } from '../../shared/types';
 
 export function useTime() {
   const hours = generateTime(0, 23);
