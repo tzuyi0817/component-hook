@@ -1,6 +1,6 @@
 import Picker from './components/Picker.vue';
 
-export type * from '../shared/types/picker';
-export type * from '../shared/types/vue-picker';
+export type * from '../shared/types';
+export type * from './types';
 
 export default Picker;

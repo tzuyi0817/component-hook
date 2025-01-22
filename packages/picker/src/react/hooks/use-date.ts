@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { isHaveValue, generateList, isLeapYear } from '../../shared/utils/common';
 import { isNumber } from '../../shared/utils/check-type';
-import type { PickerAnchor } from '../../shared/types/picker';
+import type { PickerAnchor } from '../../shared/types';
 
 export function useDate() {
   const START_YEAR = 1900;
