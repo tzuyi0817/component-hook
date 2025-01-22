@@ -1,24 +1,17 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import Picker from '@component-hook/picker/vue';
+import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
 
-interface LangType {
-  langType?: number;
-  code?: string;
-  original?: string;
-}
-
-const currentSelect = ref<LangType>({});
 const isShowPicker = ref(false);
-const anchor = ref(1);
+const pickerValues = ref<PickerSelectedValues>([]);
 const singleData = [
   { langType: 2, code: 'vi', original: 'Tiếng Việt' },
   { langType: 0, code: 'en', original: 'English' },
   { langType: 1, code: 'cn', original: '中文' },
 ];
 
-function onConfirm(value: LangType) {
-  currentSelect.value = value;
+function onConfirm(values: PickerSelectedValues) {
+  pickerValues.value = values;
 }
 
 function onCancel() {
@@ -28,15 +21,14 @@ function onCancel() {
 
 <template>
   <picker
-    v-model:is-show-picker="isShowPicker"
-    v-model:anchor="anchor"
-    :data="singleData"
-    show-key="original"
-    :options="{ titleText: 'single selector' }"
+    v-model:show="isShowPicker"
+    :columns="singleData"
+    title="single selector"
     @confirm="onConfirm"
     @cancel="onCancel"
   />
+
   <button @click="isShowPicker = true">toggle single picker</button>
 
-  <p class="mt-6 text-sm font-mono">Selected language: {{ currentSelect?.original ?? 'not selected yet' }}</p>
+  <p class="mt-6 text-sm font-mono">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>
