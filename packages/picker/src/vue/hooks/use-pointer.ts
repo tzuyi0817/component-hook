@@ -4,7 +4,7 @@ const TAP_OFFSET = 5;
 
 type Direction = '' | 'vertical' | 'horizontal';
 
-export function useTouch() {
+export function usePointer() {
   const startX = ref(0);
   const startY = ref(0);
   const deltaX = ref(0);
@@ -26,17 +26,21 @@ export function useTouch() {
     isTap.value = true;
   };
 
-  const start = ((event: TouchEvent) => {
-    reset();
-    startX.value = event.touches[0].clientX;
-    startY.value = event.touches[0].clientY;
-  }) as EventListener;
+  const start = (event: MouseEvent | TouchEvent) => {
+    const pointer = 'touches' in event ? event.touches[0] : event;
 
-  const move = ((event: TouchEvent) => {
-    const touch = event.touches[0];
+    reset();
+    startX.value = pointer.clientX;
+    startY.value = pointer.clientY;
+  };
+
+  const move = (event: MouseEvent | TouchEvent) => {
+    if (!startX.value || !startY.value) return true;
+    const pointer = 'touches' in event ? event.touches[0] : event;
+
     // safari back will set clientX to negative number
-    deltaX.value = Math.max(touch.clientX, 0) - startX.value;
-    deltaY.value = touch.clientY - startY.value;
+    deltaX.value = Math.max(pointer.clientX, 0) - startX.value;
+    deltaY.value = pointer.clientY - startY.value;
     offsetX.value = Math.abs(deltaX.value);
     offsetY.value = Math.abs(deltaY.value);
 
@@ -50,11 +54,17 @@ export function useTouch() {
     if (isTap.value && (offsetX.value > TAP_OFFSET || offsetY.value > TAP_OFFSET)) {
       isTap.value = false;
     }
-  }) as EventListener;
+  };
+
+  const stop = () => {
+    startX.value = 0;
+    startY.value = 0;
+  };
 
   return {
     move,
     start,
+    stop,
     reset,
     startX,
     startY,
