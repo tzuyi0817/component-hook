@@ -3,8 +3,14 @@ import { computed, nextTick, ref, useTemplateRef, watchEffect } from 'vue';
 import Column from './PickerColumn.vue';
 import '../../shared/index.scss';
 import '../transition.scss';
-import { formatColumnsToCascade, getColumnsType, resetChildrenSelected } from '../../shared/utils/common';
-import type { PickerColumn, PickerSelectedValues } from '../../shared/types';
+import {
+  extendFields,
+  formatColumnsToCascade,
+  getColumnsType,
+  resetChildrenSelected,
+  getIndexByValue,
+} from '../../shared/utils/common';
+import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
 
 interface Props {
   title?: string;
@@ -14,6 +20,7 @@ interface Props {
   teleport?: string;
   confirmButtonText?: string;
   cancelButtonText?: string;
+  columnsFieldNames?: PickerFields;
 }
 
 interface Emits {
@@ -25,8 +32,8 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   teleport: 'body',
-  confirmButtonText: 'confirm',
-  cancelButtonText: 'cancel',
+  confirmButtonText: 'Confirm',
+  cancelButtonText: 'Cancel',
 });
 const emits = defineEmits<Emits>();
 const modelValue = defineModel<PickerSelectedValues>({ default: [] });
@@ -35,19 +42,21 @@ const selectedValues = ref<PickerSelectedValues>([]);
 const selectedIndices = ref<number[]>([]);
 const columnsRef = useTemplateRef<InstanceType<typeof Column>[]>('columnRef');
 
-const columnsType = computed(() => getColumnsType(props.columns));
+const fields = computed(() => extendFields(props.columnsFieldNames));
+
+const columnsType = computed(() => getColumnsType(props.columns, fields.value));
 
 const currentColumns = computed(() => {
   const { columns } = props;
 
   if (columnsType.value === 'single') return [columns] as PickerColumn[];
   if (columnsType.value === 'multiple') return columns as PickerColumn[];
-  return formatColumnsToCascade(columns, selectedValues);
+  return formatColumnsToCascade(columns, selectedValues, fields.value);
 });
 
 function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
   const options = currentColumns.value[columnIndex];
-  const value = options[selectedIndex].value;
+  const value = options[selectedIndex][fields.value.value];
   const oldValue = selectedValues.value[columnIndex];
 
   if (value === oldValue) return;
@@ -60,7 +69,7 @@ function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) 
     const n = currentColumns.value.length;
     const selectedOptions = options[selectedIndex];
 
-    selectedValues.value = resetChildrenSelected(selectedOptions, columnIndex, selectedValues.value);
+    selectedValues.value = resetChildrenSelected(selectedOptions, columnIndex, selectedValues.value, fields.value);
 
     for (let index = columnIndex + 1; index < n; index++) {
       columnsRef.value?.[index].scrollToSelected(0);
@@ -104,12 +113,12 @@ watchEffect(() => {
   for (let index = 0; index < n; index++) {
     const options = currentColumns.value[index];
     const value = selectedValues.value[index];
-    const selectedIndex = options.findIndex(option => option.value === value);
+    const selectedIndex = getIndexByValue(options, value, fields.value);
 
     if (selectedIndex === -1) {
       const defaultIndex = value === undefined ? 0 : options.length - 1;
 
-      selectedValues.value[index] = options[defaultIndex].value;
+      selectedValues.value[index] = options[defaultIndex][fields.value.value];
       columnsRef.value?.[index].scrollToSelected(defaultIndex);
       newSelectedIndices[index] = defaultIndex;
     } else {
@@ -168,6 +177,7 @@ watchEffect(() => {
                 :key="index"
                 ref="columnRef"
                 :column="column"
+                :fields="fields"
                 :selected-index="selectedIndices[index]"
                 @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
               />

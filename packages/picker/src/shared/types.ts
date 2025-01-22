@@ -2,6 +2,13 @@ export interface PickerOption {
   label: string | number;
   value: string | number;
   children?: PickerColumn;
+  [key: PropertyKey]: any;
+}
+
+export interface PickerFields {
+  label?: string;
+  value?: string;
+  children?: string;
 }
 
 export type PickerColumn = PickerOption[];
