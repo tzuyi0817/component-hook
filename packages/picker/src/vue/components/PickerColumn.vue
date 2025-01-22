@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emits = defineEmits<Emits>();
 
-const { offsetY, transitionDuration, onTouchStart, onTouchMove, onTouchEnd, stopInertialSliding, scrollToIndex } =
+const { offsetY, transitionDuration, onPointerDown, onPointerMove, onPointerUp, stopInertialSliding, scrollToIndex } =
   useScrollSnap({
     column: toRef(props, 'column'),
     onChange: onSelectedChange,
@@ -47,10 +47,13 @@ defineExpose({ scrollToSelected });
 <template>
   <div
     class="component-hook-picker-column"
-    @touchstart.passive="onTouchStart"
-    @touchmove.passive="onTouchMove"
-    @touchend="onTouchEnd"
-    @touchcancel="onTouchEnd"
+    @touchstart.passive="onPointerDown"
+    @touchmove.passive="onPointerMove"
+    @touchend.passive="onPointerUp"
+    @touchcancel="onPointerUp"
+    @mousedown.passive="onPointerDown"
+    @mousemove.passive="onPointerMove"
+    @mouseup.passive="onPointerUp"
   >
     <ul
       :style="{

@@ -1,5 +1,5 @@
 import { type Ref, isRef, readonly, ref } from 'vue';
-import { useTouch } from './use-touch';
+import { usePointer } from './use-pointer';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -19,15 +19,15 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   const remBaseValue = rootFontSize / BASE_ROOT_FONT_SIZE;
   const offsetY = ref(0);
   const transitionDuration = ref(0);
-  const touch = useTouch();
+  const pointer = usePointer();
   let startOffset = 0;
   let touchStartTime = 0;
   let inertialOffset = 0;
   let moving = false;
   let changeSelected: (() => void) | null = null;
 
-  function onTouchStart(event: TouchEvent) {
-    touch.start(event);
+  function onPointerDown(event: MouseEvent | TouchEvent) {
+    pointer.start(event);
     moving = true;
     transitionDuration.value = 0;
     touchStartTime = Date.now();
@@ -36,11 +36,12 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     changeSelected = null;
   }
 
-  function onTouchMove(event: TouchEvent) {
-    touch.move(event);
+  function onPointerMove(event: MouseEvent | TouchEvent) {
+    const isPointerUp = pointer.move(event);
 
+    if (isPointerUp) return;
     const n = isRef(column) ? column.value.length : column.length;
-    const moveOffset = startOffset + touch.deltaY.value;
+    const moveOffset = startOffset + pointer.deltaY.value;
     const minOffset = getActualHeight((n - 1) * -OPTION_HEIGHT);
     const newOffset = Math.min(Math.max(moveOffset, minOffset), 0);
     const now = Date.now();
@@ -52,7 +53,9 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     inertialOffset = newOffset;
   }
 
-  function onTouchEnd() {
+  function onPointerUp() {
+    pointer.stop();
+
     const distance = offsetY.value - inertialOffset;
     const duration = Date.now() - touchStartTime;
 
@@ -87,7 +90,6 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
 
   function updateOffsetByIndex(index: number) {
     const offset = -index * getActualHeight(OPTION_HEIGHT);
-
     const changeCallback = () => onChange?.(index);
 
     if (moving && offset !== offsetY.value) {
@@ -122,9 +124,9 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   return {
     offsetY: readonly(offsetY),
     transitionDuration: readonly(transitionDuration),
-    onTouchStart,
-    onTouchMove,
-    onTouchEnd,
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
     stopInertialSliding,
     scrollToIndex,
   };
