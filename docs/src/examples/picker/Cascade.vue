@@ -1,45 +1,88 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from 'vue';
-// import Picker from '@component-hook/picker/vue';
+import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
 
-interface LangType {
-  langType?: number;
-  code?: string;
-  original?: string;
-}
-
-const currentSelect = ref<Array<LangType>>([]);
 const isShowPicker = ref(false);
-const anchor = ref([0, 1, 2]);
-const singleData = [
-  { langType: 2, code: 'vi', original: 'Tiếng Việt' },
-  { langType: 0, code: 'en', original: 'English' },
-  { langType: 1, code: 'cn', original: '中文' },
+const pickerValues = ref<PickerSelectedValues>([]);
+const columns = [
+  {
+    label: 'Electronics',
+    value: 'electronics',
+    children: [
+      {
+        label: 'Mobile',
+        value: 'mobile',
+        children: [
+          { label: 'Smartphone', value: 'smartphone' },
+          { label: 'Feature Phone', value: 'feature-phone' },
+        ],
+      },
+      {
+        label: 'Computer',
+        value: 'computer',
+        children: [
+          { label: 'Laptop', value: 'laptop' },
+          { label: 'Desktop', value: 'desktop' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Home Appliances',
+    value: 'home-appliances',
+    children: [
+      {
+        label: 'Kitchen Appliances',
+        value: 'kitchen-appliances',
+        children: [
+          { label: 'Microwave', value: 'microwave' },
+          { label: 'Refrigerator', value: 'refrigerator' },
+        ],
+      },
+      {
+        label: 'Cleaning Appliances',
+        value: 'cleaning-appliances',
+        children: [
+          { label: 'Vacuum Cleaner', value: 'vacuum-cleaner' },
+          { label: 'Robot Vacuum', value: 'robot-vacuum' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Clothing',
+    value: 'clothing',
+    children: [
+      {
+        label: 'Mens Clothing',
+        value: 'mens-clothing',
+        children: [
+          { label: 'Shirt', value: 'shirt' },
+          { label: 'Trousers', value: 'trousers' },
+        ],
+      },
+      {
+        label: 'Womens Clothing',
+        value: 'womens-clothing',
+        children: [
+          { label: 'Dress', value: 'dress' },
+          { label: 'Skirt', value: 'skirt' },
+        ],
+      },
+    ],
+  },
 ];
-const dataList = ref([singleData, singleData, singleData]);
-
-function onConfirm(value: Array<LangType>) {
-  currentSelect.value = value;
-}
-
-function onCancel() {
-  console.log('cancel');
-}
 </script>
 
 <template>
-  <!-- <picker
-    v-model:is-show-picker="isShowPicker"
-    v-model:anchor="anchor"
-    :data="dataList"
-    :show-key="['original', 'original', 'original']"
-    :options="{ titleText: 'cascade selector' }"
-    @confirm="onConfirm"
-    @cancel="onCancel"
-  /> -->
-  <button @click="isShowPicker = true">toggle cascade picker</button>
+  <Picker
+    v-model="pickerValues"
+    v-model:show="isShowPicker"
+    :columns="columns"
+    title="Cascade Selector"
+  />
 
-  <p class="mt-6 text-sm font-mono">Selected language1: {{ currentSelect[0]?.original ?? 'not selected yet' }}</p>
-  <p class="mt-3 text-sm font-mono">Selected language2: {{ currentSelect[1]?.original ?? 'not selected yet' }}</p>
-  <p class="mt-3 text-sm font-mono">Selected language3: {{ currentSelect[2]?.original ?? 'not selected yet' }}</p>
+  <button @click="isShowPicker = true">toggle Cascade picker</button>
+
+  <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
 </template>

@@ -149,21 +149,21 @@ watchEffect(() => {
     :teleport="teleport"
     @open="onOpen"
   >
-    <transition name="component-hook-picker-slide">
+    <transition name="chook-picker-slide">
       <div
         v-show="isShowPicker"
-        class="component-hook-picker-container"
+        class="chook-picker-container"
       >
-        <div class="component-hook-picker-header">
+        <div class="chook-picker-header">
           <button
-            class="component-hook-picker-cancel"
+            class="chook-picker-cancel"
             @click="onCancel"
           >
             {{ cancelButtonText }}
           </button>
-          <p class="component-hook-picker-title">{{ title }}</p>
+          <p class="chook-picker-title">{{ title }}</p>
           <button
-            class="component-hook-picker-confirm"
+            class="chook-picker-confirm"
             @click="onConfirm"
           >
             {{ confirmButtonText }}
@@ -171,7 +171,7 @@ watchEffect(() => {
         </div>
 
         <div
-          class="component-hook-picker-columns component-hook-picker-columns-backdrop"
+          class="chook-picker-columns chook-picker-columns-backdrop"
           @touchmove.stop
         >
           <slot
@@ -190,13 +190,13 @@ watchEffect(() => {
               @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
             />
 
-            <div class="component-hook-picker-mask-backdrop"></div>
+            <div class="chook-picker-mask-backdrop"></div>
           </template>
         </div>
 
         <div
           v-if="loading"
-          class="component-hook-picker-loading"
+          class="chook-picker-loading"
         >
           <slot name="loading"></slot>
         </div>

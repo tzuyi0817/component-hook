@@ -26,7 +26,7 @@ function onConfirm(values: PickerSelectedValues) {
     @confirm="onConfirm"
   />
 
-  <button @click="isShowPicker = true">toggle customize columns picker</button>
+  <button @click="isShowPicker = true">toggle Customize Column picker</button>
 
   <p class="mt-6 text-sm font-mono">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>

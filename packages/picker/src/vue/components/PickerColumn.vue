@@ -46,7 +46,7 @@ defineExpose({ scrollToSelected });
 
 <template>
   <div
-    class="component-hook-picker-column"
+    class="chook-picker-column"
     @touchstart.passive="onPointerDown"
     @touchmove.passive="onPointerMove"
     @touchend.passive="onPointerUp"
@@ -67,11 +67,11 @@ defineExpose({ scrollToSelected });
       <li
         v-for="(option, index) in column"
         :key="option[fields.value]"
-        class="component-hook-picker-column-item"
+        class="chook-picker-column-item"
         @click="onClick(index)"
       >
         <p
-          class="component-hook-picker-column-label"
+          class="chook-picker-column-label"
           :style="{
             transform: `rotate3d(1, 0, 0, ${(index * OPTION_HEIGHT + offsetY) * OPTION_ROTATE_FACTOR}deg)`,
           }"
