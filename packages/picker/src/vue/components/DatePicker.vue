@@ -52,7 +52,7 @@ function generateYearOptions(minDate: Date, maxDate: Date) {
   const minYear = minDate.getFullYear();
   const maxYear = maxDate.getFullYear();
 
-  return generateOptions(minYear, maxYear, '年');
+  return generateOptions(minYear, maxYear);
 }
 
 function generateMonthOptions(minDate: Date, maxDate: Date) {
@@ -60,7 +60,7 @@ function generateMonthOptions(minDate: Date, maxDate: Date) {
   const minMonth = isMinYear(selectedYear, minDate) ? minDate.getMonth() + 1 : 1;
   const maxMonth = isMaxYear(selectedYear, maxDate) ? maxDate.getMonth() + 1 : 12;
 
-  return generateOptions(minMonth, maxMonth, '月');
+  return generateOptions(minMonth, maxMonth);
 }
 
 function generateDayOptions(minDate: Date, maxDate: Date) {
@@ -71,7 +71,7 @@ function generateDayOptions(minDate: Date, maxDate: Date) {
   const minDay = isMinYearAndMinMonth ? minDate.getDate() : 1;
   const maxDay = isMaxYearAndMaxMonth ? maxDate.getDate() : getLastDay(selectedYear, selectedMonth);
 
-  return generateOptions(minDay, maxDay, '日');
+  return generateOptions(minDay, maxDay);
 }
 
 function getSelectedValue(type: DatePickerColumnType) {
@@ -97,7 +97,8 @@ function onCancel() {
 
 function setDefaultValues() {
   emits('open');
-  if (props.modelValue) {
+
+  if (props.modelValue && props.modelValue.length) {
     selectedValues.value = [...props.modelValue];
     return;
   }

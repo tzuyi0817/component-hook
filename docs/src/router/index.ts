@@ -28,6 +28,15 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: 'vue-date-picker',
+        name: 'component-vue-date-picker',
+        component: () => import('@/pages/component/vue/VueDatePicker.vue'),
+        meta: {
+          title: 'Date Picker',
+          group: 'Vue',
+        },
+      },
+      {
         path: 'vue-pdf-canvas',
         name: 'component-vue-pdf-canvas',
         component: () => import('@/pages/component/vue/VuePdfCanvas.vue'),

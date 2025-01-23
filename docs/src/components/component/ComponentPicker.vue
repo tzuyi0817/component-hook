@@ -46,8 +46,8 @@ defineProps<Props>();
       :language="language"
     >
       <template #description>
-        Configure option data through the <code>columns</code> property, <code>columns</code> is an array of object
-        <code>{ label: string, value: string | number }</code>.
+        <p>Configure option data through the <code>columns</code> property.</p>
+        <p><code>columns</code> is an array of object<code>{ label: string, value: string | number }</code>.</p>
       </template>
       <base-picker />
     </demo>
@@ -59,8 +59,8 @@ defineProps<Props>();
       :language="language"
     >
       <template #description>
-        Can bind the values ​of the currently selected item. When the bound value is modified, the selected state of the
-        Picker will also change accordingly.
+        <p>Can bind the values ​of the currently selected item.</p>
+        <p>When the bound value is modified, the selected state of the Picker will also change accordingly.</p>
       </template>
       <binding-picker />
     </demo>

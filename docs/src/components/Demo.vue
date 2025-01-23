@@ -33,7 +33,7 @@ async function toggleSource() {
   <div class="demo-wrapper">
     <h3>{{ title }}</h3>
 
-    <p class="mb-4">
+    <p class="mb-4 leading-8">
       <slot name="description"></slot>
     </p>
 

@@ -23,5 +23,6 @@
 | --chook-picker-columns-backdrop     | `linear-gradient(180deg, rgba(242, 242, 242, 0.8), rgba(242, 242, 242, 0.8))`                                                                            |
 | --chook-picker-mask-backdrop        | `linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4)), linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4))` |
 | --chook-picker-column-label-color   | `#323233`                                                                                                                                                |
+| --chook-picker-column-label-padding | `0 0.25rem`                                                                                                                                              |
 | --chook-picker-column-font-size     | `1rem`                                                                                                                                                   |
 | --chook-picker-column-font-weight   | `500`                                                                                                                                                    |
