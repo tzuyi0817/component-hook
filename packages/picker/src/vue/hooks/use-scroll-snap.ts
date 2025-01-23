@@ -1,5 +1,5 @@
 import { type Ref, isRef, readonly, ref } from 'vue';
-import { usePointer } from './use-pointer';
+import { usePointer } from '../../shared/utils/pointer';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -19,7 +19,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   const remBaseValue = rootFontSize / BASE_ROOT_FONT_SIZE;
   const offsetY = ref(0);
   const transitionDuration = ref(0);
-  const pointer = usePointer();
+  const { pointer, start, move, stop } = usePointer();
   let startOffset = 0;
   let touchStartTime = 0;
   let inertialOffset = 0;
@@ -27,7 +27,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   let changeSelected: (() => void) | null = null;
 
   function onPointerDown(event: MouseEvent | TouchEvent) {
-    pointer.start(event);
+    start(event);
     moving = true;
     transitionDuration.value = 0;
     touchStartTime = Date.now();
@@ -37,11 +37,11 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   }
 
   function onPointerMove(event: MouseEvent | TouchEvent) {
-    const isPointerUp = pointer.move(event);
+    const isPointerUp = move(event);
 
     if (isPointerUp) return;
     const n = isRef(column) ? column.value.length : column.length;
-    const moveOffset = startOffset + pointer.deltaY.value;
+    const moveOffset = startOffset + pointer.deltaY;
     const minOffset = getActualHeight((n - 1) * -OPTION_HEIGHT);
     const newOffset = Math.min(Math.max(moveOffset, minOffset), 0);
     const now = Date.now();
@@ -54,7 +54,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   }
 
   function onPointerUp() {
-    pointer.stop();
+    stop();
 
     const distance = offsetY.value - inertialOffset;
     const duration = Date.now() - touchStartTime;
