@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ComponentPicker from '@/components/component/ComponentPicker.vue';
 import baseSource from '@/examples/picker/Base.vue?raw';
+import bindingSource from '@/examples/picker/Binding.vue?raw';
+import multiColumnSource from '@/examples/picker/MultiColumn.vue?raw';
 import cascadeSource from '@/examples/picker/Cascade.vue?raw';
 import singleSource from '@/examples/picker/Single.vue?raw';
 import dateSource from '@/examples/picker/Date.vue?raw';
@@ -14,6 +16,10 @@ import eventsMd from '@/markdowns/picker/vue/events.md?raw';
     description="Picker component with vue3."
     :base-source="baseSource"
     base-playground=""
+    :binding-source="bindingSource"
+    binding-playground=""
+    :multi-column-source="multiColumnSource"
+    multi-column-playground=""
     :cascade-source="cascadeSource"
     cascade-playground="6696355db9ac0e0085f0eb29"
     :single-source="singleSource"

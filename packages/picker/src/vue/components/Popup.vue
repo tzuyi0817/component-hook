@@ -34,10 +34,10 @@ watch(
 
 <template>
   <teleport :to="teleport">
-    <transition name="component-hook-picker-fade">
+    <transition name="chook-picker-fade">
       <div
         v-show="modelValue"
-        class="component-hook-picker-mask"
+        class="chook-picker-mask"
         @click="$emit('update:modelValue', false)"
       ></div>
     </transition>

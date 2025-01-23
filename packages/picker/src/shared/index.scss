@@ -34,7 +34,7 @@
   --chook-picker-column-font-weight: 500;
 }
 
-.component-hook-picker {
+.chook-picker {
   &-mask {
     position: fixed;
     top: 0;
@@ -131,7 +131,7 @@
   }
 }
 
-button.component-hook-picker-confirm {
+button.chook-picker-confirm {
   color: var(--chook-picker-confirm-color);
   font-size: var(--chook-picker-confirm-font-size);
   background-color: transparent;
@@ -147,7 +147,7 @@ button.component-hook-picker-confirm {
   }
 }
 
-button.component-hook-picker-cancel {
+button.chook-picker-cancel {
   color: var(--chook-picker-cancel-color);
   font-size: var(--chook-picker-cancel-font-size);
   background-color: transparent;
