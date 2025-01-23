@@ -43,7 +43,10 @@ watch(
       ></div>
     </transition>
 
-    <transition name="chook-picker-slide">
+    <transition
+      name="chook-picker-slide"
+      @after-leave="$emit('closed')"
+    >
       <div
         v-show="modelValue"
         class="chook-picker-container"
