@@ -8,7 +8,7 @@ const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value:
 </script>
 
 <template>
-  <Picker
+  <picker
     v-model="pickerValues"
     v-model:show="isShowPicker"
     :columns="columns"

@@ -79,3 +79,32 @@ export function getDirection(x: number, y: number) {
   }
   return '';
 }
+
+export function generateOptions(min: number, max: number, unit = '') {
+  const options: PickerColumn = [];
+
+  for (let index = min; index <= max; index++) {
+    options.push({ label: `${index}${unit}`, value: index });
+  }
+  return options;
+}
+
+export function isMinYear(year: number, minDate: Date) {
+  return year === minDate.getFullYear();
+}
+
+export function isMaxYear(year: number, maxDate: Date) {
+  return year === maxDate.getFullYear();
+}
+
+export function isMinMonth(month: number, minDate: Date) {
+  return month === minDate.getMonth() + 1;
+}
+
+export function isMaxMonth(month: number, maxDate: Date) {
+  return month === maxDate.getMonth() + 1;
+}
+
+export function getLastDay(selectedYear: number, selectedMonth: number) {
+  return new Date(selectedYear, selectedMonth, 0).getDate();
+}

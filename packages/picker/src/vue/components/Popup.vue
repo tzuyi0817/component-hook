@@ -10,6 +10,7 @@ interface Emits {
   'update:modelValue': [boolean];
   open: [];
   close: [];
+  closed: [];
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,6 +43,13 @@ watch(
       ></div>
     </transition>
 
-    <slot></slot>
+    <transition name="chook-picker-slide">
+      <div
+        v-show="modelValue"
+        class="chook-picker-container"
+      >
+        <slot></slot>
+      </div>
+    </transition>
   </teleport>
 </template>

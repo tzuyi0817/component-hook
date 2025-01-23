@@ -75,7 +75,7 @@ const columns = [
 </script>
 
 <template>
-  <Picker
+  <picker
     v-model="pickerValues"
     v-model:show="isShowPicker"
     :columns="columns"

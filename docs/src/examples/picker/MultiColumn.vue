@@ -3,14 +3,14 @@ import { ref } from 'vue';
 import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const pickerValues = ref<PickerSelectedValues>([]);
+const pickerValues = ref<PickerSelectedValues>([2, 20]);
 const columns = Array.from({ length: 2 }, () =>
   Array.from({ length: 50 }, (_, index) => ({ label: index, value: index })),
 );
 </script>
 
 <template>
-  <Picker
+  <picker
     v-model="pickerValues"
     v-model:show="isShowPicker"
     :columns="columns"
