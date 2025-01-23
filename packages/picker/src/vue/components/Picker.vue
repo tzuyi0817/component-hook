@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, useTemplateRef, watchEffect } from 'vue';
+import { computed, nextTick, ref, watchEffect } from 'vue';
+import Popup from './Popup.vue';
 import Column from './PickerColumn.vue';
 import '../../shared/index.scss';
 import '../transition.scss';
@@ -13,6 +14,8 @@ import {
 import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
 
 interface Props {
+  show: boolean;
+  modelValue?: PickerSelectedValues;
   title?: string;
   columns: PickerColumn | PickerColumn[];
   linkage?: boolean;
@@ -24,6 +27,8 @@ interface Props {
 }
 
 interface Emits {
+  'update:show': [boolean];
+  'update:modelValue': [PickerSelectedValues];
   confirm: [PickerSelectedValues];
   cancel: [];
   open: [];
@@ -31,16 +36,19 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  teleport: 'body',
   confirmButtonText: 'Confirm',
   cancelButtonText: 'Cancel',
 });
 const emits = defineEmits<Emits>();
-const modelValue = defineModel<PickerSelectedValues>({ default: [] });
-const isShowPicker = defineModel<boolean>('show', { required: true });
+const internalModelValue = ref<PickerSelectedValues>([]);
 const selectedValues = ref<PickerSelectedValues>([]);
 const selectedIndices = ref<number[]>([]);
-const columnsRef = useTemplateRef<InstanceType<typeof Column>[]>('columnRef');
+const columnsRef = ref<InstanceType<typeof Column>[] | null>(null);
+
+const isShowPicker = computed({
+  get: () => props.show,
+  set: value => emits('update:show', value),
+});
 
 const fields = computed(() => extendFields(props.columnsFieldNames));
 
@@ -76,17 +84,22 @@ function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) 
     }
   }
   if (!props.linkage) return;
-  modelValue.value = selectedValues.value;
+  updateModelValue();
+}
+
+function updateModelValue() {
+  emits('update:modelValue', selectedValues.value);
+  internalModelValue.value = selectedValues.value;
 }
 
 function closePicker() {
-  isShowPicker.value = false;
+  emits('update:show', false);
 }
 
 async function onOpen() {
   emits('open');
   await nextTick();
-  selectedValues.value = [...modelValue.value];
+  selectedValues.value = props.modelValue ? [...props.modelValue] : [...internalModelValue.value];
 
   if (!columnsRef.value) return;
   await nextTick();
@@ -95,7 +108,7 @@ async function onOpen() {
 
 function onConfirm() {
   if (!props.linkage) {
-    modelValue.value = selectedValues.value;
+    updateModelValue();
   }
   closePicker();
   emits('confirm', selectedValues.value);
@@ -131,69 +144,63 @@ watchEffect(() => {
 </script>
 
 <template>
-  <teleport :to="teleport">
-    <div class="component-hook-picker">
-      <transition name="component-hook-picker-fade">
-        <div
-          v-show="isShowPicker"
-          class="component-hook-picker-mask"
-          @click="closePicker"
-        ></div>
-      </transition>
-
-      <transition name="component-hook-picker-slide">
-        <div
-          v-show="isShowPicker"
-          class="component-hook-picker-container"
-        >
-          <div class="component-hook-picker-header">
-            <button
-              class="component-hook-picker-cancel"
-              @click="onCancel"
-            >
-              {{ cancelButtonText }}
-            </button>
-            <p class="component-hook-picker-title">{{ title }}</p>
-            <button
-              class="component-hook-picker-confirm"
-              @click="onConfirm"
-            >
-              {{ confirmButtonText }}
-            </button>
-          </div>
-
-          <div
-            class="component-hook-picker-columns component-hook-picker-columns-backdrop"
-            @touchmove.stop
+  <popup
+    v-model="isShowPicker"
+    :teleport="teleport"
+    @open="onOpen"
+  >
+    <transition name="component-hook-picker-slide">
+      <div
+        v-show="isShowPicker"
+        class="component-hook-picker-container"
+      >
+        <div class="component-hook-picker-header">
+          <button
+            class="component-hook-picker-cancel"
+            @click="onCancel"
           >
-            <slot
-              v-if="!loading && !columns.length"
-              name="empty"
-            ></slot>
-
-            <template v-else>
-              <Column
-                v-for="(column, index) in currentColumns"
-                :key="index"
-                ref="columnRef"
-                :column="column"
-                :fields="fields"
-                :selected-index="selectedIndices[index]"
-                @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
-              />
-
-              <div class="component-hook-picker-mask-backdrop"></div>
-            </template>
-          </div>
-
-          <div
-            v-if="loading"
-            class="component-hook-picker-loading"
+            {{ cancelButtonText }}
+          </button>
+          <p class="component-hook-picker-title">{{ title }}</p>
+          <button
+            class="component-hook-picker-confirm"
+            @click="onConfirm"
           >
-            <slot name="loading"></slot>
-          </div>
+            {{ confirmButtonText }}
+          </button>
         </div>
-      </transition>
-    </div>
-  </teleport>
+
+        <div
+          class="component-hook-picker-columns component-hook-picker-columns-backdrop"
+          @touchmove.stop
+        >
+          <slot
+            v-if="!loading && !columns.length"
+            name="empty"
+          ></slot>
+
+          <template v-else>
+            <Column
+              v-for="(column, index) in currentColumns"
+              :key="index"
+              ref="columnsRef"
+              :column="column"
+              :fields="fields"
+              :selected-index="selectedIndices[index]"
+              @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
+            />
+
+            <div class="component-hook-picker-mask-backdrop"></div>
+          </template>
+        </div>
+
+        <div
+          v-if="loading"
+          class="component-hook-picker-loading"
+        >
+          <slot name="loading"></slot>
+        </div>
+      </div>
+    </transition>
+  </popup>
 </template>
