@@ -16,7 +16,7 @@ function onCancel() {
 </script>
 
 <template>
-  <Picker
+  <picker
     v-model:show="isShowPicker"
     :columns="columns"
     title="Base Selector"

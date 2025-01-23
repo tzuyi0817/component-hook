@@ -48,8 +48,8 @@
   &-container {
     position: fixed;
     left: 0;
-    right: 0;
     bottom: 0;
+    width: 100vw;
     z-index: var(--chook-picker-z-index);
     user-select: none;
     padding-bottom: var(--chook-picker-padding-bottom);

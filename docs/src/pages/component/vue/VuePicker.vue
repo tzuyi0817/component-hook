@@ -5,15 +5,12 @@ import bindingSource from '@/examples/picker/Binding.vue?raw';
 import multiColumnSource from '@/examples/picker/MultiColumn.vue?raw';
 import cascadeSource from '@/examples/picker/Cascade.vue?raw';
 import singleSource from '@/examples/picker/Single.vue?raw';
-import dateSource from '@/examples/picker/Date.vue?raw';
-import timeSource from '@/examples/picker/Time.vue?raw';
-import attributesMd from '@/markdowns/picker/vue/attributes.md?raw';
-import eventsMd from '@/markdowns/picker/vue/events.md?raw';
+import indexMd from '@/markdowns/picker/vue.md?raw';
 </script>
 
 <template>
   <component-picker
-    description="Picker component with vue3."
+    frontEndFrame="vue3"
     :base-source="baseSource"
     base-playground=""
     :binding-source="bindingSource"
@@ -24,11 +21,6 @@ import eventsMd from '@/markdowns/picker/vue/events.md?raw';
     cascade-playground="6696355db9ac0e0085f0eb29"
     :single-source="singleSource"
     single-playground="668e32b73e8416c068f2f92f"
-    :date-source="dateSource"
-    date-playground="669635e2b9ac0e0085f0eb2e"
-    :time-source="timeSource"
-    time-playground="66963635b9ac0e0085f0eb32"
-    :attributes-md="attributesMd"
-    :events-md="eventsMd"
+    :index-md="indexMd"
   />
 </template>
