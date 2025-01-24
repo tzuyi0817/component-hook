@@ -110,3 +110,18 @@ export function isMaxMonth(month: number, maxDate: Date) {
 export function getLastDay(selectedYear: number, selectedMonth: number) {
   return new Date(selectedYear, selectedMonth, 0).getDate();
 }
+
+export function isValidTime(time: string) {
+  return /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/.test(time);
+}
+
+export function getValidTime(time: string) {
+  if (!isValidTime(time)) return null;
+  const [hour, minute, second] = time.split(':');
+
+  return { hour, minute, second };
+}
+
+export function formatTime(value: string) {
+  return value.padStart(2, '0');
+}

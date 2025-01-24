@@ -5,7 +5,7 @@
 | v-model           | false    | `PickerSelectedValues`   | values of chosen option                                                   | —                              |
 | v-model:show      | true     | `boolean`                | Control picker show                                                       | —                              |
 | columnsType       | false    | `DatePickerColumnType[]` | Columns type                                                              | `['year', 'month', 'day']`     |
-| title             | false    | `string`                 | Toolbar title                                                             | —                              |
+| title             | false    | `string`                 | Toolbar title                                                             | `Select Date`                  |
 | minDate           | false    | `Date`                   | Min date                                                                  | Ten years ago on January 1     |
 | maxDate           | false    | `Date`                   | Max date                                                                  | Ten years later on December 31 |
 | teleport          | false    | `string \| Element`      | Specifies a target element where Popup will be mounted                    | `body`                         |

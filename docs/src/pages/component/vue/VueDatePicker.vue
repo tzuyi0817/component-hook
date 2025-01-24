@@ -5,9 +5,6 @@ import columnsTypeSource from '@/examples/date-picker/ColumnsType.vue?raw';
 import customRangeSource from '@/examples/date-picker/CustomRange.vue?raw';
 import labelFormatterSource from '@/examples/date-picker/LabelFormatter.vue?raw';
 import indexMd from '@/markdowns/date-picker/vue.md?raw';
-
-// import attributesMd from '@/markdowns/picker/vue/attributes.md?raw';
-// import eventsMd from '@/markdowns/picker/vue/events.md?raw';
 </script>
 
 <template>
