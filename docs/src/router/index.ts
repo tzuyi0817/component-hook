@@ -37,6 +37,15 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: 'vue-time-picker',
+        name: 'component-vue-time-picker',
+        component: () => import('@/pages/component/vue/VueTimePicker.vue'),
+        meta: {
+          title: 'Time Picker',
+          group: 'Vue',
+        },
+      },
+      {
         path: 'vue-pdf-canvas',
         name: 'component-vue-pdf-canvas',
         component: () => import('@/pages/component/vue/VuePdfCanvas.vue'),
