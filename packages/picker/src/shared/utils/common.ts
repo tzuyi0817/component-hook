@@ -1,6 +1,6 @@
 import type { Ref } from 'vue';
 import { isArray } from './check-type';
-import type { PickerColumn, PickerOption, PickerSelectedValues, PickerFields } from '../types';
+import type { PickerColumn, PickerOption, PickerSelectedValues, PickerFields, PickerFormatLabel } from '../types';
 
 export function getColumnsType(columns: PickerColumn | PickerColumn[], fields: Required<PickerFields>) {
   if (isArrayPickerColumn(columns)) return 'multiple';
@@ -80,11 +80,13 @@ export function getDirection(x: number, y: number) {
   return '';
 }
 
-export function generateOptions(min: number, max: number, unit = '') {
+export function generateOptions(min: number, max: number, formatter: PickerFormatLabel) {
   const options: PickerColumn = [];
 
   for (let index = min; index <= max; index++) {
-    options.push({ label: `${index}${unit}`, value: index });
+    const label = formatter(`${index}`);
+
+    options.push({ label, value: index });
   }
   return options;
 }
