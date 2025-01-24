@@ -20,3 +20,5 @@ export type PickerColumnsType = 'single' | 'multiple' | 'cascade';
 export type Direction = '' | 'vertical' | 'horizontal';
 
 export type DatePickerColumnType = 'year' | 'month' | 'day';
+
+export type PickerFormatLabel = (label: string) => string;

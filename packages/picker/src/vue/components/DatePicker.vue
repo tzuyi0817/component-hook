@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import Picker from './Picker.vue';
 import { generateOptions, getLastDay, isMaxMonth, isMaxYear, isMinMonth, isMinYear } from '../../shared/utils/common';
-import type { DatePickerColumnType, PickerSelectedValues } from '../../shared/types';
+import type { DatePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
 
 interface Props {
   show: boolean;
@@ -11,6 +11,12 @@ interface Props {
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
   maxDate?: Date;
+  teleport?: string;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
+  formatYearLabel?: PickerFormatLabel;
+  formatMonthLabel?: PickerFormatLabel;
+  formatDayLabel?: PickerFormatLabel;
 }
 
 interface Emits {
@@ -27,6 +33,9 @@ const props = withDefaults(defineProps<Props>(), {
   columnsType: () => ['year', 'month', 'day'],
   minDate: () => new Date(new Date().getFullYear() - 10, 0, 1),
   maxDate: () => new Date(new Date().getFullYear() + 10, 11, 31),
+  formatYearLabel: () => (label: string) => label,
+  formatMonthLabel: () => (label: string) => label,
+  formatDayLabel: () => (label: string) => label,
 });
 const emits = defineEmits<Emits>();
 const selectedValues = ref<PickerSelectedValues>([]);
@@ -52,7 +61,7 @@ function generateYearOptions(minDate: Date, maxDate: Date) {
   const minYear = minDate.getFullYear();
   const maxYear = maxDate.getFullYear();
 
-  return generateOptions(minYear, maxYear);
+  return generateOptions(minYear, maxYear, props.formatYearLabel);
 }
 
 function generateMonthOptions(minDate: Date, maxDate: Date) {
@@ -60,7 +69,7 @@ function generateMonthOptions(minDate: Date, maxDate: Date) {
   const minMonth = isMinYear(selectedYear, minDate) ? minDate.getMonth() + 1 : 1;
   const maxMonth = isMaxYear(selectedYear, maxDate) ? maxDate.getMonth() + 1 : 12;
 
-  return generateOptions(minMonth, maxMonth);
+  return generateOptions(minMonth, maxMonth, props.formatMonthLabel);
 }
 
 function generateDayOptions(minDate: Date, maxDate: Date) {
@@ -71,7 +80,7 @@ function generateDayOptions(minDate: Date, maxDate: Date) {
   const minDay = isMinYearAndMinMonth ? minDate.getDate() : 1;
   const maxDay = isMaxYearAndMaxMonth ? maxDate.getDate() : getLastDay(selectedYear, selectedMonth);
 
-  return generateOptions(minDay, maxDay);
+  return generateOptions(minDay, maxDay, props.formatDayLabel);
 }
 
 function getSelectedValue(type: DatePickerColumnType) {
@@ -119,6 +128,9 @@ function resetSelectedValues() {
     v-model:show="isShowPicker"
     :title="title"
     :columns="columns"
+    :teleport="teleport"
+    :confirm-button-text="confirmButtonText"
+    :cancel-button-text="cancelButtonText"
     linkage
     @confirm="onConfirm"
     @cancel="onCancel"

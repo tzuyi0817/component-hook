@@ -3,6 +3,7 @@ import Demo from '@/components/Demo.vue';
 import BasePicker from '@/examples/date-picker/Base.vue';
 import ColumnsTypePicker from '@/examples/date-picker/ColumnsType.vue';
 import CustomRangePicker from '@/examples/date-picker/CustomRange.vue';
+import LabelFormatterPicker from '@/examples/date-picker/LabelFormatter.vue';
 import installationMd from '@/markdowns/picker/installation.md?raw';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
 import { md } from '@/utils/highlight';
@@ -15,8 +16,9 @@ interface Props {
   columnsTypePlayground: string;
   customRangeSource: string;
   customRangePlayground: string;
-  // attributesMd: string;
-  // eventsMd: string;
+  labelFormatterSource: string;
+  labelFormatterPlayground: string;
+  indexMd: string;
   language?: string;
 }
 
@@ -82,8 +84,23 @@ defineProps<Props>();
       <custom-range-picker />
     </demo>
 
+    <demo
+      title="Label Formatter"
+      :source="labelFormatterSource"
+      :playground="labelFormatterPlayground"
+      :language="language"
+    >
+      <template #description>
+        <p>
+          Display labels can be converted through the <code>formatYearLabel</code>, <code>formatMonthLabel</code> and
+          <code>formatDayLabel</code> properties.
+        </p>
+      </template>
+      <label-formatter-picker />
+    </demo>
+
     <h3>API</h3>
-    <!-- <div v-html="md.render(indexMd)"></div> -->
+    <div v-html="md.render(indexMd)"></div>
     <div v-html="md.render(cssVariablesMd)"></div>
   </div>
 </template>
