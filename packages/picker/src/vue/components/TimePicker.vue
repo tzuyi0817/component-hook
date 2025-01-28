@@ -31,9 +31,9 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   title: 'Select Time',
   columnsType: () => ['hour', 'minute', 'second'],
-  formatHourLabel: () => formatTime,
-  formatMinuteLabel: () => formatTime,
-  formatSecondLabel: () => formatTime,
+  formatHourLabel: formatTime,
+  formatMinuteLabel: formatTime,
+  formatSecondLabel: formatTime,
 });
 const emits = defineEmits<Emits>();
 const selectedValues = ref<PickerSelectedValues>([]);
@@ -80,13 +80,14 @@ function generateSecondOptions(minTime?: string, maxTime?: string) {
 }
 
 function getSelectedValue(type: TimePickerColumnType) {
-  // const { columnsType } = props;
-  // const columnIndex = columnsType.indexOf(type);
-  // const value = selectedValues.value[columnIndex];
-  // if (value) return Number(value);
-  // if (type === 'year') return new Date().getFullYear();
-  // if (type === 'month') return new Date().getMonth() + 1;
-  // return new Date().getDate();
+  const { columnsType } = props;
+  const columnIndex = columnsType.indexOf(type);
+  const value = selectedValues.value[columnIndex];
+
+  if (value) return Number(value);
+  if (type === 'hour') return new Date().getHours();
+  if (type === 'minute') return new Date().getMinutes();
+  return new Date().getSeconds();
 }
 
 function onConfirm(value: PickerSelectedValues) {
@@ -106,9 +107,9 @@ function setDefaultValues() {
     selectedValues.value = [...props.modelValue];
     return;
   }
-  // const { columnsType } = props;
+  const { columnsType } = props;
 
-  // selectedValues.value = columnsType.map(type => getSelectedValue(type));
+  selectedValues.value = columnsType.map(type => getSelectedValue(type));
 }
 
 function resetSelectedValues() {
