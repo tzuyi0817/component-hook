@@ -42,8 +42,8 @@
   ],
   "scripts": {
     "build": "pnpm build:vue && pnpm build:react",
-    "build:vue": "FRAMEWORK=vue vite build",
-    "build:react": "FRAMEWORK=react vite build",
+    "build:vue": "cross-env FRAMEWORK=vue vite build",
+    "build:react": "cross-env FRAMEWORK=react vite build",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {

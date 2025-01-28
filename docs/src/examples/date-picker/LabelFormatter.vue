@@ -5,7 +5,7 @@ import { DatePicker, type PickerSelectedValues } from '@component-hook/picker/vu
 const isShowPicker = ref(false);
 const currentDate = ref<PickerSelectedValues>([]);
 
-const MONTH_MAP: Record<string, string> = {
+const MONTHS_MAP: Record<string, string> = {
   1: 'Jan',
   2: 'Feb',
   3: 'Mar',
@@ -27,7 +27,7 @@ const MONTH_MAP: Record<string, string> = {
     v-model:show="isShowPicker"
     title="Label Formatter Selector"
     :columns-type="['month', 'day', 'year']"
-    :format-month-label="(month: string) => MONTH_MAP[month]"
+    :format-month-label="(month: string) => MONTHS_MAP[month]"
     :format-day-label="(day: string) => day.padStart(2, '0')"
   />
 
