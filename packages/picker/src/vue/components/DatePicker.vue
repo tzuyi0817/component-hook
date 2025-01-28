@@ -33,9 +33,9 @@ const props = withDefaults(defineProps<Props>(), {
   columnsType: () => ['year', 'month', 'day'],
   minDate: () => new Date(new Date().getFullYear() - 10, 0, 1),
   maxDate: () => new Date(new Date().getFullYear() + 10, 11, 31),
-  formatYearLabel: () => (label: string) => label,
-  formatMonthLabel: () => (label: string) => label,
-  formatDayLabel: () => (label: string) => label,
+  formatYearLabel: (label: string) => label,
+  formatMonthLabel: (label: string) => label,
+  formatDayLabel: (label: string) => label,
 });
 const emits = defineEmits<Emits>();
 const selectedValues = ref<PickerSelectedValues>([]);
