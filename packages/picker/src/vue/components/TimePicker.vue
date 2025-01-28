@@ -45,36 +45,52 @@ const isShowPicker = computed({
 });
 
 const columns = computed(() => {
-  const { columnsType, minTime, maxTime } = props;
+  const { columnsType } = props;
   const generateOptionsMap = {
     hour: generateHourOptions,
     minute: generateMinuteOptions,
     second: generateSecondOptions,
   };
 
-  return columnsType.map(type => generateOptionsMap[type](minTime, maxTime));
+  return columnsType.map(type => generateOptionsMap[type]());
 });
 
-function generateHourOptions(minTime?: string, maxTime?: string) {
-  const minHour = 0;
-  const maxHour = 23;
+const formattedMinTime = computed(() => {
+  const minTime = getValidTime(props.minTime ?? '');
+
+  return minTime ?? { hour: 0, minute: 0, second: 0 };
+});
+
+const formattedMaxTime = computed(() => {
+  const maxTime = getValidTime(props.maxTime ?? '');
+
+  return maxTime ?? { hour: 23, minute: 59, second: 59 };
+});
+
+function generateHourOptions() {
+  const minHour = formattedMinTime.value.hour;
+  const maxHour = formattedMaxTime.value.hour;
 
   return generateOptions(minHour, maxHour, props.formatHourLabel);
 }
 
-function generateMinuteOptions(minTime?: string, maxTime?: string) {
-  // const selectedHour = getSelectedValue('year');
-  const minMinute = 0;
-  const maxMinute = 59;
+function generateMinuteOptions() {
+  const selectedHour = getSelectedValue('hour');
+  const { hour: minH, minute: minM } = formattedMinTime.value;
+  const { hour: maxH, minute: maxM } = formattedMaxTime.value;
+  const minMinute = selectedHour === minH ? minM : 0;
+  const maxMinute = selectedHour === maxH ? maxM : 59;
 
   return generateOptions(minMinute, maxMinute, props.formatMinuteLabel);
 }
 
-function generateSecondOptions(minTime?: string, maxTime?: string) {
-  // const selectedHour = getSelectedValue('year');
-  // const selectedMinute = getSelectedValue('month');
-  const minSecond = 0;
-  const maxSecond = 59;
+function generateSecondOptions() {
+  const selectedHour = getSelectedValue('hour');
+  const selectedMinute = getSelectedValue('minute');
+  const { hour: minH, minute: minM, second: minS } = formattedMinTime.value;
+  const { hour: maxH, minute: maxM, second: maxS } = formattedMaxTime.value;
+  const minSecond = selectedHour === minH && selectedMinute === minM ? minS : 0;
+  const maxSecond = selectedHour === maxH && selectedMinute === maxM ? maxS : 59;
 
   return generateOptions(minSecond, maxSecond, props.formatSecondLabel);
 }

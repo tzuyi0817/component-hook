@@ -119,7 +119,7 @@ export function getValidTime(time: string) {
   if (!isValidTime(time)) return null;
   const [hour, minute, second] = time.split(':');
 
-  return { hour, minute, second };
+  return { hour: Number(hour), minute: Number(minute), second: Number(second) };
 }
 
 export function formatTime(value: string) {
