@@ -4,6 +4,7 @@ import baseSource from '@/examples/time-picker/Base.vue?raw';
 import columnsTypeSource from '@/examples/time-picker/ColumnsType.vue?raw';
 import customRangeSource from '@/examples/time-picker/CustomRange.vue?raw';
 import labelFormatterSource from '@/examples/time-picker/LabelFormatter.vue?raw';
+import indexMd from '@/markdowns/time-picker/vue.md?raw';
 </script>
 
 <template>
@@ -17,5 +18,6 @@ import labelFormatterSource from '@/examples/time-picker/LabelFormatter.vue?raw'
     custom-range-playground=""
     :label-formatter-source="labelFormatterSource"
     label-formatter-playground=""
+    :index-md="indexMd"
   />
 </template>
