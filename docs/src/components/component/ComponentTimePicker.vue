@@ -18,6 +18,7 @@ interface Props {
   customRangePlayground: string;
   labelFormatterSource: string;
   labelFormatterPlayground: string;
+  indexMd: string;
   language?: string;
 }
 
@@ -77,8 +78,14 @@ defineProps<Props>();
       :language="language"
     >
       <template #description>
-        <p>Optional time ranges are set via the <code>min-time</code> and <code>max-time</code> properties, with the format <code>00:00:00</code>.</p>
-        <p>For example, in the following example, users can select any time between <code>12:20:30</code> and <code>16:30:48</code>.</p>
+        <p>
+          Optional time ranges are set via the <code>min-time</code> and <code>max-time</code> properties, with the
+          format <code>00:00:00</code>.
+        </p>
+        <p>
+          For example, in the following example, users can select any time between <code>12:20:30</code> and
+          <code>16:30:48</code>.
+        </p>
       </template>
       <custom-range-picker />
     </demo>
@@ -91,15 +98,15 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          Display labels can be converted through the <code>format-hour-label</code>, <code>format-minute-label</code> and
-          <code>format-second-label</code> properties.
+          Display labels can be converted through the <code>format-hour-label</code>,
+          <code>format-minute-label</code> and <code>format-second-label</code> properties.
         </p>
       </template>
       <label-formatter-picker />
     </demo>
 
     <h3>API</h3>
-    <!-- <div v-html="md.render(indexMd)"></div> -->
+    <div v-html="md.render(indexMd)"></div>
     <div v-html="md.render(cssVariablesMd)"></div>
   </div>
 </template>
