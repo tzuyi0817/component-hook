@@ -132,13 +132,15 @@ watchEffect(() => {
       const defaultIndex = value === undefined ? 0 : options.length - 1;
 
       selectedValues.value[index] = options[defaultIndex][fields.value.value];
-      columnsRef.value?.[index].scrollToSelected(defaultIndex);
       newSelectedIndices[index] = defaultIndex;
     } else {
       newSelectedIndices[index] = selectedIndex;
     }
-  }
 
+    if (newSelectedIndices[index] !== selectedIndices.value[index]) {
+      columnsRef.value?.[index].scrollToSelected(newSelectedIndices[index]);
+    }
+  }
   selectedIndices.value = newSelectedIndices;
 });
 </script>
