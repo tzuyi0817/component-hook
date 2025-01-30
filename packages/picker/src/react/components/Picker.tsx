@@ -1,149 +1,164 @@
-import { useMemo, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
-import { usePicker } from '../hooks/use-picker';
-import { isObject, isArray, isString, isNumber } from '../../shared/utils/check-type';
-import { BASE_OPTIONS } from '../../shared/configs/options';
-import '../../shared/index.scss';
-import '../transition.scss';
-import type { PickerComponentProps, NormalData, PickerAnchor } from '../../shared/types';
-import type { PickerEmit } from '../react-picker';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import Popup from './Popup';
+import Column from './PickerColumn';
+import {
+  extendFields,
+  formatColumnsToCascade,
+  getColumnsType,
+  resetChildrenSelected,
+  getIndexByValue,
+} from '../../shared/utils/common';
+import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
 
-const defaultData: NormalData[] = [];
-const defaultOptions = {};
+interface Props {
+  show: boolean;
+  values?: PickerSelectedValues;
+  title?: string;
+  columns: PickerColumn | PickerColumn[];
+  linkage?: boolean;
+  loading?: boolean;
+  teleport?: string;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
+  columnsFieldNames?: PickerFields;
+  onConfirm: (values: PickerSelectedValues) => void;
+  onClose: () => void;
+  onCancel?: () => void;
+  onOpen?: () => void;
+  onClosed?: () => void;
+}
 
-export function Picker<T = NormalData, D = PickerAnchor>({
-  data = defaultData,
-  isShowPicker,
-  options = defaultOptions,
-  anchor,
-  showKey = '',
-  swipeTime = 500,
-  type = '',
-  onChangeAnchor,
+const Picker = ({
+  show,
+  values = [],
+  title,
+  columns,
+  linkage = false,
+  loading = false,
+  teleport,
+  confirmButtonText = 'Confirm',
+  cancelButtonText = 'Cancel',
+  columnsFieldNames,
+  onConfirm,
   onClose,
   onCancel,
-  onConfirm,
-}: PickerComponentProps<D> & PickerEmit<T, D>) {
-  const pickerRef = useRef<HTMLDivElement | null>(null);
-  const maskRef = useRef<HTMLDivElement | null>(null);
-  const { pickerData, wheelWrapper, cancel, confirm, closePicker } = usePicker<T, D>({
-    data,
-    isShowPicker,
-    options,
-    anchor,
-    showKey,
-    swipeTime,
-    type,
-    onClose,
-    onChangeAnchor,
-    onCancel,
-    onConfirm,
-  });
+  onOpen,
+  onClosed,
+}: Props) => {
+  const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
+  const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+  const columnsRef = useRef<InstanceType<typeof Column>[] | null>([]);
+  const fields = extendFields(columnsFieldNames);
+  const columnsType = getColumnsType(columns, fields);
 
-  const mergedOptions = useMemo(() => ({ ...BASE_OPTIONS, ...options }), [options]);
+  const currentColumns = useMemo(() => {
+    if (columnsType === 'single') return [columns] as PickerColumn[];
+    if (columnsType === 'multiple') return columns as PickerColumn[];
 
-  const cancelColor = mergedOptions.cancelColor;
-  const confirmColor = mergedOptions.confirmColor;
-  const titleColor = mergedOptions.titleColor;
-  const showKeys = useMemo(() => (isArray(showKey) ? showKey : [showKey]), [showKey]);
+    return formatColumnsToCascade(columns, selectedValues, fields);
+  }, [columns, columnsType, selectedValues, fields]);
 
-  function setPickerRefDisplay(value: string) {
-    if (!pickerRef.current) return;
+  useEffect(() => {
+    const newSelectedIndices = currentColumns().map((col, index) => {
+      const value = selectedValues[index];
+      const selectedIndex = getIndexByValue(col, value, fields);
+      return selectedIndex === -1 ? 0 : selectedIndex;
+    });
+    setSelectedIndices(newSelectedIndices);
+  }, [selectedValues, currentColumns, fields]);
 
-    pickerRef.current.style.setProperty('display', value);
+  function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
+    const options = currentColumns[columnIndex];
+    const value = options[selectedIndex][fields.value];
+    const oldValue = selectedValues[columnIndex];
+
+    if (value === oldValue) return;
+    const newSelectedValues = [...selectedValues];
+
+    newSelectedValues[columnIndex] = value;
+    setSelectedValues(newSelectedValues);
+
+    if (columnsType === 'cascade') {
+      const n = currentColumns.length;
+      const selectedOptions = options[selectedIndex];
+
+      setSelectedValues(resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields));
+
+      for (let index = columnIndex + 1; index < n; index++) {
+        columnsRef.current?.[index].scrollToSelected(0);
+      }
+    }
+    if (!linkage) return;
+    setInternalValues();
   }
 
+  const updateModelValue = () => {
+    onUpdateModelValue(selectedValues);
+    setInternalValues();
+  };
+
+  const handleConfirm = () => {
+    if (!linkage) updateModelValue();
+    onUpdateShow(false);
+    onConfirm(selectedValues);
+  };
+
+  const handleCancel = () => {
+    onUpdateShow(false);
+    onCancel();
+  };
+
+  const handleOpen = async () => {
+    onOpen();
+    setSelectedValues(modelValue);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    columnsRef.current.forEach(col => col.scrollToSelected());
+  };
+
   return (
-    <div>
-      <CSSTransition
-        in={isShowPicker}
-        classNames="component-hook-picker-fade"
-        timeout={300}
-        nodeRef={maskRef}
-        unmountOnExit
-      >
-        <div
-          ref={maskRef}
-          role="presentation"
-          className="component-hook-picker-mask"
-          onClick={closePicker}
-          onKeyDown={event => {
-            if (event.key === 'Escape') {
-              closePicker();
-            }
-          }}
-        />
-      </CSSTransition>
-
-      <CSSTransition
-        in={isShowPicker}
-        classNames="component-hook-picker-slide"
-        timeout={300}
-        nodeRef={pickerRef}
-        onEnter={() => setPickerRefDisplay('')}
-        onExited={() => setPickerRefDisplay('none')}
-      >
-        <div
-          ref={pickerRef}
-          className="component-hook-picker"
-          style={{ display: 'none' }}
+    <Popup
+      show={show}
+      teleport={teleport}
+      onOpen={handleOpen}
+      onClosed={onClosed}
+    >
+      <div className="chook-picker-header">
+        <button
+          className="chook-picker-cancel"
+          onClick={handleCancel}
         >
-          <div className="component-hook-picker_title">
-            <button
-              className={`component-hook-picker_cancel ${mergedOptions.cancelClass}`}
-              style={{ color: cancelColor }}
-              onClick={cancel}
-            >
-              {mergedOptions.cancelText}
-            </button>
-            <button
-              className={`component-hook-picker_confirm ${mergedOptions.confirmClass}`}
-              style={{ color: confirmColor }}
-              onClick={confirm}
-            >
-              {mergedOptions.confirmText}
-            </button>
-            <h4
-              className={mergedOptions.titleClass}
-              style={{ color: titleColor }}
-            >
-              {mergedOptions.titleText}
-            </h4>
-          </div>
-          <div className="component-hook-picker_panel">
-            <div className="component-hook-picker_mask_top" />
-            <div className="component-hook-picker_mask_bottom" />
-            <div
-              ref={wheelWrapper}
-              className="component-hook-picker_wheel_wrapper"
-            >
-              {pickerData.map((wheel, wheelIndex) => (
-                <div
-                  key={wheelIndex}
-                  className="component-hook-picker_wheel"
-                >
-                  <ul className="component-hook-picker_wheel_scroll">
-                    {wheel.map((item, index) => {
-                      const value = showKeys[wheelIndex] && isObject(item) ? item[showKeys[wheelIndex]] : item;
-
-                      if (!isString(value) && !isNumber(value)) return null;
-
-                      return (
-                        <li
-                          key={index}
-                          className="component-hook-picker_wheel_item"
-                        >
-                          {value}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </CSSTransition>
-    </div>
+          {cancelButtonText}
+        </button>
+        <p className="chook-picker-title">{title}</p>
+        <button
+          className="chook-picker-confirm"
+          onClick={handleConfirm}
+        >
+          {confirmButtonText}
+        </button>
+      </div>
+      <div
+        className="chook-picker-columns chook-picker-columns-backdrop"
+        onTouchMove={e => e.stopPropagation()}
+      >
+        {loading || columns.length === 0 ? (
+          <div className="picker-empty">No options</div>
+        ) : (
+          currentColumns.map((column, index) => (
+            <Column
+              key={index}
+              ref={el => (columnsRef.current[index] = el)}
+              column={column}
+              fields={fields}
+              selectedIndex={selectedIndices[index]}
+              onChange={selectedIndex => updateSelectedValueByIndex(index, selectedIndex)}
+            />
+          ))
+        )}
+      </div>
+    </Popup>
   );
-}
+};
+
+export default Picker;

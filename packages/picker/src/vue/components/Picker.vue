@@ -59,7 +59,7 @@ const currentColumns = computed(() => {
 
   if (columnsType.value === 'single') return [columns] as PickerColumn[];
   if (columnsType.value === 'multiple') return columns as PickerColumn[];
-  return formatColumnsToCascade(columns, selectedValues, fields.value);
+  return formatColumnsToCascade(columns, selectedValues.value, fields.value);
 });
 
 function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
