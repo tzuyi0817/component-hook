@@ -1,4 +1,3 @@
-import type { Ref } from 'vue';
 import { isArray } from './check-type';
 import type { PickerColumn, PickerOption, PickerSelectedValues, PickerFields, PickerFormatLabel } from '../types';
 
@@ -20,7 +19,7 @@ export function extendFields(fields?: PickerFields) {
 
 export function formatColumnsToCascade(
   columns: PickerColumn | PickerColumn[],
-  selectedValues: Ref<PickerSelectedValues>,
+  selectedValues: PickerSelectedValues,
   fields: Required<PickerFields>,
 ) {
   if (isArrayPickerColumn(columns)) return [];
@@ -29,7 +28,7 @@ export function formatColumnsToCascade(
   let columnIndex = 0;
 
   while (column) {
-    const selectedValue = selectedValues.value[columnIndex];
+    const selectedValue = selectedValues[columnIndex];
     let selectedIndex = getIndexByValue(column, selectedValue, fields);
 
     if (selectedIndex === -1) selectedIndex = 0;
