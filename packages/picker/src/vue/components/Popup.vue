@@ -2,7 +2,7 @@
 import { watch } from 'vue';
 
 interface Props {
-  teleport?: string;
+  teleport?: string | Element;
   modelValue: boolean;
 }
 
