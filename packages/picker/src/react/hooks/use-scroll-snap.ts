@@ -52,8 +52,8 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     setOffsetY(offset);
   }
 
-  function onPointerDown(event: MouseEvent | TouchEvent) {
-    start(event);
+  function onPointerDown(event: React.MouseEvent | React.TouchEvent) {
+    start(event as unknown as MouseEvent | TouchEvent);
     moving.current = true;
     setTransitionDuration(0);
     touchStartTime.current = Date.now();
@@ -62,8 +62,8 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     changeSelected.current = null;
   }
 
-  function onPointerMove(event: MouseEvent | TouchEvent) {
-    const isPointerUp = move(event);
+  function onPointerMove(event: React.MouseEvent | React.TouchEvent) {
+    const isPointerUp = move(event as unknown as MouseEvent | TouchEvent);
 
     if (isPointerUp) return;
     const n = column.length;
