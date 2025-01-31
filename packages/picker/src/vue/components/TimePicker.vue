@@ -11,7 +11,7 @@ interface Props {
   columnsType?: TimePickerColumnType[];
   minTime?: string;
   maxTime?: string;
-  teleport?: string;
+  teleport?: string | Element;
   confirmButtonText?: string;
   cancelButtonText?: string;
   formatHourLabel?: PickerFormatLabel;

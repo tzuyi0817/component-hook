@@ -145,6 +145,7 @@ const Picker = ({
         {loading || columns.length === 0 ? (
           <div className="picker-empty">No options</div>
         ) : (
+          <>
           currentColumns.map((column, index) => (
             <Column
               key={index}
@@ -155,6 +156,9 @@ const Picker = ({
               onChange={selectedIndex => updateSelectedValueByIndex(index, selectedIndex)}
             />
           ))
+      
+          <div className="chook-picker-mask-backdrop"></div>
+          </>
         )}
       </div>
     </Popup>

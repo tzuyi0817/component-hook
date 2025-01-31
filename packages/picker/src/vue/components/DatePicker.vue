@@ -11,7 +11,7 @@ interface Props {
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
   maxDate?: Date;
-  teleport?: string;
+  teleport?: string | Element;
   confirmButtonText?: string;
   cancelButtonText?: string;
   formatYearLabel?: PickerFormatLabel;

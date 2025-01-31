@@ -1,4 +1,4 @@
-.component-hook-picker {
+.chook-picker {
   &-fade-enter {
     opacity: 0;
   }
@@ -15,7 +15,7 @@
 
   &-slide-enter {
     opacity: 0.5;
-    transform: translate3d(0, 270px, 0);
+    transform: translate3d(0, 100%, 0);
   }
 
   &-slide-enter-active {
@@ -27,6 +27,6 @@
   &-slide-exit-active {
     transition: all 0.3s ease;
     opacity: 0.5;
-    transform: translate3d(0, 270px, 0);
+    transform: translate3d(0, 100%, 0);
   }
 }

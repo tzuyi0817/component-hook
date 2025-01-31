@@ -20,7 +20,7 @@ interface Props {
   columns: PickerColumn | PickerColumn[];
   linkage?: boolean;
   loading?: boolean;
-  teleport?: string;
+  teleport?: string | Element;
   confirmButtonText?: string;
   cancelButtonText?: string;
   columnsFieldNames?: PickerFields;
