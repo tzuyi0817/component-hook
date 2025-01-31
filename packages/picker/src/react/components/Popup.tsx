@@ -4,15 +4,15 @@ import { CSSTransition } from 'react-transition-group';
 
 type Props = {
   teleport?: Element | DocumentFragment;
-  isOpen: boolean;
+  show: boolean;
   onClose: () => void;
   onOpen?: () => void;
   onClosed?: () => void;
 };
 
-function Popup({ isOpen, onClose, onOpen, onClosed, children, teleport = document.body }: PropsWithChildren<Props>) {
+function Popup({ show, onClose, onOpen, onClosed, children, teleport = document.body }: PropsWithChildren<Props>) {
   useEffect(() => {
-    if (isOpen) {
+    if (show) {
       document.body.style.overflow = 'hidden';
       onOpen?.();
     } else {
@@ -21,12 +21,12 @@ function Popup({ isOpen, onClose, onOpen, onClosed, children, teleport = documen
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [show]);
 
   return createPortal(
     <>
       <CSSTransition
-        in={isOpen}
+        in={show}
         timeout={300}
         classNames="chook-picker-fade"
         unmountOnExit
@@ -38,7 +38,7 @@ function Popup({ isOpen, onClose, onOpen, onClosed, children, teleport = documen
       </CSSTransition>
 
       <CSSTransition
-        in={isOpen}
+        in={show}
         timeout={300}
         classNames="chook-picker-slide"
         onExited={onClosed}

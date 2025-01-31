@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, type ElementRef } from 'react';
 import Popup from './Popup';
-import Column from './PickerColumn';
+import Column, { type ColumnRef } from './PickerColumn';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -17,12 +17,13 @@ interface Props {
   columns: PickerColumn | PickerColumn[];
   linkage?: boolean;
   loading?: boolean;
-  teleport?: string;
+  teleport?: Element | DocumentFragment;
   confirmButtonText?: string;
   cancelButtonText?: string;
   columnsFieldNames?: PickerFields;
   onConfirm: (values: PickerSelectedValues) => void;
   onClose: () => void;
+  onChange?: (values: PickerSelectedValues) => void;
   onCancel?: () => void;
   onOpen?: () => void;
   onClosed?: () => void;
@@ -30,7 +31,7 @@ interface Props {
 
 const Picker = ({
   show,
-  values = [],
+  values,
   title,
   columns,
   linkage = false,
@@ -41,6 +42,7 @@ const Picker = ({
   columnsFieldNames,
   onConfirm,
   onClose,
+  onChange,
   onCancel,
   onOpen,
   onClosed,
@@ -48,7 +50,7 @@ const Picker = ({
   const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
   const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
-  const columnsRef = useRef<InstanceType<typeof Column>[] | null>([]);
+  const columnsRef = useRef<(ColumnRef | null)[]>([]);
   const fields = extendFields(columnsFieldNames);
   const columnsType = getColumnsType(columns, fields);
 
@@ -60,11 +62,38 @@ const Picker = ({
   }, [columns, columnsType, selectedValues, fields]);
 
   useEffect(() => {
-    const newSelectedIndices = currentColumns().map((col, index) => {
+    if (!linkage) return;
+
+    onChange?.(selectedValues);
+    setInternalValues(selectedValues);
+  }, [linkage, selectedValues]);
+
+  useEffect(() => {
+    const n = currentColumns.length;
+    const newSelectedIndices = [];
+
+    for (let index = 0; index < n; index++) {
+      const options = currentColumns[index];
       const value = selectedValues[index];
-      const selectedIndex = getIndexByValue(col, value, fields);
-      return selectedIndex === -1 ? 0 : selectedIndex;
-    });
+      const selectedIndex = getIndexByValue(options, value, fields);
+
+      if (selectedIndex === -1) {
+        const defaultIndex = value === undefined ? 0 : options.length - 1;
+
+        setSelectedValues(values => {
+          values[index] = options[defaultIndex][fields.value];
+
+          return values;
+        });
+        newSelectedIndices[index] = defaultIndex;
+      } else {
+        newSelectedIndices[index] = selectedIndex;
+      }
+
+      if (newSelectedIndices[index] !== selectedIndices[index]) {
+        columnsRef.current[index]?.scrollToSelected(newSelectedIndices[index]);
+      }
+    }
     setSelectedIndices(newSelectedIndices);
   }, [selectedValues, currentColumns, fields]);
 
@@ -86,41 +115,35 @@ const Picker = ({
       setSelectedValues(resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields));
 
       for (let index = columnIndex + 1; index < n; index++) {
-        columnsRef.current?.[index].scrollToSelected(0);
+        columnsRef.current[index]?.scrollToSelected(0);
       }
     }
-    if (!linkage) return;
-    setInternalValues();
   }
 
-  const updateModelValue = () => {
-    onUpdateModelValue(selectedValues);
-    setInternalValues();
-  };
-
-  const handleConfirm = () => {
-    if (!linkage) updateModelValue();
-    onUpdateShow(false);
+  function handleConfirm() {
+    setInternalValues(selectedValues);
+    onClose();
     onConfirm(selectedValues);
-  };
+  }
 
-  const handleCancel = () => {
-    onUpdateShow(false);
-    onCancel();
-  };
+  function handleCancel() {
+    onClose();
+    onCancel?.();
+  }
 
-  const handleOpen = async () => {
-    onOpen();
-    setSelectedValues(modelValue);
-    await new Promise(resolve => setTimeout(resolve, 0));
-    columnsRef.current.forEach(col => col.scrollToSelected());
-  };
+  function handleOpen() {
+    onOpen?.();
+    setSelectedValues(values ? [...values] : [...internalValues]);
+
+    // columnsRef.current.forEach(column => column?.scrollToSelected());
+  }
 
   return (
     <Popup
       show={show}
       teleport={teleport}
       onOpen={handleOpen}
+      onClose={onClose}
       onClosed={onClosed}
     >
       <div className="chook-picker-header">
@@ -142,24 +165,18 @@ const Picker = ({
         className="chook-picker-columns chook-picker-columns-backdrop"
         onTouchMove={e => e.stopPropagation()}
       >
-        {loading || columns.length === 0 ? (
-          <div className="picker-empty">No options</div>
-        ) : (
-          <>
-          currentColumns.map((column, index) => (
-            <Column
-              key={index}
-              ref={el => (columnsRef.current[index] = el)}
-              column={column}
-              fields={fields}
-              selectedIndex={selectedIndices[index]}
-              onChange={selectedIndex => updateSelectedValueByIndex(index, selectedIndex)}
-            />
-          ))
-      
-          <div className="chook-picker-mask-backdrop"></div>
-          </>
-        )}
+        {currentColumns.map((column, index) => (
+          <Column
+            key={index}
+            ref={el => (columnsRef.current[index] = el)}
+            column={column}
+            fields={fields}
+            selectedIndex={selectedIndices[index]}
+            onChange={selectedIndex => updateSelectedValueByIndex(index, selectedIndex)}
+          />
+        ))}
+
+        <div className="chook-picker-mask-backdrop"></div>
       </div>
     </Popup>
   );
