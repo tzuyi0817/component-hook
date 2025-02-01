@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import Picker from './Picker.vue';
 import { generateOptions, getLastDay, isMaxMonth, isMaxYear, isMinMonth, isMinYear } from '../../shared/utils/common';
 import type { DatePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
+import Picker from './Picker.vue';
 
 interface Props {
   show: boolean;

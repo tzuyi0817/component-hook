@@ -3,4 +3,3 @@ export { default as DatePicker } from './components/DatePicker.vue';
 export { default as TimePicker } from './components/TimePicker.vue';
 
 export type * from '../shared/types';
-export type * from './types';

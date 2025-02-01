@@ -1,5 +1,5 @@
-import { isArray } from './check-type';
 import type { PickerColumn, PickerOption, PickerSelectedValues, PickerFields, PickerFormatLabel } from '../types';
+import { isArray } from './check-type';
 
 export function getColumnsType(columns: PickerColumn | PickerColumn[], fields: Required<PickerFields>) {
   if (isArrayPickerColumn(columns)) return 'multiple';
@@ -111,7 +111,7 @@ export function getLastDay(selectedYear: number, selectedMonth: number) {
 }
 
 export function isValidTime(time: string) {
-  return /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/.test(time);
+  return /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(time);
 }
 
 export function getValidTime(time: string) {

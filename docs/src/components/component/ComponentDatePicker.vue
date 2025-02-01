@@ -92,8 +92,8 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          Display labels can be converted through the <code>format-year-label</code>, <code>format-month-label</code> and
-          <code>format-day-label</code> properties.
+          Display labels can be converted through the <code>format-year-label</code>,
+          <code>format-month-label</code> and <code>format-day-label</code> properties.
         </p>
       </template>
       <label-formatter-picker />

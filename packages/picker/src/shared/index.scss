@@ -116,6 +116,12 @@
     padding: 5.375rem 0;
     cursor: grab;
 
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
     &-item {
       height: 3rem;
       display: flex;
@@ -140,6 +146,7 @@ button.chook-picker-confirm {
   font-size: var(--chook-picker-confirm-font-size);
   background-color: transparent;
   padding: var(--chook-picker-confirm-padding);
+  border: none;
 
   &:active {
     opacity: var(--chook-picker-active-opacity);
@@ -156,6 +163,7 @@ button.chook-picker-cancel {
   font-size: var(--chook-picker-cancel-font-size);
   background-color: transparent;
   padding: var(--chook-picker-cancel-padding);
+  border: none;
 
   &:active {
     opacity: var(--chook-picker-active-opacity);

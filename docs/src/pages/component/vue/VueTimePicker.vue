@@ -9,7 +9,7 @@ import indexMd from '@/markdowns/time-picker/vue.md?raw';
 
 <template>
   <component-time-picker
-    frontEndFrame="vue3"
+    front-end-frame="vue3"
     :base-source="baseSource"
     base-playground=""
     :columns-type-source="columnsTypeSource"

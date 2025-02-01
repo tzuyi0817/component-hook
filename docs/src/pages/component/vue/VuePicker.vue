@@ -10,7 +10,7 @@ import indexMd from '@/markdowns/picker/vue.md?raw';
 
 <template>
   <component-picker
-    frontEndFrame="vue3"
+    front-end-frame="vue3"
     :base-source="baseSource"
     base-playground=""
     :binding-source="bindingSource"

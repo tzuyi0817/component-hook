@@ -14,7 +14,7 @@ export type ColumnRef = {
   scrollToSelected: (index?: number, behavior?: ScrollBehavior) => void;
 };
 
-const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIndex = 0, onChange }, ref) => {
+export const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIndex = 0, onChange }, ref) => {
   const { offsetY, transitionDuration, onPointerDown, onPointerMove, onPointerUp, stopInertialSliding, scrollToIndex } =
     useScrollSnap({
       column,
@@ -42,6 +42,7 @@ const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIndex = 0
 
   return (
     <div
+      role="presentation"
       className="chook-picker-column"
       onTouchStart={onPointerDown}
       onTouchMove={onPointerMove}
@@ -61,10 +62,18 @@ const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIndex = 0
         onTransitionEnd={stopInertialSliding}
       >
         {column.map((option, index) => (
-          <li
+          <div
             key={option[fields.value]}
+            tabIndex={0}
+            role="button"
+            aria-label="Select option"
             className="chook-picker-column-item"
             onClick={() => onClick(index)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                onClick(index);
+              }
+            }}
           >
             <p
               className="chook-picker-column-label"
@@ -74,11 +83,11 @@ const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIndex = 0
             >
               {option[fields.label]}
             </p>
-          </li>
+          </div>
         ))}
       </ul>
     </div>
   );
 });
 
-export default Column;
+Column.displayName = 'Column';

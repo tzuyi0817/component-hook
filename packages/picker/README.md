@@ -139,6 +139,7 @@ function PickerExample() {
 
   function onConfirm(value) {
     setCurrentSelect(value);
+    console.log(currentSelect);
   }
 
   return (

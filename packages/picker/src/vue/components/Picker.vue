@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watchEffect } from 'vue';
-import Popup from './Popup.vue';
-import Column from './PickerColumn.vue';
-import '../../shared/index.scss';
-import '../transition.scss';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -12,6 +8,10 @@ import {
   getIndexByValue,
 } from '../../shared/utils/common';
 import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
+import Popup from './Popup.vue';
+import Column from './PickerColumn.vue';
+import '../../shared/index.scss';
+import '../transition.scss';
 
 interface Props {
   show: boolean;

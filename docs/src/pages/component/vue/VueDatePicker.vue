@@ -9,7 +9,7 @@ import indexMd from '@/markdowns/date-picker/vue.md?raw';
 
 <template>
   <component-date-picker
-    frontEndFrame="vue3"
+    front-end-frame="vue3"
     :base-source="baseSource"
     base-playground=""
     :columns-type-source="columnsTypeSource"

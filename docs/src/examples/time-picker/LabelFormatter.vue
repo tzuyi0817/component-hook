@@ -30,7 +30,7 @@ const HOURS_MAP: Record<string, string> = {
   21: '9 PM',
   22: '10 PM',
   23: '11 PM',
-}
+};
 </script>
 
 <template>
