@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { usePointer } from '../../shared/utils/pointer';
+import { useState, useRef, useMemo } from 'react';
+import { createPointerTracker } from '../../shared/utils/pointer';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -15,17 +15,17 @@ interface ScrollSnapProps<T> {
 }
 
 export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
-  const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
   const remBaseValue = rootFontSize / BASE_ROOT_FONT_SIZE;
   const [offsetY, setOffsetY] = useState(0);
   const [transitionDuration, setTransitionDuration] = useState(0);
-
-  const { pointer, start, move, stop } = useRef(usePointer()).current;
   const startOffset = useRef(0);
   const touchStartTime = useRef(0);
   const inertialOffset = useRef(0);
   const moving = useRef(false);
   const changeSelected = useRef<(() => void) | null>(null);
+
+  const { pointer, start, move, stop } = useMemo(() => createPointerTracker(), []);
 
   function getActualHeight(height: number) {
     return height * remBaseValue;
@@ -44,7 +44,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     const offset = -index * getActualHeight(OPTION_HEIGHT);
     const changeCallback = () => onChange?.(index);
 
-    if (moving && offset !== offsetY) {
+    if (moving.current && offset !== offsetY) {
       changeSelected.current = changeCallback;
     } else {
       changeCallback();
@@ -115,7 +115,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   }
 
   function scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
-    if (moving && behavior === 'smooth') return;
+    if (moving.current && behavior === 'smooth') return;
 
     changeSelected.current = null;
     setTransitionDuration(behavior === 'smooth' ? DEFAULT_DURATION : 0);

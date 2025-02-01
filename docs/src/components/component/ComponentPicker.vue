@@ -59,7 +59,7 @@ defineProps<Props>();
       :language="language"
     >
       <template #description>
-        <p>Can bind the values ​of the currently selected item.</p>
+        <p>Can bind the values of the currently selected item.</p>
         <p>When the bound value is modified, the selected state of the Picker will also change accordingly.</p>
       </template>
       <binding-picker />

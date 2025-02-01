@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef, useMemo, type ElementRef } from 'react';
-import Popup from './Popup';
-import Column, { type ColumnRef } from './PickerColumn';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -9,6 +7,10 @@ import {
   getIndexByValue,
 } from '../../shared/utils/common';
 import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
+import { Popup } from './popup';
+import { Column, type ColumnRef } from './picker-column';
+import '../../shared/index.scss';
+import '../transition.scss';
 
 interface Props {
   show: boolean;
@@ -29,13 +31,13 @@ interface Props {
   onClosed?: () => void;
 }
 
-const Picker = ({
+export function Picker({
   show,
   values,
   title,
   columns,
   linkage = false,
-  loading = false,
+  // loading = false,
   teleport,
   confirmButtonText = 'Confirm',
   cancelButtonText = 'Cancel',
@@ -46,7 +48,7 @@ const Picker = ({
   onCancel,
   onOpen,
   onClosed,
-}: Props) => {
+}: Props) {
   const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
   const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
@@ -71,6 +73,7 @@ const Picker = ({
   useEffect(() => {
     const n = currentColumns.length;
     const newSelectedIndices = [];
+    let isChange = false;
 
     for (let index = 0; index < n; index++) {
       const options = currentColumns[index];
@@ -80,22 +83,38 @@ const Picker = ({
       if (selectedIndex === -1) {
         const defaultIndex = value === undefined ? 0 : options.length - 1;
 
-        setSelectedValues(values => {
-          values[index] = options[defaultIndex][fields.value];
-
-          return values;
-        });
         newSelectedIndices[index] = defaultIndex;
       } else {
         newSelectedIndices[index] = selectedIndex;
       }
-
       if (newSelectedIndices[index] !== selectedIndices[index]) {
         columnsRef.current[index]?.scrollToSelected(newSelectedIndices[index]);
+        isChange = true;
       }
     }
+
+    if (!isChange) return;
     setSelectedIndices(newSelectedIndices);
   }, [selectedValues, currentColumns, fields]);
+
+  // useEffect(() => {
+  //   const n = selectedIndices.length;
+  //   const newSelectedValues = [];
+  //   let isChange = false;
+
+  //   for (let index = 0; index < n; index++) {
+  //     const oldValue = selectedValues[index];
+  //     const options = currentColumns[index];
+  //     const selectedIndex = selectedIndices[index];
+  //     const value = options[selectedIndex][fields.value];
+
+  //     if (value !== oldValue) isChange = true;
+  //     newSelectedValues.push(value);
+  //   }
+
+  //   if (!isChange) return;
+  //   setSelectedValues(newSelectedValues);
+  // }, [currentColumns, selectedIndices, fields]);
 
   function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
     const options = currentColumns[columnIndex];
@@ -134,8 +153,6 @@ const Picker = ({
   function handleOpen() {
     onOpen?.();
     setSelectedValues(values ? [...values] : [...internalValues]);
-
-    // columnsRef.current.forEach(column => column?.scrollToSelected());
   }
 
   return (
@@ -180,6 +197,4 @@ const Picker = ({
       </div>
     </Popup>
   );
-};
-
-export default Picker;
+}

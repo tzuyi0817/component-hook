@@ -1,5 +1,5 @@
 import { type Ref, isRef, readonly, ref } from 'vue';
-import { usePointer } from '../../shared/utils/pointer';
+import { createPointerTracker } from '../../shared/utils/pointer';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -19,7 +19,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   const remBaseValue = rootFontSize / BASE_ROOT_FONT_SIZE;
   const offsetY = ref(0);
   const transitionDuration = ref(0);
-  const { pointer, start, move, stop } = usePointer();
+  const { pointer, start, move, stop } = createPointerTracker();
   let startOffset = 0;
   let touchStartTime = 0;
   let inertialOffset = 0;

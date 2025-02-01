@@ -1,8 +1,8 @@
-import { getDirection } from './common';
 import { TAP_OFFSET } from '../constants';
 import type { Direction } from '../types';
+import { getDirection } from './common';
 
-export function usePointer() {
+export function createPointerTracker() {
   const pointer = {
     startX: 0,
     startY: 0,
@@ -27,7 +27,7 @@ export function usePointer() {
   }
 
   function start(event: MouseEvent | TouchEvent) {
-    const pointerEvent = event instanceof TouchEvent ? event.touches[0] : event;
+    const pointerEvent = 'touches' in event ? event.touches[0] : event;
 
     reset();
     pointer.startX = pointerEvent.clientX;
@@ -36,7 +36,7 @@ export function usePointer() {
 
   function move(event: MouseEvent | TouchEvent) {
     if (!pointer.startX || !pointer.startY) return true;
-    const pointerEvent = event instanceof TouchEvent ? event.touches[0] : event;
+    const pointerEvent = 'touches' in event ? event.touches[0] : event;
 
     // safari back will set clientX to negative number
     pointer.deltaX = Math.max(pointerEvent.clientX, 0) - pointer.startX;

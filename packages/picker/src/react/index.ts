@@ -1,6 +1,3 @@
-import { Picker } from './components/Picker';
+export { Picker } from './components/picker';
 
 export type * from '../shared/types';
-export type * from './types';
-
-export default Picker;
