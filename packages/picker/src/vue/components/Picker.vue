@@ -129,10 +129,11 @@ watchEffect(() => {
     const selectedIndex = getIndexByValue(options, value, fields.value);
 
     if (selectedIndex === -1) {
-      const defaultIndex = value === undefined ? 0 : options.length - 1;
+      const originIndex = selectedIndices.value[index] ?? 0;
+      const specifyIndex = originIndex >= options.length ? options.length - 1 : 0;
 
-      selectedValues.value[index] = options[defaultIndex][fields.value.value];
-      newSelectedIndices[index] = defaultIndex;
+      selectedValues.value[index] = options[specifyIndex][fields.value.value];
+      newSelectedIndices[index] = specifyIndex;
     } else {
       newSelectedIndices[index] = selectedIndex;
     }
