@@ -114,7 +114,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   }
 
   function scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
-    if (moving) return;
+    if (moving && behavior === 'smooth') return;
 
     changeSelected = null;
     moving = behavior === 'smooth';
