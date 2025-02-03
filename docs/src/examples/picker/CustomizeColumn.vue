@@ -4,7 +4,7 @@ import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
 const pickerValues = ref<PickerSelectedValues>([]);
-const singleData = [
+const columns = [
   { langType: 0, code: 'en', original: 'English' },
   { langType: 1, code: 'cn', original: '中文' },
   { langType: 2, code: 'vi', original: 'Tiếng Việt' },
@@ -20,8 +20,8 @@ function onConfirm(values: PickerSelectedValues) {
 <template>
   <picker
     v-model:show="isShowPicker"
-    :columns="singleData"
-    title="Customize Columns Selector"
+    :columns="columns"
+    title="Customize Column Selector"
     :columns-field-names="{ label: 'original', value: 'code' }"
     @confirm="onConfirm"
   />

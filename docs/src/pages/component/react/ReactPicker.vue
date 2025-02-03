@@ -1,27 +1,24 @@
 <script setup lang="ts">
-// import cascadeSource from '@react-playground/picker/cascade-picker?raw';
-// import singleSource from '@react-playground/picker/single-picker?raw';
-// import dateSource from '@react-playground/picker/date-picker?raw';
-// import timeSource from '@react-playground/picker/time-picker?raw';
-// import ComponentPicker from '@/components/component/ComponentPicker.vue';
-// import attributesMd from '@/markdowns/picker/react/attributes.md?raw';
-// import eventsMd from '@/markdowns/picker/react/events.md?raw';
+import baseSource from '@react-playground/picker/base?raw';
+import multiColumnSource from '@react-playground/picker/multi-column?raw';
+import cascadeSource from '@react-playground/picker/cascade?raw';
+import customizeColumnSource from '@react-playground//picker/customize-column?raw';
+import ComponentPicker from '@/components/component/ComponentPicker.vue';
+import indexMd from '@/markdowns/picker/react.md?raw';
 </script>
 
 <template>
-  <div></div>
-  <!-- <component-picker
-    description="Picker component with react."
+  <component-picker
+    front-end-frame="react"
+    :base-source="baseSource"
+    base-playground=""
+    :multi-column-source="multiColumnSource"
+    multi-column-playground=""
     :cascade-source="cascadeSource"
-    cascade-playground="67569e8087493a239347d7ce"
-    :single-source="singleSource"
-    single-playground="675aad63c39ce4f761bd8622"
-    :date-source="dateSource"
-    date-playground="675aae0cc39ce4f761bd8633"
-    :time-source="timeSource"
-    time-playground="675aae60c39ce4f761bd8637"
-    :attributes-md="attributesMd"
-    :events-md="eventsMd"
+    cascade-playground="6696355db9ac0e0085f0eb29"
+    :customize-column-source="customizeColumnSource"
+    customize-column-playground="668e32b73e8416c068f2f92f"
+    :index-md="indexMd"
     language="tsx"
-  /> -->
+  />
 </template>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo, type ReactNode } from 'react';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -19,6 +19,8 @@ interface Props {
   columns: PickerColumn | PickerColumn[];
   linkage?: boolean;
   loading?: boolean;
+  loadingSlot?: ReactNode;
+  emptySlot?: ReactNode;
   teleport?: Element | DocumentFragment;
   confirmButtonText?: string;
   cancelButtonText?: string;
@@ -37,7 +39,9 @@ export function Picker({
   title,
   columns,
   linkage = false,
-  // loading = false,
+  loading = false,
+  loadingSlot,
+  emptySlot,
   teleport,
   confirmButtonText = 'Confirm',
   cancelButtonText = 'Cancel',
@@ -64,9 +68,9 @@ export function Picker({
   }, [columns, columnsType, selectedValues, fields]);
 
   useEffect(() => {
-    if (!linkage) return;
-
     onChange?.(selectedValues);
+
+    if (!linkage) return;
     setInternalValues(selectedValues);
   }, [linkage, selectedValues]);
 
@@ -160,6 +164,8 @@ export function Picker({
         className="chook-picker-columns chook-picker-columns-backdrop"
         onTouchMove={e => e.stopPropagation()}
       >
+        {!loading && !columns.length ? emptySlot : null}
+
         {currentColumns.map((column, index) => (
           <Column
             key={index}
@@ -173,6 +179,8 @@ export function Picker({
 
         <div className="chook-picker-mask-backdrop"></div>
       </div>
+
+      {loading ? <div className="chook-picker-loading">{loadingSlot}</div> : null}
     </Popup>
   );
 }
