@@ -1,6 +1,6 @@
 export interface PickerOption {
-  label: string | number;
-  value: string | number;
+  label?: string | number;
+  value?: string | number;
   children?: PickerColumn;
   [key: PropertyKey]: any;
 }

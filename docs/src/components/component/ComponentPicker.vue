@@ -4,7 +4,7 @@ import BasePicker from '@/examples/picker/Base.vue';
 import BindingPicker from '@/examples/picker/Binding.vue';
 import MultiColumnPicker from '@/examples/picker/MultiColumn.vue';
 import CascadePicker from '@/examples/picker/Cascade.vue';
-import SinglePicker from '@/examples/picker/Single.vue';
+import CustomizeColumnPicker from '@/examples/picker/CustomizeColumn.vue';
 import installationMd from '@/markdowns/picker/installation.md?raw';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
 import { md } from '@/utils/highlight';
@@ -13,14 +13,14 @@ interface Props {
   frontEndFrame: string;
   baseSource: string;
   basePlayground: string;
-  bindingSource: string;
-  bindingPlayground: string;
+  bindingSource?: string;
+  bindingPlayground?: string;
   multiColumnSource: string;
   multiColumnPlayground: string;
   cascadeSource: string;
   cascadePlayground: string;
-  singleSource: string;
-  singlePlayground: string;
+  customizeColumnSource: string;
+  customizeColumnPlayground: string;
   indexMd: string;
   language?: string;
 }
@@ -53,6 +53,7 @@ defineProps<Props>();
     </demo>
 
     <demo
+      v-if="bindingSource && bindingPlayground"
       title="Two-Way Binding"
       :source="bindingSource"
       :playground="bindingPlayground"
@@ -92,12 +93,12 @@ defineProps<Props>();
 
     <demo
       title="Customize Column"
-      :source="singleSource"
-      :playground="singlePlayground"
+      :source="customizeColumnSource"
+      :playground="customizeColumnPlayground"
       :language="language"
     >
       <template #description>Customize the structure of <code>columns</code> to use Picker. </template>
-      <single-picker />
+      <customize-column-picker />
     </demo>
 
     <h3>API</h3>

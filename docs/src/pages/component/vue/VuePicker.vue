@@ -4,7 +4,7 @@ import baseSource from '@/examples/picker/Base.vue?raw';
 import bindingSource from '@/examples/picker/Binding.vue?raw';
 import multiColumnSource from '@/examples/picker/MultiColumn.vue?raw';
 import cascadeSource from '@/examples/picker/Cascade.vue?raw';
-import singleSource from '@/examples/picker/Single.vue?raw';
+import customizeColumnSource from '@/examples/picker/CustomizeColumn.vue?raw';
 import indexMd from '@/markdowns/picker/vue.md?raw';
 </script>
 
@@ -19,8 +19,8 @@ import indexMd from '@/markdowns/picker/vue.md?raw';
     multi-column-playground=""
     :cascade-source="cascadeSource"
     cascade-playground="6696355db9ac0e0085f0eb29"
-    :single-source="singleSource"
-    single-playground="668e32b73e8416c068f2f92f"
+    :customize-column-source="customizeColumnSource"
+    customize-column-playground="668e32b73e8416c068f2f92f"
     :index-md="indexMd"
   />
 </template>
