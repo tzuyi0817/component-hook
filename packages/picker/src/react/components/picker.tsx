@@ -81,9 +81,10 @@ export function Picker({
       const selectedIndex = getIndexByValue(options, value, fields);
 
       if (selectedIndex === -1) {
-        const defaultIndex = value === undefined ? 0 : options.length - 1;
+        const originIndex = selectedIndices[index] ?? 0;
+        const specifyIndex = originIndex >= options.length ? options.length - 1 : 0;
 
-        newSelectedIndices[index] = defaultIndex;
+        newSelectedIndices[index] = specifyIndex;
       } else {
         newSelectedIndices[index] = selectedIndex;
       }

@@ -114,9 +114,10 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   }
 
   function scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
-    if (moving && behavior === 'smooth') return;
+    if (moving) return;
 
     changeSelected = null;
+    moving = behavior === 'smooth';
     transitionDuration.value = behavior === 'smooth' ? DEFAULT_DURATION : 0;
     updateOffsetByIndex(index);
   }
