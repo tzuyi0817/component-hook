@@ -71,18 +71,15 @@ function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) 
   const newSelectedValues = [...selectedValues.value];
 
   newSelectedValues[columnIndex] = value;
-  selectedValues.value = newSelectedValues;
 
   if (columnsType.value === 'cascade') {
-    const n = currentColumns.value.length;
     const selectedOptions = options[selectedIndex];
 
-    selectedValues.value = resetChildrenSelected(selectedOptions, columnIndex, selectedValues.value, fields.value);
-
-    for (let index = columnIndex + 1; index < n; index++) {
-      columnsRef.value?.[index].scrollToSelected(0);
-    }
+    selectedValues.value = resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields.value);
+  } else {
+    selectedValues.value = newSelectedValues;
   }
+
   if (!props.linkage) return;
   updateModelValue();
 }

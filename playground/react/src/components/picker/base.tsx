@@ -16,7 +16,7 @@ export function BasePicker() {
       <Picker
         show={showPicker}
         columns={columns}
-        title="Base selector"
+        title="Base Selector"
         onClose={() => setShowPicker(false)}
         onConfirm={onConfirm}
         onCancel={onCancel}

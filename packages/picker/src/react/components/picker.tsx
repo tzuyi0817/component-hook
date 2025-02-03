@@ -98,25 +98,6 @@ export function Picker({
     setSelectedIndices(newSelectedIndices);
   }, [selectedValues, currentColumns, fields]);
 
-  // useEffect(() => {
-  //   const n = selectedIndices.length;
-  //   const newSelectedValues = [];
-  //   let isChange = false;
-
-  //   for (let index = 0; index < n; index++) {
-  //     const oldValue = selectedValues[index];
-  //     const options = currentColumns[index];
-  //     const selectedIndex = selectedIndices[index];
-  //     const value = options[selectedIndex][fields.value];
-
-  //     if (value !== oldValue) isChange = true;
-  //     newSelectedValues.push(value);
-  //   }
-
-  //   if (!isChange) return;
-  //   setSelectedValues(newSelectedValues);
-  // }, [currentColumns, selectedIndices, fields]);
-
   function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
     const options = currentColumns[columnIndex];
     const value = options[selectedIndex][fields.value];
@@ -126,17 +107,13 @@ export function Picker({
     const newSelectedValues = [...selectedValues];
 
     newSelectedValues[columnIndex] = value;
-    setSelectedValues(newSelectedValues);
 
     if (columnsType === 'cascade') {
-      const n = currentColumns.length;
       const selectedOptions = options[selectedIndex];
 
       setSelectedValues(resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields));
-
-      for (let index = columnIndex + 1; index < n; index++) {
-        columnsRef.current[index]?.scrollToSelected(0);
-      }
+    } else {
+      setSelectedValues(newSelectedValues);
     }
   }
 
