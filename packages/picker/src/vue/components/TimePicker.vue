@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { generateOptions, getValidTime, formatTime } from '../../shared/utils/common';
+import { DEFAULT_TIME_TITLE, DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import type { TimePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
 import Picker from './Picker.vue';
 
@@ -29,8 +30,8 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'Select Time',
-  columnsType: () => ['hour', 'minute', 'second'],
+  title: DEFAULT_TIME_TITLE,
+  columnsType: () => DEFAULT_TIME_COLUMNS,
   formatHourLabel: formatTime,
   formatMinuteLabel: formatTime,
   formatSecondLabel: formatTime,
@@ -100,9 +101,10 @@ function getSelectedValue(type: TimePickerColumnType) {
   const columnIndex = columnsType.indexOf(type);
   const value = selectedValues.value[columnIndex];
 
-  if (value) return Number(value);
+  if (value !== undefined) return Number(value);
   if (type === 'hour') return new Date().getHours();
   if (type === 'minute') return new Date().getMinutes();
+
   return new Date().getSeconds();
 }
 
