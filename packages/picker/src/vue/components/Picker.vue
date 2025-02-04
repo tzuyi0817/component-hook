@@ -59,6 +59,7 @@ const currentColumns = computed(() => {
 
   if (columnsType.value === 'single') return [columns] as PickerColumn[];
   if (columnsType.value === 'multiple') return columns as PickerColumn[];
+
   return formatColumnsToCascade(columns, selectedValues.value, fields.value);
 });
 
@@ -81,6 +82,7 @@ function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) 
   }
 
   if (!props.linkage) return;
+
   updateModelValue();
 }
 
@@ -97,10 +99,6 @@ async function onOpen() {
   emits('open');
   await nextTick();
   selectedValues.value = props.modelValue ? [...props.modelValue] : [...internalModelValue.value];
-
-  if (!columnsRef.value) return;
-  await nextTick();
-  columnsRef.value.forEach(column => column.scrollToSelected());
 }
 
 function onConfirm() {

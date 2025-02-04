@@ -122,7 +122,7 @@ export function DatePicker({
     }
   }
 
-  function resetSelectedValues() {
+  function handleClosed() {
     setSelectedValues(values ? [...values] : [...internalValues]);
     onClosed?.();
   }
@@ -139,9 +139,10 @@ export function DatePicker({
       linkage
       onConfirm={handleConfirm}
       onClose={onClose}
+      onChange={setSelectedValues}
       onCancel={handleCancel}
       onOpen={setDefaultValues}
-      onClosed={resetSelectedValues}
+      onClosed={handleClosed}
     />
   );
 }

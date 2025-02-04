@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/react';
-
-const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value: index }));
+import { DatePicker, type PickerSelectedValues } from '@component-hook/picker/react';
 
 export function BasePicker() {
   const [showPicker, setShowPicker] = useState(false);
@@ -13,9 +11,8 @@ export function BasePicker() {
 
   return (
     <>
-      <Picker
+      <DatePicker
         show={showPicker}
-        columns={columns}
         title="Base Selector"
         onClose={() => setShowPicker(false)}
         onConfirm={onConfirm}
@@ -24,7 +21,7 @@ export function BasePicker() {
 
       <button onClick={() => setShowPicker(true)}>toggle Base picker</button>
 
-      <p>Selected value: {pickerValues.join('') || 'not selected yet'}</p>
+      <p>Selected date: {pickerValues.join(' / ') || 'not selected yet'}</p>
     </>
   );
 }

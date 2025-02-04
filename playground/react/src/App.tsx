@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { Picker } from './pages/picker';
+import { DatePicker } from './pages/date-picker';
 import { PdfCanvas } from './pages/pdf-canvas';
 
 export function App() {
@@ -18,6 +19,10 @@ export function App() {
         <Route
           path="picker"
           element={<Picker />}
+        />
+        <Route
+          path="date-picker"
+          element={<DatePicker />}
         />
         <Route
           path="pdf-canvas"

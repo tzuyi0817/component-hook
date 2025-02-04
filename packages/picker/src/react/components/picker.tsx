@@ -68,11 +68,13 @@ export function Picker({
   }, [columns, columnsType, selectedValues, fields]);
 
   useEffect(() => {
-    onChange?.(selectedValues);
+    if (!values) return;
+    const isSame = values.every((value, index) => value === selectedValues[index]);
 
-    if (!linkage) return;
-    setInternalValues(selectedValues);
-  }, [linkage, selectedValues]);
+    if (isSame) return;
+
+    setSelectedValues(values);
+  }, [values]);
 
   useEffect(() => {
     const n = currentColumns.length;
@@ -99,6 +101,7 @@ export function Picker({
     }
 
     if (!isChange) return;
+
     setSelectedIndices(newSelectedIndices);
   }, [selectedValues, currentColumns, fields]);
 
@@ -114,11 +117,22 @@ export function Picker({
 
     if (columnsType === 'cascade') {
       const selectedOptions = options[selectedIndex];
+      const resetSelectedValues = resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields);
 
-      setSelectedValues(resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields));
+      setSelectedValues(resetSelectedValues);
+      handleChangeValues(resetSelectedValues);
     } else {
       setSelectedValues(newSelectedValues);
+      handleChangeValues(newSelectedValues);
     }
+  }
+
+  function handleChangeValues(newValues: PickerSelectedValues) {
+    onChange?.(newValues);
+
+    if (!linkage) return;
+
+    setInternalValues(newValues);
   }
 
   function handleConfirm() {
@@ -134,7 +148,11 @@ export function Picker({
 
   function handleOpen() {
     onOpen?.();
+  }
+
+  function handleClosed() {
     setSelectedValues(values ? [...values] : [...internalValues]);
+    onClosed?.();
   }
 
   return (
@@ -143,7 +161,7 @@ export function Picker({
       teleport={teleport}
       onOpen={handleOpen}
       onClose={onClose}
-      onClosed={onClosed}
+      onClosed={handleClosed}
     >
       <div className="chook-picker-header">
         <button
