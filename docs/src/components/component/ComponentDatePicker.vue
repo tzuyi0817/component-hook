@@ -57,8 +57,8 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          The type of options can be controlled through the <code>columns-type</code> attribute, which supports
-          permuting and combining year, month and day in any order.
+          The type of options can be controlled through the <code>columnsType</code> attribute, which supports permuting
+          and combining year, month and day in any order.
         </p>
         <p>Three options of year, month and day are displayed by default.</p>
         <ul class="mt-4 pl-8 list-disc">
@@ -78,7 +78,7 @@ defineProps<Props>();
       :language="language"
     >
       <template #description>
-        <p>Optional time ranges are set via the <code>min-date</code> and <code>max-date</code> properties.</p>
+        <p>Optional time ranges are set via the <code>minDate</code> and <code>maxDate</code> properties.</p>
         <p>The default selectable range is 10 years before and after the current year.</p>
       </template>
       <custom-range-picker />
@@ -92,8 +92,8 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          Display labels can be converted through the <code>format-year-label</code>,
-          <code>format-month-label</code> and <code>format-day-label</code> properties.
+          Display labels can be converted through the <code>formatYearLabel</code>, <code>formatMonthLabel</code> and
+          <code>formatDayLabel</code> properties.
         </p>
       </template>
       <label-formatter-picker />

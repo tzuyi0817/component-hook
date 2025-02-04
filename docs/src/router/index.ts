@@ -65,6 +65,15 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        path: 'react-date-picker',
+        name: 'component-react-date-picker',
+        component: () => import('@/pages/component/react/ReactDatePicker.vue'),
+        meta: {
+          title: 'Date Picker',
+          group: 'React',
+        },
+      },
+      {
         path: 'react-pdf-canvas',
         name: 'component-react-pdf-canvas',
         component: () => import('@/pages/component/react/ReactPdfCanvas.vue'),
