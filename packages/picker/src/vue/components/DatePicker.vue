@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { generateOptions, getLastDay, isMaxMonth, isMaxYear, isMinMonth, isMinYear } from '../../shared/utils/common';
+import {
+  generateOptions,
+  getLastDay,
+  isMaxMonth,
+  isMaxYear,
+  isMinMonth,
+  isMinYear,
+  formatLabel,
+} from '../../shared/utils/common';
+import { DEFAULT_DATE_COLUMNS, DEFAULT_DATE_TITLE } from '../../shared/constants';
 import type { DatePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
 import Picker from './Picker.vue';
 
@@ -29,13 +38,13 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'Select Date',
-  columnsType: () => ['year', 'month', 'day'],
+  title: DEFAULT_DATE_TITLE,
+  columnsType: () => DEFAULT_DATE_COLUMNS,
   minDate: () => new Date(new Date().getFullYear() - 10, 0, 1),
   maxDate: () => new Date(new Date().getFullYear() + 10, 11, 31),
-  formatYearLabel: (label: string) => label,
-  formatMonthLabel: (label: string) => label,
-  formatDayLabel: (label: string) => label,
+  formatYearLabel: formatLabel,
+  formatMonthLabel: formatLabel,
+  formatDayLabel: formatLabel,
 });
 const emits = defineEmits<Emits>();
 const selectedValues = ref<PickerSelectedValues>([]);
@@ -91,6 +100,7 @@ function getSelectedValue(type: DatePickerColumnType) {
   if (value) return Number(value);
   if (type === 'year') return new Date().getFullYear();
   if (type === 'month') return new Date().getMonth() + 1;
+
   return new Date().getDate();
 }
 

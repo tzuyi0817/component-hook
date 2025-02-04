@@ -1,3 +1,5 @@
+import type { DatePickerColumnType, TimePickerColumnType } from './types';
+
 export const BASE_ROOT_FONT_SIZE = 16;
 
 export const OPTION_HEIGHT = 48;
@@ -13,3 +15,9 @@ export const INERTIAL_DISTANCE = 15;
 export const INERTIAL_FACTOR = 0.008;
 
 export const TAP_OFFSET = 5;
+
+export const DEFAULT_DATE_TITLE = 'Select Date';
+
+export const DEFAULT_DATE_COLUMNS: DatePickerColumnType[] = ['year', 'month', 'day'];
+
+export const DEFAULT_TIME_COLUMNS: TimePickerColumnType[] = ['hour', 'minute', 'second'];

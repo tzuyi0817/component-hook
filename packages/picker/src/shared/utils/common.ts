@@ -110,6 +110,10 @@ export function getLastDay(selectedYear: number, selectedMonth: number) {
   return new Date(selectedYear, selectedMonth, 0).getDate();
 }
 
+export function formatLabel(label: string) {
+  return label;
+}
+
 export function isValidTime(time: string) {
   return /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(time);
 }
