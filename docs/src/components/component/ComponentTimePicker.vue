@@ -57,8 +57,8 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          The type of options can be controlled through the <code>columns-type</code> attribute, which supports
-          permuting and combining hour, minute and second in any order.
+          The type of options can be controlled through the <code>columnsType</code> attribute, which supports permuting
+          and combining hour, minute and second in any order.
         </p>
         <p>Three options of hour, minute and second are displayed by default.</p>
         <ul class="mt-4 pl-8 list-disc">
@@ -79,8 +79,8 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          Optional time ranges are set via the <code>min-time</code> and <code>max-time</code> properties, with the
-          format <code>00:00:00</code>.
+          Optional time ranges are set via the <code>minTime</code> and <code>maxTime</code> properties, with the format
+          <code>00:00:00</code>.
         </p>
         <p>
           For example, in the following example, users can select any time between <code>12:20:30</code> and
@@ -98,8 +98,8 @@ defineProps<Props>();
     >
       <template #description>
         <p>
-          Display labels can be converted through the <code>format-hour-label</code>,
-          <code>format-minute-label</code> and <code>format-second-label</code> properties.
+          Display labels can be converted through the <code>formatHourLabel</code>, <code>formatMinuteLabel</code> and
+          <code>formatSecondLabel</code> properties.
         </p>
       </template>
       <label-formatter-picker />
