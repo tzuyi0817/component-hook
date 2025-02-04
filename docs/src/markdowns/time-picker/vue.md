@@ -4,7 +4,7 @@
 | ----------------- | -------- | ------------------------ | ------------------------------------------------------------------------- | ------------------------------ |
 | v-model           | false    | `PickerSelectedValues`   | values of chosen option                                                   | —                              |
 | v-model:show      | true     | `boolean`                | Control picker show                                                       | —                              |
-| columnsType       | false    | `DatePickerColumnType[]` | Columns type                                                              | `['hour', 'minute', 'second']` |
+| columnsType       | false    | `TimePickerColumnType[]` | Columns type                                                              | `['hour', 'minute', 'second']` |
 | title             | false    | `string`                 | Toolbar title                                                             | `Select Time`                  |
 | minTime           | false    | `string`                 | Min time, format reference `00:00:00`                                     | —                              |
 | maxTime           | false    | `string`                 | Max time, format reference `00:00:00`                                     | —                              |
