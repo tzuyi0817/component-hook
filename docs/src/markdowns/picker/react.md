@@ -16,11 +16,11 @@
 
 ### Events
 
-| Event     | Description                                    | Type                                              |
-| :-------- | :--------------------------------------------- | :------------------------------------------------ |
-| onClose   | close picker show `(need to update state)`     | `Function () => void`                             |
-| onConfirm | Triggered when the confirm button is clicked   | `Function (values: PickerSelectedValues) => void` |
-| onChange  | Triggered when the selected change             | `Function (values: PickerSelectedValues) => void` |
-| onCancel  | Triggered when the cancel button is clicked    | `Function () => void`                             |
-| onOpen    | Triggered when the picker open                 | `Function () => void`                             |
-| onClosed  | Triggered when the picker close transition end | `Function () => void`                             |
+| Event     | Description                                     | Type                                              |
+| :-------- | :---------------------------------------------- | :------------------------------------------------ |
+| onClose   | close picker show `(need to update show state)` | `Function () => void`                             |
+| onConfirm | Triggered when the confirm button is clicked    | `Function (values: PickerSelectedValues) => void` |
+| onChange  | Triggered when the selected change              | `Function (values: PickerSelectedValues) => void` |
+| onCancel  | Triggered when the cancel button is clicked     | `Function () => void`                             |
+| onOpen    | Triggered when the picker open                  | `Function () => void`                             |
+| onClosed  | Triggered when the picker close transition end  | `Function () => void`                             |
