@@ -25,7 +25,7 @@ interface Props {
   confirmButtonText?: string;
   cancelButtonText?: string;
   columnsFieldNames?: PickerFields;
-  onConfirm: (values: PickerSelectedValues) => void;
+  onConfirm?: (values: PickerSelectedValues) => void;
   onClose: () => void;
   onChange?: (values: PickerSelectedValues) => void;
   onCancel?: () => void;
@@ -124,7 +124,7 @@ export function Picker({
   function handleConfirm() {
     setInternalValues(selectedValues);
     onClose();
-    onConfirm(selectedValues);
+    onConfirm?.(selectedValues);
   }
 
   function handleCancel() {
