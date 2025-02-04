@@ -6,7 +6,6 @@
 | show              | true     | `boolean`                        | Control picker show                                                       | —                                                        |
 | columns           | true     | `PickerColumn \| PickerColumn[]` | Columns data                                                              | —                                                        |
 | title             | false    | `string`                         | Toolbar title                                                             | —                                                        |
-| linkage           | false    | `boolean`                        | Whether to link when scrolling to select                                  | `false`                                                  |
 | loading           | false    | `boolean`                        | Whether to show loading prompt                                            | `false`                                                  |
 | loadingSlot       | false    | `ReactNode`                      | Custom loading content                                                    | —                                                        |
 | emptySlot         | false    | `ReactNode`                      | Custom empty content                                                      | —                                                        |
