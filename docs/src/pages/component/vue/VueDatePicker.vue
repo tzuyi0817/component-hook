@@ -11,13 +11,13 @@ import indexMd from '@/markdowns/date-picker/vue.md?raw';
   <component-date-picker
     front-end-frame="vue3"
     :base-source="baseSource"
-    base-playground=""
+    base-playground="67a32e4813fe5303ffefe88c"
     :columns-type-source="columnsTypeSource"
-    columns-type-playground=""
+    columns-type-playground="67a32e7713fe5303ffefe88f"
     :custom-range-source="customRangeSource"
-    custom-range-playground=""
+    custom-range-playground="67a32ea413fe5303ffefe892"
     :label-formatter-source="labelFormatterSource"
-    label-formatter-playground=""
+    label-formatter-playground="67a32ef513fe5303ffefe895"
     :index-md="indexMd"
   />
 </template>

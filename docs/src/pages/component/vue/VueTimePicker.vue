@@ -11,13 +11,13 @@ import indexMd from '@/markdowns/time-picker/vue.md?raw';
   <component-time-picker
     front-end-frame="vue3"
     :base-source="baseSource"
-    base-playground=""
+    base-playground="67a32f6b13fe5303ffefe898"
     :columns-type-source="columnsTypeSource"
-    columns-type-playground=""
+    columns-type-playground="67a32f9913fe5303ffefe89b"
     :custom-range-source="customRangeSource"
-    custom-range-playground=""
+    custom-range-playground="67a32fca13fe5303ffefe89e"
     :label-formatter-source="labelFormatterSource"
-    label-formatter-playground=""
+    label-formatter-playground="67a3302013fe5303ffefe8a1"
     :index-md="indexMd"
   />
 </template>

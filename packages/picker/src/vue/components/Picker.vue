@@ -13,7 +13,7 @@ import Column from './PickerColumn.vue';
 import '../../shared/index.scss';
 import '../transition.scss';
 
-interface Props {
+export interface Props {
   show: boolean;
   modelValue?: PickerSelectedValues;
   title?: string;
