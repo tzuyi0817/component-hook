@@ -9,7 +9,7 @@ import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
 
 <template>
   <component-pdf-canvas
-    description="Rendering PDF documents onto a canvas with react component."
+    front-end-frame="react"
     :draw-source="drawSource"
     draw-playground="675f9a7a08325367664ebf7a"
     :encrypted-source="encryptedSource"

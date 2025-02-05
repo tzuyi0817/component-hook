@@ -15,7 +15,7 @@
 | formatMonthLabel  | false    | `PickerFormatLabel`           | Month label formatter                                                     | —                              |
 | formatDayLabel    | false    | `PickerFormatLabel`           | Day label formatter                                                       | —                              |
 
-### Events
+#### Events
 
 | Event     | Description                                     | Type                                              |
 | :-------- | :---------------------------------------------- | :------------------------------------------------ |

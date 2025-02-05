@@ -15,7 +15,7 @@
 | formatMinuteLabel | false    | `PickerFormatLabel`           | Minute label formatter                                                    | —                              |
 | formatSecondLabel | false    | `PickerFormatLabel`           | Second label formatter                                                    | —                              |
 
-### Events
+#### Events
 
 | Event     | Description                                     | Type                                              |
 | :-------- | :---------------------------------------------- | :------------------------------------------------ |

@@ -9,7 +9,7 @@ import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
 
 <template>
   <component-pdf-canvas
-    description="Rendering PDF documents onto a canvas with vue3 component."
+    front-end-frame="vue3"
     :draw-source="drawSource"
     draw-playground="668e33253e8416c068f2f93b"
     :encrypted-source="encryptedSource"

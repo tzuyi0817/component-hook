@@ -7,13 +7,11 @@ import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
 import DropPdf from '@/examples/pdf-canvas/Drop.vue';
 import ManualPdf from '@/examples/pdf-canvas/Manual.vue';
 import installationMd from '@/markdowns/pdf-canvas/installation.md?raw';
-import attributesMd from '@/markdowns/pdf-canvas/attributes.md?raw';
-import exposesMd from '@/markdowns/pdf-canvas/exposes.md?raw';
-import useFabricMd from '@/markdowns/pdf-canvas/useFabric.md?raw';
+import apiMd from '@/markdowns/pdf-canvas/api.md?raw';
 import { md } from '@/utils/highlight';
 
 interface Props {
-  description: string;
+  frontEndFrame: string;
   drawSource: string;
   drawPlayground: string;
   encryptedSource: string;
@@ -34,14 +32,19 @@ defineProps<Props>();
   <div>
     <h2>PDF Canvas</h2>
 
-    <p>{{ description }}</p>
-    <p>
+    <p class="leading-8">
+      Rendering <code>PDF</code> documents onto a canvas with <code>{{ frontEndFrame }}</code> component.
+    </p>
+    <p
+      v-if="frontEndFrame === 'vue3'"
+      class="leading-8"
+    >
       Implementation repository:
       <external-link
         href="https://github.com/tzuyi0817/PDF-signature"
         title="PDF-signature GitHub Page"
       >
-        PDF-signature
+        <code>PDF-signature</code>
       </external-link>
     </p>
 
@@ -53,7 +56,7 @@ defineProps<Props>();
       :playground="drawPlayground"
       :language="language"
     >
-      <template #description> Select the PDF file and draw on the canvas. </template>
+      <template #description> Select the <code>PDF</code> file and draw on the <code>canvas</code>. </template>
       <draw-pdf />
     </demo>
 
@@ -63,7 +66,9 @@ defineProps<Props>();
       :playground="encryptedPlayground"
       :language="language"
     >
-      <template #description> Select the encrypted PDF file and draw on the canvas. </template>
+      <template #description>
+        Select the encrypted <code>PDF</code> file and draw on the <code>canvas</code>.
+      </template>
       <encrypted-pdf />
     </demo>
 
@@ -73,7 +78,9 @@ defineProps<Props>();
       :playground="multiplePlayground"
       :language="language"
     >
-      <template #description> Select the multiple page PDF file and draw on the canvas. </template>
+      <template #description>
+        Select the multiple page <code>PDF</code> file and draw on the <code>canvas</code>.
+      </template>
       <multiple-pdf />
     </demo>
 
@@ -83,7 +90,7 @@ defineProps<Props>();
       :playground="dropPlayground"
       :language="language"
     >
-      <template #description> Drag and drop the images and text onto the canvas. </template>
+      <template #description> Drag and drop the images and text onto the <code>canvas</code>. </template>
       <drop-pdf />
     </demo>
 
@@ -93,14 +100,11 @@ defineProps<Props>();
       :playground="manualPlayground"
       :language="language"
     >
-      <template #description> Manually add the images and text onto the canvas. </template>
+      <template #description> Manually add the images and text onto the <code>canvas</code>. </template>
       <manual-pdf />
     </demo>
 
-    <div v-html="md.render(attributesMd)"></div>
-
-    <div v-html="md.render(exposesMd)"></div>
-
-    <div v-html="md.render(useFabricMd)"></div>
+    <h3>API</h3>
+    <div v-html="md.render(apiMd)"></div>
   </div>
 </template>
