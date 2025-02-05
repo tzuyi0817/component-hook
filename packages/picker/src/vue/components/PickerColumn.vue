@@ -68,6 +68,8 @@ defineExpose({ scrollToSelected });
         v-for="(option, index) in column"
         :key="option[fields.value]"
         class="chook-picker-column-item"
+        role="button"
+        tabindex="0"
         @click="onClick(index)"
       >
         <p
