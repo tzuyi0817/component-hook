@@ -14,7 +14,7 @@
 | cancelButtonText  | false    | `string`                         | Text of cancel button, setting it as an empty string can hide the button  | `Cancel`                                                 |
 | columnsFieldNames | false    | `PickerFields`                   | custom columns field                                                      | `{ text: 'text', value: 'value', children: 'children' }` |
 
-### Events
+#### Events
 
 | Event     | Description                                     | Type                                              |
 | :-------- | :---------------------------------------------- | :------------------------------------------------ |

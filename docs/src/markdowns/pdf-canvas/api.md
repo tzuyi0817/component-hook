@@ -1,4 +1,4 @@
-### Attributes
+#### Attributes
 
 | Name             | Required | Type      | Description                                                            | Default                                                                                                                  |
 | ---------------- | -------- | --------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -13,3 +13,19 @@
 | dropTextOptions  | false    | `object`  | [fabric.js FabricText options](https://github.com/fabricjs/fabric.js)  | [text options](https://github.com/tzuyi0817/component-hook/blob/master/packages/pdf-canvas/src/shared/configs/index.ts)  |
 | dropImageOptions | false    | `object`  | [fabric.js FabricImage options](https://github.com/fabricjs/fabric.js) | [image options](https://github.com/tzuyi0817/component-hook/blob/master/packages/pdf-canvas/src/shared/configs/index.ts) |
 | closeSvgOptions  | false    | `object`  | Setup close svg options                                                | [close options](https://github.com/tzuyi0817/component-hook/blob/master/packages/pdf-canvas/src/shared/configs/index.ts) |
+
+#### Exposes
+
+| Event        | Description                             | Type                                                             |
+| :----------- | :-------------------------------------- | :--------------------------------------------------------------- |
+| addImage     | Manually add the images onto the canvas | `Function (src: string, options?: TOptions<ImageProps>) => void` |
+| addText      | Manually add the text onto the canvas   | `Function (text: string, options?: TOptions<TextProps>) => void` |
+| clearActive  | Manually deactivate status              | `Function () => void`                                            |
+| deleteCanvas | Delete the current canvas               | `Function () => void`                                            |
+| canvasRef    | The current canvas dom ref              | `object Ref<HTMLCanvasElement>`                                  |
+
+#### UseFabric
+
+| Event    | Description            | Type                                                     |
+| :------- | :--------------------- | :------------------------------------------------------- |
+| loadFile | Load PDF file or image | `Function (file: File, password?: string): Promise<PDF>` |
