@@ -11,13 +11,13 @@ import indexMd from '@/markdowns/date-picker/react.md?raw';
   <component-date-picker
     front-end-frame="react"
     :base-source="baseSource"
-    base-playground=""
+    base-playground="67a3336413fe5303ffefe8ea"
     :columns-type-source="columnsTypeSource"
-    columns-type-playground=""
+    columns-type-playground="67a333c613fe5303ffefe8ed"
     :custom-range-source="customRangeSource"
-    custom-range-playground=""
+    custom-range-playground="67a333ff13fe5303ffefe8f0"
     :label-formatter-source="labelFormatterSource"
-    label-formatter-playground=""
+    label-formatter-playground="67a3345013fe5303ffefe8f3"
     :index-md="indexMd"
     language="tsx"
   />

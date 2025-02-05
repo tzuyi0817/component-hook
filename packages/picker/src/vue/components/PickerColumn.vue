@@ -4,7 +4,7 @@ import { OPTION_HEIGHT, OPTION_ROTATE_FACTOR } from '../../shared/constants';
 import { useScrollSnap } from '../hooks/use-scroll-snap';
 import type { PickerColumn, PickerFields } from '../../shared/types';
 
-interface Props {
+export interface Props {
   column: PickerColumn;
   fields: Required<PickerFields>;
   selectedIndex?: number;

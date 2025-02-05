@@ -11,13 +11,13 @@ import indexMd from '@/markdowns/picker/react.md?raw';
   <component-picker
     front-end-frame="react"
     :base-source="baseSource"
-    base-playground=""
+    base-playground="675aad63c39ce4f761bd8622"
     :multi-column-source="multiColumnSource"
-    multi-column-playground=""
+    multi-column-playground="675aae60c39ce4f761bd8637"
     :cascade-source="cascadeSource"
-    cascade-playground="6696355db9ac0e0085f0eb29"
+    cascade-playground="67569e8087493a239347d7ce"
     :customize-column-source="customizeColumnSource"
-    customize-column-playground="668e32b73e8416c068f2f92f"
+    customize-column-playground="675aae0cc39ce4f761bd8633"
     :index-md="indexMd"
     language="tsx"
   />

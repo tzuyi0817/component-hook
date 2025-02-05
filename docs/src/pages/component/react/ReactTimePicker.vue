@@ -11,13 +11,13 @@ import indexMd from '@/markdowns/time-picker/react.md?raw';
   <component-time-picker
     front-end-frame="react"
     :base-source="baseSource"
-    base-playground=""
+    base-playground="67a3349813fe5303ffefe8f6"
     :columns-type-source="columnsTypeSource"
-    columns-type-playground=""
+    columns-type-playground="67a334d513fe5303ffefe8f9"
     :custom-range-source="customRangeSource"
-    custom-range-playground=""
+    custom-range-playground="67a3350813fe5303ffefe8fc"
     :label-formatter-source="labelFormatterSource"
-    label-formatter-playground=""
+    label-formatter-playground="67a3353c13fe5303ffefe8ff"
     :index-md="indexMd"
     language="tsx"
   />
