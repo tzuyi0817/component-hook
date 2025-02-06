@@ -8,6 +8,7 @@ import {
   isMinMonth,
   isMinYear,
   formatLabel,
+  getDefaultDate,
 } from '../../shared/utils/common';
 import { DEFAULT_DATE_COLUMNS, DEFAULT_DATE_TITLE } from '../../shared/constants';
 import type { DatePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
@@ -98,10 +99,8 @@ function getSelectedValue(type: DatePickerColumnType) {
   const value = selectedValues.value[columnIndex];
 
   if (value) return Number(value);
-  if (type === 'year') return new Date().getFullYear();
-  if (type === 'month') return new Date().getMonth() + 1;
 
-  return new Date().getDate();
+  return getDefaultDate(props.minDate, props.maxDate, type);
 }
 
 function onConfirm(value: PickerSelectedValues) {

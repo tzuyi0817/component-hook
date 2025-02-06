@@ -24,3 +24,5 @@ export type DatePickerColumnType = 'year' | 'month' | 'day';
 export type PickerFormatLabel = (label: string) => string;
 
 export type TimePickerColumnType = 'hour' | 'minute' | 'second';
+
+export type TimeSelection = Record<TimePickerColumnType, number>;

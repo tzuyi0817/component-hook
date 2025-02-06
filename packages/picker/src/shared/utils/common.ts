@@ -1,4 +1,13 @@
-import type { PickerColumn, PickerOption, PickerSelectedValues, PickerFields, PickerFormatLabel } from '../types';
+import type {
+  PickerColumn,
+  PickerOption,
+  PickerSelectedValues,
+  PickerFields,
+  PickerFormatLabel,
+  DatePickerColumnType,
+  TimePickerColumnType,
+  TimeSelection,
+} from '../types';
 import { isArray } from './check-type';
 
 export function getColumnsType(columns: PickerColumn | PickerColumn[], fields: Required<PickerFields>) {
@@ -110,6 +119,19 @@ export function getLastDay(selectedYear: number, selectedMonth: number) {
   return new Date(selectedYear, selectedMonth, 0).getDate();
 }
 
+export function getDefaultDate(minDate: Date, maxDate: Date, type: DatePickerColumnType) {
+  const date = new Date();
+  const timestamp = Date.now();
+  const minTimestamp = minDate.getTime();
+  const maxTimestamp = maxDate.getTime();
+  const isValidDate = timestamp >= minTimestamp && timestamp <= maxTimestamp;
+
+  if (type === 'year') return isValidDate ? date.getFullYear() : minDate.getFullYear();
+  if (type === 'month') return isValidDate ? date.getMonth() + 1 : minDate.getMonth() + 1;
+
+  return isValidDate ? date.getDate() : minDate.getDate();
+}
+
 export function formatLabel(label: string) {
   return label;
 }
@@ -127,4 +149,18 @@ export function getValidTime(time: string) {
 
 export function formatTime(value: string) {
   return value.padStart(2, '0');
+}
+
+export function getDefaultTime(minTime: TimeSelection, maxTime: TimeSelection, type: TimePickerColumnType) {
+  const timestamp = Date.now();
+  const { hour: minH, minute: minM, second: minS } = minTime;
+  const { hour: maxH, minute: maxM, second: maxS } = maxTime;
+  const minTimestamp = new Date().setHours(minH, minM, minS);
+  const maxTimestamp = new Date().setHours(maxH, maxM, maxS);
+  const isValid = timestamp >= minTimestamp && timestamp <= maxTimestamp;
+
+  if (type === 'hour') return isValid ? new Date().getHours() : minH;
+  if (type === 'minute') return isValid ? new Date().getMinutes() : minM;
+
+  return isValid ? new Date().getSeconds() : minS;
 }

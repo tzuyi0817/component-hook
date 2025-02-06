@@ -20,4 +20,9 @@ export default [
     files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
     ...componentHookPlugin.configs.playwright,
   },
+  {
+    rules: {
+      'testing-library/no-node-access': 'off',
+    },
+  },
 ];
