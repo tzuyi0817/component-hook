@@ -63,7 +63,7 @@ export const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIn
       >
         {column.map((option, index) => (
           <div
-            key={option[fields.value]}
+            key={option?.[fields.value]}
             tabIndex={0}
             role="button"
             aria-label="Select option"
@@ -81,7 +81,7 @@ export const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIn
                 transform: `rotate3d(1, 0, 0, ${(index * OPTION_HEIGHT + offsetY) * OPTION_ROTATE_FACTOR}deg)`,
               }}
             >
-              {option[fields.label]}
+              {option?.[fields.label]}
             </p>
           </div>
         ))}

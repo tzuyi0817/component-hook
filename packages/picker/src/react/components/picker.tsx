@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, type ReactNode } from 'react';
+import { useState, useEffect, useMemo, useRef, type ReactNode } from 'react';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -8,11 +8,11 @@ import {
 } from '../../shared/utils/common';
 import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
 import { Popup } from './popup';
-import { Column, type ColumnRef } from './picker-column';
+import { Columns, type ColumnsRef } from './picker-columns';
 import '../../shared/index.scss';
 import '../transition.scss';
 
-interface Props {
+export interface Props {
   show: boolean;
   values?: PickerSelectedValues;
   title?: string;
@@ -56,7 +56,7 @@ export function Picker({
   const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
   const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
-  const columnsRef = useRef<(ColumnRef | null)[]>([]);
+  const columnsRef = useRef<ColumnsRef>(null);
   const fields = extendFields(columnsFieldNames);
   const columnsType = getColumnsType(columns, fields);
 
@@ -88,14 +88,15 @@ export function Picker({
 
       if (selectedIndex === -1) {
         const originIndex = selectedIndices[index] ?? 0;
-        const specifyIndex = originIndex >= options.length ? options.length - 1 : 0;
+        const specifyIndex = originIndex >= options.length ? Math.max(options.length - 1, 0) : 0;
 
         newSelectedIndices[index] = specifyIndex;
       } else {
         newSelectedIndices[index] = selectedIndex;
       }
+
       if (newSelectedIndices[index] !== selectedIndices[index]) {
-        columnsRef.current[index]?.scrollToSelected(newSelectedIndices[index]);
+        columnsRef.current?.scrollColumnToSelected(index, newSelectedIndices[index]);
         isChange = true;
       }
     }
@@ -107,7 +108,7 @@ export function Picker({
 
   function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
     const options = currentColumns[columnIndex];
-    const value = options[selectedIndex][fields.value];
+    const value = options[selectedIndex]?.[fields.value];
     const oldValue = selectedValues[columnIndex];
 
     if (value === oldValue) return;
@@ -178,27 +179,18 @@ export function Picker({
           {confirmButtonText}
         </button>
       </div>
-      <div
-        className="chook-picker-columns chook-picker-columns-backdrop"
-        onTouchMove={e => e.stopPropagation()}
-      >
-        {!loading && !columns.length ? emptySlot : null}
 
-        {currentColumns.map((column, index) => (
-          <Column
-            key={index}
-            ref={el => (columnsRef.current[index] = el)}
-            column={column}
-            fields={fields}
-            selectedIndex={selectedIndices[index]}
-            onChange={selectedIndex => updateSelectedValueByIndex(index, selectedIndex)}
-          />
-        ))}
-
-        <div className="chook-picker-mask-backdrop"></div>
-      </div>
-
-      {loading ? <div className="chook-picker-loading">{loadingSlot}</div> : null}
+      <Columns
+        ref={columnsRef}
+        loading={loading}
+        loadingSlot={loadingSlot}
+        columns={columns}
+        emptySlot={emptySlot}
+        currentColumns={currentColumns}
+        fields={fields}
+        selectedIndices={selectedIndices}
+        updateSelectedValueByIndex={updateSelectedValueByIndex}
+      />
     </Popup>
   );
 }
