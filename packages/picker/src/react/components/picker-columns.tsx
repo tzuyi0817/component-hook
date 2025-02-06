@@ -1,7 +1,7 @@
 import { useRef, forwardRef, useImperativeHandle } from 'react';
+import type { PickerFields, PickerColumn } from '../../shared/types';
 import type { Props as PickerProps } from './picker';
 import { Column, type ColumnRef } from './picker-column';
-import type { PickerFields, PickerColumn } from '../../shared/types';
 
 interface Props extends Pick<PickerProps, 'loading' | 'loadingSlot' | 'columns' | 'emptySlot'> {
   currentColumns: PickerColumn[];

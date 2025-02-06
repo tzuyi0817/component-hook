@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { generateOptions, getValidTime, formatTime } from '../../shared/utils/common';
+import { generateOptions, getValidTime, formatTime, getDefaultTime } from '../../shared/utils/common';
 import { DEFAULT_TIME_TITLE, DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import type { TimePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
 import Picker from './Picker.vue';
@@ -102,10 +102,8 @@ function getSelectedValue(type: TimePickerColumnType) {
   const value = selectedValues.value[columnIndex];
 
   if (value !== undefined) return Number(value);
-  if (type === 'hour') return new Date().getHours();
-  if (type === 'minute') return new Date().getMinutes();
 
-  return new Date().getSeconds();
+  return getDefaultTime(formattedMinTime.value, formattedMaxTime.value, type);
 }
 
 function onConfirm(value: PickerSelectedValues) {

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { generateOptions, getValidTime, formatTime } from '../../shared/utils/common';
+import { generateOptions, getValidTime, formatTime, getDefaultTime } from '../../shared/utils/common';
 import { DEFAULT_TIME_TITLE, DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import type { TimePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
 import { Picker } from './picker';
@@ -102,10 +102,8 @@ export function TimePicker({
     const value = selectedValues[columnIndex];
 
     if (value !== undefined) return Number(value);
-    if (type === 'hour') return new Date().getHours();
-    if (type === 'minute') return new Date().getMinutes();
 
-    return new Date().getSeconds();
+    return getDefaultTime(formattedMinTime, formattedMaxTime, type);
   }
 
   function handleConfirm(confirmValues: PickerSelectedValues) {
