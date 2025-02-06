@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0](https://github.com/tzuyi0817/component-hook/compare/v0.2.5...v1.0.0) (2025-02-06)
+
+### Features
+
+- **picker:** adjusted the usage of components, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/component/vue-picker)
+- **picker:** add `date-picker` and `time-picker` component
+
 ## [0.2.5](https://github.com/tzuyi0817/component-hook/compare/v0.2.4...v0.2.5) (2025-01-15)
 
 ### Features
