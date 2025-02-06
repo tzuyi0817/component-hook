@@ -5,7 +5,7 @@ export function getColumnsType(columns: PickerColumn | PickerColumn[], fields: R
   if (isArrayPickerColumn(columns)) return 'multiple';
   const [column] = columns;
 
-  if (column[fields.children]) return 'cascade';
+  if (column?.[fields.children]) return 'cascade';
   return 'single';
 }
 
@@ -40,7 +40,7 @@ export function formatColumnsToCascade(
 }
 
 export function resetChildrenSelected(
-  option: PickerOption,
+  option: PickerOption | undefined,
   columnIndex: number,
   selectedValues: PickerSelectedValues,
   fields: Required<PickerFields>,
@@ -60,7 +60,7 @@ export function resetChildrenSelected(
 }
 
 export function getIndexByValue(column: PickerColumn, value: PickerOption['value'], fields: Required<PickerFields>) {
-  return column.findIndex(option => option[fields.value] === value);
+  return column.findIndex(option => option?.[fields.value] === value);
 }
 
 function isArrayPickerColumn(columns: PickerColumn | PickerColumn[]): columns is PickerColumn[] {

@@ -7,7 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    include: ['**/__tests__/unit/**/*.test.ts'],
+    include: ['**/__tests__/unit/**/*.test.ts?(x)'],
     exclude: ['packages/create-app/template-*/**', '**/dist', '**/node_modules'],
     setupFiles: ['./vitest.setup.ts'],
     coverage: {

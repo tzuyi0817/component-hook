@@ -65,7 +65,7 @@ const currentColumns = computed(() => {
 
 function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
   const options = currentColumns.value[columnIndex];
-  const value = options[selectedIndex][fields.value.value];
+  const value = options[selectedIndex]?.[fields.value.value];
   const oldValue = selectedValues.value[columnIndex];
 
   if (value === oldValue) return;
@@ -125,9 +125,9 @@ watchEffect(() => {
 
     if (selectedIndex === -1) {
       const originIndex = selectedIndices.value[index] ?? 0;
-      const specifyIndex = originIndex >= options.length ? options.length - 1 : 0;
+      const specifyIndex = originIndex >= options.length ? Math.max(options.length - 1, 0) : 0;
 
-      selectedValues.value[index] = options[specifyIndex][fields.value.value];
+      selectedValues.value[index] = options[specifyIndex]?.[fields.value.value];
       newSelectedIndices[index] = specifyIndex;
     } else {
       newSelectedIndices[index] = selectedIndex;
@@ -164,35 +164,35 @@ watchEffect(() => {
       </button>
     </div>
 
+    <template v-if="loading">
+      <div class="chook-picker-loading">
+        <slot name="loading"></slot>
+      </div>
+      <div class="chook-picker-columns"></div>
+    </template>
+
+    <template v-else-if="!columns.length">
+      <div class="chook-picker-columns">
+        <slot name="empty"></slot>
+      </div>
+    </template>
+
     <div
+      v-else
       class="chook-picker-columns chook-picker-columns-backdrop"
       @touchmove.stop
     >
-      <slot
-        v-if="!loading && !columns.length"
-        name="empty"
-      ></slot>
+      <Column
+        v-for="(column, index) in currentColumns"
+        :key="index"
+        ref="columnsRef"
+        :column="column"
+        :fields="fields"
+        :selected-index="selectedIndices[index]"
+        @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
+      />
 
-      <template v-else>
-        <Column
-          v-for="(column, index) in currentColumns"
-          :key="index"
-          ref="columnsRef"
-          :column="column"
-          :fields="fields"
-          :selected-index="selectedIndices[index]"
-          @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
-        />
-
-        <div class="chook-picker-mask-backdrop"></div>
-      </template>
-    </div>
-
-    <div
-      v-if="loading"
-      class="chook-picker-loading"
-    >
-      <slot name="loading"></slot>
+      <div class="chook-picker-mask-backdrop"></div>
     </div>
   </popup>
 </template>

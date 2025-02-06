@@ -11,7 +11,7 @@ export interface PickerFields {
   children?: string;
 }
 
-export type PickerColumn = PickerOption[];
+export type PickerColumn = Array<PickerOption | undefined>;
 
 export type PickerSelectedValues = Array<PickerOption['value']>;
 

@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { Picker } from '../../index';
 
-describe('Picker Component', () => {
+describe('React Picker Component', () => {
   it('render correctly', () => {
     const titleText = 'Test Selector';
     const mackFn = vi.fn();
