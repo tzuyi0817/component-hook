@@ -2,6 +2,15 @@ import type { Linter } from 'eslint';
 import { pluginVue, vueParser, typescriptEslint } from '../plugins';
 import { rules as pluginTypescriptRules } from './typescript';
 
+const vueRules = {
+  ...pluginVue.configs.base.rules,
+  ...pluginVue.configs['vue3-essential'].rules,
+  ...pluginVue.configs['vue3-strongly-recommended'].rules,
+  ...pluginVue.configs['vue3-recommended'].rules,
+};
+
+delete vueRules['vue/component-tags-order'];
+
 const rules = {
   'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
   'vue/custom-event-name-casing': ['error', 'camelCase'],
@@ -94,10 +103,7 @@ export const vueConfigs = [
     },
     processor: pluginVue.processors['.vue'],
     rules: {
-      ...pluginVue.configs.base.rules,
-      ...pluginVue.configs['vue3-essential'].rules,
-      ...pluginVue.configs['vue3-strongly-recommended'].rules,
-      ...pluginVue.configs['vue3-recommended'].rules,
+      ...vueRules,
       ...rules,
     },
   },

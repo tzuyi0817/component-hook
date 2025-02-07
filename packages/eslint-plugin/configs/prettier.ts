@@ -1,7 +1,5 @@
 import type { Linter } from 'eslint';
-import { pluginPrettier, configPrettier } from '../plugins';
-
-const recommended = pluginPrettier.configs?.recommended as Linter.Config<Linter.RulesRecord>;
+import { pluginPrettier, configPrettier, pluginPrettierRecommended } from '../plugins';
 
 export const prettierConfig: Linter.Config = {
   name: 'component-hook/prettier',
@@ -10,7 +8,7 @@ export const prettierConfig: Linter.Config = {
   },
   rules: {
     ...configPrettier.rules,
-    ...recommended.rules,
+    ...pluginPrettierRecommended.rules,
     'prettier/prettier': 'warn',
   },
 };
