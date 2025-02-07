@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@9.15.5",
   "scripts": {
     "dev": "vite",
     "dev:mock": "MOCK=true vite",
@@ -22,24 +22,24 @@
     "pinia": "^2.3.1",
     "pinia-plugin-persistedstate": "^4.2.0",
     "vue": "^3.5.13",
-    "vue-i18n": "^11.0.1",
+    "vue-i18n": "^11.1.0",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "0.2.5",
     "@intlify/unplugin-vue-i18n": "^6.0.3",
-    "@playwright/test": "^1.49.1",
+    "@playwright/test": "^1.50.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.6.1",
     "@testing-library/vue": "^8.1.0",
     "@tsconfig/node22": "22.0.0",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.13.1",
     "@vitejs/plugin-vue": "^5.2.1",
-    "@vitest/coverage-v8": "^2.1.8",
+    "@vitest/coverage-v8": "^2.1.9",
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
-    "eslint": "^9.18.0",
+    "eslint": "^9.19.0",
     "jsdom": "^25.0.1",
     "msw": "^2.7.0",
     "postcss": "^8.5.1",
@@ -53,7 +53,7 @@
     "unplugin-vue-components": "^0.28.0",
     "vite": "^5.4.14",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vitest": "^2.1.8",
+    "vitest": "^2.1.9",
     "vue-tsc": "^2.2.0"
   },
   "browserslist": [
@@ -65,9 +65,9 @@
     "workerDirectory": "public"
   },
   "optionalDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.1"
+    "lint-staged": "^15.4.3"
   }
 }
