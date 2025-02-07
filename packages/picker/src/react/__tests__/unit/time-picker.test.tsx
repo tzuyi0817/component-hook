@@ -47,7 +47,7 @@ describe('React Time Picker Component', () => {
 
     expect(screen.queryByText('15')).not.toBeInTheDocument();
     expect(screen.queryByText('19')).not.toBeInTheDocument();
-    expect(screen.queryByText('30')).toBeInTheDocument();
+    expect(screen.getByText('30')).toBeInTheDocument();
   });
 
   it('render with label formatter', () => {
