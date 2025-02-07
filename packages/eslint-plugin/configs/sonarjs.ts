@@ -14,7 +14,6 @@ export const sonarjsConfigs: Linter.Config[] = [
     rules: {
       ...pluginSonarjs.configs.recommended.rules,
       'sonarjs/no-commented-code': 'warn',
-      'sonarjs/no-vue-bypass-sanitization': 'warn',
     },
     settings,
   },
