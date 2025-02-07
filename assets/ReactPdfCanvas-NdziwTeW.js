@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-BN74P8cd.js";import{d as n,c as a,u as e,o as r}from"./index-B1r0L5VB.js";import"./Demo-BeZ_Oe9p.js";import"./index-Dj3RLNas.js";const s=`import { useState, type ChangeEvent } from 'react';
+import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-tckkVX0j.js";import{d as a,c as n,u as e,o as r}from"./index-BuFIJLS7.js";import"./Demo-CAN2sQ6g.js";import"./index-BGUhIpJK.js";const s=`import { useState, type ChangeEvent } from 'react';
 import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
 
 export function DrawPdf() {
@@ -374,4 +374,4 @@ export function ManualPdf() {
     </div>
   );
 }
-`,v=n({__name:"ReactPdfCanvas",setup(d){return(u,i)=>(r(),a(t,{description:"Rendering PDF documents onto a canvas with react component.","draw-source":e(s),"draw-playground":"675f9a7a08325367664ebf7a","encrypted-source":e(o),"encrypted-playground":"675f9e9b4b3b90d00991becc","multiple-source":e(l),"multiple-playground":"675fbbb198c7cde44e724bae","drop-source":e(c),"drop-playground":"675fbf06bf0c4e6c39359d60","manual-source":e(p),"manual-playground":"675fbfdcbf0c4e6c39359d7d",language:"tsx"},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source"]))}});export{v as default};
+`,v=a({__name:"ReactPdfCanvas",setup(d){return(u,i)=>(r(),n(t,{"front-end-frame":"react","draw-source":e(s),"draw-playground":"675f9a7a08325367664ebf7a","encrypted-source":e(o),"encrypted-playground":"675f9e9b4b3b90d00991becc","multiple-source":e(l),"multiple-playground":"675fbbb198c7cde44e724bae","drop-source":e(c),"drop-playground":"675fbf06bf0c4e6c39359d60","manual-source":e(p),"manual-playground":"675fbfdcbf0c4e6c39359d7d",language:"tsx"},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source"]))}});export{v as default};

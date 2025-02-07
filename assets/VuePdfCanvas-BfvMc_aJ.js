@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-BN74P8cd.js";import{d as t,c as a,u as n,o as s}from"./index-B1r0L5VB.js";import"./Demo-BeZ_Oe9p.js";import"./index-Dj3RLNas.js";const l=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-tckkVX0j.js";import{d as t,c as a,u as n,o as s}from"./index-BuFIJLS7.js";import"./Demo-CAN2sQ6g.js";import"./index-BGUhIpJK.js";const l=`<script setup lang="ts">
 import { ref } from 'vue';
 import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
 
@@ -385,4 +385,4 @@ function addText() {
     </div>
   </div>
 </template>
-`,P=t({__name:"VuePdfCanvas",setup(i){return(u,f)=>(s(),a(e,{description:"Rendering PDF documents onto a canvas with vue3 component.","draw-source":n(l),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(r),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(o),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(c),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(p),"manual-playground":"669646c68ae98c93b96a2eb2"},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source"]))}});export{P as default};
+`,P=t({__name:"VuePdfCanvas",setup(i){return(u,f)=>(s(),a(e,{"front-end-frame":"vue3","draw-source":n(l),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(r),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(o),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(c),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(p),"manual-playground":"669646c68ae98c93b96a2eb2"},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source"]))}});export{P as default};
