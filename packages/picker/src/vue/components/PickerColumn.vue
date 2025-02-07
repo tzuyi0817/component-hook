@@ -66,7 +66,7 @@ defineExpose({ scrollToSelected });
     >
       <li
         v-for="(option, index) in column"
-        :key="option[fields.value]"
+        :key="option?.[fields.value]"
         class="chook-picker-column-item"
         role="button"
         tabindex="0"
@@ -78,7 +78,7 @@ defineExpose({ scrollToSelected });
             transform: `rotate3d(1, 0, 0, ${(index * OPTION_HEIGHT + offsetY) * OPTION_ROTATE_FACTOR}deg)`,
           }"
         >
-          {{ option[fields.label] }}
+          {{ option?.[fields.label] }}
         </p>
       </li>
     </ul>

@@ -1,10 +1,19 @@
 # Changelog
 
+## [1.0.1](https://github.com/tzuyi0817/component-hook/compare/v1.0.0...v1.0.1) (2025-02-07)
+
+### Bug Fixes
+
+- **picker:** pass in empty `columns` to prevent foolproofing ([3e5f077](https://github.com/tzuyi0817/component-hook/commit/3e5f0776e342b38c141967a8be6a8f5b74e143f0))
+
 ## [1.0.0](https://github.com/tzuyi0817/component-hook/compare/v0.2.5...v1.0.0) (2025-02-06)
+
+### Breaking Changes
+
+- **picker:** adjusted the usage of components, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/component/vue-picker)
 
 ### Features
 
-- **picker:** adjusted the usage of components, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/component/vue-picker)
 - **picker:** add `date-picker` and `time-picker` component
 
 ## [0.2.5](https://github.com/tzuyi0817/component-hook/compare/v0.2.4...v0.2.5) (2025-01-15)
