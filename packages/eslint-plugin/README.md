@@ -1,6 +1,6 @@
 # @component-hook/eslint-plugin
 
-A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier.
+A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `React` and `Prettier`.
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/eslint-plugin">
@@ -13,21 +13,26 @@ A opinionated ESLint config preset for JavaScript, TypeScript, Vue, and Prettier
 
 ## Features
 
-- Support `TypeScript`, `Vue` and `React` out-of-box.
-- Built-in `Markdown`, `Prettier`, `Sonarjs`, `Security`, `Playwright` and `Testing-library` configs can be referenced for respective needs.
-- Format with Prettier.
+- Support `TypeScript`, `Vue3` and `React` out-of-box.
+- Format with `Prettier`.
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
+- Various built-in configurations can be referenced according to respective needs.
 - Reasonable defaults, best practices, and just a few lines of configuration.
+
+## Documentation
+
+For detailed documentation and usage examples, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/eslint/plugin).
 
 ## Installation
 
 ```bash
+# Using npm
 $ npm install @component-hook/eslint-plugin --save-dev
 
-# or use yarn
+# Using yarn
 $ yarn add @component-hook/eslint-plugin --dev
 
-# or use pnpm
+# Using pnpm
 $ pnpm install @component-hook/eslint-plugin --save-dev
 ```
 

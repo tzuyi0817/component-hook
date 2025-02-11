@@ -18,7 +18,6 @@ export const markdownConfigs: Linter.Config[] = pluginMarkdown.configs.recommend
       'no-unused-expressions': 'off',
       'no-unused-vars': 'off',
 
-      '@typescript-eslint/comma-dangle': 'off',
       '@typescript-eslint/consistent-type-imports': 'off',
       '@typescript-eslint/no-extraneous-class': 'off',
       '@typescript-eslint/no-namespace': 'off',
@@ -31,7 +30,8 @@ export const markdownConfigs: Linter.Config[] = pluginMarkdown.configs.recommend
       'import/no-default-export': 'off',
 
       'sonarjs/no-dead-store': 'off',
-      'sonarjs/sonar-no-unused-vars': 'off',
+      'sonarjs/unused-import': 'off',
+      'sonarjs/no-unused-vars': 'off',
     };
   }
   return baseConfig;
