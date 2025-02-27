@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DatePicker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { DatePicker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const currentDate = ref<PickerSelectedValues>([2030, 8]);
+const currentDate = ref<number[]>([2030, 8]);
 </script>
 
 <template>

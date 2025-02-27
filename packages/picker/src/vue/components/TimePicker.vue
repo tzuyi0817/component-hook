@@ -2,12 +2,12 @@
 import { computed, ref } from 'vue';
 import { generateOptions, getValidTime, formatTime, getDefaultTime } from '../../shared/utils/common';
 import { DEFAULT_TIME_TITLE, DEFAULT_TIME_COLUMNS } from '../../shared/constants';
-import type { TimePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
+import type { TimePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import Picker from './Picker.vue';
 
 interface Props {
   show: boolean;
-  modelValue?: PickerSelectedValues;
+  modelValue?: number[];
   title?: string;
   columnsType?: TimePickerColumnType[];
   minTime?: string;
@@ -22,8 +22,8 @@ interface Props {
 
 interface Emits {
   'update:show': [boolean];
-  'update:modelValue': [PickerSelectedValues];
-  confirm: [PickerSelectedValues];
+  'update:modelValue': [number[]];
+  confirm: [number[]];
   cancel: [];
   open: [];
   closed: [];
@@ -37,8 +37,8 @@ const props = withDefaults(defineProps<Props>(), {
   formatSecondLabel: formatTime,
 });
 const emits = defineEmits<Emits>();
-const selectedValues = ref<PickerSelectedValues>([]);
-const internalModelValue = ref<PickerSelectedValues>([]);
+const selectedValues = ref<number[]>([]);
+const internalModelValue = ref<number[]>([]);
 
 const isShowPicker = computed({
   get: () => props.show,
@@ -106,7 +106,7 @@ function getSelectedValue(type: TimePickerColumnType) {
   return getDefaultTime(formattedMinTime.value, formattedMaxTime.value, type);
 }
 
-function onConfirm(value: PickerSelectedValues) {
+function onConfirm(value: number[]) {
   emits('update:modelValue', value);
   internalModelValue.value = value;
   emits('confirm', value);

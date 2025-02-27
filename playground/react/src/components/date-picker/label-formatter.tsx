@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { DatePicker, type PickerSelectedValues, type DatePickerColumnType } from '@component-hook/picker/react';
+import { DatePicker, type DatePickerColumnType } from '@component-hook/picker/react';
 
 const columnsType: DatePickerColumnType[] = ['month', 'day', 'year'];
 
 export function LabelFormatterPicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([]);
+  const [pickerValues, setPickerValues] = useState<number[]>([]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: number[]) {
     setPickerValues(values);
   }
 

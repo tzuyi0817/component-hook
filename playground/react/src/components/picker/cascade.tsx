@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/react';
+import { Picker } from '@component-hook/picker/react';
 
 const columns = [
   {
@@ -72,9 +72,9 @@ const columns = [
 
 export function CascadePicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([]);
+  const [pickerValues, setPickerValues] = useState<string[]>([]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: string[]) {
     setPickerValues(values);
   }
 

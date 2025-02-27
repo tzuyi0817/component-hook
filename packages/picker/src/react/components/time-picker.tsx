@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 import { generateOptions, getValidTime, formatTime, getDefaultTime } from '../../shared/utils/common';
 import { DEFAULT_TIME_TITLE, DEFAULT_TIME_COLUMNS } from '../../shared/constants';
-import type { TimePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
+import type { TimePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import { Picker } from './picker';
 
 interface Props {
   show: boolean;
-  values?: PickerSelectedValues;
+  values?: number[];
   title?: string;
   columnsType?: TimePickerColumnType[];
   minTime?: string;
@@ -17,7 +17,7 @@ interface Props {
   formatHourLabel?: PickerFormatLabel;
   formatMinuteLabel?: PickerFormatLabel;
   formatSecondLabel?: PickerFormatLabel;
-  onConfirm?: (values: PickerSelectedValues) => void;
+  onConfirm?: (values: number[]) => void;
   onClose: () => void;
   onCancel?: () => void;
   onOpen?: () => void;
@@ -43,8 +43,8 @@ export function TimePicker({
   onOpen,
   onClosed,
 }: Props) {
-  const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
-  const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
+  const [internalValues, setInternalValues] = useState<number[]>([]);
+  const [selectedValues, setSelectedValues] = useState<number[]>([]);
 
   const formattedMinTime = useMemo(() => {
     return getValidTime(minTime ?? '') ?? { hour: 0, minute: 0, second: 0 };
@@ -106,7 +106,7 @@ export function TimePicker({
     return getDefaultTime(formattedMinTime, formattedMaxTime, type);
   }
 
-  function handleConfirm(confirmValues: PickerSelectedValues) {
+  function handleConfirm(confirmValues: number[]) {
     setInternalValues(confirmValues);
     onClose();
     onConfirm?.(confirmValues);

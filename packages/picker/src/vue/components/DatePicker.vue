@@ -11,12 +11,12 @@ import {
   getDefaultDate,
 } from '../../shared/utils/common';
 import { DEFAULT_DATE_COLUMNS, DEFAULT_DATE_TITLE } from '../../shared/constants';
-import type { DatePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
+import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import Picker from './Picker.vue';
 
 interface Props {
   show: boolean;
-  modelValue?: PickerSelectedValues;
+  modelValue?: number[];
   title?: string;
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
@@ -31,8 +31,8 @@ interface Props {
 
 interface Emits {
   'update:show': [boolean];
-  'update:modelValue': [PickerSelectedValues];
-  confirm: [PickerSelectedValues];
+  'update:modelValue': [number[]];
+  confirm: [number[]];
   cancel: [];
   open: [];
   closed: [];
@@ -48,8 +48,8 @@ const props = withDefaults(defineProps<Props>(), {
   formatDayLabel: formatLabel,
 });
 const emits = defineEmits<Emits>();
-const selectedValues = ref<PickerSelectedValues>([]);
-const internalModelValue = ref<PickerSelectedValues>([]);
+const selectedValues = ref<number[]>([]);
+const internalModelValue = ref<number[]>([]);
 
 const isShowPicker = computed({
   get: () => props.show,
@@ -103,7 +103,7 @@ function getSelectedValue(type: DatePickerColumnType) {
   return getDefaultDate(props.minDate, props.maxDate, type);
 }
 
-function onConfirm(value: PickerSelectedValues) {
+function onConfirm(value: number[]) {
   emits('update:modelValue', value);
   internalModelValue.value = value;
   emits('confirm', value);

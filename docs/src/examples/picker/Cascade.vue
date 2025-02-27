@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { Picker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const pickerValues = ref<PickerSelectedValues>([]);
+const pickerValues = ref<string[]>([]);
 const columns = [
   {
     label: 'Electronics',

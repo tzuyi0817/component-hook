@@ -10,12 +10,12 @@ import {
   getDefaultDate,
 } from '../../shared/utils/common';
 import { DEFAULT_DATE_COLUMNS, DEFAULT_DATE_TITLE } from '../../shared/constants';
-import type { DatePickerColumnType, PickerSelectedValues, PickerFormatLabel } from '../../shared/types';
+import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import { Picker } from './picker';
 
 interface Props {
   show: boolean;
-  values?: PickerSelectedValues;
+  values?: number[];
   title?: string;
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
@@ -26,7 +26,7 @@ interface Props {
   formatYearLabel?: PickerFormatLabel;
   formatMonthLabel?: PickerFormatLabel;
   formatDayLabel?: PickerFormatLabel;
-  onConfirm?: (values: PickerSelectedValues) => void;
+  onConfirm?: (values: number[]) => void;
   onClose: () => void;
   onCancel?: () => void;
   onOpen?: () => void;
@@ -52,8 +52,8 @@ export function DatePicker({
   onOpen,
   onClosed,
 }: Props) {
-  const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
-  const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
+  const [internalValues, setInternalValues] = useState<number[]>([]);
+  const [selectedValues, setSelectedValues] = useState<number[]>([]);
 
   const columns = useMemo(() => {
     const generateOptionsMap = {
@@ -100,7 +100,7 @@ export function DatePicker({
     return getDefaultDate(minDate, maxDate, type);
   }
 
-  function handleConfirm(confirmValues: PickerSelectedValues) {
+  function handleConfirm(confirmValues: number[]) {
     setInternalValues(confirmValues);
     onClose();
     onConfirm?.(confirmValues);

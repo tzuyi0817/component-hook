@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { computed, nextTick, ref, watchEffect } from 'vue';
+<script setup lang="ts" generic="T extends string | number">
+import { computed, nextTick, ref, watchEffect, type Ref, type ComponentPublicInstance } from 'vue';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -7,17 +7,17 @@ import {
   resetChildrenSelected,
   getIndexByValue,
 } from '../../shared/utils/common';
-import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
+import type { PickerFields, PickerColumn } from '../../shared/types';
 import Popup from './Popup.vue';
 import Column from './PickerColumn.vue';
 import '../../shared/index.scss';
 import '../transition.scss';
 
-export interface Props {
+export interface Props<T> {
   show: boolean;
-  modelValue?: PickerSelectedValues;
+  modelValue?: T[];
   title?: string;
-  columns: PickerColumn | PickerColumn[];
+  columns: PickerColumn<T> | PickerColumn<T>[];
   linkage?: boolean;
   loading?: boolean;
   teleport?: string | Element;
@@ -27,23 +27,27 @@ export interface Props {
 }
 
 interface Emits {
-  'update:show': [boolean];
-  'update:modelValue': [PickerSelectedValues];
-  confirm: [PickerSelectedValues];
+  'update:show': [show: boolean];
+  'update:modelValue': [values: T[]];
+  confirm: [values: T[]];
   cancel: [];
   open: [];
   closed: [];
 }
 
-const props = withDefaults(defineProps<Props>(), {
+interface ColumnExpose {
+  scrollToSelected(index?: number, behavior?: ScrollBehavior): void;
+}
+
+const props = withDefaults(defineProps<Props<T>>(), {
   confirmButtonText: 'Confirm',
   cancelButtonText: 'Cancel',
 });
 const emits = defineEmits<Emits>();
-const internalModelValue = ref<PickerSelectedValues>([]);
-const selectedValues = ref<PickerSelectedValues>([]);
+const internalModelValue = ref<T[]>([]) as Ref<T[]>;
+const selectedValues = ref<T[]>([]) as Ref<T[]>;
 const selectedIndices = ref<number[]>([]);
-const columnsRef = ref<InstanceType<typeof Column>[] | null>(null);
+const columnsRef = ref<ComponentPublicInstance<typeof Column<T> & ColumnExpose>[] | null>(null);
 
 const isShowPicker = computed({
   get: () => props.show,
@@ -57,8 +61,8 @@ const columnsType = computed(() => getColumnsType(props.columns, fields.value));
 const currentColumns = computed(() => {
   const { columns } = props;
 
-  if (columnsType.value === 'single') return [columns] as PickerColumn[];
-  if (columnsType.value === 'multiple') return columns as PickerColumn[];
+  if (columnsType.value === 'single') return [columns] as PickerColumn<T>[];
+  if (columnsType.value === 'multiple') return columns as PickerColumn<T>[];
 
   return formatColumnsToCascade(columns, selectedValues.value, fields.value);
 });

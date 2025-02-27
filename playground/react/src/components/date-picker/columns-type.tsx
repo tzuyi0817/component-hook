@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { DatePicker, type PickerSelectedValues, type DatePickerColumnType } from '@component-hook/picker/react';
+import { DatePicker, type DatePickerColumnType } from '@component-hook/picker/react';
 
 const columnsType: DatePickerColumnType[] = ['year', 'month'];
 
 export function ColumnsTypePicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([2030, 8]);
+  const [pickerValues, setPickerValues] = useState<number[]>([2030, 8]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: number[]) {
     setPickerValues(values);
   }
 

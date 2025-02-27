@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DatePicker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { DatePicker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const currentDate = ref<PickerSelectedValues>([]);
+const currentDate = ref<number[]>([]);
 
 const MONTHS_MAP: Record<string, string> = {
   1: 'Jan',

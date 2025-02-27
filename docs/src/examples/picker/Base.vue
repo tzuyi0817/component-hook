@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { Picker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const pickerValues = ref<PickerSelectedValues>([]);
+const pickerValues = ref<number[]>([]);
 const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value: index }));
 
-function onConfirm(value: PickerSelectedValues) {
+function onConfirm(value: number[]) {
   pickerValues.value = value;
 }
 

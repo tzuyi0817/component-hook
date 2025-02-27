@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { TimePicker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { TimePicker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const currentTime = ref<PickerSelectedValues>([]);
+const currentTime = ref<number[]>([]);
 
 const HOURS_MAP: Record<string, string> = {
   0: '12 AM',

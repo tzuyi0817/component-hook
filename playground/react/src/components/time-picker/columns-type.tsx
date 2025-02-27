@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { TimePicker, type PickerSelectedValues, type TimePickerColumnType } from '@component-hook/picker/react';
+import { TimePicker, type TimePickerColumnType } from '@component-hook/picker/react';
 
 const columnsType: TimePickerColumnType[] = ['hour', 'minute'];
 
 export function ColumnsTypePicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([12, 50]);
+  const [pickerValues, setPickerValues] = useState<number[]>([12, 50]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: number[]) {
     setPickerValues(values);
   }
 

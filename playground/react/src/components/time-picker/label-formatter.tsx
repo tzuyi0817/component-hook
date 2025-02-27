@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { TimePicker, type PickerSelectedValues } from '@component-hook/picker/react';
+import { TimePicker } from '@component-hook/picker/react';
 
 export function LabelFormatterPicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([]);
+  const [pickerValues, setPickerValues] = useState<number[]>([]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: number[]) {
     setPickerValues(values);
   }
 

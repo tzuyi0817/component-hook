@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/react';
+import { Picker } from '@component-hook/picker/react';
 
 const columns = [
   { langType: 0, code: 'en', original: 'English' },
@@ -11,9 +11,9 @@ const columns = [
 
 export function CustomizeColumnPicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([]);
+  const [pickerValues, setPickerValues] = useState<Array<string | number>>([]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: Array<string | number>) {
     setPickerValues(values);
   }
 

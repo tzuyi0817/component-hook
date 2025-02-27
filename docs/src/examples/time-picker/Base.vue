@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { TimePicker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { TimePicker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const currentTime = ref<PickerSelectedValues>([]);
+const currentTime = ref<number[]>([]);
 
-function onConfirm(value: PickerSelectedValues) {
+function onConfirm(value: number[]) {
   currentTime.value = value;
 }
 

@@ -1,7 +1,6 @@
 import type {
   PickerColumn,
   PickerOption,
-  PickerSelectedValues,
   PickerFields,
   PickerFormatLabel,
   DatePickerColumnType,
@@ -10,7 +9,7 @@ import type {
 } from '../types';
 import { isArray } from './check-type';
 
-export function getColumnsType(columns: PickerColumn | PickerColumn[], fields: Required<PickerFields>) {
+export function getColumnsType<T>(columns: PickerColumn<T> | PickerColumn<T>[], fields: Required<PickerFields>) {
   if (isArrayPickerColumn(columns)) return 'multiple';
   const [column] = columns;
 
@@ -26,14 +25,14 @@ export function extendFields(fields?: PickerFields) {
   };
 }
 
-export function formatColumnsToCascade(
-  columns: PickerColumn | PickerColumn[],
-  selectedValues: PickerSelectedValues,
+export function formatColumnsToCascade<T>(
+  columns: PickerColumn<T> | PickerColumn<T>[],
+  selectedValues: T[],
   fields: Required<PickerFields>,
 ) {
   if (isArrayPickerColumn(columns)) return [];
-  const result: PickerColumn[] = [];
-  let column = columns as PickerColumn | undefined;
+  const result: PickerColumn<T>[] = [];
+  let column = columns as PickerColumn<T> | undefined;
   let columnIndex = 0;
 
   while (column) {
@@ -48,10 +47,10 @@ export function formatColumnsToCascade(
   return result;
 }
 
-export function resetChildrenSelected(
-  option: PickerOption | undefined,
+export function resetChildrenSelected<T>(
+  option: PickerOption<T> | undefined,
   columnIndex: number,
-  selectedValues: PickerSelectedValues,
+  selectedValues: T[],
   fields: Required<PickerFields>,
 ) {
   const result = [...selectedValues];
@@ -68,11 +67,11 @@ export function resetChildrenSelected(
   return result;
 }
 
-export function getIndexByValue(column: PickerColumn, value: PickerOption['value'], fields: Required<PickerFields>) {
+export function getIndexByValue<T>(column: PickerColumn<T>, value: T, fields: Required<PickerFields>) {
   return column.findIndex(option => option?.[fields.value] === value);
 }
 
-function isArrayPickerColumn(columns: PickerColumn | PickerColumn[]): columns is PickerColumn[] {
+function isArrayPickerColumn<T>(columns: PickerColumn<T> | PickerColumn<T>[]): columns is PickerColumn<T>[] {
   const [column] = columns;
 
   return isArray(column);
@@ -89,7 +88,7 @@ export function getDirection(x: number, y: number) {
 }
 
 export function generateOptions(min: number, max: number, formatter: PickerFormatLabel) {
-  const options: PickerColumn = [];
+  const options: PickerColumn<number> = [];
 
   for (let index = min; index <= max; index++) {
     const label = formatter(`${index}`);

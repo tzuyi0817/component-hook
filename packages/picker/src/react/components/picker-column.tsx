@@ -1,10 +1,11 @@
-import { forwardRef, useImperativeHandle } from 'react';
+import { useImperativeHandle, type ForwardedRef } from 'react';
+import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import { OPTION_HEIGHT, OPTION_ROTATE_FACTOR } from '../../shared/constants';
 import { useScrollSnap } from '../hooks/use-scroll-snap';
 import type { PickerColumn, PickerFields } from '../../shared/types';
 
-type Props = {
-  column: PickerColumn;
+type Props<T> = {
+  column: PickerColumn<T>;
   fields: Required<PickerFields>;
   selectedIndex?: number;
   onChange: (index: number) => void;
@@ -14,7 +15,7 @@ export type ColumnRef = {
   scrollToSelected: (index?: number, behavior?: ScrollBehavior) => void;
 };
 
-export const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIndex = 0, onChange }, ref) => {
+function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Props<T>, ref: ForwardedRef<ColumnRef>) {
   const { offsetY, transitionDuration, onPointerDown, onPointerMove, onPointerUp, stopInertialSliding, scrollToIndex } =
     useScrollSnap({
       column,
@@ -88,6 +89,8 @@ export const Column = forwardRef<ColumnRef, Props>(({ column, fields, selectedIn
       </ul>
     </div>
   );
-});
+}
+
+export const Column = fixedForwardRef(ColumnComponent);
 
 Column.displayName = 'Column';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/react';
+import { Picker } from '@component-hook/picker/react';
 
 const columns = Array.from({ length: 2 }, () =>
   Array.from({ length: 50 }, (_, index) => ({ label: index, value: index })),
@@ -7,9 +7,9 @@ const columns = Array.from({ length: 2 }, () =>
 
 export function MultiColumnPicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([2, 20]);
+  const [pickerValues, setPickerValues] = useState<number[]>([2, 20]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: number[]) {
     setPickerValues(values);
   }
 

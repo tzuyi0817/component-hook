@@ -6,17 +6,17 @@ import {
   resetChildrenSelected,
   getIndexByValue,
 } from '../../shared/utils/common';
-import type { PickerFields, PickerColumn, PickerSelectedValues } from '../../shared/types';
+import type { PickerFields, PickerColumn } from '../../shared/types';
 import { Popup } from './popup';
 import { Columns, type ColumnsRef } from './picker-columns';
 import '../../shared/index.scss';
 import '../transition.scss';
 
-export interface Props {
+export interface Props<T = string | number> {
   show: boolean;
-  values?: PickerSelectedValues;
+  values?: T[];
   title?: string;
-  columns: PickerColumn | PickerColumn[];
+  columns: PickerColumn<T> | PickerColumn<T>[];
   linkage?: boolean;
   loading?: boolean;
   loadingSlot?: ReactNode;
@@ -25,15 +25,15 @@ export interface Props {
   confirmButtonText?: string;
   cancelButtonText?: string;
   columnsFieldNames?: PickerFields;
-  onConfirm?: (values: PickerSelectedValues) => void;
+  onConfirm?: (values: T[]) => void;
   onClose: () => void;
-  onChange?: (values: PickerSelectedValues) => void;
+  onChange?: (values: T[]) => void;
   onCancel?: () => void;
   onOpen?: () => void;
   onClosed?: () => void;
 }
 
-export function Picker({
+export function Picker<T>({
   show,
   values,
   title,
@@ -52,17 +52,17 @@ export function Picker({
   onCancel,
   onOpen,
   onClosed,
-}: Props) {
-  const [internalValues, setInternalValues] = useState<PickerSelectedValues>([]);
-  const [selectedValues, setSelectedValues] = useState<PickerSelectedValues>([]);
+}: Props<T>) {
+  const [internalValues, setInternalValues] = useState<T[]>([]);
+  const [selectedValues, setSelectedValues] = useState<T[]>([]);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
   const columnsRef = useRef<ColumnsRef>(null);
   const fields = extendFields(columnsFieldNames);
   const columnsType = getColumnsType(columns, fields);
 
   const currentColumns = useMemo(() => {
-    if (columnsType === 'single') return [columns] as PickerColumn[];
-    if (columnsType === 'multiple') return columns as PickerColumn[];
+    if (columnsType === 'single') return [columns] as PickerColumn<T>[];
+    if (columnsType === 'multiple') return columns as PickerColumn<T>[];
 
     return formatColumnsToCascade(columns, selectedValues, fields);
   }, [columns, columnsType, selectedValues, fields]);
@@ -128,7 +128,7 @@ export function Picker({
     }
   }
 
-  function handleChangeValues(newValues: PickerSelectedValues) {
+  function handleChangeValues(newValues: T[]) {
     onChange?.(newValues);
 
     if (!linkage) return;

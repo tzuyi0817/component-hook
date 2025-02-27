@@ -1,10 +1,11 @@
-import { useRef, forwardRef, useImperativeHandle } from 'react';
+import { useRef, useImperativeHandle, type ForwardedRef } from 'react';
+import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import type { PickerFields, PickerColumn } from '../../shared/types';
 import type { Props as PickerProps } from './picker';
 import { Column, type ColumnRef } from './picker-column';
 
-interface Props extends Pick<PickerProps, 'loading' | 'loadingSlot' | 'columns' | 'emptySlot'> {
-  currentColumns: PickerColumn[];
+interface Props<T> extends Pick<PickerProps<T>, 'loading' | 'loadingSlot' | 'columns' | 'emptySlot'> {
+  currentColumns: PickerColumn<T>[];
   fields: Required<PickerFields>;
   selectedIndices: number[];
   updateSelectedValueByIndex: (columnIndex: number, selectedIndex: number) => void;
@@ -14,7 +15,7 @@ export interface ColumnsRef {
   scrollColumnToSelected: (column: number, index: number) => void;
 }
 
-export const Columns = forwardRef<ColumnsRef, Props>((props, ref) => {
+function ColumnsComponent<T>(props: Props<T>, ref: ForwardedRef<ColumnsRef>) {
   const {
     loading,
     loadingSlot,
@@ -67,6 +68,8 @@ export const Columns = forwardRef<ColumnsRef, Props>((props, ref) => {
       <div className="chook-picker-mask-backdrop"></div>
     </div>
   );
-});
+}
+
+export const Columns = fixedForwardRef(ColumnsComponent);
 
 Columns.displayName = 'Columns';

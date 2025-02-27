@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { Picker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const pickerValues = ref<PickerSelectedValues>([2, 20]);
+const pickerValues = ref<number[]>([2, 20]);
 const columns = Array.from({ length: 2 }, () =>
   Array.from({ length: 50 }, (_, index) => ({ label: index, value: index })),
 );

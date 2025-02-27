@@ -1,7 +1,7 @@
-export interface PickerOption {
+export interface PickerOption<T> {
   label?: string | number;
-  value?: string | number;
-  children?: PickerColumn;
+  value?: T;
+  children?: PickerColumn<T>;
   [key: PropertyKey]: any;
 }
 
@@ -11,9 +11,9 @@ export interface PickerFields {
   children?: string;
 }
 
-export type PickerColumn = Array<PickerOption | undefined>;
+export type PickerColumn<T = string | number> = Array<PickerOption<T> | undefined>;
 
-export type PickerSelectedValues = Array<PickerOption['value']>;
+export type PickerSelectedValues<T = string | number> = Array<PickerOption<T>['value']>;
 
 export type PickerColumnsType = 'single' | 'multiple' | 'cascade';
 

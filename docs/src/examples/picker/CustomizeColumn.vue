@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { Picker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const pickerValues = ref<PickerSelectedValues>([]);
+const pickerValues = ref<Array<string | number>>([]);
 const columns = [
   { langType: 0, code: 'en', original: 'English' },
   { langType: 1, code: 'cn', original: '中文' },
@@ -12,7 +12,7 @@ const columns = [
   { langType: 4, code: 'kr', original: '한국어' },
 ];
 
-function onConfirm(values: PickerSelectedValues) {
+function onConfirm(values: Array<string | number>) {
   pickerValues.value = values;
 }
 </script>

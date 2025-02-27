@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { toRef } from 'vue';
 import { OPTION_HEIGHT, OPTION_ROTATE_FACTOR } from '../../shared/constants';
 import { useScrollSnap } from '../hooks/use-scroll-snap';
 import type { PickerColumn, PickerFields } from '../../shared/types';
 
-export interface Props {
-  column: PickerColumn;
+export interface Props<T> {
+  column: PickerColumn<T>;
   fields: Required<PickerFields>;
   selectedIndex?: number;
 }
@@ -14,7 +14,7 @@ interface Emits {
   change: [number];
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T>>(), {
   selectedIndex: 0,
 });
 const emits = defineEmits<Emits>();

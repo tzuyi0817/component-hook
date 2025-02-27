@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { TimePicker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { TimePicker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const currentTime = ref<PickerSelectedValues>([12, 50]);
+const currentTime = ref<number[]>([12, 50]);
 </script>
 
 <template>
