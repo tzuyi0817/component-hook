@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "ESLint config for component hook",
   "license": "MIT",
-  "packageManager": "pnpm@9.15.6",
+  "packageManager": "pnpm@10.6.2",
   "type": "module",
   "author": "Tzuyi",
   "main": "./dist/index.js",
