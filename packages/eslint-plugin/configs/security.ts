@@ -1,4 +1,3 @@
-import type { Linter } from 'eslint';
 import { pluginSecurity } from '../plugins';
 
 export const securityConfig = {
@@ -10,4 +9,4 @@ export const securityConfig = {
     ...pluginSecurity.configs.recommended.rules,
     'security/detect-object-injection': 'off',
   },
-} as Linter.Config;
+};

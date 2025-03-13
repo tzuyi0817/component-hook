@@ -5,6 +5,7 @@ import { importConfigs } from './configs/import';
 import { unicornConfig } from './configs/unicorn';
 import { markdownConfigs } from './configs/markdown';
 import { regexpConfig } from './configs/regexp';
+import { deMorganConfig } from './configs/de-morgan';
 import { prettierConfig } from './configs/prettier';
 import { commentsConfigs } from './configs/comments';
 import { sonarjsConfigs } from './configs/sonarjs';
@@ -28,6 +29,7 @@ const basicConfigs = [
   ...importConfigs,
   unicornConfig,
   regexpConfig,
+  deMorganConfig,
   {
     name: 'component-hook/globals',
     languageOptions: {
