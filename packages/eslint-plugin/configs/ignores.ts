@@ -9,7 +9,7 @@ export const ignores = {
     '**/package-lock.json',
     '**/bun.lockb',
 
-    '**/output',
+    'output',
     '**/coverage',
     '**/playwright-report',
     '**/temp',
