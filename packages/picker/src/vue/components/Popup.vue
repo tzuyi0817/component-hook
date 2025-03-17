@@ -7,7 +7,7 @@ interface Props {
 }
 
 interface Emits {
-  'update:modelValue': [boolean];
+  'update:modelValue': [isShow: boolean];
   open: [];
   close: [];
   closed: [];

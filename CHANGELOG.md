@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.2](https://github.com/tzuyi0817/component-hook/compare/v1.0.1...v1.0.2) (2025-03-17)
+
+### Features
+
+- **picker:** automatic derivation `values` ​​type ([790cd83](https://github.com/tzuyi0817/component-hook/commit/790cd83e72e615edaef522bbafca1e09090a7029))
+- **eslint-plugin:** add `eslint-plugin-de-morgan` ([40905b1](https://github.com/tzuyi0817/component-hook/commit/40905b1ff5e09e813ce8bec6ad244bbe72100f48))
+- **eslint-plugin:** upgrade `eslint-plugin-unicorn` to v57 ([a1ca65a](https://github.com/tzuyi0817/component-hook/commit/a1ca65adbee754994ae86b3afb0a400ce9bee94d))
+- **eslint-plugin:** enable `unicorn/consistent-date-clone` and `unicorn/no-instanceof-builtins` ([f93439e](https://github.com/tzuyi0817/component-hook/commit/f93439edea30a96acda38afb5ea1b78285682dee))
+- **eslint-plugin:** upgrade `eslint-plugin-vue` to v10 ([7f1dff0](https://github.com/tzuyi0817/component-hook/commit/7f1dff0cdf9fef85dd6942937700e5a7b9d2a027))
+
 ## [1.0.1](https://github.com/tzuyi0817/component-hook/compare/v1.0.0...v1.0.1) (2025-02-07)
 
 ### Bug Fixes

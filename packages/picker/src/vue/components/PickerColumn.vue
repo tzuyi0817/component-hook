@@ -11,7 +11,7 @@ export interface Props<T> {
 }
 
 interface Emits {
-  change: [number];
+  change: [index: number];
 }
 
 const props = withDefaults(defineProps<Props<T>>(), {

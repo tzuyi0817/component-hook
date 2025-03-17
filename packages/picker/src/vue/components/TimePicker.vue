@@ -21,9 +21,9 @@ interface Props {
 }
 
 interface Emits {
-  'update:show': [boolean];
-  'update:modelValue': [number[]];
-  confirm: [number[]];
+  'update:show': [isShow: boolean];
+  'update:modelValue': [values: number[]];
+  confirm: [values: number[]];
   cancel: [];
   open: [];
   closed: [];

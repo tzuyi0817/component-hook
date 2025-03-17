@@ -44,13 +44,13 @@ $ pnpm install @component-hook/picker
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/vue';
+import { Picker } from '@component-hook/picker/vue';
 
 const isShowPicker = ref(false);
-const pickerValues = ref<PickerSelectedValues>([]);
+const pickerValues = ref<number[]>([]);
 const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value: index }));
 
-function onConfirm(value: PickerSelectedValues) {
+function onConfirm(value: number[]) {
   pickerValues.value = value;
 }
 
@@ -76,17 +76,17 @@ function onCancel() {
 
 ### React
 
-```jsx
+```tsx
 import { useState } from 'react';
-import { Picker, type PickerSelectedValues } from '@component-hook/picker/react';
+import { Picker } from '@component-hook/picker/react';
 
 const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value: index }));
 
 export function BasePicker() {
   const [showPicker, setShowPicker] = useState(false);
-  const [pickerValues, setPickerValues] = useState<PickerSelectedValues>([]);
+  const [pickerValues, setPickerValues] = useState<number[]>([]);
 
-  function onConfirm(values: PickerSelectedValues) {
+  function onConfirm(values: number[]) {
     setPickerValues(values);
   }
 
