@@ -2,14 +2,9 @@ import type { Linter } from 'eslint';
 import { pluginVue, vueParser, typescriptEslint } from '../plugins';
 import { rules as pluginTypescriptRules } from './typescript';
 
-const vueRules = {
-  ...pluginVue.configs.base.rules,
-  ...pluginVue.configs['vue3-essential'].rules,
-  ...pluginVue.configs['vue3-strongly-recommended'].rules,
-  ...pluginVue.configs['vue3-recommended'].rules,
-};
-
-delete vueRules['vue/component-tags-order'];
+const recommendedRules = pluginVue.configs['flat/recommended']
+  .map(config => config.rules)
+  .reduce((acc, rules) => ({ ...acc, ...rules }), {});
 
 const rules = {
   'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
@@ -66,6 +61,7 @@ export const vueConfigs = [
   ...eslintConfigTypescript,
   {
     name: 'component-hook/vue/globals',
+    files: ['**/*.vue'],
     languageOptions: {
       globals: {
         defineProps: 'readonly',
@@ -103,7 +99,7 @@ export const vueConfigs = [
     },
     processor: pluginVue.processors['.vue'],
     rules: {
-      ...vueRules,
+      ...recommendedRules,
       ...rules,
     },
   },

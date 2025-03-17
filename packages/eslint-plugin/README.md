@@ -92,7 +92,7 @@ export default vuePreset;
 | vue                     | `Linter.Config[]` | `eslint-plugin-vue`, `typescript-eslint`                                                                                                                                       |
 | react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`                                                               |
 | markdown                | `Linter.Config[]` | `eslint-plugin-markdown/recommended`                                                                                                                                           |
-| prettier                | `Linter.Config`   | `eslint-plugin-prettier/recommended`, `eslint-config-prettier`                                                                                                                 |
+| prettier                | `Linter.Config`   | `eslint-plugin-prettier/recommended`                                                                                                                                           |
 | sonarjs                 | `Linter.Config[]` | `eslint-plugin-sonarjs/recommended`                                                                                                                                            |
 | security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                                                                           |
 | playwright              | `Linter.Config`   | `eslint-plugin-playwright/flat/recommended`                                                                                                                                    |
@@ -112,7 +112,6 @@ export default vuePreset;
 - [eslint-plugin-regexp/flat/recommended](https://github.com/ota-meshi/eslint-plugin-regexp/blob/master/lib/configs/flat/recommended.ts)
 - [eslint-plugin-de-morgan](https://github.com/azat-io/eslint-plugin-de-morgan/blob/main/index.ts)
 - [eslint-plugin-prettier/recommended](https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js)
-- [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier/blob/main/index.js)
 - [eslint-plugin-react/recommended](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/configs/recommended.js)
 - [eslint-plugin-react-hooks/recommended](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js)
 - [eslint-plugin-jsx-a11y/recommended](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js)

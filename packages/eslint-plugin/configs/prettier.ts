@@ -1,5 +1,9 @@
 import type { Linter } from 'eslint';
-import { pluginPrettier, configPrettier, pluginPrettierRecommended } from '../plugins';
+import { pluginPrettier, pluginPrettierRecommended } from '../plugins';
+
+const rules = { ...pluginPrettierRecommended.rules };
+
+delete rules['vue/html-self-closing'];
 
 export const prettierConfig: Linter.Config = {
   name: 'component-hook/prettier',
@@ -7,8 +11,7 @@ export const prettierConfig: Linter.Config = {
     prettier: pluginPrettier,
   },
   rules: {
-    ...configPrettier.rules,
-    ...pluginPrettierRecommended.rules,
+    ...rules,
     'prettier/prettier': 'warn',
   },
 };
