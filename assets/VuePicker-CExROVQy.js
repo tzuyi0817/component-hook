@@ -1,4 +1,4 @@
-import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-Clz1NXua.js";import{d as o,c as l,u as e,o as t}from"./index-yVymKtdh.js";import"./Demo-9ybkXapU.js";import"./index-BGUhIpJK.js";import"./css-variables-Cbop4d-E.js";const c=`<script setup lang="ts">
+import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-BH95g5m5.js";import{d as o,c as l,u as e,o as t}from"./index-Bghl88EY.js";import"./Demo-D4dOmole.js";import"./index-C4pcwCsx.js";import"./css-variables-Ds99Jer8.js";const c=`<script setup lang="ts">
 import { ref } from 'vue';
 import { Picker } from '@component-hook/picker/vue';
 
