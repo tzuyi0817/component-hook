@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3](https://github.com/tzuyi0817/component-hook/compare/v1.0.2...v1.0.3) (2025-03-24)
+
+### Bug Fixes
+
+- **eslint-plugin:** cannot find module `eslint-config-prettier` ([942de76](https://github.com/tzuyi0817/component-hook/commit/942de76a9db9fc8184d1f0168e78498d00d920d9))
+
 ## [1.0.2](https://github.com/tzuyi0817/component-hook/compare/v1.0.1...v1.0.2) (2025-03-17)
 
 ### Features
