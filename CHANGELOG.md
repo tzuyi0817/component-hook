@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/tzuyi0817/component-hook/compare/v1.0.3...v1.0.4) (2025-04-05)
+
+### Bug Fixes
+
+- **picker:** adjust header layout ([0ebc1de](https://github.com/tzuyi0817/component-hook/commit/0ebc1de29fdcd3886e58b57a998d203b2f2622de))
+- **pdf-canvas:** drop `dataTransfer` get error data ([0ebc1de](https://github.com/tzuyi0817/component-hook/commit/0ebc1de29fdcd3886e58b57a998d203b2f2622de))
+
 ## [1.0.3](https://github.com/tzuyi0817/component-hook/compare/v1.0.2...v1.0.3) (2025-03-24)
 
 ### Bug Fixes
