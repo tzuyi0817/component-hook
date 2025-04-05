@@ -1,1 +1,0 @@
-import{a as o}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-BnvprdWz.js";import{u as s}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-BnvprdWz.js";import"./Demo-AbRdDY42.js";import"./index-BLvFaCAQ.js";import"./index-BzYJ7Siq.js";export{o as default,s as useFabric};

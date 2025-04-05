@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-BnvprdWz.js";import{d as t,c as a,u as n,o as s}from"./index-BLvFaCAQ.js";import"./Demo-AbRdDY42.js";import"./index-BzYJ7Siq.js";const l=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-n4Uf3r-k.js";import{d as t,c as a,u as n,o as s}from"./index-jIxeutaQ.js";import"./Demo-WzsE6naf.js";import"./index-BzYJ7Siq.js";const l=`<script setup lang="ts">
 import { ref } from 'vue';
 import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
 
@@ -262,13 +262,13 @@ async function uploadFile(event: Event) {
 function dragImage(event: DragEvent) {
   const target = event.target as HTMLImageElement;
 
-  event.dataTransfer?.setData('image', target.src);
+  event.dataTransfer?.setData('text/uri-list', target.src);
 }
 
 function dragText(event: DragEvent) {
   const target = event.target as HTMLParagraphElement;
 
-  event.dataTransfer?.setData('text', target.textContent ?? '');
+  event.dataTransfer?.setData('text/plain', target.textContent ?? '');
 }
 <\/script>
 

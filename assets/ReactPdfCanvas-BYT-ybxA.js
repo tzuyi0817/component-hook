@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-BnvprdWz.js";import{d as a,c as n,u as e,o as r}from"./index-BLvFaCAQ.js";import"./Demo-AbRdDY42.js";import"./index-BzYJ7Siq.js";const s=`import { useState, type ChangeEvent } from 'react';
+import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-n4Uf3r-k.js";import{d as a,c as n,u as e,o as r}from"./index-jIxeutaQ.js";import"./Demo-WzsE6naf.js";import"./index-BzYJ7Siq.js";const s=`import { useState, type ChangeEvent } from 'react';
 import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
 
 export function DrawPdf() {
@@ -260,13 +260,13 @@ export function DropPdf() {
   const dragImage = (event: DragEvent<HTMLImageElement>) => {
     const target = event.target as HTMLImageElement;
 
-    event.dataTransfer.setData('image', target.src);
+    event.dataTransfer.setData('text/uri-list', target.src);
   };
 
   const dragText = (event: DragEvent<HTMLParagraphElement>) => {
     const target = event.target as HTMLParagraphElement;
 
-    event.dataTransfer.setData('text', target.textContent || '');
+    event.dataTransfer.setData('text/plain', target.textContent || '');
   };
 
   return (
