@@ -76,12 +76,15 @@ function PdfCanvasComponent(
     if (!isDrop || !event.dataTransfer) return;
 
     const { dataTransfer, clientX, clientY } = event;
-    const text = dataTransfer.getData('text');
-    const imageSrc = dataTransfer.getData('image');
+    const text = dataTransfer.getData('text/plain');
+    const imageSrc = dataTransfer.getData('text/uri-list');
     const position = { left: clientX - 71, top: clientY - 55 };
 
-    if (imageSrc) addImage(imageSrc, position);
-    if (text) addText(text, position);
+    if (imageSrc) {
+      addImage(imageSrc, position);
+    } else if (text) {
+      addText(text, position);
+    }
   }
 
   function addImage(src: string, options?: TOptions<ImageProps>) {

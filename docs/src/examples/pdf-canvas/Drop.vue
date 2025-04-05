@@ -20,13 +20,13 @@ async function uploadFile(event: Event) {
 function dragImage(event: DragEvent) {
   const target = event.target as HTMLImageElement;
 
-  event.dataTransfer?.setData('image', target.src);
+  event.dataTransfer?.setData('text/uri-list', target.src);
 }
 
 function dragText(event: DragEvent) {
   const target = event.target as HTMLParagraphElement;
 
-  event.dataTransfer?.setData('text', target.textContent ?? '');
+  event.dataTransfer?.setData('text/plain', target.textContent ?? '');
 }
 </script>
 

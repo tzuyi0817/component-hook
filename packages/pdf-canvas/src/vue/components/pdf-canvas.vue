@@ -59,12 +59,15 @@ async function setPDF() {
 function dropImage(event: DragEvent) {
   if (!props.isDrop || !event.dataTransfer) return;
   const { dataTransfer, offsetX, offsetY } = event;
-  const text = dataTransfer.getData('text');
-  const imageSrc = dataTransfer.getData('image');
+  const text = dataTransfer.getData('text/plain');
+  const imageSrc = dataTransfer.getData('text/uri-list');
   const position = { left: offsetX - 71, top: offsetY - 55 };
 
-  if (imageSrc) addImage(imageSrc, position);
-  if (text) addText(text, position);
+  if (imageSrc) {
+    addImage(imageSrc, position);
+  } else if (text) {
+    addText(text, position);
+  }
 }
 
 function addImage(src: string, options?: TOptions<ImageProps>) {

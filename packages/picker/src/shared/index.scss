@@ -12,14 +12,15 @@
   --chook-picker-title-font-size: 1rem;
   --chook-picker-title-font-weight: 500;
   --chook-picker-title-color: #323233;
+  --chook-picker-title-padding: 0 1rem;
 
   --chook-picker-confirm-color: #1989fa;
   --chook-picker-confirm-font-size: 0.875rem;
-  --chook-picker-confirm-padding: 0 1rem;
+  --chook-picker-confirm-padding: 0 1rem 0 0;
 
   --chook-picker-cancel-color: #969799;
   --chook-picker-cancel-font-size: 0.875rem;
-  --chook-picker-cancel-padding: 0 1rem;
+  --chook-picker-cancel-padding: 0 0 0 1rem;
 
   --chook-picker-active-opacity: 0.6;
 
@@ -34,7 +35,8 @@
     #f2f2f2 100%
   );
 
-  --chook-picker-mask-backdrop: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4)),
+  --chook-picker-mask-backdrop:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4)),
     linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
 
   --chook-picker-column-label-color: #323233;
@@ -68,7 +70,8 @@
   }
 
   &-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
     justify-content: space-between;
     padding: var(--chook-picker-header-padding);
@@ -76,9 +79,15 @@
   }
 
   &-title {
+    grid-column: span 2;
+    text-align: center;
     font-size: var(--chook-picker-title-font-size);
     font-weight: var(--chook-picker-title-font-weight);
     color: var(--chook-picker-title-color);
+    padding: var(--chook-picker-title-padding);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     margin: 0;
   }
 
@@ -156,7 +165,11 @@ button.chook-picker-confirm {
   font-size: var(--chook-picker-confirm-font-size);
   background-color: transparent;
   padding: var(--chook-picker-confirm-padding);
+  text-align: right;
   border: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   &:active {
     opacity: var(--chook-picker-active-opacity);
@@ -173,7 +186,11 @@ button.chook-picker-cancel {
   font-size: var(--chook-picker-cancel-font-size);
   background-color: transparent;
   padding: var(--chook-picker-cancel-padding);
+  text-align: left;
   border: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 
   &:active {
     opacity: var(--chook-picker-active-opacity);

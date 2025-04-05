@@ -12,12 +12,13 @@
 | --chook-picker-title-font-size      | `1rem`                                                                                                                                                                |
 | --chook-picker-title-font-weight    | `500`                                                                                                                                                                 |
 | --chook-picker-title-color          | `#323233`                                                                                                                                                             |
+| --chook-picker-title-padding        | `0 1rem`                                                                                                                                                              |
 | --chook-picker-confirm-color        | `#1989fa`                                                                                                                                                             |
 | --chook-picker-confirm-font-size    | `0.875rem`                                                                                                                                                            |
-| --chook-picker-confirm-padding      | `0 1rem`                                                                                                                                                              |
+| --chook-picker-confirm-padding      | `0 1rem 0 0`                                                                                                                                                          |
 | --chook-picker-cancel-color         | `#969799`                                                                                                                                                             |
 | --chook-picker-cancel-font-size     | `0.875rem`                                                                                                                                                            |
-| --chook-picker-cancel-padding       | `0 1rem`                                                                                                                                                              |
+| --chook-picker-cancel-padding       | `0 0 0 1rem`                                                                                                                                                          |
 | --chook-picker-active-opacity       | `0.6`                                                                                                                                                                 |
 | --chook-picker-columns-margin       | `0 1rem`                                                                                                                                                              |
 | --chook-picker-columns-backdrop     | `linear-gradient(to bottom, #f2f2f2 0px, #f2f2f2 0.0625rem, transparent 0.0625rem, transparent calc(100% - 0.0625rem), #f2f2f2 calc(100% - 0.0625rem), #f2f2f2 100%)` |
