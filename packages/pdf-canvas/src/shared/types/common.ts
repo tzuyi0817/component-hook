@@ -1,4 +1,4 @@
-import type { ImageProps, TextProps, TOptions } from 'fabric';
+import type { ImageProps, TextProps, TOptions, FabricObjectProps } from 'fabric';
 import type { PDF } from './pdf';
 import type { CloseSvgOptions } from './fabric';
 
@@ -14,5 +14,8 @@ export interface ComponentProps {
   password?: string;
   dropTextOptions?: TOptions<TextProps>;
   dropImageOptions?: TOptions<ImageProps>;
+  selectionOptions?: TOptions<FabricObjectProps>;
   closeSvgOptions?: CloseSvgOptions;
+  manualReload?: boolean;
+  onDestroy?: (callback: () => void) => void;
 }

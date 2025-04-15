@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 
 async function uploadFile(event: Event) {
@@ -18,15 +17,21 @@ async function uploadFile(event: Event) {
 }
 
 function dragImage(event: DragEvent) {
-  const target = event.target as HTMLImageElement;
+  const { src, offsetHeight, offsetWidth } = event.target as HTMLImageElement;
+  const offsetX = event.offsetX / offsetWidth;
+  const offsetY = event.offsetY / offsetHeight;
 
-  event.dataTransfer?.setData('text/uri-list', target.src);
+  event.dataTransfer?.setData('text/uri-list', src);
+  event.dataTransfer?.setData('custom/offset', JSON.stringify({ offsetX, offsetY }));
 }
 
 function dragText(event: DragEvent) {
-  const target = event.target as HTMLParagraphElement;
+  const { textContent, offsetHeight, offsetWidth } = event.target as HTMLParagraphElement;
+  const offsetX = event.offsetX / offsetWidth;
+  const offsetY = event.offsetY / offsetHeight;
 
-  event.dataTransfer?.setData('text/plain', target.textContent ?? '');
+  event.dataTransfer?.setData('text/plain', textContent ?? '');
+  event.dataTransfer?.setData('custom/offset', JSON.stringify({ offsetX, offsetY }));
 }
 </script>
 

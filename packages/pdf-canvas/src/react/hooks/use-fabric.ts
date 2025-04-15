@@ -7,36 +7,38 @@ import {
   type TOptions,
   type ImageProps,
   type TextProps,
+  type FabricObjectProps,
 } from 'fabric';
 import {
+  loadFile as loadFileToCanvas,
   fabricMap,
   createFabricCanvas,
-  createPdfInfo,
-  createRenderTask,
   generateCloseFabric,
-  renderFabricCanvas,
-  drawFabricImage,
   renderFabricImage,
-  moveCloseFabric,
   scaleCloseFabric,
   scaleCornerFabric,
   clearActiveCanvas,
   deleteFabricCanvas,
+  setFabricOffset,
+  specifyPage as drawSpecifyPage,
 } from '../../shared/utils/fabric';
-import { printPDF, getPDFDocument } from '../../shared/utils/pdf-js';
 import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../../shared/configs';
 import type {
   SpecifyPageArgs,
   RenderImageArgs,
   CreateCloseFabricArgs,
-  SupportFileType,
   CloseSvgOptions,
+  FabricHookParams,
+  DropOffset,
+  CacheFabricImage,
+  CacheFabricText,
+  CacheFabricObject,
 } from '../../shared/types/fabric';
 
-export function useFabric(id = '') {
-  const pages = useRef(0);
+export function useFabric(params?: FabricHookParams & { selectionOptions?: TOptions<FabricObjectProps> }) {
+  const { id = '', selectionOptions, pointerDown, pointerMove, pointerUp } = params || {};
   const closeFabric = useRef<FabricObject | null>(null);
-  const selectedFabric = useRef<FabricObject | null>(null);
+  const selectedFabric = useRef<CacheFabricObject | null>(null);
   const canvasScale = useRef(1);
   const closeOptions = useRef<CloseSvgOptions>({ ...DEFAULT_CLOSE_OPTIONS });
 
@@ -44,72 +46,56 @@ export function useFabric(id = '') {
     if (!id || fabricMap.has(id)) return;
     const canvas = createFabricCanvas(id);
 
+    canvas.on('selection:created', event => {
+      if (event.selected.length <= 1) return;
+      const active = canvas.getActiveObject();
+
+      if (!active) return;
+
+      selectedFabric.current = active;
+
+      if (selectionOptions?.value) {
+        selectedFabric.current.set(selectionOptions.value);
+      }
+
+      selectedFabric.current._cornerSize = selectedFabric.current.cornerSize;
+      scaleFabric(canvasScale.current);
+    });
+
     canvas.on('selection:cleared', () => deleteCloseFabric(canvas));
+
+    if (pointerDown) canvas.on('mouse:down', pointerDown);
+    if (pointerMove) canvas.on('mouse:move', pointerMove);
+    if (pointerUp) canvas.on('mouse:up', pointerUp);
+
     return canvas;
   }
 
   function loadFile(file: File, password?: string) {
-    const fileType = file.type as SupportFileType;
-    const loadFileMap = {
-      'application/pdf': drawPDF,
-      'image/png': drawImage,
-      'image/jpeg': drawImage,
-    };
-
-    return loadFileMap[fileType]?.(file, password) ?? Promise.reject(new Error(`Unsupported ${fileType} file type.`));
+    return loadFileToCanvas(file, password, id);
   }
 
-  async function drawPDF(file: File, password?: string) {
-    const PDFBase64 = await printPDF(file);
-
-    if (!PDFBase64) return;
-    const PDF = createPdfInfo(file, PDFBase64);
-
-    try {
-      await specifyPage({ page: 1, PDFBase64, scale: 0.8, password });
-      return { ...PDF, pages: pages.current };
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  function specifyPage(specifyPageParams: SpecifyPageArgs) {
+    return drawSpecifyPage(specifyPageParams, id);
   }
 
-  async function specifyPage({ page, PDFBase64, scale, password }: SpecifyPageArgs) {
-    try {
-      const pdfDoc = await getPDFDocument(PDFBase64, password);
-      const pdfPage = await pdfDoc.getPage(page);
-      const { renderTask, canvas } = createRenderTask(pdfPage, scale);
-
-      pages.current = pdfDoc.numPages;
-
-      return renderTask.promise.then(() => renderCanvas(canvas));
-    } catch (error) {
-      return Promise.reject(error);
-    }
+  function renderImage({ url, scale = 0.5 }: RenderImageArgs) {
+    return renderFabricImage(id, { url, scale });
   }
 
-  function renderCanvas(canvasTemp: HTMLCanvasElement) {
-    renderFabricCanvas(id, canvasTemp);
-  }
-
-  async function drawImage(file: File) {
-    return await drawFabricImage(id, file);
-  }
-
-  async function renderImage({ url, scale = 0.5 }: RenderImageArgs) {
-    await renderFabricImage(id, { url, scale });
-  }
-
-  async function addFabric(src: string, options?: TOptions<ImageProps>) {
+  async function addFabric(src: string, options?: TOptions<ImageProps>, offset?: DropOffset) {
     const canvas = fabricMap.get(id);
 
     if (!canvas) return;
     const image = await FabricImage.fromURL(src, {}, { ...DEFAULT_IMAGE_OPTIONS, ...options });
 
+    setFabricOffset(image, offset);
     canvas.add(image);
     setFabric(canvas, image);
+    canvas.setActiveObject(image);
   }
 
-  function addTextFabric(text: string, options?: TOptions<TextProps>) {
+  function addTextFabric(text: string, options?: TOptions<TextProps>, offset?: DropOffset) {
     const canvas = fabricMap.get(id);
 
     if (!canvas) return;
@@ -118,16 +104,19 @@ export function useFabric(id = '') {
       ...options,
     });
 
+    setFabricOffset(textFabric, offset);
     canvas.add(textFabric);
     setFabric(canvas, textFabric);
+    canvas.setActiveObject(textFabric);
   }
 
-  function setFabric(canvas: Canvas, fabric: FabricImage | FabricText) {
+  function setFabric(canvas: Canvas, fabric: CacheFabricImage | CacheFabricText) {
     fabric.on('selected', event => createCloseFabric({ canvas, target: event.target }));
-    fabric.on('modified', event => moveCloseFabric(event.target, closeFabric.current));
-    fabric.on('scaling', event => moveCloseFabric(event.transform.target, closeFabric.current));
-    fabric.on('moving', event => moveCloseFabric(event.transform.target, closeFabric.current));
-    fabric.on('rotating', event => moveCloseFabric(event.transform.target, closeFabric.current));
+    fabric.on('modified', event => createCloseFabric({ canvas, target: event.target }));
+    fabric.on('scaling', () => deleteCloseFabric(canvas));
+    fabric.on('moving', () => deleteCloseFabric(canvas));
+    fabric.on('rotating', () => deleteCloseFabric(canvas));
+    fabric._cornerSize = fabric.cornerSize;
   }
 
   async function createCloseFabric({
@@ -136,8 +125,9 @@ export function useFabric(id = '') {
     stroke = closeOptions.current.stroke,
     uuid = Date.now(),
   }: CreateCloseFabricArgs) {
-    if (closeFabric.current?.stroke === `${stroke}-${uuid}`) return;
+    const activeCount = canvas.getActiveObjects().length;
 
+    if (activeCount > 1 || closeFabric.current?.stroke === `${stroke}-${uuid}`) return;
     const group = await generateCloseFabric(closeOptions.current.src, stroke, uuid);
 
     deleteCloseFabric(canvas);
@@ -172,9 +162,12 @@ export function useFabric(id = '') {
     const canvas = fabricMap.get(id);
 
     canvasScale.current = scale;
+
     if (!canvas) return;
-    scaleCornerFabric(selectedFabric.current, scale, closeOptions.current);
+
+    scaleCornerFabric(selectedFabric.current, scale);
     scaleCloseFabric(selectedFabric.current, scale, closeFabric.current);
+
     if (isCreate) return;
 
     canvas.renderAll();
@@ -191,10 +184,12 @@ export function useFabric(id = '') {
   }
 
   function deleteCloseFabric(canvas: Canvas) {
+    selectedFabric.current = null;
+
     if (!closeFabric.current) return;
 
     canvas.remove(closeFabric.current);
-    closeFabric.current = selectedFabric.current = null;
+    closeFabric.current = null;
   }
 
   function clearActive() {

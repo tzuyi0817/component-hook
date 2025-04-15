@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 const password = ref<string>('');
 const isShowPasswordPopup = ref(false);

@@ -5,7 +5,7 @@ export const DEFAULT_IMAGE_OPTIONS = {
   scaleY: 0.5,
   borderColor: 'black',
   cornerStrokeColor: 'black',
-  cornerSize: 8,
+  cornerSize: 6,
   selectionBackgroundColor: 'rgba(245, 245, 245, 0.8)',
 };
 
@@ -17,6 +17,13 @@ export const DEFAULT_TEXT_OPTIONS = {
   cornerStrokeColor: 'black',
   scaleX: 0.7,
   scaleY: 0.7,
+  cornerSize: 6,
+  selectionBackgroundColor: 'rgba(245, 245, 245, 0.8)',
+};
+
+export const DEFAULT_SELECTION_OPTIONS = {
+  borderColor: 'black',
+  cornerStrokeColor: 'black',
   cornerSize: 8,
   selectionBackgroundColor: 'rgba(245, 245, 245, 0.8)',
 };

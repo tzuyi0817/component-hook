@@ -6,6 +6,10 @@ import type {
   FabricObjectProps,
   SerializedObjectProps,
   ObjectEvents,
+  TPointerEventInfo,
+  TPointerEvent,
+  FabricImage,
+  FabricText,
 } from 'fabric';
 
 export interface TCornerPoint {
@@ -45,3 +49,22 @@ export interface CloseSvgOptions {
   hoverStroke: string;
   src: string;
 }
+
+export type FabricPointerEvent = TPointerEventInfo<TPointerEvent>;
+
+export interface FabricHookParams {
+  id: string;
+  pointerDown?: (event: FabricPointerEvent) => void;
+  pointerMove?: (event: FabricPointerEvent) => void;
+  pointerUp?: (event: FabricPointerEvent) => void;
+}
+
+export type DropOffset = Record<'x' | 'y', number>;
+
+interface CacheProperties {
+  _cornerSize?: number;
+}
+
+export type CacheFabricImage = FabricImage & CacheProperties;
+export type CacheFabricText = FabricText & CacheProperties;
+export type CacheFabricObject = FabricObject & CacheProperties;

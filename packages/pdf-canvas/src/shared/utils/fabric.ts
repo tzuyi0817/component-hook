@@ -1,6 +1,7 @@
 import { Canvas, FabricImage, loadSVGFromURL, util, type FabricObject } from 'fabric';
 import { type PDFPageProxy } from 'pdfjs-dist';
-import type { RenderImageArgs, CloseSvgOptions } from '../types/fabric';
+import type { RenderImageArgs, DropOffset, SpecifyPageArgs, SupportFileType, CacheFabricObject } from '../types/fabric';
+import { printPDF, getPDFDocument } from './pdf-js';
 import { convertToBase64, createImageSrc } from './image';
 import { getPixelsPerPoint } from './common';
 
@@ -124,13 +125,13 @@ export function scaleCloseFabric(fabric: FabricObject | null, scale: number, clo
   moveCloseFabric(fabric, closeFabric);
 }
 
-export function scaleCornerFabric(fabric: FabricObject | null, scale: number, closeOptions: CloseSvgOptions) {
+export function scaleCornerFabric(fabric: CacheFabricObject | null, scale: number) {
   if (!fabric) return;
+  const cornerSize = fabric._cornerSize || 6;
 
   fabric.borderScaleFactor = 1 / scale;
-  fabric.cornerSize = 6 * (1 / scale);
-  fabric.touchCornerSize = 24 * (1 / scale);
-  fabric.cornerStrokeColor = closeOptions.stroke;
+  fabric.cornerSize = cornerSize * (1 / scale);
+  fabric.touchCornerSize = cornerSize * 4 * (1 / scale);
   fabric.setCoords();
 }
 
@@ -152,4 +153,63 @@ export function deleteFabricCanvas(id: string) {
 
 function canvasToImage(canvas: HTMLCanvasElement, scale: number) {
   return new FabricImage(canvas, { scaleX: scale, scaleY: scale });
+}
+
+export function setFabricOffset(fabric: FabricObject, offset?: DropOffset) {
+  if (!offset) return;
+  const { left, top, scaleX, scaleY, width, height } = fabric;
+  const offsetX = offset.x * width * scaleX;
+  const offsetY = offset.y * height * scaleY;
+
+  fabric.set({ left: left - offsetX, top: top - offsetY });
+}
+
+export function loadFile(file: File, password?: string, id?: string) {
+  const fileType = file.type as SupportFileType;
+  const loadFileMap = {
+    'application/pdf': drawPDF,
+    'image/png': drawImage,
+    'image/jpeg': drawImage,
+  };
+
+  return loadFileMap[fileType]?.(file, password, id) ?? Promise.reject(new Error(`Unsupported ${fileType} file type.`));
+}
+
+async function drawPDF(file: File, password?: string, id?: string) {
+  const PDFBase64 = await printPDF(file);
+
+  if (!PDFBase64) return;
+  const PDF = createPdfInfo(file, PDFBase64);
+
+  try {
+    const pages = await specifyPage({ page: 1, PDFBase64, scale: 0.8, password }, id);
+
+    return { ...PDF, pages };
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+export async function specifyPage({ page, PDFBase64, scale, password }: SpecifyPageArgs, id?: string) {
+  try {
+    const pdfDoc = await getPDFDocument(PDFBase64, password);
+    const pdfPage = await pdfDoc.getPage(page);
+    const { renderTask, canvas } = createRenderTask(pdfPage, scale);
+
+    return renderTask.promise.then(() => {
+      if (id) {
+        renderFabricCanvas(id, canvas);
+      }
+
+      return pdfDoc.numPages;
+    });
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+async function drawImage(file: File, _?: string, id?: string) {
+  if (!id) return;
+
+  return await drawFabricImage(id, file);
 }

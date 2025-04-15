@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue';
-import { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import Loading from '@/components/Loading.vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 const PdfCanvas = defineAsyncComponent(() => import('@component-hook/pdf-canvas/vue'));
 

@@ -1,10 +1,13 @@
 import { useRef, useEffect, useMemo, useImperativeHandle, forwardRef, type Ref } from 'react';
-import type { ImageProps, TextProps, TOptions } from 'fabric';
+import type { ImageProps, TextProps, TOptions, TPointerEventInfo, TPointerEvent } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
+import { DEFAULT_SELECTION_OPTIONS } from '../../shared/configs';
 import type { ComponentProps } from '../../shared/types/common';
+import type { DropOffset } from '../../shared/types/fabric';
 
 export interface PdfCanvasHandle {
+  reload: () => Promise<void>;
   addImage: (src: string, options?: TOptions<ImageProps>) => void;
   addText: (text: string, options?: TOptions<TextProps>) => void;
   clearActive: () => void;
@@ -12,7 +15,15 @@ export interface PdfCanvasHandle {
   canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 
-export const PdfCanvas = forwardRef<PdfCanvasHandle, ComponentProps>(PdfCanvasComponent);
+interface ComponentEmits {
+  onLoaded?: () => void;
+  onReload?: () => void;
+  onPointerDown?: (event: TPointerEventInfo<TPointerEvent>) => void;
+  onPointerMove?: (event: TPointerEventInfo<TPointerEvent>) => void;
+  onPointerUp?: (event: TPointerEventInfo<TPointerEvent>) => void;
+}
+
+export const PdfCanvas = forwardRef<PdfCanvasHandle, ComponentProps & ComponentEmits>(PdfCanvasComponent);
 
 function PdfCanvasComponent(
   {
@@ -28,12 +39,23 @@ function PdfCanvasComponent(
     dropTextOptions,
     dropImageOptions,
     closeSvgOptions,
-  }: ComponentProps,
+    selectionOptions,
+    manualReload,
+    onLoaded,
+    onReload,
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
+  }: ComponentProps & ComponentEmits,
   ref: Ref<PdfCanvasHandle>,
 ) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const computedCanvasId = `${canvasId}-${page - 1}`;
   const containerScale = useMemo(() => fileZoom * canvasScale, [fileZoom, canvasScale]);
+
+  const computedSelectionOptions = useMemo(() => {
+    return { ...DEFAULT_SELECTION_OPTIONS, ...selectionOptions };
+  }, [selectionOptions]);
 
   const {
     createCanvas,
@@ -45,7 +67,13 @@ function PdfCanvasComponent(
     deleteCanvas,
     scaleFabric,
     setCloseSvgOptions,
-  } = useFabric(computedCanvasId);
+  } = useFabric({
+    id: computedCanvasId,
+    selectionOptions: computedSelectionOptions,
+    pointerDown: onPointerDown,
+    pointerMove: onPointerMove,
+    pointerUp: onPointerUp,
+  });
 
   useResize(setPDF);
 
@@ -61,12 +89,15 @@ function PdfCanvasComponent(
         renderImage({ url, scale: fileScale / scaleDown });
         return;
       }
+
       await specifyPage({
         page,
         PDFBase64: file.PDFBase64,
         scale: fileScale,
         password,
       });
+
+      onLoaded?.();
     });
   }
 
@@ -74,31 +105,40 @@ function PdfCanvasComponent(
     event.preventDefault();
     event.stopPropagation();
     if (!isDrop || !event.dataTransfer) return;
-
-    const { dataTransfer, clientX, clientY } = event;
+    const { dataTransfer, nativeEvent } = event;
+    const { offsetX, offsetY } = nativeEvent;
     const text = dataTransfer.getData('text/plain');
     const imageSrc = dataTransfer.getData('text/uri-list');
-    const position = { left: clientX - 71, top: clientY - 55 };
+    const customOffset = dataTransfer.getData('custom/offset');
+    const offset = customOffset ? JSON.parse(customOffset) : null;
+    const options = { top: offsetY, left: offsetX };
+    const dropOffset = { x: offset?.offsetX ?? 0, y: offset?.offsetY ?? 0 };
 
     if (imageSrc) {
-      addImage(imageSrc, position);
+      addImage(imageSrc, options, dropOffset);
     } else if (text) {
-      addText(text, position);
+      addText(text, options, dropOffset);
     }
   }
 
-  function addImage(src: string, options?: TOptions<ImageProps>) {
-    addFabric(src, { ...options, ...dropImageOptions });
+  function addImage(src: string, options?: TOptions<ImageProps>, offset?: DropOffset) {
+    addFabric(src, { ...dropImageOptions, ...options }, offset);
   }
 
-  function addText(text: string, options?: TOptions<TextProps>) {
-    addTextFabric(text, { ...options, ...dropTextOptions });
+  function addText(text: string, options?: TOptions<TextProps>, offset?: DropOffset) {
+    addTextFabric(text, { ...dropTextOptions, ...options }, offset);
   }
 
-  useImperativeHandle(ref, () => ({ addImage, addText, clearActive, deleteCanvas, canvasRef }));
+  function handleReload() {
+    if (!manualReload) setPDF();
+
+    onReload?.();
+  }
+
+  useImperativeHandle(ref, () => ({ reload: setPDF, addImage, addText, clearActive, deleteCanvas, canvasRef }));
 
   useEffect(() => {
-    setPDF();
+    handleReload();
   }, [fileScale, page, file, password]);
 
   useEffect(() => {
