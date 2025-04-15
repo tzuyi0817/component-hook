@@ -1,8 +1,7 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-n4Uf3r-k.js";import{d as t,c as a,u as n,o as s}from"./index-jIxeutaQ.js";import"./Demo-WzsE6naf.js";import"./index-BzYJ7Siq.js";const l=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-4FzuJJio.js";import{d as t,c as a,u as n,o as s}from"./index-DRFQd-qr.js";import"./Demo-CgIi146m.js";import"./index-BzYJ7Siq.js";const o=`<script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 
 async function uploadFile(event: Event) {
@@ -54,11 +53,10 @@ async function uploadFile(event: Event) {
     </div>
   </div>
 </template>
-`,r=`<script setup lang="ts">
+`,l=`<script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 const password = ref<string>('');
 const isShowPasswordPopup = ref(false);
@@ -166,12 +164,11 @@ function submitPassword() {
     </teleport>
   </div>
 </template>
-`,o=`<script setup lang="ts">
+`,r=`<script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue';
-import { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import Loading from '@/components/Loading.vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 const PdfCanvas = defineAsyncComponent(() => import('@component-hook/pdf-canvas/vue'));
 
@@ -242,9 +239,8 @@ async function uploadFile(event: Event) {
 </template>
 `,c=`<script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 
 async function uploadFile(event: Event) {
@@ -260,15 +256,21 @@ async function uploadFile(event: Event) {
 }
 
 function dragImage(event: DragEvent) {
-  const target = event.target as HTMLImageElement;
+  const { src, offsetHeight, offsetWidth } = event.target as HTMLImageElement;
+  const offsetX = event.offsetX / offsetWidth;
+  const offsetY = event.offsetY / offsetHeight;
 
-  event.dataTransfer?.setData('text/uri-list', target.src);
+  event.dataTransfer?.setData('text/uri-list', src);
+  event.dataTransfer?.setData('custom/offset', JSON.stringify({ offsetX, offsetY }));
 }
 
 function dragText(event: DragEvent) {
-  const target = event.target as HTMLParagraphElement;
+  const { textContent, offsetHeight, offsetWidth } = event.target as HTMLParagraphElement;
+  const offsetX = event.offsetX / offsetWidth;
+  const offsetY = event.offsetY / offsetHeight;
 
-  event.dataTransfer?.setData('text/plain', target.textContent ?? '');
+  event.dataTransfer?.setData('text/plain', textContent ?? '');
+  event.dataTransfer?.setData('custom/offset', JSON.stringify({ offsetX, offsetY }));
 }
 <\/script>
 
@@ -319,9 +321,8 @@ function dragText(event: DragEvent) {
 </template>
 `,p=`<script setup lang="ts">
 import { ref } from 'vue';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/vue';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
-const { loadFile } = useFabric();
 const currentPdf = ref<PDF>();
 const pdfCanvasRef = ref<InstanceType<typeof PdfCanvas> | null>(null);
 
@@ -385,4 +386,4 @@ function addText() {
     </div>
   </div>
 </template>
-`,P=t({__name:"VuePdfCanvas",setup(i){return(u,f)=>(s(),a(e,{"front-end-frame":"vue3","draw-source":n(l),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(r),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(o),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(c),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(p),"manual-playground":"669646c68ae98c93b96a2eb2"},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source"]))}});export{P as default};
+`,P=t({__name:"VuePdfCanvas",setup(f){return(i,d)=>(s(),a(e,{"front-end-frame":"vue3","draw-source":n(o),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(l),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(r),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(c),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(p),"manual-playground":"669646c68ae98c93b96a2eb2"},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source"]))}});export{P as default};
