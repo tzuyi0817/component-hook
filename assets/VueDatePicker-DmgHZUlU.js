@@ -1,6 +1,6 @@
-import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-C2L1-bhU.js";import{d as t,c as o,u as e,o as r}from"./index-DRFQd-qr.js";import"./Demo-CgIi146m.js";import"./index-BzYJ7Siq.js";import"./css-variables-BW6nqyXV.js";const a=`<script setup lang="ts">
-import { ref } from 'vue';
+import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-J1bSFIQ2.js";import{d as t,c as o,u as e,o as r}from"./index-Dyt0eqDD.js";import"./Demo-B8P-62nQ.js";import"./index-Dpu33887.js";import"./installation-pfWbqOMe.js";const a=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const currentDate = ref<number[]>([]);
@@ -27,8 +27,8 @@ function onCancel() {
   <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,c=`<script setup lang="ts">
-import { ref } from 'vue';
 import { DatePicker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const currentDate = ref<number[]>([2030, 8]);
@@ -47,8 +47,8 @@ const currentDate = ref<number[]>([2030, 8]);
   <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,s=`<script setup lang="ts">
-import { ref } from 'vue';
 import { DatePicker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const currentDate = ref<number[]>([]);
@@ -68,8 +68,8 @@ const currentDate = ref<number[]>([]);
   <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,i=`<script setup lang="ts">
-import { ref } from 'vue';
 import { DatePicker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const currentDate = ref<number[]>([]);

@@ -1,5 +1,5 @@
-import{_ as t}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-C2L1-bhU.js";import{d as o,c as n,u as e,o as r}from"./index-DRFQd-qr.js";import"./Demo-CgIi146m.js";import"./index-BzYJ7Siq.js";import"./css-variables-BW6nqyXV.js";const a=`import { useState } from 'react';
-import { DatePicker } from '@component-hook/picker/react';
+import{_ as t}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-J1bSFIQ2.js";import{d as o,c as n,u as e,o as r}from"./index-Dyt0eqDD.js";import"./Demo-B8P-62nQ.js";import"./index-Dpu33887.js";import"./installation-pfWbqOMe.js";const a=`import { DatePicker } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 export function BasePicker() {
   const [showPicker, setShowPicker] = useState(false);
@@ -29,8 +29,8 @@ export function BasePicker() {
 function onCancel() {
   console.log('cancel');
 }
-`,c=`import { useState } from 'react';
-import { DatePicker, type DatePickerColumnType } from '@component-hook/picker/react';
+`,c=`import { DatePicker, type DatePickerColumnType } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 const columnsType: DatePickerColumnType[] = ['year', 'month'];
 
@@ -59,8 +59,8 @@ export function ColumnsTypePicker() {
     </>
   );
 }
-`,s=`import { useState } from 'react';
-import { DatePicker } from '@component-hook/picker/react';
+`,s=`import { DatePicker } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 export function CustomRangePicker() {
   const [showPicker, setShowPicker] = useState(false);
@@ -88,8 +88,8 @@ export function CustomRangePicker() {
     </>
   );
 }
-`,i=`import { useState } from 'react';
-import { DatePicker, type DatePickerColumnType } from '@component-hook/picker/react';
+`,i=`import { DatePicker, type DatePickerColumnType } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 const columnsType: DatePickerColumnType[] = ['month', 'day', 'year'];
 

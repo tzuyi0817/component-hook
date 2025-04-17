@@ -1,5 +1,5 @@
-import{_ as t}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-DcUCHn3Y.js";import{d as o,c as n,u as e,o as r}from"./index-DRFQd-qr.js";import"./Demo-CgIi146m.js";import"./index-BzYJ7Siq.js";import"./css-variables-BW6nqyXV.js";const c=`import { useState } from 'react';
-import { TimePicker } from '@component-hook/picker/react';
+import{_ as t}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-BMXc0l_j.js";import{d as o,c as n,u as e,o as r}from"./index-Dyt0eqDD.js";import"./Demo-B8P-62nQ.js";import"./index-Dpu33887.js";import"./installation-pfWbqOMe.js";const c=`import { TimePicker } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 export function BasePicker() {
   const [showPicker, setShowPicker] = useState(false);
@@ -29,8 +29,8 @@ export function BasePicker() {
 function onCancel() {
   console.log('cancel');
 }
-`,i=`import { useState } from 'react';
-import { TimePicker, type TimePickerColumnType } from '@component-hook/picker/react';
+`,i=`import { TimePicker, type TimePickerColumnType } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 const columnsType: TimePickerColumnType[] = ['hour', 'minute'];
 
@@ -59,8 +59,8 @@ export function ColumnsTypePicker() {
     </>
   );
 }
-`,s=`import { useState } from 'react';
-import { TimePicker } from '@component-hook/picker/react';
+`,s=`import { TimePicker } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 export function CustomRangePicker() {
   const [showPicker, setShowPicker] = useState(false);
@@ -88,8 +88,8 @@ export function CustomRangePicker() {
     </>
   );
 }
-`,a=`import { useState } from 'react';
-import { TimePicker } from '@component-hook/picker/react';
+`,a=`import { TimePicker } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 export function LabelFormatterPicker() {
   const [showPicker, setShowPicker] = useState(false);
