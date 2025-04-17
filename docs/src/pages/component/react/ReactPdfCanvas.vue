@@ -5,6 +5,7 @@ import multipleSource from '@react-playground/pdf-canvas/multiple-pdf?raw';
 import dropSource from '@react-playground/pdf-canvas/drop-pdf?raw';
 import manualSource from '@react-playground/pdf-canvas/manual-pdf?raw';
 import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
+import eventMd from '@/markdowns/pdf-canvas/react.md?raw';
 </script>
 
 <template>
@@ -21,5 +22,6 @@ import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
     :manual-source="manualSource"
     manual-playground="675fbfdcbf0c4e6c39359d7d"
     language="tsx"
+    :event-md="eventMd"
   />
 </template>

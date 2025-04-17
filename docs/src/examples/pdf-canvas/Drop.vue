@@ -58,8 +58,6 @@ function dragText(event: DragEvent) {
       v-if="currentPdf"
       ref="pdfCanvasRef"
       :file="currentPdf"
-      :file-scale="1.6"
-      :canvas-scale="0.6"
       canvas-id="drop"
       :drop-image-options="{ scaleX: 0.1, scaleY: 0.1 }"
       :drop-text-options="{ fontSize: 20 }"
@@ -73,16 +71,19 @@ function dragText(event: DragEvent) {
       Please select a PDF file or image.
     </p>
 
-    <button class="relative">
-      <input
-        type="file"
-        accept="application/pdf, .jpg, .png"
-        class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
-        @change="uploadFile"
-      />
-      select file
-    </button>
+    <div class="flex gap-3 flex-wrap">
+      <button class="relative">
+        <input
+          type="file"
+          accept="application/pdf, .jpg, .png"
+          class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+          @change="uploadFile"
+        />
+        select file
+      </button>
 
-    <button @click="pdfCanvasRef?.copyActiveFabric">copy</button>
+      <button @click="pdfCanvasRef?.copyActiveFabric">copy</button>
+      <button @click="pdfCanvasRef?.deleteActiveFabric">delete</button>
+    </div>
   </div>
 </template>

@@ -23,6 +23,7 @@ interface Props {
   manualSource: string;
   manualPlayground: string;
   language?: string;
+  eventMd: string;
 }
 
 defineProps<Props>();
@@ -106,5 +107,6 @@ defineProps<Props>();
 
     <h3>API</h3>
     <div v-html="md.render(apiMd)"></div>
+    <div v-html="md.render(eventMd)"></div>
   </div>
 </template>

@@ -5,6 +5,7 @@ import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
 import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
 import dropSource from '@/examples/pdf-canvas/Drop.vue?raw';
 import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
+import eventMd from '@/markdowns/pdf-canvas/vue.md?raw';
 </script>
 
 <template>
@@ -20,5 +21,6 @@ import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
     drop-playground="6696466d8ae98c93b96a2e9b"
     :manual-source="manualSource"
     manual-playground="669646c68ae98c93b96a2eb2"
+    :event-md="eventMd"
   />
 </template>

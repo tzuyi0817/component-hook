@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
-import type { ImageProps, TextProps, TOptions, TPointerEventInfo, TPointerEvent } from 'fabric';
+import type { ImageProps, TextProps, TOptions } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
 import { DEFAULT_SELECTION_OPTIONS } from '../../shared/constants';
 import type { ComponentProps } from '../../shared/types/common';
-import type { DropOffset, FabricSelectionCreatedEvent, FabricSelectionClearedEvent } from '../../shared/types/fabric';
+import type {
+  DropOffset,
+  FabricSelectionCreatedEvent,
+  FabricSelectionClearedEvent,
+  FabricPointerEvent,
+} from '../../shared/types/fabric';
 
 interface Emits {
   loaded: [];
   reload: [];
-  pointerDown: [event: TPointerEventInfo<TPointerEvent>];
-  pointerMove: [event: TPointerEventInfo<TPointerEvent>];
-  pointerUp: [event: TPointerEventInfo<TPointerEvent>];
+  pointerDown: [event: FabricPointerEvent];
+  pointerMove: [event: FabricPointerEvent];
+  pointerUp: [event: FabricPointerEvent];
   selectionCreated: [event: FabricSelectionCreatedEvent];
   selectionCleared: [event: FabricSelectionClearedEvent];
 }

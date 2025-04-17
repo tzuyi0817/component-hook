@@ -1,10 +1,15 @@
 import { useRef, useEffect, useMemo, useImperativeHandle, forwardRef, type Ref } from 'react';
-import type { ImageProps, TextProps, TOptions, TPointerEventInfo, TPointerEvent } from 'fabric';
+import type { ImageProps, TextProps, TOptions } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
 import { DEFAULT_SELECTION_OPTIONS } from '../../shared/constants';
 import type { ComponentProps } from '../../shared/types/common';
-import type { DropOffset, FabricSelectionCreatedEvent, FabricSelectionClearedEvent } from '../../shared/types/fabric';
+import type {
+  DropOffset,
+  FabricSelectionCreatedEvent,
+  FabricSelectionClearedEvent,
+  FabricPointerEvent,
+} from '../../shared/types/fabric';
 
 export interface PdfCanvasHandle {
   reload: () => Promise<void>;
@@ -18,9 +23,9 @@ export interface PdfCanvasHandle {
 interface ComponentEmits {
   onLoaded?: () => void;
   onReload?: () => void;
-  onPointerDown?: (event: TPointerEventInfo<TPointerEvent>) => void;
-  onPointerMove?: (event: TPointerEventInfo<TPointerEvent>) => void;
-  onPointerUp?: (event: TPointerEventInfo<TPointerEvent>) => void;
+  onPointerDown?: (event: FabricPointerEvent) => void;
+  onPointerMove?: (event: FabricPointerEvent) => void;
+  onPointerUp?: (event: FabricPointerEvent) => void;
   onSelectionCreated?: (event: FabricSelectionCreatedEvent) => void;
   onSelectionCleared?: (event: FabricSelectionClearedEvent) => void;
 }
