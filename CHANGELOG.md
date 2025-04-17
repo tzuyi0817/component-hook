@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/tzuyi0817/component-hook/compare/v1.0.4...v1.1.0) (2025-04-17)
+
+### Breaking Changes
+
+- **pdf-canvas:** adjusted the usage of `loadFile`, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/component/vue-pdf-canvas)
+
+### Features
+
+- **pdf-canvas:** added `emits` to components and adjusted the drop placement to be more accurate ([c9dfaa9](https://github.com/tzuyi0817/component-hook/commit/c9dfaa9e02c3709c6cd1577233c117d11ae1a120))
+- **pdf-canvas:** added the `expose` of `copy` and `delete` fabric ([9fcf71a](https://github.com/tzuyi0817/component-hook/commit/9fcf71a586ade3fb63844f90c83572c874840350))
+- **eslint-plugin:** adjust `sort-import` rule ([d29c7e4](https://github.com/tzuyi0817/component-hook/commit/d29c7e48cac948de294a5960a60fe45427647424))
+
 ## [1.0.4](https://github.com/tzuyi0817/component-hook/compare/v1.0.3...v1.0.4) (2025-04-05)
 
 ### Bug Fixes
