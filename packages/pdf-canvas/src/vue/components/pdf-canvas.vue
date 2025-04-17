@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
-import type { ImageProps, TextProps, TOptions } from 'fabric';
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
+import { DEFAULT_SELECTION_OPTIONS } from '../../shared/constants';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
-import { DEFAULT_SELECTION_OPTIONS } from '../../shared/constants';
 import type { ComponentProps } from '../../shared/types/common';
 import type {
   DropOffset,
-  FabricSelectionCreatedEvent,
-  FabricSelectionClearedEvent,
   FabricPointerEvent,
+  FabricSelectionClearedEvent,
+  FabricSelectionCreatedEvent,
 } from '../../shared/types/fabric';
+import type { ImageProps, TextProps, TOptions } from 'fabric';
 
 interface Emits {
   loaded: [];

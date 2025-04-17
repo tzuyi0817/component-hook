@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import drawSource from '@react-playground/pdf-canvas/draw-pdf?raw';
-import encryptedSource from '@react-playground/pdf-canvas/encrypted-pdf?raw';
-import multipleSource from '@react-playground/pdf-canvas/multiple-pdf?raw';
 import dropSource from '@react-playground/pdf-canvas/drop-pdf?raw';
+import encryptedSource from '@react-playground/pdf-canvas/encrypted-pdf?raw';
 import manualSource from '@react-playground/pdf-canvas/manual-pdf?raw';
+import multipleSource from '@react-playground/pdf-canvas/multiple-pdf?raw';
 import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
 import eventMd from '@/markdowns/pdf-canvas/react.md?raw';
 </script>

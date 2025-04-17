@@ -43,8 +43,8 @@ $ pnpm install @component-hook/pdf-canvas
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue';
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
+import { ref } from 'vue';
 
 const currentPdf = ref<PDF>();
 
@@ -91,8 +91,8 @@ async function uploadFile(event: Event) {
 ### React
 
 ```tsx
-import { useState, type ChangeEvent } from 'react';
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
+import { useState, type ChangeEvent } from 'react';
 
 export function DrawPdf() {
   const [currentPdf, setCurrentPdf] = useState<PDF>();

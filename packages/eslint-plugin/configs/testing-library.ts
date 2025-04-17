@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint';
 import { pluginTestingLibrary } from '../plugins';
+import type { Linter } from 'eslint';
 
 const configs = pluginTestingLibrary.configs;
 const plugins = {

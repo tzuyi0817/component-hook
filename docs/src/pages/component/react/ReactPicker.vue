@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import baseSource from '@react-playground/picker/base?raw';
-import multiColumnSource from '@react-playground/picker/multi-column?raw';
-import cascadeSource from '@react-playground/picker/cascade?raw';
 import customizeColumnSource from '@react-playground//picker/customize-column?raw';
+import baseSource from '@react-playground/picker/base?raw';
+import cascadeSource from '@react-playground/picker/cascade?raw';
+import multiColumnSource from '@react-playground/picker/multi-column?raw';
 import ComponentPicker from '@/components/component/ComponentPicker.vue';
 import indexMd from '@/markdowns/picker/react.md?raw';
 </script>

@@ -1,11 +1,11 @@
-import { fileURLToPath, URL } from 'node:url';
 import { dirname, resolve } from 'node:path';
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import Components from 'unplugin-vue-components/vite';
+import { fileURLToPath, URL } from 'node:url';
 import vueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import vue from '@vitejs/plugin-vue';
 import { visualizer } from 'rollup-plugin-visualizer';
+import Components from 'unplugin-vue-components/vite';
+import { defineConfig } from 'vite';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import packageJson from './package.json' with { type: 'json' };
 
 process.env.VITE_APP_VERSION = packageJson.version;

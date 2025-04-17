@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import SvgIcon from '@/components/SvgIcon.vue';
 import { scrollToTop } from '@/utils/common';
 

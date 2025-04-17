@@ -1,9 +1,9 @@
 import {
   forwardRef,
   type ForwardRefExoticComponent,
-  type RefAttributes,
   type ForwardRefRenderFunction,
   type PropsWithoutRef,
+  type RefAttributes,
 } from 'react';
 
 export function fixedForwardRef<T, P>(

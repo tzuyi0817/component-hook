@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import { v4 } from 'uuid';
+import { ref } from 'vue';
 import { sleep } from '@/utils/common';
 
 interface Props {

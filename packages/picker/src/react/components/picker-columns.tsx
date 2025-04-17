@@ -1,8 +1,8 @@
-import { useRef, useImperativeHandle, type ForwardedRef } from 'react';
+import { useImperativeHandle, useRef, type ForwardedRef } from 'react';
 import { fixedForwardRef } from '../hooks/fixed-forward-ref';
-import type { PickerFields, PickerColumn } from '../../shared/types';
-import type { Props as PickerProps } from './picker';
+import type { PickerColumn, PickerFields } from '../../shared/types';
 import { Column, type ColumnRef } from './picker-column';
+import type { Props as PickerProps } from './picker';
 
 interface Props<T> extends Pick<PickerProps<T>, 'loading' | 'loadingSlot' | 'columns' | 'emptySlot'> {
   currentColumns: PickerColumn<T>[];

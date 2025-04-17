@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import SvgIcon from '@/components/SvgIcon.vue';
 import Describedby from '@/components/Describedby.vue';
-import { sleep, copyToClipboard } from '@/utils/common';
+import SvgIcon from '@/components/SvgIcon.vue';
+import { copyToClipboard, sleep } from '@/utils/common';
 
 interface Props {
   source: string;

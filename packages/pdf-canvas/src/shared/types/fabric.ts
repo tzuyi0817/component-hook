@@ -1,15 +1,15 @@
 import type {
-  Point,
   Canvas,
-  TEvent,
+  FabricImage,
   FabricObject,
   FabricObjectProps,
-  SerializedObjectProps,
-  ObjectEvents,
-  TPointerEventInfo,
-  TPointerEvent,
-  FabricImage,
   FabricText,
+  ObjectEvents,
+  Point,
+  SerializedObjectProps,
+  TEvent,
+  TPointerEvent,
+  TPointerEventInfo,
 } from 'fabric';
 
 export interface TCornerPoint {

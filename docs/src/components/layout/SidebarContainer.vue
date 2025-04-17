@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Sidebar from './sidebar/index.vue';
 import { scrollToTop } from '@/utils/common';
+import Sidebar from './sidebar/index.vue';
 </script>
 
 <template>

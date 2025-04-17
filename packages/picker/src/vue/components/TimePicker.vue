@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { generateOptions, getValidTime, formatTime, getDefaultTime } from '../../shared/utils/common';
-import { DEFAULT_TIME_TITLE, DEFAULT_TIME_COLUMNS } from '../../shared/constants';
-import type { TimePickerColumnType, PickerFormatLabel } from '../../shared/types';
+import { DEFAULT_TIME_COLUMNS, DEFAULT_TIME_TITLE } from '../../shared/constants';
+import { formatTime, generateOptions, getDefaultTime, getValidTime } from '../../shared/utils/common';
+import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 import Picker from './Picker.vue';
 
 interface Props {

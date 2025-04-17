@@ -1,5 +1,5 @@
-import { screen, render } from '@testing-library/vue';
-import { ref, nextTick } from 'vue';
+import { render, screen } from '@testing-library/vue';
+import { nextTick, ref } from 'vue';
 import { Picker } from '../../index';
 
 describe('Vue Picker Component', () => {

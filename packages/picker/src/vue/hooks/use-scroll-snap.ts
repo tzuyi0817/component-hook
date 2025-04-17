@@ -1,5 +1,4 @@
-import { type Ref, isRef, readonly, ref } from 'vue';
-import { createPointerTracker } from '../../shared/utils/pointer';
+import { isRef, readonly, ref, type Ref } from 'vue';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -8,6 +7,7 @@ import {
   INERTIAL_TIME,
   OPTION_HEIGHT,
 } from '../../shared/constants';
+import { createPointerTracker } from '../../shared/utils/pointer';
 
 interface ScrollSnapProps<T> {
   column: Ref<T[]> | T[];

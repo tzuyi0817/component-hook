@@ -1,5 +1,5 @@
-import { lazy, useState, Suspense, type ChangeEvent } from 'react';
 import { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
+import { lazy, Suspense, useState, type ChangeEvent } from 'react';
 
 const PdfCanvas = lazy(() => import('@component-hook/pdf-canvas/react'));
 

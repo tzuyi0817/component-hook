@@ -2,12 +2,12 @@
 import Demo from '@/components/Demo.vue';
 import ExternalLink from '@/components/ExternalLink.vue';
 import DrawPdf from '@/examples/pdf-canvas/Draw.vue';
-import EncryptedPdf from '@/examples/pdf-canvas/Encrypted.vue';
-import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
 import DropPdf from '@/examples/pdf-canvas/Drop.vue';
+import EncryptedPdf from '@/examples/pdf-canvas/Encrypted.vue';
 import ManualPdf from '@/examples/pdf-canvas/Manual.vue';
-import installationMd from '@/markdowns/pdf-canvas/installation.md?raw';
+import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
 import apiMd from '@/markdowns/pdf-canvas/api.md?raw';
+import installationMd from '@/markdowns/pdf-canvas/installation.md?raw';
 import { md } from '@/utils/highlight';
 
 interface Props {

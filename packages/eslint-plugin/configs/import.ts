@@ -1,5 +1,5 @@
-import type { Linter, ESLint } from 'eslint';
-import { pluginImport, vueParser, fixupPluginRules, typescriptEslint } from '../plugins';
+import { fixupPluginRules, pluginImport, typescriptEslint, vueParser } from '../plugins';
+import type { ESLint, Linter } from 'eslint';
 
 const plugins: Record<string, ESLint.Plugin> = {
   import: fixupPluginRules(pluginImport),
@@ -21,12 +21,6 @@ export const importConfigs: Linter.Config[] = [
     plugins,
     languageOptions,
     rules: {
-      'import/order': [
-        'error',
-        {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-        },
-      ],
       'import/first': 'error',
       'import/no-default-export': 'error',
       'import/no-duplicates': 'error',

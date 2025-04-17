@@ -1,5 +1,5 @@
-import vue from '@vitejs/plugin-vue';
 import react from '@vitejs/plugin-react';
+import vue from '@vitejs/plugin-vue';
 
 export const { FRAMEWORK } = process.env;
 const buildConfigMap = {

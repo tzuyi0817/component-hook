@@ -1,4 +1,4 @@
-import { screen, render } from '@testing-library/vue';
+import { render, screen } from '@testing-library/vue';
 import { DatePicker } from '../../index';
 
 describe('Vue Date Picker Component', () => {

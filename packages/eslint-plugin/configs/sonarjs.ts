@@ -1,5 +1,5 @@
-import type { Linter, ESLint } from 'eslint';
 import { pluginSonarjs } from '../plugins';
+import type { ESLint, Linter } from 'eslint';
 
 const plugins: Record<string, ESLint.Plugin> = {
   sonarjs: pluginSonarjs,

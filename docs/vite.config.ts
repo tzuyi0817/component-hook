@@ -1,9 +1,9 @@
-import { fileURLToPath, URL } from 'node:url';
 import { resolve } from 'node:path';
-import { defineConfig } from 'vite';
+import { fileURLToPath, URL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import { pickerPackage, pdfCanvasPackage, reactPlayground } from '../internal/paths';
+import { pdfCanvasPackage, pickerPackage, reactPlayground } from '../internal/paths';
 
 export default defineConfig({
   plugins: [

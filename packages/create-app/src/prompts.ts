@@ -1,8 +1,8 @@
 import { existsSync } from 'node:fs';
-import prompts, { type PromptObject } from 'prompts';
 import colors from 'picocolors';
-import { isEmptyFolder, isValidPackageName, getProjectName, toValidPackageName } from './utils';
+import prompts, { type PromptObject } from 'prompts';
 import { DEFAULT_PROJECT_NAME, TEMPLATES } from './config';
+import { getProjectName, isEmptyFolder, isValidPackageName, toValidPackageName } from './utils';
 
 interface PromptsArgs {
   targetDir?: string;

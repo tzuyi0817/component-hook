@@ -1,11 +1,11 @@
+import markdownit from 'markdown-it';
+import container from 'markdown-it-container';
 import prism from 'prismjs';
+import { groupPlugin, linkPlugin, tablePlugin, tipPlugin } from './plugins';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
-import markdownit from 'markdown-it';
-import container from 'markdown-it-container';
-import { linkPlugin, groupPlugin, tipPlugin, tablePlugin } from './plugins';
 
 // eslint-disable-next-line sonarjs/disabled-auto-escaping
 export const md = markdownit({ highlight, html: true });

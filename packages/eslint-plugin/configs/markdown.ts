@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint';
 import { pluginMarkdown } from '../plugins';
+import type { Linter } from 'eslint';
 
 export const markdownConfigs: Linter.Config[] = pluginMarkdown.configs.recommended.map((config: Linter.Config) => {
   const { name, rules } = config;

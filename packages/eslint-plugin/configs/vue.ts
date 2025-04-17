@@ -1,6 +1,6 @@
-import type { Linter } from 'eslint';
-import { pluginVue, vueParser, typescriptEslint } from '../plugins';
+import { pluginVue, typescriptEslint, vueParser } from '../plugins';
 import { rules as pluginTypescriptRules } from './typescript';
+import type { Linter } from 'eslint';
 
 const recommendedRules = pluginVue.configs['flat/recommended']
   .map(config => config.rules)

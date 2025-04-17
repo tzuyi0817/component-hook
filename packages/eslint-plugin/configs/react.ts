@@ -1,5 +1,5 @@
+import { pluginJsxA11y, pluginReact, pluginReactHooks } from '../plugins';
 import type { Linter } from 'eslint';
-import { pluginReact, pluginReactHooks, pluginJsxA11y } from '../plugins';
 
 export const reactConfigs: Linter.Config[] = [
   {

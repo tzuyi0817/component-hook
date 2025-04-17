@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Picker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const pickerValues = ref<number[]>([]);

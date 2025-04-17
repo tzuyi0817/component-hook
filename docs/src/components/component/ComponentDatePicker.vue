@@ -4,8 +4,8 @@ import BasePicker from '@/examples/date-picker/Base.vue';
 import ColumnsTypePicker from '@/examples/date-picker/ColumnsType.vue';
 import CustomRangePicker from '@/examples/date-picker/CustomRange.vue';
 import LabelFormatterPicker from '@/examples/date-picker/LabelFormatter.vue';
-import installationMd from '@/markdowns/picker/installation.md?raw';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
+import installationMd from '@/markdowns/picker/installation.md?raw';
 import { md } from '@/utils/highlight';
 
 interface Props {

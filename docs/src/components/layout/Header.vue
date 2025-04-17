@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Hamburger from '../Hamburger.vue';
-import ThemeSwitcher from '../ThemeSwitcher.vue';
-import SocialLink from '../SocialLink.vue';
-import Navbar from './Navbar.vue';
 import { useLockScreen } from '@/hooks/use-lock-screen';
 import { useResize } from '@/hooks/use-resize';
+import Hamburger from '../Hamburger.vue';
+import SocialLink from '../SocialLink.vue';
+import ThemeSwitcher from '../ThemeSwitcher.vue';
+import Navbar from './Navbar.vue';
 
 const isShowFullNavbar = ref(false);
 const { lock, cleanup } = useLockScreen();

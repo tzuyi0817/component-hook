@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint';
 import { pluginRegexp } from '../plugins';
+import type { Linter } from 'eslint';
 
 export const regexpConfig = {
   ...pluginRegexp.configs['flat/recommended'],

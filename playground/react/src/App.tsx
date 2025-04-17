@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
-import { Picker } from './pages/picker';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { DatePicker } from './pages/date-picker';
-import { TimePicker } from './pages/time-picker';
 import { PdfCanvas } from './pages/pdf-canvas';
+import { Picker } from './pages/picker';
+import { TimePicker } from './pages/time-picker';
 
 export function App() {
   return (

@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { pickerPackage, pdfCanvasPackage } from '../../internal/paths';
+import { defineConfig } from 'vite';
+import { pdfCanvasPackage, pickerPackage } from '../../internal/paths';
 
 export default defineConfig({
   plugins: [react()],

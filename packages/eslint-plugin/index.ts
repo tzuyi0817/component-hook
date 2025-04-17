@@ -1,26 +1,27 @@
-import { globals } from './plugins';
-import { jsConfigs } from './configs/javascript';
-import { typescriptConfigs } from './configs/typescript';
-import { importConfigs } from './configs/import';
-import { unicornConfig } from './configs/unicorn';
-import { markdownConfigs } from './configs/markdown';
-import { regexpConfig } from './configs/regexp';
-import { deMorganConfig } from './configs/de-morgan';
-import { prettierConfig } from './configs/prettier';
 import { commentsConfigs } from './configs/comments';
-import { sonarjsConfigs } from './configs/sonarjs';
-import { securityConfig } from './configs/security';
-import { reactConfigs } from './configs/react';
-import { vueConfigs } from './configs/vue';
+import { deMorganConfig } from './configs/de-morgan';
+import { ignores } from './configs/ignores';
+import { importConfigs } from './configs/import';
+import { jsConfigs } from './configs/javascript';
+import { markdownConfigs } from './configs/markdown';
+import { perfectionistConfig } from './configs/perfectionist';
 import { playwrightConfig } from './configs/playwright';
+import { prettierConfig } from './configs/prettier';
+import { reactConfigs } from './configs/react';
+import { regexpConfig } from './configs/regexp';
+import { securityConfig } from './configs/security';
+import { sonarjsConfigs } from './configs/sonarjs';
 import {
-  testingLibraryDomConfig,
   testingLibraryAngularConfig,
+  testingLibraryDomConfig,
   testingLibraryMarkoConfig,
   testingLibraryReactConfig,
   testingLibraryVueConfig,
 } from './configs/testing-library';
-import { ignores } from './configs/ignores';
+import { typescriptConfigs } from './configs/typescript';
+import { unicornConfig } from './configs/unicorn';
+import { vueConfigs } from './configs/vue';
+import { globals } from './plugins';
 
 const basicConfigs = [
   ...jsConfigs,
@@ -30,6 +31,7 @@ const basicConfigs = [
   unicornConfig,
   regexpConfig,
   deMorganConfig,
+  perfectionistConfig,
   {
     name: 'component-hook/globals',
     languageOptions: {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
+import { ref } from 'vue';
 
 const currentPdf = ref<PDF>();
 const pdfCanvasRef = ref<InstanceType<typeof PdfCanvas> | null>(null);

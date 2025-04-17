@@ -1,6 +1,6 @@
-import type { ImageProps, TextProps, TOptions, FabricObjectProps } from 'fabric';
-import type { PDF } from './pdf';
 import type { CloseSvgOptions } from './fabric';
+import type { PDF } from './pdf';
+import type { FabricObjectProps, ImageProps, TextProps, TOptions } from 'fabric';
 
 export interface ComponentProps {
   file: PDF;

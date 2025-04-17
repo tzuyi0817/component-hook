@@ -1,40 +1,40 @@
-import { useRef } from 'react';
 import {
   Canvas,
   FabricImage,
   FabricText,
   type FabricObject,
-  type TOptions,
+  type FabricObjectProps,
   type ImageProps,
   type TextProps,
-  type FabricObjectProps,
+  type TOptions,
 } from 'fabric';
+import { useRef } from 'react';
+import { DEFAULT_CLOSE_OPTIONS, DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS } from '../../shared/constants';
 import {
-  loadFile as loadFileToCanvas,
-  fabricMap,
+  clearActiveCanvas,
+  copyActiveFabric as copyActive,
   createFabricCanvas,
+  deleteActiveFabric as deleteActive,
+  deleteFabricCanvas,
+  specifyPage as drawSpecifyPage,
+  fabricMap,
   generateCloseFabric,
+  loadFile as loadFileToCanvas,
   renderFabricImage,
   scaleCloseFabric,
   scaleCornerFabric,
-  clearActiveCanvas,
-  deleteFabricCanvas,
   setFabricOffset,
-  specifyPage as drawSpecifyPage,
-  copyActiveFabric as copyActive,
-  deleteActiveFabric as deleteActive,
 } from '../../shared/utils/fabric';
-import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../../shared/constants';
 import type {
-  SpecifyPageArgs,
-  RenderImageArgs,
-  CreateCloseFabricArgs,
-  CloseSvgOptions,
-  FabricHookParams,
-  DropOffset,
   CacheFabricImage,
-  CacheFabricText,
   CacheFabricObject,
+  CacheFabricText,
+  CloseSvgOptions,
+  CreateCloseFabricArgs,
+  DropOffset,
+  FabricHookParams,
+  RenderImageArgs,
+  SpecifyPageArgs,
 } from '../../shared/types/fabric';
 
 export function useFabric(params?: FabricHookParams & { selectionOptions?: TOptions<FabricObjectProps> }) {

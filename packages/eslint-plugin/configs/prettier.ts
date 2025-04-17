@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint';
 import { pluginPrettier, pluginPrettierRecommended } from '../plugins';
+import type { Linter } from 'eslint';
 
 const rules = { ...pluginPrettierRecommended.rules };
 

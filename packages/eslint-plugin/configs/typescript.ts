@@ -1,5 +1,5 @@
-import type { Linter } from 'eslint';
 import { typescriptEslint } from '../plugins';
+import type { Linter } from 'eslint';
 
 export const rules: Linter.RulesRecord = {
   '@typescript-eslint/ban-ts-comment': 'off',

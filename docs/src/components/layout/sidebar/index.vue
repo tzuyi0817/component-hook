@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute, type RouteRecordRaw } from 'vue-router';
-import SidebarNav from './SidebarNav.vue';
 import SidebarItem from './SidebarItem.vue';
+import SidebarNav from './SidebarNav.vue';
 
 const route = useRoute();
 const children = route.matched[0].children;

@@ -1,15 +1,15 @@
 <script setup lang="ts" generic="T extends string | number">
-import { computed, nextTick, ref, watchEffect, type Ref, type ComponentPublicInstance } from 'vue';
+import { computed, nextTick, ref, watchEffect, type ComponentPublicInstance, type Ref } from 'vue';
 import {
   extendFields,
   formatColumnsToCascade,
   getColumnsType,
-  resetChildrenSelected,
   getIndexByValue,
+  resetChildrenSelected,
 } from '../../shared/utils/common';
-import type { PickerFields, PickerColumn } from '../../shared/types';
-import Popup from './Popup.vue';
+import type { PickerColumn, PickerFields } from '../../shared/types';
 import Column from './PickerColumn.vue';
+import Popup from './Popup.vue';
 import '../../shared/index.scss';
 import '../transition.scss';
 

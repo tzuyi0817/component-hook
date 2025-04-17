@@ -1,4 +1,4 @@
-import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 // import * as pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs';
 import { dependencies } from '../../../package.json' with { type: 'json' };
 import { readfile } from './reader';

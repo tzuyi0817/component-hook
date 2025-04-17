@@ -1,5 +1,4 @@
-import { useState, useRef, useMemo } from 'react';
-import { createPointerTracker } from '../../shared/utils/pointer';
+import { useMemo, useRef, useState } from 'react';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -8,6 +7,7 @@ import {
   INERTIAL_TIME,
   OPTION_HEIGHT,
 } from '../../shared/constants';
+import { createPointerTracker } from '../../shared/utils/pointer';
 
 interface ScrollSnapProps<T> {
   column: T[];

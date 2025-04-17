@@ -1,4 +1,4 @@
-import { ref, onScopeDispose } from 'vue';
+import { onScopeDispose, ref } from 'vue';
 
 export function useMediaQuery(query: string) {
   let mediaQuery: MediaQueryList | null = window.matchMedia(query);

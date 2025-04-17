@@ -1,19 +1,19 @@
-import { Canvas, FabricImage, loadSVGFromURL, util, Group, type FabricObject } from 'fabric';
-import type { PDFPageProxy } from 'pdfjs-dist';
+import { Canvas, FabricImage, Group, loadSVGFromURL, util, type FabricObject } from 'fabric';
 import { CLONE_PROPERTIES } from '../constants';
 import type {
-  RenderImageArgs,
-  DropOffset,
-  SpecifyPageArgs,
-  SupportFileType,
-  CacheFabricObject,
   CacheFabricImage,
+  CacheFabricObject,
   CacheFabricText,
   CloseSvgOptions,
+  DropOffset,
+  RenderImageArgs,
+  SpecifyPageArgs,
+  SupportFileType,
 } from '../types/fabric';
-import { printPDF, getPDFDocument } from './pdf-js';
-import { convertToBase64 } from './image';
 import { getPixelsPerPoint } from './common';
+import { convertToBase64 } from './image';
+import { getPDFDocument, printPDF } from './pdf-js';
+import type { PDFPageProxy } from 'pdfjs-dist';
 
 export const fabricMap = new Map<string, Canvas>();
 

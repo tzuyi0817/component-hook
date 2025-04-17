@@ -1,8 +1,8 @@
-import path from 'node:path';
 import fs from 'node:fs';
+import path from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import dts from 'vite-plugin-dts';
-import { FRAMEWORK, vitePlugin, libEntry, outDir, rollupGlobals, rollupExternal } from '../../internal/build-config';
+import { FRAMEWORK, libEntry, outDir, rollupExternal, rollupGlobals, vitePlugin } from '../../internal/build-config';
 
 const patchCssFile: Plugin = {
   name: 'patch-css-file',

@@ -1,11 +1,11 @@
 import { createApp } from 'vue';
-import 'virtual:svg-icons-register';
+import App from '@/App.vue';
 
+import router from '@/router';
+import 'virtual:svg-icons-register';
 import '@/styles/vars.postcss';
 import '@/styles/tailwind.postcss';
 import '@/styles/index.postcss';
-import App from '@/App.vue';
-import router from '@/router';
 
 const app = createApp(App);
 

@@ -1,13 +1,13 @@
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readdir, readFile, writeFile } from 'node:fs/promises';
-import minimist from 'minimist';
-import colors from 'picocolors';
-import { copy, ensureDirSync } from 'fs-extra/esm';
 import artTemplate from 'art-template';
+import { copy, ensureDirSync } from 'fs-extra/esm';
+import minimist from 'minimist';
 import ora from 'ora';
+import colors from 'picocolors';
 import { operationPrompts } from './prompts';
-import { formatTargetDir, clearFolder, getProjectName, getPkgManagerInfo } from './utils';
+import { clearFolder, formatTargetDir, getPkgManagerInfo, getProjectName } from './utils';
 
 interface MinimistParsedArgs {
   _: string[];

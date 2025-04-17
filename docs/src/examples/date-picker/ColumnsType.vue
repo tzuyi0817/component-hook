@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { DatePicker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const currentDate = ref<number[]>([2030, 8]);

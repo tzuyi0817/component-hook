@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import Describedby from '@/components/Describedby.vue';
-import SourceCode from '@/components/SourceCode.vue';
-import SvgIcon from '@/components/SvgIcon.vue';
 import CopySource from '@/components/CopySource.vue';
+import Describedby from '@/components/Describedby.vue';
 import ExternalLink from '@/components/ExternalLink.vue';
 import Collapse from '@/components/layout/Collapse.vue';
+import SourceCode from '@/components/SourceCode.vue';
+import SvgIcon from '@/components/SvgIcon.vue';
 import { highlight } from '@/utils/highlight';
 
 interface Props {

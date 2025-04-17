@@ -1,6 +1,6 @@
 import { useImperativeHandle, type ForwardedRef } from 'react';
-import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import { OPTION_HEIGHT, OPTION_ROTATE_FACTOR } from '../../shared/constants';
+import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import { useScrollSnap } from '../hooks/use-scroll-snap';
 import type { PickerColumn, PickerFields } from '../../shared/types';
 

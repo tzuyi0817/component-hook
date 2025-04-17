@@ -1,4 +1,4 @@
-import { watch, onScopeDispose, type Ref } from 'vue';
+import { onScopeDispose, watch, type Ref } from 'vue';
 
 export function useResize(isWatch: Ref<boolean>, callback: () => void) {
   watch(isWatch, value => {

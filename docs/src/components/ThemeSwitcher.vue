@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useTemplateRef, onMounted } from 'vue';
-import SvgIcon from './SvgIcon.vue';
+import { onMounted, useTemplateRef } from 'vue';
 import { usePrefersTheme } from '@/hooks/use-prefers-theme';
 import { sleep } from '@/utils/common';
+import SvgIcon from './SvgIcon.vue';
 
 const TRANSITION_DURATION = 300;
 const isDarkTheme = usePrefersTheme('dark');

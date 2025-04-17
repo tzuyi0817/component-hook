@@ -43,8 +43,8 @@ $ pnpm install @component-hook/picker
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Picker } from '@component-hook/picker/vue';
+import { ref } from 'vue';
 
 const isShowPicker = ref(false);
 const pickerValues = ref<number[]>([]);
@@ -77,8 +77,8 @@ function onCancel() {
 ### React
 
 ```tsx
-import { useState } from 'react';
 import { Picker } from '@component-hook/picker/react';
+import { useState } from 'react';
 
 const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value: index }));
 

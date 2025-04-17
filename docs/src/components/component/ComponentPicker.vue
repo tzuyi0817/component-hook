@@ -2,11 +2,11 @@
 import Demo from '@/components/Demo.vue';
 import BasePicker from '@/examples/picker/Base.vue';
 import BindingPicker from '@/examples/picker/Binding.vue';
-import MultiColumnPicker from '@/examples/picker/MultiColumn.vue';
 import CascadePicker from '@/examples/picker/Cascade.vue';
 import CustomizeColumnPicker from '@/examples/picker/CustomizeColumn.vue';
-import installationMd from '@/markdowns/picker/installation.md?raw';
+import MultiColumnPicker from '@/examples/picker/MultiColumn.vue';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
+import installationMd from '@/markdowns/picker/installation.md?raw';
 import { md } from '@/utils/highlight';
 
 interface Props {

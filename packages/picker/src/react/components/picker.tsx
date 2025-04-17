@@ -1,14 +1,14 @@
-import { useState, useEffect, useMemo, useRef, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   extendFields,
   formatColumnsToCascade,
   getColumnsType,
-  resetChildrenSelected,
   getIndexByValue,
+  resetChildrenSelected,
 } from '../../shared/utils/common';
-import type { PickerFields, PickerColumn } from '../../shared/types';
-import { Popup } from './popup';
+import type { PickerColumn, PickerFields } from '../../shared/types';
 import { Columns, type ColumnsRef } from './picker-columns';
+import { Popup } from './popup';
 import '../../shared/index.scss';
 import '../transition.scss';
 

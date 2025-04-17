@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom';
 import { mswServer } from '@/mocks/server';
+import '@testing-library/jest-dom';
 
 beforeAll(() => mswServer.listen());
 afterEach(() => mswServer.resetHandlers());
