@@ -17,6 +17,8 @@ export interface PdfCanvasHandle {
   addText: (text: string, options?: TOptions<TextProps>) => void;
   clearActive: () => void;
   deleteCanvas: () => void;
+  copyActiveFabric: () => Promise<void>;
+  deleteActiveFabric: () => void;
   canvasRef: React.RefObject<HTMLCanvasElement>;
 }
 
@@ -88,7 +90,7 @@ function PdfCanvasComponent(
     selectionCleared: onSelectionCleared,
   });
 
-  useResize(setPDF);
+  useResize(handleReload);
 
   async function setPDF() {
     window.requestAnimationFrame(async () => {

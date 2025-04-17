@@ -1,8 +1,7 @@
 import { useState, type ChangeEvent } from 'react';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 
 export function DrawPdf() {
-  const { loadFile } = useFabric();
   const [currentPdf, setCurrentPdf] = useState<PDF>();
 
   const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {

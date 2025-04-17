@@ -1,8 +1,7 @@
 import { useRef, useState, type ChangeEvent } from 'react';
-import PdfCanvas, { useFabric, type PDF, type PdfCanvasHandle } from '@component-hook/pdf-canvas/react';
+import PdfCanvas, { loadFile, type PDF, type PdfCanvasHandle } from '@component-hook/pdf-canvas/react';
 
 export function ManualPdf() {
-  const { loadFile } = useFabric();
   const [currentPdf, setCurrentPdf] = useState<PDF>();
   const pdfCanvasRef = useRef<PdfCanvasHandle | null>(null);
 

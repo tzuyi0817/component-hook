@@ -1,10 +1,9 @@
 import { lazy, useState, Suspense, type ChangeEvent } from 'react';
-import { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
+import { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 
 const PdfCanvas = lazy(() => import('@component-hook/pdf-canvas/react'));
 
 export function MultiplePdf() {
-  const { loadFile } = useFabric();
   const [currentPdf, setCurrentPdf] = useState<PDF>();
 
   const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {

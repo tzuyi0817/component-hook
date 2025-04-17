@@ -1,11 +1,10 @@
 import { useState, useRef, type ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
-import PdfCanvas, { useFabric, type PDF } from '@component-hook/pdf-canvas/react';
+import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 
 let currentFile: File | null = null;
 
 export function EncryptedPdf() {
-  const { loadFile } = useFabric();
   const [currentPdf, setCurrentPdf] = useState<PDF>();
   const [password, setPassword] = useState<string>('');
   const [isShowPasswordPopup, setIsShowPasswordPopup] = useState(false);
