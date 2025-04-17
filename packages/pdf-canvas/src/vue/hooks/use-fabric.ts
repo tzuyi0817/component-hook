@@ -21,8 +21,10 @@ import {
   deleteFabricCanvas,
   setFabricOffset,
   specifyPage as drawSpecifyPage,
+  copyActiveFabric as copyActive,
+  deleteActiveFabric as deleteActive,
 } from '../../shared/utils/fabric';
-import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../../shared/configs';
+import { DEFAULT_IMAGE_OPTIONS, DEFAULT_TEXT_OPTIONS, DEFAULT_CLOSE_OPTIONS } from '../../shared/constants';
 import type {
   SpecifyPageArgs,
   RenderImageArgs,
@@ -36,7 +38,15 @@ import type {
 } from '../../shared/types/fabric';
 
 export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<TOptions<FabricObjectProps>> }) {
-  const { id = '', selectionOptions, pointerDown, pointerMove, pointerUp } = params || {};
+  const {
+    id = '',
+    selectionOptions,
+    pointerDown,
+    pointerMove,
+    pointerUp,
+    selectionCreated,
+    selectionCleared,
+  } = params || {};
   let closeFabric: FabricObject | null = null;
   let selectedFabric: CacheFabricObject | null = null;
   let canvasScale = 1;
@@ -47,6 +57,8 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     const canvas = createFabricCanvas(id);
 
     canvas.on('selection:created', event => {
+      selectionCreated?.(event);
+
       if (event.selected.length <= 1) return;
       const active = canvas.getActiveObject();
 
@@ -62,7 +74,10 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
       scaleFabric(canvasScale);
     });
 
-    canvas.on('selection:cleared', () => deleteCloseFabric(canvas));
+    canvas.on('selection:cleared', event => {
+      selectionCleared?.(event);
+      deleteCloseFabric(canvas);
+    });
 
     if (pointerDown) canvas.on('mouse:down', pointerDown);
     if (pointerMove) canvas.on('mouse:move', pointerMove);
@@ -110,13 +125,13 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     canvas.setActiveObject(textFabric);
   }
 
-  function setFabric(canvas: Canvas, fabric: CacheFabricImage | CacheFabricText) {
+  function setFabric(canvas: Canvas, fabric: CacheFabricImage | CacheFabricText | CacheFabricObject) {
     fabric.on('selected', event => createCloseFabric({ canvas, target: event.target }));
     fabric.on('modified', event => createCloseFabric({ canvas, target: event.target }));
     fabric.on('scaling', () => deleteCloseFabric(canvas));
     fabric.on('moving', () => deleteCloseFabric(canvas));
     fabric.on('rotating', () => deleteCloseFabric(canvas));
-    fabric._cornerSize = fabric.cornerSize;
+    fabric._cornerSize = fabric._cornerSize ?? fabric.cornerSize;
   }
 
   async function createCloseFabric({
@@ -128,13 +143,16 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     const activeCount = canvas.getActiveObjects().length;
 
     if (activeCount > 1 || closeFabric?.stroke === `${stroke}-${uuid}`) return;
-    const group = await generateCloseFabric(closeOptions.src, stroke, uuid);
+    const group = await generateCloseFabric(closeOptions, uuid, stroke);
 
     deleteCloseFabric(canvas);
     closeFabric = group;
     selectedFabric = target;
     onCloseFabric(canvas, target, uuid);
     scaleFabric(canvasScale, true);
+
+    if (!group) return;
+
     canvas.add(group);
   }
 
@@ -200,6 +218,14 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     deleteFabricCanvas(id);
   }
 
+  function copyActiveFabric() {
+    return copyActive(id, setFabric);
+  }
+
+  function deleteActiveFabric() {
+    deleteActive(id);
+  }
+
   return {
     createCanvas,
     loadFile,
@@ -211,5 +237,7 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     deleteCanvas,
     scaleFabric,
     setCloseSvgOptions,
+    copyActiveFabric,
+    deleteActiveFabric,
   };
 }

@@ -1,8 +1,18 @@
-import { Canvas, FabricImage, loadSVGFromURL, util, type FabricObject } from 'fabric';
-import { type PDFPageProxy } from 'pdfjs-dist';
-import type { RenderImageArgs, DropOffset, SpecifyPageArgs, SupportFileType, CacheFabricObject } from '../types/fabric';
+import { Canvas, FabricImage, loadSVGFromURL, util, Group, type FabricObject } from 'fabric';
+import type { PDFPageProxy } from 'pdfjs-dist';
+import { CLONE_PROPERTIES } from '../constants';
+import type {
+  RenderImageArgs,
+  DropOffset,
+  SpecifyPageArgs,
+  SupportFileType,
+  CacheFabricObject,
+  CacheFabricImage,
+  CacheFabricText,
+  CloseSvgOptions,
+} from '../types/fabric';
 import { printPDF, getPDFDocument } from './pdf-js';
-import { convertToBase64, createImageSrc } from './image';
+import { convertToBase64 } from './image';
 import { getPixelsPerPoint } from './common';
 
 export const fabricMap = new Map<string, Canvas>();
@@ -45,8 +55,8 @@ export function createRenderTask(pdfPage: PDFPageProxy, scale: number) {
   return { canvas, renderTask };
 }
 
-export async function generateCloseFabric(closeSrc: string, stroke: string, uuid: number) {
-  const src = closeSrc || createImageSrc('close.svg');
+export async function generateCloseFabric({ src }: CloseSvgOptions, uuid: number, stroke?: string) {
+  if (!src || !stroke) return null;
   const { objects, options } = await loadSVGFromURL(src);
   const filterObjects = objects.filter((object): object is NonNullable<typeof object> => object !== null);
   const group = util.groupSVGElements(filterObjects, options);
@@ -212,4 +222,48 @@ async function drawImage(file: File, _?: string, id?: string) {
   if (!id) return;
 
   return await drawFabricImage(id, file);
+}
+
+export async function copyActiveFabric(
+  id: string,
+  setFabric: (canvas: Canvas, fabric: CacheFabricImage | CacheFabricText | CacheFabricObject) => void,
+) {
+  const canvas = fabricMap.get(id);
+
+  if (!canvas) return;
+  const active = canvas?.getActiveObject();
+
+  if (!active) return;
+  const clone = await active.clone(CLONE_PROPERTIES);
+
+  if (clone instanceof Group) {
+    clone.forEachObject(fabric => {
+      canvas.add(fabric);
+      setFabric(canvas, fabric);
+    });
+  } else {
+    canvas.add(clone);
+    setFabric(canvas, clone);
+  }
+
+  setFabricOffset(clone, { x: -0.1, y: -0.1 });
+  canvas.setActiveObject(clone);
+}
+
+export function deleteActiveFabric(id: string) {
+  const canvas = fabricMap.get(id);
+
+  if (!canvas) return;
+  const active = canvas.getActiveObject();
+
+  if (!active) return;
+  if (active instanceof Group) {
+    active.forEachObject(fabric => {
+      canvas.remove(fabric);
+    });
+
+    canvas.discardActiveObject();
+  } else {
+    canvas.remove(active);
+  }
 }

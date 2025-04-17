@@ -45,18 +45,22 @@ export type SelectedEvent = Partial<TEvent> & {
 export type SupportFileType = 'application/pdf' | 'image/png' | 'image/jpeg';
 
 export interface CloseSvgOptions {
-  stroke: string;
-  hoverStroke: string;
-  src: string;
+  stroke?: string;
+  hoverStroke?: string;
+  src?: string;
 }
 
 export type FabricPointerEvent = TPointerEventInfo<TPointerEvent>;
+export type FabricSelectionCreatedEvent = Partial<TEvent<TPointerEvent>> & { selected: FabricObject[] };
+export type FabricSelectionClearedEvent = Partial<TEvent<TPointerEvent>> & { deselected: FabricObject[] };
 
 export interface FabricHookParams {
   id: string;
   pointerDown?: (event: FabricPointerEvent) => void;
   pointerMove?: (event: FabricPointerEvent) => void;
   pointerUp?: (event: FabricPointerEvent) => void;
+  selectionCreated?: (event: FabricSelectionCreatedEvent) => void;
+  selectionCleared?: (event: FabricSelectionClearedEvent) => void;
 }
 
 export type DropOffset = Record<'x' | 'y', number>;

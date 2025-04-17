@@ -3,9 +3,9 @@ import { ref, nextTick, watch, computed, onBeforeUnmount } from 'vue';
 import type { ImageProps, TextProps, TOptions, TPointerEventInfo, TPointerEvent } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
-import { DEFAULT_SELECTION_OPTIONS } from '../../shared/configs';
+import { DEFAULT_SELECTION_OPTIONS } from '../../shared/constants';
 import type { ComponentProps } from '../../shared/types/common';
-import type { DropOffset } from '../../shared/types/fabric';
+import type { DropOffset, FabricSelectionCreatedEvent, FabricSelectionClearedEvent } from '../../shared/types/fabric';
 
 interface Emits {
   loaded: [];
@@ -13,6 +13,8 @@ interface Emits {
   pointerDown: [event: TPointerEventInfo<TPointerEvent>];
   pointerMove: [event: TPointerEventInfo<TPointerEvent>];
   pointerUp: [event: TPointerEventInfo<TPointerEvent>];
+  selectionCreated: [event: FabricSelectionCreatedEvent];
+  selectionCleared: [event: FabricSelectionClearedEvent];
 }
 
 const props = withDefaults(defineProps<ComponentProps>(), {
@@ -44,12 +46,16 @@ const {
   deleteCanvas,
   scaleFabric,
   setCloseSvgOptions,
+  copyActiveFabric,
+  deleteActiveFabric,
 } = useFabric({
   id: canvasId,
   selectionOptions,
   pointerDown: event => emit('pointerDown', event),
   pointerMove: event => emit('pointerMove', event),
   pointerUp: event => emit('pointerUp', event),
+  selectionCreated: event => emit('selectionCreated', event),
+  selectionCleared: event => emit('selectionCleared', event),
 });
 
 setPDF();
@@ -118,7 +124,16 @@ watch([() => props.fileScale, () => props.page, () => props.file, () => props.pa
 watch(containerScale, scale => scaleFabric(scale), { immediate: true });
 watch(() => props.closeSvgOptions, setCloseSvgOptions, { immediate: true });
 onDestroy(deleteCanvas);
-defineExpose({ reload: setPDF, addImage, addText, clearActive, deleteCanvas, canvasRef });
+defineExpose({
+  reload: setPDF,
+  addImage,
+  addText,
+  clearActive,
+  deleteCanvas,
+  copyActiveFabric,
+  deleteActiveFabric,
+  canvasRef,
+});
 </script>
 
 <template>

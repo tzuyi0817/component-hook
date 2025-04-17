@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, useTemplateRef } from 'vue';
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 
 const currentPdf = ref<PDF>();
+const pdfCanvasRef = useTemplateRef('pdfCanvasRef');
 
 async function uploadFile(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -55,7 +56,10 @@ function dragText(event: DragEvent) {
 
     <pdf-canvas
       v-if="currentPdf"
+      ref="pdfCanvasRef"
       :file="currentPdf"
+      :file-scale="1.6"
+      :canvas-scale="0.6"
       canvas-id="drop"
       :drop-image-options="{ scaleX: 0.1, scaleY: 0.1 }"
       :drop-text-options="{ fontSize: 20 }"
@@ -78,5 +82,7 @@ function dragText(event: DragEvent) {
       />
       select file
     </button>
+
+    <button @click="pdfCanvasRef?.copyActiveFabric">copy</button>
   </div>
 </template>

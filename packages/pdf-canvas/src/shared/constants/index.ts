@@ -1,3 +1,5 @@
+import closeSvg from '../assets/close.svg';
+
 export const DEFAULT_IMAGE_OPTIONS = {
   top: 100,
   left: 50,
@@ -31,5 +33,13 @@ export const DEFAULT_SELECTION_OPTIONS = {
 export const DEFAULT_CLOSE_OPTIONS = {
   stroke: '#000',
   hoverStroke: '#B7EC5D',
-  src: '',
+  src: closeSvg,
 };
+
+export const CLONE_PROPERTIES = [
+  'borderColor',
+  'cornerStrokeColor',
+  'cornerSize',
+  '_cornerSize',
+  'selectionBackgroundColor',
+];

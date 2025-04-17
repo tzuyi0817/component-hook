@@ -2,9 +2,9 @@ import { useRef, useEffect, useMemo, useImperativeHandle, forwardRef, type Ref }
 import type { ImageProps, TextProps, TOptions, TPointerEventInfo, TPointerEvent } from 'fabric';
 import { useFabric } from '../hooks/use-fabric';
 import { useResize } from '../hooks/use-resize';
-import { DEFAULT_SELECTION_OPTIONS } from '../../shared/configs';
+import { DEFAULT_SELECTION_OPTIONS } from '../../shared/constants';
 import type { ComponentProps } from '../../shared/types/common';
-import type { DropOffset } from '../../shared/types/fabric';
+import type { DropOffset, FabricSelectionCreatedEvent, FabricSelectionClearedEvent } from '../../shared/types/fabric';
 
 export interface PdfCanvasHandle {
   reload: () => Promise<void>;
@@ -21,6 +21,8 @@ interface ComponentEmits {
   onPointerDown?: (event: TPointerEventInfo<TPointerEvent>) => void;
   onPointerMove?: (event: TPointerEventInfo<TPointerEvent>) => void;
   onPointerUp?: (event: TPointerEventInfo<TPointerEvent>) => void;
+  onSelectionCreated?: (event: FabricSelectionCreatedEvent) => void;
+  onSelectionCleared?: (event: FabricSelectionClearedEvent) => void;
 }
 
 export const PdfCanvas = forwardRef<PdfCanvasHandle, ComponentProps & ComponentEmits>(PdfCanvasComponent);
@@ -46,6 +48,8 @@ function PdfCanvasComponent(
     onPointerDown,
     onPointerMove,
     onPointerUp,
+    onSelectionCreated,
+    onSelectionCleared,
   }: ComponentProps & ComponentEmits,
   ref: Ref<PdfCanvasHandle>,
 ) {
@@ -67,12 +71,16 @@ function PdfCanvasComponent(
     deleteCanvas,
     scaleFabric,
     setCloseSvgOptions,
+    copyActiveFabric,
+    deleteActiveFabric,
   } = useFabric({
     id: computedCanvasId,
     selectionOptions: computedSelectionOptions,
     pointerDown: onPointerDown,
     pointerMove: onPointerMove,
     pointerUp: onPointerUp,
+    selectionCreated: onSelectionCreated,
+    selectionCleared: onSelectionCleared,
   });
 
   useResize(setPDF);
@@ -135,7 +143,16 @@ function PdfCanvasComponent(
     onReload?.();
   }
 
-  useImperativeHandle(ref, () => ({ reload: setPDF, addImage, addText, clearActive, deleteCanvas, canvasRef }));
+  useImperativeHandle(ref, () => ({
+    reload: setPDF,
+    addImage,
+    addText,
+    clearActive,
+    deleteCanvas,
+    copyActiveFabric,
+    deleteActiveFabric,
+    canvasRef,
+  }));
 
   useEffect(() => {
     handleReload();
