@@ -1,0 +1,15 @@
+button {
+  border-radius: 8px;
+  padding: 8px;
+  border-width: 1px;
+  border-color: transparent;
+  transition-property: border-color;
+  transition-duration: 300ms;
+  &:hover {
+    border-color: #646cff;
+  }
+  &:focus {
+    outline-width: 4px;
+    outline-color: -webkit-focus-ring-color;
+  }
+}

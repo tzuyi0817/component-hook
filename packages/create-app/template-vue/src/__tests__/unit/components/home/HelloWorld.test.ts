@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/vue';
 import { renderComponent } from '@/__tests__/unit/render';
-import HelloWorld from '@/components/indexPage/HelloWorld.vue';
+import HelloWorld from '@/pages/home/components/HelloWorld.vue';
 import i18n from '@/plugins/i18n';
 import { useConfigStore } from '@/stores';
 

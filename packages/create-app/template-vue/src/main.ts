@@ -6,10 +6,9 @@ import i18NPlugin from '@/plugins/i18n';
 import router from '@/router';
 import App from './App.vue';
 import 'virtual:svg-icons-register';
-import '@/styles/tailwind.postcss';
-import '@/styles/index.postcss';
+import '@/styles/index.css';
 
-if (process.env.NODE_ENV === 'mockServiceWorker') {
+if (import.meta.env.VITE_APP_MOCK === 'service-worker') {
   const { worker } = await import('@/mocks/browser');
 
   worker.start();

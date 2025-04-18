@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
-import IndexPage from '@/pages/IndexPage.vue';
+import HomePage from '@/pages/home/index.vue';
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -8,7 +8,7 @@ export const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    component: IndexPage,
+    component: HomePage,
     meta: {
       title: 'Vue3 Coding Standards',
     },

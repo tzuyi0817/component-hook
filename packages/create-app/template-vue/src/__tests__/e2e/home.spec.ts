@@ -7,14 +7,16 @@ test.beforeEach(async ({ page }) => {
 test('click Vite logo open Vite official website blank tab', async ({ page, context }) => {
   await page.getByRole('link', { name: 'Vite logo' }).click();
   const newPage = await context.waitForEvent('page');
-  await newPage.waitForLoadState();
+
+  await newPage.waitForLoadState('load');
   await expect(newPage).toHaveTitle('Vite | Next Generation Frontend Tooling');
 });
 
 test('click Vue logo open Vue official website blank tab', async ({ page, context }) => {
   await page.getByTitle('#icon-vue').click();
   const newPage = await context.waitForEvent('page');
-  await newPage.waitForLoadState();
+
+  await newPage.waitForLoadState('load');
   await expect(newPage).toHaveTitle('Vue.js - The Progressive JavaScript Framework | Vue.js');
 });
 
@@ -35,14 +37,16 @@ test('locale change interact', async ({ page }) => {
 test('click create-vue link open Vue quick start blank tab', async ({ page, context }) => {
   await page.getByRole('link', { name: 'create-vue' }).click();
   const newPage = await context.waitForEvent('page');
-  await newPage.waitForLoadState();
+
+  await newPage.waitForLoadState('load');
   await expect(newPage).toHaveTitle('Quick Start | Vue.js');
 });
 
 test('click Volar link open language-tools github blank tab', async ({ page, context }) => {
   await page.getByRole('link', { name: 'Volar' }).click();
   const newPage = await context.waitForEvent('page');
-  await newPage.waitForLoadState();
+
+  await newPage.waitForLoadState('load');
   await expect(newPage).toHaveTitle(
     'GitHub - vuejs/language-tools: ⚡ High-performance Vue language tooling based-on Volar.js',
   );

@@ -18,12 +18,7 @@ function changeLocale() {
   <h1>{{ msg }}</h1>
 
   <div class="p-8">
-    <button
-      type="button"
-      @click="count++"
-    >
-      count is {{ count }}
-    </button>
+    <button @click="count++">count is {{ count }}</button>
   </div>
 
   <p>
@@ -52,8 +47,8 @@ function changeLocale() {
   </button>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .read-the-docs {
-  @apply text-[#888];
+  color: #888;
 }
 </style>
