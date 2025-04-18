@@ -1,4 +1,4 @@
-import{m as t}from"./index-Dpu33887.js";import{d as n,a as o,u as e,o as s}from"./index-Dyt0eqDD.js";const a=`## Create App
+import{m as t}from"./index-BekVQ9Ef.js";import{d as n,a as o,u as e,o as s}from"./index-Ct0DdM35.js";const a=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
