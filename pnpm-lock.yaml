@@ -44,10 +44,10 @@ importers:
         version: 18.3.6(@types/react@18.3.20)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
-        version: 4.4.0(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))
+        version: 4.4.0(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))
       '@vitejs/plugin-vue':
         specifier: ^5.2.2
-        version: 5.2.3(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))(vue@3.5.13(typescript@5.8.3))
+        version: 5.2.3(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
       '@vitest/coverage-v8':
         specifier: ^2.1.9
         version: 2.1.9(vitest@2.1.9(@types/node@22.14.1)(jsdom@26.1.0)(sass-embedded@1.86.3))
@@ -76,8 +76,8 @@ importers:
         specifier: ^5.8.2
         version: 5.8.3
       vite:
-        specifier: ^5.4.14
-        version: 5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)
+        specifier: ^6.3.1
+        version: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)
       vitest:
         specifier: ^2.1.9
         version: 2.1.9(@types/node@22.14.1)(jsdom@26.1.0)(sass-embedded@1.86.3)
@@ -160,7 +160,7 @@ importers:
         version: 3.4.17
       vite-plugin-svg-icons:
         specifier: ^2.0.1
-        version: 2.0.1(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))
+        version: 2.0.1(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))
 
   packages/create-app:
     dependencies:
@@ -298,7 +298,7 @@ importers:
     devDependencies:
       vite-plugin-dts:
         specifier: ^4.5.3
-        version: 4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))
+        version: 4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.8.3)(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))
 
   packages/picker:
     dependencies:
@@ -323,7 +323,7 @@ importers:
         version: 1.86.3
       vite-plugin-dts:
         specifier: ^4.5.3
-        version: 4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))
+        version: 4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.8.3)(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))
 
   playground/react:
     dependencies:
@@ -5432,6 +5432,46 @@ packages:
       terser:
         optional: true
 
+  vite@6.3.1:
+    resolution: {integrity: sha512-kkzzkqtMESYklo96HKKPE5KKLkC1amlsqt+RjFMlX2AvbRB/0wghap19NdBxxwGZ+h/C6DLCrcEphPIItlGrRQ==}
+    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || ^20.0.0 || >=22.0.0
+      jiti: '>=1.21.0'
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      sass-embedded: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.16.0
+      tsx: ^4.8.1
+      yaml: ^2.4.2
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      jiti:
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+      tsx:
+        optional: true
+      yaml:
+        optional: true
+
   vitest@2.1.9:
     resolution: {integrity: sha512-MSmPM9REYqDGBI8439mA4mWhV5sKmDlBKWIYbA3lRb2PTHACE0mgKwA8yQ2xq9vxDTuk4iPrECBAEW2aoFXY0Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -6665,20 +6705,20 @@ snapshots:
       '@typescript-eslint/types': 8.30.1
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-react@4.4.0(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))':
+  '@vitejs/plugin-react@4.4.0(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)
+      vite: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@5.2.3(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3))(vue@3.5.13(typescript@5.8.3))':
+  '@vitejs/plugin-vue@5.2.3(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))':
     dependencies:
-      vite: 5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)
+      vite: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)
       vue: 3.5.13(typescript@5.8.3)
 
   '@vitest/coverage-v8@2.1.9(vitest@2.1.9(@types/node@22.14.1)(jsdom@26.1.0)(sass-embedded@1.86.3))':
@@ -11243,7 +11283,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-dts@4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.8.3)(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)):
+  vite-plugin-dts@4.5.3(@types/node@22.14.1)(rollup@4.40.0)(typescript@5.8.3)(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)):
     dependencies:
       '@microsoft/api-extractor': 7.52.4(@types/node@22.14.1)
       '@rollup/pluginutils': 5.1.4(rollup@4.40.0)
@@ -11256,13 +11296,13 @@ snapshots:
       magic-string: 0.30.17
       typescript: 5.8.3
     optionalDependencies:
-      vite: 5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)
+      vite: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
 
-  vite-plugin-svg-icons@2.0.1(vite@5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)):
+  vite-plugin-svg-icons@2.0.1(vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)):
     dependencies:
       '@types/svgo': 2.6.4
       cors: 2.8.5
@@ -11272,7 +11312,7 @@ snapshots:
       pathe: 0.2.0
       svg-baker: 1.7.0
       svgo: 2.8.0
-      vite: 5.4.18(@types/node@22.14.1)(sass-embedded@1.86.3)
+      vite: 6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -11285,6 +11325,21 @@ snapshots:
       '@types/node': 22.14.1
       fsevents: 2.3.3
       sass-embedded: 1.86.3
+
+  vite@6.3.1(@types/node@22.14.1)(jiti@2.4.2)(sass-embedded@1.86.3)(yaml@2.7.1):
+    dependencies:
+      esbuild: 0.25.2
+      fdir: 6.4.3(picomatch@4.0.2)
+      picomatch: 4.0.2
+      postcss: 8.5.3
+      rollup: 4.40.0
+      tinyglobby: 0.2.12
+    optionalDependencies:
+      '@types/node': 22.14.1
+      fsevents: 2.3.3
+      jiti: 2.4.2
+      sass-embedded: 1.86.3
+      yaml: 2.7.1
 
   vitest@2.1.9(@types/node@22.14.1)(jsdom@26.1.0)(sass-embedded@1.86.3):
     dependencies:
