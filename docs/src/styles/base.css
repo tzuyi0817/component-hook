@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -43,6 +39,10 @@
   }
 
   body {
-    @apply m-0 min-w-[320px] h-dvh overflow-x-hidden bg-bg-color;
+    margin: 0;
+    min-width: 320px;
+    height: 100dvh;
+    overflow-x: hidden;
+    background-color: var(--bg-color);
   }
 }

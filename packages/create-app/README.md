@@ -58,7 +58,6 @@ Currently supported template presets include:
 ### Code Features / Opinions
 
 - Project root aliased as `@` to `<project_root>/src`
-- Store persistedstate use [pinia-plugin-persistedstate](https://www.npmjs.com/package/pinia-plugin-persistedstate)
 - ESlint plugin use [@component-hook/eslint-plugin](https://www.npmjs.com/package/@component-hook/eslint-plugin?activeTab=readme)
 - if encounter npx: command not found, can execute `ln -s $(which npx) /usr/local/bin/npx` in zsh
 - Predefined and fully typed global variables:
