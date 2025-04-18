@@ -62,7 +62,7 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     type: (_, { projectName: nameAnswer }) => {
       return isValidPackageName(getProjectName(nameAnswer)) ? null : 'text';
     },
-    name: 'projectName',
+    name: 'packageName',
     message: styleTitle('Package name:'),
     initial: (_, { projectName: nameAnswer }) => toValidPackageName(getProjectName(nameAnswer)),
     validate: (name: string) => {
