@@ -2,7 +2,7 @@
   "name": "@component-hook/docs",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.6.3",
+  "packageManager": "pnpm@10.8.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
