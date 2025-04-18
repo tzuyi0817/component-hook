@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "fabric": "^6.6.4",
-    "pdfjs-dist": "4.10.38"
+    "pdfjs-dist": "5.1.91"
   },
   "peerDependencies": {
     "react": "^18.3.1",
