@@ -3,9 +3,7 @@ import App from '@/App.vue';
 
 import router from '@/router';
 import 'virtual:svg-icons-register';
-import '@/styles/vars.postcss';
-import '@/styles/tailwind.postcss';
-import '@/styles/index.postcss';
+import '@/styles/index.css';
 
 const app = createApp(App);
 

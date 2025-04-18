@@ -17,6 +17,9 @@
   "terminal.integrated.shellIntegration.enabled": true,
   "files.associations": {},
   "typescript.tsdk": "node_modules/typescript/lib",
+  "tailwindCSS.experimental.configFile": {
+    "docs/src/styles/tailwind.css": "docs/src/**"
+  },
   "cSpell.words": [
     "VITE",
     "pinia",
