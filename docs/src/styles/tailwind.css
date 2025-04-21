@@ -10,6 +10,8 @@
 
   --color-border: var(--border-color);
 
+  --color-gutter: var(--gutter-color);
+
   --color-text: var(--text-color);
   --color-text-secondary: var(--text-color-secondary);
 
