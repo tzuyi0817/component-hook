@@ -17,7 +17,7 @@ useResize(isShowFullNavbar, () => {
 
 <template>
   <header class="header">
-    <div class="flex items-center justify-between text-sm">
+    <div class="h-full flex items-center justify-between text-sm">
       <router-link
         to="/home"
         class="flex items-center"
@@ -45,7 +45,7 @@ useResize(isShowFullNavbar, () => {
             @close-full-navbar="isShowFullNavbar = false"
           />
 
-          <div class="bg-code-bg-color rounded-lg p-3 mt-4 flex justify-between">
+          <div class="bg-code-bg rounded-lg p-3 mt-4 flex justify-between">
             <p>Color Theme</p>
             <theme-switcher class="px-3" />
           </div>
@@ -69,24 +69,35 @@ useResize(isShowFullNavbar, () => {
   </header>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .header {
-  @apply w-full 
-  top-0 
-  left-0 
-  px-4 
-  border-b 
-  border-b-border-color 
-  box-border 
-  bg-bg-color 
-  z-10 
-  h-[var(--header-height)]
-  lg:px-12 
-  lg:fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border-color);
+  box-sizing: border-box;
+  background-color: var(--bg-color);
+  z-index: 10;
+  height: var(--header-height);
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 0 48px;
+    position: fixed;
+  }
 }
 
 .navbar-full-screen {
-  @apply absolute left-0 bg-bg-color w-full h-dvh top-[var(--header-height)] z-[15] px-8 py-6;
+  position: absolute;
+  left: 0;
+  top: var(--header-height);
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100dvh;
+  z-index: 15;
+  padding: 24px 32px;
 }
 
 .bounce-enter-active {

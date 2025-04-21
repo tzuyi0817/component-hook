@@ -20,37 +20,55 @@ function toggleHamburger() {
   </button>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .menu-hamburger {
-  @apply w-5 flex flex-col justify-center h-[var(--header-height)] lg:hidden;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--header-height);
 
   span {
-    @apply bg-text-color rounded-[10px] h-0.5 w-full my-0.5 transition-[transform_width] duration-300;
-
-    &.hamburger-1 {
-      @apply w-1/2;
-    }
-
-    &.hamburger-3 {
-      @apply w-3/4;
-    }
+    background-color: var(--text-color);
+    border-radius: 10px;
+    height: 2px;
+    width: 100%;
+    margin: 2px 0;
+    transition-property: transform, width;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 
-  &.active {
-    .hamburger-1 {
-      @apply origin-bottom;
-      transform: rotateZ(45deg) translate(13px, 0);
-    }
+  span.hamburger-1 {
+    width: 50%;
+  }
 
-    .hamburger-2 {
-      @apply origin-top;
-      transform: rotateZ(-45deg);
-    }
+  span.hamburger-3 {
+    width: 75%;
+  }
+}
 
-    .hamburger-3 {
-      @apply origin-bottom w-1/2;
-      transform: translate(2px, -10px) rotateZ(45deg);
-    }
+.menu-hamburger.active {
+  .hamburger-1 {
+    transform-origin: bottom;
+    transform: rotateZ(45deg) translate(13px, 0);
+  }
+
+  .hamburger-2 {
+    transform-origin: top;
+    transform: rotateZ(-45deg);
+  }
+
+  .hamburger-3 {
+    transform-origin: bottom;
+    width: 50%;
+    transform: translate(2px, -10px) rotateZ(45deg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-hamburger {
+    display: none;
   }
 }
 </style>

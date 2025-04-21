@@ -30,20 +30,32 @@ defineEmits(['closeFullNavbar']);
   </nav>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .link-item {
-  @apply transition-colors 
-  hover:text-primary
-  px-3
-  py-4 
-  border-b
-  border-border-color 
-  font-medium
-  lg:border-b-2
-  lg:border-transparent;
+  transition-property: color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 500;
+}
 
-  &.active {
-    @apply text-primary lg:border-primary lg:text-text-color hover:text-primary;
+.link-item:hover {
+  color: var(--primary);
+}
+
+.link-item.active {
+  color: var(--primary);
+}
+
+@media (min-width: 1024px) {
+  .link-item {
+    border-bottom: 2px solid transparent;
+  }
+
+  .link-item.active {
+    border-color: var(--primary);
+    color: var(--text-color);
   }
 }
 </style>

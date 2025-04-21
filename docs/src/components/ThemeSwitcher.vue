@@ -79,30 +79,34 @@ onMounted(() => {
       <span :class="['theme-slider', { 'translate-x-5': isDarkTheme }]">
         <svg-icon
           :name="isDarkTheme ? 'dark' : 'light'"
-          class="w-3 h-3 text-text-color"
+          class="w-3 h-3 text-text"
         />
       </span>
     </label>
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .theme-switch {
-  @apply relative 
-  flex 
-  items-center 
-  h-5
-  min-w-10
-  rounded-full
-  border
-  border-border-color 
-  transition-[background-color_border-color]
-  bg-switch-bg-color
-  cursor-pointer 
-  duration-300;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  min-width: 40px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--switch-bg-color);
+  cursor: pointer;
 }
 
 .theme-slider {
-  @apply w-3.5 h-3.5 top-[3px] absolute rounded-full left-0.5 transition-transform duration-300 bg-bg-color;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 3px;
+  left: 2px;
+  border-radius: 9999px;
+  background-color: var(--bg-color);
+  transition: translate 300ms cubic-bezier(0, 0, 0.2, 1);
 }
 </style>
