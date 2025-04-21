@@ -20,6 +20,7 @@
   --scrollbar-thumb-color: rgb(0 0 0 / 0.2);
   --scrollbar-thumb-hovercolor: rgb(0 0 0 / 0.4);
 
+  --code-color: #334bff;
   --code-base: #001080;
   --code-keyword: #af00db;
   --code-punctuation: #000000;
@@ -58,6 +59,7 @@
   --scrollbar-thumb-color: rgb(255 255 255 / 0.2);
   --scrollbar-thumb-hovercolor: rgb(255 255 255 / 0.4);
 
+  --code-color: #99a5ff;
   --code-base: #9cdcfe;
   --code-keyword: #c586c0;
   --code-punctuation: #d4d4d4;

@@ -1,13 +1,24 @@
 @layer components {
   .link {
-    color: var(--primary);
+    color: var(--code-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
   }
 
   .link:hover {
     color: var(--secondary);
+
+    code {
+      color: var(--secondary);
+    }
   }
 
   .link:active {
     color: var(--primary-light);
+
+    code {
+      color: var(--primary-light);
+    }
   }
 }
