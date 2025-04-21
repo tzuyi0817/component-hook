@@ -51,13 +51,35 @@ onMounted(() => {
   ></div>
 </template>
 
-<style lang="postcss" scoped>
-.sidebar {
-  &-mask {
-    @apply fixed w-full h-full inset-0 bg-black/60 z-10 lg:hidden animate-[fadeIn_0.6s];
+<style lang="css" scoped>
+.sidebar-mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.6);
+  z-index: 10;
+  animation: fadeIn 600ms;
+}
+
+.sidebar-nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  z-index: 10;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+@media (min-width: 1024px) {
+  .sidebar-mask {
+    display: none;
   }
-  &-nav {
-    @apply sticky flex justify-between top-0 z-10 px-4 py-3.5 border-b border-b-border-color bg-bg-color lg:hidden;
+
+  .sidebar-nav {
+    display: none;
   }
 }
 

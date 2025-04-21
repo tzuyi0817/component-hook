@@ -35,8 +35,9 @@ defineEmits(['closeSidebar']);
   </li>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .router-link-active {
-  @apply text-primary bg-blue-500/15;
+  color: var(--primary);
+  background-color: #3b82f626;
 }
 </style>

@@ -49,23 +49,26 @@ const groupedChildren = computed(() => {
   </ul>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .sidebar {
-  @apply fixed 
-  px-8 
-  py-12 
-  w-72 
-  transition-transform 
-  duration-300 
-  bg-bg-color 
-  h-full 
-  top-0
-  z-10 
-  flex
-  flex-col
-  gap-y-6
-  lg:top-14 
-  lg:px-12 
-  lg:translate-x-0;
+  position: fixed;
+  padding: 48px 32px;
+  width: 288px;
+  transition: translate 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--bg-color);
+  height: 100%;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    top: 56px;
+    padding: 48px 48px;
+    translate: 0;
+  }
 }
 </style>
