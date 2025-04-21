@@ -50,23 +50,63 @@ See [create-app](https://github.com/tzuyi0817/component-hook/tree/master/package
 
 You can use `.` for the project name to scaffold in the current directory.
 
-### Project Default Setup
+### Project Features Overview
 
-#### Features
+This project leverages modern frontend practices and tooling, covering development experience, code quality, testing, and deployment.
 
-- **Development Experience**: Written in [typeScript](https://www.typescriptlang.org/), styled with [tailwindcss](https://tailwindcss.com/). Supports SVGs ([vite-plugin-svg-icons](https://github.com/vbenjs/vite-plugin-svg-icons)).
-- **API & Mocking**: Handles requests with [axios](https://axios-http.com/docs/intro) and mocks APIs using [msw](https://mswjs.io/).
-- **Code Quality**: Enforces standards with [eslint](https://eslint.org/) and [prettier](https://prettier.io/), with [husky](https://www.npmjs.com/package/husky), [commitlint](https://commitlint.js.org/#/), and [lint-staged](https://github.com/okonet/lint-staged) for commit validation.
-- **Testing**: Uses [vitest](https://vitest.dev/) + [testing-library](https://testing-library.com/) for unit testing and [playwright](https://playwright.dev/) for E2E testing.
-- **Optimization**: Compresses CSS with [cssnano](https://cssnano.github.io/cssnano/) , converts units with [postcss-pxtorem](https://www.npmjs.com/package/postcss-pxtorem), and analyzes assets with [rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer).
-- **CI/CD**: Integrates `GitHub Actions` and `GitLab CI` for automated testing and deployment.
+#### Development Experience
 
-#### Code Features / Opinions
+- **Written in TypeScript**: Provides type safety and better maintainability.
+- **Styled with Tailwind CSS**: Utility-first CSS framework for fast and consistent UI styling.
+- **SVG Support**: Integrated [`vite-plugin-svg-icons`](https://github.com/vbenjs/vite-plugin-svg-icons) to use SVGs as Vue components.
 
-- Project root aliased as `@` to `<project_root>/src`
-- ESlint plugin use [@component-hook/eslint-plugin](https://www.npmjs.com/package/@component-hook/eslint-plugin?activeTab=readme)
-- if encounter npx: command not found, can execute `ln -s $(which npx) /usr/local/bin/npx` in zsh
-- Predefined and fully typed global variables:
-  - `VITE_APP_VERSION` is read from `package.json` version at build time
-  - `VITE_APP_BUILD_EPOCH` is populated as `new Date().getTime()` at build time
-  - `VITE_APP_MOCK` is use mock environment
+#### API & Mocking
+
+- Handles HTTP requests using `axios`.
+- Uses `msw` (Mock Service Worker) for mocking APIs, enabling smooth local development and testing.
+
+#### Code Quality
+
+- Enforces consistent code style with `ESLint` and `Prettier`.
+- Enhanced with:
+  - `husky`: For Git hooks.
+  - `lint-staged`: Only runs linters on staged files.
+  - `commitlint`: Ensures commit messages follow conventional format.
+
+#### Testing
+
+- Unit testing with `Vitest` + `Testing Library`.
+- End-to-end (E2E) testing using `Playwright`.
+
+#### Optimization
+
+- Minifies CSS with `cssnano`.
+- Converts px to rem using `postcss-pxtorem` for responsive design.
+- Uses `rollup-plugin-visualizer` to analyze bundle sizes.
+
+#### CI / CD
+
+- Integrated **GitHub Actions** and **GitLab CI** for automated testing and deployment.
+
+#### Project Structure & Conventions
+
+- The project root alias `@` points to the `src` directory (`<project_root>/src`).
+- ESLint uses a custom plugin: [`@component-hook/eslint-plugin`](https://www.npmjs.com/package/@component-hook/eslint-plugin).
+
+#### Tip: Solving `npx: command not found`
+
+If you encounter `npx: command not found`, run the following command to create a symbolic link:
+
+```bash
+ln -s $(which npx) /usr/local/bin/npx
+```
+
+#### Predefined Global Variables
+
+These variables are injected at build time and are fully typed:
+
+| Variable Name          | Description                                  |
+| ---------------------- | -------------------------------------------- |
+| `VITE_APP_VERSION`     | Read from `package.json` version             |
+| `VITE_APP_BUILD_EPOCH` | Timestamp generated at build time            |
+| `VITE_APP_MOCK`        | Indicates whether the mock environment is on |

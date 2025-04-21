@@ -8,6 +8,7 @@
     border-radius: 4px;
     font-size: 14px;
     line-height: calc(1.25 / 0.875);
+    color: var(--code-color);
   }
 
   .code-wrapper {
@@ -20,11 +21,11 @@
     border: 0 !important;
     border-radius: 6px;
     padding: 20px;
-    color: var(--code-base);
     overflow-x: auto;
 
     code {
       padding: 2px 0px;
+      color: var(--code-base);
     }
 
     .token.keyword {
