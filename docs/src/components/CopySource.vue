@@ -41,17 +41,17 @@ async function copySource() {
   </describedby>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .copy-prompt {
-  @apply absolute
-  -top-4
-  left-1/2
-  font-mono
-  text-xs
-  -translate-x-1/2
-  transition-all
-  pointer-events-none
-  select-none
-  duration-300;
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: calc(1 / 0.75);
+  transform: translateX(-50%);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  user-select: none;
 }
 </style>

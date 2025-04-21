@@ -6,8 +6,11 @@
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .loading {
-  @apply flex justify-center items-center p-10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 </style>

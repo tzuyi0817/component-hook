@@ -64,8 +64,8 @@ watch(
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .collapse-wrapper {
-  @apply transition-[max-height] duration-300;
+  transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 </style>
