@@ -13,7 +13,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="home-feature group">
+  <div class="home-feature">
     <img
       class="home-feature-image"
       :src="generateImageSrc(image)"
@@ -33,43 +33,72 @@ defineProps<Props>();
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .home-feature {
-  @apply flex
-  flex-col
-  items-center
-  border 
-  border-border-color 
-  rounded 
-  text-center 
-  w-[500px] 
-  max-w-full
-  transition-[transform_colors]
-  duration-300
-  hover:border-primary-light
-  hover:scale-105;
-  &-image {
-    @apply my-6 duration-700 group-hover:[transform:rotate3d(1,1,1,360deg)_scale(1.25)];
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  text-align: center;
+  width: 500px;
+  max-width: 100%;
+  transition-property: color, transform, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-feature-image {
+  margin: 24px 0;
+  transition-duration: 700ms;
+}
+
+.home-feature-title {
+  padding: 0 24px;
+  transition-duration: 300ms;
+}
+
+.home-feature-content {
+  padding: 16px 24px 40px;
+  flex: 1 1 0%;
+  color: var(--text-color-secondary);
+  transition-duration: 300ms;
+}
+
+.home-feature-footer {
+  width: 100%;
+  padding: 16px 24px;
+  display: block;
+  border-top: 1px solid var(--border-color);
+  color: var(--primary);
+  transition-property: color, border-color, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-feature-footer:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.home-feature:hover {
+  transform: scale(105%);
+  border-color: var(--primary-light);
+
+  .home-feature-image {
+    transform: rotate3d(1, 1, 1, 360deg) scale(125%);
   }
-  &-title {
-    @apply px-6 duration-300 group-hover:text-primary;
+
+  .home-feature-title {
+    color: var(--primary);
   }
-  &-content {
-    @apply px-6 pt-4 pb-10 flex-1 text-text-color-secondary duration-300 group-hover:text-text-color;
+
+  .home-feature-content {
+    color: var(--text-color);
   }
-  &-footer {
-    @apply w-full
-    px-6 
-    py-4 
-    block
-    border-t 
-    border-border-color 
-    text-primary 
-    transition-colors 
-    duration-300 
-    hover:bg-primary 
-    hover:text-white 
-    group-hover:border-primary-light;
+
+  .home-feature-footer {
+    border-color: var(--primary-light);
   }
 }
 </style>
