@@ -1,0 +1,106 @@
+/* @import url('prism-themes/themes/prism-vs.css') screen and (prefers-color-scheme: light); */
+/* @import url('prism-themes/themes/prism-vsc-dark-plus.css') screen and (prefers-color-scheme: dark); */
+
+@layer components {
+  code {
+    background-color: var(--code-bg-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: calc(1.25 / 0.875);
+  }
+
+  .code-wrapper {
+    position: relative;
+  }
+
+  pre[class*='language-'] {
+    margin: 0 !important;
+    background-color: var(--code-bg-color) !important;
+    border: 0 !important;
+    border-radius: 6px;
+    padding: 20px;
+    color: var(--code-base);
+    overflow-x: auto;
+
+    code {
+      padding: 2px 0px;
+    }
+
+    .token.keyword {
+      color: var(--code-keyword);
+    }
+
+    .token.punctuation {
+      color: var(--code-punctuation);
+    }
+
+    .token.function {
+      color: var(--code-function);
+    }
+
+    .token.number {
+      color: var(--code-number);
+    }
+
+    .token.operator {
+      color: var(--code-operator);
+    }
+
+    .token.string {
+      color: var(--code-string);
+    }
+
+    .token.tag {
+      color: var(--code-tag);
+
+      .token.punctuation {
+        color: var(--code-tag-punctuation);
+      }
+    }
+
+    .token.attr-name {
+      color: var(--code-attr-name);
+    }
+
+    .token.attr-value {
+      color: var(--code-attr-value);
+
+      .token.punctuation {
+        color: var(--code-attr-value);
+      }
+
+      .token.punctuation.attr-equals {
+        color: var(--code-punctuation);
+      }
+    }
+
+    .token.class-name {
+      color: var(--code-class-name);
+    }
+
+    .token.script.language-javascript {
+      color: var(--code-javascript);
+
+      .token.operator {
+        color: var(--code-javascript-operator);
+      }
+
+      .token.punctuation {
+        color: var(--code-javascript-punctuation);
+      }
+
+      .token.script-punctuation {
+        color: var(--code-javascript-script-punctuation);
+      }
+    }
+
+    .token.plain-text {
+      color: var(--code-plain-text);
+    }
+
+    .token.comment {
+      color: var(--code-comment);
+    }
+  }
+}

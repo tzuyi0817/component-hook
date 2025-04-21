@@ -1,0 +1,80 @@
+@layer components {
+  .dialog {
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0 0 0 / 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-content {
+    position: relative;
+    margin: auto;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    animation: popup 300ms;
+
+    input {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 4px 12px;
+      width: 80%;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      outline: none;
+      transition: border-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    input::placeholder {
+      color: #8d9095;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+    }
+
+    input:hover {
+      border-color: rgb(255 255 255 / 0.3);
+    }
+  }
+
+  .dialog-close {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    cursor: pointer;
+    color: #99a1af;
+    font-size: 24px;
+    line-height: calc(2 / 1.5);
+    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 700;
+  }
+
+  .dialog-close:hover {
+    color: var(--icon-hover-color);
+  }
+
+  @keyframes popup {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@layer components {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: 36px;
+    line-height: calc(2.5 / 2.25);
+    margin-bottom: 8px;
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 48px;
+      line-height: 1;
+    }
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: calc(2.25 / 1.875);
+    margin-bottom: 32px;
+  }
+
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 36px;
+      line-height: calc(2.5 / 2.25);
+    }
+  }
+
+  h3 {
+    font-size: 24px;
+    line-height: calc(2 / 1.5);
+    margin: 36px 0 24px;
+  }
+
+  @media (min-width: 1024px) {
+    h3 {
+      font-size: 30px;
+      line-height: calc(2.25 / 1.875);
+    }
+  }
+
+  h4 {
+    font-size: 20px;
+    line-height: calc(1.75 / 1.25);
+    margin: 8px 0 16px;
+  }
+
+  @media (min-width: 1024px) {
+    h4 {
+      font-size: 24px;
+      line-height: calc(2 / 1.5);
+    }
+  }
+}

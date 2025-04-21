@@ -1,4 +1,19 @@
 @import 'tailwindcss';
 
 @theme {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+
+  --color-secondary: var(--secondary);
+
+  --color-bg: var(--bg-color);
+
+  --color-border: var(--border-color);
+
+  --color-text: var(--text-color);
+  --color-text-secondary: var(--text-color-secondary);
+
+  --color-icon-hover: var(--icon-hover-color);
+
+  --color-code-bg: var(--code-bg-color);
 }

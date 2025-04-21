@@ -1,0 +1,27 @@
+@layer components {
+  .container {
+    height: 100%;
+    width: 100%;
+    padding: 32px;
+    margin: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding: 48px;
+    }
+  }
+
+  .sidebar-container {
+    padding: 32px;
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .sidebar-container {
+      padding: 48px;
+      margin-left: 240px;
+      width: calc(100% - 240px);
+    }
+  }
+}
