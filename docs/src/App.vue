@@ -27,17 +27,17 @@ useCopyCode();
   </main>
 </template>
 
-<style lang="postcss">
+<style lang="css">
 .fade-enter-active {
-  @apply transition-opacity duration-300 ease-out;
+  transition: opacity 300ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .fade-leave-active {
-  @apply transition-opacity duration-300 ease-in;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 1, 1);
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  @apply opacity-0;
+  opacity: 0;
 }
 </style>
