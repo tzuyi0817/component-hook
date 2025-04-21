@@ -37,8 +37,8 @@ async function toggleSource() {
       <slot name="description"></slot>
     </p>
 
-    <div class="example-wrapper border border-border-color rounded">
-      <div class="p-6 border-b border-b-border-color">
+    <div class="example-wrapper border border-border rounded">
+      <div class="p-6 border-b border-b-border">
         <slot></slot>
       </div>
 
@@ -84,7 +84,7 @@ async function toggleSource() {
       </collapse>
 
       <div
-        :class="['example-source-collapse', isShowSource ? 'py-3 transition-opacity' : 'transition-none opacity-0 h-0']"
+        :class="['example-source-collapse', isShowSource ? 'transition-opacity' : 'transition-none opacity-0 h-0']"
         role="button"
         tabindex="0"
         @click="toggleSource"
@@ -95,25 +95,29 @@ async function toggleSource() {
   </div>
 </template>
 
-<style lang="postcss" scoped>
-.example-source {
-  &-wrapper {
-    @apply border-x border-border-color;
-  }
+<style lang="css" scoped>
+.example-source-wrapper {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-color: var(--border-color);
+  border-style: solid;
+}
 
-  &-collapse {
-    @apply text-center
-    border
-    border-border-color
-    rounded-b
-    duration-300
-    px-3
-    text-sm
-    cursor-pointer
-    sticky
-    bottom-0
-    bg-bg-color
-    hover:text-primary;
-  }
+.example-source-collapse {
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 44px;
+  cursor: pointer;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--bg-color);
+  transition-duration: 300ms;
+}
+
+.example-source-collapse:hover {
+  color: var(--primary);
 }
 </style>

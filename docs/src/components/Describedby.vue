@@ -49,23 +49,21 @@ async function handleMouseLeave() {
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .describedby {
-  @apply bg-[var(--describedby-bg-color)] 
-  text-[var(--describedby-text-color)] 
-  text-xs 
-  px-3
-  py-2 
-  rounded 
-  absolute 
-  whitespace-nowrap
-  left-1/2
-  -top-1
-  -translate-x-1/2
-  translate-y-full
-  transition-opacity
-  duration-300
-  pointer-events-none
-  z-10;
+  background-color: var(--describedby-bg-color);
+  color: var(--describedby-text-color);
+  font-size: 12px;
+  line-height: calc(1 / 0.75);
+  padding: 8px 12px;
+  border-radius: 4px;
+  position: absolute;
+  white-space: nowrap;
+  left: 50%;
+  top: -4px;
+  transform: translateX(-50%) translateY(100%);
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 10;
 }
 </style>
