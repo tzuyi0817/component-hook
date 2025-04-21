@@ -1,0 +1,26 @@
+@layer components {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 36px;
+
+    th,
+    td {
+      padding: 12px 16px;
+      text-align: left;
+      max-width: 256px;
+      white-space: pre-wrap;
+      border-block: 1px solid var(--border-color);
+    }
+
+    thead tr:first-child th {
+      border-top-width: 0px;
+    }
+
+    tbody tr td:first-child {
+      font-family: var(--font-mono);
+    }
+  }
+}

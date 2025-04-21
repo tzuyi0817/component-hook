@@ -1,0 +1,54 @@
+@layer components {
+  .group-panel {
+    background-color: var(--code-bg-color);
+    border-radius: 6px;
+
+    .code-wrapper {
+      display: none;
+    }
+
+    .code-wrapper.active {
+      display: block;
+    }
+  }
+
+  .group-tabs {
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 12px;
+
+    .group-label {
+      position: relative;
+      cursor: pointer;
+      padding: 8px 12px;
+      line-height: 48px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .group-label:hover {
+      color: var(--primary);
+    }
+
+    .group-label::after {
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: transparent;
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .group-label:has(input:checked)::after {
+      background-color: var(--primary);
+    }
+
+    input {
+      opacity: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+}

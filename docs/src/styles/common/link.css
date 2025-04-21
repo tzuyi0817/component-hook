@@ -1,0 +1,13 @@
+@layer components {
+  .link {
+    color: var(--primary);
+  }
+
+  .link:hover {
+    color: var(--secondary);
+  }
+
+  .link:active {
+    color: var(--primary-light);
+  }
+}

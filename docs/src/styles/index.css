@@ -1,4 +1,4 @@
 @import './tailwind.css';
 @import './base.css';
 @import './vars.css';
-@import './common/all.postcss';
+@import './common/all.css';
