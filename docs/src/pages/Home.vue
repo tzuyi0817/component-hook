@@ -15,7 +15,7 @@ import FooterContainer from '@/components/layout/Footer.vue';
             </h1>
 
             <p class="text-4xl font-bold lg:text-5xl">Component library with Vue and React.</p>
-            <p class="pt-3 text-text-color-secondary font-medium lg:text-2xl">
+            <p class="pt-3 text-text-secondary font-medium lg:text-2xl">
               A component library that includes a collection of common and useful components.
             </p>
 
@@ -82,33 +82,56 @@ import FooterContainer from '@/components/layout/Footer.vue';
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="css" scoped>
 .name {
-  @apply bg-clip-text 
-  [-webkit-text-fill-color:transparent]
-  [background-image:linear-gradient(120deg,var(--primary)__30%,var(--secondary))];
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(120deg, var(--primary) 30%, var(--secondary));
 }
 
 .logo {
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-48 max-h-48 lg:max-w-80 lg:max-h-80;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 192px;
+  max-height: 192px;
+}
 
-  &-container {
-    @apply w-80 h-80 relative flex justify-center items-center lg:flex-1;
+.logo-container {
+  width: 320px;
+  height: 320px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-background {
+  background-image: linear-gradient(-45deg, #5f99d3 50%, #80bfff 50%);
+  position: absolute;
+  width: calc(2 / 3 * 100%);
+  height: calc(2 / 3 * 100%);
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(40px);
+}
+
+@media (min-width: 1024px) {
+  .logo {
+    max-width: 320px;
+    max-height: 320px;
   }
 
-  &-background {
-    @apply absolute
-    w-2/3
-    h-2/3
-    top-1/2
-    left-1/2
-    rounded-full
-    -translate-x-1/2
-    -translate-y-1/2
-    [background-image:linear-gradient(-45deg,#5f99d3_50%,#80bfff_50%)]
-    blur-2xl
-    lg:h-full
-    lg:blur-3xl;
+  .logo-container {
+    flex: 1 1 0%;
+  }
+
+  .logo-background {
+    height: 100%;
+    filter: blur(64px);
   }
 }
 </style>
