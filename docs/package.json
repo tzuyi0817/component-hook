@@ -2,7 +2,7 @@
   "name": "@component-hook/docs",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.10.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,22 +15,22 @@
     "@component-hook/picker": "workspace:*",
     "uuid": "^11.1.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.6",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.5",
     "autoprefixer": "^10.4.21",
-    "cssnano": "^7.0.6",
+    "cssnano": "^7.0.7",
     "markdown-it": "^14.1.0",
     "markdown-it-container": "^4.0.0",
     "postcss": "^8.5.3",
     "postcss-pxtorem": "^6.1.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.30.0",
-    "tailwindcss": "^4.1.4",
+    "tailwindcss": "^4.1.6",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
