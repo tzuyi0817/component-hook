@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { Demo } from '@/components/common';
-import BasePicker from '@/examples/picker/Base.vue';
-import BindingPicker from '@/examples/picker/Binding.vue';
-import CascadePicker from '@/examples/picker/Cascade.vue';
-import CustomizeColumnPicker from '@/examples/picker/CustomizeColumn.vue';
-import MultiColumnPicker from '@/examples/picker/MultiColumn.vue';
+import { BasePicker, BindingPicker, CascadePicker, CustomizeColumnPicker, MultiColumnPicker } from '@/examples/picker';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
 import installationMd from '@/markdowns/picker/installation.md?raw';
 import { md } from '@/utils/highlight';

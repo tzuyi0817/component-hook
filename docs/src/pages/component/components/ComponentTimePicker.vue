@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { Demo } from '@/components/common';
-import BasePicker from '@/examples/time-picker/Base.vue';
-import ColumnsTypePicker from '@/examples/time-picker/ColumnsType.vue';
-import CustomRangePicker from '@/examples/time-picker/CustomRange.vue';
-import LabelFormatterPicker from '@/examples/time-picker/LabelFormatter.vue';
+import { BasePicker, ColumnsTypePicker, CustomRangePicker, LabelFormatterPicker } from '@/examples/time-picker';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
 import installationMd from '@/markdowns/picker/installation.md?raw';
 import { md } from '@/utils/highlight';

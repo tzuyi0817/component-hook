@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { Demo, ExternalLink } from '@/components/common';
-import DrawPdf from '@/examples/pdf-canvas/Draw.vue';
-import DropPdf from '@/examples/pdf-canvas/Drop.vue';
-import EncryptedPdf from '@/examples/pdf-canvas/Encrypted.vue';
-import ManualPdf from '@/examples/pdf-canvas/Manual.vue';
-import MultiplePdf from '@/examples/pdf-canvas/Multiple.vue';
+import { DrawPdf, DropPdf, EncryptedPdf, ManualPdf, MultiplePdf } from '@/examples/pdf-canvas';
 import apiMd from '@/markdowns/pdf-canvas/api.md?raw';
 import installationMd from '@/markdowns/pdf-canvas/installation.md?raw';
 import { md } from '@/utils/highlight';

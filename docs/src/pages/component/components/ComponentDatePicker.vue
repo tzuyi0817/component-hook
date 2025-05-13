@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { Demo } from '@/components/common';
-import BasePicker from '@/examples/date-picker/Base.vue';
-import ColumnsTypePicker from '@/examples/date-picker/ColumnsType.vue';
-import CustomRangePicker from '@/examples/date-picker/CustomRange.vue';
-import LabelFormatterPicker from '@/examples/date-picker/LabelFormatter.vue';
+import { BasePicker, ColumnsTypePicker, CustomRangePicker, LabelFormatterPicker } from '@/examples/date-picker';
 import cssVariablesMd from '@/markdowns/picker/css-variables.md?raw';
 import installationMd from '@/markdowns/picker/installation.md?raw';
 import { md } from '@/utils/highlight';
