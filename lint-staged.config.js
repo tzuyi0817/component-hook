@@ -1,3 +1,5 @@
+/** @type {import('lint-staged').Configuration} */
+
 export default {
   '**/*.{ts,js,vue}': () => ['pnpm lint'],
   'docs/**/*.{ts,js,vue}': () => ['pnpm -C docs typecheck'],

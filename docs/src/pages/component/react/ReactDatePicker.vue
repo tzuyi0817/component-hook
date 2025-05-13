@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import baseSource from '@react-playground/date-picker/base?raw';
-import columnsTypeSource from '@react-playground/date-picker/columns-type?raw';
-import customRangeSource from '@react-playground/date-picker/custom-range?raw';
-import labelFormatterSource from '@react-playground/date-picker/label-formatter?raw';
+import baseSource from '@react-playground/date-picker/components/base?raw';
+import columnsTypeSource from '@react-playground/date-picker/components/columns-type?raw';
+import customRangeSource from '@react-playground/date-picker/components/custom-range?raw';
+import labelFormatterSource from '@react-playground/date-picker/components/label-formatter?raw';
 import indexMd from '@/markdowns/date-picker/react.md?raw';
 import ComponentDatePicker from '../components/ComponentDatePicker.vue';
 </script>

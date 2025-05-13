@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import baseSource from '@react-playground/time-picker/base?raw';
-import columnsTypeSource from '@react-playground/time-picker/columns-type?raw';
-import customRangeSource from '@react-playground/time-picker/custom-range?raw';
-import labelFormatterSource from '@react-playground/time-picker/label-formatter?raw';
+import baseSource from '@react-playground/time-picker/components/base?raw';
+import columnsTypeSource from '@react-playground/time-picker/components/columns-type?raw';
+import customRangeSource from '@react-playground/time-picker/components/custom-range?raw';
+import labelFormatterSource from '@react-playground/time-picker/components/label-formatter?raw';
 import indexMd from '@/markdowns/time-picker/react.md?raw';
 import ComponentTimePicker from '../components/ComponentTimePicker.vue';
 </script>
