@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import ComponentPicker from '@/components/component/ComponentPicker.vue';
 import baseSource from '@/examples/picker/Base.vue?raw';
 import bindingSource from '@/examples/picker/Binding.vue?raw';
 import cascadeSource from '@/examples/picker/Cascade.vue?raw';
 import customizeColumnSource from '@/examples/picker/CustomizeColumn.vue?raw';
 import multiColumnSource from '@/examples/picker/MultiColumn.vue?raw';
 import indexMd from '@/markdowns/picker/vue.md?raw';
+import ComponentPicker from '../components/ComponentPicker.vue';
 </script>
 
 <template>

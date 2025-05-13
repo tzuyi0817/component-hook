@@ -3,8 +3,8 @@ import baseSource from '@react-playground/date-picker/base?raw';
 import columnsTypeSource from '@react-playground/date-picker/columns-type?raw';
 import customRangeSource from '@react-playground/date-picker/custom-range?raw';
 import labelFormatterSource from '@react-playground/date-picker/label-formatter?raw';
-import ComponentDatePicker from '@/components/component/ComponentDatePicker.vue';
 import indexMd from '@/markdowns/date-picker/react.md?raw';
+import ComponentDatePicker from '../components/ComponentDatePicker.vue';
 </script>
 
 <template>

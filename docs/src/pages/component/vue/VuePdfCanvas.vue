@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import ComponentPdfCanvas from '@/components/component/ComponentPdfCanvas.vue';
 import drawSource from '@/examples/pdf-canvas/Draw.vue?raw';
 import dropSource from '@/examples/pdf-canvas/Drop.vue?raw';
 import encryptedSource from '@/examples/pdf-canvas/Encrypted.vue?raw';
 import manualSource from '@/examples/pdf-canvas/Manual.vue?raw';
 import multipleSource from '@/examples/pdf-canvas/Multiple.vue?raw';
 import eventMd from '@/markdowns/pdf-canvas/vue.md?raw';
+import ComponentPdfCanvas from '../components/ComponentPdfCanvas.vue';
 </script>
 
 <template>

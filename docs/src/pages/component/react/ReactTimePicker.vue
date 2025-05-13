@@ -3,8 +3,8 @@ import baseSource from '@react-playground/time-picker/base?raw';
 import columnsTypeSource from '@react-playground/time-picker/columns-type?raw';
 import customRangeSource from '@react-playground/time-picker/custom-range?raw';
 import labelFormatterSource from '@react-playground/time-picker/label-formatter?raw';
-import ComponentTimePicker from '@/components/component/ComponentTimePicker.vue';
 import indexMd from '@/markdowns/time-picker/react.md?raw';
+import ComponentTimePicker from '../components/ComponentTimePicker.vue';
 </script>
 
 <template>

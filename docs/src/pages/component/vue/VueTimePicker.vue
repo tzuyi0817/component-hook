@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ComponentTimePicker from '@/components/component/ComponentTimePicker.vue';
 import baseSource from '@/examples/time-picker/Base.vue?raw';
 import columnsTypeSource from '@/examples/time-picker/ColumnsType.vue?raw';
 import customRangeSource from '@/examples/time-picker/CustomRange.vue?raw';
 import labelFormatterSource from '@/examples/time-picker/LabelFormatter.vue?raw';
 import indexMd from '@/markdowns/time-picker/vue.md?raw';
+import ComponentTimePicker from '../components/ComponentTimePicker.vue';
 </script>
 
 <template>

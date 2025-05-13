@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeaderContainer from '@/components/layout/Header.vue';
+import { AppHeader } from '@/components/layout';
 import { useCopyCode } from '@/hooks/use-copy-code';
 import { useMarkdownGroup } from '@/hooks/use-markdown-group';
 import { scrollToTop } from '@/utils/common';
@@ -9,7 +9,7 @@ useCopyCode();
 </script>
 
 <template>
-  <header-container />
+  <app-header />
 
   <main class="w-screen lg:pt-14">
     <router-view v-slot="{ Component, route }">

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ComponentDatePicker from '@/components/component/ComponentDatePicker.vue';
 import baseSource from '@/examples/date-picker/Base.vue?raw';
 import columnsTypeSource from '@/examples/date-picker/ColumnsType.vue?raw';
 import customRangeSource from '@/examples/date-picker/CustomRange.vue?raw';
 import labelFormatterSource from '@/examples/date-picker/LabelFormatter.vue?raw';
 import indexMd from '@/markdowns/date-picker/vue.md?raw';
+import ComponentDatePicker from '../components/ComponentDatePicker.vue';
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
-import SidebarContainer from '@/components/layout/SidebarContainer.vue';
-import Home from '@/pages/Home.vue';
+import { SidebarContainer } from '@/components/layout';
+import Home from '@/pages/home/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
