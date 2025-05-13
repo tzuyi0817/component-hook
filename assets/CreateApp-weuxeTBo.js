@@ -1,4 +1,4 @@
-import{m as e}from"./index-BekVQ9Ef.js";import{d as t,a as o,u as n,o as a}from"./index-hD4nmzhg.js";const i=`## Create App
+import{d as e,a as t,u as n,m as o,o as a}from"./index-DBIHV1iY.js";const i=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
@@ -110,4 +110,4 @@ These variables are injected at build time and are fully typed:
 | \`VITE_APP_VERSION\`     | Read from \`package.json\` version             |
 | \`VITE_APP_BUILD_EPOCH\` | Timestamp generated at build time            |
 | \`VITE_APP_MOCK\`        | Indicates whether the mock environment is on |
-`,s=["innerHTML"],d=t({__name:"CreateApp",setup(r){return(p,c)=>(a(),o("div",{class:"markdown-doc",innerHTML:n(e).render(n(i))},null,8,s))}});export{d as default};
+`,s=["innerHTML"],m=e({__name:"CreateApp",setup(r){return(p,c)=>(a(),t("div",{class:"markdown-doc",innerHTML:n(o).render(n(i))},null,8,s))}});export{m as default};

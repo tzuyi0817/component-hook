@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-DOjgg1xi.js";import{d as t,c as a,u as n,o}from"./index-hD4nmzhg.js";import"./Demo-DZYHfayt.js";import"./index-BekVQ9Ef.js";const s=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-ngBqctiv.js";import{d as t,c as a,u as n,o}from"./index-DBIHV1iY.js";import"./index-Bmdog-pG.js";const s=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
@@ -53,7 +53,7 @@ async function uploadFile(event: Event) {
     </div>
   </div>
 </template>
-`,r=`<script setup lang="ts">
+`,l=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref, useTemplateRef } from 'vue';
 
@@ -142,7 +142,7 @@ function dragText(event: DragEvent) {
     </div>
   </div>
 </template>
-`,l=`<script setup lang="ts">
+`,r=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
@@ -323,7 +323,7 @@ function addText() {
 `,i=`<script setup lang="ts">
 import { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { defineAsyncComponent, ref } from 'vue';
-import Loading from '@/components/Loading.vue';
+import { Loading } from '@/components/common';
 
 const currentPdf = ref<PDF>();
 const PdfCanvas = defineAsyncComponent(() => import('@component-hook/pdf-canvas/vue'));
@@ -393,4 +393,4 @@ async function uploadFile(event: Event) {
     </div>
   </div>
 </template>
-`,p="#### Events\n\n| Event            | Description                                    | Type                                                    |\n| :--------------- | :--------------------------------------------- | :------------------------------------------------------ |\n| loaded           | Callback when the canvas rendering is complete | `Function () => void`                                   |\n| reload           | Callback when the canvas reload                | `Function () => void`                                   |\n| pointerDown      | Triggered when pointer down the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerMove      | Triggered when pointer move the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerUp        | Triggered when pointer up the canvas           | `Function (event: FabricPointerEvent) => void`          |\n| selectionCreated | Triggered when selection the fabric            | `Function (event: FabricSelectionCreatedEvent) => void` |\n| selectionCleared | Triggered when clear selection the fabric      | `Function (event: FabricSelectionClearedEvent) => void` |\n",F=t({__name:"VuePdfCanvas",setup(f){return(d,u)=>(o(),a(e,{"front-end-frame":"vue3","draw-source":n(s),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(l),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(i),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(r),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(c),"manual-playground":"669646c68ae98c93b96a2eb2","event-md":n(p)},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source","event-md"]))}});export{F as default};
+`,p="#### Events\n\n| Event            | Description                                    | Type                                                    |\n| :--------------- | :--------------------------------------------- | :------------------------------------------------------ |\n| loaded           | Callback when the canvas rendering is complete | `Function () => void`                                   |\n| reload           | Callback when the canvas reload                | `Function () => void`                                   |\n| pointerDown      | Triggered when pointer down the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerMove      | Triggered when pointer move the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerUp        | Triggered when pointer up the canvas           | `Function (event: FabricPointerEvent) => void`          |\n| selectionCreated | Triggered when selection the fabric            | `Function (event: FabricSelectionCreatedEvent) => void` |\n| selectionCleared | Triggered when clear selection the fabric      | `Function (event: FabricSelectionClearedEvent) => void` |\n",P=t({__name:"VuePdfCanvas",setup(f){return(d,u)=>(o(),a(e,{"front-end-frame":"vue3","draw-source":n(s),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(r),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(i),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(l),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(c),"manual-playground":"669646c68ae98c93b96a2eb2","event-md":n(p)},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source","event-md"]))}});export{P as default};
