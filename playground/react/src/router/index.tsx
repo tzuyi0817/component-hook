@@ -4,7 +4,7 @@ import { PdfCanvas } from '@/pages/pdf-canvas';
 import { Picker } from '@/pages/picker';
 import { TimePicker } from '@/pages/time-picker';
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '*',
     element: (
@@ -31,3 +31,5 @@ export const router = createBrowserRouter([
     element: <PdfCanvas />,
   },
 ]);
+
+export default router;
