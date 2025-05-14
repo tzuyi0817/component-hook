@@ -1,3 +1,4 @@
+import { SRC_EXT } from '../constants';
 import { fixupPluginRules, pluginImport, typescriptEslint, vueParser } from '../plugins';
 import type { ESLint, Linter } from 'eslint';
 
@@ -35,9 +36,9 @@ export const importConfigs: Linter.Config[] = [
     files: [
       '**/*.d.ts',
       '**/*.md/**',
-      `**/*config*.?([cm])[jt]s?(x)`,
-      `**/{views,pages,routes,middleware,plugins,api}/**/*.?([cm])[jt]s?(x)`,
-      `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack,farm}.ts`,
+      `**/*config*.${SRC_EXT}`,
+      `**/{views,pages,routes,middleware,plugins,api}/**/*.${SRC_EXT}`,
+      `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack,farm,unloader}.${SRC_EXT}`,
     ],
     plugins,
     languageOptions,
