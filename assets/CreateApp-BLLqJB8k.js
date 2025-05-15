@@ -1,4 +1,4 @@
-import{d as e,a as t,u as n,m as o,o as a}from"./index-DBIHV1iY.js";const i=`## Create App
+import{d as e,a as t,u as n,m as o,o as a}from"./index-DGz4cHFv.js";const i=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
@@ -6,7 +6,7 @@ Scaffolding a basic \`typescript\` project.
 
 ::: tip Compatibility Note
 
-Requires [Node.js](https://nodejs.org/en/) version 18+ or 20+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
+Requires [Node.js](https://nodejs.org/en/) version 20+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
 
 :::
 
@@ -86,7 +86,7 @@ This project leverages modern frontend practices and tooling, covering developme
 
 #### CI / CD
 
-- Integrated **GitHub Actions** and **GitLab CI** for automated testing and deployment.
+- Integrated \`GitHub Actions\` and \`GitLab CI\` for automated testing and deployment.
 
 #### Project Structure & Conventions
 
