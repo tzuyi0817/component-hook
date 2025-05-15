@@ -67,20 +67,3 @@ const basicPreset = [prettierConfig, ...sonarjsConfigs, securityConfig, ...markd
 
 export const reactPreset = [...basicConfigs, ...reactConfigs, ...basicPreset];
 export const vuePreset = [...basicConfigs, ...vueConfigs, ...basicPreset];
-export const vueSkyline = [
-  ...vuePreset,
-  {
-    files: ['**/*.vue'],
-    rules: {
-      'vue/block-order': ['error', { order: ['template', 'script', 'style'] }],
-    },
-  },
-  {
-    files: ['**/__tests__/unit/**/*.test.[jt]s?(x)'],
-    ...testingLibraryVueConfig,
-  },
-  {
-    files: ['**/__tests__/e2e/**/*.spec.[jt]s?(x)'],
-    ...playwrightConfig,
-  },
-];

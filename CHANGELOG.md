@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.1](https://github.com/tzuyi0817/component-hook/compare/v1.1.0...v1.1.1) (2025-05-15)
+
+### Features
+
+- **create-app:** adjust `template-vue` folder structure ([9e47e44](https://github.com/tzuyi0817/component-hook/commit/9e47e44837a7d4235855e90e5895d5ffdf564ef3))
+- **eslint-plugin:** upgrade `eslint-plugin-unicorn` to v59 ([8e18470](https://github.com/tzuyi0817/component-hook/commit/8e184700ab91b03db80d983c84bcdc055481a326))
+
+### Bug Fixes
+
+- **eslint-plugin:** `allow-default-export` files ([70d8a54](https://github.com/tzuyi0817/component-hook/commit/70d8a543ca380bae97fbe502409f7680f824d85f))
+
 ## [1.1.0](https://github.com/tzuyi0817/component-hook/compare/v1.0.4...v1.1.0) (2025-04-17)
 
 ### Breaking Changes

@@ -6,7 +6,7 @@ Scaffolding a basic `typescript` project.
 
 ::: tip Compatibility Note
 
-Requires [Node.js](https://nodejs.org/en/) version 18+ or 20+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
+Requires [Node.js](https://nodejs.org/en/) version 20+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
 
 :::
 
