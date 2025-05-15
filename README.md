@@ -13,7 +13,7 @@
     <img alt="GitHub Release" src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff">
   </a>
   <a href="https://nodejs.org/en/about/previous-releases">
-    <img src="https://img.shields.io/badge/node-%5E18.0.0%20%7C%7C%20%5E20.0.0%20%7C%7C%20%3E%3D22.0.0-409eff" alt="Node Compatibility" />
+    <img src="https://img.shields.io/badge/dynamic/json?color=409eff&label=node&query=$.engines.node&url=https://raw.githubusercontent.com/tzuyi0817/component-hook/master/package.json" alt="Node Compatibility" />
   </a>
   <a href="https://github.com/tzuyi0817/component-hook/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff" alt="License">
