@@ -37,6 +37,13 @@ export function toValidPackageName(projectName: string) {
     .replaceAll(/[^a-z\d\-~]+/g, '-');
 }
 
+export function toUpperCasePackageName(projectName: string) {
+  return projectName
+    .split('-')
+    .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
+    .join(' ');
+}
+
 export function getPkgManagerInfo() {
   const userAgent = process.env.npm_config_user_agent;
 

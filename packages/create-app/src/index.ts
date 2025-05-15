@@ -1,3 +1,4 @@
+import { readdirSync, statSync } from 'node:fs';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,7 +8,7 @@ import minimist from 'minimist';
 import ora from 'ora';
 import colors from 'picocolors';
 import { operationPrompts } from './prompts';
-import { clearFolder, formatTargetDir, getPkgManagerInfo, getProjectName } from './utils';
+import { clearFolder, formatTargetDir, getPkgManagerInfo, getProjectName, toUpperCasePackageName } from './utils';
 
 interface MinimistParsedArgs {
   _: string[];
@@ -61,7 +62,7 @@ async function copyTemplateFolder(root: string, templateDir: string, packageName
   });
   const pkg = JSON.parse(pkgJson);
 
-  const rewriteOrCopyFile = (file: string, content?: string) => {
+  const rewriteOrCopyFile = (file: string, content?: string): Promise<void> => {
     const targetPath = path.join(root, renameFiles?.[file] ?? file);
 
     if (content) {
@@ -70,16 +71,24 @@ async function copyTemplateFolder(root: string, templateDir: string, packageName
     const templatePath = path.join(templateDir, file);
 
     if (file.endsWith('.art')) {
-      const name = packageName
-        .split('-')
-        .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
-        .join(' ');
-
+      const isScript = file.endsWith('.js.art') || file.endsWith('.ts.art');
+      const name = isScript ? packageName : toUpperCasePackageName(packageName);
+      const replacedPath = targetPath.replace('.art', '');
       const renderedResult: string = artTemplate(templatePath, { projectName: name });
 
-      return writeFile(targetPath.replace('.art', ''), renderedResult);
+      ensureDirSync(path.dirname(replacedPath));
+
+      return writeFile(replacedPath, renderedResult);
     }
-    return copy(templatePath, targetPath);
+
+    if (statSync(templatePath).isDirectory()) {
+      const subFiles = readdirSync(templatePath);
+      const rewriteOrCopySubFilePromises = subFiles.map(subFile => rewriteOrCopyFile(path.join(file, subFile)));
+
+      return Promise.all(rewriteOrCopySubFilePromises).then(() => {});
+    } else {
+      return copy(templatePath, targetPath);
+    }
   };
 
   pkg.name = packageName;
