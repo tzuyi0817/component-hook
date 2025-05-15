@@ -9,7 +9,7 @@ This project is built with [vue3](https://vuejs.org/) + [vite](https://vite.dev/
 - **Code Quality**: Enforces standards with [eslint](https://eslint.org/) and [prettier](https://prettier.io/), with [husky](https://www.npmjs.com/package/husky), [commitlint](https://commitlint.js.org/#/), and [lint-staged](https://github.com/okonet/lint-staged) for commit validation.
 - **Testing**: Uses [vitest](https://vitest.dev/) + [testing-library](https://testing-library.com/) for unit testing and [playwright](https://playwright.dev/) for E2E testing.
 - **Optimization**: Compresses CSS with [cssnano](https://cssnano.github.io/cssnano/) , converts units with [postcss-pxtorem](https://www.npmjs.com/package/postcss-pxtorem), and analyzes assets with [rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer).
-- **CI/CD**: Integrates `GitHub Actions` and `GitLab CI` for automated testing and deployment.
+- **CI/CD**: Integrates `{{gitRepository}}` for automated testing and deployment.
 
 ## Code Features / Opinions
 

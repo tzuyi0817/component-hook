@@ -7,6 +7,7 @@ import { copy, ensureDirSync } from 'fs-extra/esm';
 import minimist from 'minimist';
 import ora from 'ora';
 import colors from 'picocolors';
+import { GITHUB_ACTIONS, GITLAB_CI } from './constants';
 import { operationPrompts } from './prompts';
 import { clearFolder, formatTargetDir, getPkgManagerInfo, getProjectName, toUpperCasePackageName } from './utils';
 
@@ -14,7 +15,7 @@ interface MinimistParsedArgs {
   _: string[];
   t?: string;
   template?: string;
-  lab?: boolean;
+  l?: boolean;
   gitlab?: boolean;
   h?: boolean;
   help?: boolean;
@@ -49,7 +50,7 @@ Available templates:
 `;
 
 async function copyTemplateFolder(root: string, templateDir: string, packageName: string) {
-  const isGitlab = argv.lab || argv.gitlab;
+  const isGitlab = argv.l || argv.gitlab;
   const [files, pkgJson] = await Promise.all([
     readdir(templateDir),
     readFile(path.join(templateDir, 'package.json'), 'utf-8'),
@@ -74,7 +75,10 @@ async function copyTemplateFolder(root: string, templateDir: string, packageName
       const isScript = file.endsWith('.js.art') || file.endsWith('.ts.art');
       const name = isScript ? packageName : toUpperCasePackageName(packageName);
       const replacedPath = targetPath.replace('.art', '');
-      const renderedResult: string = artTemplate(templatePath, { projectName: name });
+      const renderedResult: string = artTemplate(templatePath, {
+        projectName: name,
+        gitRepository: isGitlab ? GITLAB_CI : GITHUB_ACTIONS,
+      });
 
       ensureDirSync(path.dirname(replacedPath));
 

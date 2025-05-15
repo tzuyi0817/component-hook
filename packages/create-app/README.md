@@ -80,7 +80,7 @@ This project leverages modern frontend practices and tooling, covering developme
 
 ### CI / CD
 
-- Integrated **GitHub Actions** and **GitLab CI** for automated testing and deployment.
+- Integrated `GitHub Actions` and `GitLab CI` for automated testing and deployment.
 
 ### Project Structure & Conventions
 
