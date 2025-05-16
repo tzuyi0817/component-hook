@@ -9,7 +9,7 @@ const defaultState = {
   version: versionString,
 };
 
-export default defineStore('{{projectName}}-config', {
+export const useConfigStore = defineStore('config', {
   state: () => defaultState,
   getters: {},
   actions: {},
