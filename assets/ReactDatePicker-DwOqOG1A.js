@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-DU5Uw0vm.js";import{d as o,c as n,u as e,o as r}from"./index-DGz4cHFv.js";import"./index-lwepLs1X.js";import"./installation-DcvdBgVM.js";const a=`import { DatePicker } from '@component-hook/picker/react';
+import{_ as t}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-WCvSYOih.js";import{d as o,c as n,u as e,o as r}from"./index-Btta0t7H.js";import"./index-CRP8ZStr.js";import"./installation-RlmIvWje.js";const a=`import { DatePicker } from '@component-hook/picker/react';
 import { useState } from 'react';
 
 export function BasePicker() {
