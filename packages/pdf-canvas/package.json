@@ -8,14 +8,14 @@
   "author": "Tzuyi",
   "exports": {
     "./vue": {
+      "types": "./dist/vue/pdf-canvas.es.d.ts",
       "import": "./dist/vue/pdf-canvas.es.js",
-      "require": "./dist/vue/pdf-canvas.umd.js",
-      "types": "./dist/vue/pdf-canvas.es.d.ts"
+      "require": "./dist/vue/pdf-canvas.umd.js"
     },
     "./react": {
+      "types": "./dist/react/pdf-canvas.es.d.ts",
       "import": "./dist/react/pdf-canvas.es.js",
-      "require": "./dist/react/pdf-canvas.umd.js",
-      "types": "./dist/react/pdf-canvas.es.d.ts"
+      "require": "./dist/react/pdf-canvas.umd.js"
     }
   },
   "files": [
@@ -57,6 +57,6 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.3"
   }
 }

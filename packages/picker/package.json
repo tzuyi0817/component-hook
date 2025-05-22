@@ -8,14 +8,14 @@
   "author": "Tzuyi",
   "exports": {
     "./vue": {
+      "types": "./dist/vue/picker.es.d.ts",
       "import": "./dist/vue/picker.es.js",
-      "require": "./dist/vue/picker.umd.js",
-      "types": "./dist/vue/picker.es.d.ts"
+      "require": "./dist/vue/picker.umd.js"
     },
     "./react": {
+      "types": "./dist/react/picker.es.d.ts",
       "import": "./dist/react/picker.es.js",
-      "require": "./dist/react/picker.umd.js",
-      "types": "./dist/react/picker.es.d.ts"
+      "require": "./dist/react/picker.umd.js"
     }
   },
   "files": [
@@ -58,6 +58,6 @@
   "devDependencies": {
     "@types/react-transition-group": "^4.4.12",
     "sass-embedded": "^1.89.0",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "4.5.3"
   }
 }
