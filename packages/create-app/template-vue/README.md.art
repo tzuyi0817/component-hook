@@ -32,7 +32,6 @@ src/
 │   │   └── unitTest.ts
 │   ├── e2e/*
 │   └── unit/*
-├── apis/*
 ├── assets/*
 │   └── images/
 │       └── svg-icons
@@ -49,7 +48,7 @@ src/
 │   └── zh-CN.json
 ├── mocks/
 │   ├── handlers/*
-│   │   ├── apis/*
+│   │   ├── modules/*
 │   │   └── index.ts
 │   │── browser.ts
 │   └── server.ts
