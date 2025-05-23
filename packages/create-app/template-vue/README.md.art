@@ -28,8 +28,6 @@ This project is built with [vue3](https://vuejs.org/) + [vite](https://vite.dev/
 src/
 ├── __tests__/
 │   ├── __mocks__/
-│   ├── setup/
-│   │   └── unitTest.ts
 │   ├── e2e/*
 │   └── unit/*
 ├── assets/*
