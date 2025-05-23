@@ -31,13 +31,14 @@ src/
 │   ├── e2e/*
 │   └── unit/*
 ├── assets/*
-│   └── images/
-│       └── svg-icons
+│   └── svg-icons
 │          └── vue.svg
 ├── components/
-│   └── svg-icon/
-│       ├── src
-│       │   └── index.vue
+│   └── common
+│       ├── svg-icon/
+│       │   ├── src
+│       │   │   └── index.vue
+│       │   └── index.ts
 │       └── index.ts
 ├── constants/*
 ├── hooks/*

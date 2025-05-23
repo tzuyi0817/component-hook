@@ -27,7 +27,7 @@ export default defineConfig({
       include: resolve(dirname(fileURLToPath(import.meta.url)), 'src/locales/**'),
     }),
     createSvgIconsPlugin({
-      iconDirs: [resolve(process.cwd(), 'src/assets/images/svg-icons')],
+      iconDirs: [resolve(process.cwd(), 'src/assets/svg-icons')],
     }),
     visualizer({ gzipSize: true }),
   ],
