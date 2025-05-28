@@ -64,8 +64,8 @@ importers:
         specifier: ^3.5.3
         version: 3.5.3
       rollup-plugin-visualizer:
-        specifier: ^5.13.1
-        version: 5.14.0(rollup@4.41.0)
+        specifier: ^6.0.1
+        version: 6.0.1(rollup@4.41.0)
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(@microsoft/api-extractor@7.52.8(@types/node@22.15.21))(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.3)(yaml@2.8.0)
@@ -295,7 +295,7 @@ importers:
     devDependencies:
       vite-plugin-dts:
         specifier: ^4.5.3
-        version: 4.5.4(@types/node@22.15.21)(rollup@4.41.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.30.1)(sass-embedded@1.89.0)(yaml@2.8.0))
+        version: 4.5.3(@types/node@22.15.21)(rollup@4.41.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.30.1)(sass-embedded@1.89.0)(yaml@2.8.0))
 
   packages/picker:
     dependencies:
@@ -4432,8 +4432,8 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rollup-plugin-visualizer@5.14.0:
-    resolution: {integrity: sha512-VlDXneTDaKsHIw8yzJAFWtrzguoJ/LnQ+lMpoVfYJ3jJF4Ihe5oYLAqLklIK/35lgUY+1yEzCkHyZ1j4A5w5fA==}
+  rollup-plugin-visualizer@6.0.1:
+    resolution: {integrity: sha512-NjlGElvLXCSZSAi3gNRZbfX3qlQbQcJ9TW97c5JpqfVwMhttj9YwEdPwcvbKj91RnMX2PWAjonvSEv6UEYtnRQ==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -5237,15 +5237,6 @@ packages:
 
   vite-plugin-dts@4.5.3:
     resolution: {integrity: sha512-P64VnD00dR+e8S26ESoFELqc17+w7pKkwlBpgXteOljFyT0zDwD8hH4zXp49M/kciy//7ZbVXIwQCekBJjfWzA==}
-    peerDependencies:
-      typescript: '*'
-      vite: '*'
-    peerDependenciesMeta:
-      vite:
-        optional: true
-
-  vite-plugin-dts@4.5.4:
-    resolution: {integrity: sha512-d4sOM8M/8z7vRXHHq/ebbblfaxENjogAAekcfcDCCwAyvGqnPrc7f4NZbvItS+g4WTgerW0xDwSz5qz11JT3vg==}
     peerDependencies:
       typescript: '*'
       vite: '*'
@@ -10044,7 +10035,7 @@ snapshots:
       glob: 7.2.3
     optional: true
 
-  rollup-plugin-visualizer@5.14.0(rollup@4.41.0):
+  rollup-plugin-visualizer@6.0.1(rollup@4.41.0):
     dependencies:
       open: 8.4.2
       picomatch: 4.0.2
@@ -10948,25 +10939,6 @@ snapshots:
       - yaml
 
   vite-plugin-dts@4.5.3(@types/node@22.15.21)(rollup@4.41.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.30.1)(sass-embedded@1.89.0)(yaml@2.8.0)):
-    dependencies:
-      '@microsoft/api-extractor': 7.52.8(@types/node@22.15.21)
-      '@rollup/pluginutils': 5.1.4(rollup@4.41.0)
-      '@volar/typescript': 2.4.14
-      '@vue/language-core': 2.2.0(typescript@5.8.3)
-      compare-versions: 6.1.1
-      debug: 4.4.1
-      kolorist: 1.8.0
-      local-pkg: 1.1.1
-      magic-string: 0.30.17
-      typescript: 5.8.3
-    optionalDependencies:
-      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.30.1)(sass-embedded@1.89.0)(yaml@2.8.0)
-    transitivePeerDependencies:
-      - '@types/node'
-      - rollup
-      - supports-color
-
-  vite-plugin-dts@4.5.4(@types/node@22.15.21)(rollup@4.41.0)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(lightningcss@1.30.1)(sass-embedded@1.89.0)(yaml@2.8.0)):
     dependencies:
       '@microsoft/api-extractor': 7.52.8(@types/node@22.15.21)
       '@rollup/pluginutils': 5.1.4(rollup@4.41.0)
