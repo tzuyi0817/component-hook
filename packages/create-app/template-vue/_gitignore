@@ -25,9 +25,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Component auto import
-/src/components.d.ts
-
 # Test reports
 coverage
 /test-results/

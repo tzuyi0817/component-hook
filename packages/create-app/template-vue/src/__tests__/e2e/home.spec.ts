@@ -4,20 +4,24 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/');
 });
 
-test('click Vite logo open Vite official website blank tab', async ({ page, context }) => {
-  await page.getByRole('link', { name: 'Vite logo' }).click();
-  const newPage = await context.waitForEvent('page');
+test('click Vite logo open Vite official website blank tab', async ({ page }) => {
+  const link = page.getByRole('link', { name: /vite logo/i });
 
-  await newPage.waitForLoadState('load');
-  await expect(newPage).toHaveTitle('Vite | Next Generation Frontend Tooling');
+  await expect(link).toBeVisible();
+  const [popup] = await Promise.all([page.waitForEvent('popup'), link.evaluate((node: HTMLElement) => node.click())]);
+
+  await popup.waitForLoadState();
+  await expect(popup).toHaveTitle('Vite | Next Generation Frontend Tooling');
 });
 
-test('click Vue logo open Vue official website blank tab', async ({ page, context }) => {
-  await page.getByTitle('#icon-vue').click();
-  const newPage = await context.waitForEvent('page');
+test('click Vue logo open Vue official website blank tab', async ({ page }) => {
+  const link = page.getByLabel(/vue link/i);
 
-  await newPage.waitForLoadState('load');
-  await expect(newPage).toHaveTitle('Vue.js - The Progressive JavaScript Framework | Vue.js');
+  await expect(link).toBeVisible();
+  const [popup] = await Promise.all([page.waitForEvent('popup'), link.evaluate((node: HTMLElement) => node.click())]);
+
+  await popup.waitForLoadState();
+  await expect(popup).toHaveTitle('Vue.js - The Progressive JavaScript Framework | Vue.js');
 });
 
 test('homepage count button interact', async ({ page }) => {
@@ -34,20 +38,24 @@ test('locale change interact', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'English' })).toBeVisible();
 });
 
-test('click create-vue link open Vue quick start blank tab', async ({ page, context }) => {
-  await page.getByRole('link', { name: 'create-vue' }).click();
-  const newPage = await context.waitForEvent('page');
+test('click create-vue link open Vue quick start blank tab', async ({ page }) => {
+  const link = page.getByRole('link', { name: 'create-vue' });
 
-  await newPage.waitForLoadState('load');
-  await expect(newPage).toHaveTitle('Quick Start | Vue.js');
+  await expect(link).toBeVisible();
+  const [popup] = await Promise.all([page.waitForEvent('popup'), link.evaluate((node: HTMLElement) => node.click())]);
+
+  await popup.waitForLoadState();
+  await expect(popup).toHaveTitle('Quick Start | Vue.js');
 });
 
-test('click Volar link open language-tools github blank tab', async ({ page, context }) => {
-  await page.getByRole('link', { name: 'Volar' }).click();
-  const newPage = await context.waitForEvent('page');
+test('click Volar link open language-tools github blank tab', async ({ page }) => {
+  const link = page.getByRole('link', { name: 'Volar' });
 
-  await newPage.waitForLoadState('load');
-  await expect(newPage).toHaveTitle(
+  await expect(link).toBeVisible();
+  const [popup] = await Promise.all([page.waitForEvent('popup'), link.evaluate((node: HTMLElement) => node.click())]);
+
+  await popup.waitForLoadState();
+  await expect(popup).toHaveTitle(
     'GitHub - vuejs/language-tools: ⚡ High-performance Vue language tooling based-on Volar.js',
   );
 });

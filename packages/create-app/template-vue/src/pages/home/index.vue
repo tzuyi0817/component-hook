@@ -18,6 +18,7 @@ import HelloWorld from './components/HelloWorld.vue';
     <a
       href="https://vuejs.org/"
       target="_blank"
+      aria-label="Vue link"
     >
       <svg-icon
         name="vue"

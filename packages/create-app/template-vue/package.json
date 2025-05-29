@@ -44,6 +44,7 @@
     "jsdom": "^26.1.0",
     "msw": "^2.8.4",
     "postcss": "^8.5.3",
+    "postcss-preset-env": "^10.2.0",
     "postcss-pxtorem": "^6.1.0",
     "prettier": "^3.5.3",
     "rollup-plugin-visualizer": "^5.13.1",
@@ -54,11 +55,6 @@
     "vitest": "^3.1.4",
     "vue-tsc": "^2.2.10"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
   "msw": {
     "workerDirectory": "public"
   },
