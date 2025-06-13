@@ -41,7 +41,7 @@
     "eslint": "^9.28.0",
     "jsdom": "^26.1.0",
     "prettier": "^3.5.3",
-    "rollup-plugin-visualizer": "^5.13.1",
+    "rollup-plugin-visualizer": "^6.0.3",
     "tsup": "^8.5.0",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
