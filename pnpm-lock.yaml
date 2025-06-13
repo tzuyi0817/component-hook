@@ -281,8 +281,8 @@ importers:
         specifier: ^6.7.0
         version: 6.7.0
       pdfjs-dist:
-        specifier: 4.10.38
-        version: 4.10.38
+        specifier: 5.3.31
+        version: 5.3.31
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -4219,9 +4219,9 @@ packages:
     resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
     engines: {node: '>= 14.16'}
 
-  pdfjs-dist@4.10.38:
-    resolution: {integrity: sha512-/Y3fcFrXEAsMjJXeL9J8+ZG9U01LbuWaYypvDW2ycW1jL269L3js3DVBjDJ0Up9Np1uqDXsDrRihHANhZOlwdQ==}
-    engines: {node: '>=20'}
+  pdfjs-dist@5.3.31:
+    resolution: {integrity: sha512-EhPdIjNX0fcdwYQO+e3BAAJPXt+XI29TZWC7COhIXs/K0JHcUt1Gdz1ITpebTwVMFiLsukdUZ3u0oTO7jij+VA==}
+    engines: {node: '>=20.16.0 || >=22.3.0'}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -10145,7 +10145,7 @@ snapshots:
 
   pathval@2.0.0: {}
 
-  pdfjs-dist@4.10.38:
+  pdfjs-dist@5.3.31:
     optionalDependencies:
       '@napi-rs/canvas': 0.1.70
 
