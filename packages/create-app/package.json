@@ -20,7 +20,7 @@
     "typecheck": "tsc --noEmit"
   },
   "engines": {
-    "node": ">=20.19.2"
+    "node": ">=22.16.0"
   },
   "repository": {
     "type": "git",
