@@ -1,4 +1,4 @@
-import"./installation-RlmIvWje.js";import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-D0O6ZYoF.js";import{d as o,c as l,u as e,o as t}from"./index-Btta0t7H.js";import"./index-CRP8ZStr.js";const i=`<script setup lang="ts">
+import"./installation-BANdb-1E.js";import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-DJzVsrdN.js";import{d as o,c as l,u as e,o as t}from"./index-Cc4wxYbA.js";import"./index-FT7blbrz.js";const i=`<script setup lang="ts">
 import { Picker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
