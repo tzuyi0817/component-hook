@@ -22,3 +22,4 @@ export { default as configComments } from '@eslint-community/eslint-plugin-eslin
 export { default as pluginUnicorn } from 'eslint-plugin-unicorn';
 export { default as pluginDeMorgan } from 'eslint-plugin-de-morgan';
 export { default as pluginPerfectionist } from 'eslint-plugin-perfectionist';
+export { default as pluginJsdoc } from 'eslint-plugin-jsdoc';
