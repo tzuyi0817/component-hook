@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-BJTyCk2L.js";import{d as o,c as n,u as e,o as r}from"./index-Cc4wxYbA.js";import"./index-FT7blbrz.js";import"./installation-BANdb-1E.js";const c=`import { TimePicker } from '@component-hook/picker/react';
+import{_ as t}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-D36bTcO2.js";import{d as o,c as n,u as e,o as r}from"./index-BJRSzs8R.js";import"./index-DWhB0A1c.js";import"./installation-D-HgU45e.js";const c=`import { TimePicker } from '@component-hook/picker/react';
 import { useState } from 'react';
 
 export function BasePicker() {
