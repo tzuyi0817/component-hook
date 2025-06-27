@@ -2,7 +2,7 @@
   "name": "@component-hook/docs",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.12.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -18,7 +18,7 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.10",
+    "@tailwindcss/vite": "^4.1.11",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.5",
@@ -30,7 +30,7 @@
     "postcss-pxtorem": "^6.1.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.30.0",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.11",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
