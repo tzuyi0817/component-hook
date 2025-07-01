@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/create-app",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Scaffolding a basic typescript project",
   "type": "module",
   "license": "MIT",

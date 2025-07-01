@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/tzuyi0817/component-hook/compare/v1.1.1...v1.1.2) (2025-07-01)
+
+### Features
+
+- **create-app:** adjust `template-vue` folder structure
+- **eslint-plugin:** add `eslint-plugin-jsdoc` config ([7000f0c](https://github.com/tzuyi0817/component-hook/commit/7000f0c42f1a0003427dc8e592330aadc1c16d6b))
+
 ## [1.1.1](https://github.com/tzuyi0817/component-hook/compare/v1.1.0...v1.1.1) (2025-05-15)
 
 ### Features
