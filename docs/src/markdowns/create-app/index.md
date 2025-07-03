@@ -82,6 +82,7 @@ This project leverages modern frontend practices and tooling, covering developme
 
 - Minifies CSS with `cssnano`.
 - Converts px to rem using `postcss-pxtorem` for responsive design.
+- Convert modern CSS into something most browsers can understand with `postcss-preset-env`.
 - Uses `rollup-plugin-visualizer` to analyze bundle sizes.
 
 #### CI / CD
