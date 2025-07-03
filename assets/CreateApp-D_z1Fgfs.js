@@ -1,4 +1,4 @@
-import{d as e,a as t,u as n,m as o,o as a}from"./index-C5R4Bk-w.js";const i=`## Create App
+import{d as e,a as t,u as n,m as o,o as a}from"./index-BSb5nDxw.js";const s=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
@@ -82,6 +82,7 @@ This project leverages modern frontend practices and tooling, covering developme
 
 - Minifies CSS with \`cssnano\`.
 - Converts px to rem using \`postcss-pxtorem\` for responsive design.
+- Convert modern CSS into something most browsers can understand with \`postcss-preset-env\`.
 - Uses \`rollup-plugin-visualizer\` to analyze bundle sizes.
 
 #### CI / CD
@@ -110,4 +111,4 @@ These variables are injected at build time and are fully typed:
 | \`VITE_APP_VERSION\`     | Read from \`package.json\` version             |
 | \`VITE_APP_BUILD_EPOCH\` | Timestamp generated at build time            |
 | \`VITE_APP_MOCK\`        | Indicates whether the mock environment is on |
-`,s=["innerHTML"],m=e({__name:"CreateApp",setup(r){return(p,c)=>(a(),t("div",{class:"markdown-doc",innerHTML:n(o).render(n(i))},null,8,s))}});export{m as default};
+`,i=["innerHTML"],m=e({__name:"CreateApp",setup(r){return(p,c)=>(a(),t("div",{class:"markdown-doc",innerHTML:n(o).render(n(s))},null,8,i))}});export{m as default};
