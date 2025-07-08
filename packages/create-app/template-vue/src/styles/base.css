@@ -7,11 +7,16 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
+  overscroll-behavior: none none;
+  touch-action: manipulation;
+  user-select: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  -moz-touch-callout: none;
+  -ms-touch-callout: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (prefers-color-scheme: light) {
@@ -27,6 +32,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+img {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 #app {
