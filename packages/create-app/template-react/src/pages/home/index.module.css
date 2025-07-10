@@ -1,0 +1,8 @@
+.logo {
+  height: 96px;
+  width: 96px;
+  padding: 24px;
+  will-change: filter;
+  transition: filter 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 auto;
+}
