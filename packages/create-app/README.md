@@ -43,6 +43,7 @@ $ pnpm create @component-hook/app basic-app --template vue
 Currently supported template presets include:
 
 - `vue`
+- `react`
 
 ## Project Features Overview
 
@@ -50,9 +51,9 @@ This project leverages modern frontend practices and tooling, covering developme
 
 ### Development Experience
 
-- **Written in TypeScript**: Provides type safety and better maintainability.
-- **Styled with Tailwind CSS**: Utility-first CSS framework for fast and consistent UI styling.
-- **SVG Support**: Integrated [`vite-plugin-svg-icons`](https://github.com/vbenjs/vite-plugin-svg-icons) to use SVGs as Vue components.
+- `Written in TypeScript`: Provides type safety and better maintainability.
+- `Styled with Tailwind CSS`: Utility-first CSS framework for fast and consistent UI styling.
+- `SVG Support`: Integrated [`vite-plugin-svg-icons`](https://github.com/vbenjs/vite-plugin-svg-icons) to use SVGs as Vue components.
 
 ### API & Mocking
 
