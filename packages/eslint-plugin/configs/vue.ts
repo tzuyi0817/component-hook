@@ -27,6 +27,7 @@ const rules = {
   'vue/no-constant-condition': 'warn',
   'vue/no-empty-pattern': 'error',
   'vue/no-loss-of-precision': 'error',
+  'vue/no-ref-as-operand': 'off',
   'vue/no-unused-refs': 'error',
   'vue/no-useless-v-bind': 'error',
   'vue/no-v-html': 'off',
