@@ -1,16 +1,17 @@
+import { SRC, VUE } from '../constants';
 import { pluginMarkdown } from '../plugins';
 import type { Linter } from 'eslint';
 
-export const markdownConfigs: Linter.Config[] = pluginMarkdown.configs.recommended.map((config: Linter.Config) => {
-  const { name, rules } = config;
-  const baseConfig = {
+export const markdownConfigs = [
+  ...pluginMarkdown.configs.processor.map((config: Linter.Config) => ({
     ...config,
-    name: `component-hook/${name}`,
-  };
+    name: `component-hook/${config.name}`,
+  })),
 
-  if (rules) {
-    baseConfig.rules = {
-      ...rules,
+  {
+    files: [`**/*.md/${SRC}`, `**/*.md/${VUE}`],
+    name: 'component-hook/markdown-rules',
+    rules: {
       'no-alert': 'off',
       'no-console': 'off',
       'no-restricted-imports': 'off',
@@ -32,7 +33,6 @@ export const markdownConfigs: Linter.Config[] = pluginMarkdown.configs.recommend
       'sonarjs/no-dead-store': 'off',
       'sonarjs/unused-import': 'off',
       'sonarjs/no-unused-vars': 'off',
-    };
-  }
-  return baseConfig;
-});
+    },
+  },
+];

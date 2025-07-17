@@ -1,3 +1,4 @@
+import { VUE } from '../constants';
 import { pluginVue, typescriptEslint, vueParser } from '../plugins';
 import { rules as pluginTypescriptRules } from './typescript';
 import type { Linter } from 'eslint';
@@ -53,7 +54,7 @@ const extendsTypescript = typescriptEslint.configs.recommended
 
 const eslintConfigTypescript = typescriptEslint.config({
   extends: extendsTypescript,
-  files: ['**/*.vue'],
+  files: [VUE],
   name: 'component-hook/vue/typescript',
   rules: pluginTypescriptRules,
 });
@@ -62,7 +63,7 @@ export const vueConfigs = [
   ...eslintConfigTypescript,
   {
     name: 'component-hook/vue/globals',
-    files: ['**/*.vue'],
+    files: [VUE],
     languageOptions: {
       globals: {
         defineProps: 'readonly',
@@ -82,7 +83,7 @@ export const vueConfigs = [
   },
   {
     name: 'component-hook/vue',
-    files: ['**/*.vue'],
+    files: [VUE],
     plugins: {
       '@typescript-eslint': typescriptEslint.plugin,
       vue: pluginVue,

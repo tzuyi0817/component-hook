@@ -17,7 +17,7 @@ export { default as pluginPlaywright } from 'eslint-plugin-playwright';
 export { default as pluginTestingLibrary } from 'eslint-plugin-testing-library';
 export { default as pluginRegexp } from 'eslint-plugin-regexp';
 export { default as pluginImport } from 'eslint-plugin-import';
-export { default as pluginMarkdown } from 'eslint-plugin-markdown';
+export { default as pluginMarkdown } from '@eslint/markdown';
 export { default as configComments } from '@eslint-community/eslint-plugin-eslint-comments/configs';
 export { default as pluginUnicorn } from 'eslint-plugin-unicorn';
 export { default as pluginDeMorgan } from 'eslint-plugin-de-morgan';
