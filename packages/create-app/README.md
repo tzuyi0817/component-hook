@@ -3,7 +3,7 @@
 Scaffolding a basic `typescript` project.
 
 > **Compatibility Note:**
-> Requires [Node.js](https://nodejs.org/en/) version 20+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
+> Requires [Node.js](https://nodejs.org/en/) version 20.19+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/create-app">
