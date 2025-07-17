@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3](https://github.com/tzuyi0817/component-hook/compare/v1.1.2...v1.1.3) (2025-07-17)
+
+### Features
+
+- **eslint-plugin:** disabled `vue/no-ref-as-operand` ([1841ef1](https://github.com/tzuyi0817/component-hook/commit/1841ef191d5134f38f632e9594e5a70912819de6))
+- **eslint-plugin:** replace `eslint-plugin-markdown` with `@eslint/markdown` ([da5f554](https://github.com/tzuyi0817/component-hook/commit/da5f554aa68b6ac408dd49e73a002d6224256374))
+- **create-app:** add `react` template ([64f8784](https://github.com/tzuyi0817/component-hook/commit/64f8784fed17e96b5ea3609233757dbcaf8885da))
+
 ## [1.1.2](https://github.com/tzuyi0817/component-hook/compare/v1.1.1...v1.1.2) (2025-07-01)
 
 ### Features
