@@ -79,7 +79,7 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     initial: 0,
     choices: [
       { title: colors.green('Vue'), value: 'vue' },
-      // { title: 'colors.blue('React'), value: 'react' },
+      { title: colors.blue('React'), value: 'react' },
     ],
   };
 

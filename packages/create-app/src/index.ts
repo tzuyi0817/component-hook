@@ -47,29 +47,31 @@ Options:
 
 Available templates:
   ${colors.green('vue')}
+  ${colors.blue('react')}
 `;
 
-async function copyTemplateFolder(root: string, templateDir: string, packageName: string) {
+async function writePackageJson(root: string, dir: string, packageName: string) {
+  const pkgJson = await readFile(path.join(dir, 'package.json'), 'utf-8');
+  const pkg = JSON.parse(pkgJson);
+  const targetPath = path.join(root, 'package.json');
+
+  pkg.name = packageName;
+  return writeFile(targetPath, `${JSON.stringify(pkg, null, 2)}\n`);
+}
+
+async function copyFolder(root: string, dir: string, packageName: string) {
   const isGitlab = argv.l || argv.gitlab;
-  const [files, pkgJson] = await Promise.all([
-    readdir(templateDir),
-    readFile(path.join(templateDir, 'package.json'), 'utf-8'),
-  ]);
+  const files = await readdir(dir);
   const filterFiles = files.filter(file => {
     const filterCi = isGitlab ? '.github' : '.gitlab';
     const filterCiYml = isGitlab ? '' : '_gitlab-ci.yml';
 
     return file !== 'package.json' && file !== filterCi && file !== filterCiYml;
   });
-  const pkg = JSON.parse(pkgJson);
 
-  const rewriteOrCopyFile = (file: string, content?: string): Promise<void> => {
+  const rewriteOrCopyFile = (file: string): Promise<void> => {
     const targetPath = path.join(root, renameFiles?.[file] ?? file);
-
-    if (content) {
-      return writeFile(targetPath, content);
-    }
-    const templatePath = path.join(templateDir, file);
+    const templatePath = path.join(dir, file);
 
     if (file.endsWith('.art')) {
       const isScript = file.endsWith('.js.art') || file.endsWith('.ts.art');
@@ -95,13 +97,7 @@ async function copyTemplateFolder(root: string, templateDir: string, packageName
     }
   };
 
-  pkg.name = packageName;
-
-  return Promise.all([
-    ...filterFiles.map(file => rewriteOrCopyFile(file)),
-    rewriteOrCopyFile('package.json', `${JSON.stringify(pkg, null, 2)}\n`),
-    new Promise(resolve => setTimeout(resolve, 300)),
-  ]);
+  return Promise.all(filterFiles.map(file => rewriteOrCopyFile(file)));
 }
 
 async function createApp() {
@@ -130,9 +126,17 @@ async function createApp() {
     ensureDirSync(root);
   }
 
-  const templateDir = path.resolve(fileURLToPath(import.meta.url), '../..', `template-${framework}`);
+  const filePath = fileURLToPath(import.meta.url);
+  const sharedDir = path.resolve(filePath, '../..', 'template-shared');
+  const templateDir = path.resolve(filePath, '../..', `template-${framework}`);
+  const copyPromises = Promise.all([
+    copyFolder(root, sharedDir, packageName),
+    copyFolder(root, templateDir, packageName),
+    writePackageJson(root, templateDir, packageName),
+    new Promise(resolve => setTimeout(resolve, 300)),
+  ]);
 
-  copyTemplateFolder(root, templateDir, packageName)
+  copyPromises
     .then(() => {
       const cdProjectName = path.relative(cwd, root);
       const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
