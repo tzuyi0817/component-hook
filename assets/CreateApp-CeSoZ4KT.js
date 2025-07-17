@@ -1,4 +1,4 @@
-import{d as e,a as t,u as n,m as o,o as a}from"./index-C0CfZXkE.js";const s=`## Create App
+import{d as e,a as t,u as n,m as o,o as a}from"./index-B-qrsZHd.js";const s=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
@@ -6,7 +6,7 @@ Scaffolding a basic \`typescript\` project.
 
 ::: tip Compatibility Note
 
-Requires [Node.js](https://nodejs.org/en/) version 20+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
+Requires [Node.js](https://nodejs.org/en/) version 20.19+. However, some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
 
 :::
 
@@ -46,7 +46,7 @@ $ pnpm create @component-hook/app basic-app --template vue
 
 :::
 
-See [create-app](https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app) for more details on each supported template: \`vue\`
+See [create-app](https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app) for more details on each supported template: \`vue\`, \`react\`
 
 You can use \`.\` for the project name to scaffold in the current directory.
 
@@ -56,9 +56,9 @@ This project leverages modern frontend practices and tooling, covering developme
 
 #### Development Experience
 
-- **Written in TypeScript**: Provides type safety and better maintainability.
-- **Styled with Tailwind CSS**: Utility-first CSS framework for fast and consistent UI styling.
-- **SVG Support**: Integrated [\`vite-plugin-svg-icons\`](https://github.com/vbenjs/vite-plugin-svg-icons) to use SVGs as Vue components.
+- \`Written in TypeScript\`: Provides type safety and better maintainability.
+- \`Styled with Tailwind CSS\`: Utility-first CSS framework for fast and consistent UI styling.
+- \`SVG Support\`: Integrated [\`vite-plugin-svg-icons\`](https://github.com/vbenjs/vite-plugin-svg-icons) to use SVGs as Vue components.
 
 #### API & Mocking
 

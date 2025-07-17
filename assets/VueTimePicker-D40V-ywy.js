@@ -1,4 +1,4 @@
-import"./installation-DNlvH07q.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-CcLywRTw.js";import{d as t,c as o,u as e,o as r}from"./index-C0CfZXkE.js";import"./index-Bbfqnr4d.js";const i=`<script setup lang="ts">
+import"./installation-kW3eLPcV.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-DokuLdnX.js";import{d as t,c as o,u as e,o as r}from"./index-B-qrsZHd.js";import"./index-CLYPHnAx.js";const i=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
