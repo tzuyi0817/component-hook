@@ -14,7 +14,7 @@
     "@component-hook/pdf-canvas": "workspace:*",
     "@component-hook/picker": "workspace:*",
     "uuid": "^11.1.0",
-    "vue": "^3.5.17",
+    "vue": "^3.5.18",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
