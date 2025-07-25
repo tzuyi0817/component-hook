@@ -48,7 +48,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "fabric": "^6.7.0",
+    "fabric": "^6.7.1",
     "pdfjs-dist": "4.10.38"
   },
   "peerDependencies": {

@@ -18,11 +18,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.10.0",
+    "axios": "^1.11.0",
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.4.1",
-    "vue": "^3.5.17",
-    "vue-i18n": "^11.1.10",
+    "vue": "^3.5.18",
+    "vue-i18n": "^11.1.11",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@testing-library/vue": "^8.1.0",
     "@tsconfig/node22": "^22.0.2",
-    "@types/node": "^22.16.4",
+    "@types/node": "^22.16.5",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vitest/coverage-v8": "^3.2.4",
     "@vue/tsconfig": "^0.7.0",
@@ -50,10 +50,10 @@
     "rollup-plugin-visualizer": "^6.0.3",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
-    "vite": "^7.0.5",
+    "vite": "^7.0.6",
     "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.0.2"
+    "vue-tsc": "^3.0.4"
   },
   "msw": {
     "workerDirectory": "public"
