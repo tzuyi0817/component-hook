@@ -20,7 +20,7 @@ export function groupPlugin() {
         if (!title) continue;
 
         tabs += `
-          <label class="group-label">
+          <label class="group-label" data-title="${title}">
             <input type="radio" name="${name}" ${checked} />${title}
           </label>
         `;

@@ -6,7 +6,7 @@ export function tipPlugin(markdown: markdownit) {
     render(tokens: Token[], index: number) {
       const token = tokens[index];
 
-      if (token.nesting !== 1) return '</div></div>\n';
+      if (token.nesting !== 1) return '</div>\n';
       const info = token.info.trim().slice('tip'.length).trim();
       const title = markdown.renderInline(info);
 
