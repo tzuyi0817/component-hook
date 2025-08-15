@@ -33,7 +33,7 @@
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
   "dependencies": {
     "art-template": "^4.13.4",
-    "fs-extra": "^11.3.0",
+    "fs-extra": "^11.3.1",
     "minimist": "^1.2.8",
     "ora": "^8.2.0",
     "picocolors": "^1.1.1",

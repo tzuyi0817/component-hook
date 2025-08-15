@@ -18,7 +18,7 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.12",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.5",
@@ -30,7 +30,7 @@
     "postcss-pxtorem": "^6.1.0",
     "prism-themes": "^1.9.0",
     "prismjs": "^1.30.0",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^4.1.12",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
