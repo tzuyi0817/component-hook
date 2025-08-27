@@ -23,7 +23,8 @@ export const unicornConfig = {
     ],
     'unicorn/new-for-builtins': 'error',
     'unicorn/no-array-method-this-argument': 'error',
-    'unicorn/no-array-reverse': 'error',
+    // Browser compatibility issues
+    // 'unicorn/no-array-reverse': 'error',
     'unicorn/no-await-in-promise-methods': 'error',
     'unicorn/no-console-spaces': 'error',
     'unicorn/no-for-loop': 'error',
@@ -76,7 +77,8 @@ export const unicornConfig = {
     'unicorn/prefer-string-starts-ends-with': 'error',
     'unicorn/prefer-string-trim-start-end': 'error',
     'unicorn/prefer-type-error': 'error',
-    'unicorn/require-module-specifiers': 'error',
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/2710
+    // 'unicorn/require-module-specifiers': 'error',
     'unicorn/throw-new-error': 'error',
   },
 };
