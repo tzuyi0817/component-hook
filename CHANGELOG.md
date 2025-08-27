@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.4](https://github.com/tzuyi0817/component-hook/compare/v1.1.3...v1.1.4) (2025-08-27)
+
+### Features
+
+- **eslint-plugin:** enable javascript and typescript more rules ([b5620ef](https://github.com/tzuyi0817/component-hook/commit/b5620ef008c44d36a830036e0df31a07c4d94d89))
+- **eslint-plugin:** upgrade `eslint-plugin-unicorn` to v60 ([3d84322](https://github.com/tzuyi0817/component-hook/commit/3d8432276246c80d5fb988665ccaee3e7168489a))
+- **eslint-plugin:** enable `unicorn/no-useless-error-capture-stack-trace` and `unicorn/prefer-class-fields` rules
+
 ## [1.1.3](https://github.com/tzuyi0817/component-hook/compare/v1.1.2...v1.1.3) (2025-07-17)
 
 ### Features
