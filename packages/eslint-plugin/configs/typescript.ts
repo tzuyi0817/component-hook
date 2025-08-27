@@ -7,6 +7,8 @@ export const rules: Linter.RulesRecord = {
   '@typescript-eslint/no-unsafe-function-type': 'off',
   '@typescript-eslint/no-shadow': 'error',
   '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '_' }],
+  '@typescript-eslint/no-useless-constructor': 'error',
+  '@typescript-eslint/prefer-literal-enum-member': ['error', { allowBitwiseExpressions: true }],
   '@typescript-eslint/no-unused-expressions': [
     'error',
     {
