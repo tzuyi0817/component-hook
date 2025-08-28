@@ -19,7 +19,7 @@ export interface PdfCanvasHandle {
   deleteCanvas: () => void;
   copyActiveFabric: () => Promise<void>;
   deleteActiveFabric: () => void;
-  canvasRef: React.RefObject<HTMLCanvasElement>;
+  canvasRef: React.RefObject<HTMLCanvasElement | null>;
 }
 
 interface ComponentEmits {

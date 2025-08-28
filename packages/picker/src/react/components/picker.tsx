@@ -90,6 +90,7 @@ export function Picker<T>({
         const originIndex = selectedIndices[index] ?? 0;
         const specifyIndex = originIndex >= options.length ? Math.max(options.length - 1, 0) : 0;
 
+        updateSelectedValueByIndex(index, specifyIndex);
         newSelectedIndices[index] = specifyIndex;
       } else {
         newSelectedIndices[index] = selectedIndex;

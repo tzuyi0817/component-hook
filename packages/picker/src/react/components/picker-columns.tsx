@@ -57,7 +57,9 @@ function ColumnsComponent<T>(props: Props<T>, ref: ForwardedRef<ColumnsRef>) {
       {currentColumns.map((column, index) => (
         <Column
           key={index}
-          ref={el => (columnsRef.current[index] = el)}
+          ref={el => {
+            columnsRef.current[index] = el;
+          }}
           column={column}
           fields={fields}
           selectedIndex={selectedIndices[index]}
