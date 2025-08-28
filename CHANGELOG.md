@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/tzuyi0817/component-hook/compare/v1.1.4...v1.1.5) (2025-08-28)
+
+### Features
+
+- **picker:** bump dependency `react` and `react-dom` to v19.1.1 ([1736a89](https://github.com/tzuyi0817/component-hook/commit/1736a89ac3dd064d40208d98c197f788fbfc07b4))
+- **pdf-canvas:** bump dependency `react` and `react-dom` to v19.1.1 ([1736a89](https://github.com/tzuyi0817/component-hook/commit/1736a89ac3dd064d40208d98c197f788fbfc07b4))
+
 ## [1.1.4](https://github.com/tzuyi0817/component-hook/compare/v1.1.3...v1.1.4) (2025-08-27)
 
 ### Features
