@@ -2,7 +2,7 @@ import { useImperativeHandle, useRef, type ForwardedRef } from 'react';
 import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import type { PickerColumn, PickerFields } from '../../shared/types';
 import { Column, type ColumnRef } from './picker-column';
-import type { Props as PickerProps } from './picker';
+import type { PickerProps } from '../types';
 
 interface Props<T> extends Pick<PickerProps<T>, 'loading' | 'loadingSlot' | 'columns' | 'emptySlot'> {
   currentColumns: PickerColumn<T>[];

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -6,32 +6,12 @@ import {
   getIndexByValue,
   resetChildrenSelected,
 } from '../../shared/utils/common';
-import type { PickerColumn, PickerFields } from '../../shared/types';
+import type { PickerProps } from '../types';
+import type { PickerColumn } from '../../shared/types';
 import { Columns, type ColumnsRef } from './picker-columns';
 import { Popup } from './popup';
 import '../../shared/index.scss';
 import '../transition.scss';
-
-export interface Props<T = string | number> {
-  show: boolean;
-  values?: T[];
-  title?: string;
-  columns: PickerColumn<T> | PickerColumn<T>[];
-  linkage?: boolean;
-  loading?: boolean;
-  loadingSlot?: ReactNode;
-  emptySlot?: ReactNode;
-  teleport?: Element | DocumentFragment;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
-  columnsFieldNames?: PickerFields;
-  onConfirm?: (values: T[]) => void;
-  onClose: () => void;
-  onChange?: (values: T[]) => void;
-  onCancel?: () => void;
-  onOpen?: () => void;
-  onClosed?: () => void;
-}
 
 export function Picker<T>({
   show,
@@ -52,7 +32,7 @@ export function Picker<T>({
   onCancel,
   onOpen,
   onClosed,
-}: Props<T>) {
+}: PickerProps<T>) {
   const [internalValues, setInternalValues] = useState<T[]>([]);
   const [selectedValues, setSelectedValues] = useState<T[]>([]);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
