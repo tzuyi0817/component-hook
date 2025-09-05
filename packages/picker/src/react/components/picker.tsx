@@ -150,10 +150,10 @@ export function Picker<T>({
 
   function handleOpen() {
     onOpen?.();
+    setSelectedValues(values ? [...values] : [...internalValues]);
   }
 
   function handleClosed() {
-    setSelectedValues(values ? [...values] : [...internalValues]);
     onClosed?.();
   }
 
