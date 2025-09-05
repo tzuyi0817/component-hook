@@ -4,7 +4,7 @@
   "description": "Scaffolding a basic typescript project",
   "type": "module",
   "license": "MIT",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.15.1",
   "author": "Tzuyi",
   "bin": {
     "create-component-hook": "bin/index.js"
@@ -20,7 +20,7 @@
     "typecheck": "tsc --noEmit"
   },
   "engines": {
-    "node": ">=20.19.4"
+    "node": ">=20.19.5"
   },
   "repository": {
     "type": "git",
