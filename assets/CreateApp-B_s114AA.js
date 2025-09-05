@@ -1,4 +1,4 @@
-import{d as e,a as t,u as n,m as o,o as a}from"./index-Dg_Po2zc.js";const s=`## Create App
+import{d as e,a as t,o,u as n,m as a}from"./index-BkUtADec.js";const s=`## Create App
 
 Scaffolding a basic \`typescript\` project.
 
@@ -111,4 +111,4 @@ These variables are injected at build time and are fully typed:
 | \`VITE_APP_VERSION\`     | Read from \`package.json\` version             |
 | \`VITE_APP_BUILD_EPOCH\` | Timestamp generated at build time            |
 | \`VITE_APP_MOCK\`        | Indicates whether the mock environment is on |
-`,i=["innerHTML"],m=e({__name:"CreateApp",setup(r){return(p,c)=>(a(),t("div",{class:"markdown-doc",innerHTML:n(o).render(n(s))},null,8,i))}});export{m as default};
+`,i=["innerHTML"],m=e({__name:"CreateApp",setup(r){return(p,c)=>(o(),t("div",{class:"markdown-doc",innerHTML:n(a).render(n(s))},null,8,i))}});export{m as default};
