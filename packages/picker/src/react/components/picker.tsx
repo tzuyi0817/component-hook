@@ -6,8 +6,8 @@ import {
   getIndexByValue,
   resetChildrenSelected,
 } from '../../shared/utils/common';
-import type { PickerProps } from '../types';
 import type { PickerColumn } from '../../shared/types';
+import type { PickerProps } from '../types';
 import { Columns, type ColumnsRef } from './picker-columns';
 import { Popup } from './popup';
 import '../../shared/index.scss';
