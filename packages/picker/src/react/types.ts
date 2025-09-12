@@ -1,4 +1,5 @@
 import type { PickerColumn, PickerFields } from '../shared/types';
+import type { ReactNode } from 'react';
 
 export interface PickerProps<T = string | number> {
   show: boolean;
@@ -7,8 +8,8 @@ export interface PickerProps<T = string | number> {
   columns: PickerColumn<T> | PickerColumn<T>[];
   linkage?: boolean;
   loading?: boolean;
-  loadingSlot?: any;
-  emptySlot?: any;
+  loadingSlot?: ReactNode;
+  emptySlot?: ReactNode;
   teleport?: Element | DocumentFragment;
   confirmButtonText?: string;
   cancelButtonText?: string;

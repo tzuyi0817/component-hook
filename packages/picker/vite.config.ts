@@ -24,6 +24,16 @@ export default defineConfig({
     vitePlugin(),
     dts({
       rollupTypes: true,
+      afterBuild: emittedFiles => {
+        for (const file of emittedFiles.keys()) {
+          if (!file.endsWith('/react/picker.es.d.ts')) continue;
+
+          const content = fs.readFileSync(file, 'utf-8');
+          const patched = content.replaceAll(/(\.\.\/){2,}react/g, 'react');
+
+          fs.writeFileSync(file, patched);
+        }
+      },
     }),
     patchCssFile,
   ],
