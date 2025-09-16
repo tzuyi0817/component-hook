@@ -50,7 +50,7 @@
     "vue-tsc": "^3.0.7"
   },
   "engines": {
-    "node": ">=20.19.5"
+    "node": ">=22.19.0"
   },
   "optionalDependencies": {
     "@commitlint/cli": "^19.8.1",
