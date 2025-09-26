@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "type": "module",
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "dev": "vite"
   },
@@ -12,7 +12,7 @@
     "@component-hook/picker": "workspace:*",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router": "^7.9.1"
+    "react-router": "^7.9.2"
   },
   "devDependencies": {
     "@types/react-dom": "^19.1.9"
