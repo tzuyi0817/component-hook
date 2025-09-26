@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-CMbenUcI.js";import{d as t,c as a,o,u as n}from"./index-RmBEVN6-.js";import"./index-OgLnm7D9.js";const s=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-C1d5URWp.js";import{d as t,c as a,u as n,o}from"./index-DpJ0bSUx.js";import"./index-Dxakq7hu.js";const s=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
