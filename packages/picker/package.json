@@ -3,7 +3,7 @@
   "version": "1.1.5",
   "description": "Picker component with vue3 and react",
   "license": "MIT",
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.17.1",
   "type": "module",
   "author": "Tzuyi",
   "exports": {
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.12",
-    "sass-embedded": "^1.93.0",
+    "sass-embedded": "^1.93.2",
     "vite-plugin-dts": "^4.5.4"
   }
 }
