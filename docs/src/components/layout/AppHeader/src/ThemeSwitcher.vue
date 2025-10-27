@@ -2,9 +2,8 @@
 import { onMounted, useTemplateRef } from 'vue';
 import { SvgIcon } from '@/components/common';
 import { usePrefersTheme } from '@/hooks/use-prefers-theme';
-import { sleep } from '@/utils/common';
 
-const TRANSITION_DURATION = 300;
+const TRANSITION_DURATION = 400;
 const isDarkTheme = usePrefersTheme('dark');
 const themeSwitcherRef = useTemplateRef<HTMLLinkElement>('theme-switcher');
 
@@ -13,7 +12,6 @@ async function handleChange(event: Event) {
 
   await beforeChange(isDark);
   changeTheme(isDark);
-  await sleep(TRANSITION_DURATION / 2);
   isDarkTheme.value = isDark;
 }
 
@@ -29,13 +27,17 @@ function beforeChange(isDark: boolean) {
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
     const distalRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+    const ratioX = (100 * x) / innerWidth;
+    const ratioY = (100 * y) / innerHeight;
+    const referR = Math.hypot(innerWidth, innerHeight) / Math.SQRT2;
+    const ratioR = (100 * distalRadius) / referR;
 
     const transition = document.startViewTransition(() => {
       resolve(true);
     });
 
     transition.ready.then(() => {
-      const clipPath = [`circle(${distalRadius}px at ${x}px ${y}px)`, `circle(0px at ${x}px ${y}px)`];
+      const clipPath = [`circle(${ratioR}% at ${ratioX}% ${ratioY}%)`, `circle(0% at ${ratioX}% ${ratioY}%)`];
 
       document.documentElement.animate(
         {
@@ -44,6 +46,7 @@ function beforeChange(isDark: boolean) {
         {
           duration: TRANSITION_DURATION,
           easing: 'ease-in',
+          fill: 'both',
           pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
         },
       );
@@ -51,7 +54,7 @@ function beforeChange(isDark: boolean) {
   });
 }
 
-function changeTheme(isDark: boolean) {
+async function changeTheme(isDark: boolean) {
   document.documentElement.classList.toggle('dark-scheme', isDark);
 }
 
