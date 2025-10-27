@@ -19,7 +19,7 @@ async function handleChange(event: Event) {
 
 function beforeChange(isDark: boolean) {
   return new Promise(resolve => {
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isReducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (isReducedMotion || !themeSwitcherRef.value) {
       resolve(true);
@@ -39,7 +39,7 @@ function beforeChange(isDark: boolean) {
 
       document.documentElement.animate(
         {
-          clipPath: isDark ? clipPath : [...clipPath].reverse(),
+          clipPath: isDark ? clipPath : clipPath.toReversed(),
         },
         {
           duration: TRANSITION_DURATION,

@@ -12,7 +12,7 @@ export async function printPDF(file: File): Promise<string | void> {
   const pdf = await readfile(file);
   if (typeof pdf !== 'string') return;
 
-  return window.atob(pdf.slice(Base64Prefix.length));
+  return globalThis.atob(pdf.slice(Base64Prefix.length));
 }
 
 export function getPDFDocument(data: string, password?: string) {

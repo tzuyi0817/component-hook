@@ -51,7 +51,7 @@ Available templates:
 `;
 
 async function writePackageJson(root: string, dir: string, packageName: string) {
-  const pkgJson = await readFile(path.join(dir, 'package.json'), 'utf-8');
+  const pkgJson = await readFile(path.join(dir, 'package.json'), 'utf8');
   const pkg = JSON.parse(pkgJson);
   const targetPath = path.join(root, 'package.json');
 

@@ -190,32 +190,23 @@ async function drawPDF(file: File, password?: string, id?: string) {
 
   if (!PDFBase64) return;
   const PDF = createPdfInfo(file, PDFBase64);
+  const pages = await specifyPage({ page: 1, PDFBase64, scale: 0.8, password }, id);
 
-  try {
-    const pages = await specifyPage({ page: 1, PDFBase64, scale: 0.8, password }, id);
-
-    return { ...PDF, pages };
-  } catch (error) {
-    return Promise.reject(error);
-  }
+  return { ...PDF, pages };
 }
 
 export async function specifyPage({ page, PDFBase64, scale, password }: SpecifyPageArgs, id?: string) {
-  try {
-    const pdfDoc = await getPDFDocument(PDFBase64, password);
-    const pdfPage = await pdfDoc.getPage(page);
-    const { renderTask, canvas } = createRenderTask(pdfPage, scale);
+  const pdfDoc = await getPDFDocument(PDFBase64, password);
+  const pdfPage = await pdfDoc.getPage(page);
+  const { renderTask, canvas } = createRenderTask(pdfPage, scale);
 
-    return renderTask.promise.then(() => {
-      if (id) {
-        renderFabricCanvas(id, canvas);
-      }
+  return renderTask.promise.then(() => {
+    if (id) {
+      renderFabricCanvas(id, canvas);
+    }
 
-      return pdfDoc.numPages;
-    });
-  } catch (error) {
-    return Promise.reject(error);
-  }
+    return pdfDoc.numPages;
+  });
 }
 
 async function drawImage(file: File, _?: string, id?: string) {

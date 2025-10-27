@@ -13,7 +13,7 @@ const patchCssFile: Plugin = {
     if (!bundle[file]) return;
     const dist = path.resolve('dist');
     const filePath = path.resolve(dist, `${FRAMEWORK}/${file}`);
-    const content = fs.readFileSync(filePath, 'utf-8');
+    const content = fs.readFileSync(filePath, 'utf8');
 
     fs.writeFileSync(filePath, `import "./index.css";\n${content}`);
   },
@@ -28,7 +28,7 @@ export default defineConfig({
         for (const file of emittedFiles.keys()) {
           if (!file.endsWith('/react/picker.es.d.ts')) continue;
 
-          const content = fs.readFileSync(file, 'utf-8');
+          const content = fs.readFileSync(file, 'utf8');
           const patched = content.replaceAll(/(\.\.\/){2,}react/g, 'react');
 
           fs.writeFileSync(file, patched);

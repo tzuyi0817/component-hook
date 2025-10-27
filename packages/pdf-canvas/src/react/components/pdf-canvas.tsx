@@ -93,7 +93,7 @@ function PdfCanvasComponent(
   useResize(handleReload);
 
   async function setPDF() {
-    window.requestAnimationFrame(async () => {
+    globalThis.requestAnimationFrame(async () => {
       createCanvas();
 
       if (file.PDFBase64.startsWith('data:image') || file.canvas) {

@@ -3,7 +3,7 @@ import { copyToClipboard } from '@/utils/common';
 export function useCopyCode() {
   const timerMap = new WeakMap<HTMLElement, NodeJS.Timeout>();
 
-  window.addEventListener('click', (event: Event) => {
+  globalThis.addEventListener('click', (event: Event) => {
     const element = event.target as HTMLElement;
 
     if (!element.matches('pre[class*="language-"] > button.copy-code')) return;

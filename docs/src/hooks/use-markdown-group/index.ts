@@ -1,5 +1,5 @@
 export function useMarkdownGroup() {
-  window.addEventListener('click', (event: Event) => {
+  globalThis.addEventListener('click', (event: Event) => {
     const element = event.target as HTMLElement;
 
     if (!element.classList.contains('group-label')) return;
