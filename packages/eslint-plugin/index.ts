@@ -20,7 +20,7 @@ import {
   testingLibraryVueConfig,
 } from './configs/testing-library';
 import { typescriptConfigs } from './configs/typescript';
-import { unicornConfig } from './configs/unicorn';
+import { unicornConfigs } from './configs/unicorn';
 import { vueConfigs } from './configs/vue';
 import { globals } from './plugins';
 
@@ -29,7 +29,7 @@ const basicConfigs = [
   ...typescriptConfigs,
   ...commentsConfigs,
   ...importConfigs,
-  unicornConfig,
+  ...unicornConfigs,
   jsdocConfig,
   regexpConfig,
   deMorganConfig,

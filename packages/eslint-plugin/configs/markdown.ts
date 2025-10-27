@@ -3,8 +3,8 @@ import { pluginMarkdown } from '../plugins';
 import type { Linter } from 'eslint';
 
 export const markdownConfigs = [
-  ...pluginMarkdown.configs.processor.map((config: Linter.Config) => ({
-    ...config,
+  ...pluginMarkdown.configs.processor.map(config => ({
+    ...(config as Linter.Config),
     name: `component-hook/${config.name}`,
   })),
 
