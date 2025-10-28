@@ -46,6 +46,7 @@ const rules = {
   'vue/require-default-prop': 'off',
   'vue/require-prop-types': 'off',
   'vue/no-setup-props-reactivity-loss': 'off',
+  'vue/return-in-computed-property': ['error', { treatUndefinedAsUnspecified: false }],
 };
 
 const extendsTypescript = typescriptEslint.configs.recommended

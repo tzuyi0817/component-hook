@@ -54,7 +54,7 @@ function beforeChange(isDark: boolean) {
   });
 }
 
-async function changeTheme(isDark: boolean) {
+function changeTheme(isDark: boolean) {
   document.documentElement.classList.toggle('dark-scheme', isDark);
 }
 

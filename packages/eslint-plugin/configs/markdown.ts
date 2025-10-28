@@ -33,6 +33,9 @@ export const markdownConfigs = [
       'sonarjs/no-dead-store': 'off',
       'sonarjs/unused-import': 'off',
       'sonarjs/no-unused-vars': 'off',
+
+      'unicorn/no-useless-undefined': 'off',
+      'unicorn/no-anonymous-default-export': 'off',
     },
   },
 ];
