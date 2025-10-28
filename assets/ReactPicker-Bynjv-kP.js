@@ -1,4 +1,4 @@
-import{_ as o}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-Bo93K096.js";import{d as n,c as t,u as e,o as l}from"./index-rl1HznLx.js";import"./index-BeJGONgc.js";import"./installation-DBEjWu-p.js";const c=`import { Picker } from '@component-hook/picker/react';
+import{_ as o}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-B-vzn36q.js";import{d as n,c as t,u as e,o as l}from"./index-CaVN_6Bk.js";import"./index-Cbr3E-sY.js";import"./installation-BbBU8KTf.js";const c=`import { Picker } from '@component-hook/picker/react';
 import { useState } from 'react';
 
 const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value: index }));
