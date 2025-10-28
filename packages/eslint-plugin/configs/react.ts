@@ -1,7 +1,7 @@
 import { pluginJsxA11y, pluginReact, pluginReactHooks } from '../plugins';
-import type { Linter } from 'eslint';
+import type { Config } from '../types';
 
-export const reactConfigs: Linter.Config[] = [
+export const reactConfigs: Config[] = [
   {
     ...pluginReact.configs.flat?.recommended,
     name: 'component-hook/react',

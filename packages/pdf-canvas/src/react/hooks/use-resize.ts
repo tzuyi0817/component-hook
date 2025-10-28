@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { debounce } from '../../shared/utils/common';
 
 export function useResize(callback: () => void) {
-  let previousWidth = 0;
+  const previousWidth = useRef(0);
 
   const debounceCallback = debounce(() => {
-    if (previousWidth === window.innerWidth) return;
-    previousWidth = window.innerWidth;
+    if (previousWidth.current === window.innerWidth) return;
+
+    previousWidth.current = window.innerWidth;
     callback();
   });
 

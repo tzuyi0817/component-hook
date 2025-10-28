@@ -1,8 +1,10 @@
 import { pluginJs } from '../plugins';
+import type { Config } from '../types';
+import type { Linter } from 'eslint';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const rules = {
+const rules: Linter.RulesRecord = {
   'no-useless-call': 'error',
   'no-useless-computed-key': 'error',
   'no-useless-constructor': 'error',
@@ -20,7 +22,7 @@ const rules = {
   eqeqeq: 'error',
 };
 
-export const jsConfigs = [
+export const jsConfigs: Config[] = [
   {
     name: 'component-hook/javascript',
     rules: {

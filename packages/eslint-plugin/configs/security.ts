@@ -1,6 +1,7 @@
 import { pluginSecurity } from '../plugins';
+import type { Config } from '../types';
 
-export const securityConfig = {
+export const securityConfig: Config = {
   name: 'component-hook/security',
   plugins: {
     security: pluginSecurity,

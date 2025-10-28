@@ -1,10 +1,10 @@
 import { SRC, VUE } from '../constants';
 import { pluginMarkdown } from '../plugins';
-import type { Linter } from 'eslint';
+import type { Config } from '../types';
 
-export const markdownConfigs = [
+export const markdownConfigs: Config[] = [
   ...pluginMarkdown.configs.processor.map(config => ({
-    ...(config as Linter.Config),
+    ...(config as Config),
     name: `component-hook/${config.name}`,
   })),
 

@@ -1,13 +1,13 @@
 import { pluginSonarjs } from '../plugins';
-import type { ESLint, Linter } from 'eslint';
+import type { Config } from '../types';
 
-const plugins: Record<string, ESLint.Plugin> = {
+const plugins = {
   sonarjs: pluginSonarjs,
 };
 
 const { settings } = pluginSonarjs.configs.recommended;
 
-export const sonarjsConfigs: Linter.Config[] = [
+export const sonarjsConfigs: Config[] = [
   {
     name: 'component-hook/sonarjs',
     plugins,

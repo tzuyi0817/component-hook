@@ -47,46 +47,6 @@ export function Picker<T>({
     return formatColumnsToCascade(columns, selectedValues, fields);
   }, [columns, columnsType, selectedValues, fields]);
 
-  useEffect(() => {
-    if (!values) return;
-    const isSame = values.every((value, index) => value === selectedValues[index]);
-
-    if (isSame) return;
-
-    setSelectedValues(values);
-  }, [values]);
-
-  useEffect(() => {
-    const n = currentColumns.length;
-    const newSelectedIndices = [];
-    let isChange = false;
-
-    for (let index = 0; index < n; index++) {
-      const options = currentColumns[index];
-      const value = selectedValues[index];
-      const selectedIndex = getIndexByValue(options, value, fields);
-
-      if (selectedIndex === -1) {
-        const originIndex = selectedIndices[index] ?? 0;
-        const specifyIndex = originIndex >= options.length ? Math.max(options.length - 1, 0) : 0;
-
-        updateSelectedValueByIndex(index, specifyIndex);
-        newSelectedIndices[index] = specifyIndex;
-      } else {
-        newSelectedIndices[index] = selectedIndex;
-      }
-
-      if (newSelectedIndices[index] !== selectedIndices[index]) {
-        columnsRef.current?.scrollColumnToSelected(index, newSelectedIndices[index]);
-        isChange = true;
-      }
-    }
-
-    if (!isChange) return;
-
-    setSelectedIndices(newSelectedIndices);
-  }, [selectedValues, currentColumns, fields]);
-
   function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) {
     const options = currentColumns[columnIndex];
     const value = options[selectedIndex]?.[fields.value];
@@ -136,6 +96,46 @@ export function Picker<T>({
   function handleClosed() {
     onClosed?.();
   }
+
+  useEffect(() => {
+    if (!values) return;
+    const isSame = values.every((value, index) => value === selectedValues[index]);
+
+    if (isSame) return;
+
+    setSelectedValues(values);
+  }, [values]);
+
+  useEffect(() => {
+    const n = currentColumns.length;
+    const newSelectedIndices = [];
+    let isChange = false;
+
+    for (let index = 0; index < n; index++) {
+      const options = currentColumns[index];
+      const value = selectedValues[index];
+      const selectedIndex = getIndexByValue(options, value, fields);
+
+      if (selectedIndex === -1) {
+        const originIndex = selectedIndices[index] ?? 0;
+        const specifyIndex = originIndex >= options.length ? Math.max(options.length - 1, 0) : 0;
+
+        updateSelectedValueByIndex(index, specifyIndex);
+        newSelectedIndices[index] = specifyIndex;
+      } else {
+        newSelectedIndices[index] = selectedIndex;
+      }
+
+      if (newSelectedIndices[index] !== selectedIndices[index]) {
+        columnsRef.current?.scrollColumnToSelected(index, newSelectedIndices[index]);
+        isChange = true;
+      }
+    }
+
+    if (!isChange) return;
+
+    setSelectedIndices(newSelectedIndices);
+  }, [selectedValues, currentColumns, fields]);
 
   return (
     <Popup

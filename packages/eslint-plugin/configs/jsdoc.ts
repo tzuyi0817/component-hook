@@ -1,6 +1,7 @@
 import { pluginJsdoc } from '../plugins';
+import type { Config } from '../types';
 
-export const jsdocConfig = {
+export const jsdocConfig: Config = {
   name: 'component-hook/jsdoc',
   plugins: {
     jsdoc: pluginJsdoc,

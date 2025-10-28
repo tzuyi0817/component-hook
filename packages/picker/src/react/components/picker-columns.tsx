@@ -28,13 +28,13 @@ function ColumnsComponent<T>(props: Props<T>, ref: ForwardedRef<ColumnsRef>) {
   } = props;
   const columnsRef = useRef<(ColumnRef | null)[]>([]);
 
-  useImperativeHandle(ref, () => ({
-    scrollColumnToSelected,
-  }));
-
   function scrollColumnToSelected(column: number, index: number) {
     columnsRef.current[column]?.scrollToSelected(index);
   }
+
+  useImperativeHandle(ref, () => ({
+    scrollColumnToSelected,
+  }));
 
   if (loading) {
     return (

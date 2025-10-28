@@ -1,6 +1,7 @@
 import { pluginUnicorn } from '../plugins';
+import type { Config } from '../types';
 
-export const unicornConfigs = [
+export const unicornConfigs: Config[] = [
   {
     ...pluginUnicorn.configs.unopinionated,
     name: 'component-hook/unicorn/unopinionated',

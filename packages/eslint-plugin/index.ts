@@ -68,4 +68,5 @@ export default { configs };
 const basicPreset = [prettierConfig, ...sonarjsConfigs, securityConfig, ...markdownConfigs];
 
 export const reactPreset = [...basicConfigs, ...reactConfigs, ...basicPreset];
+
 export const vuePreset = [...basicConfigs, ...vueConfigs, ...basicPreset];

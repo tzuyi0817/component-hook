@@ -1,7 +1,7 @@
 import { pluginRegexp } from '../plugins';
-import type { Linter } from 'eslint';
+import type { Config } from '../types';
 
-export const regexpConfig = {
+export const regexpConfig: Config = {
   ...pluginRegexp.configs['flat/recommended'],
   name: 'component-hook/regexp',
-} as Linter.Config;
+};

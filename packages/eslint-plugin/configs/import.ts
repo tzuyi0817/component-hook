@@ -1,13 +1,13 @@
 import { SRC_EXT } from '../constants';
 import { fixupPluginRules, pluginImport, typescriptEslint, vueParser } from '../plugins';
-import type { ESLint, Linter } from 'eslint';
+import type { Config } from '../types';
 
-const plugins: Record<string, ESLint.Plugin> = {
+const plugins = {
   import: fixupPluginRules(pluginImport),
-  '@typescript-eslint': typescriptEslint.plugin as ESLint.Plugin,
+  '@typescript-eslint': typescriptEslint.plugin,
 };
 
-const languageOptions: Linter.LanguageOptions = {
+const languageOptions = {
   parser: vueParser,
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -16,7 +16,7 @@ const languageOptions: Linter.LanguageOptions = {
   },
 };
 
-export const importConfigs: Linter.Config[] = [
+export const importConfigs: Config[] = [
   {
     name: 'component-hook/import',
     plugins,

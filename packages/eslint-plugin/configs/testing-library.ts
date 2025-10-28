@@ -1,12 +1,12 @@
 import { pluginTestingLibrary } from '../plugins';
-import type { Linter } from 'eslint';
+import type { Config } from '../types';
 
 const configs = pluginTestingLibrary.configs;
 const plugins = {
   'testing-library': pluginTestingLibrary,
 };
 
-export const testingLibraryDomConfig: Linter.Config = {
+export const testingLibraryDomConfig: Config = {
   name: 'component-hook/testing-library/dom',
   plugins,
   rules: {
@@ -14,7 +14,7 @@ export const testingLibraryDomConfig: Linter.Config = {
   },
 };
 
-export const testingLibraryAngularConfig: Linter.Config = {
+export const testingLibraryAngularConfig: Config = {
   name: 'component-hook/testing-library/angular',
   plugins,
   rules: {
@@ -22,7 +22,7 @@ export const testingLibraryAngularConfig: Linter.Config = {
   },
 };
 
-export const testingLibraryReactConfig: Linter.Config = {
+export const testingLibraryReactConfig: Config = {
   name: 'component-hook/testing-library/react',
   plugins,
   rules: {
@@ -30,7 +30,7 @@ export const testingLibraryReactConfig: Linter.Config = {
   },
 };
 
-export const testingLibraryVueConfig: Linter.Config = {
+export const testingLibraryVueConfig: Config = {
   name: 'component-hook/testing-library/vue',
   plugins,
   rules: {
@@ -38,7 +38,7 @@ export const testingLibraryVueConfig: Linter.Config = {
   },
 };
 
-export const testingLibraryMarkoConfig: Linter.Config = {
+export const testingLibraryMarkoConfig: Config = {
   name: 'component-hook/testing-library/marko',
   plugins,
   rules: {

@@ -22,10 +22,6 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
       onChange: handleSelectedChange,
     });
 
-  useImperativeHandle(ref, () => ({
-    scrollToSelected,
-  }));
-
   function handleSelectedChange(index: number) {
     if (index === selectedIndex) return;
 
@@ -40,6 +36,10 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
     if (index === selectedIndex) return;
     scrollToSelected(index, 'smooth');
   }
+
+  useImperativeHandle(ref, () => ({
+    scrollToSelected,
+  }));
 
   return (
     <div

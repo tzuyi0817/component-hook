@@ -2,13 +2,12 @@ import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react'
 import { useRef, useState, type ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
 
-let currentFile: File | null = null;
-
 export function EncryptedPdf() {
   const [currentPdf, setCurrentPdf] = useState<PDF>();
   const [password, setPassword] = useState<string>('');
   const [isShowPasswordPopup, setIsShowPasswordPopup] = useState(false);
   const [modalPassword, setModalPassword] = useState<string>('');
+  const currentFileRef = useRef<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,8 +16,8 @@ export function EncryptedPdf() {
 
     if (!files || files.length === 0) return;
 
-    currentFile = files[0];
-    renderFile(currentFile);
+    currentFileRef.current = files[0];
+    renderFile(currentFileRef.current);
     target.value = '';
   };
 
@@ -44,7 +43,7 @@ export function EncryptedPdf() {
 
   const submitPassword = () => {
     setIsShowPasswordPopup(false);
-    renderFile(currentFile);
+    renderFile(currentFileRef.current);
   };
 
   return (

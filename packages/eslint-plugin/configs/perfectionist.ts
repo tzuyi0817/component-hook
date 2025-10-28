@@ -1,7 +1,7 @@
 import { pluginPerfectionist } from '../plugins';
-import type { Linter } from 'eslint';
+import type { Config } from '../types';
 
-export const perfectionistConfig: Linter.Config = {
+export const perfectionistConfig: Config = {
   name: 'component-hook/perfectionist/import',
   plugins: {
     perfectionist: pluginPerfectionist,
