@@ -3,7 +3,7 @@ import type { Config } from '../types';
 
 export const reactConfigs: Config[] = [
   {
-    ...pluginReact.configs.flat?.recommended,
+    ...pluginReact.configs.flat.recommended,
     name: 'component-hook/react',
     settings: {
       react: {
@@ -11,8 +11,8 @@ export const reactConfigs: Config[] = [
       },
     },
     rules: {
-      ...pluginReact.configs.flat?.recommended.rules,
-      ...pluginReact.configs.flat?.['jsx-runtime'].rules,
+      ...pluginReact.configs.flat.recommended.rules,
+      ...pluginReact.configs.flat['jsx-runtime'].rules,
     },
   },
   {
@@ -23,6 +23,11 @@ export const reactConfigs: Config[] = [
     },
     rules: {
       ...pluginReactHooks.configs.recommended.rules,
+
+      'react-hooks/refs': 'warn',
+      'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/purity': 'warn',
     },
   },
   {
