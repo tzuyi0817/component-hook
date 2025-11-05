@@ -23,11 +23,6 @@ export const reactConfigs: Config[] = [
     },
     rules: {
       ...pluginReactHooks.configs.recommended.rules,
-
-      'react-hooks/refs': 'warn',
-      'react-hooks/exhaustive-deps': 'warn',
-      'react-hooks/set-state-in-effect': 'warn',
-      'react-hooks/purity': 'warn',
     },
   },
   {

@@ -21,8 +21,18 @@ export default [
     ...componentHookPlugin.configs.playwright,
   },
   {
+    files: ['**/__tests__/unit/**/*.test.[jt]s?(x)'],
     rules: {
       'testing-library/no-node-access': 'off',
+    },
+  },
+  {
+    files: ['**/*.[jt]s?(x)'],
+    rules: {
+      'react-hooks/refs': 'warn',
+      'react-hooks/exhaustive-deps': 'warn',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/purity': 'warn',
     },
   },
 ];
