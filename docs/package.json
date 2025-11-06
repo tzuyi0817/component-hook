@@ -2,7 +2,7 @@
   "name": "@component-hook/docs",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +14,7 @@
     "@component-hook/pdf-canvas": "workspace:*",
     "@component-hook/picker": "workspace:*",
     "uuid": "^11.1.0",
-    "vue": "^3.5.22",
+    "vue": "^3.5.23",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
@@ -23,7 +23,7 @@
     "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.5",
     "autoprefixer": "^10.4.21",
-    "cssnano": "^7.1.1",
+    "cssnano": "^7.1.2",
     "markdown-it": "^14.1.0",
     "markdown-it-container": "^4.0.0",
     "postcss": "^8.5.6",
