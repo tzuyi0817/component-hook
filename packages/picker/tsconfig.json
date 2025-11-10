@@ -7,10 +7,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.d.ts", "**/*.tsx", "**/*.vue"],
-  "exclude": ["dist", "node_modules"],
-  "references": [
-    {
-      "path": "../../tsconfig.node.json"
-    }
-  ]
+  "exclude": ["dist", "node_modules"]
 }
