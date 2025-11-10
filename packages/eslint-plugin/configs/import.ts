@@ -1,9 +1,9 @@
 import { SRC_EXT } from '../constants';
-import { fixupPluginRules, pluginImport, typescriptEslint, vueParser } from '../plugins';
+import { pluginImport, typescriptEslint, vueParser } from '../plugins';
 import type { Config } from '../types';
 
 const plugins = {
-  import: fixupPluginRules(pluginImport),
+  import: pluginImport,
   '@typescript-eslint': typescriptEslint.plugin,
 };
 
