@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { DEFAULT_DATE_COLUMNS, DEFAULT_DATE_TITLE } from '../../shared/constants';
+import { DEFAULT_DATE_COLUMNS } from '../../shared/constants';
 import {
   formatLabel,
   generateOptions,
@@ -16,7 +16,6 @@ import { Picker } from './picker';
 interface Props {
   show: boolean;
   values?: number[];
-  title?: string;
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
   maxDate?: Date;
@@ -36,7 +35,6 @@ interface Props {
 export function DatePicker({
   show,
   values,
-  title = DEFAULT_DATE_TITLE,
   columnsType = DEFAULT_DATE_COLUMNS,
   minDate = new Date(new Date().getFullYear() - 10, 0, 1),
   maxDate = new Date(new Date().getFullYear() + 10, 11, 31),

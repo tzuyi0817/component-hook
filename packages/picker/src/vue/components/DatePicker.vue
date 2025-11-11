@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { DEFAULT_DATE_COLUMNS, DEFAULT_DATE_TITLE } from '../../shared/constants';
+import { computed } from 'vue';
+import { DEFAULT_DATE_COLUMNS } from '../../shared/constants';
 import {
   formatLabel,
   generateOptions,
@@ -15,31 +15,19 @@ import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types
 import Picker from './Picker.vue';
 
 interface Props {
-  show: boolean;
-  modelValue?: number[];
-  title?: string;
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
   maxDate?: Date;
-  teleport?: string | Element;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
   formatYearLabel?: PickerFormatLabel;
   formatMonthLabel?: PickerFormatLabel;
   formatDayLabel?: PickerFormatLabel;
 }
 
 interface Emits {
-  'update:show': [isShow: boolean];
-  'update:modelValue': [values: number[]];
-  confirm: [values: number[]];
-  cancel: [];
-  open: [];
-  closed: [];
+  change: [values: number[]];
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: DEFAULT_DATE_TITLE,
   columnsType: () => DEFAULT_DATE_COLUMNS,
   minDate: () => new Date(new Date().getFullYear() - 10, 0, 1),
   maxDate: () => new Date(new Date().getFullYear() + 10, 11, 31),
@@ -48,13 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   formatDayLabel: formatLabel,
 });
 const emits = defineEmits<Emits>();
-const selectedValues = ref<number[]>([]);
-const internalModelValue = ref<number[]>([]);
-
-const isShowPicker = computed({
-  get: () => props.show,
-  set: value => emits('update:show', value),
-});
+const modelValue = defineModel<number[]>({ default: [] });
 
 const columns = computed(() => {
   const { columnsType, minDate, maxDate } = props;
@@ -66,6 +48,10 @@ const columns = computed(() => {
 
   return columnsType.map(type => generateOptionsMap[type](minDate, maxDate));
 });
+
+if (!modelValue.value.length) {
+  setDefaultValues();
+}
 
 function generateYearOptions(minDate: Date, maxDate: Date) {
   const minYear = minDate.getFullYear();
@@ -96,54 +82,28 @@ function generateDayOptions(minDate: Date, maxDate: Date) {
 function getSelectedValue(type: DatePickerColumnType) {
   const { columnsType } = props;
   const columnIndex = columnsType.indexOf(type);
-  const value = selectedValues.value[columnIndex];
+  const value = modelValue.value[columnIndex];
 
   if (value) return Number(value);
 
   return getDefaultDate(props.minDate, props.maxDate, type);
 }
 
-function onConfirm(value: number[]) {
-  emits('update:modelValue', value);
-  internalModelValue.value = value;
-  emits('confirm', value);
-}
-
-function onCancel() {
-  emits('cancel');
-}
-
 function setDefaultValues() {
-  emits('open');
-
-  if (props.modelValue && props.modelValue.length) {
-    selectedValues.value = [...props.modelValue];
-    return;
-  }
   const { columnsType } = props;
 
-  selectedValues.value = columnsType.map(type => getSelectedValue(type));
+  modelValue.value = columnsType.map(type => getDefaultDate(props.minDate, props.maxDate, type));
 }
 
-function resetSelectedValues() {
-  selectedValues.value = props.modelValue ? [...props.modelValue] : [...internalModelValue.value];
-  emits('closed');
-}
+defineExpose({
+  setCurrentDate: setDefaultValues,
+});
 </script>
 
 <template>
   <Picker
-    v-model="selectedValues"
-    v-model:show="isShowPicker"
-    :title="title"
+    v-model="modelValue"
     :columns="columns"
-    :teleport="teleport"
-    :confirm-button-text="confirmButtonText"
-    :cancel-button-text="cancelButtonText"
-    linkage
-    @confirm="onConfirm"
-    @cancel="onCancel"
-    @open="setDefaultValues"
-    @closed="resetSelectedValues"
+    @change="emits('change', $event)"
   />
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends string | number">
-import { computed, ref, useTemplateRef, watchEffect } from 'vue';
+import { computed, nextTick, ref, useTemplateRef, watchEffect } from 'vue';
 import {
   extendFields,
   formatColumnsToCascade,
@@ -58,7 +58,9 @@ function updateSelectedValueByIndex(columnIndex: number, selectedIndex: number) 
     modelValue.value = newSelectedValues;
   }
 
-  emits('change', modelValue.value);
+  nextTick(() => {
+    emits('change', modelValue.value);
+  });
 }
 
 function syncSelectedIndices() {

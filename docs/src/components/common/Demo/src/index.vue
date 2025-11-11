@@ -37,7 +37,7 @@ async function toggleSource() {
     </p>
 
     <div class="example-wrapper border border-border rounded">
-      <div class="p-6 border-b border-b-border">
+      <div class="p-3 border-b border-b-border lg:p-6">
         <slot></slot>
       </div>
 

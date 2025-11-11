@@ -48,7 +48,7 @@ defineExpose({ scrollToSelected });
   <div
     class="chook-picker-column"
     @touchstart.passive="onPointerDown"
-    @touchmove.passive="onPointerMove"
+    @touchmove.prevent="onPointerMove"
     @touchend.passive="onPointerUp"
     @touchcancel="onPointerUp"
     @mousedown.passive="onPointerDown"
