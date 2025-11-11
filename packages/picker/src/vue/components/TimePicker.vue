@@ -1,49 +1,31 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { DEFAULT_TIME_COLUMNS, DEFAULT_TIME_TITLE } from '../../shared/constants';
+import { computed } from 'vue';
+import { DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import { formatTime, generateOptions, getDefaultTime, getValidTime } from '../../shared/utils/common';
 import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 import Picker from './Picker.vue';
 
 interface Props {
-  show: boolean;
-  modelValue?: number[];
-  title?: string;
   columnsType?: TimePickerColumnType[];
   minTime?: string;
   maxTime?: string;
-  teleport?: string | Element;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
   formatHourLabel?: PickerFormatLabel;
   formatMinuteLabel?: PickerFormatLabel;
   formatSecondLabel?: PickerFormatLabel;
 }
 
 interface Emits {
-  'update:show': [isShow: boolean];
-  'update:modelValue': [values: number[]];
-  confirm: [values: number[]];
-  cancel: [];
-  open: [];
-  closed: [];
+  change: [values: number[]];
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: DEFAULT_TIME_TITLE,
   columnsType: () => DEFAULT_TIME_COLUMNS,
   formatHourLabel: formatTime,
   formatMinuteLabel: formatTime,
   formatSecondLabel: formatTime,
 });
 const emits = defineEmits<Emits>();
-const selectedValues = ref<number[]>([]);
-const internalModelValue = ref<number[]>([]);
-
-const isShowPicker = computed({
-  get: () => props.show,
-  set: value => emits('update:show', value),
-});
+const modelValue = defineModel<number[]>({ default: [] });
 
 const columns = computed(() => {
   const { columnsType } = props;
@@ -67,6 +49,10 @@ const formattedMaxTime = computed(() => {
 
   return maxTime ?? { hour: 23, minute: 59, second: 59 };
 });
+
+if (!modelValue.value.length) {
+  setDefaultValues();
+}
 
 function generateHourOptions() {
   const minHour = formattedMinTime.value.hour;
@@ -99,54 +85,28 @@ function generateSecondOptions() {
 function getSelectedValue(type: TimePickerColumnType) {
   const { columnsType } = props;
   const columnIndex = columnsType.indexOf(type);
-  const value = selectedValues.value[columnIndex];
+  const value = modelValue.value[columnIndex];
 
   if (value !== undefined) return Number(value);
 
   return getDefaultTime(formattedMinTime.value, formattedMaxTime.value, type);
 }
 
-function onConfirm(value: number[]) {
-  emits('update:modelValue', value);
-  internalModelValue.value = value;
-  emits('confirm', value);
-}
-
-function onCancel() {
-  emits('cancel');
-}
-
 function setDefaultValues() {
-  emits('open');
-
-  if (props.modelValue && props.modelValue.length) {
-    selectedValues.value = [...props.modelValue];
-    return;
-  }
   const { columnsType } = props;
 
-  selectedValues.value = columnsType.map(type => getSelectedValue(type));
+  modelValue.value = columnsType.map(type => getDefaultTime(formattedMinTime.value, formattedMaxTime.value, type));
 }
 
-function resetSelectedValues() {
-  selectedValues.value = props.modelValue ? [...props.modelValue] : [...internalModelValue.value];
-  emits('closed');
-}
+defineExpose({
+  setCurrentTime: setDefaultValues,
+});
 </script>
 
 <template>
   <Picker
-    v-model="selectedValues"
-    v-model:show="isShowPicker"
-    :title="title"
+    v-model="modelValue"
     :columns="columns"
-    :teleport="teleport"
-    :confirm-button-text="confirmButtonText"
-    :cancel-button-text="cancelButtonText"
-    linkage
-    @confirm="onConfirm"
-    @cancel="onCancel"
-    @open="setDefaultValues"
-    @closed="resetSelectedValues"
+    @change="emits('change', $event)"
   />
 </template>

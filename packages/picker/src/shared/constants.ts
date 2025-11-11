@@ -18,6 +18,4 @@ export const TAP_OFFSET = 5;
 
 export const DEFAULT_DATE_COLUMNS: DatePickerColumnType[] = ['year', 'month', 'day'];
 
-export const DEFAULT_TIME_TITLE = 'Select Time';
-
 export const DEFAULT_TIME_COLUMNS: TimePickerColumnType[] = ['hour', 'minute', 'second'];

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { DEFAULT_TIME_COLUMNS, DEFAULT_TIME_TITLE } from '../../shared/constants';
+import { DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import { formatTime, generateOptions, getDefaultTime, getValidTime } from '../../shared/utils/common';
 import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 import { Picker } from './picker';
@@ -27,7 +27,6 @@ interface Props {
 export function TimePicker({
   show,
   values,
-  title = DEFAULT_TIME_TITLE,
   columnsType = DEFAULT_TIME_COLUMNS,
   minTime,
   maxTime,
