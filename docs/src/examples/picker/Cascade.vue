@@ -2,7 +2,6 @@
 import { Picker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
-const isShowPicker = ref(false);
 const pickerValues = ref<string[]>([]);
 const columns = [
   {
@@ -77,12 +76,9 @@ const columns = [
 <template>
   <picker
     v-model="pickerValues"
-    v-model:show="isShowPicker"
     :columns="columns"
-    title="Cascade Selector"
+    class="max-w-[500px] rounded-lg"
   />
-
-  <button @click="isShowPicker = true">toggle Cascade picker</button>
 
   <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
 </template>

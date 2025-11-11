@@ -2,7 +2,6 @@
 import { Picker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
-const isShowPicker = ref(false);
 const pickerValues = ref<Array<string | number>>([]);
 const columns = [
   { langType: 0, code: 'en', original: 'English' },
@@ -12,21 +11,18 @@ const columns = [
   { langType: 4, code: 'kr', original: '한국어' },
 ];
 
-function onConfirm(values: Array<string | number>) {
+function onChange(values: Array<string | number>) {
   pickerValues.value = values;
 }
 </script>
 
 <template>
   <picker
-    v-model:show="isShowPicker"
     :columns="columns"
-    title="Customize Column Selector"
     :columns-field-names="{ label: 'original', value: 'code' }"
-    @confirm="onConfirm"
+    class="max-w-[400px] rounded-lg"
+    @change="onChange"
   />
-
-  <button @click="isShowPicker = true">toggle Customize Column picker</button>
 
   <p class="mt-6 text-sm font-mono">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>

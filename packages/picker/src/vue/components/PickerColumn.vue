@@ -54,6 +54,7 @@ defineExpose({ scrollToSelected });
     @mousedown.passive="onPointerDown"
     @mousemove.passive="onPointerMove"
     @mouseup.passive="onPointerUp"
+    @mouseleave.passive="onPointerUp"
   >
     <ul
       :style="{
