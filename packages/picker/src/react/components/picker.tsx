@@ -9,32 +9,18 @@ import {
 import type { PickerColumn } from '../../shared/types';
 import type { PickerProps } from '../types';
 import { Columns, type ColumnsRef } from './picker-columns';
-import { Popup } from './popup';
 import '../../shared/index.scss';
-import '../transition.scss';
 
 export function Picker<T>({
-  show,
   values,
-  title,
   columns,
-  linkage = false,
   loading = false,
   loadingSlot,
   emptySlot,
-  teleport,
-  confirmButtonText = 'Confirm',
-  cancelButtonText = 'Cancel',
   columnsFieldNames,
-  onConfirm,
-  onClose,
   onChange,
-  onCancel,
-  onOpen,
-  onClosed,
 }: PickerProps<T>) {
-  const [internalValues, setInternalValues] = useState<T[]>([]);
-  const [selectedValues, setSelectedValues] = useState<T[]>([]);
+  const [selectedValues, setSelectedValues] = useState<T[]>(values ?? []);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
   const columnsRef = useRef<ColumnsRef>(null);
   const fields = extendFields(columnsFieldNames);
@@ -62,53 +48,27 @@ export function Picker<T>({
       const resetSelectedValues = resetChildrenSelected(selectedOptions, columnIndex, newSelectedValues, fields);
 
       setSelectedValues(resetSelectedValues);
-      handleChangeValues(resetSelectedValues);
+      onChange?.(resetSelectedValues);
     } else {
       setSelectedValues(newSelectedValues);
-      handleChangeValues(newSelectedValues);
+      onChange?.(newSelectedValues);
     }
   }
 
-  function handleChangeValues(newValues: T[]) {
-    onChange?.(newValues);
-
-    if (!linkage) return;
-
-    setInternalValues(newValues);
-  }
-
-  function handleConfirm() {
-    setInternalValues(selectedValues);
-    onClose();
-    onConfirm?.(selectedValues);
-  }
-
-  function handleCancel() {
-    onClose();
-    onCancel?.();
-  }
-
-  function handleOpen() {
-    onOpen?.();
-    setSelectedValues(values ? [...values] : [...internalValues]);
-  }
-
-  function handleClosed() {
-    onClosed?.();
+  function isValuesChange(current: T[]) {
+    return current.some((value, index) => value !== selectedValues[index]);
   }
 
   useEffect(() => {
-    if (!values) return;
-    const isSame = values.every((value, index) => value === selectedValues[index]);
+    if (!values || !isValuesChange(values)) return;
 
-    if (isSame) return;
-
-    setSelectedValues(values);
+    setSelectedValues([...values]);
   }, [values]);
 
   useEffect(() => {
     const n = currentColumns.length;
     const newSelectedIndices = [];
+    const newSelectedValues = [...selectedValues];
     let isChange = false;
 
     for (let index = 0; index < n; index++) {
@@ -120,7 +80,7 @@ export function Picker<T>({
         const originIndex = selectedIndices[index] ?? 0;
         const specifyIndex = originIndex >= options.length ? Math.max(options.length - 1, 0) : 0;
 
-        updateSelectedValueByIndex(index, specifyIndex);
+        newSelectedValues[index] = options[specifyIndex]?.[fields.value];
         newSelectedIndices[index] = specifyIndex;
       } else {
         newSelectedIndices[index] = selectedIndex;
@@ -134,33 +94,12 @@ export function Picker<T>({
 
     if (!isChange) return;
 
+    setSelectedValues(newSelectedValues);
     setSelectedIndices(newSelectedIndices);
   }, [selectedValues, currentColumns, fields]);
 
   return (
-    <Popup
-      show={show}
-      teleport={teleport}
-      onOpen={handleOpen}
-      onClose={onClose}
-      onClosed={handleClosed}
-    >
-      <div className="chook-picker-header">
-        <button
-          className="chook-picker-cancel"
-          onClick={handleCancel}
-        >
-          {cancelButtonText}
-        </button>
-        <p className="chook-picker-title">{title}</p>
-        <button
-          className="chook-picker-confirm"
-          onClick={handleConfirm}
-        >
-          {confirmButtonText}
-        </button>
-      </div>
-
+    <div className="chook-picker-container">
       <Columns
         ref={columnsRef}
         loading={loading}
@@ -172,6 +111,6 @@ export function Picker<T>({
         selectedIndices={selectedIndices}
         updateSelectedValueByIndex={updateSelectedValueByIndex}
       />
-    </Popup>
+    </div>
   );
 }

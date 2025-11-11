@@ -10,27 +10,17 @@ const columns = [
 ];
 
 export function CustomizeColumnPicker() {
-  const [showPicker, setShowPicker] = useState(false);
   const [pickerValues, setPickerValues] = useState<Array<string | number>>([]);
 
-  function onConfirm(values: Array<string | number>) {
-    setPickerValues(values);
-  }
-
   return (
-    <>
+    <div style={{ maxWidth: '400px' }}>
       <Picker
-        show={showPicker}
         columns={columns}
-        title="Customize Column Selector"
         columnsFieldNames={{ label: 'original', value: 'code' }}
-        onClose={() => setShowPicker(false)}
-        onConfirm={onConfirm}
+        onChange={setPickerValues}
       />
 
-      <button onClick={() => setShowPicker(true)}>toggle Customize Column picker</button>
-
       <p>Selected value: {pickerValues.join('') || 'not selected yet'}</p>
-    </>
+    </div>
   );
 }

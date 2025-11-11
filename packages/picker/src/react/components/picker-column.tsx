@@ -34,6 +34,7 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
 
   function onClick(index: number) {
     if (index === selectedIndex) return;
+
     scrollToSelected(index, 'smooth');
   }
 
@@ -52,6 +53,11 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
       onMouseDown={onPointerDown}
       onMouseMove={onPointerMove}
       onMouseUp={onPointerUp}
+      onMouseLeave={onPointerUp}
+      style={{
+        overflowY: 'hidden',
+        touchAction: 'none',
+      }}
     >
       <ul
         style={{
@@ -59,6 +65,7 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
           transform: `translate3d(0, ${offsetY}px, 0)`,
           transitionDuration: `${transitionDuration}ms`,
           transitionProperty: transitionDuration ? 'all' : 'none',
+          touchAction: 'none',
         }}
         onTransitionEnd={stopInertialSliding}
       >

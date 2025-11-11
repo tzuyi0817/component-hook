@@ -71,25 +71,17 @@ const columns = [
 ];
 
 export function CascadePicker() {
-  const [showPicker, setShowPicker] = useState(false);
   const [pickerValues, setPickerValues] = useState<string[]>([]);
-
-  function onConfirm(values: string[]) {
-    setPickerValues(values);
-  }
 
   return (
     <>
-      <Picker
-        show={showPicker}
-        columns={columns}
-        values={pickerValues}
-        title="Cascade Selector"
-        onClose={() => setShowPicker(false)}
-        onConfirm={onConfirm}
-      />
-
-      <button onClick={() => setShowPicker(true)}>toggle Cascade picker</button>
+      <div style={{ maxWidth: '500px' }}>
+        <Picker
+          columns={columns}
+          values={pickerValues}
+          onChange={setPickerValues}
+        />
+      </div>
 
       <p>Selected value: {pickerValues.join(' / ') || 'not selected yet'}</p>
     </>

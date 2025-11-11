@@ -6,27 +6,17 @@ const columns = Array.from({ length: 2 }, () =>
 );
 
 export function MultiColumnPicker() {
-  const [showPicker, setShowPicker] = useState(false);
   const [pickerValues, setPickerValues] = useState<number[]>([2, 20]);
 
-  function onConfirm(values: number[]) {
-    setPickerValues(values);
-  }
-
   return (
-    <>
+    <div style={{ maxWidth: '400px' }}>
       <Picker
-        show={showPicker}
         columns={columns}
         values={pickerValues}
-        title="Multiple Column Selector"
-        onClose={() => setShowPicker(false)}
-        onConfirm={onConfirm}
+        onChange={setPickerValues}
       />
 
-      <button onClick={() => setShowPicker(true)}>toggle Multiple Column picker</button>
-
       <p>Selected value: {pickerValues.join(' / ') || 'not selected yet'}</p>
-    </>
+    </div>
   );
 }
