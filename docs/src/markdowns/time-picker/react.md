@@ -15,3 +15,9 @@
 | Event    | Description                               | Type                                              |
 | :------- | :---------------------------------------- | :------------------------------------------------ |
 | onChange | Triggered when the selected value changes | `Function (values: PickerSelectedValues) => void` |
+
+#### Exposes
+
+| Name           | Description                        | Type                  |
+| :------------- | :--------------------------------- | :-------------------- |
+| setCurrentTime | Reset the time to the current time | `Function () => void` |

@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.0](https://github.com/tzuyi0817/component-hook/compare/v1.1.5...v1.2.0) (2025-11-12)
+
+### Features
+
+- **picker:** remove the picker popup for greater flexibility in component usage
+
+### Bug Fixes
+
+- **eslint-plugin:** disable some unicorn rules and allow `return` in vue computed ([232b3d8](https://github.com/tzuyi0817/component-hook/commit/232b3d889aca3d41074bc1cceb40071f48da0ea8))
+
 ## [1.1.5](https://github.com/tzuyi0817/component-hook/compare/v1.1.4...v1.1.5) (2025-08-28)
 
 ### Features
