@@ -18,7 +18,7 @@
 
 <div align="center">
 
-[![Docs][badge-src]][docs-href]
+[![Docs][docs-src]][docs-href]
 
 </div>
 
@@ -42,12 +42,12 @@ This component library is licensed under the MIT License. For more details, plea
 <!-- link -->
 
 [docs-href]: https://tzuyi0817.github.io/component-hook/#/home
+[docs-src]: https://img.shields.io/badge/component--hook-READ%20THE%20DOCS%20-409eff?style=for-the-badge
 [version-src]: https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff
 [node-src]: https://img.shields.io/badge/dynamic/json?color=409eff&label=node&query=$.engines.node&url=https://raw.githubusercontent.com/tzuyi0817/component-hook/master/package.json
 [node-href]: https://nodejs.org/en/about/previous-releases
 [license-src]: https://img.shields.io/github/license/tzuyi0817/component-hook?color=409eff
 [license-href]: https://github.com/tzuyi0817/component-hook/blob/master/LICENSE
-[badge-src]: https://img.shields.io/badge/component--hook-READ%20THE%20DOCS%20-409eff?style=for-the-badge
 [component-picker]: https://github.com/tzuyi0817/component-hook/tree/master/packages/picker
 [component-pdf-canvas]: https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas
 [component-eslint-plugin]: https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin
