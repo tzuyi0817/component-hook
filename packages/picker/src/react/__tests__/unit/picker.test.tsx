@@ -3,48 +3,36 @@ import { Picker } from '../../index';
 
 describe('React Picker Component', () => {
   it('render component', () => {
-    const titleText = 'Test Selector';
-    const mackFn = vi.fn();
+    const { container } = render(<Picker columns={[]} />);
+    const root = container.querySelector('.chook-picker-container');
 
-    render(
-      <Picker
-        show={true}
-        title={titleText}
-        columns={[]}
-        onClose={mackFn}
-      />,
-    );
-    expect(screen.getByText(titleText)).toBeInTheDocument();
+    expect(root).toBeInTheDocument();
   });
 
   it('render with loading slot', () => {
     const loadingSlot = 'Loading...';
-    const mackFn = vi.fn();
 
     render(
       <Picker
-        show={true}
         columns={[]}
         loading={true}
         loadingSlot={loadingSlot}
-        onClose={mackFn}
       />,
     );
+
     expect(screen.getByText(loadingSlot)).toBeInTheDocument();
   });
 
   it('render with empty slot', () => {
     const emptySlot = 'No Data';
-    const mackFn = vi.fn();
 
     render(
       <Picker
-        show={true}
         columns={[]}
         emptySlot={emptySlot}
-        onClose={mackFn}
       />,
     );
+
     expect(screen.getByText(emptySlot)).toBeInTheDocument();
   });
 
@@ -54,15 +42,8 @@ describe('React Picker Component', () => {
       { label: 'B', value: 'B' },
       { label: 'C', value: 'C' },
     ];
-    const mackFn = vi.fn();
 
-    render(
-      <Picker
-        show={true}
-        columns={columns}
-        onClose={mackFn}
-      />,
-    );
+    render(<Picker columns={columns} />);
 
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
@@ -73,15 +54,8 @@ describe('React Picker Component', () => {
     const columns = Array.from({ length: 2 }, () =>
       Array.from({ length: 50 }, (_, index) => ({ label: index, value: index })),
     );
-    const mackFn = vi.fn();
 
-    render(
-      <Picker
-        show={true}
-        columns={columns}
-        onClose={mackFn}
-      />,
-    );
+    render(<Picker columns={columns} />);
 
     expect(screen.getAllByText('0').length).toBe(2);
     expect(screen.getAllByText('49').length).toBe(2);
@@ -112,35 +86,25 @@ describe('React Picker Component', () => {
         ],
       },
     ];
-    const mackFn = vi.fn();
 
-    render(
-      <Picker
-        show={true}
-        columns={columns}
-        onClose={mackFn}
-      />,
-    );
+    render(<Picker columns={columns} />);
 
     expect(screen.getByText('Electronics')).toBeInTheDocument();
     expect(screen.getByText('Mobile')).toBeInTheDocument();
     expect(screen.getByText('Computer')).toBeInTheDocument();
   });
 
-  it('render with default value', async () => {
+  it('render with default value', () => {
     const columns = [
       { label: 'A', value: 'A' },
       { label: 'B', value: 'B' },
       { label: 'C', value: 'C' },
     ];
-    const mackFn = vi.fn();
 
     render(
       <Picker
-        show={true}
         columns={columns}
         values={['B']}
-        onClose={mackFn}
       />,
     );
 

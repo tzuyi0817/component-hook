@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/vue';
-import { nextTick, ref } from 'vue';
 import { Picker } from '../../index';
 
 describe('Vue Picker Component', () => {
   it('render component', () => {
-    const titleText = 'Test Selector';
-
-    render(Picker, {
-      props: { show: true, title: titleText, columns: [] },
+    const { container } = render(Picker, {
+      props: { columns: [] },
     });
-    expect(screen.getByText(titleText)).toBeInTheDocument();
+    const root = container.querySelector('.chook-picker-container');
+
+    expect(root).toBeInTheDocument();
   });
 
   it('render with loading slot', () => {
     const loadingSlotText = 'Loading...';
 
     render(Picker, {
-      props: { show: true, columns: [], loading: true },
+      props: { columns: [], loading: true },
       slots: { loading: loadingSlotText },
     });
+
     expect(screen.getByText(loadingSlotText)).toBeInTheDocument();
   });
 
@@ -26,7 +26,7 @@ describe('Vue Picker Component', () => {
     const emptySlotText = 'No Data';
 
     render(Picker, {
-      props: { show: true, columns: [] },
+      props: { columns: [] },
       slots: { empty: emptySlotText },
     });
     expect(screen.getByText(emptySlotText)).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('Vue Picker Component', () => {
       { label: 'C', value: 'C' },
     ];
 
-    render(Picker, { props: { show: true, columns } });
+    render(Picker, { props: { columns } });
 
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe('Vue Picker Component', () => {
       Array.from({ length: 50 }, (_, index) => ({ label: index, value: index })),
     );
 
-    render(Picker, { props: { show: true, columns } });
+    render(Picker, { props: { columns } });
 
     expect(screen.getAllByText('0').length).toBe(2);
     expect(screen.getAllByText('49').length).toBe(2);
@@ -83,7 +83,7 @@ describe('Vue Picker Component', () => {
       },
     ];
 
-    render(Picker, { props: { show: true, columns } });
+    render(Picker, { props: { columns } });
 
     expect(screen.getByText('Electronics')).toBeInTheDocument();
     expect(screen.getByText('Mobile')).toBeInTheDocument();
@@ -100,26 +100,20 @@ describe('Vue Picker Component', () => {
     ];
 
     render(Picker, {
-      props: { show: true, columns, columnsFieldNames: { label: 'original', value: 'code' } },
+      props: { columns, columnsFieldNames: { label: 'original', value: 'code' } },
     });
 
     expect(screen.getByText('English')).toBeInTheDocument();
   });
 
-  it('selected with default value', async () => {
-    const show = ref(false);
+  it('selected with default value', () => {
     const columns = [
       { label: 'A', value: 'A' },
       { label: 'B', value: 'B' },
       { label: 'C', value: 'C' },
     ];
 
-    const { rerender } = render(Picker, { props: { show: show.value, columns, modelValue: ['B'] } });
-
-    show.value = true;
-    await rerender({ show: show.value });
-    await nextTick();
-
+    render(Picker, { props: { columns, modelValue: ['B'] } });
     // Wait for the animation to finish
     setTimeout(() => {
       expect(screen.getByText('B')).toHaveStyle('transform: rotate3d(1, 0, 0, 0deg);');

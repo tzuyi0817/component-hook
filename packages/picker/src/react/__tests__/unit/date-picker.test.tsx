@@ -2,45 +2,23 @@ import { render, screen } from '@testing-library/react';
 import { DatePicker } from '../../index';
 
 describe('React Date Picker Component', () => {
-  it('render component', () => {
-    const titleText = 'Date Selector';
-    const mackFn = vi.fn();
-
-    render(
-      <DatePicker
-        show={true}
-        title={titleText}
-        onClose={mackFn}
-      />,
-    );
-    expect(screen.getByText(titleText)).toBeInTheDocument();
-  });
-
   it('render with columns type', () => {
-    const mackFn = vi.fn();
-    const { baseElement } = render(
-      <DatePicker
-        show={true}
-        columnsType={['year', 'month']}
-        onClose={mackFn}
-      />,
-    );
+    const date = new Date();
 
-    expect(screen.getByText(new Date().getFullYear())).toBeInTheDocument();
-    expect(Array.from(baseElement.querySelectorAll('.chook-picker-column')).length).toBe(2);
+    render(<DatePicker columnsType={['year', 'month']} />);
+
+    expect(screen.getByText(date.getFullYear())).toBeInTheDocument();
+    expect(screen.getByText(date.getMonth() + 1)).toBeVisible();
   });
 
   it('render with custom date range', () => {
     const minDate = new Date(2021, 0, 1);
     const maxDate = new Date(2023, 11, 31);
-    const mackFn = vi.fn();
 
     render(
       <DatePicker
-        show={true}
         minDate={minDate}
         maxDate={maxDate}
-        onClose={mackFn}
       />,
     );
 
@@ -51,15 +29,11 @@ describe('React Date Picker Component', () => {
   });
 
   it('render with label formatter', () => {
-    const mackFn = vi.fn();
-
     render(
       <DatePicker
-        show={true}
         formatYearLabel={(value: string) => `${value} year`}
         formatMonthLabel={(value: string) => `${value} month`}
         formatDayLabel={(value: string) => `${value} day`}
-        onClose={mackFn}
       />,
     );
 

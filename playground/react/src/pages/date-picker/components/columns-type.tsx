@@ -4,27 +4,17 @@ import { useState } from 'react';
 const columnsType: DatePickerColumnType[] = ['year', 'month'];
 
 export function ColumnsTypePicker() {
-  const [showPicker, setShowPicker] = useState(false);
   const [pickerValues, setPickerValues] = useState<number[]>([2030, 8]);
 
-  function onConfirm(values: number[]) {
-    setPickerValues(values);
-  }
-
   return (
-    <>
+    <div style={{ maxWidth: '500px' }}>
       <DatePicker
-        show={showPicker}
-        title="Columns Type Selector"
         values={pickerValues}
         columnsType={columnsType}
-        onClose={() => setShowPicker(false)}
-        onConfirm={onConfirm}
+        onChange={setPickerValues}
       />
 
-      <button onClick={() => setShowPicker(true)}>toggle Columns Type picker</button>
-
       <p>Selected date: {pickerValues.join(' / ') || 'not selected yet'}</p>
-    </>
+    </div>
   );
 }

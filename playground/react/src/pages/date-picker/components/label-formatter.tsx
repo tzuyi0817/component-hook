@@ -4,30 +4,20 @@ import { useState } from 'react';
 const columnsType: DatePickerColumnType[] = ['month', 'day', 'year'];
 
 export function LabelFormatterPicker() {
-  const [showPicker, setShowPicker] = useState(false);
   const [pickerValues, setPickerValues] = useState<number[]>([]);
 
-  function onConfirm(values: number[]) {
-    setPickerValues(values);
-  }
-
   return (
-    <>
+    <div style={{ maxWidth: '500px' }}>
       <DatePicker
-        show={showPicker}
-        title="Label Formatter Selector"
         values={pickerValues}
         columnsType={columnsType}
         formatMonthLabel={formatMonthLabel}
         formatDayLabel={formatDayLabel}
-        onClose={() => setShowPicker(false)}
-        onConfirm={onConfirm}
+        onChange={setPickerValues}
       />
 
-      <button onClick={() => setShowPicker(true)}>toggle Label Formatter picker</button>
-
       <p>Selected date: {pickerValues.join(' / ') || 'not selected yet'}</p>
-    </>
+    </div>
   );
 }
 

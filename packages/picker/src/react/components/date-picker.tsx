@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useImperativeHandle, useMemo, type ForwardedRef } from 'react';
 import { DEFAULT_DATE_COLUMNS } from '../../shared/constants';
 import {
   formatLabel,
@@ -10,49 +10,38 @@ import {
   isMinMonth,
   isMinYear,
 } from '../../shared/utils/common';
+import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import { Picker } from './picker';
 
 interface Props {
-  show: boolean;
   values?: number[];
   columnsType?: DatePickerColumnType[];
   minDate?: Date;
   maxDate?: Date;
-  teleport?: Element | DocumentFragment;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
   formatYearLabel?: PickerFormatLabel;
   formatMonthLabel?: PickerFormatLabel;
   formatDayLabel?: PickerFormatLabel;
-  onConfirm?: (values: number[]) => void;
-  onClose: () => void;
-  onCancel?: () => void;
-  onOpen?: () => void;
-  onClosed?: () => void;
+  onChange?: (values: number[]) => void;
 }
 
-export function DatePicker({
-  show,
-  values,
-  columnsType = DEFAULT_DATE_COLUMNS,
-  minDate = new Date(new Date().getFullYear() - 10, 0, 1),
-  maxDate = new Date(new Date().getFullYear() + 10, 11, 31),
-  teleport,
-  confirmButtonText,
-  cancelButtonText,
-  formatYearLabel = formatLabel,
-  formatMonthLabel = formatLabel,
-  formatDayLabel = formatLabel,
-  onConfirm,
-  onClose,
-  onCancel,
-  onOpen,
-  onClosed,
-}: Props) {
-  const [internalValues, setInternalValues] = useState<number[]>([]);
-  const [selectedValues, setSelectedValues] = useState<number[]>([]);
+export type DatePickerRef = {
+  setCurrentDate: () => void;
+};
 
+function DatePickerComponent(
+  {
+    values,
+    columnsType = DEFAULT_DATE_COLUMNS,
+    minDate = new Date(new Date().getFullYear() - 10, 0, 1),
+    maxDate = new Date(new Date().getFullYear() + 10, 11, 31),
+    formatYearLabel = formatLabel,
+    formatMonthLabel = formatLabel,
+    formatDayLabel = formatLabel,
+    onChange,
+  }: Props,
+  ref: ForwardedRef<DatePickerRef>,
+) {
   const columns = useMemo(() => {
     const generateOptionsMap = {
       year: generateYearOptions,
@@ -61,7 +50,7 @@ export function DatePicker({
     };
 
     return columnsType.map(type => generateOptionsMap[type]());
-  }, [columnsType, minDate, maxDate, selectedValues, formatYearLabel, formatMonthLabel, formatDayLabel]);
+  }, [columnsType, minDate, maxDate, values, formatYearLabel, formatMonthLabel, formatDayLabel]);
 
   function generateYearOptions() {
     const minYear = minDate.getFullYear();
@@ -91,55 +80,32 @@ export function DatePicker({
 
   function getSelectedValue(type: DatePickerColumnType) {
     const columnIndex = columnsType.indexOf(type);
-    const value = selectedValues[columnIndex];
+    const value = values?.[columnIndex];
 
     if (value) return Number(value);
 
     return getDefaultDate(minDate, maxDate, type);
   }
 
-  function handleConfirm(confirmValues: number[]) {
-    setInternalValues(confirmValues);
-    onClose();
-    onConfirm?.(confirmValues);
-  }
-
-  function handleCancel() {
-    onClose();
-    onCancel?.();
-  }
-
   function setDefaultValues() {
-    onOpen?.();
+    const defaultValues = columnsType.map(type => getDefaultDate(minDate, maxDate, type));
 
-    if (values && values.length) {
-      setSelectedValues([...values]);
-    } else {
-      setSelectedValues(columnsType.map(getSelectedValue));
-    }
+    onChange?.(defaultValues);
   }
 
-  function handleClosed() {
-    setSelectedValues(values ? [...values] : [...internalValues]);
-    onClosed?.();
-  }
+  useImperativeHandle(ref, () => ({
+    setCurrentDate: setDefaultValues,
+  }));
 
   return (
     <Picker
-      values={selectedValues}
-      show={show}
-      title={title}
+      values={values}
       columns={columns}
-      teleport={teleport}
-      confirmButtonText={confirmButtonText}
-      cancelButtonText={cancelButtonText}
-      linkage
-      onConfirm={handleConfirm}
-      onClose={onClose}
-      onChange={setSelectedValues}
-      onCancel={handleCancel}
-      onOpen={setDefaultValues}
-      onClosed={handleClosed}
+      onChange={onChange}
     />
   );
 }
+
+export const DatePicker = fixedForwardRef(DatePickerComponent);
+
+DatePicker.displayName = 'DatePicker';

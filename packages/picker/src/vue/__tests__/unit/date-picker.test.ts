@@ -2,22 +2,15 @@ import { render, screen } from '@testing-library/vue';
 import { DatePicker } from '../../index';
 
 describe('Vue Date Picker Component', () => {
-  it('render component', () => {
-    const titleText = 'Date Selector';
+  it('render with columns type', () => {
+    const date = new Date();
 
     render(DatePicker, {
-      props: { show: true, title: titleText },
-    });
-    expect(screen.getByText(titleText)).toBeInTheDocument();
-  });
-
-  it('render with columns type', () => {
-    const { baseElement } = render(DatePicker, {
-      props: { show: true, columnsType: ['year', 'month'] },
+      props: { columnsType: ['year', 'month'] },
     });
 
-    expect(screen.getByText(new Date().getFullYear())).toBeVisible();
-    expect(Array.from(baseElement.querySelectorAll('.chook-picker-column')).length).toBe(2);
+    expect(screen.getByText(date.getFullYear())).toBeVisible();
+    expect(screen.getByText(date.getMonth() + 1)).toBeVisible();
   });
 
   it('render with custom date range', () => {
@@ -25,7 +18,7 @@ describe('Vue Date Picker Component', () => {
     const maxDate = new Date(2023, 11, 31);
 
     render(DatePicker, {
-      props: { show: true, minDate, maxDate },
+      props: { minDate, maxDate },
     });
 
     expect(screen.getByText('2021')).toBeVisible();
@@ -37,7 +30,6 @@ describe('Vue Date Picker Component', () => {
   it('render with label formatter', () => {
     render(DatePicker, {
       props: {
-        show: true,
         formatYearLabel: (value: string) => `${value} year`,
         formatMonthLabel: (value: string) => `${value} month`,
         formatDayLabel: (value: string) => `${value} day`,

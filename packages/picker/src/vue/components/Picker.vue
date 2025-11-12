@@ -125,7 +125,7 @@ watchEffect(
         :column="column"
         :fields="fields"
         :selected-index="selectedIndices[index]"
-        @change="(selectedIndex: number) => updateSelectedValueByIndex(index, selectedIndex)"
+        @change="selectedIndex => updateSelectedValueByIndex(index, selectedIndex)"
       />
 
       <div class="chook-picker-mask-backdrop"></div>

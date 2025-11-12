@@ -2,28 +2,18 @@ import { DatePicker } from '@component-hook/picker/react';
 import { useState } from 'react';
 
 export function CustomRangePicker() {
-  const [showPicker, setShowPicker] = useState(false);
   const [pickerValues, setPickerValues] = useState<number[]>([]);
 
-  function onConfirm(values: number[]) {
-    setPickerValues(values);
-  }
-
   return (
-    <>
+    <div style={{ maxWidth: '500px' }}>
       <DatePicker
-        show={showPicker}
-        title="Custom Range Selector"
         values={pickerValues}
         minDate={new Date(2024, 0, 1)}
         maxDate={new Date(2026, 5, 1)}
-        onClose={() => setShowPicker(false)}
-        onConfirm={onConfirm}
+        onChange={setPickerValues}
       />
 
-      <button onClick={() => setShowPicker(true)}>toggle Custom Range picker</button>
-
       <p>Selected date: {pickerValues.join(' / ') || 'not selected yet'}</p>
-    </>
+    </div>
   );
 }
