@@ -1,4 +1,4 @@
-import { useImperativeHandle, useMemo, type ForwardedRef } from 'react';
+import { useEffect, useImperativeHandle, useMemo, useState, type ForwardedRef } from 'react';
 import { DEFAULT_DATE_COLUMNS } from '../../shared/constants';
 import {
   formatLabel,
@@ -42,6 +42,12 @@ function DatePickerComponent(
   }: Props,
   ref: ForwardedRef<DatePickerRef>,
 ) {
+  const [internalValues, setInternalValues] = useState<number[]>([]);
+
+  const selectedValues = useMemo(() => {
+    return values ?? internalValues;
+  }, [values, internalValues]);
+
   const columns = useMemo(() => {
     const generateOptionsMap = {
       year: generateYearOptions,
@@ -50,7 +56,7 @@ function DatePickerComponent(
     };
 
     return columnsType.map(type => generateOptionsMap[type]());
-  }, [columnsType, minDate, maxDate, values, formatYearLabel, formatMonthLabel, formatDayLabel]);
+  }, [columnsType, minDate, maxDate, selectedValues, formatYearLabel, formatMonthLabel, formatDayLabel]);
 
   function generateYearOptions() {
     const minYear = minDate.getFullYear();
@@ -80,18 +86,32 @@ function DatePickerComponent(
 
   function getSelectedValue(type: DatePickerColumnType) {
     const columnIndex = columnsType.indexOf(type);
-    const value = values?.[columnIndex];
+    const value = selectedValues?.[columnIndex];
 
     if (value) return Number(value);
 
     return getDefaultDate(minDate, maxDate, type);
   }
 
+  function handleChange(newValues: number[]) {
+    if (!values) {
+      setInternalValues(newValues);
+    }
+
+    onChange?.(newValues);
+  }
+
   function setDefaultValues() {
     const defaultValues = columnsType.map(type => getDefaultDate(minDate, maxDate, type));
 
-    onChange?.(defaultValues);
+    handleChange(defaultValues);
   }
+
+  useEffect(() => {
+    if (!values || !values.length) {
+      setDefaultValues();
+    }
+  }, []);
 
   useImperativeHandle(ref, () => ({
     setCurrentDate: setDefaultValues,
@@ -99,9 +119,9 @@ function DatePickerComponent(
 
   return (
     <Picker
-      values={values}
+      values={selectedValues}
       columns={columns}
-      onChange={onChange}
+      onChange={handleChange}
     />
   );
 }

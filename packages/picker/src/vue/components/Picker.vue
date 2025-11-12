@@ -99,7 +99,10 @@ watchEffect(
 </script>
 
 <template>
-  <div class="chook-picker-container">
+  <div
+    class="chook-picker-container"
+    aria-label="Picker"
+  >
     <template v-if="loading">
       <div class="chook-picker-loading">
         <slot name="loading"></slot>

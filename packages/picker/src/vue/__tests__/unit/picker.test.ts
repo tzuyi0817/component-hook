@@ -3,12 +3,11 @@ import { Picker } from '../../index';
 
 describe('Vue Picker Component', () => {
   it('render component', () => {
-    const { container } = render(Picker, {
+    render(Picker, {
       props: { columns: [] },
     });
-    const root = container.querySelector('.chook-picker-container');
 
-    expect(root).toBeInTheDocument();
+    expect(screen.getByLabelText('Picker')).toBeInTheDocument();
   });
 
   it('render with loading slot', () => {

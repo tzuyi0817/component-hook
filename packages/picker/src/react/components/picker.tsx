@@ -99,7 +99,10 @@ export function Picker<T>({
   }, [selectedValues, currentColumns, fields]);
 
   return (
-    <div className="chook-picker-container">
+    <div
+      className="chook-picker-container"
+      aria-label="Picker"
+    >
       <Columns
         ref={columnsRef}
         loading={loading}

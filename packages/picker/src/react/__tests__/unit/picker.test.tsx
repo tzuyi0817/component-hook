@@ -3,10 +3,9 @@ import { Picker } from '../../index';
 
 describe('React Picker Component', () => {
   it('render component', () => {
-    const { container } = render(<Picker columns={[]} />);
-    const root = container.querySelector('.chook-picker-container');
+    render(<Picker columns={[]} />);
 
-    expect(root).toBeInTheDocument();
+    expect(screen.getByLabelText('Picker')).toBeInTheDocument();
   });
 
   it('render with loading slot', () => {

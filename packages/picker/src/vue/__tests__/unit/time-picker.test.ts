@@ -3,11 +3,11 @@ import { TimePicker } from '../../index';
 
 describe('Vue Time Picker Component', () => {
   it('render with columns type', () => {
-    const { container } = render(TimePicker, {
+    render(TimePicker, {
       props: { columnsType: ['hour', 'minute'] },
     });
 
-    expect(Array.from(container.querySelectorAll('.chook-picker-column')).length).toBe(2);
+    expect(screen.getAllByLabelText('Picker column').length).toBe(2);
   });
 
   it('render with custom time range', () => {

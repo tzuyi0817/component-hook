@@ -47,6 +47,7 @@ defineExpose({ scrollToSelected });
 <template>
   <div
     class="chook-picker-column"
+    aria-label="Picker column"
     @touchstart.passive="onPointerDown"
     @touchmove.prevent="onPointerMove"
     @touchend.passive="onPointerUp"

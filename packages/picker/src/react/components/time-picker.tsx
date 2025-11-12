@@ -1,49 +1,43 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useImperativeHandle, useMemo, useState, type ForwardedRef } from 'react';
 import { DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import { formatTime, generateOptions, getDefaultTime, getValidTime } from '../../shared/utils/common';
+import { fixedForwardRef } from '../hooks/fixed-forward-ref';
 import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 import { Picker } from './picker';
 
 interface Props {
-  show: boolean;
   values?: number[];
-  title?: string;
   columnsType?: TimePickerColumnType[];
   minTime?: string;
   maxTime?: string;
-  teleport?: Element | DocumentFragment;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
   formatHourLabel?: PickerFormatLabel;
   formatMinuteLabel?: PickerFormatLabel;
   formatSecondLabel?: PickerFormatLabel;
-  onConfirm?: (values: number[]) => void;
-  onClose: () => void;
-  onCancel?: () => void;
-  onOpen?: () => void;
-  onClosed?: () => void;
+  onChange?: (values: number[]) => void;
 }
 
-export function TimePicker({
-  show,
-  values,
-  columnsType = DEFAULT_TIME_COLUMNS,
-  minTime,
-  maxTime,
-  teleport,
-  confirmButtonText,
-  cancelButtonText,
-  formatHourLabel = formatTime,
-  formatMinuteLabel = formatTime,
-  formatSecondLabel = formatTime,
-  onConfirm,
-  onClose,
-  onCancel,
-  onOpen,
-  onClosed,
-}: Props) {
+export type TimePickerRef = {
+  setCurrentTime: () => void;
+};
+
+function TimePickerComponent(
+  {
+    values,
+    columnsType = DEFAULT_TIME_COLUMNS,
+    minTime,
+    maxTime,
+    formatHourLabel = formatTime,
+    formatMinuteLabel = formatTime,
+    formatSecondLabel = formatTime,
+    onChange,
+  }: Props,
+  ref: ForwardedRef<TimePickerRef>,
+) {
   const [internalValues, setInternalValues] = useState<number[]>([]);
-  const [selectedValues, setSelectedValues] = useState<number[]>([]);
+
+  const selectedValues = useMemo(() => {
+    return values ?? internalValues;
+  }, [values, internalValues]);
 
   const formattedMinTime = useMemo(() => {
     return getValidTime(minTime ?? '') ?? { hour: 0, minute: 0, second: 0 };
@@ -53,23 +47,13 @@ export function TimePicker({
     return getValidTime(maxTime ?? '') ?? { hour: 23, minute: 59, second: 59 };
   }, [maxTime]);
 
-  const columns = useMemo(() => {
-    const generateOptionsMap = {
-      hour: generateHourOptions,
-      minute: generateMinuteOptions,
-      second: generateSecondOptions,
-    };
+  const generateOptionsMap = {
+    hour: generateHourOptions,
+    minute: generateMinuteOptions,
+    second: generateSecondOptions,
+  };
 
-    return columnsType.map(type => generateOptionsMap[type]());
-  }, [
-    columnsType,
-    formattedMinTime,
-    formattedMaxTime,
-    selectedValues,
-    formatHourLabel,
-    formatMinuteLabel,
-    formatSecondLabel,
-  ]);
+  const columns = columnsType.map(type => generateOptionsMap[type]());
 
   function generateHourOptions() {
     return generateOptions(formattedMinTime.hour, formattedMaxTime.hour, formatHourLabel);
@@ -98,55 +82,46 @@ export function TimePicker({
 
   function getSelectedValue(type: TimePickerColumnType) {
     const columnIndex = columnsType.indexOf(type);
-    const value = selectedValues[columnIndex];
+    const value = selectedValues?.[columnIndex];
 
     if (value !== undefined) return Number(value);
 
     return getDefaultTime(formattedMinTime, formattedMaxTime, type);
   }
 
-  function handleConfirm(confirmValues: number[]) {
-    setInternalValues(confirmValues);
-    onClose();
-    onConfirm?.(confirmValues);
-  }
+  function handleChange(newValues: number[]) {
+    if (!values) {
+      setInternalValues(newValues);
+    }
 
-  function handleCancel() {
-    onClose();
-    onCancel?.();
+    onChange?.(newValues);
   }
 
   function setDefaultValues() {
-    onOpen?.();
+    const defaultValues = columnsType.map(type => getDefaultTime(formattedMinTime, formattedMaxTime, type));
 
-    if (values && values.length) {
-      setSelectedValues([...values]);
-    } else {
-      setSelectedValues(columnsType.map(getSelectedValue));
+    handleChange(defaultValues);
+  }
+
+  useEffect(() => {
+    if (!values || !values.length) {
+      setDefaultValues();
     }
-  }
+  }, []);
 
-  function handleClosed() {
-    setSelectedValues(values ? [...values] : [...internalValues]);
-    onClosed?.();
-  }
+  useImperativeHandle(ref, () => ({
+    setCurrentTime: setDefaultValues,
+  }));
 
   return (
     <Picker
       values={selectedValues}
-      show={show}
-      title={title}
       columns={columns}
-      teleport={teleport}
-      confirmButtonText={confirmButtonText}
-      cancelButtonText={cancelButtonText}
-      linkage
-      onConfirm={handleConfirm}
-      onClose={onClose}
-      onChange={setSelectedValues}
-      onCancel={handleCancel}
-      onOpen={setDefaultValues}
-      onClosed={handleClosed}
+      onChange={handleChange}
     />
   );
 }
+
+export const TimePicker = fixedForwardRef(TimePickerComponent);
+
+TimePicker.displayName = 'TimePicker';
