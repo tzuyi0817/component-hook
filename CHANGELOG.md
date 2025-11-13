@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1](https://github.com/tzuyi0817/component-hook/compare/v1.2.0...v1.2.1) (2025-11-13)
+
+### Bug Fixes
+
+- **picker:** offset Y is set using a CSS variable to avoid unnecessary duplicate rendering ([b775b33](https://github.com/tzuyi0817/component-hook/commit/b775b33049cbf72846c8ee786596ac25ec2d7179))
+
 ## [1.2.0](https://github.com/tzuyi0817/component-hook/compare/v1.1.5...v1.2.0) (2025-11-12)
 
 ### Features
