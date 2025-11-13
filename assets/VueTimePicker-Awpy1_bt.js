@@ -1,4 +1,4 @@
-import"./installation-CRElkMBw.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-D0EI_9_g.js";import{d as t,c as r,u as e,o}from"./index-oFsge7CF.js";import"./index-q9t-Zt5-.js";const m=`<script setup lang="ts">
+import"./installation-DEiY7Yjp.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-Di7nIdrs.js";import{d as t,c as r,u as e,o}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const m=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -88,7 +88,7 @@ const HOURS_MAP: Record<string, string> = {
   <time-picker
     v-model="currentTime"
     class="max-w-[500px] rounded-lg"
-    :format-hour-label="(hour: string) => HOURS_MAP[hour]"
+    :format-hour-label="hour => HOURS_MAP[hour]"
   />
 
   <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>

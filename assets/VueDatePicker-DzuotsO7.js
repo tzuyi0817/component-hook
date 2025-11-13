@@ -1,4 +1,4 @@
-import"./installation-CRElkMBw.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-Df-_bgZW.js";import{d as t,c as a,u as e,o as r}from"./index-oFsge7CF.js";import"./index-q9t-Zt5-.js";const o=`<script setup lang="ts">
+import"./installation-DEiY7Yjp.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-CmqS8bru.js";import{d as t,c as a,u as e,o as r}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const o=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -77,8 +77,8 @@ const MONTHS_MAP: Record<string, string> = {
     v-model="currentDate"
     class="max-w-[500px] rounded-lg"
     :columns-type="['month', 'day', 'year']"
-    :format-month-label="(month: string) => MONTHS_MAP[month]"
-    :format-day-label="(day: string) => day.padStart(2, '0')"
+    :format-month-label="month => MONTHS_MAP[month]"
+    :format-day-label="day => day.padStart(2, '0')"
   />
 
   <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
@@ -106,4 +106,4 @@ const MONTHS_MAP: Record<string, string> = {
 | Name           | Description                        | Type                  |
 | :------------- | :--------------------------------- | :-------------------- |
 | setCurrentDate | Reset the date to the current date | \`Function () => void\` |
-`,g=t({__name:"VueDatePicker",setup(u){return(p,i)=>(r(),a(n,{"front-end-frame":"vue3","base-source":e(o),"base-playground":"67a32e4813fe5303ffefe88c","columns-type-source":e(c),"columns-type-playground":"67a32e7713fe5303ffefe88f","custom-range-source":e(s),"custom-range-playground":"67a32ea413fe5303ffefe892","label-formatter-source":e(m),"label-formatter-playground":"67a32ef513fe5303ffefe895","index-md":e(l)},null,8,["base-source","columns-type-source","custom-range-source","label-formatter-source","index-md"]))}});export{g as default};
+`,k=t({__name:"VueDatePicker",setup(u){return(p,i)=>(r(),a(n,{"front-end-frame":"vue3","base-source":e(o),"base-playground":"67a32e4813fe5303ffefe88c","columns-type-source":e(c),"columns-type-playground":"67a32e7713fe5303ffefe88f","custom-range-source":e(s),"custom-range-playground":"67a32ea413fe5303ffefe892","label-formatter-source":e(m),"label-formatter-playground":"67a32ef513fe5303ffefe895","index-md":e(l)},null,8,["base-source","columns-type-source","custom-range-source","label-formatter-source","index-md"]))}});export{k as default};
