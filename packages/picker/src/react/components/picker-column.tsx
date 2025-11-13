@@ -16,11 +16,18 @@ export type ColumnRef = {
 };
 
 function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Props<T>, ref: ForwardedRef<ColumnRef>) {
-  const { offsetY, transitionDuration, onPointerDown, onPointerMove, onPointerUp, stopInertialSliding, scrollToIndex } =
-    useScrollSnap({
-      column,
-      onChange: handleSelectedChange,
-    });
+  const {
+    columnRef,
+    transitionDuration,
+    onPointerDown,
+    onPointerMove,
+    onPointerUp,
+    stopInertialSliding,
+    scrollToIndex,
+  } = useScrollSnap({
+    column,
+    onChange: handleSelectedChange,
+  });
 
   function handleSelectedChange(index: number) {
     if (index === selectedIndex) return;
@@ -61,9 +68,10 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
       }}
     >
       <ul
+        ref={columnRef}
         style={{
           overflowY: 'hidden',
-          transform: `translate3d(0, ${offsetY}px, 0)`,
+          transform: 'translate3d(0, calc(var(--offset-y) * 1px), 0)',
           transitionDuration: `${transitionDuration}ms`,
           transitionProperty: transitionDuration ? 'all' : 'none',
           touchAction: 'none',
@@ -87,7 +95,7 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
             <p
               className="chook-picker-column-label"
               style={{
-                transform: `rotate3d(1, 0, 0, ${(index * OPTION_HEIGHT + offsetY) * OPTION_ROTATE_FACTOR}deg)`,
+                transform: `rotate3d(1, 0, 0, calc((${index * OPTION_HEIGHT} + var(--offset-y)) * ${OPTION_ROTATE_FACTOR}deg)`,
               }}
             >
               {option?.[fields.label]}

@@ -60,7 +60,8 @@ defineExpose({ scrollToSelected });
     <ul
       :style="{
         overflowY: 'hidden',
-        transform: `translate3d(0, ${offsetY}px, 0)`,
+        '--offset-y': `${offsetY}`,
+        transform: 'translate3d(0, calc(var(--offset-y) * 1px), 0)',
         transitionDuration: `${transitionDuration}ms`,
         transitionProperty: transitionDuration ? 'all' : 'none',
       }"
@@ -77,7 +78,7 @@ defineExpose({ scrollToSelected });
         <p
           class="chook-picker-column-label"
           :style="{
-            transform: `rotate3d(1, 0, 0, ${(index * OPTION_HEIGHT + offsetY) * OPTION_ROTATE_FACTOR}deg)`,
+            transform: `rotate3d(1, 0, 0, calc((${index * OPTION_HEIGHT} + var(--offset-y)) * ${OPTION_ROTATE_FACTOR}deg)`,
           }"
         >
           {{ option?.[fields.label] }}

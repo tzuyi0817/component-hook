@@ -25,8 +25,8 @@ const MONTHS_MAP: Record<string, string> = {
     v-model="currentDate"
     class="max-w-[500px] rounded-lg"
     :columns-type="['month', 'day', 'year']"
-    :format-month-label="(month: string) => MONTHS_MAP[month]"
-    :format-day-label="(day: string) => day.padStart(2, '0')"
+    :format-month-label="month => MONTHS_MAP[month]"
+    :format-day-label="day => day.padStart(2, '0')"
   />
 
   <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>

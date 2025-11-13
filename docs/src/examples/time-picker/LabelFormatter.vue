@@ -36,7 +36,7 @@ const HOURS_MAP: Record<string, string> = {
   <time-picker
     v-model="currentTime"
     class="max-w-[500px] rounded-lg"
-    :format-hour-label="(hour: string) => HOURS_MAP[hour]"
+    :format-hour-label="hour => HOURS_MAP[hour]"
   />
 
   <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
