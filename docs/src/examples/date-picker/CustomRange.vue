@@ -13,5 +13,5 @@ const currentDate = ref<number[]>([]);
     :max-date="new Date(2026, 5, 1)"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>

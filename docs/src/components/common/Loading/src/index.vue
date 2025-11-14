@@ -4,7 +4,7 @@ defineOptions({ name: 'Loading' });
 
 <template>
   <div class="loading">
-    <p class="loading-text font-mono animate-pulse">Loading...</p>
+    <p class="loading-text animate-pulse font-mono">Loading...</p>
   </div>
 </template>
 

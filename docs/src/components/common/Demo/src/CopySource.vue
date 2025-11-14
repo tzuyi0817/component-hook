@@ -31,12 +31,12 @@ async function copySource() {
   >
     <svg-icon
       name="copy"
-      class="w-4 h-4"
+      class="h-4 w-4"
       role="button"
       @click="copySource"
     />
 
-    <span :class="['copy-prompt opacity-0', { 'opacity-100 -translate-y-3': isCopied }]"> Copied! </span>
+    <span :class="['copy-prompt opacity-0', { '-translate-y-3 opacity-100': isCopied }]"> Copied! </span>
   </describedby>
 </template>
 

@@ -12,5 +12,5 @@ const currentTime = ref<number[]>([12, 50]);
     :columns-type="['hour', 'minute']"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>

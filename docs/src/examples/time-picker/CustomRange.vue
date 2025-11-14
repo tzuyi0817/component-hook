@@ -13,5 +13,5 @@ const currentTime = ref<number[]>([]);
     max-time="16:30:48"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>

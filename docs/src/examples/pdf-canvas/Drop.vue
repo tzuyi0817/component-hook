@@ -37,7 +37,7 @@ function dragText(event: DragEvent) {
 </script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <img
       src="https://pdf-signature-puce.vercel.app/cover.jpg"
       width="300"
@@ -47,7 +47,7 @@ function dragText(event: DragEvent) {
     />
 
     <p
-      class="font-mono text-sm my-5 bg-code-bg-color p-2 rounded-md cursor-move"
+      class="bg-code-bg-color my-5 cursor-move rounded-md p-2 font-mono text-sm"
       draggable="true"
       @dragstart="dragText"
     >
@@ -71,12 +71,12 @@ function dragText(event: DragEvent) {
       Please select a PDF file or image.
     </p>
 
-    <div class="flex gap-3 flex-wrap">
+    <div class="flex flex-wrap gap-3">
       <button class="relative">
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+          class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file

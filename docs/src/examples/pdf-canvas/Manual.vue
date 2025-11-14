@@ -31,7 +31,7 @@ function addText() {
 </script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <pdf-canvas
       v-if="currentPdf"
       ref="pdfCanvasRef"
@@ -49,12 +49,12 @@ function addText() {
       Please select a PDF file or image.
     </p>
 
-    <div class="flex gap-3 flex-wrap">
+    <div class="flex flex-wrap gap-3">
       <button class="relative">
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+          class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file

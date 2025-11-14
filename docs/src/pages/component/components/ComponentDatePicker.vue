@@ -58,7 +58,7 @@ defineProps<Props>();
           and combining year, month and day in any order.
         </p>
         <p>Three options of year, month and day are displayed by default.</p>
-        <ul class="mt-4 pl-8 list-disc">
+        <ul class="mt-4 list-disc pl-8">
           <li><code>['year']</code> represents the option to display only the year.</li>
           <li><code>['month']</code> represents the option to display only the month.</li>
           <li><code>['year', 'month']</code> represents the option to display only the year and month.</li>

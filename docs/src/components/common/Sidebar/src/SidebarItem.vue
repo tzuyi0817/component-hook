@@ -12,7 +12,7 @@ defineEmits(['closeSidebar']);
 <template>
   <li class="flex flex-col">
     <template v-if="item.children">
-      <p class="font-bold mb-2">{{ item.meta?.title }}</p>
+      <p class="mb-2 font-bold">{{ item.meta?.title }}</p>
 
       <ul class="w-full">
         <sidebar-item
@@ -27,7 +27,7 @@ defineEmits(['closeSidebar']);
     <router-link
       v-else
       :to="item.path"
-      class="flex-1 px-4 py-2.5 rounded-lg text-sm transition-colors hover:text-primary"
+      class="hover:text-primary flex-1 rounded-lg px-4 py-2.5 text-sm transition-colors"
       @click="$emit('closeSidebar')"
     >
       {{ item.meta?.title }}

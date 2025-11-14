@@ -15,5 +15,5 @@ function onChange(value: number[]) {
     @change="onChange"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>

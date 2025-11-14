@@ -19,13 +19,13 @@ useResize(isShowFullNavbar, () => {
 
 <template>
   <header class="header">
-    <div class="h-full flex items-center justify-between text-sm">
+    <div class="flex h-full items-center justify-between text-sm">
       <router-link
         to="/home"
         class="flex items-center"
       >
         <img
-          class="w-8 mr-2 drop-shadow"
+          class="mr-2 w-8 drop-shadow"
           src="/logo.png"
           alt="Component Hook Logo"
         />
@@ -47,7 +47,7 @@ useResize(isShowFullNavbar, () => {
             @close-full-navbar="isShowFullNavbar = false"
           />
 
-          <div class="bg-code-bg rounded-lg p-3 mt-4 flex justify-between">
+          <div class="bg-code-bg mt-4 flex justify-between rounded-lg p-3">
             <p>Color Theme</p>
             <theme-switcher class="px-3" />
           </div>
@@ -57,7 +57,7 @@ useResize(isShowFullNavbar, () => {
       <div class="flex items-center">
         <navbar class="hidden lg:flex" />
 
-        <theme-switcher class="px-3 hidden lg:flex" />
+        <theme-switcher class="hidden px-3 lg:flex" />
 
         <social-link
           class="px-3"

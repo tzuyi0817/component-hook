@@ -36,12 +36,12 @@ async function toggleSource() {
       <slot name="description"></slot>
     </p>
 
-    <div class="example-wrapper border border-border rounded">
-      <div class="p-3 border-b border-b-border lg:p-6">
+    <div class="example-wrapper border-border rounded border">
+      <div class="border-b-border border-b p-3 lg:p-6">
         <slot></slot>
       </div>
 
-      <div class="px-4 py-3 flex justify-end items-center gap-3">
+      <div class="flex items-center justify-end gap-3 px-4 py-3">
         <describedby title="Open in Playground">
           <external-link
             :href="`https://code-immediate.vercel.app/${playground}`"
@@ -49,7 +49,7 @@ async function toggleSource() {
           >
             <svg-icon
               name="playground"
-              class="w-4 h-4"
+              class="h-4 w-4"
             />
           </external-link>
         </describedby>
@@ -65,7 +65,7 @@ async function toggleSource() {
         >
           <svg-icon
             name="source"
-            class="w-4 h-4"
+            class="h-4 w-4"
             @click="toggleSource"
           />
         </describedby>
@@ -83,7 +83,7 @@ async function toggleSource() {
       </collapse>
 
       <div
-        :class="['example-source-collapse', isShowSource ? 'transition-opacity' : 'transition-none opacity-0 h-0']"
+        :class="['example-source-collapse', isShowSource ? 'transition-opacity' : 'h-0 opacity-0 transition-none']"
         role="button"
         tabindex="0"
         @click="toggleSource"

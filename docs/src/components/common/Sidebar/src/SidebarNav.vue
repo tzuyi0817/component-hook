@@ -30,14 +30,14 @@ onMounted(() => {
     >
       <svg-icon
         name="menu"
-        class="w-5 h-5 text-[#606266]"
+        class="h-5 w-5 text-[#606266]"
       />
       Menu
     </div>
 
     <p
       role="button"
-      :class="['text-sm transition-opacity duration-300', { 'opacity-0 pointer-events-none': !isShowBackToTop }]"
+      :class="['text-sm transition-opacity duration-300', { 'pointer-events-none opacity-0': !isShowBackToTop }]"
       @click="() => scrollToTop('smooth')"
     >
       Back to top

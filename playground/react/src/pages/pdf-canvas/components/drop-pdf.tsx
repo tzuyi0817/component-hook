@@ -68,7 +68,7 @@ export function DropPdf() {
         <p>Please select a PDF file or image.</p>
       )}
 
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex flex-wrap gap-3">
         <button>
           <input
             type="file"

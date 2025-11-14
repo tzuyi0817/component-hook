@@ -13,5 +13,5 @@ const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value:
     class="max-w-[400px] rounded-lg"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>

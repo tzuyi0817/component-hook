@@ -58,7 +58,7 @@ defineProps<Props>();
           and combining hour, minute and second in any order.
         </p>
         <p>Three options of hour, minute and second are displayed by default.</p>
-        <ul class="mt-4 pl-8 list-disc">
+        <ul class="mt-4 list-disc pl-8">
           <li><code>['hour']</code> represents the option to display only the hour.</li>
           <li><code>['minute']</code> represents the option to display only the minute.</li>
           <li><code>['hour', 'minute']</code> represents the option to display only the hour and minute.</li>

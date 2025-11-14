@@ -43,7 +43,7 @@ function submitPassword() {
 </script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
@@ -62,13 +62,13 @@ function submitPassword() {
       <input
         type="file"
         accept="application/pdf"
-        class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
     </button>
 
-    <div class="font-mono text-sm w-full flex flex-col gap-1 mt-5">
+    <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
       <p>
         base64:
         {{ currentPdf?.PDFBase64 ? `${currentPdf.PDFBase64.slice(0, 30)}...` : 'null' }}

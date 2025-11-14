@@ -26,7 +26,7 @@ export function Home() {
         >
           <SvgIcon
             name="react"
-            className={`${styles.logo} hover:filter-[drop-shadow(0_0_2em_#61dafbaa)] motion-safe:animate-logo-spin`}
+            className={`${styles.logo} motion-safe:animate-logo-spin hover:filter-[drop-shadow(0_0_2em_#61dafbaa)]`}
           />
         </a>
       </div>

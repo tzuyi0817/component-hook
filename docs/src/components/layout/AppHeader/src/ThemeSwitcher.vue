@@ -71,7 +71,7 @@ onMounted(() => {
     <label class="theme-switch">
       <input
         type="checkbox"
-        class="theme-input absolute w-0 h-0 opacity-0"
+        class="theme-input absolute h-0 w-0 opacity-0"
         role="switch"
         :checked="isDarkTheme"
         :aria-checked="isDarkTheme"
@@ -82,7 +82,7 @@ onMounted(() => {
       <span :class="['theme-slider', { 'translate-x-5': isDarkTheme }]">
         <svg-icon
           :name="isDarkTheme ? 'dark' : 'light'"
-          class="w-3 h-3 text-text"
+          class="text-text h-3 w-3"
         />
       </span>
     </label>

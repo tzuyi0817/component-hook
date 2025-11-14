@@ -6,20 +6,20 @@ import HomeFeature from './components/HomeFeature.vue';
 
 <template>
   <div>
-    <div class="py-12 px-6 lg:py-20">
+    <div class="px-6 py-12 lg:py-20">
       <section class="mb-12 lg:mb-20">
-        <div class="flex flex-col-reverse gap-3 mx-auto items-center lg:max-w-[1152px] lg:flex-row">
-          <div class="main text-center lg:text-left lg:max-w-[592px]">
+        <div class="mx-auto flex flex-col-reverse items-center gap-3 lg:max-w-[1152px] lg:flex-row">
+          <div class="main text-center lg:max-w-[592px] lg:text-left">
             <h1>
               <span class="name">Component Hook</span>
             </h1>
 
             <p class="text-4xl font-bold lg:text-5xl">Component library with Vue and React.</p>
-            <p class="pt-3 text-text-secondary font-medium lg:text-2xl">
+            <p class="text-text-secondary pt-3 font-medium lg:text-2xl">
               A component library that includes a collection of common and useful components.
             </p>
 
-            <div class="flex gap-2 pt-8 justify-center lg:justify-start">
+            <div class="flex justify-center gap-2 pt-8 lg:justify-start">
               <img
                 src="https://img.shields.io/github/v/release/tzuyi0817/component-hook?label=%20&color=409eff"
                 alt="GitHub Release"
@@ -50,7 +50,7 @@ import HomeFeature from './components/HomeFeature.vue';
       </section>
 
       <section
-        class="max-w-[1200px] mx-auto flex flex-col gap-5 justify-center items-center lg:flex-row lg:items-stretch"
+        class="mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-5 lg:flex-row lg:items-stretch"
       >
         <home-feature
           title="Component"

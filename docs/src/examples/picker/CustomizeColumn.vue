@@ -24,5 +24,5 @@ function onChange(values: Array<string | number>) {
     @change="onChange"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>
