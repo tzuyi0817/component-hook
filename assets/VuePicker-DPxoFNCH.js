@@ -1,4 +1,4 @@
-import"./installation-DEiY7Yjp.js";import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-CkqVzKrJ.js";import{d as l,c as o,u as e,o as a}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const c=`<script setup lang="ts">
+import"./installation-CQAsPCh5.js";import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-DyJ3RhDo.js";import{d as l,c as o,u as e,o as a}from"./index-1aFb2paD.js";import"./index-B3ux8Mu1.js";const c=`<script setup lang="ts">
 import { Picker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -17,7 +17,7 @@ function onChange(value: number[]) {
     @change="onChange"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>
 `,t=`<script setup lang="ts">
 import { Picker } from '@component-hook/picker/vue';
@@ -34,7 +34,7 @@ const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value:
     class="max-w-[400px] rounded-lg"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>
 `,r=`<script setup lang="ts">
 import { Picker } from '@component-hook/picker/vue';
@@ -118,7 +118,7 @@ const columns = [
     class="max-w-[500px] rounded-lg"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,s=`<script lang="ts" setup>
 import { Picker } from '@component-hook/picker/vue';
@@ -146,7 +146,7 @@ function onChange(values: Array<string | number>) {
     @change="onChange"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected language: {{ pickerValues.join('') || 'not selected yet' }}</p>
 </template>
 `,i=`<script setup lang="ts">
 import { Picker } from '@component-hook/picker/vue';
@@ -165,7 +165,7 @@ const columns = Array.from({ length: 2 }, () =>
     class="max-w-[400px] rounded-lg"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,u=`#### Attributes
 

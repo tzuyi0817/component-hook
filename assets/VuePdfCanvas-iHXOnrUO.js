@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-3Lyf53XY.js";import{d as t,c as a,u as n,o}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const s=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-CmJLe5w8.js";import{d as t,c as a,u as n,o}from"./index-1aFb2paD.js";import"./index-B3ux8Mu1.js";const s=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
@@ -18,7 +18,7 @@ async function uploadFile(event: Event) {
 <\/script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
@@ -35,13 +35,13 @@ async function uploadFile(event: Event) {
       <input
         type="file"
         accept="application/pdf, .jpg, .png"
-        class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
     </button>
 
-    <div class="font-mono text-sm w-full flex flex-col gap-1 mt-5">
+    <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
       <p>
         base64:
         {{ currentPdf?.PDFBase64 ? \`\${currentPdf.PDFBase64.slice(0, 30)}...\` : 'null' }}
@@ -92,7 +92,7 @@ function dragText(event: DragEvent) {
 <\/script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <img
       src="https://pdf-signature-puce.vercel.app/cover.jpg"
       width="300"
@@ -102,7 +102,7 @@ function dragText(event: DragEvent) {
     />
 
     <p
-      class="font-mono text-sm my-5 bg-code-bg-color p-2 rounded-md cursor-move"
+      class="bg-code-bg-color my-5 cursor-move rounded-md p-2 font-mono text-sm"
       draggable="true"
       @dragstart="dragText"
     >
@@ -126,12 +126,12 @@ function dragText(event: DragEvent) {
       Please select a PDF file or image.
     </p>
 
-    <div class="flex gap-3 flex-wrap">
+    <div class="flex flex-wrap gap-3">
       <button class="relative">
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+          class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file
@@ -187,7 +187,7 @@ function submitPassword() {
 <\/script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
@@ -206,13 +206,13 @@ function submitPassword() {
       <input
         type="file"
         accept="application/pdf"
-        class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
     </button>
 
-    <div class="font-mono text-sm w-full flex flex-col gap-1 mt-5">
+    <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
       <p>
         base64:
         {{ currentPdf?.PDFBase64 ? \`\${currentPdf.PDFBase64.slice(0, 30)}...\` : 'null' }}
@@ -286,7 +286,7 @@ function addText() {
 <\/script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <pdf-canvas
       v-if="currentPdf"
       ref="pdfCanvasRef"
@@ -304,12 +304,12 @@ function addText() {
       Please select a PDF file or image.
     </p>
 
-    <div class="flex gap-3 flex-wrap">
+    <div class="flex flex-wrap gap-3">
       <button class="relative">
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+          class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file
@@ -342,7 +342,7 @@ async function uploadFile(event: Event) {
 <\/script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div class="flex w-fit flex-col items-center gap-3">
     <ul
       v-if="currentPdf"
       class="flex flex-wrap gap-3"
@@ -375,13 +375,13 @@ async function uploadFile(event: Event) {
       <input
         type="file"
         accept="application/pdf"
-        class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
     </button>
 
-    <div class="font-mono text-sm w-full flex flex-col gap-1 mt-5">
+    <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
       <p>
         base64:
         {{ currentPdf?.PDFBase64 ? \`\${currentPdf.PDFBase64.slice(0, 30)}...\` : 'null' }}

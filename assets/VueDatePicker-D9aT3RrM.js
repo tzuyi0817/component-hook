@@ -1,4 +1,4 @@
-import"./installation-DEiY7Yjp.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-CmqS8bru.js";import{d as t,c as a,u as e,o as r}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const o=`<script setup lang="ts">
+import"./installation-CQAsPCh5.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-B8H6tW7f.js";import{d as t,c as a,u as e,o as r}from"./index-1aFb2paD.js";import"./index-B3ux8Mu1.js";const o=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -15,7 +15,7 @@ function onChange(value: number[]) {
     @change="onChange"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,c=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
@@ -31,7 +31,7 @@ const currentDate = ref<number[]>([2030, 8]);
     :columns-type="['year', 'month']"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,s=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
@@ -48,7 +48,7 @@ const currentDate = ref<number[]>([]);
     :max-date="new Date(2026, 5, 1)"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,m=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
@@ -81,7 +81,7 @@ const MONTHS_MAP: Record<string, string> = {
     :format-day-label="day => day.padStart(2, '0')"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected date: {{ currentDate.join(' / ') || 'not selected yet' }}</p>
 </template>
 `,l=`#### Attributes
 

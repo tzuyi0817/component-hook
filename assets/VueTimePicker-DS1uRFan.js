@@ -1,4 +1,4 @@
-import"./installation-DEiY7Yjp.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-Di7nIdrs.js";import{d as t,c as r,u as e,o}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const m=`<script setup lang="ts">
+import"./installation-CQAsPCh5.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-DV0PWdsF.js";import{d as t,c as r,u as e,o}from"./index-1aFb2paD.js";import"./index-B3ux8Mu1.js";const m=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -15,7 +15,7 @@ function onChange(value: number[]) {
     @change="onChange"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>
 `,c=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
@@ -31,7 +31,7 @@ const currentTime = ref<number[]>([12, 50]);
     :columns-type="['hour', 'minute']"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>
 `,a=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
@@ -48,7 +48,7 @@ const currentTime = ref<number[]>([]);
     max-time="16:30:48"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>
 `,i=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
@@ -91,6 +91,6 @@ const HOURS_MAP: Record<string, string> = {
     :format-hour-label="hour => HOURS_MAP[hour]"
   />
 
-  <p class="mt-6 text-sm font-mono">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
+  <p class="mt-6 font-mono text-sm">Selected time: {{ currentTime.join(':') || 'not selected yet' }}</p>
 </template>
 `,s="#### Attributes\n\n| Name              | Required | Type                     | Description                           | Default                        |\n| ----------------- | -------- | ------------------------ | ------------------------------------- | ------------------------------ |\n| v-model           | false    | `PickerSelectedValues`   | values of chosen option               | —                              |\n| columnsType       | false    | `TimePickerColumnType[]` | Columns type                          | `['hour', 'minute', 'second']` |\n| minTime           | false    | `string`                 | Min time, format reference `00:00:00` | —                              |\n| maxTime           | false    | `string`                 | Max time, format reference `00:00:00` | —                              |\n| formatHourLabel   | false    | `PickerFormatLabel`      | Hour label formatter                  | —                              |\n| formatMinuteLabel | false    | `PickerFormatLabel`      | Minute label formatter                | —                              |\n| formatSecondLabel | false    | `PickerFormatLabel`      | Second label formatter                | —                              |\n\n#### Events\n\n| Event  | Description                               | Type                                              |\n| :----- | :---------------------------------------- | :------------------------------------------------ |\n| change | Triggered when the selected value changes | `Function (values: PickerSelectedValues) => void` |\n\n#### Exposes\n\n| Name           | Description                        | Type                  |\n| :------------- | :--------------------------------- | :-------------------- |\n| setCurrentTime | Reset the time to the current time | `Function () => void` |\n",P=t({__name:"VueTimePicker",setup(l){return(u,p)=>(o(),r(n,{"front-end-frame":"vue3","base-source":e(m),"base-playground":"67a32f6b13fe5303ffefe898","columns-type-source":e(c),"columns-type-playground":"67a32f9913fe5303ffefe89b","custom-range-source":e(a),"custom-range-playground":"67a32fca13fe5303ffefe89e","label-formatter-source":e(i),"label-formatter-playground":"67a3302013fe5303ffefe8a1","index-md":e(s)},null,8,["base-source","columns-type-source","custom-range-source","label-formatter-source","index-md"]))}});export{P as default};

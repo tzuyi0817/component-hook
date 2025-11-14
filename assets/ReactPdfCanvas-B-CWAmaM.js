@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-3Lyf53XY.js";import{d as n,c as a,u as e,o as r}from"./index-DW6QSJMi.js";import"./index-DOdL00V4.js";const o=`import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
+import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-CmJLe5w8.js";import{d as n,c as a,u as e,o as r}from"./index-1aFb2paD.js";import"./index-B3ux8Mu1.js";const o=`import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 import { useState, type ChangeEvent } from 'react';
 
 export function DrawPdf() {
@@ -110,7 +110,7 @@ export function DropPdf() {
         <p>Please select a PDF file or image.</p>
       )}
 
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex flex-wrap gap-3">
         <button>
           <input
             type="file"
