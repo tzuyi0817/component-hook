@@ -8,5 +8,5 @@
     "moduleResolution": "bundler",
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "package.json", "vitest.config.ts", "playwright.config.ts"]
+  "include": ["vite.config.ts", "package.json", "vitest.config.ts", "playwright.config.ts", "scripts/**/*.ts"]
 }

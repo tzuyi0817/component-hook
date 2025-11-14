@@ -1,5 +1,5 @@
 variables:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   CACHE_KEY: '${CI_PROJECT_PATH_SLUG}-${CI_COMMIT_REF_SLUG}'
 
 image: node:${NODE_VERSION}-alpine
