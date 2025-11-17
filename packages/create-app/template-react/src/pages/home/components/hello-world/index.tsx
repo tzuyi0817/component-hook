@@ -9,7 +9,7 @@ interface Props {
 export function HelloWorld({ title = '' }: Props) {
   const [count, setCount] = useState(0);
   const { t, i18n } = useTranslation();
-  const { version } = useConfigStore();
+  const { appMeta } = useConfigStore();
 
   function changeLanguage() {
     const language = i18n.language === 'zh-TW' ? 'en-US' : 'zh-TW';
@@ -34,7 +34,9 @@ export function HelloWorld({ title = '' }: Props) {
       </div>
 
       <p className="text-[#888]">Click on the Vite and React logos to learn more</p>
-      <p className="text-[#888]">{version}</p>
+      <p className="mt-1 text-[#888]">
+        {appMeta.version} - Built at: {appMeta.builtAt.toLocaleString()}
+      </p>
 
       <button
         className="my-4"

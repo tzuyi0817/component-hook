@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import enUS from './locales/en-US.json';
-import zhTW from './locales/zh-TW.json';
+import enUS from './locales/en-US.json' with { type: 'json' };
+import zhTW from './locales/zh-TW.json' with { type: 'json' };
 
 i18n.use(initReactI18next).init({
   lng: navigator.language,

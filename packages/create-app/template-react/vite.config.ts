@@ -4,17 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import packageJson from './package.json' with { type: 'json' };
-
-process.env.VITE_APP_VERSION = packageJson.version;
-
-if (process.env.MOCK) {
-  process.env.VITE_APP_MOCK = 'service-worker';
-}
-
-if (process.env.NODE_ENV === 'production') {
-  process.env.VITE_APP_BUILD_EPOCH = Date.now().toString();
-}
+import './scripts/build-info';
 
 export default defineConfig({
   base: './',

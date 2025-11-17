@@ -18,7 +18,8 @@ This project is built with [react](https://react.dev/) + [vite](https://vite.dev
 - if encounter npx: command not found, can execute `ln -s $(which npx) /usr/local/bin/npx` in zsh
 - Predefined and fully typed global variables:
   - `VITE_APP_VERSION` is read from `package.json` version at build time
-  - `VITE_APP_BUILD_EPOCH` is populated as `new Date().getTime()` at build time
+  - `VITE_APP_LAST_COMMIT_HASH` is last commit hash at build time
+  - `VITE_APP_BUILD_EPOCH` is populated as `Date.now()` at build time
   - `VITE_APP_MOCK` is use mock environment
 
 ## Project Files

@@ -10,7 +10,7 @@ describe('home page HelloWorld component', () => {
 
   it('renders the correct content', () => {
     const title = 'Hello World!';
-    const { version } = useConfigStore.getState();
+    const { appMeta } = useConfigStore.getState();
 
     renderComponent(<HelloWorld title={title} />);
     expect(screen.getByRole('heading', { name: title })).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe('home page HelloWorld component', () => {
     expect(screen.getByText(/src\/app\.tsx/i)).toBeInTheDocument();
     expect(screen.getByText(/save to test hmr/i)).toBeInTheDocument();
     expect(screen.getByText(/click on the vite and react logos to learn more/i)).toBeInTheDocument();
-    expect(screen.getByText(version)).toBeInTheDocument();
+    expect(screen.getByText(`${appMeta.version} - Built at: ${appMeta.builtAt.toLocaleString()}`)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: t('language') })).toBeInTheDocument();
   });
 
