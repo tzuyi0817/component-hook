@@ -62,7 +62,7 @@ function submitPassword() {
       <input
         type="file"
         accept="application/pdf"
-        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file

@@ -1,4 +1,13 @@
-import { Canvas, FabricImage, Group, loadSVGFromURL, util, type FabricObject } from 'fabric';
+import {
+  Canvas,
+  FabricImage,
+  Group,
+  loadSVGFromURL,
+  util,
+  type FabricObject,
+  type FabricObjectProps,
+  type TOptions,
+} from 'fabric';
 import { CLONE_PROPERTIES } from '../constants';
 import type {
   CacheFabricImage,
@@ -109,6 +118,7 @@ function setFabricCanvas(id: string, image: FabricImage, scale: number) {
   const canvas = fabricMap.get(id);
 
   if (!canvas) return;
+
   canvas.setWidth(image.width * scale);
   canvas.setHeight(image.height * scale);
   canvas.backgroundImage = image;
@@ -213,6 +223,26 @@ async function drawImage(file: File, _?: string, id?: string) {
   if (!id) return;
 
   return await drawFabricImage(id, file);
+}
+
+export function setActiveFabric(id: string, options: TOptions<FabricObjectProps>) {
+  const canvas = fabricMap.get(id);
+
+  if (!canvas) return;
+
+  const active = canvas.getActiveObject();
+
+  if (!active) return;
+
+  if (active instanceof Group) {
+    active.forEachObject(fabric => {
+      fabric.set(options);
+    });
+  } else {
+    active.set(options);
+  }
+
+  canvas.renderAll();
 }
 
 export async function copyActiveFabric(

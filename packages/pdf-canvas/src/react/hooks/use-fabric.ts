@@ -23,6 +23,7 @@ import {
   renderFabricImage,
   scaleCloseFabric,
   scaleCornerFabric,
+  setActiveFabric as setActive,
   setFabricOffset,
 } from '../../shared/utils/fabric';
 import type {
@@ -218,6 +219,10 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: TOpti
     deleteFabricCanvas(id);
   }
 
+  function setActiveFabric(options: TOptions<FabricObjectProps>) {
+    setActive(id, options);
+  }
+
   function copyActiveFabric() {
     return copyActive(id, setFabric);
   }
@@ -237,6 +242,7 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: TOpti
     deleteCanvas,
     scaleFabric,
     setCloseSvgOptions,
+    setActiveFabric,
     copyActiveFabric,
     deleteActiveFabric,
   };

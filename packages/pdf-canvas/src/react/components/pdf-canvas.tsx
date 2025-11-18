@@ -9,7 +9,7 @@ import type {
   FabricSelectionClearedEvent,
   FabricSelectionCreatedEvent,
 } from '../../shared/types/fabric';
-import type { ImageProps, TextProps, TOptions } from 'fabric';
+import type { FabricObjectProps, ImageProps, TextProps, TOptions } from 'fabric';
 
 export interface PdfCanvasHandle {
   reload: () => Promise<void>;
@@ -17,6 +17,7 @@ export interface PdfCanvasHandle {
   addText: (text: string, options?: TOptions<TextProps>) => void;
   clearActive: () => void;
   deleteCanvas: () => void;
+  setActiveFabric: (options: TOptions<FabricObjectProps>) => void;
   copyActiveFabric: () => Promise<void>;
   deleteActiveFabric: () => void;
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
@@ -77,6 +78,7 @@ function PdfCanvasComponent(
     clearActive,
     deleteCanvas,
     scaleFabric,
+    setActiveFabric,
     setCloseSvgOptions,
     copyActiveFabric,
     deleteActiveFabric,
@@ -156,6 +158,7 @@ function PdfCanvasComponent(
     addText,
     clearActive,
     deleteCanvas,
+    setActiveFabric,
     copyActiveFabric,
     deleteActiveFabric,
     canvasRef,
