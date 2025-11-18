@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-B-vJTYdq.js";import{d as t,c as a,u as n,o}from"./index-yWqKZDnZ.js";import"./index-63Etq-44.js";const s=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-3GjZncdm.js";import{d as t,c as a,u as n,o}from"./index-DFvhvX9c.js";import"./index-Qr6EIkqn.js";const s=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
@@ -35,7 +35,7 @@ async function uploadFile(event: Event) {
       <input
         type="file"
         accept="application/pdf, .jpg, .png"
-        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
@@ -131,7 +131,7 @@ function dragText(event: DragEvent) {
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
+          class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file
@@ -206,7 +206,7 @@ function submitPassword() {
       <input
         type="file"
         accept="application/pdf"
-        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
@@ -309,7 +309,7 @@ function addText() {
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
+          class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file
@@ -375,7 +375,7 @@ async function uploadFile(event: Event) {
       <input
         type="file"
         accept="application/pdf"
-        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
