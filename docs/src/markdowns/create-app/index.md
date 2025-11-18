@@ -106,8 +106,9 @@ ln -s $(which npx) /usr/local/bin/npx
 
 These variables are injected at build time and are fully typed:
 
-| Variable Name          | Description                                  |
-| ---------------------- | -------------------------------------------- |
-| `VITE_APP_VERSION`     | Read from `package.json` version             |
-| `VITE_APP_BUILD_EPOCH` | Timestamp generated at build time            |
-| `VITE_APP_MOCK`        | Indicates whether the mock environment is on |
+| Variable Name               | Description                                  |
+| --------------------------- | -------------------------------------------- |
+| `VITE_APP_VERSION`          | Read from `package.json` version             |
+| `VITE_APP_LAST_COMMIT_HASH` | Last commit hash at build time               |
+| `VITE_APP_BUILD_EPOCH`      | Populated as `Date.now()` at build time      |
+| `VITE_APP_MOCK`             | Indicates whether the mock environment is on |
