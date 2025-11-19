@@ -19,10 +19,8 @@ import type {
   SpecifyPageArgs,
   SupportFileType,
 } from '../types/fabric';
-import { getPixelsPerPoint } from './common';
 import { convertToBase64 } from './image';
-import { getPDFDocument, printPDF } from './pdf-js';
-import type { PDFPageProxy } from 'pdfjs-dist';
+import { printPDF, renderPageCanvas } from './pdf-js';
 
 export const fabricMap = new Map<string, Canvas>();
 
@@ -43,25 +41,6 @@ export function createPdfInfo(file: File, PDFBase64: string) {
     updateDate: now,
     PDFBase64,
   };
-}
-
-export function createRenderTask(pdfPage: PDFPageProxy, scale: number) {
-  const viewport = pdfPage.getViewport({ scale });
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d')!;
-  const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
-
-  canvas.width = Math.floor(viewport.width * CSS_UNITS);
-  canvas.height = Math.floor(viewport.height * CSS_UNITS);
-
-  const renderContext = {
-    canvasContext: context,
-    viewport,
-    transform: [CSS_UNITS, 0, 0, CSS_UNITS, 0, 0],
-  };
-  const renderTask = pdfPage.render(renderContext);
-
-  return { canvas, renderTask };
 }
 
 export async function generateCloseFabric({ src }: CloseSvgOptions, uuid: number, stroke?: string) {
@@ -89,7 +68,7 @@ export function renderFabricCanvas(id: string, canvasTemp: HTMLCanvasElement) {
   setFabricCanvas(id, image, scale);
 }
 
-export async function drawFabricImage(id: string, file: File) {
+export async function drawFabricImage(file: File, id?: string) {
   const base64 = await convertToBase64(file);
   const now = Date.now();
   const PDFId = `${file.name}${now}`;
@@ -100,7 +79,10 @@ export async function drawFabricImage(id: string, file: File) {
     PDFBase64: base64,
   };
 
-  renderFabricImage(id, { url: base64 });
+  if (id) {
+    renderFabricImage(id, { url: base64 });
+  }
+
   return { ...PDF, pages: 1 };
 }
 
@@ -205,24 +187,18 @@ async function drawPDF(file: File, password?: string, id?: string) {
   return { ...PDF, pages };
 }
 
-export async function specifyPage({ page, PDFBase64, scale, password }: SpecifyPageArgs, id?: string) {
-  const pdfDoc = await getPDFDocument(PDFBase64, password);
-  const pdfPage = await pdfDoc.getPage(page);
-  const { renderTask, canvas } = createRenderTask(pdfPage, scale);
-
-  return renderTask.promise.then(() => {
-    if (id) {
+export function specifyPage(options: SpecifyPageArgs, id?: string) {
+  return renderPageCanvas(options, id).then(({ canvas, pages }) => {
+    if (canvas && id) {
       renderFabricCanvas(id, canvas);
     }
 
-    return pdfDoc.numPages;
+    return pages;
   });
 }
 
 async function drawImage(file: File, _?: string, id?: string) {
-  if (!id) return;
-
-  return await drawFabricImage(id, file);
+  return await drawFabricImage(file, id);
 }
 
 export function setActiveFabric(id: string, options: TOptions<FabricObjectProps>) {
