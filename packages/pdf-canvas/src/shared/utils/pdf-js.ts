@@ -1,5 +1,4 @@
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
-import PdfjsWorker from '../../workers/pdfjs.worker?worker';
 import type { SpecifyPageArgs } from '../types/fabric';
 import { getPixelsPerPoint } from './common';
 import { readfile } from './reader';
@@ -33,7 +32,7 @@ export async function renderPageCanvas({ page, PDFBase64, scale, password }: Spe
   const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
 
   if (supportsOffscreenCanvas()) {
-    const worker = new PdfjsWorker();
+    const worker = new Worker(new URL('../../workers/pdfjs.worker', import.meta.url), { type: 'module' });
 
     worker.postMessage({ data: PDFBase64, password, id, page, units: CSS_UNITS, scale });
 
@@ -52,8 +51,6 @@ export async function renderPageCanvas({ page, PDFBase64, scale, password }: Spe
         } else {
           resolve({ pages: data.pages, canvas: null });
         }
-
-        worker.terminate();
       });
     });
 
