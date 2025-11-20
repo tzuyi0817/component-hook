@@ -1,9 +1,12 @@
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
+import PdfjsWorker from '../../workers/pdfjs.worker?worker';
 import type { SpecifyPageArgs } from '../types/fabric';
 import { getPixelsPerPoint } from './common';
 import { readfile } from './reader';
 
-GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
+if (!supportsOffscreenCanvas()) {
+  GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
+}
 
 export async function printPDF(file: File): Promise<string | void> {
   const Base64Prefix = 'data:application/pdf;base64,';
@@ -14,27 +17,68 @@ export async function printPDF(file: File): Promise<string | void> {
   return globalThis.atob(pdf.slice(Base64Prefix.length));
 }
 
+function supportsOffscreenCanvas() {
+  try {
+    return (
+      typeof OffscreenCanvas !== 'undefined' &&
+      typeof HTMLCanvasElement !== 'undefined' &&
+      typeof HTMLCanvasElement.prototype.transferControlToOffscreen === 'function'
+    );
+  } catch {
+    return false;
+  }
+}
+
 export async function renderPageCanvas({ page, PDFBase64, scale, password }: SpecifyPageArgs, id?: string) {
   const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
-  const canvas = document.createElement('canvas');
 
-  const pdfDoc = await getDocument({ data: PDFBase64, password }).promise;
+  if (supportsOffscreenCanvas()) {
+    const worker = new PdfjsWorker();
 
-  if (!id) return { canvas: null, pages: pdfDoc.numPages };
+    worker.postMessage({ data: PDFBase64, password, id, page, units: CSS_UNITS, scale });
 
-  const pdfPage = await pdfDoc.getPage(page);
-  const viewport = pdfPage.getViewport({ scale });
-  const context = canvas.getContext('2d')!;
-  const renderContext = {
-    canvasContext: context,
-    viewport,
-    transform: [CSS_UNITS, 0, 0, CSS_UNITS, 0, 0],
-  };
+    const result = await new Promise<{ pages: number; canvas: HTMLCanvasElement | null }>(resolve => {
+      worker.addEventListener('message', ({ data }) => {
+        if (data.status !== 'success') return;
 
-  canvas.width = Math.floor(viewport.width * CSS_UNITS);
-  canvas.height = Math.floor(viewport.height * CSS_UNITS);
+        if (data.bitmap) {
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('bitmaprenderer');
 
-  const renderTask = pdfPage.render(renderContext);
+          canvas.width = data.width;
+          canvas.height = data.height;
+          context?.transferFromImageBitmap(data.bitmap);
+          resolve({ pages: data.pages, canvas });
+        } else {
+          resolve({ pages: data.pages, canvas: null });
+        }
 
-  return renderTask.promise.then(() => ({ canvas, pages: pdfDoc.numPages }));
+        worker.terminate();
+      });
+    });
+
+    return result;
+  } else {
+    const pdfDoc = await getDocument({ data: PDFBase64, password }).promise;
+    const pages = pdfDoc.numPages;
+
+    if (!id) return { canvas: null, pages };
+
+    const pdfPage = await pdfDoc.getPage(page);
+    const viewport = pdfPage.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d')!;
+    const renderContext = {
+      canvasContext: context,
+      viewport,
+      transform: [CSS_UNITS, 0, 0, CSS_UNITS, 0, 0],
+    };
+
+    canvas.width = Math.floor(viewport.width * CSS_UNITS);
+    canvas.height = Math.floor(viewport.height * CSS_UNITS);
+
+    const renderTask = pdfPage.render(renderContext);
+
+    return renderTask.promise.then(() => ({ canvas, pages }));
+  }
 }
