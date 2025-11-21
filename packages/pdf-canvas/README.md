@@ -62,24 +62,19 @@ async function uploadFile(event: Event) {
 </script>
 
 <template>
-  <div class="w-fit flex flex-col items-center gap-3">
+  <div>
     <pdf-canvas
       v-if="currentPdf"
       :file="currentPdf"
     />
 
-    <p
-      v-else
-      class="font-mono text-sm"
-    >
-      Please select a PDF file or image.
-    </p>
+    <p v-else>Please select a PDF file or image.</p>
 
     <button class="relative">
       <input
         type="file"
         accept="application/pdf, .jpg, .png"
-        class="opacity-0 top-0 left-0 absolute w-[94px] h-[36px] cursor-pointer"
+        class="absolute top-0 left-0 h-[36px] w-[94px] cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
@@ -126,6 +121,33 @@ export function DrawPdf() {
   );
 }
 ```
+
+## ⚠️ Required Vite Configuration
+
+If you're using Vite in development mode, you must exclude this package from Vite's dependency optimization, because it internally uses a Web Worker which doesn't work well when Vite pre-bundles dependencies.
+
+```js
+// vite.config.js or vite.config.ts
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  // …other Vite config
+  optimizeDeps: {
+    exclude: ['@component-hook/pdf-canvas'],
+  },
+});
+```
+
+### Why Is This Necessary?
+
+- Vite's dev server does pre-bundling of dependencies (using esbuild) to improve performance.
+- However, modules using Web Workers (like this component) may break or fail to initialize correctly during this pre-bundling stage.
+
+### Web Worker & Vite Known Issue
+
+- This is a known issue: the Vite team is aware of difficulties when optimizing dependencies that use Web Workers.
+- For more background, see this GitHub issue: [Vite/Rolldown-Vite #362](https://github.com/vitejs/rolldown-vite/issues/362)
+- Once Vite improves its Web Worker optimization, it may become safe to remove this exclusion — but for now, it's required to ensure correct behavior in dev mode.
 
 ## License
 

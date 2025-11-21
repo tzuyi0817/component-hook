@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.2](https://github.com/tzuyi0817/component-hook/compare/v1.2.1...v1.2.2) (2025-11-21)
+
+### Features
+
+- **pdf-canvas:** added expose `setActiveFabric` ([f4e2e77](https://github.com/tzuyi0817/component-hook/commit/f4e2e7752ab3c03ef4ed56887ba2941d5c79114b))
+- **pdf-canvas:** improve performance using pdfjs in web worker ([3f558d8](https://github.com/tzuyi0817/component-hook/commit/3f558d854b937ac1b6e503447e12d64e88ca32a7))
+- **create-app:** update `vue` template ([2802a41](https://github.com/tzuyi0817/component-hook/commit/2802a4188466a62485551654b513c14eecde2adf))
+- **create-app:** update `react` template ([f22fe5c](https://github.com/tzuyi0817/component-hook/commit/f22fe5c358de4297cae5e0eaca0e7d98e45e8954))
+
+### Bug Fixes
+
+- **pdf-canvas:** use `loadFile` function to render image ([5a5d619](https://github.com/tzuyi0817/component-hook/commit/5a5d619f08495100ed3c83b10abd77291019398b))
+
 ## [1.2.1](https://github.com/tzuyi0817/component-hook/compare/v1.2.0...v1.2.1) (2025-11-13)
 
 ### Bug Fixes
