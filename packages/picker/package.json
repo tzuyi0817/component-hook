@@ -3,7 +3,7 @@
   "version": "1.2.2",
   "description": "Picker component with vue3 and react",
   "license": "MIT",
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.23.0",
   "type": "module",
   "author": "Tzuyi",
   "exports": {
