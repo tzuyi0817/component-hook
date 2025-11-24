@@ -4,28 +4,6 @@
       margin-block: 16px;
     }
 
-    .tip {
-      font-size: 14px;
-      line-height: calc(1.25 / 0.875);
-      background-color: var(--tip-bg-color);
-      border-left: 4px solid var(--primary);
-      border-radius: 4px;
-      padding: 16px;
-      margin: 16px 0;
-
-      p:last-child {
-        margin-bottom: 0px;
-      }
-    }
-
-    .tip-title {
-      font-weight: 700;
-      margin-top: 0px;
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--text-color-secondary);
-    }
-
     ul {
       list-style-type: decimal;
       margin: 16px 0;

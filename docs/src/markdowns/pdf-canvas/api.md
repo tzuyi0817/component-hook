@@ -34,6 +34,7 @@
 | addText            | Manually add the text onto the canvas   | `Function (text: string, options?: TOptions<TextProps>) => void` |
 | clearActive        | Manually deactivate status              | `Function () => void`                                            |
 | deleteCanvas       | Delete the current canvas               | `Function () => void`                                            |
+| setActiveFabric    | Setup the active fabric                 | `Function (options: TOptions<FabricObjectProps>) => void`        |
 | copyActiveFabric   | Copy the active fabric                  | `Function () => Promise<void>`                                   |
 | deleteActiveFabric | Delete the active fabric                | `Function () => void`                                            |
 | canvasRef          | The current canvas dom ref              | `object Ref<HTMLCanvasElement>`                                  |

@@ -3,6 +3,7 @@ import { Demo, ExternalLink } from '@/components/common';
 import { DrawPdf, DropPdf, EncryptedPdf, ManualPdf, MultiplePdf } from '@/examples/pdf-canvas';
 import apiMd from '@/markdowns/pdf-canvas/api.md?raw';
 import installationMd from '@/markdowns/pdf-canvas/installation.md?raw';
+import tipMd from '@/markdowns/pdf-canvas/tip.md?raw';
 import { md } from '@/utils/highlight';
 
 interface Props {
@@ -45,6 +46,7 @@ defineProps<Props>();
     </p>
 
     <div v-html="md.render(installationMd)"></div>
+    <div v-html="md.render(tipMd)"></div>
 
     <demo
       title="Basic Usage"
