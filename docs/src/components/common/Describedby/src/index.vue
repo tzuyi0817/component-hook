@@ -14,10 +14,12 @@ const { title } = defineProps<Props>();
 const isShowDescription = ref(false);
 const isDisplayDescription = ref(false);
 const id = v4();
+let timer: ReturnType<typeof setTimeout> | null = null;
 
 async function handleMouseEnter() {
   if (!title) return;
 
+  cleanupTimer();
   isDisplayDescription.value = true;
   await sleep(0);
   isShowDescription.value = true;
@@ -26,9 +28,19 @@ async function handleMouseEnter() {
 async function handleMouseLeave() {
   if (!title) return;
 
+  cleanupTimer();
   isShowDescription.value = false;
-  await sleep();
-  isDisplayDescription.value = false;
+
+  timer = setTimeout(() => {
+    isDisplayDescription.value = false;
+  }, 300);
+}
+
+function cleanupTimer() {
+  if (!timer) return;
+
+  clearTimeout(timer);
+  timer = null;
 }
 </script>
 
