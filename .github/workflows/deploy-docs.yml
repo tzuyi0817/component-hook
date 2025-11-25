@@ -17,7 +17,7 @@ jobs:
     needs: CI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: setup environment
         uses: tzuyi0817/coding-standards/.github/actions/setup-environment@main
 
