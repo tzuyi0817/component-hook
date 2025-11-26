@@ -95,8 +95,8 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     return drawSpecifyPage(specifyPageParams, id);
   }
 
-  function renderImage({ url, scale = 0.5 }: RenderImageArgs) {
-    return renderFabricImage(id, { url, scale });
+  function renderImage({ data, scale = 0.5 }: RenderImageArgs) {
+    return renderFabricImage(id, { data, scale });
   }
 
   async function addFabric(src: string, options?: TOptions<ImageProps>, offset?: DropOffset) {

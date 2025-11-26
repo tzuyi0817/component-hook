@@ -19,8 +19,7 @@ import type {
   SpecifyPageArgs,
   SupportFileType,
 } from '../types/fabric';
-import { convertToBase64 } from './image';
-import { printPDF, renderPageCanvas } from './pdf-js';
+import { renderPageCanvas } from './pdf-js';
 
 export const fabricMap = new Map<string, Canvas>();
 
@@ -31,7 +30,7 @@ export function createFabricCanvas(id: string) {
   return canvas;
 }
 
-export function createPdfInfo(file: File, PDFBase64: string) {
+export function createPdfInfo(file: File) {
   const now = Date.now();
   const PDFId = `${file.name}-${now}`;
 
@@ -39,7 +38,7 @@ export function createPdfInfo(file: File, PDFBase64: string) {
     PDFId,
     name: file.name.replace(/.pdf/, ''),
     updateDate: now,
-    PDFBase64,
+    data: file,
   };
 }
 
@@ -69,31 +68,33 @@ export function renderFabricCanvas(id: string, canvasTemp: HTMLCanvasElement) {
 }
 
 export async function drawFabricImage(file: File, id?: string) {
-  const base64 = await convertToBase64(file);
   const now = Date.now();
-  const PDFId = `${file.name}${now}`;
+  const PDFId = `${file.name}-${now}`;
   const PDF = {
     PDFId,
     name: file.name.replace(/.png|.jpg|.jpeg/, ''),
     updateDate: now,
-    PDFBase64: base64,
+    data: file,
   };
 
   if (id) {
-    renderFabricImage(id, { url: base64 });
+    renderFabricImage(id, { data: file });
   }
 
   return { ...PDF, pages: 1 };
 }
 
-export async function renderFabricImage(id: string, { url, scale = 0.5 }: RenderImageArgs) {
+export async function renderFabricImage(id: string, { data, scale = 0.5 }: RenderImageArgs) {
   const canvas = fabricMap.get(id);
 
   if (!canvas) return;
+
+  const url = URL.createObjectURL(data);
   const image = await FabricImage.fromURL(url);
 
   image.scale(scale);
   setFabricCanvas(id, image, scale);
+  URL.revokeObjectURL(url);
 }
 
 function setFabricCanvas(id: string, image: FabricImage, scale: number) {
@@ -178,11 +179,8 @@ export function loadFile(file: File, password?: string, id?: string) {
 }
 
 async function drawPDF(file: File, password?: string, id?: string) {
-  const PDFBase64 = await printPDF(file);
-
-  if (!PDFBase64) return;
-  const PDF = createPdfInfo(file, PDFBase64);
-  const pages = await specifyPage({ page: 1, PDFBase64, scale: 0.8, password }, id);
+  const PDF = createPdfInfo(file);
+  const pages = await specifyPage({ page: 1, data: file, scale: 0.8, password }, id);
 
   return { ...PDF, pages };
 }

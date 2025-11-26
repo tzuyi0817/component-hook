@@ -74,22 +74,24 @@ async function setPDF() {
     await nextTick();
     createCanvas();
 
-    if (file.PDFBase64.startsWith('data:image') || file.canvas) {
-      const { canvas } = file;
-      const scaleDown = canvas ? 7 : 3;
-      const url = canvas?.length ? canvas[page - 1] : file.PDFBase64;
+    if (file.data?.type.startsWith('image/')) {
+      const scaleDown = 3;
 
-      renderImage({ url, scale: scale / scaleDown });
+      renderImage({ data: file.data, scale: scale / scaleDown });
       emit('loaded');
       return;
     }
 
-    await specifyPage({
-      page,
-      PDFBase64: file.PDFBase64,
-      scale,
-      password: props.password,
-    });
+    const data = file.canvas?.[page - 1] ?? file.data;
+
+    if (data) {
+      await specifyPage({
+        page,
+        data,
+        scale,
+        password: props.password,
+      });
+    }
 
     emit('loaded');
   });

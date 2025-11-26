@@ -21,13 +21,13 @@ export interface TCornerPoint {
 
 export interface SpecifyPageArgs {
   page: number;
-  PDFBase64: string;
+  data: Blob;
   scale: number;
   password?: string;
 }
 
 export interface RenderImageArgs {
-  url: string;
+  data: File;
   scale?: number;
 }
 

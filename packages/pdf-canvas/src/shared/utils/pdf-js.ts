@@ -1,19 +1,10 @@
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 import type { SpecifyPageArgs } from '../types/fabric';
 import { getPixelsPerPoint } from './common';
-import { readfile } from './reader';
+import { fileToArrayBuffer } from './file';
 
 if (!supportsOffscreenCanvas()) {
   GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
-}
-
-export async function printPDF(file: File): Promise<string | void> {
-  const Base64Prefix = 'data:application/pdf;base64,';
-  const pdf = await readfile(file);
-
-  if (typeof pdf !== 'string') return;
-
-  return globalThis.atob(pdf.slice(Base64Prefix.length));
 }
 
 function supportsOffscreenCanvas() {
@@ -28,35 +19,38 @@ function supportsOffscreenCanvas() {
   }
 }
 
-export async function renderPageCanvas({ page, PDFBase64, scale, password }: SpecifyPageArgs, id?: string) {
+export async function renderPageCanvas({ page, data, scale, password }: SpecifyPageArgs, id?: string) {
   const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
+  const arrayBuffer = await fileToArrayBuffer(data);
 
   if (supportsOffscreenCanvas()) {
     const worker = new Worker(new URL('../../workers/pdfjs.worker', import.meta.url), { type: 'module' });
 
-    worker.postMessage({ data: PDFBase64, password, id, page, units: CSS_UNITS, scale });
+    worker.postMessage({ data: arrayBuffer, password, id, page, units: CSS_UNITS, scale });
 
     const result = await new Promise<{ pages: number; canvas: HTMLCanvasElement | null }>(resolve => {
-      worker.addEventListener('message', ({ data }) => {
-        if (data.status !== 'success') return;
+      worker.addEventListener('message', event => {
+        if (event.data.status !== 'success') return;
 
-        if (data.bitmap) {
+        const { bitmap, width, height, pages } = event.data;
+
+        if (bitmap) {
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('bitmaprenderer');
 
-          canvas.width = data.width;
-          canvas.height = data.height;
-          context?.transferFromImageBitmap(data.bitmap);
-          resolve({ pages: data.pages, canvas });
+          canvas.width = width;
+          canvas.height = height;
+          context?.transferFromImageBitmap(bitmap);
+          resolve({ pages, canvas });
         } else {
-          resolve({ pages: data.pages, canvas: null });
+          resolve({ pages, canvas: null });
         }
       });
     });
 
     return result;
   } else {
-    const pdfDoc = await getDocument({ data: PDFBase64, password }).promise;
+    const pdfDoc = await getDocument({ data: arrayBuffer, password }).promise;
     const pages = pdfDoc.numPages;
 
     if (!id) return { canvas: null, pages };

@@ -98,21 +98,24 @@ function PdfCanvasComponent(
     globalThis.requestAnimationFrame(async () => {
       createCanvas();
 
-      if (file.PDFBase64.startsWith('data:image') || file.canvas) {
-        const { canvas } = file;
-        const scaleDown = canvas ? 7 : 3;
-        const url = canvas?.length ? canvas[page - 1] : file.PDFBase64;
+      if (file.data?.type.startsWith('image/')) {
+        const scaleDown = 3;
 
-        renderImage({ url, scale: fileScale / scaleDown });
+        renderImage({ data: file.data, scale: fileScale / scaleDown });
+        onLoaded?.();
         return;
       }
 
-      await specifyPage({
-        page,
-        PDFBase64: file.PDFBase64,
-        scale: fileScale,
-        password,
-      });
+      const data = file.canvas?.[page - 1] ?? file.data;
+
+      if (data) {
+        await specifyPage({
+          page,
+          data,
+          scale: fileScale,
+          password,
+        });
+      }
 
       onLoaded?.();
     });

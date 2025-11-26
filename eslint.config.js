@@ -27,6 +27,11 @@ export default [
     },
   },
   {
+    rules: {
+      'unicorn/prefer-blob-reading-methods': 'warn',
+    },
+  },
+  {
     files: ['**/*.[jt]s?(x)'],
     rules: {
       'react-hooks/refs': 'warn',

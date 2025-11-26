@@ -4,7 +4,7 @@ import type { SpecifyPageArgs } from '../shared/types/fabric';
 declare const globalThis: DedicatedWorkerGlobalScope;
 
 interface WorkerMessageEvent {
-  data: SpecifyPageArgs & { data: string; id?: string; units: number };
+  data: SpecifyPageArgs & { data: ArrayBuffer; id?: string; units: number };
 }
 
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
