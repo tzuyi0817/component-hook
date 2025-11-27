@@ -27,7 +27,7 @@ export interface SpecifyPageArgs {
 }
 
 export interface RenderImageArgs {
-  data: File;
+  data: Blob;
   scale?: number;
 }
 

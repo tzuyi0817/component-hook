@@ -74,20 +74,23 @@ async function setPDF() {
     await nextTick();
     createCanvas();
 
-    if (file.data?.type.startsWith('image/')) {
-      const scaleDown = 3;
+    if (file.data?.type.startsWith('image/') || file.canvas) {
+      const { canvas } = file;
+      const scaleDown = canvas ? 7 : 3;
+      const data = canvas?.length ? canvas[page - 1] : file.data;
 
-      renderImage({ data: file.data, scale: scale / scaleDown });
+      if (data) {
+        renderImage({ data, scale: scale / scaleDown });
+      }
+
       emit('loaded');
       return;
     }
 
-    const data = file.canvas?.[page - 1] ?? file.data;
-
-    if (data) {
+    if (file.data) {
       await specifyPage({
         page,
-        data,
+        data: file.data,
         scale,
         password: props.password,
       });
