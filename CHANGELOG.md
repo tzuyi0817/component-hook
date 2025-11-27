@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0](https://github.com/tzuyi0817/component-hook/compare/v1.2.2...v1.3.0) (2025-11-27)
+
+### Features
+
+- **pdf-canvas:** `loadFile` format of the returned data has been changed to File ([c2be4ef](https://github.com/tzuyi0817/component-hook/commit/c2be4ef5692c1ebe6150cc4c051fc302731dc4ab))
+
 ## [1.2.2](https://github.com/tzuyi0817/component-hook/compare/v1.2.1...v1.2.2) (2025-11-21)
 
 ### Features
