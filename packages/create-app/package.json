@@ -35,7 +35,7 @@
     "art-template": "^4.13.4",
     "fs-extra": "^11.3.2",
     "minimist": "^1.2.8",
-    "ora": "^8.2.0",
+    "ora": "^9.0.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2"
   },
