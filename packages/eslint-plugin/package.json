@@ -44,7 +44,7 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
-    "eslint": "^9.15.0"
+    "eslint": "catalog:"
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.5.0",

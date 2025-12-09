@@ -48,12 +48,12 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "vue": "^3.4.29"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "vue": "catalog:"
   },
   "devDependencies": {
     "sass-embedded": "^1.93.3",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "catalog:"
   }
 }

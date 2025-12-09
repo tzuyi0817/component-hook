@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/pdf-canvas",
-  "version": "1.3.0",
+  "version": "1.3.1-alpha.4",
   "description": "Rendering PDF documents onto a canvas with vue3 and react component",
   "license": "MIT",
   "packageManager": "pnpm@10.20.0",
@@ -52,11 +52,11 @@
     "pdfjs-dist": "4.10.38"
   },
   "peerDependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "vue": "^3.4.29"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "vue": "catalog:"
   },
   "devDependencies": {
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "catalog:"
   }
 }

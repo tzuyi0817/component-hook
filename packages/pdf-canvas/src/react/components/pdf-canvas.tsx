@@ -100,7 +100,7 @@ function PdfCanvasComponent(
 
       if (file.data?.type.startsWith('image/') || file.canvas) {
         const { canvas } = file;
-        const scaleDown = canvas ? 7 : 3;
+        const scaleDown = canvas ? 13.5 : 3;
         const data = canvas?.length ? canvas[page - 1] : file.data;
 
         if (data) {
@@ -111,7 +111,7 @@ function PdfCanvasComponent(
         return;
       }
 
-      const data = file.canvas?.[page - 1] ?? file.data;
+      const data = file.data;
 
       if (data) {
         await specifyPage({

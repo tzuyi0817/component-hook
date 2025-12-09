@@ -21,9 +21,9 @@
     "prepare": "husky"
   },
   "peerDependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "vue": "^3.4.29"
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "vue": "catalog:"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
@@ -38,7 +38,7 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitest/coverage-v8": "^3.2.4",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.1",
+    "eslint": "catalog:",
     "jsdom": "^27.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
