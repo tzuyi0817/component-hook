@@ -3,7 +3,7 @@
   "version": "1.3.1-alpha.4",
   "description": "Rendering PDF documents onto a canvas with vue3 and react component",
   "license": "MIT",
-  "packageManager": "pnpm@10.20.0",
+  "packageManager": "pnpm@10.25.0",
   "type": "module",
   "author": "Tzuyi",
   "exports": {
@@ -48,7 +48,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "fabric": "^6.7.1",
+    "fabric": "^6.9.0",
     "pdfjs-dist": "4.10.38"
   },
   "peerDependencies": {
