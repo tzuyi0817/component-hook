@@ -98,10 +98,9 @@ function PdfCanvasComponent(
     globalThis.requestAnimationFrame(async () => {
       createCanvas();
 
-      if (file.data?.type.startsWith('image/') || file.canvas) {
-        const { canvas } = file;
-        const scaleDown = canvas ? 13.5 : 3;
-        const data = canvas?.length ? canvas[page - 1] : file.data;
+      if (file.data?.type.startsWith('image/')) {
+        const scaleDown = 3;
+        const data = file.data;
 
         if (data) {
           renderImage({ data, scale: fileScale / scaleDown });

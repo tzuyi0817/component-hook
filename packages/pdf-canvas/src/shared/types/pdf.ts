@@ -4,5 +4,4 @@ export interface PDF {
   updateDate: number;
   data?: File | null;
   pages: number;
-  canvas?: Blob[];
 }
