@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.1](https://github.com/tzuyi0817/component-hook/compare/v1.3.0...v1.3.1) (2025-12-15)
+
+### Features
+
+- **pdf-canvas:** remove canvas data format saving ([c728ad8](https://github.com/tzuyi0817/component-hook/commit/c728ad8786f8935495b5556f66ecf51e0bdfea60))
+
 ## [1.3.0](https://github.com/tzuyi0817/component-hook/compare/v1.2.2...v1.3.0) (2025-11-27)
 
 ### Features
