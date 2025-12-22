@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.2](https://github.com/tzuyi0817/component-hook/compare/v1.3.1...v1.3.2) (2025-12-22)
+
+### Bug Fixes
+
+- **pdf-canvas:** file is converted to an arrayBuffer on web worker ([3509874](https://github.com/tzuyi0817/component-hook/commit/3509874b9bd99b8b0792ab92a3cd65860489d0d8))
+
 ## [1.3.1](https://github.com/tzuyi0817/component-hook/compare/v1.3.0...v1.3.1) (2025-12-15)
 
 ### Features
