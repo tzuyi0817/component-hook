@@ -1,10 +1,11 @@
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
+import { fileToArrayBuffer } from '../shared/utils/file';
 import type { SpecifyPageArgs } from '../shared/types/fabric';
 
 declare const globalThis: DedicatedWorkerGlobalScope;
 
 interface WorkerMessageEvent {
-  data: SpecifyPageArgs & { data: ArrayBuffer; id?: string; units: number };
+  data: SpecifyPageArgs & { data: Blob; id?: string; units: number };
 }
 
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
@@ -21,7 +22,9 @@ globalThis.addEventListener('message', async (event: WorkerMessageEvent) => {
       return null;
     },
   } as unknown as Document;
-  const pdfDoc = await getDocument({ data, password, ownerDocument: document }).promise;
+
+  const arrayBuffer = await fileToArrayBuffer(data);
+  const pdfDoc = await getDocument({ data: arrayBuffer, password, ownerDocument: document }).promise;
   const pages = pdfDoc.numPages;
 
   if (!id) {

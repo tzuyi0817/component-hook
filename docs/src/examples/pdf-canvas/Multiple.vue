@@ -60,10 +60,6 @@ async function uploadFile(event: Event) {
     </button>
 
     <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
-      <p>
-        base64:
-        {{ currentPdf?.PDFBase64 ? `${currentPdf.PDFBase64.slice(0, 30)}...` : 'null' }}
-      </p>
       <p>file id: {{ currentPdf?.PDFId ?? 'null' }}</p>
       <p>file name: {{ currentPdf?.name ?? 'null' }}</p>
       <p>total pages: {{ currentPdf?.pages ?? 'null' }}</p>

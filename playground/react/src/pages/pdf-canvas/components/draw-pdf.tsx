@@ -31,7 +31,6 @@ export function DrawPdf() {
       </button>
 
       <div>
-        <p>base64: {currentPdf?.PDFBase64 ? `${currentPdf.PDFBase64.slice(0, 30)}...` : 'null'}</p>
         <p>file id: {currentPdf?.PDFId ?? 'null'}</p>
         <p>file name: {currentPdf?.name ?? 'null'}</p>
         <p>total pages: {currentPdf?.pages ?? 'null'}</p>

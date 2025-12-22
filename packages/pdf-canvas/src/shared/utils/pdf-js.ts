@@ -12,7 +12,8 @@ function supportsOffscreenCanvas() {
     return (
       typeof OffscreenCanvas !== 'undefined' &&
       typeof HTMLCanvasElement !== 'undefined' &&
-      typeof HTMLCanvasElement.prototype.transferControlToOffscreen === 'function'
+      typeof HTMLCanvasElement.prototype.transferControlToOffscreen === 'function' &&
+      globalThis.self === window.top
     );
   } catch {
     return false;
@@ -21,12 +22,11 @@ function supportsOffscreenCanvas() {
 
 export async function renderPageCanvas({ page, data, scale, password }: SpecifyPageArgs, id?: string) {
   const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
-  const arrayBuffer = await fileToArrayBuffer(data);
 
   if (supportsOffscreenCanvas()) {
     const worker = new Worker(new URL('../../workers/pdfjs.worker', import.meta.url), { type: 'module' });
 
-    worker.postMessage({ data: arrayBuffer, password, id, page, units: CSS_UNITS, scale });
+    worker.postMessage({ data, password, id, page, units: CSS_UNITS, scale });
 
     const result = await new Promise<{ pages: number; canvas: HTMLCanvasElement | null }>(resolve => {
       worker.addEventListener('message', event => {
@@ -50,6 +50,7 @@ export async function renderPageCanvas({ page, data, scale, password }: SpecifyP
 
     return result;
   } else {
+    const arrayBuffer = await fileToArrayBuffer(data);
     const pdfDoc = await getDocument({ data: arrayBuffer, password }).promise;
     const pages = pdfDoc.numPages;
 
