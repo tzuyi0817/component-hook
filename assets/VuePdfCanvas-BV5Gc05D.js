@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-CGSnmQFU.js";import{d as t,c as a,u as n,o}from"./index-94NZVcRB.js";import"./index-CVx_3QrS.js";const s=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-B1Omihhe.js";import{d as t,c as a,u as n,o}from"./index-hyUEZF5d.js";import"./index-BXFHuwIx.js";const s=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
@@ -42,10 +42,6 @@ async function uploadFile(event: Event) {
     </button>
 
     <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
-      <p>
-        base64:
-        {{ currentPdf?.PDFBase64 ? \`\${currentPdf.PDFBase64.slice(0, 30)}...\` : 'null' }}
-      </p>
       <p>file id: {{ currentPdf?.PDFId ?? 'null' }}</p>
       <p>file name: {{ currentPdf?.name ?? 'null' }}</p>
       <p>total pages: {{ currentPdf?.pages ?? 'null' }}</p>
@@ -213,10 +209,6 @@ function submitPassword() {
     </button>
 
     <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
-      <p>
-        base64:
-        {{ currentPdf?.PDFBase64 ? \`\${currentPdf.PDFBase64.slice(0, 30)}...\` : 'null' }}
-      </p>
       <p>file id: {{ currentPdf?.PDFId ?? 'null' }}</p>
       <p>file name: {{ currentPdf?.name ?? 'null' }}</p>
       <p>total pages: {{ currentPdf?.pages ?? 'null' }}</p>
@@ -382,10 +374,6 @@ async function uploadFile(event: Event) {
     </button>
 
     <div class="mt-5 flex w-full flex-col gap-1 font-mono text-sm">
-      <p>
-        base64:
-        {{ currentPdf?.PDFBase64 ? \`\${currentPdf.PDFBase64.slice(0, 30)}...\` : 'null' }}
-      </p>
       <p>file id: {{ currentPdf?.PDFId ?? 'null' }}</p>
       <p>file name: {{ currentPdf?.name ?? 'null' }}</p>
       <p>total pages: {{ currentPdf?.pages ?? 'null' }}</p>
