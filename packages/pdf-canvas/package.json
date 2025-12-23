@@ -1,32 +1,17 @@
 {
   "name": "@component-hook/pdf-canvas",
-  "version": "1.3.2",
-  "description": "Rendering PDF documents onto a canvas with vue3 and react component",
-  "license": "MIT",
-  "packageManager": "pnpm@10.20.0",
   "type": "module",
+  "version": "1.3.2",
+  "packageManager": "pnpm@10.20.0",
+  "description": "Rendering PDF documents onto a canvas with vue3 and react component",
   "author": "Tzuyi",
-  "exports": {
-    "./vue": {
-      "types": "./dist/vue/pdf-canvas.es.d.ts",
-      "import": "./dist/vue/pdf-canvas.es.js",
-      "require": "./dist/vue/pdf-canvas.umd.js"
-    },
-    "./react": {
-      "types": "./dist/react/pdf-canvas.es.d.ts",
-      "import": "./dist/react/pdf-canvas.es.js",
-      "require": "./dist/react/pdf-canvas.umd.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/pdf-canvas"
   },
-  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas#readme",
   "bugs": {
     "url": "https://github.com/tzuyi0817/component-hook/issues"
   },
@@ -41,20 +26,35 @@
     "fabric",
     "pdfjs-dist"
   ],
+  "exports": {
+    "./vue": {
+      "types": "./dist/vue/pdf-canvas.es.d.ts",
+      "require": "./dist/vue/pdf-canvas.umd.js",
+      "import": "./dist/vue/pdf-canvas.es.js"
+    },
+    "./react": {
+      "types": "./dist/react/pdf-canvas.es.d.ts",
+      "require": "./dist/react/pdf-canvas.umd.js",
+      "import": "./dist/react/pdf-canvas.es.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "pnpm build:vue && pnpm build:react",
     "build:vue": "cross-env FRAMEWORK=vue vite build",
     "build:react": "cross-env FRAMEWORK=react vite build",
     "typecheck": "vue-tsc --noEmit"
   },
-  "dependencies": {
-    "fabric": "^6.7.1",
-    "pdfjs-dist": "4.10.38"
-  },
   "peerDependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "catalog:"
+  },
+  "dependencies": {
+    "fabric": "^6.7.1",
+    "pdfjs-dist": "4.10.38"
   },
   "devDependencies": {
     "vite-plugin-dts": "catalog:"

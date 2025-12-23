@@ -4,6 +4,7 @@ import { ignores } from './configs/ignores';
 import { importConfigs } from './configs/import';
 import { jsConfigs } from './configs/javascript';
 import { jsdocConfig } from './configs/jsdoc';
+import { jsoncConfigs } from './configs/jsonc';
 import { markdownConfigs } from './configs/markdown';
 import { perfectionistConfig } from './configs/perfectionist';
 import { playwrightConfig } from './configs/playwright';
@@ -34,6 +35,7 @@ const basicConfigs = [
   regexpConfig,
   deMorganConfig,
   perfectionistConfig,
+  ...jsoncConfigs,
   {
     name: 'component-hook/globals',
     languageOptions: {

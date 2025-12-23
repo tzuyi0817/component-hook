@@ -1,6 +1,6 @@
 import { TAP_OFFSET } from '../constants';
-import type { Direction } from '../types';
 import { getDirection } from './common';
+import type { Direction } from '../types';
 
 export function createPointerTracker() {
   const pointer = {

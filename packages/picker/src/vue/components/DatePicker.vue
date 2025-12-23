@@ -11,8 +11,8 @@ import {
   isMinMonth,
   isMinYear,
 } from '../../shared/utils/common';
-import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import Picker from './Picker.vue';
+import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 
 interface Props {
   columnsType?: DatePickerColumnType[];

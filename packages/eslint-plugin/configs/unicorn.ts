@@ -39,4 +39,10 @@ export const unicornConfigs: Config[] = [
       'unicorn/require-module-specifiers': 'off',
     },
   },
+  {
+    files: ['**/locales/**/*.json'],
+    rules: {
+      'unicorn/filename-case': 'off',
+    },
+  },
 ];

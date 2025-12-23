@@ -7,8 +7,8 @@ import {
   getIndexByValue,
   resetChildrenSelected,
 } from '../../shared/utils/common';
-import type { PickerColumn, PickerFields } from '../../shared/types';
 import Column from './PickerColumn.vue';
+import type { PickerColumn, PickerFields } from '../../shared/types';
 import '../../shared/index.scss';
 
 export interface Props<T> {

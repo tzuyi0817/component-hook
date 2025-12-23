@@ -1,9 +1,12 @@
 {
   "name": "component-hook",
-  "license": "MIT",
-  "packageManager": "pnpm@10.20.0",
-  "private": true,
   "type": "module",
+  "private": true,
+  "packageManager": "pnpm@10.20.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.19.5"
+  },
   "scripts": {
     "dev": "pnpm -C docs dev",
     "build": "pnpm -C docs build",
@@ -24,6 +27,12 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "catalog:"
+  },
+  "optionalDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
@@ -49,14 +58,5 @@
     "vite": "^7.2.1",
     "vitest": "^4.0.15",
     "vue-tsc": "^3.1.3"
-  },
-  "engines": {
-    "node": ">=20.19.5"
-  },
-  "optionalDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.6"
   }
 }

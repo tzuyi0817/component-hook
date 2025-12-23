@@ -2,8 +2,8 @@ import { useEffect, useImperativeHandle, useMemo, useState, type ForwardedRef } 
 import { DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import { formatTime, generateOptions, getDefaultTime, getValidTime } from '../../shared/utils/common';
 import { fixedForwardRef } from '../hooks/fixed-forward-ref';
-import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 import { Picker } from './picker';
+import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 
 interface Props {
   values?: number[];

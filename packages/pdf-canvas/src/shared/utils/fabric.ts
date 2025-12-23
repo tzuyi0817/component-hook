@@ -9,6 +9,7 @@ import {
   type TOptions,
 } from 'fabric';
 import { CLONE_PROPERTIES } from '../constants';
+import { renderPageCanvas } from './pdf-js';
 import type {
   CacheFabricImage,
   CacheFabricObject,
@@ -19,7 +20,6 @@ import type {
   SpecifyPageArgs,
   SupportFileType,
 } from '../types/fabric';
-import { renderPageCanvas } from './pdf-js';
 
 export const fabricMap = new Map<string, Canvas>();
 

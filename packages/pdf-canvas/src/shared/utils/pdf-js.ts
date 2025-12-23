@@ -1,7 +1,7 @@
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
-import type { SpecifyPageArgs } from '../types/fabric';
 import { getPixelsPerPoint } from './common';
 import { fileToArrayBuffer } from './file';
+import type { SpecifyPageArgs } from '../types/fabric';
 
 if (!supportsOffscreenCanvas()) {
   GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;

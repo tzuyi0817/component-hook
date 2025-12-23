@@ -6,9 +6,9 @@ import {
   getIndexByValue,
   resetChildrenSelected,
 } from '../../shared/utils/common';
+import { Columns, type ColumnsRef } from './picker-columns';
 import type { PickerColumn } from '../../shared/types';
 import type { PickerProps } from '../types';
-import { Columns, type ColumnsRef } from './picker-columns';
 import '../../shared/index.scss';
 
 export function Picker<T>({

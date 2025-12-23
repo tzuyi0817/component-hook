@@ -11,8 +11,8 @@ import {
   isMinYear,
 } from '../../shared/utils/common';
 import { fixedForwardRef } from '../hooks/fixed-forward-ref';
-import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 import { Picker } from './picker';
+import type { DatePickerColumnType, PickerFormatLabel } from '../../shared/types';
 
 interface Props {
   values?: number[];

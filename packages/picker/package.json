@@ -1,32 +1,17 @@
 {
   "name": "@component-hook/picker",
-  "version": "1.3.2",
-  "description": "Picker component with vue3 and react",
-  "license": "MIT",
-  "packageManager": "pnpm@10.20.0",
   "type": "module",
+  "version": "1.3.2",
+  "packageManager": "pnpm@10.20.0",
+  "description": "Picker component with vue3 and react",
   "author": "Tzuyi",
-  "exports": {
-    "./vue": {
-      "types": "./dist/vue/picker.es.d.ts",
-      "import": "./dist/vue/picker.es.js",
-      "require": "./dist/vue/picker.umd.js"
-    },
-    "./react": {
-      "types": "./dist/react/picker.es.d.ts",
-      "import": "./dist/react/picker.es.js",
-      "require": "./dist/react/picker.umd.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/picker#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/picker"
   },
-  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/picker#readme",
   "bugs": {
     "url": "https://github.com/tzuyi0817/component-hook/issues"
   },
@@ -40,6 +25,21 @@
     "picker",
     "date-picker",
     "time-picker"
+  ],
+  "exports": {
+    "./vue": {
+      "types": "./dist/vue/picker.es.d.ts",
+      "require": "./dist/vue/picker.umd.js",
+      "import": "./dist/vue/picker.es.js"
+    },
+    "./react": {
+      "types": "./dist/react/picker.es.d.ts",
+      "require": "./dist/react/picker.umd.js",
+      "import": "./dist/react/picker.es.js"
+    }
+  },
+  "files": [
+    "dist"
   ],
   "scripts": {
     "build": "pnpm build:vue && pnpm build:react",

@@ -1,9 +1,9 @@
 {
   "name": "react-playground",
-  "private": true,
-  "license": "MIT",
   "type": "module",
+  "private": true,
   "packageManager": "pnpm@10.20.0",
+  "license": "MIT",
   "scripts": {
     "dev": "vite"
   },

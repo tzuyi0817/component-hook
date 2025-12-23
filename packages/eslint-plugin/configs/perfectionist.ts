@@ -2,7 +2,7 @@ import { pluginPerfectionist } from '../plugins';
 import type { Config } from '../types';
 
 export const perfectionistConfig: Config = {
-  name: 'component-hook/perfectionist/import',
+  name: 'component-hook/perfectionist/imports',
   plugins: {
     perfectionist: pluginPerfectionist,
   },
@@ -14,23 +14,33 @@ export const perfectionistConfig: Config = {
           'builtin',
           'external',
           'internal',
-          'internal-type',
           'parent',
-          'parent-type',
+          'subpath',
           'sibling',
-          'sibling-type',
           'index',
-          'index-type',
-          'object',
+          'style',
           'type',
           'side-effect',
           'side-effect-style',
         ],
         internalPattern: ['^[~@#]/.*'],
         newlinesBetween: 'ignore',
+        type: 'natural',
       },
     ],
-    'perfectionist/sort-named-exports': ['warn', { groupKind: 'values-first' }],
-    'perfectionist/sort-named-imports': ['warn', { groupKind: 'values-first' }],
+    'perfectionist/sort-named-exports': [
+      'warn',
+      {
+        groups: ['value-export', 'type-export'],
+        type: 'natural',
+      },
+    ],
+    'perfectionist/sort-named-imports': [
+      'warn',
+      {
+        groups: ['value-import', 'type-import'],
+        type: 'natural',
+      },
+    ],
   },
 };

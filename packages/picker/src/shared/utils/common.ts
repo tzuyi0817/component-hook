@@ -1,3 +1,4 @@
+import { isArray } from './check-type';
 import type {
   DatePickerColumnType,
   PickerColumn,
@@ -7,7 +8,6 @@ import type {
   TimePickerColumnType,
   TimeSelection,
 } from '../types';
-import { isArray } from './check-type';
 
 export function getColumnsType<T>(columns: PickerColumn<T> | PickerColumn<T>[], fields: Required<PickerFields>) {
   if (isArrayPickerColumn(columns)) return 'multiple';

@@ -2,8 +2,8 @@
 import { computed } from 'vue';
 import { DEFAULT_TIME_COLUMNS } from '../../shared/constants';
 import { formatTime, generateOptions, getDefaultTime, getValidTime } from '../../shared/utils/common';
-import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 import Picker from './Picker.vue';
+import type { PickerFormatLabel, TimePickerColumnType } from '../../shared/types';
 
 interface Props {
   columnsType?: TimePickerColumnType[];
