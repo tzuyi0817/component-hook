@@ -24,7 +24,7 @@
     "template-*"
   ],
   "engines": {
-    "node": ">=20.19.5"
+    "node": ">=24.12.0"
   },
   "scripts": {
     "dev": "tsdown --watch",
