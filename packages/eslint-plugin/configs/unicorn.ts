@@ -40,6 +40,7 @@ export const unicornConfigs: Config[] = [
     },
   },
   {
+    name: 'component-hook/unicorn/locales',
     files: ['**/locales/**/*.json'],
     rules: {
       'unicorn/filename-case': 'off',

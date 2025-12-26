@@ -5,13 +5,13 @@ on:
     branches: [master]
     paths:
       - 'docs/src/**'
-      - 'docs/package.json'
-      - 'pnpm-lock.yaml'
+      - docs/package.json
+      - pnpm-lock.yaml
   workflow_dispatch:
 
 jobs:
   CI:
-    uses: './.github/workflows/ci.yml'
+    uses: ./.github/workflows/ci.yml
 
   build:
     needs: CI

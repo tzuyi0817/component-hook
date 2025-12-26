@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: setup environment
-        uses: './.github/actions/setup-environment'
+        uses: ./.github/actions/setup-environment
 
       - name: install Playwright browsers
         run: npx playwright install --with-deps

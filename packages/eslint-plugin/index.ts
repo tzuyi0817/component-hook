@@ -23,6 +23,7 @@ import {
 import { typescriptConfigs } from './configs/typescript';
 import { unicornConfigs } from './configs/unicorn';
 import { vueConfigs } from './configs/vue';
+import { yamlConfigs } from './configs/yaml';
 import { globals } from './plugins';
 
 const basicConfigs = [
@@ -36,6 +37,7 @@ const basicConfigs = [
   deMorganConfig,
   perfectionistConfig,
   ...jsoncConfigs,
+  ...yamlConfigs,
   {
     name: 'component-hook/globals',
     languageOptions: {

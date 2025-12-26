@@ -4,16 +4,21 @@ import { debounce } from '../../shared/utils/common';
 export function useResize(callback: () => void) {
   const previousWidth = useRef(0);
 
-  const debounceCallback = debounce(() => {
-    if (previousWidth.current === window.innerWidth) return;
+  useEffect(() => {
+    const debounceCallback = debounce(() => {
+      const { innerWidth } = globalThis;
+
+      if (innerWidth === previousWidth.current) return;
+
+      previousWidth.current = innerWidth;
+      callback();
+    });
 
     previousWidth.current = window.innerWidth;
-    callback();
-  });
-
-  useEffect(() => {
     window.addEventListener('resize', debounceCallback);
 
     return () => window.removeEventListener('resize', debounceCallback);
   }, []);
+
+  return null;
 }

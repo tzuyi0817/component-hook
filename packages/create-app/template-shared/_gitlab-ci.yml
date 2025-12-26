@@ -3,7 +3,7 @@ stages:
   # - deploy
 
 include:
-  - local: '.gitlab/setup.yml'
+  - local: .gitlab/setup.yml
 
 run_test:
   stage: test
@@ -16,7 +16,7 @@ run_test:
     - if: $CI_COMMIT_BRANCH
       changes:
         - 'src/**'
-        - 'pnpm-lock.yaml'
-        - 'package.json'
+        - pnpm-lock.yaml
+        - package.json
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - when: manual
