@@ -1,9 +1,10 @@
 import { YAML } from '../constants';
 import { parserYaml, pluginYaml } from '../plugins';
+import type { YamlRules } from '../typegen/yaml';
 import type { Config } from '../types';
 import type { Linter } from 'eslint';
 
-export const yamlConfigs: Config[] = [
+export const yamlConfigs: Config<YamlRules>[] = [
   {
     name: 'component-hook/yaml',
     files: [YAML],

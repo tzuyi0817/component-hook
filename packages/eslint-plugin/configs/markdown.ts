@@ -1,8 +1,9 @@
 import { SRC, VUE } from '../constants';
 import { pluginMarkdown } from '../plugins';
+import type { MarkdownRules } from '../typegen/markdown';
 import type { Config } from '../types';
 
-export const markdownConfigs: Config[] = [
+export const markdownConfigs: Config<MarkdownRules>[] = [
   ...pluginMarkdown.configs.processor.map(config => ({
     ...(config as Config),
     name: `component-hook/${config.name}`,

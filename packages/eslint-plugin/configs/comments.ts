@@ -1,7 +1,8 @@
 import { configComments } from '../plugins';
+import type { CommentsRules } from '../typegen/comments';
 import type { Config } from '../types';
 
-export const commentsConfigs: Config[] = [
+export const commentsConfigs: Config<CommentsRules>[] = [
   {
     ...configComments.recommended,
     name: 'component-hook/comments/recommended',

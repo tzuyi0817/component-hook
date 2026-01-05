@@ -1,7 +1,8 @@
 import { pluginJsxA11y, pluginReact, pluginReactHooks } from '../plugins';
+import type { ReactRules } from '../typegen/react';
 import type { Config } from '../types';
 
-export const reactConfigs: Config[] = [
+export const reactConfigs: Config<ReactRules>[] = [
   {
     ...pluginReact.configs.flat.recommended,
     name: 'component-hook/react',

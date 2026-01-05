@@ -1,4 +1,5 @@
 import { typescriptEslint } from '../plugins';
+import type { TypescriptRules } from '../typegen/typescript';
 import type { Config } from '../types';
 import type { Linter } from 'eslint';
 
@@ -25,4 +26,4 @@ export const typescriptConfigs = typescriptEslint.config({
   files: ['**/*.ts', '**/*.tsx'],
   name: 'component-hook/typescript',
   rules,
-}) as Config[];
+}) as Config<TypescriptRules>[];

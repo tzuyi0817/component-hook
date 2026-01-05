@@ -1,4 +1,4 @@
-import { pluginJs } from '../plugins';
+import { globals, pluginJs } from '../plugins';
 import type { Config } from '../types';
 import type { Linter } from 'eslint';
 
@@ -26,6 +26,16 @@ export const jsConfigs: Config[] = [
     rules: {
       ...pluginJs.configs.recommended.rules,
       ...rules,
+    },
+  },
+  {
+    name: 'component-hook/globals',
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
     },
   },
 ];

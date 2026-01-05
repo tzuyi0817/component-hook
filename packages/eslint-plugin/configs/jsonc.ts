@@ -1,9 +1,10 @@
 import { BLOB_JSON, JSON5, JSONC } from '../constants';
 import { parserJsonc, pluginJsonc } from '../plugins';
+import type { JsoncRules } from '../typegen/jsonc';
 import type { Config } from '../types';
 import type { Linter } from 'eslint';
 
-export const jsoncConfigs: Config[] = [
+export const jsoncConfigs: Config<JsoncRules>[] = [
   {
     name: 'component-hook/jsonc',
     files: [BLOB_JSON, JSON5, JSONC],

@@ -1,7 +1,8 @@
 import { pluginPerfectionist } from '../plugins';
+import type { PerfectionistRules } from '../typegen/perfectionist';
 import type { Config } from '../types';
 
-export const perfectionistConfig: Config = {
+export const perfectionistConfig: Config<PerfectionistRules> = {
   name: 'component-hook/perfectionist/imports',
   plugins: {
     perfectionist: pluginPerfectionist,

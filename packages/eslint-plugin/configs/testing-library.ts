@@ -1,4 +1,5 @@
 import { pluginTestingLibrary } from '../plugins';
+import type { TestingLibraryRules } from '../typegen/testing-library';
 import type { Config } from '../types';
 
 const configs = pluginTestingLibrary.configs;
@@ -6,7 +7,7 @@ const plugins = {
   'testing-library': pluginTestingLibrary,
 };
 
-export const testingLibraryDomConfig: Config = {
+export const testingLibraryDomConfig: Config<TestingLibraryRules> = {
   name: 'component-hook/testing-library/dom',
   plugins,
   rules: {
@@ -14,7 +15,7 @@ export const testingLibraryDomConfig: Config = {
   },
 };
 
-export const testingLibraryAngularConfig: Config = {
+export const testingLibraryAngularConfig: Config<TestingLibraryRules> = {
   name: 'component-hook/testing-library/angular',
   plugins,
   rules: {
@@ -22,7 +23,7 @@ export const testingLibraryAngularConfig: Config = {
   },
 };
 
-export const testingLibraryReactConfig: Config = {
+export const testingLibraryReactConfig: Config<TestingLibraryRules> = {
   name: 'component-hook/testing-library/react',
   plugins,
   rules: {
@@ -30,7 +31,7 @@ export const testingLibraryReactConfig: Config = {
   },
 };
 
-export const testingLibraryVueConfig: Config = {
+export const testingLibraryVueConfig: Config<TestingLibraryRules> = {
   name: 'component-hook/testing-library/vue',
   plugins,
   rules: {
@@ -38,7 +39,7 @@ export const testingLibraryVueConfig: Config = {
   },
 };
 
-export const testingLibraryMarkoConfig: Config = {
+export const testingLibraryMarkoConfig: Config<TestingLibraryRules> = {
   name: 'component-hook/testing-library/marko',
   plugins,
   rules: {

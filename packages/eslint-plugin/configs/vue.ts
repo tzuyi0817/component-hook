@@ -1,6 +1,7 @@
 import { VUE } from '../constants';
 import { pluginVue, typescriptEslint, vueParser } from '../plugins';
 import { rules as pluginTypescriptRules } from './typescript';
+import type { VueRules } from '../typegen/vue';
 import type { Config } from '../types';
 
 const recommendedRules = pluginVue.configs['flat/recommended']
@@ -106,4 +107,4 @@ export const vueConfigs = [
       ...rules,
     },
   },
-] as Config[];
+] as Config<VueRules>[];

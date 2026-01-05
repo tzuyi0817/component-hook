@@ -1,5 +1,6 @@
 import { SRC_EXT } from '../constants';
 import { pluginImport, typescriptEslint, vueParser } from '../plugins';
+import type { ImportRules } from '../typegen/import';
 import type { Config } from '../types';
 
 const plugins = {
@@ -16,7 +17,7 @@ const languageOptions = {
   },
 };
 
-export const importConfigs: Config[] = [
+export const importConfigs: Config<ImportRules>[] = [
   {
     name: 'component-hook/import',
     plugins,

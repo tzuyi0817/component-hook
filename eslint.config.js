@@ -40,4 +40,7 @@ export default [
       'react-hooks/purity': 'warn',
     },
   },
+  {
+    ignores: ['**/typegen/**.ts'],
+  },
 ];

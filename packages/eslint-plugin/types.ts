@@ -5,4 +5,4 @@ interface Plugins {
   plugins?: Record<string, any>;
 }
 
-export type Config = Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> & Plugins;
+export type Config<T = unknown> = Omit<Linter.Config<Linter.RulesRecord & T>, 'plugins'> & Plugins;
