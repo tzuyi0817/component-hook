@@ -42,9 +42,6 @@ src/
 │       └── index.ts
 ├── constants/*
 ├── hooks/*
-├── locales/
-│   ├── en-US.json
-│   └── zh-CN.json
 ├── mocks/
 │   ├── handlers/*
 │   │   ├── modules/*
