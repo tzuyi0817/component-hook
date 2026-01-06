@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import i18NPlugin from '@/plugins/i18n';
-
 import router from '@/router';
 import App from './App.vue';
 import { createPinia } from './stores';

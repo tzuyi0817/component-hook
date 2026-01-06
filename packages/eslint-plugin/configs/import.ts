@@ -26,7 +26,6 @@ export const importConfigs: Config<ImportRules>[] = [
       'import/first': 'error',
       'import/no-default-export': 'error',
       'import/no-duplicates': ['error', { 'prefer-inline': true }],
-      'import/no-duplicates-specifier': 'error',
       'import/no-mutable-exports': 'error',
       'import/no-named-default': 'error',
       'import/no-self-import': 'error',
