@@ -1,4 +1,4 @@
-import"./installation-BoZEJlFY.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-DwvdEWIs.js";import{d as t,c as a,u as e,o as r}from"./index-hyUEZF5d.js";import"./index-BXFHuwIx.js";const o=`<script setup lang="ts">
+import"./installation-CvomwArf.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-DSnT5s0L.js";import{d as t,c as a,u as e,o as r}from"./index-D4VH8fn5.js";import"./index-LwVZTVUd.js";const o=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
