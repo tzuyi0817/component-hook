@@ -139,6 +139,11 @@ export interface TestingLibraryRules {
    */
   'testing-library/prefer-user-event'?: Linter.RuleEntry<TestingLibraryPreferUserEvent>
   /**
+   * Suggest using userEvent with setup() instead of direct methods
+   * @see https://github.com/testing-library/eslint-plugin-testing-library/tree/main/docs/rules/prefer-user-event-setup.md
+   */
+  'testing-library/prefer-user-event-setup'?: Linter.RuleEntry<[]>
+  /**
    * Enforce a valid naming for return value from `render`
    * @see https://github.com/testing-library/eslint-plugin-testing-library/tree/main/docs/rules/render-result-naming-convention.md
    */

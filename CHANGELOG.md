@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/tzuyi0817/component-hook/compare/v1.3.2...v1.4.0) (2026-01-09)
+
+### Features
+
+- **eslint-plugin:** adjust import config rules ([e027136](https://github.com/tzuyi0817/component-hook/commit/e027136ba1faaf925917cb0bd809619b666e2857))
+- **eslint-plugin:** yaml config ([bdb1d95](https://github.com/tzuyi0817/component-hook/commit/bdb1d95164f4d4fb38f6e3f9669b7de8e1fe71ad))
+- **eslint-plugin:** jsonc config ([6b30cf1](https://github.com/tzuyi0817/component-hook/commit/6b30cf117ba18814dff106956020cede380c01c2))
+
+### Bug Fixes
+
+- **create-app:** errors that occurred when Git was not configured ([5393a1e](https://github.com/tzuyi0817/component-hook/commit/5393a1e8cbf78046465092a70a3ec2fd71319b4b))
+
 ## [1.3.2](https://github.com/tzuyi0817/component-hook/compare/v1.3.1...v1.3.2) (2025-12-22)
 
 ### Bug Fixes

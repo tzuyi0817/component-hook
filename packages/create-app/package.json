@@ -1,7 +1,7 @@
 {
   "name": "@component-hook/create-app",
   "type": "module",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "packageManager": "pnpm@10.27.0",
   "description": "Scaffolding a basic typescript project",
   "author": "Tzuyi",
