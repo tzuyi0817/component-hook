@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-Y5tW3CHq.js";import{d as n,c as a,u as e,o}from"./index-D4VH8fn5.js";import"./index-LwVZTVUd.js";const r=`import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
+import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-DQpoiXX-.js";import{d as n,c as a,u as e,o}from"./index-CahS79HZ.js";import"./index-XF1nhAhm.js";const r=`import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 import { useState, type ChangeEvent } from 'react';
 
 export function DrawPdf() {
