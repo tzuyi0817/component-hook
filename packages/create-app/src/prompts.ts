@@ -33,12 +33,15 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
 
   const overwrite: PromptObject<'overwrite'> = {
     type: (nameAnswer: string) => {
-      return existsSync(nameAnswer) && !isEmptyFolder(nameAnswer) ? 'select' : null;
+      const dir = nameAnswer ?? targetDir;
+
+      return existsSync(dir) && !isEmptyFolder(dir) ? 'select' : null;
     },
     name: 'overwrite',
     message: (nameAnswer: string) => {
-      const isCurrentDir = nameAnswer === '.';
-      const dir = isCurrentDir ? 'current directory' : `Target directory "${targetDir}"`;
+      const dirName = nameAnswer ?? targetDir;
+      const isCurrentDir = dirName === '.';
+      const dir = isCurrentDir ? 'current directory' : `Target directory "${dirName}"`;
 
       return styleTitle(`${dir} is not empty. Please choose how to proceed:`);
     },
@@ -60,11 +63,17 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
 
   const packageName: PromptObject<'projectName' | 'packageName'> = {
     type: (_, { projectName: nameAnswer }) => {
-      return isValidPackageName(getProjectName(nameAnswer)) ? null : 'text';
+      const dir = nameAnswer ?? targetDir;
+
+      return isValidPackageName(getProjectName(dir)) ? null : 'text';
     },
     name: 'packageName',
     message: styleTitle('Package name:'),
-    initial: (_, { projectName: nameAnswer }) => toValidPackageName(getProjectName(nameAnswer)),
+    initial: (_, { projectName: nameAnswer }) => {
+      const dir = nameAnswer ?? targetDir;
+
+      return toValidPackageName(getProjectName(dir));
+    },
     validate: (name: string) => {
       return isValidPackageName(name) || 'Invalid package.json name';
     },

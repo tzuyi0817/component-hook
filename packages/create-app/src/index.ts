@@ -110,9 +110,10 @@ async function createApp() {
   const targetDir = formatTargetDir(argv._[0]);
   const template = argv.t || argv.template;
   const result = await operationPrompts({ targetDir, template });
-  const packageName = result.packageName || getProjectName(result.projectName);
+  const projectName = result.projectName ?? targetDir;
+  const packageName = result.packageName || getProjectName(projectName);
   const framework = result.framework || template;
-  const root = path.join(cwd, result.projectName);
+  const root = path.join(cwd, projectName);
   const pkgManagerInfo = getPkgManagerInfo();
   const pkgManager = pkgManagerInfo?.name ?? 'npm';
   const spinner = ora();
