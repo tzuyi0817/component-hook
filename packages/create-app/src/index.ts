@@ -7,16 +7,22 @@ import { copy, ensureDirSync } from 'fs-extra/esm';
 import minimist from 'minimist';
 import ora from 'ora';
 import colors from 'picocolors';
-import { GITHUB_ACTIONS, GITLAB_CI } from './constants';
 import { operationPrompts } from './prompts';
-import { clearFolder, formatTargetDir, getPkgManagerInfo, getProjectName, toUpperCasePackageName } from './utils';
+import {
+  clearFolder,
+  formatTargetDir,
+  getCiArtContent,
+  getPkgManagerInfo,
+  getProjectName,
+  toUpperCasePackageName,
+} from './utils';
 
 interface MinimistParsedArgs {
   _: string[];
   t?: string;
   template?: string;
-  l?: boolean;
-  gitlab?: boolean;
+  c?: string;
+  ci?: string;
   h?: boolean;
   help?: boolean;
 }
@@ -24,7 +30,7 @@ interface MinimistParsedArgs {
 const cwd = process.cwd();
 
 const argv = minimist<MinimistParsedArgs>(process.argv.slice(2), {
-  default: { gitlab: false, help: false },
+  default: { help: false },
   alias: { t: 'template', l: 'gitlab', h: 'help' },
   string: ['_'],
 });
@@ -32,6 +38,12 @@ const argv = minimist<MinimistParsedArgs>(process.argv.slice(2), {
 const renameFiles: Record<string, string> = {
   _gitignore: '.gitignore',
   '_gitlab-ci.yml': '.gitlab-ci.yml',
+};
+
+const ciFilters: Record<string, string[]> = {
+  'github-actions': ['.gitlab', '_gitlab-ci.yml'],
+  'gitlab-ci': ['.github'],
+  none: ['.github', '.gitlab', '_gitlab-ci.yml'],
 };
 
 const helpMessage = `
@@ -42,7 +54,7 @@ With no arguments, start the CLI in interactive mode.
 
 Options:
   -t, --template [name]  Choose a framework template
-  -l, --gitlab  Use Gitlab CI/CD, default is Github CI/CD
+  -c, --ci [name]  Choose CI/CD (options: github-actions, gitlab-ci, none). Defaults to "none".
   -h, --help  Display this help message
 
 Available templates:
@@ -59,15 +71,10 @@ async function writePackageJson(root: string, dir: string, packageName: string) 
   return writeFile(targetPath, `${JSON.stringify(pkg, null, 2)}\n`);
 }
 
-async function copyFolder(root: string, dir: string, packageName: string) {
-  const isGitlab = argv.l || argv.gitlab;
+async function copyFolder(root: string, dir: string, packageName: string, ci: string) {
   const files = await readdir(dir);
-  const filterFiles = files.filter(file => {
-    const filterCi = isGitlab ? '.github' : '.gitlab';
-    const filterCiYml = isGitlab ? '' : '_gitlab-ci.yml';
-
-    return file !== 'package.json' && file !== filterCi && file !== filterCiYml;
-  });
+  const ignoreFiles = new Set(['package.json', ...(ciFilters[ci] || ciFilters.none)]);
+  const filterFiles = files.filter(file => !ignoreFiles.has(file));
 
   const rewriteOrCopyFile = (file: string): Promise<void> => {
     const targetPath = path.join(root, renameFiles?.[file] ?? file);
@@ -79,7 +86,7 @@ async function copyFolder(root: string, dir: string, packageName: string) {
       const replacedPath = targetPath.replace('.art', '');
       const renderedResult: string = artTemplate(templatePath, {
         projectName: name,
-        gitRepository: isGitlab ? GITLAB_CI : GITHUB_ACTIONS,
+        ciContent: getCiArtContent(ci),
       });
 
       ensureDirSync(path.dirname(replacedPath));
@@ -109,10 +116,12 @@ async function createApp() {
   }
   const targetDir = formatTargetDir(argv._[0]);
   const template = argv.t || argv.template;
-  const result = await operationPrompts({ targetDir, template });
+  const ci = argv.c || argv.ci;
+  const result = await operationPrompts({ targetDir, template, ci });
   const projectName = result.projectName ?? targetDir;
   const packageName = result.packageName || getProjectName(projectName);
   const framework = result.framework || template;
+  const ciName = result.ci || ci;
   const root = path.join(cwd, projectName);
   const pkgManagerInfo = getPkgManagerInfo();
   const pkgManager = pkgManagerInfo?.name ?? 'npm';
@@ -131,8 +140,8 @@ async function createApp() {
   const sharedDir = path.resolve(filePath, '../..', 'template-shared');
   const templateDir = path.resolve(filePath, '../..', `template-${framework}`);
   const copyPromises = Promise.all([
-    copyFolder(root, sharedDir, packageName),
-    copyFolder(root, templateDir, packageName),
+    copyFolder(root, sharedDir, packageName, ciName),
+    copyFolder(root, templateDir, packageName, ciName),
     writePackageJson(root, templateDir, packageName),
     new Promise(resolve => setTimeout(resolve, 300)),
   ]);
@@ -142,7 +151,7 @@ async function createApp() {
       const cdProjectName = path.relative(cwd, root);
       const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
 
-      spinner.succeed(`${colors.green('Scaffolded project in')} ${root}`);
+      spinner.succeed(`${colors.green('Scaffolded project in')} ${colors.yellow(root)}`);
       console.log(`\n${colors.green('Done. Now run:')}\n`);
       console.log(colors.cyan(`  cd ${formattedCdProjectName}`));
 

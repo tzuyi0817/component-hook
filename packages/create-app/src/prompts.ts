@@ -1,18 +1,23 @@
 import { existsSync } from 'node:fs';
 import colors from 'picocolors';
 import prompts, { type PromptObject } from 'prompts';
-import { DEFAULT_PROJECT_NAME, TEMPLATES } from './constants';
+import { CI, DEFAULT_PROJECT_NAME, TEMPLATES } from './constants';
 import { getProjectName, isEmptyFolder, isValidPackageName, toValidPackageName } from './utils';
 
 interface PromptsArgs {
   targetDir?: string;
   template?: string;
+  ci?: string;
 }
 
 type OverwriteAnswer = 'cancel' | 'overwrite' | 'ignore';
 
 function builtinTemplate(template?: string) {
   return template && TEMPLATES.includes(template);
+}
+
+export function checkCi(ci?: string) {
+  return ci && CI.includes(ci);
 }
 
 function onCancel() {
@@ -23,7 +28,7 @@ function styleTitle(title: string) {
   return colors.bold(colors.magenta(title));
 }
 
-export function operationPrompts({ targetDir, template }: PromptsArgs) {
+export function operationPrompts({ targetDir, template, ci }: PromptsArgs) {
   const projectName: PromptObject<'projectName'> = {
     type: targetDir ? null : 'text',
     name: 'projectName',
@@ -92,5 +97,19 @@ export function operationPrompts({ targetDir, template }: PromptsArgs) {
     ],
   };
 
-  return prompts([projectName, overwrite, overwriteChecker, packageName, framework], { onCancel });
+  const ciPrompt: PromptObject<'ci'> = {
+    type: checkCi(ci) ? null : 'select',
+    name: 'ci',
+    message: ci
+      ? styleTitle(`${colors.red(ci)} isn't a valid CI/CD. Please choose from below:`)
+      : styleTitle('Choose CI/CD:'),
+    choices: [
+      { title: 'GitHub Actions', value: 'github-actions' },
+      { title: 'GitLab CI', value: 'gitlab-ci' },
+      { title: 'None', value: 'none' },
+    ],
+    initial: 0,
+  };
+
+  return prompts([projectName, overwrite, overwriteChecker, packageName, framework, ciPrompt], { onCancel });
 }

@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { remove } from 'fs-extra/esm';
-import { DEFAULT_PROJECT_NAME } from './constants';
+import { DEFAULT_PROJECT_NAME, GITHUB_ACTIONS, GITLAB_CI } from './constants';
 
 export function formatTargetDir(targetDir?: string) {
   if (!targetDir) return targetDir;
@@ -65,4 +65,17 @@ export function clearFolder(dir: string) {
   const files = readdirSync(dir).filter(file => file !== '.git');
 
   return Promise.all(files.map(file => remove(path.resolve(dir, file))));
+}
+
+export function getCiArtContent(ci = '') {
+  const ciNameMap: Record<string, string> = {
+    'github-actions': GITHUB_ACTIONS,
+    'gitlab-ci': GITLAB_CI,
+  };
+
+  const ciName = ciNameMap[ci];
+
+  if (!ciName) return '';
+
+  return `- **CI/CD**: Integrates \`${ciName}\` for automated testing and deployment.`;
 }
