@@ -54,7 +54,7 @@ With no arguments, start the CLI in interactive mode.
 
 Options:
   -t, --template [name]  Choose a framework template
-  -c, --ci [name]  Choose CI/CD (options: github-actions, gitlab-ci, none). Defaults to "none".
+  -c, --ci [name]  Choose CI/CD (options: github-actions, gitlab-ci, none)
   -h, --help  Display this help message
 
 Available templates:

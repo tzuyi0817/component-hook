@@ -44,7 +44,6 @@
     "@vitejs/plugin-vue": "^6.0.3",
     "@vitest/coverage-v8": "^4.0.16",
     "@vue/tsconfig": "^0.8.1",
-    "autoprefixer": "^10.4.23",
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",
     "fast-glob": "^3.3.3",

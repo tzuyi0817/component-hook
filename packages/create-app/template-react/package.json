@@ -45,7 +45,6 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.2.2",
     "@vitest/coverage-v8": "^4.0.16",
-    "autoprefixer": "^10.4.23",
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",
     "fast-glob": "^3.3.3",

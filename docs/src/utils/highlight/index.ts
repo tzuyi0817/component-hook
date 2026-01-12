@@ -11,8 +11,8 @@ import 'prismjs/components/prism-tsx';
 export const md = markdownit({ highlight, html: true });
 
 md.use(linkPlugin)
-  .use(container, 'group', groupPlugin())
-  .use(container, 'tip', tipPlugin(md))
+  .use(container as any, 'group', groupPlugin())
+  .use(container as any, 'tip', tipPlugin(md))
   .use(fencePlugin)
   .use(tablePlugin);
 
