@@ -54,7 +54,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-de-morgan": "^2.0.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jsdoc": "^61.7.1",
+    "eslint-plugin-jsdoc": "^62.0.0",
     "eslint-plugin-jsonc": "^2.21.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-perfectionist": "^5.3.1",
