@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.1](https://github.com/tzuyi0817/component-hook/compare/v1.4.0...v1.4.1) (2026-01-12)
+
+### Features
+
+- **create-app:** add choose CI/CD prompt ([1dd895b](https://github.com/tzuyi0817/component-hook/commit/1dd895b2c66c118e073feadc860fa78159f1429f))
+
+### Bug Fixes
+
+- **create-app:** path argument received undefined ([d9016ae](https://github.com/tzuyi0817/component-hook/commit/d9016ae3094cbaf51925f5a8f305e1b20a2eb4f5))
+
 ## [1.4.0](https://github.com/tzuyi0817/component-hook/compare/v1.3.2...v1.4.0) (2026-01-09)
 
 ### Features

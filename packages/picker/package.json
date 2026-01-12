@@ -1,7 +1,7 @@
 {
   "name": "@component-hook/picker",
   "type": "module",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "packageManager": "pnpm@10.27.0",
   "description": "Picker component with vue3 and react",
   "author": "Tzuyi",
