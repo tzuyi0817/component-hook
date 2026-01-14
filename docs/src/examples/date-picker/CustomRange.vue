@@ -8,7 +8,7 @@ const currentDate = ref<number[]>([]);
 <template>
   <date-picker
     v-model="currentDate"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :min-date="new Date(2024, 0, 1)"
     :max-date="new Date(2026, 5, 1)"
   />

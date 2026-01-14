@@ -20,7 +20,7 @@ function onChange(values: Array<string | number>) {
   <picker
     :columns="columns"
     :columns-field-names="{ label: 'original', value: 'code' }"
-    class="max-w-[400px] rounded-lg"
+    class="max-w-100 rounded-lg"
     @change="onChange"
   />
 

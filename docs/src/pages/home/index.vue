@@ -8,8 +8,8 @@ import HomeFeature from './components/HomeFeature.vue';
   <div>
     <div class="px-6 py-12 lg:py-20">
       <section class="mb-12 lg:mb-20">
-        <div class="mx-auto flex flex-col-reverse items-center gap-3 lg:max-w-[1152px] lg:flex-row">
-          <div class="main text-center lg:max-w-[592px] lg:text-left">
+        <div class="mx-auto flex flex-col-reverse items-center gap-3 lg:max-w-6xl lg:flex-row">
+          <div class="main text-center lg:max-w-148 lg:text-left">
             <h1>
               <span class="name">Component Hook</span>
             </h1>
@@ -49,9 +49,7 @@ import HomeFeature from './components/HomeFeature.vue';
         </div>
       </section>
 
-      <section
-        class="mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-5 lg:flex-row lg:items-stretch"
-      >
+      <section class="mx-auto flex max-w-300 flex-col items-center justify-center gap-5 lg:flex-row lg:items-stretch">
         <home-feature
           title="Component"
           content="Use the code encapsulated by the front-end framework to help engineers develop quickly."

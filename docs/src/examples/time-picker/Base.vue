@@ -11,7 +11,7 @@ function onChange(value: number[]) {
 
 <template>
   <time-picker
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     @change="onChange"
   />
 

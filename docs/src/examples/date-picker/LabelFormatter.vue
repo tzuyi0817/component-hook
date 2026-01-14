@@ -23,7 +23,7 @@ const MONTHS_MAP: Record<string, string> = {
 <template>
   <date-picker
     v-model="currentDate"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :columns-type="['month', 'day', 'year']"
     :format-month-label="month => MONTHS_MAP[month]"
     :format-day-label="day => day.padStart(2, '0')"

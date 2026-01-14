@@ -54,7 +54,7 @@ function addText() {
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
+          class="absolute top-0 left-0 h-9 w-23.5 cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file

@@ -8,7 +8,7 @@ const currentTime = ref<number[]>([12, 50]);
 <template>
   <time-picker
     v-model="currentTime"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :columns-type="['hour', 'minute']"
   />
 

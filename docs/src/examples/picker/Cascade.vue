@@ -77,7 +77,7 @@ const columns = [
   <picker
     v-model="pickerValues"
     :columns="columns"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
   />
 
   <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>

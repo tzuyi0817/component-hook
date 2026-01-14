@@ -8,7 +8,7 @@ const currentTime = ref<number[]>([]);
 <template>
   <time-picker
     v-model="currentTime"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     min-time="12:20:30"
     max-time="16:30:48"
   />

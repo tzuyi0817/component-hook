@@ -13,7 +13,7 @@ function onChange(value: number[]) {
 <template>
   <picker
     :columns="columns"
-    class="max-w-[400px] rounded-lg"
+    class="max-w-100 rounded-lg"
     @change="onChange"
   />
 
