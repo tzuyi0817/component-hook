@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/tzuyi0817/component-hook/compare/v1.4.1...v1.4.2) (2026-01-14)
+
+### Features
+
+- **create-app:** update share template ([427c0d1](https://github.com/tzuyi0817/component-hook/commit/427c0d1e6c1455f187570baf1fe16b37d73545d3))
+- **eslint-plugin:** upgrade `eslint-plugin-jsdoc` to v62 ([15136c3](https://github.com/tzuyi0817/component-hook/commit/15136c3c05a4621e85045224fb0db92802434947))
+
 ## [1.4.1](https://github.com/tzuyi0817/component-hook/compare/v1.4.0...v1.4.1) (2026-01-12)
 
 ### Features
