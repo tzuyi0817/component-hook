@@ -1,4 +1,4 @@
-import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-CrfcgMAg.js";import{d as t,c as a,u as n,o}from"./index-g7SmSZCB.js";import"./index-C7GQlYE9.js";const s=`<script setup lang="ts">
+import{_ as e}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-DP1r9fU7.js";import{d as t,a,u as n,o}from"./index-BhhdwNbO.js";import"./index-DqaG_Ai9.js";const s=`<script setup lang="ts">
 import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
 import { ref } from 'vue';
 
@@ -35,7 +35,7 @@ async function uploadFile(event: Event) {
       <input
         type="file"
         accept="application/pdf, .jpg, .png"
-        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-23.5 cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
@@ -127,7 +127,7 @@ function dragText(event: DragEvent) {
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
+          class="absolute top-0 left-0 h-9 w-23.5 cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file
@@ -202,7 +202,7 @@ function submitPassword() {
       <input
         type="file"
         accept="application/pdf"
-        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-23.5 cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
@@ -301,7 +301,7 @@ function addText() {
         <input
           type="file"
           accept="application/pdf, .jpg, .png"
-          class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
+          class="absolute top-0 left-0 h-9 w-23.5 cursor-pointer opacity-0"
           @change="uploadFile"
         />
         select file
@@ -367,7 +367,7 @@ async function uploadFile(event: Event) {
       <input
         type="file"
         accept="application/pdf"
-        class="absolute top-0 left-0 h-9 w-[94px] cursor-pointer opacity-0"
+        class="absolute top-0 left-0 h-9 w-23.5 cursor-pointer opacity-0"
         @change="uploadFile"
       />
       select file
@@ -381,4 +381,4 @@ async function uploadFile(event: Event) {
     </div>
   </div>
 </template>
-`,p="#### Events\n\n| Event            | Description                                    | Type                                                    |\n| :--------------- | :--------------------------------------------- | :------------------------------------------------------ |\n| loaded           | Callback when the canvas rendering is complete | `Function () => void`                                   |\n| reload           | Callback when the canvas reload                | `Function () => void`                                   |\n| pointerDown      | Triggered when pointer down the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerMove      | Triggered when pointer move the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerUp        | Triggered when pointer up the canvas           | `Function (event: FabricPointerEvent) => void`          |\n| selectionCreated | Triggered when selection the fabric            | `Function (event: FabricSelectionCreatedEvent) => void` |\n| selectionCleared | Triggered when clear selection the fabric      | `Function (event: FabricSelectionClearedEvent) => void` |\n",P=t({__name:"VuePdfCanvas",setup(f){return(d,u)=>(o(),a(e,{"front-end-frame":"vue3","draw-source":n(s),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(r),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(i),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(l),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(c),"manual-playground":"669646c68ae98c93b96a2eb2","event-md":n(p)},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source","event-md"]))}});export{P as default};
+`,f="#### Events\n\n| Event            | Description                                    | Type                                                    |\n| :--------------- | :--------------------------------------------- | :------------------------------------------------------ |\n| loaded           | Callback when the canvas rendering is complete | `Function () => void`                                   |\n| reload           | Callback when the canvas reload                | `Function () => void`                                   |\n| pointerDown      | Triggered when pointer down the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerMove      | Triggered when pointer move the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| pointerUp        | Triggered when pointer up the canvas           | `Function (event: FabricPointerEvent) => void`          |\n| selectionCreated | Triggered when selection the fabric            | `Function (event: FabricSelectionCreatedEvent) => void` |\n| selectionCleared | Triggered when clear selection the fabric      | `Function (event: FabricSelectionClearedEvent) => void` |\n",P=t({__name:"VuePdfCanvas",setup(p){return(d,u)=>(o(),a(e,{"front-end-frame":"vue3","draw-source":n(s),"draw-playground":"668e33253e8416c068f2f93b","encrypted-source":n(r),"encrypted-playground":"66963e7d2b23250eadd65180","multiple-source":n(i),"multiple-playground":"669646038ae98c93b96a2e78","drop-source":n(l),"drop-playground":"6696466d8ae98c93b96a2e9b","manual-source":n(c),"manual-playground":"669646c68ae98c93b96a2eb2","event-md":n(f)},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source","event-md"]))}});export{P as default};

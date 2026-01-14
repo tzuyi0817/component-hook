@@ -1,4 +1,4 @@
-import"./installation-CVrBMHPW.js";import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-BiMu2pgf.js";import{d as l,c as o,u as e,o as a}from"./index-g7SmSZCB.js";import"./index-C7GQlYE9.js";const c=`<script setup lang="ts">
+import"./installation-D8-vF8SP.js";import{_ as n}from"./ComponentPicker.vue_vue_type_script_setup_true_lang-B2g6K_Sn.js";import{d as l,a as o,u as e,o as a}from"./index-BhhdwNbO.js";import"./index-DqaG_Ai9.js";const c=`<script setup lang="ts">
 import { Picker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -13,7 +13,7 @@ function onChange(value: number[]) {
 <template>
   <picker
     :columns="columns"
-    class="max-w-[400px] rounded-lg"
+    class="max-w-100 rounded-lg"
     @change="onChange"
   />
 
@@ -31,7 +31,7 @@ const columns = Array.from({ length: 50 }, (_, index) => ({ label: index, value:
   <picker
     v-model="pickerValues"
     :columns="columns"
-    class="max-w-[400px] rounded-lg"
+    class="max-w-100 rounded-lg"
   />
 
   <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join('') || 'not selected yet' }}</p>
@@ -115,7 +115,7 @@ const columns = [
   <picker
     v-model="pickerValues"
     :columns="columns"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
   />
 
   <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>
@@ -142,7 +142,7 @@ function onChange(values: Array<string | number>) {
   <picker
     :columns="columns"
     :columns-field-names="{ label: 'original', value: 'code' }"
-    class="max-w-[400px] rounded-lg"
+    class="max-w-100 rounded-lg"
     @change="onChange"
   />
 
@@ -162,7 +162,7 @@ const columns = Array.from({ length: 2 }, () =>
   <picker
     v-model="pickerValues"
     :columns="columns"
-    class="max-w-[400px] rounded-lg"
+    class="max-w-100 rounded-lg"
   />
 
   <p class="mt-6 font-mono text-sm">Selected value: {{ pickerValues.join(' / ') || 'not selected yet' }}</p>

@@ -1,4 +1,4 @@
-import"./installation-CVrBMHPW.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-CGjwhASI.js";import{d as t,c as r,u as e,o}from"./index-g7SmSZCB.js";import"./index-C7GQlYE9.js";const m=`<script setup lang="ts">
+import"./installation-D8-vF8SP.js";import{_ as n}from"./ComponentTimePicker.vue_vue_type_script_setup_true_lang-CDKP62-w.js";import{d as t,a as r,u as e,o}from"./index-BhhdwNbO.js";import"./index-DqaG_Ai9.js";const m=`<script setup lang="ts">
 import { TimePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -11,7 +11,7 @@ function onChange(value: number[]) {
 
 <template>
   <time-picker
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     @change="onChange"
   />
 
@@ -27,7 +27,7 @@ const currentTime = ref<number[]>([12, 50]);
 <template>
   <time-picker
     v-model="currentTime"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :columns-type="['hour', 'minute']"
   />
 
@@ -43,7 +43,7 @@ const currentTime = ref<number[]>([]);
 <template>
   <time-picker
     v-model="currentTime"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     min-time="12:20:30"
     max-time="16:30:48"
   />
@@ -87,7 +87,7 @@ const HOURS_MAP: Record<string, string> = {
 <template>
   <time-picker
     v-model="currentTime"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :format-hour-label="hour => HOURS_MAP[hour]"
   />
 

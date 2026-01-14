@@ -1,4 +1,4 @@
-import"./installation-CVrBMHPW.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-D5f1_UPZ.js";import{d as t,c as a,u as e,o as r}from"./index-g7SmSZCB.js";import"./index-C7GQlYE9.js";const o=`<script setup lang="ts">
+import"./installation-D8-vF8SP.js";import{_ as n}from"./ComponentDatePicker.vue_vue_type_script_setup_true_lang-BDPuyfYk.js";import{d as t,a,u as e,o as r}from"./index-BhhdwNbO.js";import"./index-DqaG_Ai9.js";const o=`<script setup lang="ts">
 import { DatePicker } from '@component-hook/picker/vue';
 import { ref } from 'vue';
 
@@ -11,7 +11,7 @@ function onChange(value: number[]) {
 
 <template>
   <date-picker
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     @change="onChange"
   />
 
@@ -27,7 +27,7 @@ const currentDate = ref<number[]>([2030, 8]);
 <template>
   <date-picker
     v-model="currentDate"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :columns-type="['year', 'month']"
   />
 
@@ -43,7 +43,7 @@ const currentDate = ref<number[]>([]);
 <template>
   <date-picker
     v-model="currentDate"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :min-date="new Date(2024, 0, 1)"
     :max-date="new Date(2026, 5, 1)"
   />
@@ -75,7 +75,7 @@ const MONTHS_MAP: Record<string, string> = {
 <template>
   <date-picker
     v-model="currentDate"
-    class="max-w-[500px] rounded-lg"
+    class="max-w-125 rounded-lg"
     :columns-type="['month', 'day', 'year']"
     :format-month-label="month => MONTHS_MAP[month]"
     :format-day-label="day => day.padStart(2, '0')"

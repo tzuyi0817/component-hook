@@ -1,4 +1,4 @@
-import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-CrfcgMAg.js";import{d as n,c as a,u as e,o}from"./index-g7SmSZCB.js";import"./index-C7GQlYE9.js";const r=`import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
+import{_ as t}from"./ComponentPdfCanvas.vue_vue_type_script_setup_true_lang-DP1r9fU7.js";import{d as n,a,u as e,o}from"./index-BhhdwNbO.js";import"./index-DqaG_Ai9.js";const r=`import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 import { useState, type ChangeEvent } from 'react';
 
 export function DrawPdf() {
@@ -252,7 +252,7 @@ export function EncryptedPdf() {
     </div>
   );
 }
-`,c=`import PdfCanvas, { loadFile, type PDF, type PdfCanvasHandle } from '@component-hook/pdf-canvas/react';
+`,i=`import PdfCanvas, { loadFile, type PDF, type PdfCanvasHandle } from '@component-hook/pdf-canvas/react';
 import { useRef, useState, type ChangeEvent } from 'react';
 
 export function ManualPdf() {
@@ -315,7 +315,7 @@ export function ManualPdf() {
     </div>
   );
 }
-`,i=`import { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
+`,c=`import { loadFile, type PDF } from '@component-hook/pdf-canvas/react';
 import { lazy, Suspense, useState, type ChangeEvent } from 'react';
 
 const PdfCanvas = lazy(() => import('@component-hook/pdf-canvas/react'));
@@ -376,4 +376,4 @@ export function MultiplePdf() {
     </div>
   );
 }
-`,d="#### Events\n\n| Event              | Description                                    | Type                                                    |\n| :----------------- | :--------------------------------------------- | :------------------------------------------------------ |\n| onLoaded           | Callback when the canvas rendering is complete | `Function () => void`                                   |\n| onReload           | Callback when the canvas reload                | `Function () => void`                                   |\n| onPointerDown      | Triggered when pointer down the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| onPointerMove      | Triggered when pointer move the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| onPointerUp        | Triggered when pointer up the canvas           | `Function (event: FabricPointerEvent) => void`          |\n| onSelectionCreated | Triggered when selection the fabric            | `Function (event: FabricSelectionCreatedEvent) => void` |\n| onSelectionCleared | Triggered when clear selection the fabric      | `Function (event: FabricSelectionClearedEvent) => void` |\n",m=n({__name:"ReactPdfCanvas",setup(f){return(p,u)=>(o(),a(t,{"front-end-frame":"react","draw-source":e(r),"draw-playground":"675f9a7a08325367664ebf7a","encrypted-source":e(l),"encrypted-playground":"675f9e9b4b3b90d00991becc","multiple-source":e(i),"multiple-playground":"675fbbb198c7cde44e724bae","drop-source":e(s),"drop-playground":"675fbf06bf0c4e6c39359d60","manual-source":e(c),"manual-playground":"675fbfdcbf0c4e6c39359d7d",language:"tsx","event-md":e(d)},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source","event-md"]))}});export{m as default};
+`,d="#### Events\n\n| Event              | Description                                    | Type                                                    |\n| :----------------- | :--------------------------------------------- | :------------------------------------------------------ |\n| onLoaded           | Callback when the canvas rendering is complete | `Function () => void`                                   |\n| onReload           | Callback when the canvas reload                | `Function () => void`                                   |\n| onPointerDown      | Triggered when pointer down the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| onPointerMove      | Triggered when pointer move the canvas         | `Function (event: FabricPointerEvent) => void`          |\n| onPointerUp        | Triggered when pointer up the canvas           | `Function (event: FabricPointerEvent) => void`          |\n| onSelectionCreated | Triggered when selection the fabric            | `Function (event: FabricSelectionCreatedEvent) => void` |\n| onSelectionCleared | Triggered when clear selection the fabric      | `Function (event: FabricSelectionClearedEvent) => void` |\n",m=n({__name:"ReactPdfCanvas",setup(f){return(p,u)=>(o(),a(t,{"front-end-frame":"react","draw-source":e(r),"draw-playground":"675f9a7a08325367664ebf7a","encrypted-source":e(l),"encrypted-playground":"675f9e9b4b3b90d00991becc","multiple-source":e(c),"multiple-playground":"675fbbb198c7cde44e724bae","drop-source":e(s),"drop-playground":"675fbf06bf0c4e6c39359d60","manual-source":e(i),"manual-playground":"675fbfdcbf0c4e6c39359d7d",language:"tsx","event-md":e(d)},null,8,["draw-source","encrypted-source","multiple-source","drop-source","manual-source","event-md"]))}});export{m as default};
