@@ -2,7 +2,7 @@
   "name": "@component-hook/create-app",
   "type": "module",
   "version": "1.4.2",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.0",
   "description": "Scaffolding a basic typescript project",
   "author": "Tzuyi",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "template-*"
   ],
   "engines": {
-    "node": ">=20.19.6"
+    "node": ">=20.20.0"
   },
   "scripts": {
     "dev": "tsdown --watch",
