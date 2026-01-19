@@ -1,24 +1,21 @@
-import { YAML } from '../constants';
-import { parserYaml, pluginYaml } from '../plugins';
+import { pluginYaml } from '../plugins';
 import type { YamlRules } from '../typegen/yaml';
 import type { Config } from '../types';
-import type { Linter } from 'eslint';
+
+const initialRules: Config<YamlRules> = {
+  rules: {
+    'yml/no-empty-mapping-value': 'off',
+  },
+};
+const configs = Array.from(new Set([...pluginYaml.configs.standard, ...pluginYaml.configs.prettier, initialRules]));
+const mergedConfig: Config<YamlRules> = configs.reduce((map, config) => {
+  return { ...map, ...config, rules: { ...map.rules, ...config.rules } };
+}, {});
 
 export const yamlConfigs: Config<YamlRules>[] = [
   {
+    ...mergedConfig,
     name: 'component-hook/yaml',
-    files: [YAML],
-    plugins: {
-      yml: pluginYaml,
-    },
-    languageOptions: {
-      parser: parserYaml,
-    },
-    rules: {
-      ...(pluginYaml.configs.standard.rules as Linter.RulesRecord),
-      ...(pluginYaml.configs.prettier.rules as Linter.RulesRecord),
-      'yml/no-empty-mapping-value': 'off',
-    },
   },
   {
     name: 'component-hook/yaml/pnpm-workspace',
