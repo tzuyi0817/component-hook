@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "fabric": "^6.9.1",
-    "pdfjs-dist": "4.10.38"
+    "pdfjs-dist": "5.4.624"
   },
   "devDependencies": {
     "vite-plugin-dts": "catalog:"
