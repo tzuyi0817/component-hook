@@ -7,46 +7,22 @@ on:
       - 'docs/src/**'
       - docs/package.json
       - pnpm-lock.yaml
-  workflow_dispatch:
 
 jobs:
-  CI:
-    uses: ./.github/workflows/ci.yml
+  unit-test:
+    uses: tzuyi0817/workflows/.github/workflows/test.yml@v1
+    with:
+      test: pnpm test:unit
 
-  build:
-    needs: CI
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - name: setup environment
-        uses: tzuyi0817/coding-standards/.github/actions/setup-environment@main
+  deploy-docs:
+    needs: unit-test
+    uses: tzuyi0817/workflows/.github/workflows/deploy-github-pages.yml@v1
+    with:
+      build: pnpm prepack && pnpm build
+      production-files: ./docs/dist
+      release-branch: master
 
-      - name: prepack packages
-        run: pnpm prepack
-
-      - name: build project
-        run: pnpm build
-
-      - name: upload production-ready build files
-        uses: actions/upload-artifact@v6
-        with:
-          name: production-files
-          path: ./docs/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-
-    steps:
-      - name: download artifact
-        uses: actions/download-artifact@v7
-        with:
-          name: production-files
-          path: ./docs/dist
-
-      - name: deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/dist
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

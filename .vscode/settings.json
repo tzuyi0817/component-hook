@@ -19,7 +19,7 @@
   },
 
   "cSpell.words": [
-    "VITE",
+    "vite",
     "pinia",
     "typecheck",
     "sonarjs",
@@ -28,6 +28,7 @@
     "markdownit",
     "noopener",
     "noreferrer",
-    "describedby"
+    "describedby",
+    "tzuyi"
   ]
 }
