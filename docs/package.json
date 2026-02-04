@@ -15,7 +15,7 @@
     "@component-hook/picker": "workspace:*",
     "uuid": "^13.0.0",
     "vue": "catalog:",
-    "vue-router": "^4.6.4"
+    "vue-router": "^5.0.2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
