@@ -29,13 +29,13 @@
   "exports": {
     "./vue": {
       "types": "./dist/vue/pdf-canvas.es.d.ts",
-      "require": "./dist/vue/pdf-canvas.umd.js",
-      "import": "./dist/vue/pdf-canvas.es.js"
+      "import": "./dist/vue/pdf-canvas.es.js",
+      "require": "./dist/vue/pdf-canvas.umd.js"
     },
     "./react": {
       "types": "./dist/react/pdf-canvas.es.d.ts",
-      "require": "./dist/react/pdf-canvas.umd.js",
-      "import": "./dist/react/pdf-canvas.es.js"
+      "import": "./dist/react/pdf-canvas.es.js",
+      "require": "./dist/react/pdf-canvas.umd.js"
     }
   },
   "files": [

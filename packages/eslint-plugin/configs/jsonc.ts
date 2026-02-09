@@ -90,7 +90,7 @@ export const jsoncConfigs: Config<JsoncRules>[] = [
           pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',
         },
         {
-          order: ['types', 'require', 'import', 'default'],
+          order: ['types', 'import', 'require', 'default'],
           pathPattern: '^exports.*$',
         },
         {

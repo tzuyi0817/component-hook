@@ -29,13 +29,13 @@
   "exports": {
     "./vue": {
       "types": "./dist/vue/picker.es.d.ts",
-      "require": "./dist/vue/picker.umd.js",
-      "import": "./dist/vue/picker.es.js"
+      "import": "./dist/vue/picker.es.js",
+      "require": "./dist/vue/picker.umd.js"
     },
     "./react": {
       "types": "./dist/react/picker.es.d.ts",
-      "require": "./dist/react/picker.umd.js",
-      "import": "./dist/react/picker.es.js"
+      "import": "./dist/react/picker.es.js",
+      "require": "./dist/react/picker.umd.js"
     }
   },
   "files": [
