@@ -45,7 +45,7 @@
     "@vitest/coverage-v8": "^4.0.18",
     "@vue/tsconfig": "^0.8.1",
     "cssnano": "^7.1.2",
-    "eslint": "^9.39.2",
+    "eslint": "^10.0.0",
     "fast-glob": "^3.3.3",
     "jsdom": "^27.4.0",
     "msw": "^2.12.10",
