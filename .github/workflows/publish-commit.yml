@@ -1,0 +1,17 @@
+name: Publish Packages Commit
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'packages/**'
+
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  release:
+    uses: tzuyi0817/workflows/.github/workflows/publish-commit.yml@v1
+    with:
+      build: pnpm prepack
+      compact: true
