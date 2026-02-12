@@ -1,6 +1,6 @@
 import { VUE } from '../constants';
 import { pluginVue, typescriptEslint, vueParser } from '../plugins';
-import { rules as pluginTypescriptRules } from './typescript';
+import { typescriptCoreConfig } from './typescript';
 import type { VueRules } from '../typegen/vue';
 import type { Config } from '../types';
 
@@ -48,41 +48,18 @@ const rules = {
   'vue/require-prop-types': 'off',
   'vue/no-setup-props-reactivity-loss': 'off',
   'vue/return-in-computed-property': ['error', { treatUndefinedAsUnspecified: false }],
-};
+} satisfies VueRules;
 
-const extendsTypescript = typescriptEslint.configs.recommended
-  .filter(({ name }) => name !== 'typescript-eslint/base')
-  .map(config => ({ ...config, name: `component-hook/vue/${config.name}` }));
-
-const eslintConfigTypescript = typescriptEslint.config({
-  extends: extendsTypescript,
-  files: [VUE],
-  name: 'component-hook/vue/typescript',
-  rules: pluginTypescriptRules,
-});
+const eslintVueTypescript = typescriptCoreConfig
+  .filter(({ name }) => name !== 'component-hook/typescript > typescript-eslint/base')
+  .map(config => ({
+    ...config,
+    files: [VUE],
+    name: `component-hook/vue/${config.name?.replace('component-hook/', '')}`,
+  }));
 
 export const vueConfigs = [
-  ...eslintConfigTypescript,
-  {
-    name: 'component-hook/vue/globals',
-    files: [VUE],
-    languageOptions: {
-      globals: {
-        defineProps: 'readonly',
-        defineEmits: 'readonly',
-        defineExpose: 'readonly',
-        defineModel: 'readonly',
-        withDefaults: 'readonly',
-        $: 'readonly',
-        $$: 'readonly',
-        $computed: 'readonly',
-        $customRef: 'readonly',
-        $ref: 'readonly',
-        $shallowRef: 'readonly',
-        $toRef: 'readonly',
-      },
-    },
-  },
+  ...eslintVueTypescript,
   {
     name: 'component-hook/vue',
     files: [VUE],
@@ -93,7 +70,7 @@ export const vueConfigs = [
     languageOptions: {
       parser: vueParser,
       parserOptions: {
-        parser: '@typescript-eslint/parser',
+        parser: typescriptEslint.parser,
         extraFileExtensions: ['.vue'],
         sourceType: 'module',
         ecmaFeatures: {
@@ -104,6 +81,7 @@ export const vueConfigs = [
     processor: pluginVue.processors['.vue'],
     rules: {
       ...recommendedRules,
+      'no-useless-assignment': 'off',
       ...rules,
     },
   },

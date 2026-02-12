@@ -1,7 +1,7 @@
 import {
-  Canvas,
   FabricImage,
   FabricText,
+  type Canvas,
   type FabricObject,
   type FabricObjectProps,
   type ImageProps,
