@@ -1,0 +1,17 @@
+name: Release Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    uses: tzuyi0817/workflows/.github/workflows/release.yml@v1
+    with:
+      publish: true
+      build: pnpm prepack
+
+    permissions:
+      contents: write
+      id-token: write
