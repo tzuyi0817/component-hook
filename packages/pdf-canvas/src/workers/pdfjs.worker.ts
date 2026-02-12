@@ -2,8 +2,6 @@ import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 import { fileToArrayBuffer } from '../shared/utils/file';
 import type { SpecifyPageArgs } from '../shared/types/fabric';
 
-declare const globalThis: DedicatedWorkerGlobalScope;
-
 interface WorkerMessageEvent {
   data: SpecifyPageArgs & { data: Blob; id?: string; units: number };
 }

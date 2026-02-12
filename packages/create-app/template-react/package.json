@@ -46,7 +46,7 @@
     "@vitejs/plugin-react-swc": "^4.2.3",
     "@vitest/coverage-v8": "^4.0.18",
     "cssnano": "^7.1.2",
-    "eslint": "^10.0.0",
+    "eslint": "^9.39.2",
     "fast-glob": "^3.3.3",
     "jsdom": "^27.4.0",
     "msw": "^2.12.10",

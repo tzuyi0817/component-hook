@@ -168,7 +168,7 @@ type PerfectionistSortArrayIncludes = {
         flags?: string
       } | string))
       
-      selector?: ("literal" | "spread")
+      selector?: "literal"
     }, ...({
       
       elementNamePattern?: (({
@@ -183,7 +183,7 @@ type PerfectionistSortArrayIncludes = {
         flags?: string
       } | string))
       
-      selector?: ("literal" | "spread")
+      selector?: "literal"
     })[]]
   } | {
     
@@ -213,7 +213,7 @@ type PerfectionistSortArrayIncludes = {
       flags?: string
     } | string))
     
-    selector?: ("literal" | "spread")
+    selector?: "literal"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
   
@@ -491,6 +491,8 @@ type PerfectionistSortClasses = []|[{
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useExperimentalDependencyDetection?: boolean
   
   ignoreCallbackDependenciesPatterns?: (({
     
@@ -861,6 +863,8 @@ type PerfectionistSortEnums = []|[{
   newlinesBetween?: ("ignore" | number)
   
   sortByValue?: ("always" | "ifNumericEnum" | "never")
+  
+  useExperimentalDependencyDetection?: boolean
   
   partitionByComment?: (boolean | (({
     
@@ -1680,6 +1684,8 @@ type PerfectionistSortImports = {
   sortSideEffects?: boolean
   
   environment?: ("node" | "bun")
+  
+  useExperimentalDependencyDetection?: boolean
   
   partitionByComment?: (boolean | (({
     
@@ -2676,6 +2682,8 @@ type PerfectionistSortModules = []|[{
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  useExperimentalDependencyDetection?: boolean
+  
   partitionByComment?: (boolean | (({
     
     pattern: string
@@ -3317,6 +3325,7 @@ type PerfectionistSortObjects = {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     
     order?: ("asc" | "desc")
+    sortBy?: ("name" | "value")
   }
   
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
@@ -3330,6 +3339,7 @@ type PerfectionistSortObjects = {
   locales?: (string | string[])
   
   order?: ("asc" | "desc")
+  sortBy?: ("name" | "value")
   
   customGroups?: ({
     
@@ -3338,6 +3348,7 @@ type PerfectionistSortObjects = {
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
       
       order?: ("asc" | "desc")
+      sortBy?: ("name" | "value")
     }
     
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
@@ -3346,6 +3357,7 @@ type PerfectionistSortObjects = {
     newlinesInside?: ("ignore" | number)
     
     order?: ("asc" | "desc")
+    sortBy?: ("name" | "value")
     
     anyOf: [{
       
@@ -3413,6 +3425,7 @@ type PerfectionistSortObjects = {
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
       
       order?: ("asc" | "desc")
+      sortBy?: ("name" | "value")
     }
     
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
@@ -3421,6 +3434,7 @@ type PerfectionistSortObjects = {
     newlinesInside?: ("ignore" | number)
     
     order?: ("asc" | "desc")
+    sortBy?: ("name" | "value")
     
     elementNamePattern?: (({
       
@@ -3462,6 +3476,7 @@ type PerfectionistSortObjects = {
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
       
       order?: ("asc" | "desc")
+      sortBy?: ("name" | "value")
     }
     
     commentAbove?: string
@@ -3470,6 +3485,7 @@ type PerfectionistSortObjects = {
     newlinesInside?: ("ignore" | number)
     
     order?: ("asc" | "desc")
+    sortBy?: ("name" | "value")
   })[]
   newlinesBetween?: ("ignore" | number)
   
@@ -3535,6 +3551,8 @@ type PerfectionistSortObjects = {
   }
   
   styledComponents?: boolean
+  
+  useExperimentalDependencyDetection?: boolean
   
   partitionByComment?: (boolean | (({
     
@@ -3627,7 +3645,7 @@ type PerfectionistSortSets = {
         flags?: string
       } | string))
       
-      selector?: ("literal" | "spread")
+      selector?: "literal"
     }, ...({
       
       elementNamePattern?: (({
@@ -3642,7 +3660,7 @@ type PerfectionistSortSets = {
         flags?: string
       } | string))
       
-      selector?: ("literal" | "spread")
+      selector?: "literal"
     })[]]
   } | {
     
@@ -3672,7 +3690,7 @@ type PerfectionistSortSets = {
       flags?: string
     } | string))
     
-    selector?: ("literal" | "spread")
+    selector?: "literal"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
   
@@ -4055,6 +4073,8 @@ type PerfectionistSortVariableDeclarations = []|[{
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useExperimentalDependencyDetection?: boolean
   
   partitionByComment?: (boolean | (({
     

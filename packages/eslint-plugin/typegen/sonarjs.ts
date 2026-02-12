@@ -84,7 +84,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-iam-public-access'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted Elasticsearch domains is security-sensitive
+   * Using unencrypted Opensearch domains is security-sensitive
    * @see https://sonarsource.github.io/rspec/#/rspec/S6308/javascript
    */
   'sonarjs/aws-opensearchservice-domain'?: Linter.RuleEntry<[]>
@@ -304,6 +304,11 @@ export interface SonarjsRules {
    */
   'sonarjs/duplicates-in-character-class'?: Linter.RuleEntry<[]>
   /**
+   * Templates should not be constructed dynamically
+   * @see https://sonarsource.github.io/rspec/#/rspec/S7790/javascript
+   */
+  'sonarjs/dynamically-constructed-templates'?: Linter.RuleEntry<[]>
+  /**
    * "if ... else if" constructs should end with "else" clauses
    * @see https://sonarsource.github.io/rspec/#/rspec/S126/javascript
    */
@@ -405,6 +410,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S3531/javascript
    */
   'sonarjs/generator-without-yield'?: Linter.RuleEntry<[]>
+  /**
+   * Credentials should not be hard-coded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6437/javascript
+   */
+  'sonarjs/hardcoded-secret-signatures'?: Linter.RuleEntry<[]>
   /**
    * Using weak hashing algorithms is security-sensitive
    * @see https://sonarsource.github.io/rspec/#/rspec/S4790/javascript
@@ -676,12 +686,12 @@ export interface SonarjsRules {
    */
   'sonarjs/no-hardcoded-ip'?: Linter.RuleEntry<[]>
   /**
-   * Hard-coded passwords are security-sensitive
+   * Credentials should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S2068/javascript
    */
   'sonarjs/no-hardcoded-passwords'?: Linter.RuleEntry<SonarjsNoHardcodedPasswords>
   /**
-   * Hard-coded secrets are security-sensitive
+   * Secrets should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S6418/javascript
    */
   'sonarjs/no-hardcoded-secrets'?: Linter.RuleEntry<SonarjsNoHardcodedSecrets>
@@ -1170,6 +1180,11 @@ export interface SonarjsRules {
    * @deprecated
    */
   'sonarjs/regular-expr'?: Linter.RuleEntry<[]>
+  /**
+   * Wallet phrases should not be hard-coded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S7639/javascript
+   */
+  'sonarjs/review-blockchain-mnemonic'?: Linter.RuleEntry<[]>
   /**
    * A new session should be created during user authentication
    * @see https://sonarsource.github.io/rspec/#/rspec/S5876/javascript

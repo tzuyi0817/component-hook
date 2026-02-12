@@ -29,8 +29,6 @@ export const markdownConfigs: Config<MarkdownRules>[] = [
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-use-before-define': 'off',
 
-      'import/no-default-export': 'off',
-
       'sonarjs/no-dead-store': 'off',
       'sonarjs/unused-import': 'off',
       'sonarjs/no-unused-vars': 'off',

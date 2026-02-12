@@ -265,6 +265,7 @@ export interface PlaywrightRules {
   'playwright/valid-expect-in-promise'?: Linter.RuleEntry<[]>
   /**
    * Enforce valid tag format in Playwright test blocks and titles
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/valid-test-tags.md
    */
   'playwright/valid-test-tags'?: Linter.RuleEntry<PlaywrightValidTestTags>
   /**
