@@ -1,4 +1,5 @@
 import { defineConfig } from 'eslint/config';
+import { RESTRICTED_SYNTAX } from '../constants';
 import { typescriptEslint } from '../plugins';
 import type { TypescriptRules } from '../typegen/typescript';
 import type { Config } from '../types';
@@ -40,7 +41,7 @@ export const typescriptCoreConfig = defineConfig({
     '@typescript-eslint/no-import-type-side-effects': 'error',
     '@typescript-eslint/no-redeclare': 'error',
 
-    'no-restricted-syntax': ['error', 'TSEnumDeclaration[const=true]'],
+    'no-restricted-syntax': ['error', 'TSEnumDeclaration[const=true]', ...RESTRICTED_SYNTAX],
   } satisfies TypescriptRules & Linter.RulesRecord,
 });
 

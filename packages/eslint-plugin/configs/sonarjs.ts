@@ -1,4 +1,4 @@
-import { pluginSonarjs } from '../plugins';
+import { pluginSonarjs, type SonarjsConfigs } from '../plugins';
 import type { SonarjsRules } from '../typegen/sonarjs';
 import type { Config } from '../types';
 
@@ -6,14 +6,16 @@ const plugins = {
   sonarjs: pluginSonarjs,
 };
 
-const { settings } = pluginSonarjs.configs.recommended;
+const recommended: SonarjsConfigs['recommended'] = pluginSonarjs.configs?.recommended;
+
+const { settings } = recommended;
 
 export const sonarjsConfigs: Config<SonarjsRules>[] = [
   {
     name: 'component-hook/sonarjs',
     plugins,
     rules: {
-      ...pluginSonarjs.configs.recommended.rules,
+      ...recommended.rules,
       'sonarjs/no-commented-code': 'warn',
     },
     settings,
