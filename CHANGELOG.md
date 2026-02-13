@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.3](https://github.com/tzuyi0817/component-hook/compare/v1.4.2...v1.4.3) (2026-02-13)
+
+### Features
+
+- **eslint-plugin:** adjust ts rules ([3189623](https://github.com/tzuyi0817/component-hook/commit/31896232b6c062586a11e4ab46afaf072f7ea878))
+- **eslint-plugin:** add restricted syntax ([6ebf527](https://github.com/tzuyi0817/component-hook/commit/6ebf52785532c095c46f1931d20f62d81b4659c0))
+
+### Bug Fixes
+
+- **eslint-plugin:** jsonc exports sort order move `import` condition before `require` ([55a97f1](https://github.com/tzuyi0817/component-hook/commit/55a97f187fb6eea105e963d635cdfeaaf369aff6))
+
 ## [1.4.2](https://github.com/tzuyi0817/component-hook/compare/v1.4.1...v1.4.2) (2026-01-14)
 
 ### Features

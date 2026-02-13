@@ -1,7 +1,7 @@
 {
   "name": "@component-hook/pdf-canvas",
   "type": "module",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "packageManager": "pnpm@10.29.2",
   "description": "Rendering PDF documents onto a canvas with vue3 and react component",
   "author": "Tzuyi",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tzuyi0817/component-hook.git",
+    "url": "git+https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/pdf-canvas"
   },
   "bugs": {
