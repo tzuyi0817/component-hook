@@ -2,7 +2,7 @@
   "name": "component-hook",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.29.2",
+  "packageManager": "pnpm@10.30.1",
   "license": "MIT",
   "engines": {
     "node": ">=20.19.6"
@@ -29,8 +29,8 @@
     "vue": "catalog:"
   },
   "optionalDependencies": {
-    "@commitlint/cli": "^20.4.1",
-    "@commitlint/config-conventional": "^20.4.1",
+    "@commitlint/cli": "^20.4.2",
+    "@commitlint/config-conventional": "^20.4.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7"
   },
@@ -41,7 +41,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@testing-library/vue": "^8.1.0",
     "@types/node": "^22.19.11",
-    "@types/react": "^19.2.13",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
     "@vitejs/plugin-vue": "^6.0.4",
@@ -53,10 +53,10 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "rollup-plugin-visualizer": "^6.0.5",
     "tsdown": "^0.20.3",
-    "turbo": "^2.8.5",
+    "turbo": "^2.8.10",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vitest": "^4.0.18",
-    "vue-tsc": "^3.2.4"
+    "vue-tsc": "^3.2.5"
   }
 }
