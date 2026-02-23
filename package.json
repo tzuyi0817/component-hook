@@ -48,7 +48,7 @@
     "@vitest/coverage-v8": "^4.0.18",
     "cross-env": "^10.1.0",
     "eslint": "catalog:",
-    "jsdom": "^27.4.0",
+    "jsdom": "^28.1.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "rollup-plugin-visualizer": "^6.0.5",
