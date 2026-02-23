@@ -61,10 +61,11 @@ export function renderFabricCanvas(id: string, canvasTemp: HTMLCanvasElement) {
   const canvas = fabricMap.get(id);
 
   if (!canvas) return;
+
   const scale = 1 / 3;
   const image = canvasToImage(canvasTemp, scale);
 
-  setFabricCanvas(id, image, scale);
+  setFabricCanvas(id, image);
 }
 
 export async function drawFabricImage(file: File, id?: string) {
@@ -93,17 +94,27 @@ export async function renderFabricImage(id: string, { data, scale = 0.5 }: Rende
   const image = await FabricImage.fromURL(url);
 
   image.scale(scale);
-  setFabricCanvas(id, image, scale);
+  setFabricCanvas(id, image);
   URL.revokeObjectURL(url);
 }
 
-function setFabricCanvas(id: string, image: FabricImage, scale: number) {
+function setFabricCanvas(id: string, image: FabricImage) {
   const canvas = fabricMap.get(id);
 
   if (!canvas) return;
 
-  canvas.setWidth(image.width * scale);
-  canvas.setHeight(image.height * scale);
+  canvas.setDimensions({
+    width: image.getScaledWidth(),
+    height: image.getScaledHeight(),
+  });
+
+  image.set({
+    originX: 'left',
+    originY: 'top',
+    left: 0,
+    top: 0,
+  });
+
   canvas.backgroundImage = image;
   canvas.renderAll();
 }
