@@ -24,6 +24,10 @@ $ yarn create @component-hook/app
 $ pnpm create @component-hook/app
 ```
 
+```bash [bun]
+$ bun create @component-hook/app
+```
+
 :::
 
 Then follow the prompts!
@@ -42,6 +46,10 @@ $ yarn create @component-hook/app basic-app --template vue
 
 ```bash [pnpm]
 $ pnpm create @component-hook/app basic-app --template vue
+```
+
+```bash [bun]
+$ bun create @component-hook/app basic-app --template vue
 ```
 
 :::

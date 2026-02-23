@@ -14,4 +14,8 @@ $ yarn add @component-hook/picker
 $ pnpm install @component-hook/picker
 ```
 
+```bash [bun]
+$ bun install @component-hook/picker
+```
+
 :::

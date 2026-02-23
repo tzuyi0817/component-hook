@@ -18,6 +18,10 @@ $ yarn add @component-hook/eslint-plugin --dev
 $ pnpm install @component-hook/eslint-plugin --save-dev
 ```
 
+```bash [bun]
+$ bun install @component-hook/eslint-plugin --save-dev
+```
+
 :::
 
 Require `ESLint` >= 9.0.0

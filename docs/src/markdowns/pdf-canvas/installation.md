@@ -14,4 +14,8 @@ $ yarn add @component-hook/pdf-canvas
 $ pnpm install @component-hook/pdf-canvas
 ```
 
+```bash [bun]
+$ bun install @component-hook/pdf-canvas
+```
+
 :::
