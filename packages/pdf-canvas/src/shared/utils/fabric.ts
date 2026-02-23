@@ -150,6 +150,7 @@ export function deleteFabricCanvas(id: string) {
   const canvas = fabricMap.get(id);
 
   if (!canvas) return;
+
   canvas.clear();
   fabricMap.delete(id);
 }
@@ -160,6 +161,7 @@ function canvasToImage(canvas: HTMLCanvasElement, scale: number) {
 
 export function setFabricOffset(fabric: FabricObject, offset?: DropOffset) {
   if (!offset) return;
+
   const { left, top, scaleX, scaleY, width, height } = fabric;
   const offsetX = offset.x * width * scaleX;
   const offsetY = offset.y * height * scaleY;

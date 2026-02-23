@@ -9,44 +9,57 @@ interface WorkerMessageEvent {
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
 
 globalThis.addEventListener('message', async (event: WorkerMessageEvent) => {
-  const { data, password, id, page, units, scale } = event.data;
-  const document = {
-    fonts: globalThis.fonts,
-    createElement: (tag: string) => {
-      if (tag === 'canvas') {
-        return new OffscreenCanvas(1, 1);
-      }
+  let pdfDoc = null;
 
-      return null;
-    },
-  } as unknown as Document;
+  try {
+    const { data, password, id, page, units, scale } = event.data;
+    const document = {
+      fonts: globalThis.fonts,
+      createElement: (tag: string) => {
+        if (tag === 'canvas') {
+          return new OffscreenCanvas(1, 1);
+        }
 
-  const arrayBuffer = await fileToArrayBuffer(data);
-  const pdfDoc = await getDocument({ data: arrayBuffer, password, ownerDocument: document }).promise;
-  const pages = pdfDoc.numPages;
+        return null;
+      },
+    } as unknown as Document;
 
-  if (!id) {
-    globalThis.postMessage({ status: 'success', pages });
-    return;
-  }
+    const arrayBuffer = await fileToArrayBuffer(data);
 
-  const pdfPage = await pdfDoc.getPage(page);
-  const viewport = pdfPage.getViewport({ scale });
-  const width = Math.floor(viewport.width * units);
-  const height = Math.floor(viewport.height * units);
-  const canvas = new OffscreenCanvas(width, height);
-  const context = canvas.getContext('2d') as unknown as CanvasRenderingContext2D;
-  const renderContext = {
-    canvasContext: context,
-    viewport,
-    transform: [units, 0, 0, units, 0, 0],
-  };
+    pdfDoc = await getDocument({ data: arrayBuffer, password, ownerDocument: document }).promise;
 
-  const renderTask = pdfPage.render(renderContext);
+    const pages = pdfDoc.numPages;
 
-  renderTask.promise.then(() => {
+    if (!id) {
+      globalThis.postMessage({ status: 'success', pages });
+      return;
+    }
+
+    const pdfPage = await pdfDoc.getPage(page);
+    const viewport = pdfPage.getViewport({ scale });
+    const width = Math.floor(viewport.width * units);
+    const height = Math.floor(viewport.height * units);
+    const canvas = new OffscreenCanvas(width, height);
+    const context = canvas.getContext('2d');
+
+    if (!context) {
+      throw new Error('Failed to get 2d context from OffscreenCanvas');
+    }
+
+    const renderContext = {
+      canvasContext: context as unknown as CanvasRenderingContext2D,
+      viewport,
+      transform: [units, 0, 0, units, 0, 0],
+    };
+
+    await pdfPage.render(renderContext).promise;
+
     const bitmap = canvas.transferToImageBitmap();
 
     globalThis.postMessage({ status: 'success', pages, bitmap, width, height }, [bitmap]);
-  });
+  } catch (error) {
+    globalThis.postMessage({ status: 'error', error: `${error}` });
+  } finally {
+    pdfDoc?.destroy();
+  }
 });

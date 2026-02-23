@@ -20,57 +20,111 @@ function supportsOffscreenCanvas() {
   }
 }
 
-export async function renderPageCanvas({ page, data, scale, password }: SpecifyPageArgs, id?: string) {
+export function renderPageCanvas(args: SpecifyPageArgs, id?: string) {
   const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
+  const options = { ...args, id, units: CSS_UNITS };
 
   if (supportsOffscreenCanvas()) {
-    const worker = new Worker(new URL('../../workers/pdfjs.worker', import.meta.url), { type: 'module' });
+    return renderWithWorker(options);
+  } else {
+    return renderWithMainThread(options);
+  }
+}
 
-    worker.postMessage({ data, password, id, page, units: CSS_UNITS, scale });
+async function renderWithWorker({
+  data,
+  password,
+  id,
+  page,
+  units,
+  scale,
+}: SpecifyPageArgs & { id?: string; units: number }) {
+  const worker = new Worker(new URL('../../workers/pdfjs.worker', import.meta.url), { type: 'module' });
 
-    const result = await new Promise<{ pages: number; canvas: HTMLCanvasElement | null }>(resolve => {
-      worker.addEventListener('message', event => {
-        if (event.data.status !== 'success') return;
+  try {
+    worker.postMessage({ data, password, id, page, units, scale });
 
-        const { bitmap, width, height, pages } = event.data;
+    const result = await new Promise<{ pages: number; canvas: HTMLCanvasElement | null }>((resolve, reject) => {
+      const handleMessage = (event: MessageEvent) => {
+        if (!event.data.status) return;
 
-        if (bitmap) {
-          const canvas = document.createElement('canvas');
-          const context = canvas.getContext('bitmaprenderer');
+        if (event.data.status === 'success') {
+          const { bitmap, width, height, pages } = event.data;
 
-          canvas.width = width;
-          canvas.height = height;
-          context?.transferFromImageBitmap(bitmap);
-          resolve({ pages, canvas });
-        } else {
-          resolve({ pages, canvas: null });
+          if (bitmap && id) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            canvas.width = width;
+            canvas.height = height;
+            context?.drawImage(bitmap, 0, 0);
+            bitmap.close();
+            resolve({ pages, canvas });
+          } else {
+            resolve({ pages, canvas: null });
+          }
         }
-      });
+
+        if (event.data.status === 'error') {
+          reject(event.data.error);
+        }
+
+        worker.removeEventListener('message', handleMessage);
+      };
+      const handleError = (error: ErrorEvent) => {
+        reject(new Error(`Worker error: ${error.message}`));
+      };
+
+      worker.addEventListener('message', handleMessage);
+      worker.addEventListener('error', handleError, { once: true });
     });
 
     return result;
-  } else {
-    const arrayBuffer = await fileToArrayBuffer(data);
-    const pdfDoc = await getDocument({ data: arrayBuffer, password }).promise;
+  } finally {
+    worker.terminate();
+  }
+}
+
+async function renderWithMainThread({
+  data,
+  password,
+  id,
+  page,
+  scale,
+  units,
+}: SpecifyPageArgs & { id?: string; units: number }) {
+  const arrayBuffer = await fileToArrayBuffer(data);
+  const pdfDoc = await getDocument({ data: arrayBuffer, password }).promise;
+
+  try {
     const pages = pdfDoc.numPages;
 
-    if (!id) return { canvas: null, pages };
+    if (!id) {
+      return { canvas: null, pages };
+    }
 
     const pdfPage = await pdfDoc.getPage(page);
     const viewport = pdfPage.getViewport({ scale });
     const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d')!;
+    const context = canvas.getContext('2d');
+
+    if (!context) {
+      throw new Error('Failed to get 2d context');
+    }
+
     const renderContext = {
       canvasContext: context,
       viewport,
-      transform: [CSS_UNITS, 0, 0, CSS_UNITS, 0, 0],
+      transform: [units, 0, 0, units, 0, 0],
     };
 
-    canvas.width = Math.floor(viewport.width * CSS_UNITS);
-    canvas.height = Math.floor(viewport.height * CSS_UNITS);
+    canvas.width = Math.floor(viewport.width * units);
+    canvas.height = Math.floor(viewport.height * units);
 
-    const renderTask = pdfPage.render(renderContext);
+    await pdfPage.render(renderContext).promise;
 
-    return renderTask.promise.then(() => ({ canvas, pages }));
+    return { canvas, pages };
+  } finally {
+    pdfDoc.destroy();
   }
 }
