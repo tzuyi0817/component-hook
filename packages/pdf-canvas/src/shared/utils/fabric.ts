@@ -173,11 +173,11 @@ function canvasToImage(canvas: HTMLCanvasElement, scale: number) {
 export function setFabricOffset(fabric: FabricObject, offset?: DropOffset) {
   if (!offset) return;
 
-  const { left, top, scaleX, scaleY, width, height } = fabric;
-  const offsetX = offset.x * width * scaleX;
-  const offsetY = offset.y * height * scaleY;
+  const { left, top } = fabric;
+  const offsetX = offset.x * fabric.getScaledWidth();
+  const offsetY = offset.y * fabric.getScaledHeight();
 
-  fabric.set({ left: left - offsetX, top: top - offsetY });
+  fabric.set({ left: left - offsetX, top: top - offsetY, originX: 'left', originY: 'top' });
 }
 
 export function loadFile(file: File, password?: string, id?: string) {

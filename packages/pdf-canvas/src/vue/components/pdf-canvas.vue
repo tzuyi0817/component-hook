@@ -101,6 +101,7 @@ async function setPDF() {
 
 function dropImage(event: DragEvent) {
   if (!props.isDrop || !event.dataTransfer) return;
+
   const { dataTransfer, offsetX, offsetY } = event;
   const text = dataTransfer.getData('text/plain');
   const imageSrc = dataTransfer.getData('text/uri-list');

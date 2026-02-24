@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.4](https://github.com/tzuyi0817/component-hook/compare/v1.4.3...v1.4.4) (2026-02-24)
+
+### Bug Fixes
+
+- **pdf-canvas:** add an error to open encrypted pdf ([575cfe3](https://github.com/tzuyi0817/component-hook/commit/575cfe3502f2d38e3f1f4c4c7d47aa6ab2946826))
+
 ## [1.4.3](https://github.com/tzuyi0817/component-hook/compare/v1.4.2...v1.4.3) (2026-02-13)
 
 ### Features
