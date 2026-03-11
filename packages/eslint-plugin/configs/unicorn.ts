@@ -41,8 +41,8 @@ export const unicornConfigs: Config<UnicornRules>[] = [
     },
   },
   {
-    name: 'component-hook/unicorn/locales',
-    files: ['**/locales/**/*.json'],
+    name: 'component-hook/unicorn/allow-filename-case',
+    files: ['**/locales/**/*.json', '**/ISSUE_TEMPLATE/**'],
     rules: {
       'unicorn/filename-case': 'off',
     },

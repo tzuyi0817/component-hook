@@ -23,5 +23,5 @@ export { default as pluginDeMorgan } from 'eslint-plugin-de-morgan';
 export { default as pluginPerfectionist } from 'eslint-plugin-perfectionist';
 export { default as pluginJsdoc } from 'eslint-plugin-jsdoc';
 export { default as pluginJsonc } from 'eslint-plugin-jsonc';
-export { default as parserJsonc } from 'jsonc-eslint-parser';
+export { parseForESLint } from 'jsonc-eslint-parser';
 export { default as pluginYaml } from 'eslint-plugin-yml';
