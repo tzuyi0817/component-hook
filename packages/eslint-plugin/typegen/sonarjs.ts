@@ -181,11 +181,6 @@ export interface SonarjsRules {
    */
   'sonarjs/class-prototype'?: Linter.RuleEntry<[]>
   /**
-   * Dynamically executing code is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S1523/javascript
-   */
-  'sonarjs/code-eval'?: Linter.RuleEntry<[]>
-  /**
    * Cognitive Complexity of functions should not be too high
    * @see https://sonarsource.github.io/rspec/#/rspec/S3776/javascript
    */
@@ -329,12 +324,6 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S5542/javascript
    */
   'sonarjs/encryption-secure-mode'?: Linter.RuleEntry<[]>
-  /**
-   * Trailing commas should be used
-   * @see https://sonarsource.github.io/rspec/#/rspec/S3723/javascript
-   * @deprecated
-   */
-  'sonarjs/enforce-trailing-comma'?: Linter.RuleEntry<SonarjsEnforceTrailingComma>
   /**
    * Replacement strings should reference existing regular expression groups
    * @see https://sonarsource.github.io/rspec/#/rspec/S6328/javascript
@@ -927,6 +916,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-selector-parameter'?: Linter.RuleEntry<[]>
   /**
+   * Static Assets should not serve session cookies
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8441/javascript
+   */
+  'sonarjs/no-session-cookies-on-static-assets'?: Linter.RuleEntry<[]>
+  /**
    * Tests should not be skipped without providing a reason
    * @see https://sonarsource.github.io/rspec/#/rspec/S1607/javascript
    */
@@ -1248,11 +1242,6 @@ export interface SonarjsRules {
    */
   'sonarjs/strings-comparison'?: Linter.RuleEntry<[]>
   /**
-   * "super()" should be invoked appropriately
-   * @see https://sonarsource.github.io/rspec/#/rspec/S3854/javascript
-   */
-  'sonarjs/super-invocation'?: Linter.RuleEntry<[]>
-  /**
    * Tables should have headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S5256/javascript
    */
@@ -1394,16 +1383,6 @@ type SonarjsContentLength = []|[{
 type SonarjsCyclomaticComplexity = []|[{
   threshold?: number
 }]
-// ----- sonarjs/enforce-trailing-comma -----
-type SonarjsEnforceTrailingComma = []|[(_SonarjsEnforceTrailingCommaValue | {
-  arrays?: _SonarjsEnforceTrailingCommaValueWithIgnore
-  objects?: _SonarjsEnforceTrailingCommaValueWithIgnore
-  imports?: _SonarjsEnforceTrailingCommaValueWithIgnore
-  exports?: _SonarjsEnforceTrailingCommaValueWithIgnore
-  functions?: _SonarjsEnforceTrailingCommaValueWithIgnore
-})]
-type _SonarjsEnforceTrailingCommaValue = ("always-multiline" | "always" | "never" | "only-multiline")
-type _SonarjsEnforceTrailingCommaValueWithIgnore = ("always-multiline" | "always" | "ignore" | "never" | "only-multiline")
 // ----- sonarjs/expression-complexity -----
 type SonarjsExpressionComplexity = []|[{
   max?: number

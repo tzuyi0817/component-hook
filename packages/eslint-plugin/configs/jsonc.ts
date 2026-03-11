@@ -1,21 +1,25 @@
 import { BLOB_JSON, JSON5, JSONC } from '../constants';
-import { parserJsonc, pluginJsonc } from '../plugins';
+import { parseForESLint, pluginJsonc } from '../plugins';
 import type { JsoncRules } from '../typegen/jsonc';
 import type { Config } from '../types';
-import type { Linter } from 'eslint';
+
+const recommendedRules = pluginJsonc.configs['recommended-with-jsonc']
+  .map(config => config.rules)
+  .reduce((acc, rules) => ({ ...acc, ...rules }), {});
 
 export const jsoncConfigs: Config<JsoncRules>[] = [
   {
     name: 'component-hook/jsonc',
     files: [BLOB_JSON, JSON5, JSONC],
+    language: 'jsonc/x',
     plugins: {
       jsonc: pluginJsonc,
     },
     languageOptions: {
-      parser: parserJsonc,
+      parser: parseForESLint,
     },
     rules: {
-      ...(pluginJsonc.configs['recommended-with-jsonc'].rules as Linter.RulesRecord),
+      ...recommendedRules,
       'jsonc/quote-props': 'off',
       'jsonc/quotes': 'off',
     },
