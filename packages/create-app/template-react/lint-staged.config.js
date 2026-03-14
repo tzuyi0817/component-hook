@@ -2,5 +2,5 @@
 
 export default {
   '*.{ts,tsx}': () => 'pnpm typecheck',
-  '*.{ts,js,tsx,jsx}': () => 'pnpm lint',
+  '*.{ts,js,tsx,jsx,json,yml}': () => 'pnpm lint',
 };
