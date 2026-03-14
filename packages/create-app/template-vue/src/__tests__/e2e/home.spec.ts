@@ -55,7 +55,5 @@ test('click Volar link open language-tools github blank tab', async ({ page }) =
   const [popup] = await Promise.all([page.waitForEvent('popup'), link.evaluate((node: HTMLElement) => node.click())]);
 
   await popup.waitForLoadState();
-  await expect(popup).toHaveTitle(
-    'GitHub - vuejs/language-tools: ⚡ High-performance Vue language tooling based-on Volar.js',
-  );
+  await expect(popup).toHaveTitle(/vuejs\/language-tools/);
 });

@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.29.2",
   "scripts": {
     "dev": "vite",
-    "dev:mock": "MOCK=true vite",
+    "dev:mock": "cross-env MOCK=true vite",
     "build": "pnpm typecheck && vite build",
     "lint": "eslint --fix .",
     "test:unit": "vitest --coverage",
@@ -44,6 +44,7 @@
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitest/coverage-v8": "^4.0.18",
     "@vue/tsconfig": "^0.8.1",
+    "cross-env": "^10.1.0",
     "cssnano": "^7.1.2",
     "eslint": "^9.39.2",
     "fast-glob": "^3.3.3",
