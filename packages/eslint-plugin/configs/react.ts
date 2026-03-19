@@ -1,3 +1,4 @@
+import { JSX, TSX } from '../constants';
 import { pluginJsxA11y, pluginReact, pluginReactHooks } from '../plugins';
 import type { ReactRules } from '../typegen/react';
 import type { Config } from '../types';
@@ -29,5 +30,12 @@ export const reactConfigs: Config<ReactRules>[] = [
   {
     ...pluginJsxA11y.flatConfigs.recommended,
     name: 'component-hook/jsx-a11y',
+  },
+  {
+    name: 'component-hook/react/components',
+    files: [TSX, JSX],
+    rules: {
+      'unicorn/no-anonymous-default-export': 'off',
+    },
   },
 ];

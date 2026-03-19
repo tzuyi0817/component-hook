@@ -21,6 +21,7 @@ export const ignores = {
     '**/.idea',
     '**/.output',
     '**/.vite-inspect',
+    '**/.context',
     '**/.nitro',
     '**/CHANGELOG*.md',
     '**/*.min.*',

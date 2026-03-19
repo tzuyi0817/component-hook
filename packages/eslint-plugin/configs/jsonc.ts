@@ -75,6 +75,7 @@ export const jsoncConfigs: Config<JsoncRules>[] = [
             'peerDependencies',
             'peerDependenciesMeta',
             'dependencies',
+            'inlinedDependencies',
             'optionalDependencies',
             'devDependencies',
             'pnpm',
