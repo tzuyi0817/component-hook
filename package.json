@@ -2,7 +2,7 @@
   "name": "component-hook",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.33.0",
   "license": "MIT",
   "engines": {
     "node": ">=20.19.6"
@@ -29,10 +29,10 @@
     "vue": "catalog:"
   },
   "optionalDependencies": {
-    "@commitlint/cli": "^20.4.4",
-    "@commitlint/config-conventional": "^20.4.4",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.3"
+    "lint-staged": "^16.4.0"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
@@ -45,18 +45,18 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.2.0",
     "@vitejs/plugin-vue": "^6.0.5",
-    "@vitest/coverage-v8": "^4.1.0",
+    "@vitest/coverage-v8": "^4.1.2",
     "cross-env": "^10.1.0",
     "eslint": "catalog:",
     "jsdom": "^29.0.1",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "rollup-plugin-visualizer": "^6.0.11",
-    "tsdown": "^0.21.2",
-    "turbo": "^2.8.17",
+    "tsdown": "^0.21.5",
+    "turbo": "^2.8.20",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
-    "vitest": "^4.1.0",
-    "vue-tsc": "^3.2.5"
+    "vitest": "^4.1.2",
+    "vue-tsc": "^3.2.6"
   }
 }

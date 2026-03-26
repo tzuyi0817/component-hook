@@ -8,4 +8,4 @@ catalog:
   react: ^19.2.4
   react-dom: ^19.2.4
   vite-plugin-dts: ^4.5.4
-  vue: ^3.5.30
+  vue: ^3.5.31
