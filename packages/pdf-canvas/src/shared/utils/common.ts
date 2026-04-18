@@ -20,7 +20,7 @@ export function getPixelsPerPoint() {
 
 export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(fun: T, time = 500) {
   if (typeof fun !== 'function') throw new TypeError('The first argument is not a function.');
-  let timer: NodeJS.Timeout | null = null;
+  let timer: ReturnType<typeof setTimeout> | null = null;
 
   return function (this: void, ...args: Parameters<T>) {
     if (timer) {

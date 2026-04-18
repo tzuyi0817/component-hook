@@ -1,10 +1,10 @@
 import { visualizer } from 'rollup-plugin-visualizer';
-import { defineConfig, type PluginOption } from 'vite';
+import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libEntry, outDir, rollupExternal, rollupGlobals, vitePlugin } from '../../internal/build-config';
 
 export default defineConfig({
-  plugins: [vitePlugin(), dts({ rollupTypes: true }), visualizer({ gzipSize: true }) as PluginOption],
+  plugins: [vitePlugin(), dts({ rollupTypes: true }), visualizer({ gzipSize: true })],
   base: './',
   optimizeDeps: {
     include: ['typescript'],
