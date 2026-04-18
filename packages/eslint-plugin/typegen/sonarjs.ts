@@ -54,7 +54,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-ec2-rds-dms-public'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted EBS volumes is security-sensitive
+   * EBS volumes should be encrypted
    * @see https://sonarsource.github.io/rspec/#/rspec/S6275/javascript
    */
   'sonarjs/aws-ec2-unencrypted-ebs-volume'?: Linter.RuleEntry<[]>
@@ -64,7 +64,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-efs-unencrypted'?: Linter.RuleEntry<[]>
   /**
-   * Policies granting all privileges are security-sensitive
+   * Policies should not grant all privileges
    * @see https://sonarsource.github.io/rspec/#/rspec/S6302/javascript
    */
   'sonarjs/aws-iam-all-privileges'?: Linter.RuleEntry<[]>
@@ -79,17 +79,17 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-iam-privilege-escalation'?: Linter.RuleEntry<[]>
   /**
-   * Policies authorizing public access to resources are security-sensitive
+   * AWS resource-based policies should not grant public access
    * @see https://sonarsource.github.io/rspec/#/rspec/S6270/javascript
    */
   'sonarjs/aws-iam-public-access'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted Opensearch domains is security-sensitive
+   * OpenSearch domains should have encryption at rest enabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6308/javascript
    */
   'sonarjs/aws-opensearchservice-domain'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted RDS DB resources is security-sensitive
+   * Amazon RDS resources should be encrypted at rest
    * @see https://sonarsource.github.io/rspec/#/rspec/S6303/javascript
    */
   'sonarjs/aws-rds-unencrypted-databases'?: Linter.RuleEntry<[]>
@@ -99,7 +99,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-restricted-ip-admin-access'?: Linter.RuleEntry<[]>
   /**
-   * Granting access to S3 buckets to all or authenticated users is security-sensitive
+   * S3 buckets should not grant access to all users or authenticated users
    * @see https://sonarsource.github.io/rspec/#/rspec/S6265/javascript
    */
   'sonarjs/aws-s3-bucket-granted-access'?: Linter.RuleEntry<[]>
@@ -135,7 +135,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-sns-unencrypted-topics'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted SQS queues is security-sensitive
+   * SQS queues should be encrypted
    * @see https://sonarsource.github.io/rspec/#/rspec/S6330/javascript
    */
   'sonarjs/aws-sqs-unencrypted-queue'?: Linter.RuleEntry<[]>
@@ -181,6 +181,11 @@ export interface SonarjsRules {
    */
   'sonarjs/class-prototype'?: Linter.RuleEntry<[]>
   /**
+   * Dynamically executing code is security-sensitive
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1523/javascript
+   */
+  'sonarjs/code-eval'?: Linter.RuleEntry<[]>
+  /**
    * Cognitive Complexity of functions should not be too high
    * @see https://sonarsource.github.io/rspec/#/rspec/S3776/javascript
    */
@@ -217,7 +222,7 @@ export interface SonarjsRules {
    */
   'sonarjs/constructor-for-side-effects'?: Linter.RuleEntry<[]>
   /**
-   * Allowing requests with excessive content length is security-sensitive
+   * HTTP request content length should be limited
    * @see https://sonarsource.github.io/rspec/#/rspec/S5693/javascript
    */
   'sonarjs/content-length'?: Linter.RuleEntry<SonarjsContentLength>
@@ -238,7 +243,7 @@ export interface SonarjsRules {
    */
   'sonarjs/cookies'?: Linter.RuleEntry<[]>
   /**
-   * Having a permissive Cross-Origin Resource Sharing policy is security-sensitive
+   * Cross-Origin Resource Sharing (CORS) policy should be restricted to trusted origins
    * @see https://sonarsource.github.io/rspec/#/rspec/S5122/javascript
    */
   'sonarjs/cors'?: Linter.RuleEntry<[]>
@@ -294,6 +299,11 @@ export interface SonarjsRules {
    */
   'sonarjs/dns-prefetching'?: Linter.RuleEntry<[]>
   /**
+   * DOMPurify configuration should not be bypassable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8479/javascript
+   */
+  'sonarjs/dompurify-unsafe-config'?: Linter.RuleEntry<[]>
+  /**
    * Character classes in regular expressions should not contain the same character twice
    * @see https://sonarsource.github.io/rspec/#/rspec/S5869/javascript
    */
@@ -345,7 +355,7 @@ export interface SonarjsRules {
    */
   'sonarjs/file-name-differ-from-class'?: Linter.RuleEntry<[]>
   /**
-   * Setting loose POSIX file permissions is security-sensitive
+   * File permissions should not be set to world-accessible values
    * @see https://sonarsource.github.io/rspec/#/rspec/S2612/javascript
    */
   'sonarjs/file-permissions'?: Linter.RuleEntry<[]>
@@ -430,7 +440,7 @@ export interface SonarjsRules {
    */
   'sonarjs/index-of-compare-to-positive-number'?: Linter.RuleEntry<[]>
   /**
-   * Creating cookies without the "secure" flag is security-sensitive
+   * Cookies should have the "secure" flag
    * @see https://sonarsource.github.io/rspec/#/rspec/S2092/javascript
    */
   'sonarjs/insecure-cookie'?: Linter.RuleEntry<[]>
@@ -455,7 +465,7 @@ export interface SonarjsRules {
    */
   'sonarjs/label-position'?: Linter.RuleEntry<[]>
   /**
-   * Authorizing an opened window to access back to the originating window is security-sensitive
+   * Opened windows should not have access to the originating page
    * @see https://sonarsource.github.io/rspec/#/rspec/S5148/javascript
    */
   'sonarjs/link-with-target-blank'?: Linter.RuleEntry<[]>
@@ -670,7 +680,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-gratuitous-expressions'?: Linter.RuleEntry<[]>
   /**
-   * Using hardcoded IP addresses is security-sensitive
+   * IP addresses should not be hardcoded
    * @see https://sonarsource.github.io/rspec/#/rspec/S1313/javascript
    */
   'sonarjs/no-hardcoded-ip'?: Linter.RuleEntry<[]>
@@ -972,8 +982,9 @@ export interface SonarjsRules {
    */
   'sonarjs/no-uniq-key'?: Linter.RuleEntry<[]>
   /**
-   * Expanding archive files without controlling resource consumption is security-sensitive
+   * Expanding archive files should not be done without controlling resource consumption
    * @see https://sonarsource.github.io/rspec/#/rspec/S5042/javascript
+   * @deprecated
    */
   'sonarjs/no-unsafe-unzip'?: Linter.RuleEntry<[]>
   /**
@@ -1149,7 +1160,7 @@ export interface SonarjsRules {
    */
   'sonarjs/public-static-readonly'?: Linter.RuleEntry<[]>
   /**
-   * Using publicly writable directories is security-sensitive
+   * Temporary files should not be created in publicly writable directories
    * @see https://sonarsource.github.io/rspec/#/rspec/S5443/javascript
    */
   'sonarjs/publicly-writable-directories'?: Linter.RuleEntry<[]>
@@ -1339,7 +1350,7 @@ export interface SonarjsRules {
    */
   'sonarjs/web-sql-database'?: Linter.RuleEntry<[]>
   /**
-   * Disclosing fingerprints from web application technologies is security-sensitive
+   * Web application technologies should not disclose version information
    * @see https://sonarsource.github.io/rspec/#/rspec/S5689/javascript
    */
   'sonarjs/x-powered-by'?: Linter.RuleEntry<[]>
@@ -1367,7 +1378,7 @@ type SonarjsClassName = []|[{
   format?: string
 }]
 // ----- sonarjs/cognitive-complexity -----
-type SonarjsCognitiveComplexity = []|[(number | string)]|[(number | string), string]
+type SonarjsCognitiveComplexity = []|[(number | "silence-issues")]|[(number | "silence-issues"), "silence-issues"]
 // ----- sonarjs/comment-regex -----
 type SonarjsCommentRegex = []|[{
   regularExpression?: string

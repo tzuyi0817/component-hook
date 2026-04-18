@@ -1700,6 +1700,19 @@ type TypescriptEslintPreferOptionalChain = []|[{
 // ----- @typescript-eslint/prefer-promise-reject-errors -----
 type TypescriptEslintPreferPromiseRejectErrors = []|[{
   
+  allow?: (string | {
+    from: "file"
+    name: (string | [string, ...(string)[]])
+    path?: string
+  } | {
+    from: "lib"
+    name: (string | [string, ...(string)[]])
+  } | {
+    from: "package"
+    name: (string | [string, ...(string)[]])
+    package: string
+  })[]
+  
   allowEmptyReject?: boolean
   
   allowThrowingAny?: boolean

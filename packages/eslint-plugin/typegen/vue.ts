@@ -1878,7 +1878,7 @@ export interface VueRules {
    * enforce valid `v-for` directives
    * @see https://eslint.vuejs.org/rules/valid-v-for.html
    */
-  'vue/valid-v-for'?: Linter.RuleEntry<[]>
+  'vue/valid-v-for'?: Linter.RuleEntry<VueValidVFor>
   /**
    * enforce valid `v-html` directives
    * @see https://eslint.vuejs.org/rules/valid-v-html.html
@@ -2954,6 +2954,19 @@ type TypescriptEslintPreferOptionalChain = []|[{
 // ----- @typescript-eslint/prefer-promise-reject-errors -----
 type TypescriptEslintPreferPromiseRejectErrors = []|[{
   
+  allow?: (string | {
+    from: "file"
+    name: (string | [string, ...(string)[]])
+    path?: string
+  } | {
+    from: "lib"
+    name: (string | [string, ...(string)[]])
+  } | {
+    from: "package"
+    name: (string | [string, ...(string)[]])
+    package: string
+  })[]
+  
   allowEmptyReject?: boolean
   
   allowThrowingAny?: boolean
@@ -3186,6 +3199,7 @@ type VueAttributesOrder = []|[{
   order?: (("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT") | ("DEFINITION" | "LIST_RENDERING" | "CONDITIONALS" | "RENDER_MODIFIERS" | "GLOBAL" | "UNIQUE" | "SLOT" | "TWO_WAY_BINDING" | "OTHER_DIRECTIVES" | "OTHER_ATTR" | "ATTR_STATIC" | "ATTR_DYNAMIC" | "ATTR_SHORTHAND_BOOL" | "EVENTS" | "CONTENT")[])[]
   alphabetical?: boolean
   sortLineLength?: boolean
+  ignoreVBindObject?: boolean
 }]
 // ----- vue/block-lang -----
 type VueBlockLang = []|[{
@@ -3278,7 +3292,7 @@ type VueDefineMacrosOrder = []|[{
 type VueDefinePropsDeclaration = []|[("type-based" | "runtime")]
 // ----- vue/define-props-destructuring -----
 type VueDefinePropsDestructuring = []|[{
-  destructure?: ("always" | "never")
+  destructure?: ("only-when-assigned" | "always" | "never")
 }]
 // ----- vue/dot-location -----
 type VueDotLocation = []|[("object" | "property")]
@@ -4338,6 +4352,10 @@ type VueVSlotStyle = []|[(("shorthand" | "longform") | {
   default?: ("shorthand" | "longform" | "v-slot")
   named?: ("shorthand" | "longform")
 })]
+// ----- vue/valid-v-for -----
+type VueValidVFor = []|[{
+  allowEmptyAlias?: boolean
+}]
 // ----- vue/valid-v-on -----
 type VueValidVOn = []|[{
   modifiers?: unknown[]
