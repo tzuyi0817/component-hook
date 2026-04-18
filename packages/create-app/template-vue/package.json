@@ -58,7 +58,7 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.3",
-    "vite": "^7.3.2",
+    "vite": "^8.0.8",
     "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^4.1.4",
     "vue-tsc": "^3.2.6"

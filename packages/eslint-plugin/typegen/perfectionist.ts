@@ -9,6 +9,11 @@ export interface PerfectionistRules {
    */
   'perfectionist/sort-array-includes'?: Linter.RuleEntry<PerfectionistSortArrayIncludes>
   /**
+   * Enforce sorted arrays.
+   * @see https://perfectionist.dev/rules/sort-arrays
+   */
+  'perfectionist/sort-arrays'?: Linter.RuleEntry<PerfectionistSortArrays>
+  /**
    * Enforce sorted classes.
    * @see https://perfectionist.dev/rules/sort-classes
    */
@@ -251,6 +256,186 @@ type PerfectionistSortArrayIncludes = {
       
       flags?: string
     } | string))
+    
+    matchesAstSelector?: string
+  }
+  
+  partitionByComment?: (boolean | (({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)[] | ({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)) | {
+    
+    block?: (boolean | (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)))
+    
+    line?: (boolean | (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)))
+  })
+  
+  partitionByNewLine?: boolean
+}[]
+// ----- perfectionist/sort-arrays -----
+type PerfectionistSortArrays = {
+  
+  fallbackSort?: {
+    
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    
+    order?: ("asc" | "desc")
+  }
+  
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+  
+  specialCharacters?: ("remove" | "trim" | "keep")
+  
+  ignoreCase?: boolean
+  
+  alphabet?: string
+  
+  locales?: (string | string[])
+  
+  order?: ("asc" | "desc")
+  
+  customGroups?: ({
+    
+    fallbackSort?: {
+      
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+      
+      order?: ("asc" | "desc")
+    }
+    
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+    
+    order?: ("asc" | "desc")
+    
+    anyOf: [{
+      
+      elementNamePattern?: (({
+        
+        pattern: string
+        
+        flags?: string
+      } | string)[] | ({
+        
+        pattern: string
+        
+        flags?: string
+      } | string))
+      
+      selector?: "literal"
+    }, ...({
+      
+      elementNamePattern?: (({
+        
+        pattern: string
+        
+        flags?: string
+      } | string)[] | ({
+        
+        pattern: string
+        
+        flags?: string
+      } | string))
+      
+      selector?: "literal"
+    })[]]
+  } | {
+    
+    fallbackSort?: {
+      
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+      
+      order?: ("asc" | "desc")
+    }
+    
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+    
+    order?: ("asc" | "desc")
+    
+    elementNamePattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    selector?: "literal"
+  })[]
+  newlinesInside?: (("ignore" | number) | "newlinesBetween")
+  
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number)
+  } | {
+    group: (string | [string, ...(string)[]])
+    
+    fallbackSort?: {
+      
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+      
+      order?: ("asc" | "desc")
+    }
+    
+    commentAbove?: string
+    
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    newlinesInside?: ("ignore" | number)
+    
+    order?: ("asc" | "desc")
+  })[]
+  newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
   }
   
   partitionByComment?: (boolean | (({
@@ -293,7 +478,7 @@ type PerfectionistSortArrayIncludes = {
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-classes -----
-type PerfectionistSortClasses = []|[{
+type PerfectionistSortClasses = {
   
   fallbackSort?: {
     
@@ -492,7 +677,25 @@ type PerfectionistSortClasses = []|[{
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
+  
   useExperimentalDependencyDetection?: boolean
+  newlinesBetweenOverloadSignatures?: ("ignore" | number)
   
   ignoreCallbackDependenciesPatterns?: (({
     
@@ -544,7 +747,7 @@ type PerfectionistSortClasses = []|[{
   })
   
   partitionByNewLine?: boolean
-}]
+}[]
 // ----- perfectionist/sort-decorators -----
 type PerfectionistSortDecorators = {
   
@@ -711,7 +914,7 @@ type PerfectionistSortDecorators = {
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-enums -----
-type PerfectionistSortEnums = []|[{
+type PerfectionistSortEnums = {
   
   fallbackSort?: {
     
@@ -862,6 +1065,23 @@ type PerfectionistSortEnums = []|[{
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
+  
   sortByValue?: ("always" | "ifNumericEnum" | "never")
   
   useExperimentalDependencyDetection?: boolean
@@ -904,7 +1124,7 @@ type PerfectionistSortEnums = []|[{
   })
   
   partitionByNewLine?: boolean
-}]
+}[]
 // ----- perfectionist/sort-export-attributes -----
 type PerfectionistSortExportAttributes = {
   
@@ -1020,6 +1240,23 @@ type PerfectionistSortExportAttributes = {
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
   
   partitionByComment?: (boolean | (({
     
@@ -1343,6 +1580,23 @@ type PerfectionistSortHeritageClauses = {
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
+  
   partitionByNewLine?: boolean
   
   partitionByComment?: (boolean | (({
@@ -1497,6 +1751,23 @@ type PerfectionistSortImportAttributes = {
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
   
   partitionByComment?: (boolean | (({
     
@@ -1940,6 +2211,8 @@ type PerfectionistSortInterfaces = {
       flags?: string
     } | string))
     
+    matchesAstSelector?: string
+    
     declarationMatchesPattern?: (({
       scope?: ("shallow" | "deep")
       
@@ -2115,6 +2388,23 @@ type PerfectionistSortIntersectionTypes = {
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
   
   partitionByComment?: (boolean | (({
     
@@ -2333,6 +2623,8 @@ type PerfectionistSortJsxProps = {
       flags?: string
     } | string))
     
+    matchesAstSelector?: string
+    
     tagMatchesPattern?: (({
       
       pattern: string
@@ -2477,6 +2769,8 @@ type PerfectionistSortMaps = {
       
       flags?: string
     } | string))
+    
+    matchesAstSelector?: string
   }
   
   partitionByComment?: (boolean | (({
@@ -2683,6 +2977,7 @@ type PerfectionistSortModules = []|[{
   newlinesBetween?: ("ignore" | number)
   
   useExperimentalDependencyDetection?: boolean
+  newlinesBetweenOverloadSignatures?: ("ignore" | number)
   
   partitionByComment?: (boolean | (({
     
@@ -2850,6 +3145,23 @@ type PerfectionistSortNamedExports = {
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
   
   ignoreAlias?: boolean
   
@@ -3019,6 +3331,23 @@ type PerfectionistSortNamedImports = {
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
+  
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
   
   ignoreAlias?: boolean
   
@@ -3262,6 +3591,8 @@ type PerfectionistSortObjectTypes = {
       
       flags?: string
     } | string))
+    
+    matchesAstSelector?: string
     
     declarationMatchesPattern?: (({
       scope?: ("shallow" | "deep")
@@ -3535,6 +3866,8 @@ type PerfectionistSortObjects = {
       flags?: string
     } | string))
     
+    matchesAstSelector?: string
+    
     declarationMatchesPattern?: (({
       scope?: ("shallow" | "deep")
       
@@ -3549,6 +3882,8 @@ type PerfectionistSortObjects = {
       flags?: string
     } | string))
   }
+  
+  partitionByComputedKey?: boolean
   
   styledComponents?: boolean
   
@@ -3728,6 +4063,8 @@ type PerfectionistSortSets = {
       
       flags?: string
     } | string))
+    
+    matchesAstSelector?: string
   }
   
   partitionByComment?: (boolean | (({
@@ -3913,6 +4250,23 @@ type PerfectionistSortUnionTypes = {
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
+  
   partitionByComment?: (boolean | (({
     
     pattern: string
@@ -3953,7 +4307,7 @@ type PerfectionistSortUnionTypes = {
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-variable-declarations -----
-type PerfectionistSortVariableDeclarations = []|[{
+type PerfectionistSortVariableDeclarations = {
   
   fallbackSort?: {
     
@@ -4074,6 +4428,23 @@ type PerfectionistSortVariableDeclarations = []|[{
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  useConfigurationIf?: {
+    
+    allNamesMatchPattern?: (({
+      
+      pattern: string
+      
+      flags?: string
+    } | string)[] | ({
+      
+      pattern: string
+      
+      flags?: string
+    } | string))
+    
+    matchesAstSelector?: string
+  }
+  
   useExperimentalDependencyDetection?: boolean
   
   partitionByComment?: (boolean | (({
@@ -4114,4 +4485,4 @@ type PerfectionistSortVariableDeclarations = []|[{
   })
   
   partitionByNewLine?: boolean
-}]
+}[]
