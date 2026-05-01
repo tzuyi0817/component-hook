@@ -46,7 +46,7 @@
     "@vue/tsconfig": "^0.9.1",
     "cross-env": "^10.1.0",
     "cssnano": "^7.1.5",
-    "eslint": "^9.39.4",
+    "eslint": "^10.3.0",
     "fast-glob": "^3.3.3",
     "jsdom": "^29.0.2",
     "msw": "^2.13.4",

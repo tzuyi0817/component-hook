@@ -4,7 +4,7 @@ packages:
   - 'playground/*'
 
 catalog:
-  eslint: ^9.39.4
+  eslint: ^10.3.0
   react: ^19.2.5
   react-dom: ^19.2.5
   vite-plugin-dts: ^4.5.4
