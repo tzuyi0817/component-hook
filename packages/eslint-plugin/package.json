@@ -2,7 +2,7 @@
   "name": "@component-hook/eslint-plugin",
   "type": "module",
   "version": "1.4.4",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.4",
   "description": "ESLint config for component hook",
   "author": "Tzuyi",
   "license": "MIT",
@@ -52,13 +52,13 @@
     "@eslint/js": "^9.39.4",
     "@eslint/markdown": "^8.0.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-de-morgan": "^2.1.1",
+    "eslint-plugin-de-morgan": "^2.1.2",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsdoc": "^62.9.0",
     "eslint-plugin-jsonc": "^3.1.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-perfectionist": "^5.9.0",
-    "eslint-plugin-playwright": "^2.10.1",
+    "eslint-plugin-playwright": "^2.10.2",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -67,17 +67,17 @@
     "eslint-plugin-sonarjs": "^4.0.3",
     "eslint-plugin-testing-library": "^7.16.2",
     "eslint-plugin-unicorn": "^63.0.0",
-    "eslint-plugin-vue": "^10.8.0",
-    "eslint-plugin-yml": "^3.3.1",
-    "globals": "^17.5.0",
+    "eslint-plugin-vue": "^10.9.1",
+    "eslint-plugin-yml": "^3.3.2",
+    "globals": "^17.6.0",
     "jsonc-eslint-parser": "^3.1.0",
-    "typescript-eslint": "^8.58.2",
+    "typescript-eslint": "^8.59.2",
     "vue-eslint-parser": "^10.4.0"
   },
   "devDependencies": {
     "@eslint/config-inspector": "^1.5.0",
     "@types/eslint-plugin-security": "^3.0.1",
     "eslint-typegen": "^2.3.1",
-    "unrun": "^0.2.36"
+    "unrun": "^0.2.37"
   }
 }

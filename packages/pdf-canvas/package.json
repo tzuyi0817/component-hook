@@ -2,7 +2,7 @@
   "name": "@component-hook/pdf-canvas",
   "type": "module",
   "version": "1.4.4",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.4",
   "description": "Rendering PDF documents onto a canvas with vue3 and react component",
   "author": "Tzuyi",
   "license": "MIT",
@@ -53,7 +53,7 @@
     "vue": "catalog:"
   },
   "dependencies": {
-    "fabric": "^7.2.0",
+    "fabric": "^7.3.1",
     "pdfjs-dist": "4.10.38"
   },
   "devDependencies": {
