@@ -2,7 +2,7 @@
   "name": "@component-hook/create-app",
   "type": "module",
   "version": "1.4.4",
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.4",
   "description": "Scaffolding a basic typescript project",
   "author": "Tzuyi",
   "license": "MIT",
@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "art-template": "^4.13.4",
-    "fs-extra": "^11.3.4",
+    "fs-extra": "^11.3.5",
     "minimist": "^1.2.8",
-    "ora": "^9.3.0",
+    "ora": "^9.4.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2"
   },
