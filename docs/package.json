@@ -22,7 +22,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^4.0.0",
     "@types/prismjs": "^1.26.6",
-    "cssnano": "^7.1.5",
+    "cssnano": "^8.0.1",
     "fast-glob": "^3.3.3",
     "markdown-it": "^14.1.1",
     "markdown-it-container": "^4.0.0",
