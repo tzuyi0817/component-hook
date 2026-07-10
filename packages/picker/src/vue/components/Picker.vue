@@ -23,7 +23,7 @@ interface Emits {
 
 const props = defineProps<Props<T>>();
 const emits = defineEmits<Emits>();
-const modelValue = defineModel<T[]>({ default: [] });
+const modelValue = defineModel<T[]>({ default: () => [] });
 const selectedIndices = ref<number[]>([]);
 const columnsRef = useTemplateRef('columnsRef');
 

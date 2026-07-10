@@ -1859,9 +1859,6 @@ interface _UnicornNameReplacements_NameReplacements {
 interface _UnicornNameReplacements_BooleanObject {
   [k: string]: boolean | undefined
 }
-interface _UnicornNameReplacements_BooleanObject {
-  [k: string]: boolean | undefined
-}
 // ----- unicorn/no-array-callback-reference -----
 type UnicornNoArrayCallbackReference = []|[{
   

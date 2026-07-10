@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   formatSecondLabel: formatTime,
 });
 const emits = defineEmits<Emits>();
-const modelValue = defineModel<number[]>({ default: [] });
+const modelValue = defineModel<number[]>({ default: () => [] });
 
 const columns = computed(() => {
   const { columnsType } = props;

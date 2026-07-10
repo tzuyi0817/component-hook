@@ -67,12 +67,27 @@ function capitalize(name: string) {
   return `${name[0].toUpperCase()}${name.slice(1)}`;
 }
 
-function fixDts(dts: string) {
+function fixPlaywrightValidTitle(dts: string) {
   return dts.replaceAll(/(type PlaywrightValidTitle = \[\]\|\s*\[\{)([\s\S]*?)(\}\])/g, (_, start, body, end) => {
     const newBody = body.replaceAll(/\[k: string\]: \([\s\S]*?\}\)/g, '[k: string]: unknown');
 
     return start + newBody + end;
   });
+}
+
+function dedupeInterfaces(dts: string) {
+  const seen = new Set<string>();
+
+  return dts.replaceAll(/^interface \w+ \{[\s\S]+?^\}\n?/gm, match => {
+    if (seen.has(match)) return '';
+    seen.add(match);
+
+    return match;
+  });
+}
+
+function fixDts(dts: string) {
+  return dedupeInterfaces(fixPlaywrightValidTitle(dts));
 }
 
 await rm('typegen', { recursive: true, force: true });

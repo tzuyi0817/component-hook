@@ -7,13 +7,24 @@ if (!supportsOffscreenCanvas()) {
   GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
 }
 
+function isNotIframe() {
+  if (typeof window === 'undefined') return true;
+
+  try {
+    // eslint-disable-next-line unicorn/prefer-global-this
+    return window.self === window.top;
+  } catch {
+    return false;
+  }
+}
+
 function supportsOffscreenCanvas() {
   try {
     return (
       typeof OffscreenCanvas !== 'undefined' &&
       typeof HTMLCanvasElement !== 'undefined' &&
       typeof HTMLCanvasElement.prototype.transferControlToOffscreen === 'function' &&
-      globalThis === window.top
+      isNotIframe()
     );
   } catch {
     return false;

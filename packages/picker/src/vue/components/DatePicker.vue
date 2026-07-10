@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   formatDayLabel: formatLabel,
 });
 const emits = defineEmits<Emits>();
-const modelValue = defineModel<number[]>({ default: [] });
+const modelValue = defineModel<number[]>({ default: () => [] });
 
 const columns = computed(() => {
   const { columnsType, minDate, maxDate } = props;
