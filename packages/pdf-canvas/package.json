@@ -57,6 +57,7 @@
     "pdfjs-dist": "4.10.38"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
     "vite-plugin-dts": "catalog:"
   }
 }
