@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.5.0](https://github.com/tzuyi0817/component-hook/compare/v1.4.4...v1.5.0) (2026-07-10)
+
+### Breaking Changes
+
+- require Node.js `^22.23.1 || ^24.18.0 || >=26.3.0` ([af251a4](https://github.com/tzuyi0817/component-hook/commit/af251a4e745870099410bfea3560a124feb61e96))
+
+### Features
+
+- **eslint-plugin:** react components turns off the `unicorn/no-anonymous-default-export` rule ([d4c98f7](https://github.com/tzuyi0817/component-hook/commit/d4c98f7f4c5efba4b98a8df584c48ffd761d4fce))
+- **eslint-plugin:** upgrade `eslint-plugin-unicorn` to v69 ([191da5d](https://github.com/tzuyi0817/component-hook/commit/191da5ddeb23c08413984f2d8489bbd4a23b9834))
+- **eslint-plugin:** upgrade `eslint-plugin-jsdoc` to v63 ([556531c](https://github.com/tzuyi0817/component-hook/commit/556531c2b215da78b9f0acd2970eba0dab722155))
+- **eslint-plugin:** upgrade `@eslint/markdown` to v8 ([794c5e2](https://github.com/tzuyi0817/component-hook/commit/794c5e263b74215594cfd5947b05448fbcfd8b14))
+- **eslint-plugin:** upgrade `eslint-plugin-sonarjs` to v4 ([000edcd](https://github.com/tzuyi0817/component-hook/commit/000edcd3aa220a0f4f5fdf9c339bde9776b71ecb))
+- **eslint-plugin:** upgrade `eslint-plugin-security` to v4 ([67716d4](https://github.com/tzuyi0817/component-hook/commit/67716d442912eeea8128eae15aa67490583c10ed))
+- **eslint-plugin:** upgrade `eslint-plugin-jsonc` to v3 ([43ca86d](https://github.com/tzuyi0817/component-hook/commit/43ca86d6303905b2462b3d53f15a76b429403a5d))
+- **eslint-plugin:** upgrade `jsonc-eslint-parser` to v3 ([aeb0bdc](https://github.com/tzuyi0817/component-hook/commit/aeb0bdcf1655c8cebec77ed10200583a2a5bc21f))
+- **create-app:** update `react` template ([0f41578](https://github.com/tzuyi0817/component-hook/commit/0f41578d9c9dce38fddae28c2e7b7e27bd8673c4))
+- **create-app:** update `vue` template ([7864cda](https://github.com/tzuyi0817/component-hook/commit/7864cda2d25c1a7209ec41a266a2f00874e7dc40))
+- **create-app:** upgrade `i18next` to v26 in `react` template ([4035292](https://github.com/tzuyi0817/component-hook/commit/4035292fa59ed51cb2f831fcb29185df81189a1a))
+- **create-app:** upgrade `react-i18next` to v17 in `react` template ([72aa5e6](https://github.com/tzuyi0817/component-hook/commit/72aa5e695807e0b9ed8509f5695c7432a966a9f5))
+
 ## [1.4.4](https://github.com/tzuyi0817/component-hook/compare/v1.4.3...v1.4.4) (2026-02-24)
 
 ### Bug Fixes
