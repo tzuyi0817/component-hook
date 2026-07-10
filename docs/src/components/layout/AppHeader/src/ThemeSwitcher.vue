@@ -17,7 +17,7 @@ async function handleChange(event: Event) {
 
 function beforeChange(isDark: boolean) {
   return new Promise(resolve => {
-    const isReducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (isReducedMotion || !themeSwitcherRef.value) {
       resolve(true);
@@ -36,22 +36,30 @@ function beforeChange(isDark: boolean) {
       resolve(true);
     });
 
-    transition.ready.then(() => {
-      const clipPath = [`circle(${ratioR}% at ${ratioX}% ${ratioY}%)`, `circle(0% at ${ratioX}% ${ratioY}%)`];
-
-      document.documentElement.animate(
-        {
-          clipPath: isDark ? clipPath : clipPath.toReversed(),
-        },
-        {
-          duration: TRANSITION_DURATION,
-          easing: 'ease-in',
-          fill: 'both',
-          pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
-        },
-      );
-    });
+    animateThemeSwitch(transition, isDark, { ratioR, ratioX, ratioY });
   });
+}
+
+async function animateThemeSwitch(
+  transition: ViewTransition,
+  isDark: boolean,
+  { ratioR, ratioX, ratioY }: { ratioR: number; ratioX: number; ratioY: number },
+) {
+  await transition.ready;
+
+  const clipPath = [`circle(${ratioR}% at ${ratioX}% ${ratioY}%)`, `circle(0% at ${ratioX}% ${ratioY}%)`];
+
+  document.documentElement.animate(
+    {
+      clipPath: isDark ? clipPath : clipPath.toReversed(),
+    },
+    {
+      duration: TRANSITION_DURATION,
+      easing: 'ease-in',
+      fill: 'both',
+      pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
+    },
+  );
 }
 
 function changeTheme(isDark: boolean) {

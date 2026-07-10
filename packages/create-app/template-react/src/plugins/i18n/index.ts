@@ -3,13 +3,17 @@ import { initReactI18next } from 'react-i18next';
 import enUS from './locales/en-US.json' with { type: 'json' };
 import zhTW from './locales/zh-TW.json' with { type: 'json' };
 
-i18n.use(initReactI18next).init({
-  lng: navigator.language,
-  fallbackLng: 'en-US',
-  resources: {
-    'zh-TW': { translation: zhTW },
-    'en-US': { translation: enUS },
-  },
-});
+function setupI18n() {
+  i18n.use(initReactI18next).init({
+    lng: navigator.language,
+    fallbackLng: 'en-US',
+    resources: {
+      'zh-TW': { translation: zhTW },
+      'en-US': { translation: enUS },
+    },
+  });
 
-export default i18n;
+  return i18n;
+}
+
+export default setupI18n();

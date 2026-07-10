@@ -1,3 +1,4 @@
+import { BASE_ROOT_FONT_SIZE } from '../constants';
 import { isArray } from './check-type';
 import type {
   DatePickerColumnType,
@@ -87,11 +88,17 @@ export function getDirection(x: number, y: number) {
   return '';
 }
 
+export function getRootFontSize() {
+  const { fontSize } = getComputedStyle(document.documentElement);
+
+  return Number(fontSize.replace('px', '')) || BASE_ROOT_FONT_SIZE;
+}
+
 export function generateOptions(min: number, max: number, formatter: PickerFormatLabel) {
   const options: PickerColumn<number> = [];
 
   for (let index = min; index <= max; index++) {
-    const label = formatter(`${index}`);
+    const label = formatter(String(index));
 
     options.push({ label, value: index });
   }
@@ -126,7 +133,7 @@ export function getDefaultDate(minDate: Date, maxDate: Date, type: DatePickerCol
   const isValidDate = timestamp >= minTimestamp && timestamp <= maxTimestamp;
 
   if (type === 'year') return isValidDate ? date.getFullYear() : minDate.getFullYear();
-  if (type === 'month') return isValidDate ? date.getMonth() + 1 : minDate.getMonth() + 1;
+  if (type === 'month') return (isValidDate ? date.getMonth() : minDate.getMonth()) + 1;
 
   return isValidDate ? date.getDate() : minDate.getDate();
 }

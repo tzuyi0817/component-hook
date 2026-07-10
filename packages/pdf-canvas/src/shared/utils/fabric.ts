@@ -48,9 +48,9 @@ export async function generateCloseFabric({ src }: CloseSvgOptions, uuid: number
   const filterObjects = objects.filter((object): object is NonNullable<typeof object> => object !== null);
   const group = util.groupSVGElements(filterObjects, options);
 
-  filterObjects.forEach(object => {
+  for (const object of filterObjects) {
     object.stroke = stroke;
-  });
+  }
   group.hoverCursor = 'pointer';
   group.stroke = `${stroke}-${uuid}`;
 
@@ -198,14 +198,14 @@ async function drawPDF(file: File, password?: string, id?: string) {
   return { ...PDF, pages };
 }
 
-export function specifyPage(options: SpecifyPageArgs, id?: string) {
-  return renderPageCanvas(options, id).then(({ canvas, pages }) => {
-    if (canvas && id) {
-      renderFabricCanvas(id, canvas);
-    }
+export async function specifyPage(options: SpecifyPageArgs, id?: string) {
+  const { canvas, pages } = await renderPageCanvas(options, id);
 
-    return pages;
-  });
+  if (canvas && id) {
+    renderFabricCanvas(id, canvas);
+  }
+
+  return pages;
 }
 
 async function drawImage(file: File, _?: string, id?: string) {

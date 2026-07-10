@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import { renderComponent } from '@/__tests__/unit/render';
 import { Home } from '@/pages/home';
+import { renderComponent } from '@/test-utils';
 
 describe('home page', () => {
   it('renders the correct content', () => {

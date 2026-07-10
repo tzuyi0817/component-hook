@@ -8,9 +8,9 @@ const isShowBackToTop = ref(false);
 const observer = new IntersectionObserver(intersectionObserverCallback);
 
 function intersectionObserverCallback(entries: IntersectionObserverEntry[]) {
-  entries.forEach(entry => {
+  for (const entry of entries) {
     isShowBackToTop.value = !entry.isIntersecting;
-  });
+  }
 }
 
 onMounted(() => {

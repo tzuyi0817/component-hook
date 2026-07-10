@@ -8,7 +8,7 @@ interface WorkerMessageEvent {
 
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
 
-globalThis.addEventListener('message', async (event: WorkerMessageEvent) => {
+addEventListener('message', async (event: WorkerMessageEvent) => {
   let pdfDoc = null;
 
   try {
@@ -31,7 +31,7 @@ globalThis.addEventListener('message', async (event: WorkerMessageEvent) => {
     const pages = pdfDoc.numPages;
 
     if (!id) {
-      globalThis.postMessage({ status: 'success', pages });
+      postMessage({ status: 'success', pages });
       return;
     }
 
@@ -56,9 +56,9 @@ globalThis.addEventListener('message', async (event: WorkerMessageEvent) => {
 
     const bitmap = canvas.transferToImageBitmap();
 
-    globalThis.postMessage({ status: 'success', pages, bitmap, width, height }, [bitmap]);
+    postMessage({ status: 'success', pages, bitmap, width, height }, [bitmap]);
   } catch (error) {
-    globalThis.postMessage({ status: 'error', error: `${error}` });
+    postMessage({ status: 'error', error: String(error) });
   } finally {
     pdfDoc?.destroy();
   }

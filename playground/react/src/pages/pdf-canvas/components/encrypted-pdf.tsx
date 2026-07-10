@@ -21,24 +21,26 @@ export function EncryptedPdf() {
     target.value = '';
   };
 
-  const renderFile = (file: File | null) => {
+  const renderFile = async (file: File | null) => {
     if (!file) return;
 
-    loadFile(file, modalPassword)
-      .then(content => {
-        setPassword(modalPassword);
-        setCurrentPdf(content);
-        setModalPassword('');
-      })
-      .catch(error => {
-        console.log(`${error}`);
-        if (!`${error}`.includes('PasswordException')) return;
+    try {
+      const content = await loadFile(file, modalPassword);
 
-        setIsShowPasswordPopup(true);
-        if (`${error}` === 'PasswordException: Incorrect Password') {
-          alert('Incorrect password! Please try again.');
-        }
-      });
+      setPassword(modalPassword);
+      setCurrentPdf(content);
+      setModalPassword('');
+    } catch (error) {
+      const message = String(error);
+
+      console.error(message);
+      if (!message.includes('PasswordException')) return;
+
+      setIsShowPasswordPopup(true);
+      if (message === 'PasswordException: Incorrect Password') {
+        alert('Incorrect password! Please try again.');
+      }
+    }
   };
 
   const submitPassword = () => {

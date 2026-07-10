@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/vue';
-import { TimePicker } from '../../index';
+import { TimePicker } from '../index';
 
 describe('Vue Time Picker Component', () => {
   it('render with columns type', () => {

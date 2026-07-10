@@ -16,7 +16,7 @@ function showCollapse(element: HTMLDivElement) {
   element.dataset.overflow = element.style.overflow;
   element.style.maxHeight = '0';
 
-  globalThis.requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
     element.style.maxHeight = `${element.scrollHeight}px`;
     element.style.overflow = 'hidden';
   });
@@ -26,7 +26,7 @@ function closeCollapse(element: HTMLDivElement) {
   element.dataset.overflow = element.style.overflow;
   element.style.maxHeight = `${element.scrollHeight}px`;
 
-  globalThis.requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
     element.style.maxHeight = '0';
     element.style.overflow = 'hidden';
   });

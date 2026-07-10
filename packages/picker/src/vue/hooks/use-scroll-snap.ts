@@ -1,4 +1,4 @@
-import { isRef, readonly, ref, type Ref } from 'vue';
+import { readonly, ref, unref, type Ref } from 'vue';
 import {
   BASE_ROOT_FONT_SIZE,
   DEFAULT_DURATION,
@@ -7,6 +7,7 @@ import {
   INERTIAL_TIME,
   OPTION_HEIGHT,
 } from '../../shared/constants';
+import { getRootFontSize } from '../../shared/utils/common';
 import { createPointerTracker } from '../../shared/utils/pointer';
 
 interface ScrollSnapProps<T> {
@@ -15,7 +16,7 @@ interface ScrollSnapProps<T> {
 }
 
 export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
-  const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const rootFontSize = getRootFontSize();
   const remBaseValue = rootFontSize / BASE_ROOT_FONT_SIZE;
   const offsetY = ref(0);
   const transitionDuration = ref(0);
@@ -40,7 +41,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     const isPointerUp = move(event);
 
     if (isPointerUp) return;
-    const n = isRef(column) ? column.value.length : column.length;
+    const n = unref(column).length;
     const moveOffset = startOffset + pointer.deltaY;
     const minOffset = getActualHeight((n - 1) * -OPTION_HEIGHT);
     const newOffset = Math.min(Math.max(moveOffset, minOffset), 0);
@@ -101,7 +102,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
   }
 
   function getIndexByOffset(offset: number) {
-    const n = isRef(column) ? column.value.length : column.length;
+    const n = unref(column).length;
     const index = Math.round(-offset / getActualHeight(OPTION_HEIGHT));
 
     if (index < 0) return 0;

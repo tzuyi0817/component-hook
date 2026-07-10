@@ -70,7 +70,7 @@ useResize(handleReload);
 async function setPDF() {
   const { file, page, fileScale: scale } = props;
 
-  globalThis.requestAnimationFrame(async () => {
+  requestAnimationFrame(async () => {
     await nextTick();
     createCanvas();
 

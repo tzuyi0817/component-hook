@@ -76,7 +76,7 @@ async function copyFolder(root: string, dir: string, packageName: string, ci: st
   const ignoreFiles = new Set(['package.json', ...(ciFilters[ci] || ciFilters.none)]);
   const filterFiles = files.filter(file => !ignoreFiles.has(file));
 
-  const rewriteOrCopyFile = (file: string): Promise<void> => {
+  const rewriteOrCopyFile = async (file: string): Promise<void> => {
     const targetPath = path.join(root, renameFiles?.[file] ?? file);
     const templatePath = path.join(dir, file);
 
@@ -98,10 +98,11 @@ async function copyFolder(root: string, dir: string, packageName: string, ci: st
       const subFiles = readdirSync(templatePath);
       const rewriteOrCopySubFilePromises = subFiles.map(subFile => rewriteOrCopyFile(path.join(file, subFile)));
 
-      return Promise.all(rewriteOrCopySubFilePromises).then(() => {});
-    } else {
-      return copy(templatePath, targetPath);
+      await Promise.all(rewriteOrCopySubFilePromises);
+      return;
     }
+
+    return copy(templatePath, targetPath);
   };
 
   return Promise.all(filterFiles.map(file => rewriteOrCopyFile(file)));
@@ -139,36 +140,41 @@ async function createApp() {
   const filePath = fileURLToPath(import.meta.url);
   const sharedDir = path.resolve(filePath, '../..', 'template-shared');
   const templateDir = path.resolve(filePath, '../..', `template-${framework}`);
-  const copyPromises = Promise.all([
-    copyFolder(root, sharedDir, packageName, ciName),
-    copyFolder(root, templateDir, packageName, ciName),
-    writePackageJson(root, templateDir, packageName),
-    new Promise(resolve => setTimeout(resolve, 300)),
-  ]);
 
-  copyPromises
-    .then(() => {
-      const cdProjectName = path.relative(cwd, root);
-      const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
+  try {
+    await Promise.all([
+      copyFolder(root, sharedDir, packageName, ciName),
+      copyFolder(root, templateDir, packageName, ciName),
+      writePackageJson(root, templateDir, packageName),
+      new Promise(resolve => setTimeout(resolve, 300)),
+    ]);
 
-      spinner.succeed(`${colors.green('Scaffolded project in')} ${colors.yellow(root)}`);
-      console.log(`\n${colors.green('Done. Now run:')}\n`);
-      console.log(colors.cyan(`  cd ${formattedCdProjectName}`));
+    const cdProjectName = path.relative(cwd, root);
+    const formattedCdProjectName = cdProjectName.includes(' ') ? `"${cdProjectName}"` : cdProjectName;
 
-      if (pkgManager === 'yarn') {
-        console.log(colors.cyan(`  yarn`));
-        console.log(colors.cyan(`  yarn dev`));
-      } else {
-        console.log(colors.cyan(`  ${pkgManager} install`));
-        console.log(colors.cyan(`  ${pkgManager} run dev`));
-      }
-      console.log();
-    })
-    .catch(() => {
-      spinner.fail(colors.red('Failed to scaffold project'));
-    });
+    spinner.succeed(`${colors.green('Scaffolded project in')} ${colors.yellow(root)}`);
+    console.log(`\n${colors.green('Done. Now run:')}\n`);
+    console.log(colors.cyan(`  cd ${formattedCdProjectName}`));
+
+    if (pkgManager === 'yarn') {
+      console.log(colors.cyan(`  yarn`));
+      console.log(colors.cyan(`  yarn dev`));
+    } else {
+      console.log(colors.cyan(`  ${pkgManager} install`));
+      console.log(colors.cyan(`  ${pkgManager} run dev`));
+    }
+    console.log();
+  } catch {
+    spinner.fail(colors.red('Failed to scaffold project'));
+  }
 }
 
-createApp().catch(error => {
-  console.error(colors.red(error.message));
-});
+async function bootstrap() {
+  try {
+    await createApp();
+  } catch (error) {
+    console.error(colors.red(error instanceof Error ? error.message : String(error)));
+  }
+}
+
+bootstrap();

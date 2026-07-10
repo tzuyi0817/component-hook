@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/vue';
-import { DatePicker } from '../../index';
+import { DatePicker } from '../index';
 
 describe('Vue Date Picker Component', () => {
   it('render with columns type', () => {

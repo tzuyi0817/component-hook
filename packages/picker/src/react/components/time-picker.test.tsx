@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { TimePicker } from '../../index';
+import { TimePicker } from '../index';
 
 describe('React Time Picker Component', () => {
   it('render with columns type', () => {

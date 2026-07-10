@@ -7,6 +7,7 @@ import {
   INERTIAL_TIME,
   OPTION_HEIGHT,
 } from '../../shared/constants';
+import { getRootFontSize } from '../../shared/utils/common';
 import { createPointerTracker } from '../../shared/utils/pointer';
 
 interface ScrollSnapProps<T> {
@@ -15,7 +16,7 @@ interface ScrollSnapProps<T> {
 }
 
 export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
-  const rootFontSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const rootFontSize = getRootFontSize();
   const remBaseValue = rootFontSize / BASE_ROOT_FONT_SIZE;
   const [transitionDuration, setTransitionDuration] = useState(0);
   const columnRef = useRef<HTMLUListElement>(null);
@@ -84,7 +85,7 @@ export function useScrollSnap<T>({ column, onChange }: ScrollSnapProps<T>) {
     offsetYRef.current = offset;
 
     if (columnRef.current) {
-      columnRef.current.style.setProperty('--offset-y', `${offset}`);
+      columnRef.current.style.setProperty('--offset-y', String(offset));
     }
   }
 

@@ -87,9 +87,9 @@ export function operationPrompts({ targetDir, template, ci }: PromptsArgs) {
   const framework: PromptObject<'framework'> = {
     type: builtinTemplate(template) ? null : 'select',
     name: 'framework',
-    message: template
-      ? styleTitle(`${colors.red(template)} isn't a valid template. Please choose from below:`)
-      : styleTitle('Select a framework:'),
+    message: styleTitle(
+      template ? `${colors.red(template)} isn't a valid template. Please choose from below:` : 'Select a framework:',
+    ),
     initial: 0,
     choices: [
       { title: colors.green('Vue'), value: 'vue' },
@@ -100,9 +100,7 @@ export function operationPrompts({ targetDir, template, ci }: PromptsArgs) {
   const ciPrompt: PromptObject<'ci'> = {
     type: checkCi(ci) ? null : 'select',
     name: 'ci',
-    message: ci
-      ? styleTitle(`${colors.red(ci)} isn't a valid CI/CD. Please choose from below:`)
-      : styleTitle('Choose CI/CD:'),
+    message: styleTitle(ci ? `${colors.red(ci)} isn't a valid CI/CD. Please choose from below:` : 'Choose CI/CD:'),
     choices: [
       { title: 'GitHub Actions', value: 'github-actions' },
       { title: 'GitLab CI', value: 'gitlab-ci' },

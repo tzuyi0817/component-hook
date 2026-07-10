@@ -44,12 +44,17 @@ export interface SonarjsRules {
    */
   'sonarjs/assertions-in-tests'?: Linter.RuleEntry<[]>
   /**
-   * Creating public APIs is security-sensitive
+   * Async test assertions should be awaited or returned
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8780/javascript
+   */
+  'sonarjs/async-test-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * AWS API Gateway should require authentication
    * @see https://sonarsource.github.io/rspec/#/rspec/S6333/javascript
    */
   'sonarjs/aws-apigateway-public-api'?: Linter.RuleEntry<[]>
   /**
-   * Allowing public network access to cloud resources is security-sensitive
+   * Public network access to cloud resources should be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6329/javascript
    */
   'sonarjs/aws-ec2-rds-dms-public'?: Linter.RuleEntry<[]>
@@ -59,7 +64,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-ec2-unencrypted-ebs-volume'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted EFS file systems is security-sensitive
+   * Amazon EFS file systems should be encrypted
    * @see https://sonarsource.github.io/rspec/#/rspec/S6332/javascript
    */
   'sonarjs/aws-efs-unencrypted'?: Linter.RuleEntry<[]>
@@ -69,7 +74,7 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-iam-all-privileges'?: Linter.RuleEntry<[]>
   /**
-   * Policies granting access to all resources of an account are security-sensitive
+   * IAM policies should not grant access to all account resources
    * @see https://sonarsource.github.io/rspec/#/rspec/S6304/javascript
    */
   'sonarjs/aws-iam-all-resources-accessible'?: Linter.RuleEntry<[]>
@@ -104,33 +109,27 @@ export interface SonarjsRules {
    */
   'sonarjs/aws-s3-bucket-granted-access'?: Linter.RuleEntry<[]>
   /**
-   * Authorizing HTTP communications with S3 buckets is security-sensitive
+   * S3 buckets should enforce HTTPS-only access
    * @see https://sonarsource.github.io/rspec/#/rspec/S6249/javascript
    */
   'sonarjs/aws-s3-bucket-insecure-http'?: Linter.RuleEntry<[]>
   /**
-   * Allowing public ACLs or policies on a S3 bucket is security-sensitive
+   * Amazon S3 bucket public access should be fully blocked
    * @see https://sonarsource.github.io/rspec/#/rspec/S6281/javascript
    */
   'sonarjs/aws-s3-bucket-public-access'?: Linter.RuleEntry<[]>
   /**
-   * Disabling server-side encryption of S3 buckets is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S6245/javascript
-   * @deprecated
-   */
-  'sonarjs/aws-s3-bucket-server-encryption'?: Linter.RuleEntry<[]>
-  /**
-   * Disabling versioning of S3 buckets is security-sensitive
+   * Amazon S3 buckets should have versioning enabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6252/javascript
    */
   'sonarjs/aws-s3-bucket-versioning'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted SageMaker notebook instances is security-sensitive
+   * SageMaker notebook instances should be encrypted at rest
    * @see https://sonarsource.github.io/rspec/#/rspec/S6319/javascript
    */
   'sonarjs/aws-sagemaker-unencrypted-notebook'?: Linter.RuleEntry<[]>
   /**
-   * Using unencrypted SNS topics is security-sensitive
+   * Amazon SNS topics should be encrypted at rest
    * @see https://sonarsource.github.io/rspec/#/rspec/S6327/javascript
    */
   'sonarjs/aws-sns-unencrypted-topics'?: Linter.RuleEntry<[]>
@@ -160,12 +159,6 @@ export interface SonarjsRules {
    */
   'sonarjs/call-argument-line'?: Linter.RuleEntry<[]>
   /**
-   * Disabling Certificate Transparency monitoring is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S5742/javascript
-   * @deprecated
-   */
-  'sonarjs/certificate-transparency'?: Linter.RuleEntry<[]>
-  /**
    * Chai assertions should have only one reason to succeed
    * @see https://sonarsource.github.io/rspec/#/rspec/S6092/javascript
    */
@@ -181,7 +174,7 @@ export interface SonarjsRules {
    */
   'sonarjs/class-prototype'?: Linter.RuleEntry<[]>
   /**
-   * Dynamically executing code is security-sensitive
+   * Dynamic code execution should not use user-controlled data
    * @see https://sonarsource.github.io/rspec/#/rspec/S1523/javascript
    */
   'sonarjs/code-eval'?: Linter.RuleEntry<[]>
@@ -212,8 +205,9 @@ export interface SonarjsRules {
    */
   'sonarjs/conditional-indentation'?: Linter.RuleEntry<[]>
   /**
-   * Allowing confidential information to be logged is security-sensitive
+   * Confidential information should not be logged
    * @see https://sonarsource.github.io/rspec/#/rspec/S5757/javascript
+   * @deprecated
    */
   'sonarjs/confidential-information-logging'?: Linter.RuleEntry<[]>
   /**
@@ -227,28 +221,22 @@ export interface SonarjsRules {
    */
   'sonarjs/content-length'?: Linter.RuleEntry<SonarjsContentLength>
   /**
-   * Disabling content security policy fetch directives is security-sensitive
+   * Content security policy fetch directives should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5728/javascript
    */
   'sonarjs/content-security-policy'?: Linter.RuleEntry<[]>
   /**
-   * Creating cookies without the "HttpOnly" flag is security-sensitive
+   * Cookies should have the "HttpOnly" flag
    * @see https://sonarsource.github.io/rspec/#/rspec/S3330/javascript
    */
   'sonarjs/cookie-no-httponly'?: Linter.RuleEntry<[]>
-  /**
-   * Writing cookies is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S2255/javascript
-   * @deprecated
-   */
-  'sonarjs/cookies'?: Linter.RuleEntry<[]>
   /**
    * Cross-Origin Resource Sharing (CORS) policy should be restricted to trusted origins
    * @see https://sonarsource.github.io/rspec/#/rspec/S5122/javascript
    */
   'sonarjs/cors'?: Linter.RuleEntry<[]>
   /**
-   * Disabling CSRF protections is security-sensitive
+   * CSRF protections should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S4502/javascript
    */
   'sonarjs/csrf'?: Linter.RuleEntry<[]>
@@ -278,12 +266,12 @@ export interface SonarjsRules {
    */
   'sonarjs/different-types-comparison'?: Linter.RuleEntry<[]>
   /**
-   * Disabling auto-escaping in template engines is security-sensitive
+   * Auto-escaping in HTML template engines should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5247/javascript
    */
   'sonarjs/disabled-auto-escaping'?: Linter.RuleEntry<[]>
   /**
-   * Using remote artifacts without integrity checks is security-sensitive
+   * Remote artifacts should not be used without integrity checks
    * @see https://sonarsource.github.io/rspec/#/rspec/S5725/javascript
    */
   'sonarjs/disabled-resource-integrity'?: Linter.RuleEntry<[]>
@@ -292,12 +280,6 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S6080/javascript
    */
   'sonarjs/disabled-timeout'?: Linter.RuleEntry<[]>
-  /**
-   * Allowing browsers to perform DNS prefetching is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S5743/javascript
-   * @deprecated
-   */
-  'sonarjs/dns-prefetching'?: Linter.RuleEntry<[]>
   /**
    * DOMPurify configuration should not be bypassable
    * @see https://sonarsource.github.io/rspec/#/rspec/S8479/javascript
@@ -323,12 +305,6 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S5842/javascript
    */
   'sonarjs/empty-string-repetition'?: Linter.RuleEntry<[]>
-  /**
-   * Encrypting data is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S4787/javascript
-   * @deprecated
-   */
-  'sonarjs/encryption'?: Linter.RuleEntry<[]>
   /**
    * Encryption algorithms should be used with secure mode and padding scheme
    * @see https://sonarsource.github.io/rspec/#/rspec/S5542/javascript
@@ -380,8 +356,9 @@ export interface SonarjsRules {
    */
   'sonarjs/for-loop-increment-sign'?: Linter.RuleEntry<[]>
   /**
-   * Disabling content security policy frame-ancestors directive is security-sensitive
+   * Content Security Policy frame-ancestors directive should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5732/javascript
+   * @deprecated
    */
   'sonarjs/frame-ancestors'?: Linter.RuleEntry<[]>
   /**
@@ -415,15 +392,21 @@ export interface SonarjsRules {
    */
   'sonarjs/hardcoded-secret-signatures'?: Linter.RuleEntry<[]>
   /**
-   * Using weak hashing algorithms is security-sensitive
+   * Weak hashing algorithms should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4790/javascript
    */
   'sonarjs/hashing'?: Linter.RuleEntry<[]>
   /**
-   * Statically serving hidden files is security-sensitive
+   * Hidden files should not be served statically
    * @see https://sonarsource.github.io/rspec/#/rspec/S5691/javascript
+   * @deprecated
    */
   'sonarjs/hidden-files'?: Linter.RuleEntry<[]>
+  /**
+   * Lifecycle hooks should not be interleaved with test cases or nested suites
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8782/javascript
+   */
+  'sonarjs/hooks-before-test-cases'?: Linter.RuleEntry<[]>
   /**
    * "in" should not be used with primitive types
    * @see https://sonarsource.github.io/rspec/#/rspec/S3785/javascript
@@ -515,7 +498,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-alphabetical-sort'?: Linter.RuleEntry<[]>
   /**
-   * Disabling Angular built-in sanitization is security-sensitive
+   * Angular built-in sanitization should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S6268/javascript
    */
   'sonarjs/no-angular-bypass-sanitization'?: Linter.RuleEntry<[]>
@@ -545,7 +528,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-case-label-in-switch'?: Linter.RuleEntry<[]>
   /**
-   * Using clear-text protocols is security-sensitive
+   * Clear-text protocols should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S5332/javascript
    */
   'sonarjs/no-clear-text-protocols'?: Linter.RuleEntry<[]>
@@ -595,6 +578,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-duplicate-string'?: Linter.RuleEntry<SonarjsNoDuplicateString>
   /**
+   * Test titles should be unique within the same suite
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8754/javascript
+   */
+  'sonarjs/no-duplicate-test-title'?: Linter.RuleEntry<[]>
+  /**
    * Two branches in a conditional structure should not have exactly the same implementation
    * @see https://sonarsource.github.io/rspec/#/rspec/S1871/javascript
    */
@@ -635,6 +623,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-empty-test-file'?: Linter.RuleEntry<[]>
   /**
+   * Test and suite titles should not be empty or whitespace-only
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8781/javascript
+   */
+  'sonarjs/no-empty-test-title'?: Linter.RuleEntry<[]>
+  /**
    * Equality operators should not be used in "for" loop termination conditions
    * @see https://sonarsource.github.io/rspec/#/rspec/S888/javascript
    */
@@ -655,10 +648,20 @@ export interface SonarjsRules {
    */
   'sonarjs/no-fallthrough'?: Linter.RuleEntry<[]>
   /**
+   * Floating point numbers should not be tested for equality
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1244/javascript
+   */
+  'sonarjs/no-floating-point-equality'?: Linter.RuleEntry<[]>
+  /**
    * "for in" should not be used with iterables
    * @see https://sonarsource.github.io/rspec/#/rspec/S4139/javascript
    */
   'sonarjs/no-for-in-iterable'?: Linter.RuleEntry<[]>
+  /**
+   * Forced browser interactions should not bypass actionability checks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8783/javascript
+   */
+  'sonarjs/no-forced-browser-interaction'?: Linter.RuleEntry<[]>
   /**
    * Function declarations should not be made within blocks
    * @see https://sonarsource.github.io/rspec/#/rspec/S1530/javascript
@@ -740,6 +743,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-in-misuse'?: Linter.RuleEntry<[]>
   /**
+   * Assertions comparing incompatible types should not be made
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5845/javascript
+   */
+  'sonarjs/no-incompatible-assertion-types'?: Linter.RuleEntry<[]>
+  /**
    * Assertions should be complete
    * @see https://sonarsource.github.io/rspec/#/rspec/S2970/javascript
    */
@@ -760,8 +768,9 @@ export interface SonarjsRules {
    */
   'sonarjs/no-internal-api-use'?: Linter.RuleEntry<[]>
   /**
-   * Using intrusive permissions is security-sensitive
+   * Sensitive permissions should not be requested unnecessarily
    * @see https://sonarsource.github.io/rspec/#/rspec/S5604/javascript
+   * @deprecated
    */
   'sonarjs/no-intrusive-permissions'?: Linter.RuleEntry<SonarjsNoIntrusivePermissions>
   /**
@@ -780,8 +789,9 @@ export interface SonarjsRules {
    */
   'sonarjs/no-inverted-boolean-check'?: Linter.RuleEntry<[]>
   /**
-   * Forwarding client IP address is security-sensitive
+   * Client IP address should not be forwarded to proxies
    * @see https://sonarsource.github.io/rspec/#/rspec/S5759/javascript
+   * @deprecated
    */
   'sonarjs/no-ip-forward'?: Linter.RuleEntry<[]>
   /**
@@ -795,7 +805,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-literal-call'?: Linter.RuleEntry<[]>
   /**
-   * Allowing browsers to sniff MIME types is security-sensitive
+   * Browsers should not be allowed to perform MIME type sniffing
    * @see https://sonarsource.github.io/rspec/#/rspec/S5734/javascript
    */
   'sonarjs/no-mime-sniff'?: Linter.RuleEntry<[]>
@@ -810,8 +820,9 @@ export interface SonarjsRules {
    */
   'sonarjs/no-misleading-character-class'?: Linter.RuleEntry<[]>
   /**
-   * Allowing mixed-content is security-sensitive
+   * Content Security Policy should block mixed-content
    * @see https://sonarsource.github.io/rspec/#/rspec/S5730/javascript
+   * @deprecated
    */
   'sonarjs/no-mixed-content'?: Linter.RuleEntry<[]>
   /**
@@ -845,7 +856,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-nested-template-literals'?: Linter.RuleEntry<[]>
   /**
-   * Searching OS commands in PATH is security-sensitive
+   * OS commands should not rely on PATH resolution
    * @see https://sonarsource.github.io/rspec/#/rspec/S4036/javascript
    */
   'sonarjs/no-os-command-from-path'?: Linter.RuleEntry<[]>
@@ -891,7 +902,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-reference-error'?: Linter.RuleEntry<[]>
   /**
-   * Disabling strict HTTP no-referrer policy is security-sensitive
+   * HTTP Referrer-Policy should not be set to an unsafe value
    * @see https://sonarsource.github.io/rspec/#/rspec/S5736/javascript
    */
   'sonarjs/no-referrer-policy'?: Linter.RuleEntry<[]>
@@ -956,6 +967,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S5257/javascript
    */
   'sonarjs/no-table-as-layout'?: Linter.RuleEntry<[]>
+  /**
+   * Assertions should not fail or succeed unconditionally
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5914/javascript
+   */
+  'sonarjs/no-trivial-assertions'?: Linter.RuleEntry<[]>
   /**
    * Promise rejections should not be caught by "try" blocks
    * @see https://sonarsource.github.io/rspec/#/rspec/S4822/javascript
@@ -1038,12 +1054,6 @@ export interface SonarjsRules {
    */
   'sonarjs/no-variable-usage-before-declaration'?: Linter.RuleEntry<[]>
   /**
-   * Disabling Vue.js built-in escaping is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S6299/javascript
-   * @deprecated
-   */
-  'sonarjs/no-vue-bypass-sanitization'?: Linter.RuleEntry<[]>
-  /**
    * Cipher algorithms should be robust
    * @see https://sonarsource.github.io/rspec/#/rspec/S5547/javascript
    */
@@ -1084,8 +1094,9 @@ export interface SonarjsRules {
    */
   'sonarjs/operation-returning-nan'?: Linter.RuleEntry<[]>
   /**
-   * Using shell interpreter when executing OS commands is security-sensitive
+   * OS commands should not be executed using a shell interpreter
    * @see https://sonarsource.github.io/rspec/#/rspec/S4721/javascript
+   * @deprecated
    */
   'sonarjs/os-command'?: Linter.RuleEntry<[]>
   /**
@@ -1129,6 +1140,11 @@ export interface SonarjsRules {
    */
   'sonarjs/prefer-single-boolean-return'?: Linter.RuleEntry<[]>
   /**
+   * The most specific assertion should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5906/javascript
+   */
+  'sonarjs/prefer-specific-assertions'?: Linter.RuleEntry<[]>
+  /**
    * Type predicates should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S4322/javascript
    */
@@ -1139,18 +1155,12 @@ export interface SonarjsRules {
    */
   'sonarjs/prefer-while'?: Linter.RuleEntry<[]>
   /**
-   * Using command line arguments is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S4823/javascript
-   * @deprecated
-   */
-  'sonarjs/process-argv'?: Linter.RuleEntry<[]>
-  /**
-   * Delivering code in production with debug features activated is security-sensitive
+   * Debugging features should not be enabled in production
    * @see https://sonarsource.github.io/rspec/#/rspec/S4507/javascript
    */
   'sonarjs/production-debug'?: Linter.RuleEntry<[]>
   /**
-   * Using pseudorandom number generators (PRNGs) is security-sensitive
+   * Pseudorandom number generators (PRNGs) should not be used in security contexts
    * @see https://sonarsource.github.io/rspec/#/rspec/S2245/javascript
    */
   'sonarjs/pseudo-random'?: Linter.RuleEntry<[]>
@@ -1180,12 +1190,6 @@ export interface SonarjsRules {
    */
   'sonarjs/regex-complexity'?: Linter.RuleEntry<SonarjsRegexComplexity>
   /**
-   * Using regular expressions is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S4784/javascript
-   * @deprecated
-   */
-  'sonarjs/regular-expr'?: Linter.RuleEntry<[]>
-  /**
    * Wallet phrases should not be hard-coded
    * @see https://sonarsource.github.io/rspec/#/rspec/S7639/javascript
    */
@@ -1211,18 +1215,12 @@ export interface SonarjsRules {
    */
   'sonarjs/single-character-alternation'?: Linter.RuleEntry<[]>
   /**
-   * Using slow regular expressions is security-sensitive
+   * Regular expressions should not cause catastrophic backtracking
    * @see https://sonarsource.github.io/rspec/#/rspec/S5852/javascript
    */
   'sonarjs/slow-regex'?: Linter.RuleEntry<[]>
   /**
-   * Using Sockets is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S4818/javascript
-   * @deprecated
-   */
-  'sonarjs/sockets'?: Linter.RuleEntry<[]>
-  /**
-   * Formatting SQL queries is security-sensitive
+   * SQL queries should not be dynamically formatted
    * @see https://sonarsource.github.io/rspec/#/rspec/S2077/javascript
    */
   'sonarjs/sql-queries'?: Linter.RuleEntry<[]>
@@ -1232,18 +1230,12 @@ export interface SonarjsRules {
    */
   'sonarjs/stable-tests'?: Linter.RuleEntry<[]>
   /**
-   * Reading the Standard Input is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S4829/javascript
-   * @deprecated
-   */
-  'sonarjs/standard-input'?: Linter.RuleEntry<[]>
-  /**
    * Regular expressions with the global flag should be used with caution
    * @see https://sonarsource.github.io/rspec/#/rspec/S6351/javascript
    */
   'sonarjs/stateful-regex'?: Linter.RuleEntry<[]>
   /**
-   * Disabling Strict-Transport-Security policy is security-sensitive
+   * HTTP Strict-Transport-Security policy should not be disabled
    * @see https://sonarsource.github.io/rspec/#/rspec/S5739/javascript
    */
   'sonarjs/strict-transport-security'?: Linter.RuleEntry<[]>
@@ -1252,6 +1244,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S3003/javascript
    */
   'sonarjs/strings-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not cause non-linear backtracking
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8786/javascript
+   */
+  'sonarjs/super-linear-regex'?: Linter.RuleEntry<[]>
   /**
    * Tables should have headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S5256/javascript
@@ -1359,12 +1356,6 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S2755/javascript
    */
   'sonarjs/xml-parser-xxe'?: Linter.RuleEntry<[]>
-  /**
-   * Executing XPath expressions is security-sensitive
-   * @see https://sonarsource.github.io/rspec/#/rspec/S4817/javascript
-   * @deprecated
-   */
-  'sonarjs/xpath'?: Linter.RuleEntry<[]>
 }
 
 /* ======= Declarations ======= */

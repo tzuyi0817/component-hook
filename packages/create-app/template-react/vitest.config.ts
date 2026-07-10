@@ -7,7 +7,7 @@ export default mergeConfig(
     test: {
       globals: true,
       environment: 'jsdom',
-      include: ['src/__tests__/unit/**/*.test.tsx'],
+      include: ['src/**/*.test.tsx'],
       setupFiles: ['./vitest.setup.ts'],
       coverage: {
         provider: 'v8',

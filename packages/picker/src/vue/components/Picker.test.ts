@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/vue';
-import { Picker } from '../../index';
+import { Picker } from '../index';
 
 describe('Vue Picker Component', () => {
   it('render component', () => {

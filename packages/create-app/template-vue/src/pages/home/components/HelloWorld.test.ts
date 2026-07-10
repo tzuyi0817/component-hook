@@ -1,9 +1,9 @@
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/vue';
-import { renderComponent } from '@/__tests__/unit/render';
 import HelloWorld from '@/pages/home/components/HelloWorld.vue';
 import i18n from '@/plugins/i18n';
 import { useConfigStore } from '@/stores';
+import { renderComponent } from '@/test-utils';
 
 describe('home page HelloWorld component', () => {
   const { t } = i18n.global;

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Picker } from '../../index';
+import { Picker } from '../index';
 
 describe('React Picker Component', () => {
   it('render component', () => {

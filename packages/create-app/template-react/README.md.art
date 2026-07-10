@@ -25,11 +25,8 @@ This project is built with [react](https://react.dev/) + [vite](https://vite.dev
 ## Project Files
 
 ```text
+e2e/*
 src/
-├── __tests__/
-│   ├── __mocks__/
-│   ├── e2e/*
-│   └── unit/*
 ├── assets/*
 │   └── svg-icons
 │          └── react.svg
@@ -52,8 +49,10 @@ src/
 │   └── home/
 │       ├── components
 │       │   └── hello-world
+│       │       ├── index.test.tsx
 │       │       └── index.tsx
 │       ├── index.module.css
+│       ├── index.test.tsx
 │       └── index.tsx
 ├── plugins/
 │   └── i18n
@@ -76,6 +75,8 @@ src/
 │   ├── base.css
 │   ├── index.css
 │   └── tailwind.css
+├── test-utils/
+│   └── index.tsx
 ├── types/*
 ├── utils/*
 ├── App.tsx

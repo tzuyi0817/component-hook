@@ -13,7 +13,7 @@ function supportsOffscreenCanvas() {
       typeof OffscreenCanvas !== 'undefined' &&
       typeof HTMLCanvasElement !== 'undefined' &&
       typeof HTMLCanvasElement.prototype.transferControlToOffscreen === 'function' &&
-      globalThis.self === window.top
+      globalThis === window.top
     );
   } catch {
     return false;

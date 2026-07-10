@@ -3,7 +3,7 @@ import { copyToClipboard } from '@/utils/common';
 export function useCopyCode() {
   const timerMap = new WeakMap<HTMLElement, NodeJS.Timeout>();
 
-  globalThis.addEventListener('click', (event: Event) => {
+  addEventListener('click', async (event: Event) => {
     const element = event.target as HTMLElement;
 
     if (!element.matches('pre[class*="language-"] > button.copy-code')) return;
@@ -21,19 +21,19 @@ export function useCopyCode() {
       code = code.replaceAll(/^\$ /gm, '');
     }
 
-    copyToClipboard(code).then(() => {
-      const cacheTimer = timerMap.get(element);
+    await copyToClipboard(code);
 
-      element.classList.toggle('copied', true);
-      if (cacheTimer) clearTimeout(cacheTimer);
+    const cacheTimer = timerMap.get(element);
 
-      const timer = setTimeout(() => {
-        element.classList.toggle('copied', false);
-        element.blur();
-        timerMap.delete(element);
-      }, 2000);
+    element.classList.toggle('copied', true);
+    if (cacheTimer) clearTimeout(cacheTimer);
 
-      timerMap.set(element, timer);
-    });
+    const timer = setTimeout(() => {
+      element.classList.toggle('copied', false);
+      element.blur();
+      timerMap.delete(element);
+    }, 2000);
+
+    timerMap.set(element, timer);
   });
 }

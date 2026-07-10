@@ -1,7 +1,7 @@
 import { onScopeDispose, ref } from 'vue';
 
 export function useMediaQuery(query: string) {
-  let mediaQuery: MediaQueryList | null = globalThis.matchMedia(query);
+  let mediaQuery: MediaQueryList | null = matchMedia(query);
   const matches = ref(mediaQuery.matches);
 
   mediaQuery.addEventListener('change', updateMatches);

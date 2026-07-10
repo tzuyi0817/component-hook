@@ -18,22 +18,24 @@ function uploadFile(event: Event) {
   target.value = '';
 }
 
-function renderFile(file: File | null) {
+async function renderFile(file: File | null) {
   if (!file) return;
 
-  loadFile(file, modalPassword.value)
-    .then(content => {
-      password.value = modalPassword.value;
-      currentPdf.value = content;
-      modalPassword.value = '';
-    })
-    .catch(error => {
-      console.log(`${error}`);
-      if (!`${error}`.includes('PasswordException')) return;
-      isShowPasswordPopup.value = true;
-      if (`${error}` !== 'PasswordException: Incorrect Password') return;
-      alert('Incorrect password! Please try again.');
-    });
+  try {
+    const content = await loadFile(file, modalPassword.value);
+
+    password.value = modalPassword.value;
+    currentPdf.value = content;
+    modalPassword.value = '';
+  } catch (error) {
+    const message = String(error);
+
+    console.error(message);
+    if (!message.includes('PasswordException')) return;
+    isShowPasswordPopup.value = true;
+    if (message !== 'PasswordException: Incorrect Password') return;
+    alert('Incorrect password! Please try again.');
+  }
 }
 
 function submitPassword() {

@@ -7,14 +7,21 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-tsx';
 
-// eslint-disable-next-line sonarjs/disabled-auto-escaping
-export const md = markdownit({ highlight, html: true });
+export const md = createMarkdown();
 
-md.use(linkPlugin)
-  .use(container, 'group', groupPlugin())
-  .use(container, 'tip', tipPlugin(md))
-  .use(fencePlugin)
-  .use(tablePlugin);
+function createMarkdown() {
+  // eslint-disable-next-line sonarjs/disabled-auto-escaping
+  const markdown = markdownit({ highlight, html: true });
+
+  markdown
+    .use(linkPlugin)
+    .use(container, 'group', groupPlugin())
+    .use(container, 'tip', tipPlugin(markdown))
+    .use(fencePlugin)
+    .use(tablePlugin);
+
+  return markdown;
+}
 
 function wrap(code: string, lang: string, classAttr: string) {
   return (

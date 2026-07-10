@@ -1189,7 +1189,7 @@ export interface VueRules {
    * disallow object, array, and function literals in template
    * @see https://eslint.vuejs.org/rules/no-literals-in-template.html
    */
-  'vue/no-literals-in-template'?: Linter.RuleEntry<[]>
+  'vue/no-literals-in-template'?: Linter.RuleEntry<VueNoLiteralsInTemplate>
   /**
    * disallow unnecessary `<template>`
    * @see https://eslint.vuejs.org/rules/no-lone-template.html
@@ -1583,6 +1583,11 @@ export interface VueRules {
    */
   'vue/prefer-separate-static-class'?: Linter.RuleEntry<[]>
   /**
+   * enforce passing a single argument to custom event emissions
+   * @see https://eslint.vuejs.org/rules/prefer-single-event-payload.html
+   */
+  'vue/prefer-single-event-payload'?: Linter.RuleEntry<[]>
+  /**
    * Require template literals instead of string concatenation in `<template>`
    * @see https://eslint.vuejs.org/rules/prefer-template.html
    */
@@ -1597,6 +1602,11 @@ export interface VueRules {
    * @see https://eslint.vuejs.org/rules/prefer-use-template-ref.html
    */
   'vue/prefer-use-template-ref'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using `v-model` instead of `:prop`/`@update:prop` pair
+   * @see https://eslint.vuejs.org/rules/prefer-v-model.html
+   */
+  'vue/prefer-v-model'?: Linter.RuleEntry<[]>
   /**
    * enforce specific casing for the Prop name in Vue components
    * @see https://eslint.vuejs.org/rules/prop-name-casing.html
@@ -3937,6 +3947,10 @@ type VueNoIrregularWhitespace = []|[{
   skipHTMLAttributeValues?: boolean
   skipHTMLTextContents?: boolean
 }]
+// ----- vue/no-literals-in-template -----
+type VueNoLiteralsInTemplate = []|[{
+  ignores?: string[]
+}]
 // ----- vue/no-lone-template -----
 type VueNoLoneTemplate = []|[{
   ignoreAccessible?: boolean
@@ -4124,7 +4138,7 @@ type VueNoUnusedComponents = []|[{
 }]
 // ----- vue/no-unused-properties -----
 type VueNoUnusedProperties = []|[{
-  groups?: ("props" | "data" | "asyncData" | "computed" | "methods" | "setup")[]
+  groups?: ("props" | "data" | "asyncData" | "computed" | "methods" | "setup" | "inject")[]
   deepData?: boolean
   ignorePublicMembers?: boolean
   unreferencedOptions?: ("unknownMemberAsUnreferenced" | "returnAsUnreferenced")[]
