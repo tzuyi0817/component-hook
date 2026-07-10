@@ -1,6 +1,6 @@
-import { pluginSecurity } from '../plugins';
-import type { SecurityRules } from '../typegen/security';
-import type { Config } from '../types';
+import { pluginSecurity } from '../plugins.ts';
+import type { SecurityRules } from '../typegen/security.ts';
+import type { Config } from '../types.ts';
 
 export const securityConfig: Config<SecurityRules> = {
   name: 'component-hook/security',

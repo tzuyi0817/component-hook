@@ -1,6 +1,6 @@
-import { pluginUnicorn } from '../plugins';
-import type { UnicornRules } from '../typegen/unicorn';
-import type { Config } from '../types';
+import { pluginUnicorn } from '../plugins.ts';
+import type { UnicornRules } from '../typegen/unicorn.ts';
+import type { Config } from '../types.ts';
 
 export const unicornConfigs: Config<UnicornRules>[] = [
   {

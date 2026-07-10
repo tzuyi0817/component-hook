@@ -1,8 +1,8 @@
 import { defineConfig } from 'eslint/config';
-import { RESTRICTED_SYNTAX } from '../constants';
-import { typescriptEslint } from '../plugins';
-import type { TypescriptRules } from '../typegen/typescript';
-import type { Config } from '../types';
+import { RESTRICTED_SYNTAX } from '../constants.ts';
+import { typescriptEslint } from '../plugins.ts';
+import type { TypescriptRules } from '../typegen/typescript.ts';
+import type { Config } from '../types.ts';
 import type { Linter } from 'eslint';
 
 export const typescriptCoreConfig = defineConfig({

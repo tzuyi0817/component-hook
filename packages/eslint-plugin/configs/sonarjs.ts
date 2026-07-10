@@ -1,6 +1,6 @@
-import { pluginSonarjs, type SonarjsConfigs } from '../plugins';
-import type { SonarjsRules } from '../typegen/sonarjs';
-import type { Config } from '../types';
+import { pluginSonarjs, type SonarjsConfigs } from '../plugins.ts';
+import type { SonarjsRules } from '../typegen/sonarjs.ts';
+import type { Config } from '../types.ts';
 
 const plugins = {
   sonarjs: pluginSonarjs,

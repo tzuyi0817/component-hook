@@ -1,7 +1,7 @@
-import { JSX, TSX } from '../constants';
-import { pluginJsxA11y, pluginReact, pluginReactHooks } from '../plugins';
-import type { ReactRules } from '../typegen/react';
-import type { Config } from '../types';
+import { JSX, TSX } from '../constants.ts';
+import { pluginJsxA11y, pluginReact, pluginReactHooks } from '../plugins.ts';
+import type { ReactRules } from '../typegen/react.ts';
+import type { Config } from '../types.ts';
 
 export const reactConfigs: Config<ReactRules>[] = [
   {

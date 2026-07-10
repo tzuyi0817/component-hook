@@ -1,8 +1,8 @@
-import { VUE } from '../constants';
-import { pluginVue, typescriptEslint, vueParser } from '../plugins';
-import { typescriptCoreConfig } from './typescript';
-import type { VueRules } from '../typegen/vue';
-import type { Config } from '../types';
+import { VUE } from '../constants.ts';
+import { pluginVue, typescriptEslint, vueParser } from '../plugins.ts';
+import { typescriptCoreConfig } from './typescript.ts';
+import type { VueRules } from '../typegen/vue.ts';
+import type { Config } from '../types.ts';
 
 const recommendedRules = pluginVue.configs['flat/recommended']
   .map(config => config.rules)

@@ -1,6 +1,6 @@
-import { configComments } from '../plugins';
-import type { CommentsRules } from '../typegen/comments';
-import type { Config } from '../types';
+import { configComments } from '../plugins.ts';
+import type { CommentsRules } from '../typegen/comments.ts';
+import type { Config } from '../types.ts';
 
 export const commentsConfigs: Config<CommentsRules>[] = [
   {

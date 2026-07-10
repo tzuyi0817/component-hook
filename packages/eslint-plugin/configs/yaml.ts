@@ -1,6 +1,6 @@
-import { pluginYaml } from '../plugins';
-import type { YamlRules } from '../typegen/yaml';
-import type { Config } from '../types';
+import { pluginYaml } from '../plugins.ts';
+import type { YamlRules } from '../typegen/yaml.ts';
+import type { Config } from '../types.ts';
 
 const initialRules: Config<YamlRules> = {
   rules: {

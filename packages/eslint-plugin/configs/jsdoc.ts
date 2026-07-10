@@ -1,6 +1,6 @@
-import { pluginJsdoc } from '../plugins';
-import type { JsdocRules } from '../typegen/jsdoc';
-import type { Config } from '../types';
+import { pluginJsdoc } from '../plugins.ts';
+import type { JsdocRules } from '../typegen/jsdoc.ts';
+import type { Config } from '../types.ts';
 
 export const jsdocConfig: Config<JsdocRules> = {
   name: 'component-hook/jsdoc',

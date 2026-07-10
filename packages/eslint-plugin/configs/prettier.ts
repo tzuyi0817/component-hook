@@ -1,6 +1,6 @@
-import { pluginPrettier, pluginPrettierRecommended } from '../plugins';
-import type { PrettierRules } from '../typegen/prettier';
-import type { Config } from '../types';
+import { pluginPrettier, pluginPrettierRecommended } from '../plugins.ts';
+import type { PrettierRules } from '../typegen/prettier.ts';
+import type { Config } from '../types.ts';
 
 const rules = { ...pluginPrettierRecommended.rules };
 

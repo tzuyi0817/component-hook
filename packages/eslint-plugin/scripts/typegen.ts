@@ -1,30 +1,30 @@
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { styleText } from 'node:util';
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core';
-import { commentsConfigs } from '../configs/comments';
-import { deMorganConfig } from '../configs/de-morgan';
-import { importConfigs } from '../configs/import';
-import { jsdocConfig } from '../configs/jsdoc';
-import { jsoncConfigs } from '../configs/jsonc';
-import { markdownConfigs } from '../configs/markdown';
-import { perfectionistConfig } from '../configs/perfectionist';
-import { playwrightConfig } from '../configs/playwright';
-import { prettierConfig } from '../configs/prettier';
-import { reactConfigs } from '../configs/react';
-import { regexpConfig } from '../configs/regexp';
-import { securityConfig } from '../configs/security';
-import { sonarjsConfigs } from '../configs/sonarjs';
+import { commentsConfigs } from '../configs/comments.ts';
+import { deMorganConfig } from '../configs/de-morgan.ts';
+import { importConfigs } from '../configs/import.ts';
+import { jsdocConfig } from '../configs/jsdoc.ts';
+import { jsoncConfigs } from '../configs/jsonc.ts';
+import { markdownConfigs } from '../configs/markdown.ts';
+import { perfectionistConfig } from '../configs/perfectionist.ts';
+import { playwrightConfig } from '../configs/playwright.ts';
+import { prettierConfig } from '../configs/prettier.ts';
+import { reactConfigs } from '../configs/react.ts';
+import { regexpConfig } from '../configs/regexp.ts';
+import { securityConfig } from '../configs/security.ts';
+import { sonarjsConfigs } from '../configs/sonarjs.ts';
 import {
   testingLibraryAngularConfig,
   testingLibraryDomConfig,
   testingLibraryMarkoConfig,
   testingLibraryReactConfig,
   testingLibraryVueConfig,
-} from '../configs/testing-library';
-import { typescriptConfigs } from '../configs/typescript';
-import { unicornConfigs } from '../configs/unicorn';
-import { vueConfigs } from '../configs/vue';
-import { yamlConfigs } from '../configs/yaml';
+} from '../configs/testing-library.ts';
+import { typescriptConfigs } from '../configs/typescript.ts';
+import { unicornConfigs } from '../configs/unicorn.ts';
+import { vueConfigs } from '../configs/vue.ts';
+import { yamlConfigs } from '../configs/yaml.ts';
 
 const configs = {
   typescript: typescriptConfigs,

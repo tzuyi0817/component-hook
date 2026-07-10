@@ -1,6 +1,6 @@
-import { pluginDeMorgan } from '../plugins';
-import type { DeMorganRules } from '../typegen/de-morgan';
-import type { Config } from '../types';
+import { pluginDeMorgan } from '../plugins.ts';
+import type { DeMorganRules } from '../typegen/de-morgan.ts';
+import type { Config } from '../types.ts';
 
 export const deMorganConfig: Config<DeMorganRules> = {
   ...pluginDeMorgan.configs.recommended,

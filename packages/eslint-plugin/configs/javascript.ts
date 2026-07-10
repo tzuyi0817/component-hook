@@ -1,6 +1,6 @@
-import { RESTRICTED_SYNTAX } from '../constants';
-import { globals, pluginJs } from '../plugins';
-import type { Config } from '../types';
+import { RESTRICTED_SYNTAX } from '../constants.ts';
+import { globals, pluginJs } from '../plugins.ts';
+import type { Config } from '../types.ts';
 
 export const jsConfigs: Config[] = [
   {

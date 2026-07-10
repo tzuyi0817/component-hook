@@ -1,7 +1,7 @@
-import { BLOB_JSON, JSON5, JSONC } from '../constants';
-import { parseForESLint, pluginJsonc } from '../plugins';
-import type { JsoncRules } from '../typegen/jsonc';
-import type { Config } from '../types';
+import { BLOB_JSON, JSON5, JSONC } from '../constants.ts';
+import { parseForESLint, pluginJsonc } from '../plugins.ts';
+import type { JsoncRules } from '../typegen/jsonc.ts';
+import type { Config } from '../types.ts';
 
 const recommendedRules = pluginJsonc.configs['recommended-with-jsonc']
   .map(config => config.rules)

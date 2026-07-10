@@ -1,6 +1,6 @@
-import { pluginTestingLibrary } from '../plugins';
-import type { TestingLibraryRules } from '../typegen/testing-library';
-import type { Config } from '../types';
+import { pluginTestingLibrary } from '../plugins.ts';
+import type { TestingLibraryRules } from '../typegen/testing-library.ts';
+import type { Config } from '../types.ts';
 
 const configs = pluginTestingLibrary.configs;
 const plugins = {

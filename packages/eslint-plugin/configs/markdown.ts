@@ -1,7 +1,7 @@
-import { SRC, VUE } from '../constants';
-import { pluginMarkdown } from '../plugins';
-import type { MarkdownRules } from '../typegen/markdown';
-import type { Config } from '../types';
+import { SRC, VUE } from '../constants.ts';
+import { pluginMarkdown } from '../plugins.ts';
+import type { MarkdownRules } from '../typegen/markdown.ts';
+import type { Config } from '../types.ts';
 
 export const markdownConfigs: Config<MarkdownRules>[] = [
   ...pluginMarkdown.configs.processor.map(config => ({

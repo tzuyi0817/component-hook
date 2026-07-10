@@ -1,6 +1,6 @@
-import { pluginRegexp } from '../plugins';
-import type { RegexpRules } from '../typegen/regexp';
-import type { Config } from '../types';
+import { pluginRegexp } from '../plugins.ts';
+import type { RegexpRules } from '../typegen/regexp.ts';
+import type { Config } from '../types.ts';
 
 export const regexpConfig: Config<RegexpRules> = {
   ...pluginRegexp.configs['flat/recommended'],

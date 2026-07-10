@@ -1,7 +1,7 @@
-import { SRC_EXT } from '../constants';
-import { pluginImport, typescriptEslint, vueParser } from '../plugins';
-import type { ImportRules } from '../typegen/import';
-import type { Config } from '../types';
+import { SRC_EXT } from '../constants.ts';
+import { pluginImport, typescriptEslint, vueParser } from '../plugins.ts';
+import type { ImportRules } from '../typegen/import.ts';
+import type { Config } from '../types.ts';
 
 const plugins = {
   import: pluginImport,
