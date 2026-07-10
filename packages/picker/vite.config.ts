@@ -23,7 +23,7 @@ export default defineConfig({
   plugins: [
     vitePlugin(),
     dts({
-      rollupTypes: true,
+      bundleTypes: true,
       afterBuild: emittedFiles => {
         for (const file of emittedFiles.keys()) {
           if (!file.endsWith('/react/picker.es.d.ts')) continue;

@@ -53,6 +53,7 @@
     "vue": "catalog:"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
     "sass-embedded": "^1.100.0",
     "vite-plugin-dts": "catalog:"
   }

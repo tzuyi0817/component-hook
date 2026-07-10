@@ -4,7 +4,7 @@ import dts from 'vite-plugin-dts';
 import { libEntry, outDir, rollupExternal, rollupGlobals, vitePlugin } from '../../internal/build-config';
 
 export default defineConfig({
-  plugins: [vitePlugin(), dts({ rollupTypes: true }), visualizer({ gzipSize: true })],
+  plugins: [vitePlugin(), dts({ bundleTypes: true }), visualizer({ gzipSize: true })],
   base: './',
   optimizeDeps: {
     include: ['typescript'],
