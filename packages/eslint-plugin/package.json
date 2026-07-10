@@ -41,7 +41,7 @@
   "scripts": {
     "dev": "eslint-config-inspector --config ../../eslint.config.js",
     "build": "pnpm run build:typegen && tsdown",
-    "build:typegen": "unrun scripts/typegen.ts",
+    "build:typegen": "node scripts/typegen.ts",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
@@ -77,7 +77,6 @@
   "devDependencies": {
     "@eslint/config-inspector": "^2.0.1",
     "@types/eslint-plugin-security": "^3.0.1",
-    "eslint-typegen": "^2.3.1",
-    "unrun": "^0.2.36"
+    "eslint-typegen": "^2.3.1"
   }
 }
