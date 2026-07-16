@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "fabric": "^7.4.0",
-    "pdfjs-dist": "4.10.38"
+    "pdfjs-dist": "6.1.200"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
