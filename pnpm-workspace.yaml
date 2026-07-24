@@ -4,12 +4,12 @@ packages:
   - 'playground/*'
 
 catalog:
-  '@microsoft/api-extractor': ^7.58.5
-  eslint: ^9.39.4
-  react: ^19.2.7
-  react-dom: ^19.2.7
+  '@microsoft/api-extractor': ^7.58.12
+  eslint: ^9.39.5
+  react: ^19.2.8
+  react-dom: ^19.2.8
   vite-plugin-dts: ^5.0.3
-  vue: ^3.5.39
+  vue: ^3.5.40
 
 allowBuilds:
   '@parcel/watcher': true
