@@ -10,8 +10,13 @@ const buildConfigMap = {
   },
   react: {
     plugin: react,
-    globals: { react: 'React', 'react-dom': 'ReactDOM' },
-    external: ['react', 'react-dom'],
+    globals: { react: 'React', 'react-dom': 'ReactDOM', 'react/jsx-runtime': 'react_jsx_runtime' },
+    /**
+     * 需連子路徑一併排除（react/jsx-runtime、react-dom/client 等）。
+     * 只列裸套件名時，automatic jsx runtime 注入的 react/jsx-runtime 會被打包進 dist，
+     * 而它只有 CJS 版本，內部 require('react') 在 Rolldown 下會被轉成執行期拋錯的 __require shim。
+     */
+    external: [/^react($|\/)/, /^react-dom($|\/)/],
   },
 };
 
