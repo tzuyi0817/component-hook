@@ -32,7 +32,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "art-template": "^4.13.7",
+    "art-template": "^4.13.4",
     "fs-extra": "^11.3.6",
     "minimist": "^1.2.8",
     "ora": "^9.4.1",
