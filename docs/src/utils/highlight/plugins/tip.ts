@@ -1,16 +1,18 @@
-import type markdownit from 'markdown-it';
-import type Token from 'markdown-it/lib/token.mjs';
+import type { MarkdownIt, Token } from 'markdown-it';
 
-export function tipPlugin(markdown: markdownit) {
+export function tipPlugin(markdown: MarkdownIt) {
   return {
-    render(tokens: Token[], index: number) {
+    name: 'tip',
+    openRender(tokens: Token[], index: number) {
       const token = tokens[index];
 
       if (token.nesting !== 1) return '</div>\n';
+
       const info = token.info.trim().slice('tip'.length).trim();
       const title = markdown.renderInline(info);
 
       return `<div class="tip"><p class="tip-title">${title}</p>\n`;
     },
+    closeRender: () => `</div>\n`,
   };
 }

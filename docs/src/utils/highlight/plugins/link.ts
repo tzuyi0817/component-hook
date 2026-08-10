@@ -1,6 +1,6 @@
-import type markdownit from 'markdown-it';
+import type { MarkdownIt } from 'markdown-it';
 
-export function linkPlugin(markdown: markdownit) {
+export function linkPlugin(markdown: MarkdownIt) {
   markdown.renderer.rules.link_open = (tokens, index, options, _env, self) => {
     const token = tokens[index];
 
