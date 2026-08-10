@@ -35,6 +35,7 @@ export const markdownConfigs: Config<MarkdownRules>[] = [
 
       'unicorn/no-useless-undefined': 'off',
       'unicorn/no-anonymous-default-export': 'off',
+      'unicorn/no-top-level-side-effects': 'off',
     },
   },
 ];
