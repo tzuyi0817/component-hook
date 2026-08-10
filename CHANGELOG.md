@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.5.1](https://github.com/tzuyi0817/component-hook/compare/v1.5.0...v1.5.1) (2026-08-10)
+
+### Features
+
+- **eslint-plugin:** upgrade `eslint-plugin-unicorn` to v73 ([f8e7c56](https://github.com/tzuyi0817/component-hook/commit/f8e7c560ffcb2e31524e62b1e274cb1c1bd427b2))
+- **eslint-plugin:** upgrade `eslint-plugin-jsdoc` to v64 ([ca53cf5](https://github.com/tzuyi0817/component-hook/commit/ca53cf53a76b72c9f312cef673a36df7e75051b8))
+
+### Bug Fixes
+
+- **picker, pdf-canvas:** packaging results in unnecessary types ([6e362bb](https://github.com/tzuyi0817/component-hook/commit/6e362bb151383fcd2b554236848c4ddedc01b36a))
+- **picker, pdf-canvas:** externalize `react` subpath imports in the react build ([4e73885](https://github.com/tzuyi0817/component-hook/commit/4e73885d741814d1f5c15ba6a589e6456173637d))
+- **eslint-plugin:** disable `unicorn/no-top-level-side-effects` in markdown ([5a851bc](https://github.com/tzuyi0817/component-hook/commit/5a851bce278a1ef5110661c7a252f546960df7b8))
+- **eslint-plugin:** disable unnecessary unicorn rules ([524e6b6](https://github.com/tzuyi0817/component-hook/commit/524e6b6f12511ac21598afe4b35a72fd53b91f71))
+
 ## [1.5.0](https://github.com/tzuyi0817/component-hook/compare/v1.4.4...v1.5.0) (2026-07-10)
 
 ### Breaking Changes
