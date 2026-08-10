@@ -242,6 +242,7 @@ export interface VueRules {
   /**
    * Disallow function declarations that contain unsafe references inside loop statements
    * @see https://typescript-eslint.io/rules/no-loop-func
+   * @deprecated
    */
   '@typescript-eslint/no-loop-func'?: Linter.RuleEntry<[]>
   /**
@@ -318,6 +319,7 @@ export interface VueRules {
   /**
    * Disallow specified modules when loaded by `import`
    * @see https://typescript-eslint.io/rules/no-restricted-imports
+   * @deprecated
    */
   '@typescript-eslint/no-restricted-imports'?: Linter.RuleEntry<TypescriptEslintNoRestrictedImports>
   /**
@@ -4317,6 +4319,7 @@ type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   ignoreGrandchildrenOf?: unknown[]
   minKeys?: number
   natural?: boolean
+  allowLineSeparatedGroups?: boolean
 }]
 // ----- vue/space-in-parens -----
 type VueSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {

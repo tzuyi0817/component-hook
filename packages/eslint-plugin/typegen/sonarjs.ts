@@ -39,6 +39,11 @@ export interface SonarjsRules {
    */
   'sonarjs/arrow-function-convention'?: Linter.RuleEntry<SonarjsArrowFunctionConvention>
   /**
+   * Assertions should be placed inside test cases or hooks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8784/javascript
+   */
+  'sonarjs/assertions-in-test-cases'?: Linter.RuleEntry<[]>
+  /**
    * Tests should include assertions
    * @see https://sonarsource.github.io/rspec/#/rspec/S2699/javascript
    */
@@ -316,6 +321,11 @@ export interface SonarjsRules {
    */
   'sonarjs/existing-groups'?: Linter.RuleEntry<[]>
   /**
+   * Tests should be skipped explicitly
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8968/javascript
+   */
+  'sonarjs/explicit-test-skip'?: Linter.RuleEntry<[]>
+  /**
    * Expressions should not be too complex
    * @see https://sonarsource.github.io/rspec/#/rspec/S1067/javascript
    */
@@ -473,6 +483,11 @@ export interface SonarjsRules {
    */
   'sonarjs/max-union-size'?: Linter.RuleEntry<SonarjsMaxUnionSize>
   /**
+   * Lodash and Underscore.js `memoize` calls on functions with multiple parameters should use an explicit cache key function
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8932/javascript
+   */
+  'sonarjs/memoize-cache-key'?: Linter.RuleEntry<[]>
+  /**
    * "for" loop increment clauses should modify the loops' counters
    * @see https://sonarsource.github.io/rspec/#/rspec/S1994/javascript
    */
@@ -563,6 +578,16 @@ export interface SonarjsRules {
    */
   'sonarjs/no-dead-store'?: Linter.RuleEntry<[]>
   /**
+   * UI test debug commands should not be committed to version control
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8959/javascript
+   */
+  'sonarjs/no-debug-commands-in-ui-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Default imports from modular utility libraries should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8927/javascript
+   */
+  'sonarjs/no-default-utility-imports'?: Linter.RuleEntry<[]>
+  /**
    * "delete" should be used only with object properties
    * @see https://sonarsource.github.io/rspec/#/rspec/S3001/javascript
    */
@@ -647,6 +672,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S128/javascript
    */
   'sonarjs/no-fallthrough'?: Linter.RuleEntry<[]>
+  /**
+   * Fixed waits should not be used in tests
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2925/javascript
+   */
+  'sonarjs/no-fixed-wait-in-tests'?: Linter.RuleEntry<[]>
   /**
    * Floating point numbers should not be tested for equality
    * @see https://sonarsource.github.io/rspec/#/rspec/S1244/javascript
@@ -768,6 +798,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-internal-api-use'?: Linter.RuleEntry<[]>
   /**
+   * Inline snapshots should not contain interpolations
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8967/javascript
+   */
+  'sonarjs/no-interpolation-in-inline-snapshots'?: Linter.RuleEntry<[]>
+  /**
    * Sensitive permissions should not be requested unnecessarily
    * @see https://sonarsource.github.io/rspec/#/rspec/S5604/javascript
    * @deprecated
@@ -819,6 +854,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S5868/javascript
    */
   'sonarjs/no-misleading-character-class'?: Linter.RuleEntry<[]>
+  /**
+   * Test and hook callbacks should use a single completion style
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8960/javascript
+   */
+  'sonarjs/no-mixed-completion-style'?: Linter.RuleEntry<[]>
   /**
    * Content Security Policy should block mixed-content
    * @see https://sonarsource.github.io/rspec/#/rspec/S5730/javascript
@@ -891,7 +931,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-redundant-optional'?: Linter.RuleEntry<[]>
   /**
-   * Redundant pairs of parentheses should be removed
+   * Unnecessary parentheses should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1110/javascript
    * @deprecated
    */
@@ -968,7 +1008,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-table-as-layout'?: Linter.RuleEntry<[]>
   /**
-   * Assertions should not fail or succeed unconditionally
+   * Assertions should not be trivially true
    * @see https://sonarsource.github.io/rspec/#/rspec/S5914/javascript
    */
   'sonarjs/no-trivial-assertions'?: Linter.RuleEntry<[]>
@@ -1100,6 +1140,11 @@ export interface SonarjsRules {
    */
   'sonarjs/os-command'?: Linter.RuleEntry<[]>
   /**
+   * Similar tests should be grouped in a single Parameterized test
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5976/javascript
+   */
+  'sonarjs/parameterized-tests'?: Linter.RuleEntry<[]>
+  /**
    * Origins should be verified during cross-origin communications
    * @see https://sonarsource.github.io/rspec/#/rspec/S2819/javascript
    */
@@ -1114,6 +1159,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S1488/javascript
    */
   'sonarjs/prefer-immediate-return'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over Lodash and Underscore.js methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8907/javascript
+   */
+  'sonarjs/prefer-native-lodash-alternative'?: Linter.RuleEntry<[]>
   /**
    * Object literal syntax should be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S2428/javascript
@@ -1249,6 +1299,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S8786/javascript
    */
   'sonarjs/super-linear-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should not be registered asynchronously in suite callbacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8785/javascript
+   */
+  'sonarjs/synchronous-suite-callback'?: Linter.RuleEntry<[]>
   /**
    * Tables should have headers
    * @see https://sonarsource.github.io/rspec/#/rspec/S5256/javascript

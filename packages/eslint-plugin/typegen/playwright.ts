@@ -139,6 +139,11 @@ export interface PlaywrightRules {
    */
   'playwright/no-standalone-expect'?: Linter.RuleEntry<[]>
   /**
+   * Disallow assertions on a Locator that can never fail
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-unnecessary-assertions.md
+   */
+  'playwright/no-unnecessary-assertions'?: Linter.RuleEntry<[]>
+  /**
    * Prevent unsafe variable references in page.evaluate() and page.addInitScript()
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-unsafe-references.md
    */

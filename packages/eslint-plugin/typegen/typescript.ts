@@ -242,6 +242,7 @@ export interface TypescriptRules {
   /**
    * Disallow function declarations that contain unsafe references inside loop statements
    * @see https://typescript-eslint.io/rules/no-loop-func
+   * @deprecated
    */
   '@typescript-eslint/no-loop-func'?: Linter.RuleEntry<[]>
   /**
@@ -318,6 +319,7 @@ export interface TypescriptRules {
   /**
    * Disallow specified modules when loaded by `import`
    * @see https://typescript-eslint.io/rules/no-restricted-imports
+   * @deprecated
    */
   '@typescript-eslint/no-restricted-imports'?: Linter.RuleEntry<TypescriptEslintNoRestrictedImports>
   /**
