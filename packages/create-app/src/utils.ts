@@ -48,8 +48,8 @@ export function getPkgManagerInfo() {
   const userAgent = process.env.npm_config_user_agent;
 
   if (!userAgent) return;
-  const [pkgManager] = userAgent.split(' ');
-  const [name, version] = pkgManager.split('/');
+  const [pkgManager] = userAgent.split(' ', 1);
+  const [name, version] = pkgManager.split('/', 2);
 
   return { name, version };
 }

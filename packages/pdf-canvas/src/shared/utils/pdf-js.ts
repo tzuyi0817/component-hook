@@ -56,8 +56,15 @@ async function renderWithWorker({
     worker.postMessage({ data, password, id, page, units, scale });
 
     const result = await new Promise<{ pages: number; canvas: HTMLCanvasElement | null }>((resolve, reject) => {
+      const cleanup = () => {
+        worker.removeEventListener('message', handleMessage);
+        worker.removeEventListener('error', handleError);
+      };
+
       const handleMessage = (event: MessageEvent) => {
         if (!event.data.status) return;
+
+        cleanup();
 
         if (event.data.status === 'success') {
           const { bitmap, width, height, pages } = event.data;
@@ -70,19 +77,20 @@ async function renderWithWorker({
             canvas.height = height;
             context?.drawImage(bitmap, 0, 0);
             bitmap.close();
-            resolve({ pages, canvas });
-          } else {
-            resolve({ pages, canvas: null });
+
+            return resolve({ pages, canvas });
           }
+
+          return resolve({ pages, canvas: null });
         }
 
         if (event.data.status === 'error') {
-          reject(event.data.error);
+          return reject(event.data.error);
         }
-
-        worker.removeEventListener('message', handleMessage);
       };
+
       const handleError = (error: ErrorEvent) => {
+        cleanup();
         reject(new Error(`Worker error: ${error.message}`));
       };
 

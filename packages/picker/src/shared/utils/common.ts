@@ -148,7 +148,7 @@ export function isValidTime(time: string) {
 
 export function getValidTime(time: string) {
   if (!isValidTime(time)) return null;
-  const [hour, minute, second] = time.split(':');
+  const [hour, minute, second] = time.split(':', 3);
 
   return { hour: Number(hour), minute: Number(minute), second: Number(second) };
 }
