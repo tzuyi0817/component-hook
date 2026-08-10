@@ -1,5 +1,5 @@
-import markdownit from 'markdown-it';
-import container from 'markdown-it-container';
+import { container } from '@mdit/plugin-container';
+import markdownit, { type MarkdownIt } from 'markdown-it';
 import prism from 'prismjs';
 import { groupPlugin, linkPlugin, tablePlugin, tipPlugin } from './plugins';
 import 'prismjs/components/prism-bash';
@@ -15,8 +15,8 @@ function createMarkdown() {
 
   markdown
     .use(linkPlugin)
-    .use(container, 'group', groupPlugin())
-    .use(container, 'tip', tipPlugin(markdown))
+    .use(container, groupPlugin())
+    .use(container, tipPlugin(markdown))
     .use(fencePlugin)
     .use(tablePlugin);
 
@@ -40,11 +40,11 @@ export function highlight(source: string, lang = 'markup', classAttr = '') {
   return wrap(code, lang, classAttr);
 }
 
-function fencePlugin(markdown: markdownit) {
+function fencePlugin(markdown: MarkdownIt) {
   markdown.renderer.rules.fence = (tokens, index) => {
     const token = tokens[index];
     const { content, info: lang } = token;
-    const classAttr = token.attrGet('class') || '';
+    const classAttr = String(token.attrGet('class')) || '';
 
     return highlight(content, lang, classAttr);
   };
