@@ -2,7 +2,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig, type Plugin } from 'vite';
 import dts from 'vite-plugin-dts';
-import { FRAMEWORK, libEntry, outDir, rollupExternal, rollupGlobals, vitePlugin } from '../../internal/build-config';
+import {
+  dtsOptions,
+  FRAMEWORK,
+  libEntry,
+  outDir,
+  rollupExternal,
+  rollupGlobals,
+  vitePlugin,
+} from '../../internal/build-config';
 
 const patchCssFile: Plugin = {
   name: 'patch-css-file',
@@ -11,6 +19,7 @@ const patchCssFile: Plugin = {
     const file = 'picker.es.js';
 
     if (!bundle[file]) return;
+
     const dist = path.resolve('dist');
     const filePath = path.resolve(dist, `${FRAMEWORK}/${file}`);
     const content = fs.readFileSync(filePath, 'utf8');
@@ -20,23 +29,7 @@ const patchCssFile: Plugin = {
 };
 
 export default defineConfig({
-  plugins: [
-    vitePlugin(),
-    dts({
-      bundleTypes: true,
-      afterBuild: emittedFiles => {
-        for (const file of emittedFiles.keys()) {
-          if (!file.endsWith('/react/picker.es.d.ts')) continue;
-
-          const content = fs.readFileSync(file, 'utf8');
-          const patched = content.replaceAll(/(\.\.\/){2,}react/g, 'react');
-
-          fs.writeFileSync(file, patched);
-        }
-      },
-    }),
-    patchCssFile,
-  ],
+  plugins: [vitePlugin(), dts(dtsOptions), patchCssFile],
   base: './',
   optimizeDeps: {
     include: ['typescript'],
