@@ -4,7 +4,7 @@ packages:
   - 'playground/*'
 
 catalog:
-  '@microsoft/api-extractor': ^7.58.12
+  '@microsoft/api-extractor': ^7.59.0
   eslint: ^9.39.5
   react: ^19.2.8
   react-dom: ^19.2.8
