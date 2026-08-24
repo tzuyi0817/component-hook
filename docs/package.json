@@ -13,7 +13,7 @@
   "dependencies": {
     "@component-hook/pdf-canvas": "workspace:*",
     "@component-hook/picker": "workspace:*",
-    "uuid": "^13.0.2",
+    "uuid": "^14.0.2",
     "vue": "catalog:",
     "vue-router": "^5.2.0"
   },
