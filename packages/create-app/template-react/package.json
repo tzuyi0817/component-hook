@@ -57,7 +57,7 @@
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "^8.2.2",
     "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^4.1.11"
