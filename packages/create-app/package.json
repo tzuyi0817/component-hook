@@ -2,7 +2,7 @@
   "name": "@component-hook/create-app",
   "type": "module",
   "version": "1.5.1",
-  "packageManager": "pnpm@11.23.0",
+  "packageManager": "pnpm@11.25.0",
   "description": "Scaffolding a basic typescript project",
   "author": "Tzuyi",
   "license": "MIT",
