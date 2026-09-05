@@ -2,7 +2,7 @@
   "name": "component-hook",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@11.23.0",
+  "packageManager": "pnpm@11.25.0",
   "license": "MIT",
   "engines": {
     "node": "^22.23.1 || ^24.18.0 || >=26.3.0"
@@ -32,18 +32,18 @@
     "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.2",
     "husky": "^9.1.7",
-    "lint-staged": "^17.3.0"
+    "lint-staged": "^17.5.0"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
     "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.6",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@testing-library/vue": "^8.1.0",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
-    "@vitejs/plugin-react": "^6.1.0",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vitest/coverage-v8": "^4.1.11",
     "cross-env": "^10.1.0",
@@ -52,8 +52,8 @@
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "rollup-plugin-visualizer": "^7.1.1",
-    "tsdown": "^0.22.14",
-    "turbo": "^2.10.11",
+    "tsdown": "^0.23.0",
+    "turbo": "^2.10.12",
     "typescript": "^6.0.3",
     "vite": "^8.2.2",
     "vitest": "^4.1.11",
