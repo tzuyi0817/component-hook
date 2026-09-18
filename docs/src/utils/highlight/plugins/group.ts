@@ -4,7 +4,7 @@ import type { Token } from 'markdown-it';
 export function groupPlugin() {
   return {
     name: 'group',
-    openRender(tokens: Token[], index: number) {
+    openRenderer(tokens: Token[], index: number) {
       if (tokens[index].nesting !== 1) return '</div></div>\n';
 
       const name = `group-${v4()}`;
@@ -39,6 +39,6 @@ export function groupPlugin() {
 
       return `<div class="group-panel">\n<div class="group-tabs">${tabs}</div><div class="group-blocks">\n`;
     },
-    closeRender: () => `</div></div>\n`,
+    closeRenderer: () => `</div></div>\n`,
   };
 }

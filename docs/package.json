@@ -18,7 +18,7 @@
     "vue-router": "^5.3.1"
   },
   "devDependencies": {
-    "@mdit/plugin-container": "^1.0.2",
+    "@mdit/plugin-container": "^2.0.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/prismjs": "^1.26.6",
     "cssnano": "^9.0.5",
