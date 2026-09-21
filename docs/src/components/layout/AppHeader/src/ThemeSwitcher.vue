@@ -6,6 +6,7 @@ import { usePrefersTheme } from '@/hooks/use-prefers-theme';
 const TRANSITION_DURATION = 400;
 const isDarkTheme = usePrefersTheme('dark');
 const themeSwitcherRef = useTemplateRef<HTMLLinkElement>('theme-switcher');
+let themeAnimation: Animation | undefined;
 
 async function handleChange(event: Event) {
   const isDark = (event.target as HTMLInputElement).checked;
@@ -47,9 +48,12 @@ async function animateThemeSwitch(
 ) {
   await transition.ready;
 
+  themeAnimation?.cancel();
+  themeAnimation = undefined;
+
   const clipPath = [`circle(${ratioR}% at ${ratioX}% ${ratioY}%)`, `circle(0% at ${ratioX}% ${ratioY}%)`];
 
-  document.documentElement.animate(
+  themeAnimation = document.documentElement.animate(
     {
       clipPath: isDark ? clipPath : clipPath.toReversed(),
     },
