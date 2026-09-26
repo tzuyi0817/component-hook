@@ -2,7 +2,7 @@
   "name": "@component-hook/picker",
   "type": "module",
   "version": "1.5.1",
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.6.0",
   "description": "Picker component with vue3 and react",
   "author": "Tzuyi",
   "license": "MIT",
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
-    "sass-embedded": "^1.104.1",
+    "sass-embedded": "^1.105.0",
     "vite-plugin-dts": "catalog:"
   }
 }
