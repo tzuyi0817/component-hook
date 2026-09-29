@@ -1,8 +1,8 @@
 import { defineConfig } from 'eslint/config';
-import { RESTRICTED_SYNTAX } from '../constants.ts';
-import { typescriptEslint } from '../plugins.ts';
-import type { TypescriptRules } from '../typegen/typescript.ts';
-import type { Config } from '../types.ts';
+import { RESTRICTED_SYNTAX } from '../../constants.ts';
+import { typescriptEslint } from '../../plugins.ts';
+import type { TypescriptRules } from '../../typegen/typescript.ts';
+import type { Config } from '../../types.ts';
 import type { Linter } from 'eslint';
 
 export const typescriptCoreConfig = defineConfig({
@@ -51,10 +51,9 @@ export const typescriptConfigs: Config<TypescriptRules>[] = [
     files: ['**/*.d.ts'],
     name: 'component-hook/typescript/dts-rules',
     rules: {
-      'eslint-comments/no-unlimited-disable': 'off',
+      '@eslint-community/eslint-comments/no-unlimited-disable': 'off',
       'import/no-duplicates': 'off',
       'no-restricted-syntax': 'off',
-      'unused-imports/no-unused-vars': 'off',
     },
   },
 ];
