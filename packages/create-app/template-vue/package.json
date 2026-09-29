@@ -1,9 +1,8 @@
 {
   "name": "vue-starter",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@12.4.2",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "dev:mock": "cross-env MOCK=true vite",
@@ -24,12 +23,6 @@
     "vue": "^3.5.43",
     "vue-i18n": "^11.4.12",
     "vue-router": "^5.3.1"
-  },
-  "optionalDependencies": {
-    "@commitlint/cli": "^21.2.2",
-    "@commitlint/config-conventional": "^21.2.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.5.1"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "^1.5.1",
@@ -63,6 +56,13 @@
     "vitest": "^5.0.1",
     "vue-tsc": "^3.3.11"
   },
+  "optionalDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1"
+  },
+  "packageManager": "pnpm@12.4.2",
   "msw": {
     "workerDirectory": "public"
   }

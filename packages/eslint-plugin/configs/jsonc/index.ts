@@ -1,7 +1,7 @@
-import { BLOB_JSON, JSON5, JSONC } from '../constants.ts';
-import { parseForESLint, pluginJsonc } from '../plugins.ts';
-import type { JsoncRules } from '../typegen/jsonc.ts';
-import type { Config } from '../types.ts';
+import { BLOB_JSON, JSON5, JSONC } from '../../constants.ts';
+import { parseForESLint, pluginJsonc } from '../../plugins.ts';
+import type { JsoncRules } from '../../typegen/jsonc.ts';
+import type { Config } from '../../types.ts';
 
 const recommendedRules = pluginJsonc.configs['recommended-with-jsonc']
   .map(config => config.rules)
@@ -37,60 +37,6 @@ export const jsoncConfigs: Config<JsoncRules>[] = [
       ],
       'jsonc/sort-keys': [
         'error',
-        {
-          order: [
-            'publisher',
-            'name',
-            'displayName',
-            'type',
-            'version',
-            'private',
-            'packageManager',
-            'description',
-            'author',
-            'contributors',
-            'license',
-            'funding',
-            'homepage',
-            'repository',
-            'bugs',
-            'keywords',
-            'categories',
-            'sideEffects',
-            'imports',
-            'exports',
-            'main',
-            'module',
-            'unpkg',
-            'jsdelivr',
-            'types',
-            'typesVersions',
-            'bin',
-            'icon',
-            'files',
-            'engines',
-            'devEngines',
-            'activationEvents',
-            'contributes',
-            'scripts',
-            'peerDependencies',
-            'peerDependenciesMeta',
-            'dependencies',
-            'inlinedDependencies',
-            'optionalDependencies',
-            'devDependencies',
-            'pnpm',
-            'overrides',
-            'resolutions',
-            'husky',
-            'simple-git-hooks',
-            'lint-staged',
-            'eslintConfig',
-            'prettier',
-            'tsdown',
-          ],
-          pathPattern: '^$',
-        },
         {
           order: { type: 'asc' },
           pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',

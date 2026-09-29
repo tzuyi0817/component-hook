@@ -7,7 +7,6 @@
   "proseWrap": "preserve",
   "arrowParens": "avoid",
   "singleAttributePerLine": true,
-  "sortPackageJson": false,
   "sortTailwindcss": {},
   "ignorePatterns": ["**/typegen/**", "**/CHANGELOG.md"]
 }

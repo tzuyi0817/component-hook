@@ -1,26 +1,28 @@
 {
   "name": "@component-hook/eslint-plugin",
-  "type": "module",
   "version": "1.5.1",
-  "packageManager": "pnpm@12.4.2",
   "description": "ESLint config for component hook",
-  "author": "Tzuyi",
-  "license": "MIT",
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "eslintplugin",
+    "oxfmt"
+  ],
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
+  "license": "MIT",
+  "author": "Tzuyi",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/eslint-plugin"
   },
-  "bugs": {
-    "url": "https://github.com/tzuyi0817/component-hook/issues"
-  },
-  "keywords": [
-    "eslint",
-    "eslintplugin",
-    "eslint-plugin",
-    "oxfmt"
+  "files": [
+    "dist"
   ],
+  "type": "module",
   "exports": {
     ".": {
       "import": {
@@ -33,9 +35,6 @@
       }
     }
   },
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
     "tag": "latest"
   },
@@ -44,10 +43,6 @@
     "build": "pnpm run build:typegen && tsdown",
     "build:typegen": "node scripts/typegen.ts",
     "typecheck": "tsc --noEmit --skipLibCheck"
-  },
-  "peerDependencies": {
-    "eslint": "catalog:",
-    "oxfmt": ">=0.71.0"
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",
@@ -82,5 +77,10 @@
     "@types/eslint-plugin-security": "^3.0.1",
     "eslint-typegen": "^2.3.1",
     "oxfmt": "^0.71.0"
-  }
+  },
+  "peerDependencies": {
+    "eslint": "catalog:",
+    "oxfmt": ">=0.71.0"
+  },
+  "packageManager": "pnpm@12.4.2"
 }

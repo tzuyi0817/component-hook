@@ -5,7 +5,7 @@ import { commentsConfigs } from '../configs/comments.ts';
 import { deMorganConfig } from '../configs/de-morgan.ts';
 import { importConfigs } from '../configs/import.ts';
 import { jsdocConfig } from '../configs/jsdoc.ts';
-import { jsoncConfigs } from '../configs/jsonc.ts';
+import { jsoncConfigs } from '../configs/jsonc/index.ts';
 import { markdownConfigs } from '../configs/markdown.ts';
 import { oxfmtConfig } from '../configs/oxfmt/index.ts';
 import { perfectionistConfig } from '../configs/perfectionist.ts';

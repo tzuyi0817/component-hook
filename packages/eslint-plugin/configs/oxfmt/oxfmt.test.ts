@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { Linter } from 'eslint';
 import { configPrettier, typescriptEslint, vueParser } from '../../plugins.ts';
+import { jsoncConfigs } from '../jsonc/index.ts';
 import { oxfmtConfig } from './index.ts';
 
 /** 關閉設定檔與 ignore 探索，讓測試結果不受 repo 內的 oxfmt 設定影響 */
@@ -99,6 +100,18 @@ describe('oxfmt config', () => {
 
     expect(result.fixed).toBe(true);
     expect(result.output).toBe('const x: { a: number } = { a: 1 };\n');
+  });
+
+  it('sorts package.json keys with oxfmt without fighting jsonc rules', () => {
+    const linter = new Linter({ cwd: import.meta.dirname });
+    const code = '{\n  "version": "1.0.0",\n  "name": "sample"\n}\n';
+
+    const result = linter.verifyAndFix(code, [...jsoncConfigs, isolatedOxfmtConfig], {
+      filename: 'package.json',
+    });
+
+    expect(result.output).toBe('{\n  "name": "sample",\n  "version": "1.0.0"\n}\n');
+    expect(result.messages.filter(message => message.ruleId === 'jsonc/sort-keys')).toHaveLength(0);
   });
 
   it('formats vue single file components', () => {

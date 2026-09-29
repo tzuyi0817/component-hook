@@ -1,31 +1,30 @@
 {
   "name": "@component-hook/pdf-canvas",
-  "type": "module",
   "version": "1.5.1",
-  "packageManager": "pnpm@12.4.2",
   "description": "Rendering PDF documents onto a canvas with vue3 and react component",
-  "author": "Tzuyi",
-  "license": "MIT",
+  "keywords": [
+    "fabric",
+    "pdf",
+    "pdf2canvas",
+    "pdfjs-dist",
+    "react",
+    "vue3"
+  ],
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas#readme",
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
+  "license": "MIT",
+  "author": "Tzuyi",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/pdf-canvas"
   },
-  "bugs": {
-    "url": "https://github.com/tzuyi0817/component-hook/issues"
-  },
-  "publishConfig": {
-    "tag": "latest"
-  },
-  "keywords": [
-    "vue3",
-    "react",
-    "pdf",
-    "pdf2canvas",
-    "fabric",
-    "pdfjs-dist"
+  "files": [
+    "dist"
   ],
+  "type": "module",
   "exports": {
     "./vue": {
       "types": "./dist/vue/pdf-canvas.es.d.ts",
@@ -38,19 +37,14 @@
       "require": "./dist/react/pdf-canvas.umd.js"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "tag": "latest"
+  },
   "scripts": {
     "build": "pnpm build:vue && pnpm build:react",
     "build:vue": "cross-env FRAMEWORK=vue vite build",
     "build:react": "cross-env FRAMEWORK=react vite build",
     "typecheck": "vue-tsc --noEmit"
-  },
-  "peerDependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "vue": "catalog:"
   },
   "dependencies": {
     "fabric": "^7.4.0",
@@ -59,5 +53,11 @@
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
     "vite-plugin-dts": "catalog:"
-  }
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "vue": "catalog:"
+  },
+  "packageManager": "pnpm@12.4.2"
 }
