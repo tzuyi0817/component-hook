@@ -36,7 +36,11 @@ $ yarn add @component-hook/eslint-plugin --dev
 $ pnpm install @component-hook/eslint-plugin --save-dev
 ```
 
-Require ESLint >= 9.0.0
+> **Compatibility Note:**
+>
+> Require ESLint >= 9.0.0
+>
+> This package is ESM only because several bundled plugins are ESM only. Write your config as `eslint.config.js` in a `"type": "module"` project or as `eslint.config.mjs`. On Node.js 20.19+ / 22.12+ `require()` still works through `require(esm)`, and the plugin is exposed on the `default` property.
 
 ## Basic Usage
 
