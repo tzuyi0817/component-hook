@@ -2119,12 +2119,6 @@ type PerfectionistSortImports = {
     sortBy?: ("specifier" | "path")
   })[]
   newlinesBetween?: ("ignore" | number)
-  tsconfig?: {
-    
-    rootDir: string
-    
-    filename?: string
-  }
   
   maxLineLength?: number
   
@@ -2184,6 +2178,12 @@ type PerfectionistSortImports = {
     
     flags?: string
   } | string))
+  tsconfig?: {
+    
+    rootDir: string
+    
+    filename?: string
+  }
 }[]
 // ----- perfectionist/sort-interfaces -----
 type PerfectionistSortInterfaces = {
@@ -3153,6 +3153,8 @@ type PerfectionistSortModules = []|[{
   })[]
   newlinesBetween?: ("ignore" | number)
   
+  additionalModuleBlockTypes?: string[]
+  
   useExperimentalDependencyDetection?: boolean
   newlinesBetweenOverloadSignatures?: ("ignore" | number)
   
@@ -3194,6 +3196,12 @@ type PerfectionistSortModules = []|[{
   })
   
   partitionByNewLine?: boolean
+  tsconfig?: {
+    
+    rootDir: string
+    
+    filename?: string
+  }
 }]
 // ----- perfectionist/sort-named-exports -----
 type PerfectionistSortNamedExports = {
@@ -4066,6 +4074,18 @@ type PerfectionistSortObjects = {
   
   useExperimentalDependencyDetection?: boolean
   
+  ignoreCallbackDependenciesPatterns?: (({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)[] | ({
+    
+    pattern: string
+    
+    flags?: string
+  } | string))
+  
   partitionByComment?: (boolean | (({
     
     pattern: string
@@ -4623,6 +4643,18 @@ type PerfectionistSortVariableDeclarations = {
   }
   
   useExperimentalDependencyDetection?: boolean
+  
+  ignoreCallbackDependenciesPatterns?: (({
+    
+    pattern: string
+    
+    flags?: string
+  } | string)[] | ({
+    
+    pattern: string
+    
+    flags?: string
+  } | string))
   
   partitionByComment?: (boolean | (({
     

@@ -159,6 +159,10 @@ export interface JsdocRules {
    */
   'jsdoc/no-undefined-types'?: Linter.RuleEntry<JsdocNoUndefinedTypes>
   /**
+   * Reports redundant @type tags that match or broaden the naturally inferred TypeScript type.
+   */
+  'jsdoc/no-unnecessary-type-assertion'?: Linter.RuleEntry<JsdocNoUnnecessaryTypeAssertion>
+  /**
    * Normalizes labeled links in `@see` tags to a canonical `{@link}` form.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/normalize-see-links.md#repos-sticky-header
    */
@@ -354,6 +358,11 @@ export interface JsdocRules {
    */
   'jsdoc/text-escaping'?: Linter.RuleEntry<JsdocTextEscaping>
   /**
+   * Disallows (or requires descriptions for) `@ts-<directive>` comments, mirroring `@typescript-eslint/ban-ts-comment`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-ban-ts-comment.md#repos-sticky-header
+   */
+  'jsdoc/ts-ban-ts-comment'?: Linter.RuleEntry<JsdocTsBanTsComment>
+  /**
    * Prefers either function properties or method signatures
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-method-signature-style.md#repos-sticky-header
    */
@@ -449,6 +458,10 @@ type JsdocCheckParamNames = []|[{
   
   allowExtraTrailingParamDocs?: boolean
   
+  badParamNames?: boolean
+  
+  badParamOrder?: boolean
+  
   checkDestructured?: boolean
   
   checkRestProperty?: boolean
@@ -459,7 +472,11 @@ type JsdocCheckParamNames = []|[{
   
   disableMissingParamChecks?: boolean
   
+  duplicateParams?: boolean
+  
   enableFixer?: boolean
+  
+  extraParams?: boolean
   
   useDefaultObjectProperties?: boolean
 }]
@@ -713,6 +730,19 @@ type JsdocNoUndefinedTypes = []|[{
   disableReporting?: boolean
   
   markVariablesAsUsed?: boolean
+}]
+// ----- jsdoc/no-unnecessary-type-assertion -----
+type JsdocNoUnnecessaryTypeAssertion = []|[{
+  
+  checkLiteralConstAssertions?: boolean
+  
+  enableFixer?: boolean
+  
+  preferConstToLiteralTuples?: boolean
+  
+  treatAnyAsRedundant?: boolean
+  
+  typesToIgnore?: string[]
 }]
 // ----- jsdoc/normalize-see-links -----
 type JsdocNormalizeSeeLinks = []|[{
@@ -1105,6 +1135,31 @@ type JsdocTextEscaping = []|[{
   escapeHTML?: boolean
   
   escapeMarkdown?: boolean
+}]
+// ----- jsdoc/ts-ban-ts-comment -----
+type JsdocTsBanTsComment = []|[{
+  
+  minimumDescriptionLength?: number
+  
+  "ts-check"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
+  
+  "ts-expect-error"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
+  
+  "ts-ignore"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
+  
+  "ts-nocheck"?: (boolean | "allow-with-description" | {
+    
+    descriptionFormat?: string
+  })
 }]
 // ----- jsdoc/ts-method-signature-style -----
 type JsdocTsMethodSignatureStyle = []|[("method" | "property")]|[("method" | "property"), {

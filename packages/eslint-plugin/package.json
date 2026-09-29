@@ -18,7 +18,8 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "oxfmt"
   ],
   "exports": {
     ".": {
@@ -45,7 +46,8 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
-    "eslint": "catalog:"
+    "eslint": "catalog:",
+    "oxfmt": ">=0.71.0"
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",
@@ -57,6 +59,7 @@
     "eslint-plugin-jsdoc": "^64.5.2",
     "eslint-plugin-jsonc": "^3.4.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-oxfmt": "^0.26.0",
     "eslint-plugin-perfectionist": "^5.11.1",
     "eslint-plugin-playwright": "^2.12.0",
     "eslint-plugin-prettier": "^5.5.6",
@@ -77,6 +80,7 @@
   "devDependencies": {
     "@eslint/config-inspector": "^3.5.0",
     "@types/eslint-plugin-security": "^3.0.1",
-    "eslint-typegen": "^2.3.1"
+    "eslint-typegen": "^2.3.1",
+    "oxfmt": "^0.71.0"
   }
 }

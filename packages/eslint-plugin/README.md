@@ -1,6 +1,6 @@
 # @component-hook/eslint-plugin
 
-A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `React` and `Prettier`.
+A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `React`, `Prettier` and `oxfmt`.
 
 <p>
   <a href="https://npm-stat.com/charts.html?package=@component-hook/eslint-plugin">
@@ -14,7 +14,7 @@ A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `Reac
 ## Features
 
 - Support `TypeScript`, `Vue3` and `React` out-of-box.
-- Format with `Prettier`.
+- Format with `Prettier` or [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter).
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
 - Various built-in configurations can be referenced according to respective needs.
 - Reasonable defaults, best practices, and just a few lines of configuration.
@@ -84,6 +84,27 @@ import { vuePreset } from '@component-hook/eslint-plugin';
 export default vuePreset;
 ```
 
+## Formatting with oxfmt
+
+Use `configs.oxfmt` instead of `configs.prettier` to format with [oxfmt](https://oxc.rs/docs/guide/usage/formatter). It discovers `.oxfmtrc.json` (or other oxfmt config files) the same way as the oxfmt CLI, and turns off the stylistic rules that conflict with the formatter.
+
+`oxfmt` >= 0.71.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself:
+
+```bash
+$ pnpm add -D oxfmt
+```
+
+```js
+import componentHookPlugin from '@component-hook/eslint-plugin';
+
+export default [
+  ...componentHookPlugin.configs.basic,
+  ...componentHookPlugin.configs.vue,
+  componentHookPlugin.configs.oxfmt,
+  // your custom config
+];
+```
+
 ## Configs
 
 | Name                    | Type              | Reference                                                                                                                                                                                                                                                                        |
@@ -93,6 +114,7 @@ export default vuePreset;
 | react                   | `Linter.Config[]` | `eslint-plugin-react/recommended`, `eslint-plugin-react-hooks/recommended`, `eslint-plugin-jsx-a11y/recommended`                                                                                                                                                                 |
 | markdown                | `Linter.Config[]` | `@eslint/markdown`                                                                                                                                                                                                                                                               |
 | prettier                | `Linter.Config`   | `eslint-plugin-prettier/recommended`                                                                                                                                                                                                                                             |
+| oxfmt                   | `Linter.Config`   | `eslint-plugin-oxfmt`, `eslint-config-prettier`                                                                                                                                                                                                                                  |
 | sonarjs                 | `Linter.Config[]` | `eslint-plugin-sonarjs/recommended`                                                                                                                                                                                                                                              |
 | security                | `Linter.Config`   | `eslint-plugin-security/recommended`                                                                                                                                                                                                                                             |
 | playwright              | `Linter.Config`   | `eslint-plugin-playwright/flat/recommended`                                                                                                                                                                                                                                      |
@@ -116,6 +138,7 @@ export default vuePreset;
 - [eslint-plugin-perfectionist](https://github.com/azat-io/eslint-plugin-perfectionist)
 - [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml)
 - [eslint-plugin-prettier/recommended](https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js)
+- [eslint-plugin-oxfmt](https://github.com/ntnyq/eslint-plugin-oxfmt)
 - [eslint-plugin-react/recommended](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/configs/recommended.js)
 - [eslint-plugin-react-hooks/recommended](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js)
 - [eslint-plugin-jsx-a11y/recommended](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js)

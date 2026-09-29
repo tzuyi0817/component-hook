@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.node.json",
   "compilerOptions": {
+    "types": ["node", "vitest/globals"],
     "allowImportingTsExtensions": true,
     "noEmit": true
   },

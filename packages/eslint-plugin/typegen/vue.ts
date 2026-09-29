@@ -215,6 +215,11 @@ export interface VueRules {
    */
   '@typescript-eslint/no-for-in-array'?: Linter.RuleEntry<[]>
   /**
+   * Disallow type operations that resolve to the "empty object" type
+   * @see https://typescript-eslint.io/rules/no-generated-empty-object-type
+   */
+  '@typescript-eslint/no-generated-empty-object-type'?: Linter.RuleEntry<[]>
+  /**
    * Disallow the use of `eval()`-like functions
    * @see https://typescript-eslint.io/rules/no-implied-eval
    */
@@ -1347,6 +1352,11 @@ export interface VueRules {
    * @see https://eslint.vuejs.org/rules/no-setup-props-reactivity-loss.html
    */
   'vue/no-setup-props-reactivity-loss'?: Linter.RuleEntry<[]>
+  /**
+   * disallow the use of event names that collide with native web event names
+   * @see https://eslint.vuejs.org/rules/no-shadow-native-events.html
+   */
+  'vue/no-shadow-native-events'?: Linter.RuleEntry<[]>
   /**
    * enforce component's data property to be a function
    * @see https://eslint.vuejs.org/rules/no-shared-component-data.html
@@ -2614,7 +2624,10 @@ type TypescriptEslintNoMeaninglessVoidOperator = []|[{
 // ----- @typescript-eslint/no-misused-promises -----
 type TypescriptEslintNoMisusedPromises = []|[{
   
-  checksConditionals?: boolean
+  checksConditionals?: (boolean | {
+    
+    flagUnions?: ("all" | "strict" | "none")
+  })
   
   checksSpreads?: boolean
   
@@ -3904,7 +3917,7 @@ type VueNoDeprecatedSlotAttribute = []|[{
 }]
 // ----- vue/no-dupe-keys -----
 type VueNoDupeKeys = []|[{
-  groups?: unknown[]
+  groups?: string[]
 }]
 // ----- vue/no-duplicate-attr-inheritance -----
 type VueNoDuplicateAttrInheritance = []|[{
@@ -4029,8 +4042,8 @@ type VueNoReservedComponentNames = []|[{
 }]
 // ----- vue/no-reserved-keys -----
 type VueNoReservedKeys = []|[{
-  reserved?: unknown[]
-  groups?: unknown[]
+  reserved?: string[]
+  groups?: string[]
 }]
 // ----- vue/no-reserved-props -----
 type VueNoReservedProps = []|[{
@@ -4119,7 +4132,7 @@ type VueNoTemplateTargetBlank = []|[{
 }]
 // ----- vue/no-undef-components -----
 type VueNoUndefComponents = []|[{
-  ignorePatterns?: unknown[]
+  ignorePatterns?: string[]
 }]
 // ----- vue/no-undef-directives -----
 type VueNoUndefDirectives = []|[{
@@ -4226,7 +4239,7 @@ type VueOperatorLinebreak = []|[("after" | "before" | "none" | null)]|[("after" 
 }]
 // ----- vue/order-in-components -----
 type VueOrderInComponents = []|[{
-  order?: unknown[]
+  order?: (string | string[])[]
 }]
 // ----- vue/padding-line-between-blocks -----
 type VuePaddingLineBetweenBlocks = []|[("never" | "always")]
@@ -4315,8 +4328,8 @@ type VueSlotNameCasing = []|[("camelCase" | "kebab-case" | "singleword")]
 // ----- vue/sort-keys -----
 type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   caseSensitive?: boolean
-  ignoreChildrenOf?: unknown[]
-  ignoreGrandchildrenOf?: unknown[]
+  ignoreChildrenOf?: string[]
+  ignoreGrandchildrenOf?: string[]
   minKeys?: number
   natural?: boolean
   allowLineSeparatedGroups?: boolean
@@ -4375,7 +4388,7 @@ type VueValidVFor = []|[{
 }]
 // ----- vue/valid-v-on -----
 type VueValidVOn = []|[{
-  modifiers?: unknown[]
+  modifiers?: string[]
 }]
 // ----- vue/valid-v-slot -----
 type VueValidVSlot = []|[{

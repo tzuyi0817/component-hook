@@ -7,6 +7,7 @@ import { importConfigs } from '../configs/import.ts';
 import { jsdocConfig } from '../configs/jsdoc.ts';
 import { jsoncConfigs } from '../configs/jsonc.ts';
 import { markdownConfigs } from '../configs/markdown.ts';
+import { oxfmtConfig } from '../configs/oxfmt/index.ts';
 import { perfectionistConfig } from '../configs/perfectionist.ts';
 import { playwrightConfig } from '../configs/playwright.ts';
 import { prettierConfig } from '../configs/prettier.ts';
@@ -40,6 +41,7 @@ const configs = {
   markdown: markdownConfigs,
   playwright: [playwrightConfig],
   prettier: [prettierConfig],
+  oxfmt: [oxfmtConfig],
   react: reactConfigs,
   security: [securityConfig],
   sonarjs: sonarjsConfigs,
