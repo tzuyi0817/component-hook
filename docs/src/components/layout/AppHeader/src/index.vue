@@ -47,7 +47,7 @@ useResize(isShowFullNavbar, () => {
             @close-full-navbar="isShowFullNavbar = false"
           />
 
-          <div class="bg-code-bg mt-4 flex justify-between rounded-lg p-3">
+          <div class="mt-4 flex justify-between rounded-lg bg-code-bg p-3">
             <p>Color Theme</p>
             <theme-switcher class="px-3" />
           </div>

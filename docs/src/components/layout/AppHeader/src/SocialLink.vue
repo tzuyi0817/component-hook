@@ -17,7 +17,7 @@ defineProps<Props>();
   >
     <svg-icon
       :name="icon"
-      class="text-text h-5 w-5"
+      class="h-5 w-5 text-text"
     />
   </external-link>
 </template>

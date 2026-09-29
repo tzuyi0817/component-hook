@@ -3,7 +3,7 @@ defineOptions({ name: 'PageFooter' });
 </script>
 
 <template>
-  <footer class="border-gutter w-full border-t px-6 py-8">
+  <footer class="w-full border-t border-gutter px-6 py-8">
     <p class="message">Released under the MIT license</p>
     <p class="copyright">Copyright © 2024-present Component Hook</p>
   </footer>

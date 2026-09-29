@@ -8,5 +8,25 @@
   "arrowParens": "avoid",
   "singleAttributePerLine": true,
   "sortTailwindcss": {},
-  "ignorePatterns": ["**/typegen/**", "**/CHANGELOG.md"]
+  "ignorePatterns": ["**/typegen/**", "**/CHANGELOG.md"],
+  "overrides": [
+    {
+      "files": ["docs/**"],
+      "options": {
+        "sortTailwindcss": { "stylesheet": "docs/src/styles/tailwind.css" }
+      }
+    },
+    {
+      "files": ["packages/create-app/template-react/**"],
+      "options": {
+        "sortTailwindcss": { "stylesheet": "packages/create-app/template-react/src/styles/tailwind.css" }
+      }
+    },
+    {
+      "files": ["packages/create-app/template-vue/**"],
+      "options": {
+        "sortTailwindcss": { "stylesheet": "packages/create-app/template-vue/src/styles/tailwind.css" }
+      }
+    }
+  ]
 }

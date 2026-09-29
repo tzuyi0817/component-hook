@@ -27,7 +27,7 @@ defineEmits(['closeSidebar']);
     <router-link
       v-else
       :to="item.path"
-      class="hover:text-primary flex-1 rounded-lg px-4 py-2.5 text-sm transition-colors"
+      class="flex-1 rounded-lg px-4 py-2.5 text-sm transition-colors hover:text-primary"
       @click="$emit('closeSidebar')"
     >
       {{ item.meta?.title }}

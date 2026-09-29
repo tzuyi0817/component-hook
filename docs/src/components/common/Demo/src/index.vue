@@ -36,8 +36,8 @@ async function toggleSource() {
       <slot name="description"></slot>
     </p>
 
-    <div class="example-wrapper border-border rounded border">
-      <div class="border-b-border border-b p-3 lg:p-6">
+    <div class="example-wrapper rounded border border-border">
+      <div class="border-b border-b-border p-3 lg:p-6">
         <slot></slot>
       </div>
 

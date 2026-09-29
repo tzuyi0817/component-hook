@@ -15,7 +15,7 @@ import HomeFeature from './components/HomeFeature.vue';
             </h1>
 
             <p class="text-4xl font-bold lg:text-5xl">Component library with Vue and React.</p>
-            <p class="text-text-secondary pt-3 font-medium lg:text-2xl">
+            <p class="pt-3 font-medium text-text-secondary lg:text-2xl">
               A component library that includes a collection of common and useful components.
             </p>
 

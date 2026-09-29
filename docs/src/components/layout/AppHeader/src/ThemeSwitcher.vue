@@ -94,7 +94,7 @@ onMounted(() => {
       <span :class="['theme-slider', { 'translate-x-5': isDarkTheme }]">
         <svg-icon
           :name="isDarkTheme ? 'dark' : 'light'"
-          class="text-text h-3 w-3"
+          class="h-3 w-3 text-text"
         />
       </span>
     </label>
