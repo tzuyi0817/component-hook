@@ -22,7 +22,7 @@ import {
   testingLibraryReactConfig,
   testingLibraryVueConfig,
 } from '../configs/testing-library.ts';
-import { typescriptConfigs } from '../configs/typescript.ts';
+import { typescriptConfigs } from '../configs/typescript/index.ts';
 import { unicornConfigs } from '../configs/unicorn.ts';
 import { vueConfigs } from '../configs/vue.ts';
 import { yamlConfigs } from '../configs/yaml.ts';

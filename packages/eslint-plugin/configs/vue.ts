@@ -1,6 +1,6 @@
 import { VUE } from '../constants.ts';
 import { pluginVue, typescriptEslint, vueParser } from '../plugins.ts';
-import { typescriptCoreConfig } from './typescript.ts';
+import { typescriptCoreConfig } from './typescript/index.ts';
 import type { VueRules } from '../typegen/vue.ts';
 import type { Config } from '../types.ts';
 
