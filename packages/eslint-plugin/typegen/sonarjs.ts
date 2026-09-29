@@ -54,6 +54,11 @@ export interface SonarjsRules {
    */
   'sonarjs/async-test-assertions'?: Linter.RuleEntry<[]>
   /**
+   * Nested properties of Lodash and Underscore.js clone results should not be mutated
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9135/javascript
+   */
+  'sonarjs/avoid-mutating-nested-properties-of-shallow-clones'?: Linter.RuleEntry<[]>
+  /**
    * AWS API Gateway should require authentication
    * @see https://sonarsource.github.io/rspec/#/rspec/S6333/javascript
    */
@@ -198,6 +203,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S124/javascript
    */
   'sonarjs/comment-regex'?: Linter.RuleEntry<SonarjsCommentRegex>
+  /**
+   * Composite assertions should be split
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9073/javascript
+   */
+  'sonarjs/composite-assertions'?: Linter.RuleEntry<[]>
   /**
    * Regular expression quantifiers and character classes should be used concisely
    * @see https://sonarsource.github.io/rspec/#/rspec/S6353/javascript
@@ -578,6 +588,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-dead-store'?: Linter.RuleEntry<[]>
   /**
+   * Lodash and Underscore.js debounced or throttled functions should not be recreated on every React render
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9114/javascript
+   */
+  'sonarjs/no-debounce-throttle-in-render'?: Linter.RuleEntry<[]>
+  /**
    * UI test debug commands should not be committed to version control
    * @see https://sonarsource.github.io/rspec/#/rspec/S8959/javascript
    */
@@ -597,6 +612,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S4621/javascript
    */
   'sonarjs/no-duplicate-in-composite'?: Linter.RuleEntry<[]>
+  /**
+   * Parameterized tests should not contain duplicate test cases
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9078/javascript
+   */
+  'sonarjs/no-duplicate-parameterized-test-case'?: Linter.RuleEntry<[]>
   /**
    * String literals should not be duplicated
    * @see https://sonarsource.github.io/rspec/#/rspec/S1192/javascript
@@ -642,6 +662,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S6331/javascript
    */
   'sonarjs/no-empty-group'?: Linter.RuleEntry<[]>
+  /**
+   * Parameterized tests should not have empty datasets
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8998/javascript
+   */
+  'sonarjs/no-empty-parameterized-test-dataset'?: Linter.RuleEntry<[]>
   /**
    * Test files should contain at least one test case
    * @see https://sonarsource.github.io/rspec/#/rspec/S2187/javascript
@@ -866,6 +891,11 @@ export interface SonarjsRules {
    */
   'sonarjs/no-mixed-content'?: Linter.RuleEntry<[]>
   /**
+   * Reactive state should not be unconditionally mutated inside Vue's "updated" lifecycle hook
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9163/javascript
+   */
+  'sonarjs/no-mutate-reactive-state-in-updated-hook'?: Linter.RuleEntry<[]>
+  /**
    * Assignments should not be made from within sub-expressions
    * @see https://sonarsource.github.io/rspec/#/rspec/S1121/javascript
    */
@@ -895,6 +925,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S4624/javascript
    */
   'sonarjs/no-nested-template-literals'?: Linter.RuleEntry<[]>
+  /**
+   * Playwright "networkidle" waits should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9332/javascript
+   */
+  'sonarjs/no-networkidle-wait'?: Linter.RuleEntry<[]>
   /**
    * OS commands should not rely on PATH resolution
    * @see https://sonarsource.github.io/rspec/#/rspec/S4036/javascript
@@ -931,7 +966,7 @@ export interface SonarjsRules {
    */
   'sonarjs/no-redundant-optional'?: Linter.RuleEntry<[]>
   /**
-   * Unnecessary parentheses should be removed
+   * Redundant pairs of parentheses should be removed
    * @see https://sonarsource.github.io/rspec/#/rspec/S1110/javascript
    * @deprecated
    */
@@ -1094,6 +1129,16 @@ export interface SonarjsRules {
    */
   'sonarjs/no-variable-usage-before-declaration'?: Linter.RuleEntry<[]>
   /**
+   * Vue components should not use the deprecated "vue-class-component" or "vue-property-decorator" libraries
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9145/javascript
+   */
+  'sonarjs/no-vue-class-component'?: Linter.RuleEntry<[]>
+  /**
+   * Vue components should not use mixins
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9150/javascript
+   */
+  'sonarjs/no-vue-mixins'?: Linter.RuleEntry<[]>
+  /**
    * Cipher algorithms should be robust
    * @see https://sonarsource.github.io/rspec/#/rspec/S5547/javascript
    */
@@ -1150,6 +1195,11 @@ export interface SonarjsRules {
    */
   'sonarjs/post-message'?: Linter.RuleEntry<[]>
   /**
+   * Cypress assertions should be retryable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9162/javascript
+   */
+  'sonarjs/prefer-cypress-should'?: Linter.RuleEntry<[]>
+  /**
    * "default" clauses should be last
    * @see https://sonarsource.github.io/rspec/#/rspec/S4524/javascript
    */
@@ -1159,6 +1209,16 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S1488/javascript
    */
   'sonarjs/prefer-immediate-return'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over Axios utility methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9339/javascript
+   */
+  'sonarjs/prefer-native-axios-alternative'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over jQuery utility methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9144/javascript
+   */
+  'sonarjs/prefer-native-jquery-alternative'?: Linter.RuleEntry<[]>
   /**
    * Native APIs should be preferred over Lodash and Underscore.js methods
    * @see https://sonarsource.github.io/rspec/#/rspec/S8907/javascript
@@ -1300,6 +1360,11 @@ export interface SonarjsRules {
    */
   'sonarjs/super-linear-regex'?: Linter.RuleEntry<[]>
   /**
+   * Synchronous exception assertions should receive synchronous callbacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9072/javascript
+   */
+  'sonarjs/synchronous-exception-assertions'?: Linter.RuleEntry<[]>
+  /**
    * Tests should not be registered asynchronously in suite callbacks
    * @see https://sonarsource.github.io/rspec/#/rspec/S8785/javascript
    */
@@ -1319,6 +1384,16 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S5958/javascript
    */
   'sonarjs/test-check-exception'?: Linter.RuleEntry<[]>
+  /**
+   * Testing Library disappearance waits should use non-throwing queries
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9153/javascript
+   */
+  'sonarjs/testing-library-prefer-query-by-disappearance'?: Linter.RuleEntry<[]>
+  /**
+   * Testing Library queries should match presence assertions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9027/javascript
+   */
+  'sonarjs/testing-library-query-assertion'?: Linter.RuleEntry<[]>
   /**
    * Track uses of "TODO" tags
    * @see https://sonarsource.github.io/rspec/#/rspec/S1135/javascript
@@ -1385,6 +1460,11 @@ export interface SonarjsRules {
    * @see https://sonarsource.github.io/rspec/#/rspec/S117/javascript
    */
   'sonarjs/variable-name'?: Linter.RuleEntry<SonarjsVariableName>
+  /**
+   * vi.mock should be declared at module scope
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9169/javascript
+   */
+  'sonarjs/vitest-mock-at-module-scope'?: Linter.RuleEntry<[]>
   /**
    * "void" should not be used
    * @see https://sonarsource.github.io/rspec/#/rspec/S3735/javascript

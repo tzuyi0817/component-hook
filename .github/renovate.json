@@ -1,4 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>tzuyi0817/renovate-config"]
+  "extends": ["github>tzuyi0817/renovate-config"],
+  "packageRules": [
+    {
+      "groupName": "oxfmt",
+      "matchPackageNames": ["oxfmt", "eslint-plugin-oxfmt"]
+    }
+  ]
 }

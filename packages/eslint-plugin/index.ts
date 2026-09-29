@@ -4,8 +4,9 @@ import { ignores } from './configs/ignores.ts';
 import { importConfigs } from './configs/import.ts';
 import { jsConfigs } from './configs/javascript.ts';
 import { jsdocConfig } from './configs/jsdoc.ts';
-import { jsoncConfigs } from './configs/jsonc.ts';
+import { jsoncConfigs } from './configs/jsonc/index.ts';
 import { markdownConfigs } from './configs/markdown.ts';
+import { oxfmtConfig } from './configs/oxfmt/index.ts';
 import { perfectionistConfig } from './configs/perfectionist.ts';
 import { playwrightConfig } from './configs/playwright.ts';
 import { prettierConfig } from './configs/prettier.ts';
@@ -46,6 +47,7 @@ const configs = {
   vue: vueConfigs,
   markdown: markdownConfigs,
   prettier: prettierConfig,
+  oxfmt: oxfmtConfig,
   sonarjs: sonarjsConfigs,
   security: securityConfig,
   playwright: playwrightConfig,

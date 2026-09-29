@@ -29,6 +29,11 @@ export interface PlaywrightRules {
    */
   'playwright/missing-playwright-await'?: Linter.RuleEntry<PlaywrightMissingPlaywrightAwait>
   /**
+   * Disallow the `timeout` option on actions
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-action-timeout.md
+   */
+  'playwright/no-action-timeout'?: Linter.RuleEntry<PlaywrightNoActionTimeout>
+  /**
    * Disallow commented out tests
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-commented-out-tests.md
    */
@@ -64,6 +69,11 @@ export interface PlaywrightRules {
    */
   'playwright/no-eval'?: Linter.RuleEntry<[]>
   /**
+   * Disallow using `export` in files containing tests
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-export.md
+   */
+  'playwright/no-export'?: Linter.RuleEntry<[]>
+  /**
    * Prevent usage of `.only()` focus test annotation
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-focused-test.md
    */
@@ -83,6 +93,16 @@ export interface PlaywrightRules {
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-hooks.md
    */
   'playwright/no-hooks'?: Linter.RuleEntry<PlaywrightNoHooks>
+  /**
+   * Disallow identical titles
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-identical-title.md
+   */
+  'playwright/no-identical-title'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow magic numbers as Playwright timeout values
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-magic-timeouts.md
+   */
+  'playwright/no-magic-timeouts'?: Linter.RuleEntry<PlaywrightNoMagicTimeouts>
   /**
    * Disallow nested `test.step()` methods
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-nested-step.md
@@ -139,6 +159,16 @@ export interface PlaywrightRules {
    */
   'playwright/no-standalone-expect'?: Linter.RuleEntry<[]>
   /**
+   * Disallow template literals in test, describe, and step titles
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-template-literal-title.md
+   */
+  'playwright/no-template-literal-title'?: Linter.RuleEntry<PlaywrightNoTemplateLiteralTitle>
+  /**
+   * Disallow explicitly returning from tests
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-test-return-statement.md
+   */
+  'playwright/no-test-return-statement'?: Linter.RuleEntry<[]>
+  /**
    * Disallow assertions on a Locator that can never fail
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-unnecessary-assertions.md
    */
@@ -183,6 +213,11 @@ export interface PlaywrightRules {
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/prefer-comparison-matcher.md
    */
   'playwright/prefer-comparison-matcher'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer having the last statement in a test be an assertion
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/prefer-ending-with-an-expect.md
+   */
+  'playwright/prefer-ending-with-an-expect'?: Linter.RuleEntry<PlaywrightPreferEndingWithAnExpect>
   /**
    * Suggest using the built-in equality matchers
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/prefer-equality-matcher.md
@@ -243,6 +278,11 @@ export interface PlaywrightRules {
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/prefer-web-first-assertions.md
    */
   'playwright/prefer-web-first-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Require a reason for `.skip()` and `.fixme()` annotations
+   * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/require-annotation-reason.md
+   */
+  'playwright/require-annotation-reason'?: Linter.RuleEntry<PlaywrightRequireAnnotationReason>
   /**
    * Require setup and teardown code to be within a hook
    * @see https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/require-hook.md
@@ -319,9 +359,19 @@ type PlaywrightMissingPlaywrightAwait = []|[{
   customMatchers?: string[]
   includePageLocatorMethods?: boolean
 }]
+// ----- playwright/no-action-timeout -----
+type PlaywrightNoActionTimeout = []|[{
+  allow?: string[]
+}]
 // ----- playwright/no-hooks -----
 type PlaywrightNoHooks = []|[{
   allow?: unknown[]
+}]
+// ----- playwright/no-magic-timeouts -----
+type PlaywrightNoMagicTimeouts = []|[{
+  allow?: number[]
+  minOccurrences?: number
+  properties?: string[]
 }]
 // ----- playwright/no-raw-locators -----
 type PlaywrightNoRawLocators = []|[{
@@ -343,12 +393,24 @@ type PlaywrightNoRestrictedRoles = []|[(string | {
 })[]]
 // ----- playwright/no-skipped-test -----
 type PlaywrightNoSkippedTest = []|[{
-  allowConditional?: boolean
+  allowConditional?: (boolean | {
+    fixme?: boolean
+    skip?: boolean
+  })
   disallowFixme?: boolean
 }]
 // ----- playwright/no-slowed-test -----
 type PlaywrightNoSlowedTest = []|[{
   allowConditional?: boolean
+}]
+// ----- playwright/no-template-literal-title -----
+type PlaywrightNoTemplateLiteralTitle = []|[{
+  ignore?: ("test" | "test.describe" | "test.step")[]
+}]
+// ----- playwright/prefer-ending-with-an-expect -----
+type PlaywrightPreferEndingWithAnExpect = []|[{
+  assertFunctionNames?: string[]
+  assertFunctionPatterns?: string[]
 }]
 // ----- playwright/prefer-lowercase-title -----
 type PlaywrightPreferLowercaseTitle = []|[{
@@ -359,6 +421,11 @@ type PlaywrightPreferLowercaseTitle = []|[{
 // ----- playwright/prefer-native-locators -----
 type PlaywrightPreferNativeLocators = []|[{
   testIdAttribute?: string
+}]
+// ----- playwright/require-annotation-reason -----
+type PlaywrightRequireAnnotationReason = []|[{
+  annotations?: ("fail" | "fixme" | "skip" | "slow")[]
+  pattern?: string
 }]
 // ----- playwright/require-hook -----
 type PlaywrightRequireHook = []|[{

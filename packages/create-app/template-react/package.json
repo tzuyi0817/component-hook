@@ -1,9 +1,8 @@
 {
   "name": "react-starter",
-  "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@12.4.2",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "dev:mock": "cross-env MOCK=true vite",
@@ -25,12 +24,6 @@
     "react-i18next": "^17.0.14",
     "react-router-dom": "^7.18.4",
     "zustand": "^5.0.15"
-  },
-  "optionalDependencies": {
-    "@commitlint/cli": "^21.2.2",
-    "@commitlint/config-conventional": "^21.2.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.5.1"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "^1.5.1",
@@ -62,6 +55,13 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^5.0.1"
   },
+  "optionalDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1"
+  },
+  "packageManager": "pnpm@12.4.2",
   "msw": {
     "workerDirectory": [
       "public"

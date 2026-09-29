@@ -1,9 +1,8 @@
 {
   "name": "react-playground",
-  "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.4.2",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "vite"
   },
@@ -13,5 +12,6 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-router": "^7.18.4"
-  }
+  },
+  "packageManager": "pnpm@12.4.2"
 }

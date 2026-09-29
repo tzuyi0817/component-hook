@@ -1,31 +1,30 @@
 {
   "name": "@component-hook/picker",
-  "type": "module",
   "version": "1.5.1",
-  "packageManager": "pnpm@12.4.2",
   "description": "Picker component with vue3 and react",
-  "author": "Tzuyi",
-  "license": "MIT",
+  "keywords": [
+    "date-picker",
+    "picker",
+    "react",
+    "time-picker",
+    "vue",
+    "vue3"
+  ],
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/picker#readme",
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
+  "license": "MIT",
+  "author": "Tzuyi",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/picker"
   },
-  "bugs": {
-    "url": "https://github.com/tzuyi0817/component-hook/issues"
-  },
-  "publishConfig": {
-    "tag": "latest"
-  },
-  "keywords": [
-    "vue",
-    "vue3",
-    "react",
-    "picker",
-    "date-picker",
-    "time-picker"
+  "files": [
+    "dist"
   ],
+  "type": "module",
   "exports": {
     "./vue": {
       "types": "./dist/vue/picker.es.d.ts",
@@ -38,23 +37,24 @@
       "require": "./dist/react/picker.umd.js"
     }
   },
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "tag": "latest"
+  },
   "scripts": {
     "build": "pnpm build:vue && pnpm build:react",
     "build:vue": "cross-env FRAMEWORK=vue vite build",
     "build:react": "cross-env FRAMEWORK=react vite build",
     "typecheck": "vue-tsc --noEmit"
   },
+  "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "sass-embedded": "^1.104.1",
+    "vite-plugin-dts": "catalog:"
+  },
   "peerDependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
     "vue": "catalog:"
   },
-  "devDependencies": {
-    "@microsoft/api-extractor": "catalog:",
-    "sass-embedded": "^1.104.1",
-    "vite-plugin-dts": "catalog:"
-  }
+  "packageManager": "pnpm@12.4.2"
 }

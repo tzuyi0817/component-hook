@@ -60,9 +60,11 @@ type EslintCommunityEslintCommentsDisableEnablePair = []|[{
 type EslintCommunityEslintCommentsNoRestrictedDisable = string[]
 // ----- @eslint-community/eslint-comments/no-use -----
 type EslintCommunityEslintCommentsNoUse = []|[{
-  allow?: ("eslint" | "eslint-disable" | "eslint-disable-line" | "eslint-disable-next-line" | "eslint-enable" | "eslint-env" | "exported" | "global" | "globals")[]
+  additionalDirectives?: string[]
+  allow?: string[]
 }]
 // ----- @eslint-community/eslint-comments/require-description -----
 type EslintCommunityEslintCommentsRequireDescription = []|[{
+  additionalDirectives?: string[]
   ignore?: ("eslint" | "eslint-disable" | "eslint-disable-line" | "eslint-disable-next-line" | "eslint-enable" | "eslint-env" | "exported" | "global" | "globals")[]
 }]

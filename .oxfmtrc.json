@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/npm/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "semi": true,
+  "endOfLine": "lf",
+  "printWidth": 120,
+  "proseWrap": "preserve",
+  "arrowParens": "avoid",
+  "singleAttributePerLine": true,
+  "sortTailwindcss": {},
+  "ignorePatterns": ["**/typegen/**", "**/CHANGELOG.md"]
+}

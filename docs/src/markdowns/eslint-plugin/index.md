@@ -1,6 +1,6 @@
 ## ESLint Plugin
 
-A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue`, and `Prettier`.
+A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue`, `Prettier` and `oxfmt`.
 
 ### Installation
 
@@ -74,6 +74,25 @@ import { vuePreset } from '@component-hook/eslint-plugin';
 export default vuePreset;
 ```
 
+### Formatting with oxfmt
+
+Use `configs.oxfmt` instead of `configs.prettier` to format with [oxfmt](https://oxc.rs/docs/guide/usage/formatter). It discovers `.oxfmtrc.json` (or other oxfmt config files) the same way as the oxfmt CLI, and turns off the stylistic rules that conflict with the formatter.
+
+oxfmt also sorts top-level `package.json` keys by default (`sortPackageJson`), so the preset no longer orders them itself; it still sorts nested fields oxfmt leaves alone, such as `exports` conditions and dependency maps. If you stay on `configs.prettier` and still want `package.json` sorted, add [`prettier-plugin-packagejson`](https://github.com/matzkoh/prettier-plugin-packagejson), which uses the same `sort-package-json` order as oxfmt.
+
+`oxfmt` >= 0.71.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself.
+
+```js
+import componentHookPlugin from '@component-hook/eslint-plugin';
+
+export default [
+  ...componentHookPlugin.configs.basic,
+  ...componentHookPlugin.configs.vue,
+  componentHookPlugin.configs.oxfmt,
+  // your custom config
+];
+```
+
 ### Build-in Configs Reference
 
 | Config                  | URL                                           | Plugin                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -82,6 +101,7 @@ export default vuePreset;
 | vue                     | [configs/vue.ts][vue]                         | [`eslint-plugin-vue`][eslint-vue]                                                                                                                                                                                                                                                                                                                                                                                  |
 | react                   | [configs/react.ts][react]                     | [`eslint-plugin-react`][eslint-react]<br>[`eslint-plugin-react-hooks`][eslint-react-hooks]<br>[`eslint-plugin-jsx-a11y`][eslint-jsx-a11y]                                                                                                                                                                                                                                                                          |
 | prettier                | [configs/prettier.ts][prettier]               | [`eslint-plugin-prettier`][eslint-prettier]                                                                                                                                                                                                                                                                                                                                                                        |
+| oxfmt                   | [configs/oxfmt/index.ts][oxfmt]               | [`eslint-plugin-oxfmt`][eslint-oxfmt]                                                                                                                                                                                                                                                                                                                                                                              |
 | sonarjs                 | [configs/sonarjs.ts][sonarjs]                 | [`eslint-plugin-sonarjs`][eslint-sonarjs]                                                                                                                                                                                                                                                                                                                                                                          |
 | security                | [configs/security.ts][security]               | [`eslint-plugin-security`][eslint-security]                                                                                                                                                                                                                                                                                                                                                                        |
 | markdown                | [configs/markdown.ts][markdown]               | [`@eslint/markdown`][eslint-markdown]                                                                                                                                                                                                                                                                                                                                                                              |
@@ -96,6 +116,7 @@ export default vuePreset;
 [vue]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/vue.ts
 [react]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/react.ts
 [prettier]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/prettier.ts
+[oxfmt]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/oxfmt/index.ts
 [sonarjs]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/sonarjs.ts
 [security]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/security.ts
 [markdown]: https://github.com/tzuyi0817/component-hook/blob/master/packages/eslint-plugin/configs/markdown.ts
@@ -117,6 +138,7 @@ export default vuePreset;
 [eslint-react-hooks]: https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/src/index.js
 [eslint-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/src/index.js
 [eslint-prettier]: https://github.com/prettier/eslint-plugin-prettier/blob/master/recommended.js
+[eslint-oxfmt]: https://github.com/ntnyq/eslint-plugin-oxfmt
 [eslint-sonarjs]: https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/src/index.ts
 [eslint-security]: https://github.com/eslint-community/eslint-plugin-security/blob/main/index.js
 [eslint-markdown]: https://github.com/eslint/markdown/blob/main/src/index.js
@@ -135,6 +157,7 @@ export default vuePreset;
 | vue                     | `Linter.Config[]` |
 | react                   | `Linter.Config[]` |
 | prettier                | `Linter.Config`   |
+| oxfmt                   | `Linter.Config`   |
 | sonarjs                 | `Linter.Config[]` |
 | security                | `Linter.Config`   |
 | markdown                | `Linter.Config[]` |
