@@ -44,7 +44,7 @@
     "@component-hook/eslint-plugin": "workspace:^",
     "eslint": "catalog:",
     "eslint-plugin-oxlint": "^1.86.0",
-    "oxlint": "^1.86.0"
+    "oxlint": "catalog:"
   },
   "peerDependencies": {
     "oxlint": ">=1.86.0"

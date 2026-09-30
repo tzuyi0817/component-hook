@@ -47,7 +47,6 @@ defineExpose({ scrollToSelected });
 <template>
   <div
     class="chook-picker-column"
-    aria-label="Picker column"
     @touchstart.passive="onPointerDown"
     @touchmove.prevent="onPointerMove"
     @touchend.passive="onPointerUp"
@@ -58,6 +57,7 @@ defineExpose({ scrollToSelected });
     @mouseleave.passive="onPointerUp"
   >
     <ul
+      aria-label="Picker column"
       :style="{
         overflowY: 'hidden',
         '--offset-y': `${offsetY}`,

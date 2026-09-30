@@ -4,5 +4,5 @@
     "composite": true,
     "types": ["node"]
   },
-  "include": ["vitest.config.ts", "**/package.json", "**/vite.config.ts", "internal/*"]
+  "include": ["vitest.config.ts", "oxlint.config.ts", "**/package.json", "**/vite.config.ts", "internal/*"]
 }

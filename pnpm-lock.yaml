@@ -170,6 +170,9 @@ catalogs:
     eslint:
       specifier: ^9.39.5
       version: 9.39.5
+    oxlint:
+      specifier: ^1.86.0
+      version: 1.86.0
     react:
       specifier: ^19.3.0
       version: 19.3.0
@@ -200,6 +203,9 @@ importers:
       '@component-hook/eslint-plugin':
         specifier: workspace:^
         version: link:packages/eslint-plugin
+      '@component-hook/oxlint-config':
+        specifier: workspace:^
+        version: link:packages/oxlint-config
       '@testing-library/jest-dom':
         specifier: ^7.0.1
         version: 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.1)
@@ -242,6 +248,9 @@ importers:
       oxfmt:
         specifier: ^0.71.0
         version: 0.71.0
+      oxlint:
+        specifier: 'catalog:'
+        version: 1.86.0
       rollup-plugin-visualizer:
         specifier: ^7.1.1
         version: 7.1.1(rolldown@1.2.9)(rollup@4.60.1)
@@ -475,7 +484,7 @@ importers:
         specifier: ^1.86.0
         version: 1.86.0(oxlint@1.86.0)
       oxlint:
-        specifier: ^1.86.0
+        specifier: 'catalog:'
         version: 1.86.0
 
   packages/pdf-canvas:

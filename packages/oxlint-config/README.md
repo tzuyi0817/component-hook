@@ -59,6 +59,22 @@ export default defineConfig({
 
 oxlint does not inherit `ignorePatterns`, `env`, `globals` or `settings` through `extends`, so set them in the root config. `ignorePatterns` mirrors the ignores of the ESLint preset.
 
+Rules that the ESLint preset scopes with `files` (for example the `react-hooks` rules on `**/*.[jt]s?(x)`) end up in `overrides`, and an override always wins over top-level `rules`. To change their severity, add an override with the same `files` instead of a top-level rule:
+
+```ts
+export default defineConfig({
+  extends: [basic, react],
+  overrides: [
+    {
+      files: ['**/*.[jt]s', '**/*.[jt]sx'],
+      rules: {
+        'react/exhaustive-deps': 'warn',
+      },
+    },
+  ],
+});
+```
+
 ## Usage with `.oxlintrc.json`
 
 `extends` in JSON only accepts file paths, so point it at the JSON files shipped in `dist`:

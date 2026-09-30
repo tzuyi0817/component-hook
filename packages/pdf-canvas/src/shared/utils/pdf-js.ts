@@ -8,7 +8,7 @@ if (!supportsOffscreenCanvas()) {
 }
 
 function isNotIframe() {
-  if (typeof window === 'undefined') return true;
+  if (globalThis.window === undefined) return true;
 
   try {
     // eslint-disable-next-line unicorn/prefer-global-this
