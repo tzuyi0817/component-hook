@@ -41,6 +41,6 @@ export default [
     },
   },
   {
-    ignores: ['**/typegen/**.ts', '**/generated/**'],
+    ignores: ['**/typegen/**.ts', 'packages/oxlint-config/generated/**'],
   },
 ];

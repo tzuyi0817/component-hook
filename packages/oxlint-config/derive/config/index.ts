@@ -61,12 +61,12 @@ function toOxlintEntries(eslintName: string, entry: Linter.RuleEntry, isVue: boo
 
   if (alias) return { [alias]: severity };
 
-  const supported = supportedRules.get(eslintName);
+  const name = supportedRules.get(eslintName);
 
-  if (!supported || EXCLUDED_PLUGINS.has(supported.plugin)) return {};
-  if (isVue && VUE_SKIPPED_RULES.has(supported.name)) return {};
+  if (!name || EXCLUDED_PLUGINS.has(pluginOfOxlintRule(name))) return {};
+  if (isVue && VUE_SKIPPED_RULES.has(name)) return {};
 
-  return { [supported.name]: toOxlintRuleEntry(supported.name, entry) };
+  return { [name]: toOxlintRuleEntry(name, severity, options) };
 }
 
 /**
@@ -87,16 +87,12 @@ function toOxlintRules(rules: NonNullable<EslintConfig['rules']>, { isVue }: { i
   return result;
 }
 
-function pickEntries(rules: OxlintRules, predicate: (name: string, entry: OxlintRuleEntry) => boolean) {
-  return Object.fromEntries(Object.entries(rules).filter(([name, entry]) => predicate(name, entry)));
-}
-
 function sameFiles(a: string[], b: string[]) {
   return a.length === b.length && a.every((pattern, index) => pattern === b[index]);
 }
 
 /** 規則所屬的 oxlint plugin，`eslint` 為內建不需列出 */
-export function collectPlugins(ruleSets: OxlintRules[]) {
+function collectPlugins(ruleSets: OxlintRules[]) {
   const plugins = new Set<OxlintPlugin>();
 
   for (const rules of ruleSets) {
@@ -116,8 +112,12 @@ export function collectPlugins(ruleSets: OxlintRules[]) {
  * - 沒有 `files` 的 config 依序合併成頂層 `rules`；有 `files` 的成為 `overrides`，連續且 `files` 相同者合併。
  * - 只保留 oxlint 已實作的規則，頂層合併後仍為 `off` 的規則移除。
  * - 非 JS / TS 檔案（json、yaml、markdown）的設定略過。
+ * - `extraRules` 為 ESLint 沒有對應、需另外併入頂層的 oxlint 自有規則（例如 oxc plugin）。
  */
-export function deriveOxlintConfig(configs: readonly EslintConfig[]): DerivedOxlintConfig {
+export function deriveOxlintConfig(
+  configs: readonly EslintConfig[],
+  extraRules: OxlintRules = {},
+): DerivedOxlintConfig {
   const topLevel: OxlintRules = {};
   const overrides: OxlintOverride[] = [];
 
@@ -146,7 +146,9 @@ export function deriveOxlintConfig(configs: readonly EslintConfig[]): DerivedOxl
 
   // 頂層合併後仍為 off 的規則等於沒啟用；override 的 off 可能針對其他設定啟用的規則
   // （例如 react 關掉 basic 的 unicorn/no-anonymous-default-export），一律保留。
-  const rules = pickEntries(topLevel, (_, entry) => isEnabled(entry));
+  const rules = Object.fromEntries(
+    Object.entries({ ...topLevel, ...extraRules }).filter(([, entry]) => isEnabled(entry)),
+  );
   const nonEmptyOverrides = overrides.filter(override => Object.keys(override.rules).length > 0);
 
   return {

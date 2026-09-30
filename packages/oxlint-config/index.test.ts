@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { buildConfigs } from './derive/build.ts';
@@ -11,8 +11,16 @@ interface Diagnostic {
   code: string;
 }
 
+const tempDirs: string[] = [];
+
+afterAll(() => {
+  for (const dir of tempDirs) rmSync(dir, { recursive: true, force: true });
+});
+
 function writeFiles(files: Record<string, string>) {
   const cwd = mkdtempSync(join(tmpdir(), 'oxlint-config-'));
+
+  tempDirs.push(cwd);
 
   for (const [file, content] of Object.entries(files)) {
     mkdirSync(dirname(join(cwd, file)), { recursive: true });

@@ -1,9 +1,14 @@
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
-import { collectPlugins, type DerivedOxlintConfig, type OxlintRules } from './config/index.ts';
+import type { OxlintRules } from './config/index.ts';
+
+interface OxlintRuleInfo {
+  scope: string;
+  value: string;
+  category: string;
+  type_aware: boolean;
+}
 
 const require = createRequire(import.meta.url);
 
@@ -19,29 +24,14 @@ export function runOxlint(args: string[], cwd: string) {
  * oxlint 升版新增規則時重新 build 即會跟上，不需手動維護清單。
  */
 export function readOxcCorrectnessRules(): OxlintRules {
-  const cwd = mkdtempSync(join(tmpdir(), 'oxlint-config-oxc-'));
+  const { status, stdout, stderr } = runOxlint(['--rules', '--format', 'json'], process.cwd());
 
-  writeFileSync(join(cwd, '.oxlintrc.json'), JSON.stringify({ plugins: ['oxc'], categories: { correctness: 'warn' } }));
+  if (status !== 0) throw new Error(`oxlint --rules 失敗：${stderr}`);
 
-  const { status, stdout, stderr } = runOxlint(['--print-config'], cwd);
-
-  if (status !== 0) throw new Error(`oxlint --print-config 失敗：${stderr}`);
-
-  const { rules } = JSON.parse(stdout) as { rules: Record<string, unknown> };
-  const names = Object.keys(rules)
-    .filter(name => name.startsWith('oxc/'))
+  const names = (JSON.parse(stdout) as OxlintRuleInfo[])
+    .filter(rule => rule.scope === 'oxc' && rule.category === 'correctness' && !rule.type_aware)
+    .map(rule => `oxc/${rule.value}`)
     .toSorted((a, b) => a.localeCompare(b));
 
   return Object.fromEntries(names.map(name => [name, 'error']));
-}
-
-/** 把 oxc 自有規則併入推導結果 */
-export function withOxcRules(config: DerivedOxlintConfig, oxcRules: OxlintRules): DerivedOxlintConfig {
-  const rules = { ...config.rules, ...oxcRules };
-
-  return {
-    ...config,
-    plugins: collectPlugins([rules, ...(config.overrides ?? []).map(override => override.rules)]),
-    rules,
-  };
 }

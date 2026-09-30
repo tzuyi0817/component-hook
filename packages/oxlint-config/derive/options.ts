@@ -32,7 +32,7 @@ function toJsonValue(value: unknown, renames: Record<string, string> = {}): unkn
   return value;
 }
 
-export function toSeverity(level: Linter.RuleSeverity | Linter.StringSeverity): Severity {
+function toSeverity(level: Linter.RuleSeverity | Linter.StringSeverity): Severity {
   const severity = SEVERITIES[level];
 
   if (!severity) throw new Error(`未知的 severity：${String(level)}`);
@@ -47,10 +47,8 @@ export function splitRuleEntry(entry: Linter.RuleEntry): [Severity, unknown[]] {
   return [toSeverity(level), options];
 }
 
-/** 把 ESLint 的規則設定轉成 oxlint 的規則設定，沒有選項時只保留 severity */
-export function toOxlintRuleEntry(oxlintName: string, entry: Linter.RuleEntry): OxlintRuleEntry {
-  const [severity, options] = splitRuleEntry(entry);
-
+/** 把拆好的 severity 與選項組成 oxlint 的規則設定，沒有選項時只保留 severity */
+export function toOxlintRuleEntry(oxlintName: string, severity: Severity, options: unknown[]): OxlintRuleEntry {
   if (options.length === 0) return severity;
 
   return [severity, ...options.map(option => toJsonValue(option, OPTION_KEY_RENAMES[oxlintName]))];

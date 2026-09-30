@@ -8,7 +8,7 @@ export default defineConfig({
     browser: true,
     node: true,
   },
-  ignorePatterns: [...ignorePatterns, '**/typegen/**', '**/generated/**'],
+  ignorePatterns: [...ignorePatterns, '**/typegen/**', 'packages/oxlint-config/generated/**'],
   rules: {
     'unicorn/prefer-blob-reading-methods': 'warn',
   },
