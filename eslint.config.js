@@ -41,6 +41,6 @@ export default [
     },
   },
   {
-    ignores: ['**/typegen/**.ts'],
+    ignores: ['**/typegen/**.ts', '**/generated/**'],
   },
 ];

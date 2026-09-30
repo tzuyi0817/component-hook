@@ -1,0 +1,58 @@
+{
+  "name": "@component-hook/oxlint-config",
+  "version": "1.5.1",
+  "description": "oxlint config derived from @component-hook/eslint-plugin",
+  "keywords": [
+    "lint",
+    "oxc",
+    "oxlint",
+    "oxlint-config"
+  ],
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/oxlint-config#readme",
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
+  "license": "MIT",
+  "author": "Tzuyi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzuyi0817/component-hook.git",
+    "directory": "packages/oxlint-config"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./basic.json": "./dist/basic.json",
+    "./react.json": "./dist/react.json",
+    "./vue.json": "./dist/vue.json"
+  },
+  "publishConfig": {
+    "tag": "latest"
+  },
+  "scripts": {
+    "build": "pnpm run build:generate && tsdown && node scripts/build-json.ts",
+    "build:generate": "node scripts/generate.ts",
+    "typecheck": "tsc --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "@component-hook/eslint-plugin": "workspace:^",
+    "eslint": "catalog:",
+    "eslint-plugin-oxlint": "^1.86.0",
+    "oxlint": "^1.86.0"
+  },
+  "peerDependencies": {
+    "oxlint": ">=1.86.0"
+  },
+  "peerDependenciesMeta": {
+    "oxlint": {
+      "optional": true
+    }
+  },
+  "packageManager": "pnpm@12.4.2"
+}

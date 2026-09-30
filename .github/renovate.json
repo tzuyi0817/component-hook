@@ -5,6 +5,10 @@
     {
       "groupName": "oxfmt",
       "matchPackageNames": ["oxfmt", "eslint-plugin-oxfmt"]
+    },
+    {
+      "groupName": "oxlint",
+      "matchPackageNames": ["oxlint", "eslint-plugin-oxlint"]
     }
   ]
 }

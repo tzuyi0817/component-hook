@@ -8,7 +8,7 @@
   "arrowParens": "avoid",
   "singleAttributePerLine": true,
   "sortTailwindcss": {},
-  "ignorePatterns": ["**/typegen/**", "**/CHANGELOG.md"],
+  "ignorePatterns": ["**/typegen/**", "**/generated/**", "**/CHANGELOG.md"],
   "overrides": [
     {
       "files": ["docs/**"],

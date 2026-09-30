@@ -33,6 +33,7 @@ This is a component library that includes a collection of common and useful comp
 | [@component-hook/picker][component-picker]               | Customizable picker components that can be easily integrated      |
 | [@component-hook/pdf-canvas][component-pdf-canvas]       | Rendering `PDF` documents onto a canvas                           |
 | [@component-hook/eslint-plugin][component-eslint-plugin] | A opinionated ESLint config preset for `JS`, `TS`, `Vue`, `React` |
+| [@component-hook/oxlint-config][component-oxlint-config] | oxlint config derived from `@component-hook/eslint-plugin`        |
 | [@component-hook/create-app][component-create-app]       | Scaffolding a basic `typescript` project                          |
 
 ## License
@@ -51,4 +52,5 @@ This component library is licensed under the MIT License. For more details, plea
 [component-picker]: https://github.com/tzuyi0817/component-hook/tree/master/packages/picker
 [component-pdf-canvas]: https://github.com/tzuyi0817/component-hook/tree/master/packages/pdf-canvas
 [component-eslint-plugin]: https://github.com/tzuyi0817/component-hook/tree/master/packages/eslint-plugin
+[component-oxlint-config]: https://github.com/tzuyi0817/component-hook/tree/master/packages/oxlint-config
 [component-create-app]: https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app

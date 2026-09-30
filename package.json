@@ -13,6 +13,7 @@
     "prepack:picker": "pnpm -C packages/picker build",
     "prepack:pdf-canvas": "pnpm -C packages/pdf-canvas build",
     "prepack:eslint-plugin": "pnpm -C packages/eslint-plugin build",
+    "prepack:oxlint-config": "pnpm -C packages/oxlint-config build",
     "prepack:create-app": "pnpm -C packages/create-app build",
     "release": "pnpm publish --recursive --access public --no-git-checks",
     "typecheck": "turbo run typecheck",
