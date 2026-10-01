@@ -1,6 +1,6 @@
 import plugin from '@component-hook/eslint-plugin';
 import { deriveIgnorePatterns, deriveOxlintConfig } from './config/index.ts';
-import { readOxcCorrectnessRules } from './oxc.ts';
+import { readOxcCorrectnessRules } from './oxc/index.ts';
 
 /**
  * 產生所有要發佈的 oxlint 設定。`scripts/generate.ts` 用它寫入快照，

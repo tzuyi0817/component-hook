@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { buildConfigs } from './derive/build.ts';
-import { runOxlint } from './derive/oxc.ts';
+import { runOxlint } from './derive/oxc/index.ts';
 import { basic, ignorePatterns, react, vue } from './index.ts';
 
 interface Diagnostic {
