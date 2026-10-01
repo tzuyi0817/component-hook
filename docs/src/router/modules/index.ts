@@ -1,6 +1,6 @@
 import { cliRoutes } from './cli';
 import { componentRoutes } from './component';
-import { eslintRoutes } from './eslint';
 import { homeRoutes } from './home';
+import { lintRoutes } from './lint';
 
-export const allRoutes = [...homeRoutes, ...cliRoutes, ...eslintRoutes, ...componentRoutes];
+export const allRoutes = [...homeRoutes, ...cliRoutes, ...lintRoutes, ...componentRoutes];

@@ -21,11 +21,11 @@ defineEmits(['closeFullNavbar']);
     </router-link>
 
     <router-link
-      to="/eslint"
+      to="/lint"
       class="link-item"
       active-class="active"
     >
-      ESLint
+      Lint
     </router-link>
   </nav>
 </template>

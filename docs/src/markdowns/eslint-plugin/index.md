@@ -2,6 +2,8 @@
 
 A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue`, `Prettier` and `oxfmt`.
 
+Prefer [oxlint](https://oxc.rs/docs/guide/usage/linter)? [`@component-hook/oxlint-config`](/#/lint/oxlint-config) is generated from this preset.
+
 ### Installation
 
 ::: group

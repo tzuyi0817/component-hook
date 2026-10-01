@@ -52,7 +52,6 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
   return (
     <div
       role="presentation"
-      aria-label="Picker column"
       className="chook-picker-column"
       onTouchStart={onPointerDown}
       onTouchMove={onPointerMove}
@@ -69,6 +68,7 @@ function ColumnComponent<T>({ column, fields, selectedIndex = 0, onChange }: Pro
     >
       <ul
         ref={columnRef}
+        aria-label="Picker column"
         style={{
           overflowY: 'hidden',
           transform: 'translate3d(0, calc(var(--offset-y) * 1px), 0)',

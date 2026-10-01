@@ -18,10 +18,11 @@ A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `Reac
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
 - Various built-in configurations can be referenced according to respective needs.
 - Reasonable defaults, best practices, and just a few lines of configuration.
+- Prefer [oxlint](https://oxc.rs/docs/guide/usage/linter)? [`@component-hook/oxlint-config`](https://github.com/tzuyi0817/component-hook/tree/master/packages/oxlint-config) is generated from this preset.
 
 ## Documentation
 
-For detailed documentation and usage examples, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/eslint/plugin).
+For detailed documentation and usage examples, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/lint/plugin).
 
 ## Installation
 

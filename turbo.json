@@ -3,6 +3,8 @@
   "ui": "stream",
   "tasks": {
     "typecheck": {},
-    "build": {}
+    "build": {
+      "dependsOn": ["^build"]
+    }
   }
 }

@@ -67,11 +67,11 @@ import HomeFeature from './components/HomeFeature.vue';
         />
 
         <home-feature
-          title="ESLint"
+          title="Lint"
           content="Reasonable defaults, best practices, and just a few lines of configuration."
           image="plugin.png"
           :image-width="220"
-          link="/eslint"
+          link="/lint"
         />
       </section>
     </div>
