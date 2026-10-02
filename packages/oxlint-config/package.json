@@ -37,7 +37,7 @@
   },
   "scripts": {
     "build": "pnpm run build:generate && tsdown && node scripts/build-json.ts",
-    "build:generate": "node scripts/generate.ts",
+    "build:generate": "pnpm -C ../eslint-plugin build && node scripts/generate.ts",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {

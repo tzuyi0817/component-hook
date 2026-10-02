@@ -22,7 +22,7 @@ A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `Reac
 
 ## Documentation
 
-For detailed documentation and usage examples, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/lint/plugin).
+For detailed documentation and usage examples, please visit: [Official Docs](https://tzuyi0817.github.io/component-hook/#/lint/eslint-plugin).
 
 ## Installation
 

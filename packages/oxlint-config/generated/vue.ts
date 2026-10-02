@@ -25,7 +25,7 @@ export const vue: OxlintConfig = {
         "no-import-assign": "off",
         "no-new-native-nonconstructor": "off",
         "no-obj-calls": "off",
-        "no-redeclare": "error",
+        "no-redeclare": "off",
         "no-setter-return": "off",
         "no-this-before-super": "off",
         "no-unreachable": "off",

@@ -18,9 +18,14 @@ const OPTION_KEY_RENAMES: Record<string, Record<string, string>> = {
   'import/no-duplicates': { 'prefer-inline': 'preferInline' },
 };
 
-/** oxlint 設定檔是 JSON，RegExp 需改成字串 pattern */
+/** oxlint 設定檔是 JSON，RegExp 需改成字串 pattern；字串無法帶 flags，有 flags 時直接報錯而非靜默丟棄 */
 function toJsonValue(value: unknown, renames: Record<string, string> = {}): unknown {
-  if (value instanceof RegExp) return value.source;
+  if (value instanceof RegExp) {
+    if (value.flags) throw new Error(`oxlint 設定無法保留 RegExp flags：${String(value)}`);
+
+    return value.source;
+  }
+
   if (Array.isArray(value)) return value.map(item => toJsonValue(item, renames));
 
   if (value !== null && typeof value === 'object') {

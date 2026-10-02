@@ -49,6 +49,46 @@ describe('deriveOxlintConfig', () => {
     });
   });
 
+  it('replaces restricted syntax selectors as eslint does', () => {
+    const config = deriveOxlintConfig([
+      { rules: { 'no-restricted-syntax': ['error', 'LabeledStatement'] } },
+      { files: ['**/*.ts'], rules: { 'no-restricted-syntax': ['error', 'TSEnumDeclaration[const=true]'] } },
+    ]);
+
+    expect(config.rules).toEqual({ 'no-labels': 'error' });
+    expect(config.overrides).toEqual([
+      { files: ['**/*.ts'], rules: { 'oxc/no-const-enum': 'error', 'no-labels': 'off' } },
+    ]);
+  });
+
+  it('rejects severity only restricted syntax since eslint keeps the previous selectors', () => {
+    expect(() => deriveOxlintConfig([{ rules: { 'no-restricted-syntax': 'warn' } }])).toThrow('no-restricted-syntax');
+  });
+
+  it('keeps the preset severity of aliased rules over extra oxc rules', () => {
+    const config = deriveOxlintConfig(
+      [{ rules: { 'unicorn/no-double-comparison': 'off', 'unicorn/no-chained-comparison': 'warn' } }],
+      {
+        extraRules: {
+          'oxc/double-comparisons': 'error',
+          'oxc/bad-comparison-sequence': 'error',
+          'oxc/missing-throw': 'error',
+        },
+      },
+    );
+
+    expect(config.rules).toEqual({ 'oxc/bad-comparison-sequence': 'warn', 'oxc/missing-throw': 'error' });
+  });
+
+  it('keeps top-level off entries that turn off inherited rules', () => {
+    const config = deriveOxlintConfig(
+      [{ rules: { 'unicorn/prefer-global-this': 'off', 'react/display-name': 'off', 'react/jsx-key': 'error' } }],
+      { inherited: { 'unicorn/prefer-global-this': 'error' } },
+    );
+
+    expect(config.rules).toEqual({ 'unicorn/prefer-global-this': 'off', 'react/jsx-key': 'error' });
+  });
+
   it('prefers the typescript-eslint extension over the core rule in the same config', () => {
     const config = deriveOxlintConfig([
       {
@@ -70,6 +110,16 @@ describe('deriveOxlintConfig', () => {
         },
       },
     ]);
+  });
+
+  it('turns off no-redeclare where the typescript-eslint extension is enabled', () => {
+    const config = deriveOxlintConfig([
+      { rules: { 'no-redeclare': 'error' } },
+      { files: ['**/*.ts'], rules: { '@typescript-eslint/no-redeclare': 'error' } },
+    ]);
+
+    expect(config.rules).toEqual({ 'no-redeclare': 'error' });
+    expect(config.overrides).toEqual([{ files: ['**/*.ts'], rules: { 'no-redeclare': 'off' } }]);
   });
 
   it('leaves vue plugin rules and template dependent checks to eslint', () => {
@@ -135,6 +185,12 @@ describe('deriveOxlintConfig', () => {
       'unicorn/filename-case': ['error', { cases: { kebabCase: true }, ignore: [String.raw`^[A-Z]+\..*$`] }],
       'import/no-duplicates': ['error', { preferInline: true }],
     });
+  });
+
+  it('rejects regexp options with flags instead of silently dropping them', () => {
+    expect(() =>
+      deriveOxlintConfig([{ rules: { 'unicorn/filename-case': ['error', { ignore: [/^readme/i] }] } }]),
+    ).toThrow('/^readme/i');
   });
 
   it('converts eslint globs in override files', () => {
