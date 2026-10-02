@@ -349,16 +349,6 @@ export const basic: OxlintConfig = {
     },
     {
       "files": [
-        "**/*.d.ts"
-      ],
-      "rules": {
-        "import/no-duplicates": "off",
-        "oxc/no-const-enum": "off",
-        "no-labels": "off"
-      }
-    },
-    {
-      "files": [
         "**/*.d.ts",
         "**/*config*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}",
         "**/{views,pages,routes,middleware,plugins,api,modules}/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}",
@@ -366,6 +356,16 @@ export const basic: OxlintConfig = {
       ],
       "rules": {
         "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": [
+        "**/*.d.ts"
+      ],
+      "rules": {
+        "import/no-duplicates": "off",
+        "oxc/no-const-enum": "off",
+        "no-labels": "off"
       }
     },
     {

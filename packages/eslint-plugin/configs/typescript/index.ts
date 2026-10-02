@@ -45,15 +45,14 @@ export const typescriptCoreConfig = defineConfig({
   } satisfies TypescriptRules & Linter.RulesRecord,
 });
 
-export const typescriptConfigs: Config<TypescriptRules>[] = [
-  ...typescriptCoreConfig,
-  {
-    files: ['**/*.d.ts'],
-    name: 'component-hook/typescript/dts-rules',
-    rules: {
-      '@eslint-community/eslint-comments/no-unlimited-disable': 'off',
-      'import/no-duplicates': 'off',
-      'no-restricted-syntax': 'off',
-    },
+export const typescriptDtsConfig: Config<TypescriptRules> = {
+  files: ['**/*.d.ts'],
+  name: 'component-hook/typescript/dts-rules',
+  rules: {
+    '@eslint-community/eslint-comments/no-unlimited-disable': 'off',
+    'import/no-duplicates': 'off',
+    'no-restricted-syntax': 'off',
   },
-];
+};
+
+export const typescriptConfigs: Config<TypescriptRules>[] = [...typescriptCoreConfig, typescriptDtsConfig];
