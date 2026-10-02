@@ -1,8 +1,8 @@
 // @vitest-environment node
+import { ESLint, type Linter } from 'eslint';
 import { oxfmtConfig } from './configs/oxfmt/index.ts';
 import { prettierConfig } from './configs/prettier.ts';
 import plugin, { reactPreset, vuePreset } from './index.ts';
-import type { Linter } from 'eslint';
 
 /** 取出規則所屬的 plugin 名稱；核心規則沒有斜線，回傳 undefined */
 function pluginIdOf(ruleId: string) {
@@ -46,5 +46,15 @@ describe('plugin configs', () => {
       expect(preset).toContain(prettierConfig);
       expect(preset).not.toContain(oxfmtConfig);
     }
+  });
+});
+
+describe('basic', () => {
+  it('relaxes declaration files after the configs that enable those rules', async () => {
+    const eslint = new ESLint({ overrideConfigFile: true, overrideConfig: plugin.configs.basic });
+    const { rules } = await eslint.calculateConfigForFile('types.d.ts');
+
+    expect(rules['import/no-duplicates']?.[0]).toBe(0);
+    expect(rules['@eslint-community/eslint-comments/no-unlimited-disable']?.[0]).toBe(0);
   });
 });

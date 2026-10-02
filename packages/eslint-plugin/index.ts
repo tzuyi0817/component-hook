@@ -21,16 +21,17 @@ import {
   testingLibraryReactConfig,
   testingLibraryVueConfig,
 } from './configs/testing-library.ts';
-import { typescriptConfigs } from './configs/typescript/index.ts';
+import { typescriptCoreConfig, typescriptDtsConfig } from './configs/typescript/index.ts';
 import { unicornConfigs } from './configs/unicorn.ts';
 import { vueConfigs } from './configs/vue.ts';
 import { yamlConfigs } from './configs/yaml.ts';
 
 const basicConfigs = [
   ...jsConfigs,
-  ...typescriptConfigs,
+  ...typescriptCoreConfig,
   ...commentsConfigs,
   ...importConfigs,
+  typescriptDtsConfig,
   ...unicornConfigs,
   jsdocConfig,
   regexpConfig,
