@@ -1,5 +1,6 @@
 // @vitest-environment node
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { buildConfigs } from './derive/build.ts';
@@ -43,6 +44,23 @@ function lint(config: unknown, files: Record<string, string>) {
 
     return `${filename} ${rule}`;
   });
+}
+
+/** 取出 `.oxlintrc.json` 用法段落的 JSON 範例；jsonc 先移除尾逗號再解析 */
+function readJsonExample(url: URL) {
+  const markdown = readFileSync(url, 'utf8');
+  const section = markdown.slice(markdown.indexOf('Usage with `.oxlintrc.json`'));
+  const [, source = ''] = /```jsonc?\n([\s\S]*?)\n```/.exec(section) ?? [];
+
+  return JSON.parse(source.replaceAll(/,(\s*[\]}])/g, '$1')) as { ignorePatterns: string[] };
+}
+
+/** 逐段比較 `x.y.z` 版本號，a 較新時回傳正數 */
+function compareVersions(a: string, b: string) {
+  const [left, right] = [a, b].map(version => version.split('.').map(Number));
+  const index = left.findIndex((part, i) => part !== right[i]);
+
+  return index === -1 ? 0 : left[index] - right[index];
 }
 
 describe('generated configs', () => {
@@ -158,5 +176,30 @@ describe('react', () => {
 
     expect(results).toContain('src/pages/home.tsx unicorn/no-anonymous-default-export');
     expect(results).not.toContain('src/pages/home.tsx jsx-a11y/alt-text');
+  });
+});
+
+describe('.oxlintrc.json usage docs', () => {
+  it.each([
+    ['README', new URL('README.md', import.meta.url)],
+    ['docs', new URL('../../docs/src/markdowns/oxlint-config/index.md', import.meta.url)],
+  ])('%s lists every ignore pattern since extends does not inherit them', (_, url) => {
+    expect(readJsonExample(url).ignorePatterns).toEqual(ignorePatterns);
+  });
+});
+
+describe('peer dependency', () => {
+  it('requires at least the oxlint version the configs are built with', () => {
+    const { peerDependencies } = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8')) as {
+      peerDependencies: { oxlint: string };
+    };
+    const { version } = createRequire(import.meta.url)('oxlint/package.json') as { version: string };
+    const [, minimum = ''] = /^>=(\d+\.\d+\.\d+)$/.exec(peerDependencies.oxlint) ?? [];
+
+    expect(minimum, `peerDependencies.oxlint 需為 >=x.y.z 形式，目前為 ${peerDependencies.oxlint}`).not.toBe('');
+    expect(
+      compareVersions(minimum, version),
+      `peer oxlint ${peerDependencies.oxlint} 低於建置使用的 ${version}，舊版 oxlint 可能無法解析新規則`,
+    ).toBeGreaterThanOrEqual(0);
   });
 });

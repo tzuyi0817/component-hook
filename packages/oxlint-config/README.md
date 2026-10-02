@@ -59,7 +59,7 @@ export default defineConfig({
 
 oxlint does not inherit `ignorePatterns`, `env`, `globals` or `settings` through `extends`, so set them in the root config. `ignorePatterns` mirrors the ignores of the ESLint preset.
 
-Rules that the ESLint preset scopes with `files` (for example the `react-hooks` rules on `**/*.[jt]s?(x)`) end up in `overrides`, and an override always wins over top-level `rules`. To change their severity, add an override with the same `files` instead of a top-level rule:
+Rules that the ESLint preset scopes with `files` (for example the `react-hooks` rules on `**/*.[jt]s?(x)`, and TypeScript rules of `basic` such as `no-unused-vars`, `prefer-const` and `no-shadow` on `**/*.ts` / `**/*.tsx`) end up in `overrides`, and an override always wins over top-level `rules`. To change their severity, add an override with the same `files` instead of a top-level rule:
 
 ```ts
 export default defineConfig({
@@ -69,6 +69,12 @@ export default defineConfig({
       files: ['**/*.[jt]s', '**/*.[jt]sx'],
       rules: {
         'react/exhaustive-deps': 'warn',
+      },
+    },
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        'no-unused-vars': 'off',
       },
     },
   ],
@@ -86,7 +92,44 @@ export default defineConfig({
     "./node_modules/@component-hook/oxlint-config/dist/basic.json",
     "./node_modules/@component-hook/oxlint-config/dist/react.json",
   ],
-  "ignorePatterns": ["**/node_modules", "**/dist", "**/coverage"],
+  "ignorePatterns": [
+    "**/node_modules",
+    "**/dist",
+    "**/pnpm-lock.yaml",
+    "**/yarn.lock",
+    "**/package-lock.json",
+    "**/bun.lockb",
+    "output",
+    "**/coverage",
+    "**/playwright-report",
+    "**/temp",
+    "**/fixtures",
+    "**/.vitepress/cache",
+    "**/.nuxt",
+    "**/.vercel",
+    "**/.changeset",
+    "**/.idea",
+    "**/.output",
+    "**/.vite-inspect",
+    "**/.context",
+    "**/.nitro",
+    "**/CHANGELOG*.md",
+    "**/*.min.*",
+    "**/LICENSE*",
+    "**/__snapshots__",
+    "**/auto-import.d.ts",
+    "**/auto-imports.d.ts",
+    "**/components.d.ts",
+    "**/vite-env.d.ts",
+    "**/shims-vue.d.ts",
+    "**/.turbo",
+    "**/mockServiceWorker.js",
+  ],
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "node": true,
+  },
 }
 ```
 

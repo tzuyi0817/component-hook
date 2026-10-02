@@ -6,12 +6,12 @@ export const lintRoutes: Array<RouteRecordRaw> = [
     path: '/lint',
     name: 'lint',
     component: SidebarContainer,
-    redirect: '/lint/plugin',
+    redirect: '/lint/eslint-plugin',
     children: [
       {
-        path: 'plugin',
+        path: 'eslint-plugin',
         name: 'eslint-plugin',
-        component: () => import('@/pages/lint/Plugin.vue'),
+        component: () => import('@/pages/lint/EslintPlugin.vue'),
         meta: {
           title: 'Plugin',
           group: 'ESLint',
@@ -27,5 +27,10 @@ export const lintRoutes: Array<RouteRecordRaw> = [
         },
       },
     ],
+  },
+  // 已發佈的 eslint-plugin README 仍連到舊的 /eslint/* 路徑
+  {
+    path: '/eslint/:pathMatch(.*)*',
+    redirect: '/lint/eslint-plugin',
   },
 ];

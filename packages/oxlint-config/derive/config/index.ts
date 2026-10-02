@@ -21,6 +21,13 @@ export interface DerivedOxlintConfig {
 
 type EslintConfig = Pick<Linter.Config, 'files' | 'ignores' | 'rules'>;
 
+/**
+ * oxlint 只有核心版本、缺少 typescript-eslint 延伸語意的規則。
+ * `no-redeclare` 不支援 `ignoreDeclarationMerge`，會把合法的宣告合併（同名 interface、namespace 合併）報成錯誤，
+ * 因此在 preset 啟用延伸版本的範圍內改為 `off` 並蓋過頂層的核心版本：寧可少報重複宣告，也不誤報宣告合併。
+ */
+const DISABLED_EXTENDED_RULES = new Set(['@typescript-eslint/no-redeclare']);
+
 /** Vue 相關規則全部留在 ESLint，等 oxc 支援 template 解析後再評估 */
 const EXCLUDED_PLUGINS = new Set<OxlintPlugin>(['vue']);
 
@@ -40,14 +47,23 @@ function restrictedSelectors(options: unknown[]) {
   });
 }
 
-/** 關閉時沒有 selector 可對應，把所有專用規則一併關閉；未曾啟用的會在後續清理掉 */
+/**
+ * ESLint 的新選項會整組取代先前的 selector，因此未列出的專用規則一律輸出 `off`；
+ * 關閉時全部關閉，未曾啟用的會在後續清理掉。
+ * 只給 severity 時 ESLint 沿用先前的 selector，單看這個 config 無法推導，直接報錯。
+ */
 function restrictedSyntaxEntries(severity: Severity, options: unknown[]): OxlintRules {
-  const selectors = severity === 'off' ? Object.keys(RESTRICTED_SYNTAX_ALIASES) : restrictedSelectors(options);
+  if (severity !== 'off' && options.length === 0) {
+    throw new Error('`no-restricted-syntax` 只設定 severity 時無法推導，請列出完整的 selector');
+  }
+
+  const selectors = new Set(severity === 'off' ? [] : restrictedSelectors(options));
 
   return Object.fromEntries(
-    selectors
-      .filter(selector => selector in RESTRICTED_SYNTAX_ALIASES)
-      .map(selector => [RESTRICTED_SYNTAX_ALIASES[selector], severity]),
+    Object.entries(RESTRICTED_SYNTAX_ALIASES).map(([selector, rule]) => [
+      rule,
+      selectors.has(selector) ? severity : 'off',
+    ]),
   );
 }
 
@@ -65,6 +81,7 @@ function toOxlintEntries(eslintName: string, entry: Linter.RuleEntry, isVue: boo
 
   if (!name || EXCLUDED_PLUGINS.has(pluginOfOxlintRule(name))) return {};
   if (isVue && VUE_SKIPPED_RULES.has(name)) return {};
+  if (DISABLED_EXTENDED_RULES.has(eslintName)) return { [name]: 'off' };
 
   return { [name]: toOxlintRuleEntry(name, severity, options) };
 }
@@ -110,13 +127,16 @@ function collectPlugins(ruleSets: OxlintRules[]) {
  * 從 ESLint flat config 陣列推導 oxlint 設定，讓兩邊規則只維護 eslint-plugin 一處。
  *
  * - 沒有 `files` 的 config 依序合併成頂層 `rules`；有 `files` 的成為 `overrides`，連續且 `files` 相同者合併。
- * - 只保留 oxlint 已實作的規則，頂層合併後仍為 `off` 的規則移除。
+ * - 只保留 oxlint 已實作的規則，頂層合併後仍為 `off` 的規則移除，除非它關掉的是 `inherited` 中啟用的規則。
  * - 非 JS / TS 檔案（json、yaml、markdown）的設定略過。
- * - `extraRules` 為 ESLint 沒有對應、需另外併入頂層的 oxlint 自有規則（例如 oxc plugin）。
+ * - `extraRules` 為 ESLint 沒有對應、需另外併入頂層的 oxlint 自有規則（例如 oxc plugin）；
+ *   與 preset 經別名對應到同一條規則時以 preset 的設定為準。
+ * - `inherited` 為使用時會一起 `extends` 的前一份設定（例如 react 疊在 basic 上）的頂層規則。
+ *   只比對頂層：前一份設定在 override 內啟用的規則，oxlint 的 override 會蓋過這裡的頂層 off，無法推導。
  */
 export function deriveOxlintConfig(
   configs: readonly EslintConfig[],
-  extraRules: OxlintRules = {},
+  { extraRules = {}, inherited = {} }: { extraRules?: OxlintRules; inherited?: OxlintRules } = {},
 ): DerivedOxlintConfig {
   const topLevel: OxlintRules = {};
   const overrides: OxlintOverride[] = [];
@@ -144,10 +164,14 @@ export function deriveOxlintConfig(
     }
   }
 
-  // 頂層合併後仍為 off 的規則等於沒啟用；override 的 off 可能針對其他設定啟用的規則
-  // （例如 react 關掉 basic 的 unicorn/no-anonymous-default-export），一律保留。
+  // 頂層合併後仍為 off 的規則等於沒啟用，但關掉 inherited 啟用的規則時要保留，extends 後才蓋得過去；
+  // override 的 off 可能針對其他設定啟用的規則（例如 react 關掉 basic 的 unicorn/no-anonymous-default-export），一律保留。
   const rules = Object.fromEntries(
-    Object.entries({ ...topLevel, ...extraRules }).filter(([, entry]) => isEnabled(entry)),
+    Object.entries({ ...extraRules, ...topLevel }).filter(([name, entry]) => {
+      const base = inherited[name];
+
+      return isEnabled(entry) || (base !== undefined && isEnabled(base));
+    }),
   );
   const nonEmptyOverrides = overrides.filter(override => Object.keys(override.rules).length > 0);
 
