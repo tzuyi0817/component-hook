@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/oxlint-config",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "oxlint config derived from @component-hook/eslint-plugin",
   "keywords": [
     "lint",

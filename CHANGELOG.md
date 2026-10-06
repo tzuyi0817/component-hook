@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.6.0](https://github.com/tzuyi0817/component-hook/compare/v1.5.1...v1.6.0) (2026-10-06)
+
+### Features
+
+- **oxlint-config:** add oxlint config derived from `@component-hook/eslint-plugin` presets ([37adc6a](https://github.com/tzuyi0817/component-hook/commit/37adc6ae305529ee098649187eb9f4e7186fa562))
+- **eslint-plugin:** add `oxfmt` config ([bc5d157](https://github.com/tzuyi0817/component-hook/commit/bc5d1577923b29e2b6620e4a8b19ad0058f06ebf))
+- **eslint-plugin:** sort `noUncheckedSideEffectImports` in tsconfig and `devEngines` in package.json ([73ce3ba](https://github.com/tzuyi0817/component-hook/commit/73ce3bacd7c1073056458f534cf8b5ff3078a622))
+- **create-app:** upgrade `pinia` to v4 in `vue` template ([a51bf32](https://github.com/tzuyi0817/component-hook/commit/a51bf3251f1ae52505afb260cfef4cc79f6640a4))
+
+### Bug Fixes
+
+- **eslint-plugin:** publish esm only, cjs bundle could not load esm-only plugins ([956f5e8](https://github.com/tzuyi0817/component-hook/commit/956f5e89201fa71a839f159651ba39850c9eee6f))
+- **eslint-plugin:** use registered plugin prefixes in dts rules ([3b2b57e](https://github.com/tzuyi0817/component-hook/commit/3b2b57ebbbea234c8a2d85bea3295678777adb1c))
+- **eslint-plugin:** relax declaration file rules after import config ([560682f](https://github.com/tzuyi0817/component-hook/commit/560682f16aca7be1510fce8856e332ca6ce26862))
+- **docs:** brief white screen that appears when switching themes ([44d41b8](https://github.com/tzuyi0817/component-hook/commit/44d41b8f086703697809258ac50c091d0cc1bf31))
+
 ## [1.5.1](https://github.com/tzuyi0817/component-hook/compare/v1.5.0...v1.5.1) (2026-08-10)
 
 ### Features

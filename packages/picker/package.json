@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/picker",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Picker component with vue3 and react",
   "keywords": [
     "date-picker",

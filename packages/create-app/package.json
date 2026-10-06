@@ -1,6 +1,6 @@
 {
   "name": "@component-hook/create-app",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "Scaffolding a basic typescript project",
   "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
   "bugs": {
