@@ -6,7 +6,7 @@ import { useConfigStore } from '@/stores';
 defineProps<{ msg: string }>();
 
 const { locale } = useI18n();
-const { version } = useConfigStore();
+const { appMeta } = useConfigStore();
 const count = ref(0);
 
 function changeLocale() {
@@ -38,10 +38,8 @@ function changeLocale() {
     >
     in your IDE for a better DX
   </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-  <p class="read-the-docs">
-    {{ version }}
-  </p>
+  <p class="read-the-docs mt-3">Click on the Vite and Vue logos to learn more</p>
+  <p class="read-the-docs mt-1">{{ appMeta.version }} - Built at: {{ appMeta.builtAt.toLocaleString() }}</p>
   <button @click="changeLocale">
     {{ $t('language') }}
   </button>

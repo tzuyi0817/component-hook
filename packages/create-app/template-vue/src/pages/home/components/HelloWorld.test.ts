@@ -10,9 +10,12 @@ describe('home page HelloWorld component', () => {
 
   it('renders the correct content', () => {
     const msg = 'Hello World!';
-    const { version } = useConfigStore();
 
     renderComponent(HelloWorld, { props: { msg } });
+
+    const { appMeta } = useConfigStore();
+    const builtAtText = `${appMeta.version} - Built at: ${appMeta.builtAt.toLocaleString()}`.replaceAll(/\s+/g, ' ');
+
     expect(screen.getByRole('heading', { name: msg })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /count is 0/i })).toBeInTheDocument();
     expect(screen.getByText(/check out , the official vue \+ vite starter/i)).toBeInTheDocument();
@@ -20,7 +23,7 @@ describe('home page HelloWorld component', () => {
     expect(screen.getByText(/install in your ide for a better dx/i)).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /volar/i })).toBeInTheDocument();
     expect(screen.getByText(/click on the vite and vue logos to learn more/i)).toBeInTheDocument();
-    expect(screen.getByText(version)).toBeInTheDocument();
+    expect(screen.getByText(builtAtText)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: t('language') })).toBeInTheDocument();
   });
 

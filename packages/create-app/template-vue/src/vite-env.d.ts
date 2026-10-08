@@ -4,6 +4,7 @@ declare module 'virtual:svg-icons-register';
 
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
   readonly VITE_APP_VERSION: string;
-  readonly VITE_APP_BUILD_EPOCH?: string;
-  readonly VITE_APP_MOCK?: string;
+  readonly VITE_APP_LAST_COMMIT_HASH: string;
+  readonly VITE_APP_BUILD_EPOCH: string;
+  readonly VITE_APP_MOCK?: 'service-worker';
 }

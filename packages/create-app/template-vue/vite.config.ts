@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url';
 import vueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
+import { msw } from 'msw/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -19,6 +20,7 @@ export default defineConfig({
     createSvgIconsPlugin({
       iconDirs: [resolve(process.cwd(), 'src/assets/svg-icons')],
     }),
+    msw(),
     visualizer({ gzipSize: true }),
   ],
   resolve: {

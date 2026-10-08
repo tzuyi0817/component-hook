@@ -1,12 +1,12 @@
-import { defineStore } from 'pinia';
+import { acceptHMRUpdate, defineStore } from 'pinia';
 
-const versionString = import.meta.env.DEV
-  ? `${import.meta.env.VITE_APP_VERSION}-dev`
-  : import.meta.env.VITE_APP_VERSION;
+const versionString = `${import.meta.env.VITE_APP_VERSION}-${import.meta.env.VITE_APP_LAST_COMMIT_HASH}`;
 
 const defaultState = {
-  isDev: import.meta.env.DEV,
-  version: versionString,
+  appMeta: {
+    version: import.meta.env.MODE === 'development' ? `${versionString}-dev` : versionString,
+    builtAt: new Date(Number(import.meta.env.VITE_APP_BUILD_EPOCH)),
+  },
 };
 
 export const useConfigStore = defineStore('config', {
@@ -18,3 +18,7 @@ export const useConfigStore = defineStore('config', {
     pick: [],
   },
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useConfigStore, import.meta.hot));
+}
