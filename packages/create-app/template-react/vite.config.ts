@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
+import { msw } from 'msw/vite';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import './scripts/build-info/index.ts';
@@ -14,6 +15,7 @@ export default defineConfig({
     createSvgIconsPlugin({
       iconDirs: [resolve(process.cwd(), 'src/assets/svg-icons')],
     }),
+    msw(),
   ],
   resolve: {
     alias: {
