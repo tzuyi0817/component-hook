@@ -16,6 +16,7 @@ run_test:
     - if: $CI_COMMIT_BRANCH
       changes:
         - 'src/**'
+        - 'e2e/**'
         - pnpm-lock.yaml
         - package.json
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
