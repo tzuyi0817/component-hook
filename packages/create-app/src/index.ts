@@ -7,6 +7,7 @@ import { copy, ensureDirSync } from 'fs-extra/esm';
 import minimist from 'minimist';
 import ora from 'ora';
 import colors from 'picocolors';
+import { CI_FILTERS, RENAME_FILES } from './constants';
 import { operationPrompts } from './prompts';
 import {
   clearFolder,
@@ -35,18 +36,6 @@ const argv = minimist<MinimistParsedArgs>(process.argv.slice(2), {
   string: ['_'],
 });
 
-const renameFiles: Record<string, string> = {
-  _gitignore: '.gitignore',
-  '_gitlab-ci.yml': '.gitlab-ci.yml',
-  '_lint-staged.config.js': 'lint-staged.config.js',
-};
-
-const ciFilters: Record<string, string[]> = {
-  'github-actions': ['.gitlab', '_gitlab-ci.yml'],
-  'gitlab-ci': ['.github'],
-  none: ['.github', '.gitlab', '_gitlab-ci.yml'],
-};
-
 const helpMessage = `
 Usage: create-component-hook [project name] [options]
 
@@ -74,11 +63,11 @@ async function writePackageJson(root: string, dir: string, packageName: string) 
 
 async function copyFolder(root: string, dir: string, packageName: string, ci: string) {
   const files = await readdir(dir);
-  const ignoreFiles = new Set(['package.json', ...(ciFilters[ci] || ciFilters.none)]);
+  const ignoreFiles = new Set(['package.json', ...(CI_FILTERS[ci] ?? CI_FILTERS.none)]);
   const filterFiles = files.filter(file => !ignoreFiles.has(file));
 
   const rewriteOrCopyFile = async (file: string): Promise<void> => {
-    const targetPath = path.join(root, renameFiles?.[file] ?? file);
+    const targetPath = path.join(root, RENAME_FILES[file] ?? file);
     const templatePath = path.join(dir, file);
 
     if (file.endsWith('.art')) {
