@@ -4,12 +4,12 @@ packages:
   - 'playground/*'
 
 catalog:
-  '@microsoft/api-extractor': ^7.59.1
+  '@microsoft/api-extractor': ^7.59.4
   eslint: ^9.39.5
   oxlint: ^1.86.0
   react: ^19.3.0
   react-dom: ^19.3.0
-  vite-plugin-dts: ^5.1.0
+  vite-plugin-dts: ^5.1.2
   vue: ^3.5.43
 
 allowBuilds:
