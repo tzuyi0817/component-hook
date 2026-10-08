@@ -11,6 +11,7 @@ describe('home page HelloWorld component', () => {
   it('renders the correct content', () => {
     const title = 'Hello World!';
     const { appMeta } = useConfigStore.getState();
+    const builtAtText = `${appMeta.version} - Built at: ${appMeta.builtAt.toLocaleString()}`.replaceAll(/\s+/g, ' ');
 
     renderComponent(<HelloWorld title={title} />);
     expect(screen.getByRole('heading', { name: title })).toBeInTheDocument();
@@ -19,7 +20,7 @@ describe('home page HelloWorld component', () => {
     expect(screen.getByText(/src\/app\.tsx/i)).toBeInTheDocument();
     expect(screen.getByText(/save to test hmr/i)).toBeInTheDocument();
     expect(screen.getByText(/click on the vite and react logos to learn more/i)).toBeInTheDocument();
-    expect(screen.getByText(`${appMeta.version} - Built at: ${appMeta.builtAt.toLocaleString()}`)).toBeInTheDocument();
+    expect(screen.getByText(builtAtText)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: t('language') })).toBeInTheDocument();
   });
 
