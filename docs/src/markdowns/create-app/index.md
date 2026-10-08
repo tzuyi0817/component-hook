@@ -75,7 +75,7 @@ This project leverages modern frontend practices and tooling, covering developme
 
 #### Code Quality
 
-- Enforces consistent code style with `ESLint` and `Prettier`.
+- Enforces consistent code style with `ESLint` and `oxfmt`.
 - Enhanced with:
   - `husky`: For Git hooks.
   - `lint-staged`: Only runs linters on staged files.

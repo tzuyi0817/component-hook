@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode",
+    "oxc.oxc-vscode",
     "csstools.postcss",
     "cpylua.language-postcss",
     "streetsidesoftware.code-spell-checker"
