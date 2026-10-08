@@ -1,0 +1,14 @@
+name: Create App Smoke Test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'packages/create-app/**'
+      - .github/workflows/create-app-smoke.yml
+
+jobs:
+  smoke-test:
+    uses: tzuyi0817/workflows/.github/workflows/test.yml@v1
+    with:
+      test: pnpm -C packages/create-app smoke
