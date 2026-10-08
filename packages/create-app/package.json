@@ -26,7 +26,8 @@
     "dev": "tsdown --watch",
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
-    "smoke": "node scripts/smoke.ts"
+    "smoke": "node scripts/smoke.ts",
+    "sync": "node scripts/sync-template/index.ts"
   },
   "dependencies": {
     "art-template": "^4.13.4",
