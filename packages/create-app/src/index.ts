@@ -38,6 +38,7 @@ const argv = minimist<MinimistParsedArgs>(process.argv.slice(2), {
 const renameFiles: Record<string, string> = {
   _gitignore: '.gitignore',
   '_gitlab-ci.yml': '.gitlab-ci.yml',
+  '_lint-staged.config.js': 'lint-staged.config.js',
 };
 
 const ciFilters: Record<string, string[]> = {
