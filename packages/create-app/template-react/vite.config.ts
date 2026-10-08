@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import './scripts/build-info';
+import './scripts/build-info/index.ts';
 
 export default defineConfig({
   base: './',
@@ -15,24 +15,31 @@ export default defineConfig({
       iconDirs: [resolve(process.cwd(), 'src/assets/svg-icons')],
     }),
   ],
-  esbuild: {
-    pure: ['console.log'],
-    drop: ['debugger'],
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
     },
   },
   build: {
-    rollupOptions: {
+    rolldownOptions: {
+      treeshake: {
+        manualPureFunctions: ['console.log'],
+      },
       output: {
         chunkFileNames: 'chunks/[name]-[hash].js',
         assetFileNames: 'assets/[name].[hash].[ext]',
         entryFileNames: 'entries/[name].[hash].js',
-        manualChunks: {
-          core: ['react', 'react-dom', 'react-i18next', 'react-router-dom', 'zustand', 'i18next'],
-          vender: ['axios'],
+        codeSplitting: {
+          groups: [
+            {
+              name: 'core',
+              test: /node_modules[\\/](?:react|react-dom|react-i18next|react-router-dom|zustand|i18next)[\\/]/,
+            },
+            {
+              name: 'vendor',
+              test: /node_modules[\\/]axios[\\/]/,
+            },
+          ],
         },
       },
     },

@@ -6,6 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "types": ["node"],
+    "allowImportingTsExtensions": true,
     "noEmit": true
   },
   "include": ["vite.config.ts", "package.json", "vitest.config.ts", "playwright.config.ts", "scripts/**/*.ts"]
