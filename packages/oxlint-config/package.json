@@ -54,5 +54,5 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@12.4.2"
+  "packageManager": "pnpm@12.10.1"
 }
