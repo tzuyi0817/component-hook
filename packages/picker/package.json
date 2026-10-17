@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
-    "sass-embedded": "^1.105.1",
+    "sass-embedded": "^1.105.2",
     "vite-plugin-dts": "catalog:"
   },
   "peerDependencies": {
@@ -56,5 +56,5 @@
     "react-dom": "catalog:",
     "vue": "catalog:"
   },
-  "packageManager": "pnpm@12.10.1"
+  "packageManager": "pnpm@12.14.0"
 }
