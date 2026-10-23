@@ -104,6 +104,9 @@ describe('blobHistoryOf / hashObject', () => {
     writeFile('src/history.ts', 'v1');
     expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(true);
 
+    writeFile('src/history.ts', 'v2');
+    expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(true);
+
     writeFile('src/history.ts', 'never committed');
     expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(false);
   });
