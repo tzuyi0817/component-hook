@@ -124,4 +124,27 @@ describe('printWrites', () => {
 
     expect(lines).toEqual(['\n# 未寫入 1，template 有未 commit 的修改', '  template-vue/src/main.ts']);
   });
+
+  it('lists targets left alone because the template has changes the source never had', () => {
+    const lines = captureInfo(() =>
+      printWrites({
+        copies: [],
+        remaining: [
+          {
+            framework: 'vue',
+            note: 'template 有來源歷史中沒有的修改',
+            sourcePath: '.github/actions/setup-environment/action.yml',
+            status: 'diff',
+            target: 'template-shared/.github/actions/setup-environment/action.yml',
+          },
+        ],
+        upgrades: [],
+      }),
+    );
+
+    expect(lines).toEqual([
+      '\n# 未寫入 1，template 有來源歷史中沒有的修改',
+      '  template-shared/.github/actions/setup-environment/action.yml',
+    ]);
+  });
 });

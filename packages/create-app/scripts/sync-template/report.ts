@@ -1,6 +1,6 @@
 import { styleText } from 'node:util';
 import { newerSideOf } from './compare.ts';
-import { UNCOMMITTED_NOTE, type WritePlan } from './write.ts';
+import { DIVERGED_NOTE, UNCOMMITTED_NOTE, type WritePlan } from './write.ts';
 import type { Entry, EntryStatus, Framework, LineMismatch, PackageDiff } from './types.ts';
 
 type Style = Parameters<typeof styleText>[0];
@@ -117,18 +117,20 @@ function printWritten({ copies, upgrades }: WritePlan) {
   }
 }
 
-/** 因 template 有未 commit 修改而沒寫的項目，讓使用者知道不是漏掉 */
-function printUncommitted({ remaining }: WritePlan) {
-  const skipped = remaining.filter(({ note }) => note === UNCOMMITTED_NOTE);
+/** 可以寫卻刻意沒寫的項目，依原因分段，讓使用者知道不是漏掉 */
+function printSkipped({ remaining }: WritePlan) {
+  for (const reason of [UNCOMMITTED_NOTE, DIVERGED_NOTE]) {
+    const skipped = remaining.filter(({ note }) => note === reason);
 
-  if (skipped.length === 0) return;
+    if (skipped.length === 0) continue;
 
-  console.info(styleText(['bold', 'yellow'], `\n# 未寫入 ${skipped.length}，${UNCOMMITTED_NOTE}`));
+    console.info(styleText(['bold', 'yellow'], `\n# 未寫入 ${skipped.length}，${reason}`));
 
-  for (const { target } of skipped) console.info(`  ${target}`);
+    for (const { target } of skipped) console.info(`  ${target}`);
+  }
 }
 
 export function printWrites(plan: WritePlan) {
   printWritten(plan);
-  printUncommitted(plan);
+  printSkipped(plan);
 }

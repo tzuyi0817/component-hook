@@ -4,10 +4,10 @@ import { parseOnly, parseSourceOverride } from './args.ts';
 import { classify, type Context } from './classify.ts';
 import { countDrift, findTemplateOnly, templateKindsOf } from './compare.ts';
 import { DEFAULT_SOURCE_DIRS, FRAMEWORKS } from './config.ts';
-import { hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
+import { blobHistoryOf, hashObject, hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
 import { printFrameworkReport, printTemplateOnly, printWrites } from './report.ts';
 import { applyWrites, planWrites } from './write.ts';
-import type { Framework } from './types.ts';
+import type { Entry, Framework } from './types.ts';
 
 const repoRoot = path.resolve(import.meta.dirname, '../../../..');
 const createAppRoot = path.resolve(import.meta.dirname, '../..');
@@ -95,7 +95,11 @@ function main() {
 
   const isDirty = (target: string) => hasUncommittedChanges(createAppRoot, target);
 
-  const plan = write ? planWrites(entries, kinds, isDirty) : undefined;
+  const isBehindSource = ({ framework, sourcePath, target }: Entry) => {
+    return target !== undefined && blobHistoryOf(sources[framework], sourcePath).has(hashObject(createAppRoot, target));
+  };
+
+  const plan = write ? planWrites(entries, kinds, { isBehindSource, isDirty }) : undefined;
 
   if (plan) {
     applyWrites(plan, { sources, templateRoot: createAppRoot });

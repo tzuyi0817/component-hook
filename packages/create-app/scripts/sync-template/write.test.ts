@@ -2,7 +2,7 @@
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { applyPackageUpgrade, applyWrites, planWrites } from './write.ts';
+import { applyPackageUpgrade, applyWrites, DIVERGED_NOTE, planWrites, UNCOMMITTED_NOTE } from './write.ts';
 import type { Entry, PackageDiff } from './types.ts';
 
 const ALL_KINDS: ReadonlySet<string> = new Set(['shared', 'vue', 'react']);
@@ -132,7 +132,7 @@ describe('planWrites', () => {
     const clean = diffEntry('source newer', 'template-vue/src/app.ts');
     const dirty = new Set(['template-vue/src/main.ts', 'template-vue/package.json']);
 
-    const plan = planWrites([copy, deps, clean], ALL_KINDS, target => dirty.has(target));
+    const plan = planWrites([copy, deps, clean], ALL_KINDS, { isDirty: target => dirty.has(target) });
 
     expect(plan.copies).toEqual([{ framework: 'vue', sourcePath: 'src/main.ts', target: 'template-vue/src/app.ts' }]);
     expect(plan.upgrades).toEqual([]);
@@ -140,6 +140,39 @@ describe('planWrites', () => {
       { ...copy, note: 'template 有未 commit 的修改' },
       { ...deps, note: 'template 有未 commit 的修改' },
     ]);
+  });
+
+  it('leaves a source-newer DIFF by hand when the template has content the source never had', () => {
+    const diverged = diffEntry('source newer');
+    const behind = diffEntry('source newer', 'template-vue/src/app.ts');
+
+    const plan = planWrites([diverged, behind], ALL_KINDS, {
+      isBehindSource: ({ target }) => target === 'template-vue/src/app.ts',
+    });
+
+    expect(plan.copies).toEqual([{ framework: 'vue', sourcePath: 'src/main.ts', target: 'template-vue/src/app.ts' }]);
+    expect(plan.remaining).toEqual([{ ...diverged, note: DIVERGED_NOTE }]);
+  });
+
+  it('reports uncommitted changes before divergence, and never checks divergence for package.json upgrades', () => {
+    const copy = diffEntry('source newer');
+    const deps: Entry = {
+      framework: 'vue',
+      packageDiff: packageDiff({
+        ranges: [{ name: 'vue', section: 'dependencies', source: '^3.10.0', template: '^3.9.0' }],
+      }),
+      sourcePath: 'package.json',
+      status: 'deps',
+      target: 'template-vue/package.json',
+    };
+
+    const plan = planWrites([copy, deps], ALL_KINDS, {
+      isBehindSource: () => false,
+      isDirty: target => target === 'template-vue/src/main.ts',
+    });
+
+    expect(plan.remaining).toEqual([{ ...copy, note: UNCOMMITTED_NOTE }]);
+    expect(plan.upgrades).toHaveLength(1);
   });
 
   it('never writes NEW, CONFLICT or MANUAL entries', () => {

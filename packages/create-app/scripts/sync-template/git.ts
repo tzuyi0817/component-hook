@@ -39,3 +39,16 @@ export function lastCommitTime(repoDir: string, filePath: string): number | unde
 export function hasUncommittedChanges(repoDir: string, filePath: string) {
   return git(repoDir, ['status', '--porcelain', '--', filePath]).trim() !== '';
 }
+
+/** 檔案目前內容的 blob hash，與 git add 後存進 repo 的相同 */
+export function hashObject(repoDir: string, filePath: string) {
+  return git(repoDir, ['hash-object', '--', filePath]).trim();
+}
+
+/** 該路徑在 HEAD 歷史中出現過的每個版本的 blob hash */
+export function blobHistoryOf(repoDir: string, filePath: string): ReadonlySet<string> {
+  const output = git(repoDir, ['log', '--format=', '--raw', '--no-abbrev', '--', filePath]);
+
+  // --raw 每行為 `:<舊 mode> <新 mode> <舊 blob> <新 blob> <狀態>\t<路徑>`，取 commit 後的版本
+  return new Set(output.split('\n').flatMap(line => line.split(/\s+/, 5).at(3) ?? []));
+}

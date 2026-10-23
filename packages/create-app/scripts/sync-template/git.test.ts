@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
+import { blobHistoryOf, hashObject, hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
 
 /** 與 git.ts 相同：用固定路徑執行 git，不依賴 PATH */
 const GIT_PATH = process.platform === 'win32' ? String.raw`C:\Program Files\Git\bin\git.exe` : '/usr/bin/git';
@@ -88,5 +88,23 @@ describe('hasUncommittedChanges', () => {
     git(repoDir, 'add', 'README.md');
 
     expect(hasUncommittedChanges(repoDir, 'README.md')).toBe(true);
+  });
+});
+
+describe('blobHistoryOf / hashObject', () => {
+  it('finds every committed version of a file, and nothing it never contained', () => {
+    writeFile('src/history.ts', 'v1');
+    git(repoDir, 'add', 'src/history.ts');
+    git(repoDir, 'commit', '--quiet', '--no-gpg-sign', '-m', 'v1', '--', 'src/history.ts');
+    writeFile('src/history.ts', 'v2');
+    git(repoDir, 'commit', '--quiet', '--no-gpg-sign', '-m', 'v2', '--', 'src/history.ts');
+
+    const history = blobHistoryOf(repoDir, 'src/history.ts');
+
+    writeFile('src/history.ts', 'v1');
+    expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(true);
+
+    writeFile('src/history.ts', 'never committed');
+    expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(false);
   });
 });

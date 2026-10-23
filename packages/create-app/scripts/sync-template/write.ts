@@ -54,7 +54,18 @@ const planOf = (partial: Partial<WritePlan>): WritePlan => ({ copies: [], remain
 /** 寫入會蓋掉 template 工作樹裡未 commit 的內容，git 救不回來，所以這種 target 先跳過並說明 */
 export const UNCOMMITTED_NOTE = 'template 有未 commit 的修改';
 
-type DirtyCheck = (target: string) => boolean;
+/** 方向只看 commit 時間；template 有來源從沒有過的內容時，覆蓋會蓋掉 template 先行的修改，所以留給人工 */
+export const DIVERGED_NOTE = 'template 有來源歷史中沒有的修改';
+
+export interface WriteGuards {
+  /** target 在 template 工作樹有未 commit 的修改 */
+  isDirty: (target: string) => boolean;
+  /** template 目前的內容曾是來源該檔的某個版本，代表 template 只是落後、沒有自己的修改 */
+  isBehindSource: (entry: Entry) => boolean;
+}
+
+/** 測試用的預設：不擋任何寫入，index.ts 一律傳入真正的檢查 */
+const NO_GUARDS: WriteGuards = { isBehindSource: () => true, isDirty: () => false };
 
 /** 能寫的只有來源較新的 DIFF 與 DEPS 裡可升版的部分，其餘留給人工 */
 function planWritable(entry: Entry, target: string): WritePlan {
@@ -74,26 +85,38 @@ function planWritable(entry: Entry, target: string): WritePlan {
   });
 }
 
-/** 單一項目的寫入決定：SAME、SKIP 不需處理；kinds 以外的 target 不碰；真的要寫時才查工作樹，髒了就整項留給人工 */
-function planEntry(entry: Entry, kinds: ReadonlySet<string>, isDirty: DirtyCheck): WritePlan {
+/**
+ * 單一項目的寫入決定：SAME、SKIP 不需處理；kinds 以外的 target 不碰；
+ * 真的要寫時才查工作樹，髒了就整項留給人工；整檔覆蓋前再確認 template 沒有來源沒有過的修改
+ */
+function planEntry(entry: Entry, kinds: ReadonlySet<string>, { isBehindSource, isDirty }: WriteGuards): WritePlan {
   const { status, target } = entry;
 
   if (status === 'same' || status === 'skip') return planOf({});
+
   if (target === undefined || !kinds.has(kindOfLabel(target))) return planOf({ remaining: [entry] });
 
   const plan = planWritable(entry, target);
-  const writes = plan.copies.length > 0 || plan.upgrades.length > 0;
 
-  return writes && isDirty(target) ? planOf({ remaining: [{ ...entry, note: UNCOMMITTED_NOTE }] }) : plan;
+  if (plan.copies.length === 0 && plan.upgrades.length === 0) return plan;
+
+  if (isDirty(target)) return planOf({ remaining: [{ ...entry, note: UNCOMMITTED_NOTE }] });
+
+  if (plan.copies.length > 0 && !isBehindSource(entry)) {
+    return planOf({ remaining: [{ ...entry, note: DIVERGED_NOTE }] });
+  }
+
+  return plan;
 }
 
 /** 決定哪些項目可以自動寫入：只動來源較新的 DIFF 與 DEPS 升版 */
 export function planWrites(
   entries: readonly Entry[],
   kinds: ReadonlySet<string>,
-  isDirty: DirtyCheck = () => false,
+  guards: Partial<WriteGuards> = {},
 ): WritePlan {
-  const plans = entries.map(entry => planEntry(entry, kinds, isDirty));
+  const checks: WriteGuards = { ...NO_GUARDS, ...guards };
+  const plans = entries.map(entry => planEntry(entry, kinds, checks));
 
   return {
     copies: plans.flatMap(({ copies }) => copies),
@@ -102,7 +125,7 @@ export function planWrites(
   };
 }
 
-/** 只改 range 與 packageManager 的值，鍵順序、縮排與結尾換行沿用 template */
+/** 只改 range 與 packageManager 的值，鍵順序與結尾有無換行沿用 template；輸出固定 2 空格、LF，與 oxfmt 對 template 的格式一致 */
 export function applyPackageUpgrade(templateText: string, { packageManager, ranges }: PackageUpgrade): string {
   const template: PackageJsonLike = JSON.parse(templateText);
   const upgraded = ranges.reduce<PackageJsonLike>(
