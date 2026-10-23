@@ -88,7 +88,7 @@ Use `configs.oxfmt` instead of `configs.prettier` to format with [oxfmt](https:/
 
 oxfmt also sorts top-level `package.json` keys by default (`sortPackageJson`), so the preset no longer orders them itself; it still sorts nested fields oxfmt leaves alone, such as `exports` conditions and dependency maps. If you stay on `configs.prettier` and still want `package.json` sorted, add [`prettier-plugin-packagejson`](https://github.com/matzkoh/prettier-plugin-packagejson), which uses the same `sort-package-json` order as oxfmt.
 
-`oxfmt` >= 0.71.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself.
+`oxfmt` >= 0.74.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself.
 
 ```js
 import componentHookPlugin from '@component-hook/eslint-plugin';

@@ -74,7 +74,7 @@
   },
   "peerDependencies": {
     "eslint": "catalog:",
-    "oxfmt": ">=0.71.0"
+    "oxfmt": ">=0.74.0"
   },
   "packageManager": "pnpm@12.15.0"
 }
