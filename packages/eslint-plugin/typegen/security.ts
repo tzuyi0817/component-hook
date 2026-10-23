@@ -29,6 +29,11 @@ export interface SecurityRules {
    */
   'security/detect-eval-with-expression'?: Linter.RuleEntry<[]>
   /**
+   * Detects invisible characters that have no visible glyph and can be used to hide malicious code.
+   * @see https://github.com/eslint-community/eslint-plugin-security/blob/main/docs/rules/detect-invisible-characters.md
+   */
+  'security/detect-invisible-characters'?: Linter.RuleEntry<[]>
+  /**
    * Detects instances of new Buffer(argument) where argument is any non-literal value.
    * @see https://github.com/eslint-community/eslint-plugin-security/blob/main/docs/rules/detect-new-buffer.md
    */

@@ -42,7 +42,7 @@ export interface JsdocRules {
    * Reports against syntax not valid for the mode (e.g., Google Closure Compiler in non-Closure mode).
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-syntax.md#repos-sticky-header
    */
-  'jsdoc/check-syntax'?: Linter.RuleEntry<[]>
+  'jsdoc/check-syntax'?: Linter.RuleEntry<JsdocCheckSyntax>
   /**
    * Reports invalid block tag names.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-tag-names.md#repos-sticky-header
@@ -398,6 +398,8 @@ export interface JsdocRules {
 // ----- jsdoc/check-alignment -----
 type JsdocCheckAlignment = []|[{
   
+  ignoreEmptyLines?: boolean
+  
   innerIndent?: number
 }]
 // ----- jsdoc/check-examples -----
@@ -426,6 +428,8 @@ type JsdocCheckExamples = []|[{
 type JsdocCheckIndentation = []|[{
   
   allowIndentedSections?: boolean
+  
+  allowNoSpaceAfterAsterisk?: boolean
   
   excludeTags?: string[]
 }]
@@ -482,6 +486,11 @@ type JsdocCheckParamNames = []|[{
 }]
 // ----- jsdoc/check-property-names -----
 type JsdocCheckPropertyNames = []|[{
+  
+  enableFixer?: boolean
+}]
+// ----- jsdoc/check-syntax -----
+type JsdocCheckSyntax = []|[{
   
   enableFixer?: boolean
 }]
@@ -737,6 +746,8 @@ type JsdocNoUnnecessaryTypeAssertion = []|[{
   checkLiteralConstAssertions?: boolean
   
   enableFixer?: boolean
+  
+  fixTypeChangingCasts?: boolean
   
   preferConstToLiteralTuples?: boolean
   
@@ -1035,7 +1046,6 @@ type JsdocRequireTags = []|[{
   tags?: (string | {
     context?: string
     tag?: string
-    [k: string]: unknown | undefined
   })[]
 }]
 // ----- jsdoc/require-template -----

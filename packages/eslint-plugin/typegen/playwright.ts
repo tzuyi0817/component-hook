@@ -365,7 +365,7 @@ type PlaywrightNoActionTimeout = []|[{
 }]
 // ----- playwright/no-hooks -----
 type PlaywrightNoHooks = []|[{
-  allow?: unknown[]
+  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach")[]
 }]
 // ----- playwright/no-magic-timeouts -----
 type PlaywrightNoMagicTimeouts = []|[{

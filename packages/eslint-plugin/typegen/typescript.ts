@@ -17,7 +17,7 @@ export interface TypescriptRules {
    * Disallow awaiting a value that is not a Thenable
    * @see https://typescript-eslint.io/rules/await-thenable
    */
-  '@typescript-eslint/await-thenable'?: Linter.RuleEntry<[]>
+  '@typescript-eslint/await-thenable'?: Linter.RuleEntry<TypescriptEslintAwaitThenable>
   /**
    * Disallow `@ts-<directive>` comments or require descriptions after directives
    * @see https://typescript-eslint.io/rules/ban-ts-comment
@@ -419,6 +419,11 @@ export interface TypescriptRules {
    */
   '@typescript-eslint/no-unsafe-declaration-merging'?: Linter.RuleEntry<[]>
   /**
+   * Disallow assigning non-enum values to enum typed locations
+   * @see https://typescript-eslint.io/rules/no-unsafe-enum-assignment
+   */
+  '@typescript-eslint/no-unsafe-enum-assignment'?: Linter.RuleEntry<[]>
+  /**
    * Disallow comparing an enum value with a non-enum value
    * @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
    */
@@ -696,6 +701,11 @@ type TypescriptEslintArrayType = []|[{
   default?: ("array" | "generic" | "array-simple")
   
   readonly?: ("array" | "generic" | "array-simple")
+}]
+// ----- @typescript-eslint/await-thenable -----
+type TypescriptEslintAwaitThenable = []|[{
+  
+  allowMixedPromiseArrays?: boolean
 }]
 // ----- @typescript-eslint/ban-ts-comment -----
 type TypescriptEslintBanTsComment = []|[{
