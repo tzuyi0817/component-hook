@@ -19,6 +19,12 @@ export const KNOWN_DIVERGENT: Record<string, string> = {
   'pnpm-workspace.yaml': '來源另有自己的 pnpm policy，template 只放 allowBuilds',
 };
 
+/** package.json 刻意不同、不比對的頂層欄位：name 由 CLI scaffold 時改寫，version 與授權由使用者自訂 */
+export const PACKAGE_FIELD_SKIP: Record<Framework, string[]> = {
+  react: ['name', 'version'],
+  vue: ['name', 'version', 'license', 'private'],
+};
+
 /** 依賴版本比對時各 template 要排除的套件 */
 export const DEPENDENCY_SKIP: Record<Framework, string[]> = {
   react: [],

@@ -1,4 +1,5 @@
 import { styleText } from 'node:util';
+import { newerSideOf } from './compare.ts';
 import type { Entry, EntryStatus, Framework, LineMismatch, PackageDiff } from './types.ts';
 
 type Style = Parameters<typeof styleText>[0];
@@ -32,17 +33,31 @@ function printMismatches(mismatches: LineMismatch[]) {
   }
 }
 
+function newerSide(template: string, source: string) {
+  const side = newerSideOf(template, source);
+
+  return side ? styleText('dim', `  [${side}]`) : '';
+}
+
 function printPackageDiff(diff: PackageDiff) {
   for (const { name, source, template } of diff.ranges) {
-    console.info(`    ${name}: ${template} → ${source}`);
+    console.info(`    ${name}: ${template} → ${source}${newerSide(template, source)}`);
   }
   if (diff.onlyInSource.length > 0) console.info(`    只在來源，新增候選: ${diff.onlyInSource.join(', ')}`);
   if (diff.onlyInTemplate.length > 0) console.info(`    只在 template，移除候選: ${diff.onlyInTemplate.join(', ')}`);
   if (diff.packageManager) {
-    console.info(`    packageManager: ${diff.packageManager.template} → ${diff.packageManager.source}`);
+    const { source, template } = diff.packageManager;
+
+    console.info(`    packageManager: ${template} → ${source}${newerSide(template, source)}`);
   }
   for (const { name, source, template } of diff.scripts) {
     console.info(`    scripts.${name}: ${template ?? '(無)'} → ${source ?? '(無)'}`);
+  }
+  for (const { name, source, template } of diff.sections) {
+    console.info(`    ${template}.${name} → ${source}.${name}`);
+  }
+  for (const { name, source, template } of diff.fields) {
+    console.info(`    ${name}: ${template ?? '(無)'} → ${source ?? '(無)'}`);
   }
 }
 
@@ -51,6 +66,7 @@ function printEntry(entry: Entry) {
   const note = entry.note ? styleText('dim', `  [${entry.note}]`) : '';
 
   console.info(`  ${entry.sourcePath}${target}${note}`);
+
   if (entry.mismatches) printMismatches(entry.mismatches);
   if (entry.packageDiff) printPackageDiff(entry.packageDiff);
 }
@@ -65,13 +81,17 @@ export function printFrameworkReport(framework: Framework, sourceDir: string, en
     const group = entries.filter(entry => entry.status === status);
 
     if (group.length === 0) continue;
+
     console.info(styleText(STATUS_STYLE[status], `${status.toUpperCase()} ${group.length}`));
+
     for (const entry of group) printEntry(entry);
   }
 }
 
 export function printTemplateOnly(labels: string[]) {
   if (labels.length === 0) return;
+
   console.info(styleText(['bold', 'magenta'], `\n# 只在 template，沒有任何來源對應 ${labels.length}`));
+
   for (const label of labels) console.info(`  ${label}`);
 }

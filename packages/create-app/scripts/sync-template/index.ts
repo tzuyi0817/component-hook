@@ -1,8 +1,24 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { parseArgs, styleText } from 'node:util';
-import { comparePackageJson, diffArtTemplate, isPackageDiffEmpty, toTemplatePath } from './compare.ts';
-import { DEFAULT_SOURCE_DIRS, DEPENDENCY_SKIP, FRAMEWORKS, IGNORED_PATHS, KNOWN_DIVERGENT } from './config.ts';
+import { parseOnly, parseSourceOverride } from './args.ts';
+import {
+  comparePackageJson,
+  countDrift,
+  diffArtTemplate,
+  findTemplateOnly,
+  isPackageDiffEmpty,
+  templateKindsOf,
+  toTemplatePath,
+} from './compare.ts';
+import {
+  DEFAULT_SOURCE_DIRS,
+  DEPENDENCY_SKIP,
+  FRAMEWORKS,
+  IGNORED_PATHS,
+  KNOWN_DIVERGENT,
+  PACKAGE_FIELD_SKIP,
+} from './config.ts';
 import { isGitRepository, lastCommitTime, listTrackedFiles } from './git.ts';
 import { printFrameworkReport, printTemplateOnly } from './report.ts';
 import type { Entry, Framework, PackageJsonLike, TemplateKind } from './types.ts';
@@ -28,22 +44,8 @@ const createAppRoot = path.resolve(import.meta.dirname, '../..');
 
 const labelOf = (target: Target) => `template-${target.kind}/${target.path}`;
 
-const FRAMEWORK_NAMES: ReadonlySet<string> = new Set(FRAMEWORKS);
-
-function isFramework(value: string | undefined): value is Framework {
-  return value !== undefined && FRAMEWORK_NAMES.has(value);
-}
-
 function parseSources(overrides: string[]): Record<Framework, string> {
-  const parsed = overrides.map(override => {
-    const [framework, dir] = override.split('=', 2);
-
-    if (!isFramework(framework) || !dir) {
-      throw new Error(`--source 格式為 <vue|react>=<path>，收到：${override}`);
-    }
-    return [framework, path.resolve(dir)] as const;
-  });
-  const overridden = new Map(parsed);
+  const overridden = new Map(overrides.map(parseSourceOverride));
 
   return {
     react: overridden.get('react') ?? path.resolve(repoRoot, DEFAULT_SOURCE_DIRS.react),
@@ -78,9 +80,12 @@ function directionOf(context: Context, framework: Framework, sourcePath: string,
 
 function classifyPackageJson(context: Context, framework: Framework): Entry {
   const target = `template-${framework}/package.json`;
+
+  if (!context.templateFiles.has(target)) return { framework, sourcePath: 'package.json', status: 'new', target };
+
   const source: PackageJsonLike = JSON.parse(readText(path.join(context.sources[framework], 'package.json')));
   const template: PackageJsonLike = JSON.parse(readText(path.join(createAppRoot, target)));
-  const packageDiff = comparePackageJson(source, template, DEPENDENCY_SKIP[framework]);
+  const packageDiff = comparePackageJson(source, template, DEPENDENCY_SKIP[framework], PACKAGE_FIELD_SKIP[framework]);
 
   context.claimed.add(target);
   return {
@@ -162,7 +167,7 @@ function main() {
     },
   });
   const sources = parseSources(values.source);
-  const frameworks = FRAMEWORKS.filter(framework => !values.only || framework === values.only);
+  const frameworks = parseOnly(values.only);
   const missing = frameworks.filter(framework => !isGitRepository(sources[framework]));
 
   if (missing.length > 0) {
@@ -200,20 +205,18 @@ function main() {
     );
   }
 
-  const relevantKinds = new Set<string>(['shared', ...frameworks]);
-  const templateOnly = [...context.templateFiles].filter(label => {
-    const kind = label.slice('template-'.length, label.indexOf('/'));
-
-    return !context.claimed.has(label) && relevantKinds.has(kind);
-  });
+  const isPartial = frameworks.length < FRAMEWORKS.length;
+  const templateOnly = findTemplateOnly(context.templateFiles, context.claimed, templateKindsOf(frameworks));
 
   printTemplateOnly(templateOnly);
 
-  const drift = entries.filter(entry => entry.status !== 'same' && entry.status !== 'skip').length;
+  const drift = countDrift(entries, templateOnly);
+  const success = isPartial ? `\n✔ ${frameworks.join('、')} 與來源一致` : '\n✔ template 與來源一致';
 
-  console.info(
-    drift === 0 ? styleText('green', '\n✔ template 與來源一致') : styleText('yellow', `\n${drift} 項需要處理`),
-  );
+  console.info(drift === 0 ? styleText('green', success) : styleText('yellow', `\n${drift} 項需要處理`));
+
+  if (isPartial) console.info(styleText('dim', 'shared 檔的孤兒與 CONFLICT 需要不加 --only 執行才會檢查'));
+
   if (drift > 0) process.exitCode = 1;
 }
 
