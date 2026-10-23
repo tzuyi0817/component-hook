@@ -145,17 +145,18 @@ export function isPackageDiffEmpty({
   );
 }
 
+/** template-<kind>/… 標籤裡的 kind */
+export function kindOfLabel(label: string) {
+  return label.slice('template-'.length, label.indexOf('/'));
+}
+
 /** 沒被任何來源對應到的 template 檔，只看 kinds 列出的 template 目錄 */
 export function findTemplateOnly(
   templateFiles: Iterable<string>,
   claimed: ReadonlySet<string>,
   kinds: ReadonlySet<string>,
 ): string[] {
-  return [...templateFiles].filter(label => {
-    const kind = label.slice('template-'.length, label.indexOf('/'));
-
-    return !claimed.has(label) && kinds.has(kind);
-  });
+  return [...templateFiles].filter(label => !claimed.has(label) && kinds.has(kindOfLabel(label)));
 }
 
 /** --only 只比對單一來源；shared 檔的孤兒與 CONFLICT 要兩個來源都在才判斷得了 */

@@ -1,6 +1,7 @@
 import { styleText } from 'node:util';
 import { newerSideOf } from './compare.ts';
 import type { Entry, EntryStatus, Framework, LineMismatch, PackageDiff } from './types.ts';
+import type { WritePlan } from './write.ts';
 
 type Style = Parameters<typeof styleText>[0];
 
@@ -94,4 +95,24 @@ export function printTemplateOnly(labels: string[]) {
   console.info(styleText(['bold', 'magenta'], `\n# 只在 template，沒有任何來源對應 ${labels.length}`));
 
   for (const label of labels) console.info(`  ${label}`);
+}
+
+export function printWrites({ copies, upgrades }: WritePlan) {
+  const count = copies.length + upgrades.length;
+
+  if (count === 0) return;
+
+  console.info(styleText(['bold', 'magenta'], `\n# 已寫入 ${count}`));
+
+  for (const { sourcePath, target } of copies) console.info(`  ${target} ← ${sourcePath}`);
+
+  for (const { packageManager, ranges, target } of upgrades) {
+    console.info(`  ${target}`);
+
+    for (const { name, source, template } of ranges) {
+      console.info(`    ${name}: ${template} → ${source}`);
+    }
+
+    if (packageManager) console.info(`    packageManager: ${packageManager.template} → ${packageManager.source}`);
+  }
 }

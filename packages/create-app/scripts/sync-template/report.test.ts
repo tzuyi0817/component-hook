@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { stripVTControlCharacters } from 'node:util';
-import { printFrameworkReport } from './report.ts';
+import { printFrameworkReport, printWrites } from './report.ts';
 import type { Entry } from './types.ts';
 
 function captureInfo(print: () => void) {
@@ -65,5 +65,36 @@ describe('printFrameworkReport', () => {
     expect(lines).toContain('    devDependencies.msw → dependencies.msw');
     expect(lines).toContain('    engines: (無) → {"node":">=24"}');
     expect(lines).toContain('    private: true → (無)');
+  });
+});
+
+describe('printWrites', () => {
+  it('lists copied files and each upgraded range under its package.json', () => {
+    const lines = captureInfo(() =>
+      printWrites({
+        copies: [{ framework: 'vue', sourcePath: '.gitignore', target: 'template-vue/_gitignore' }],
+        remaining: [],
+        upgrades: [
+          {
+            framework: 'vue',
+            packageManager: { source: 'pnpm@12.15.0', template: 'pnpm@12.10.1' },
+            ranges: [{ name: 'vue', section: 'dependencies', source: '^3.10.0', template: '^3.9.0' }],
+            target: 'template-vue/package.json',
+          },
+        ],
+      }),
+    );
+
+    expect(lines).toEqual([
+      '\n# 已寫入 2',
+      '  template-vue/_gitignore ← .gitignore',
+      '  template-vue/package.json',
+      '    vue: ^3.9.0 → ^3.10.0',
+      '    packageManager: pnpm@12.10.1 → pnpm@12.15.0',
+    ]);
+  });
+
+  it('prints nothing when there was nothing to write', () => {
+    expect(captureInfo(() => printWrites({ copies: [], remaining: [], upgrades: [] }))).toEqual([]);
   });
 });
