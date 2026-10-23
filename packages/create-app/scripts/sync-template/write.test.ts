@@ -118,6 +118,30 @@ describe('planWrites', () => {
     expect(plan.remaining).toEqual([]);
   });
 
+  it('keeps targets with uncommitted template changes out of the plan and says why', () => {
+    const copy = diffEntry('source newer');
+    const deps: Entry = {
+      framework: 'vue',
+      packageDiff: packageDiff({
+        ranges: [{ name: 'vue', section: 'dependencies', source: '^3.10.0', template: '^3.9.0' }],
+      }),
+      sourcePath: 'package.json',
+      status: 'deps',
+      target: 'template-vue/package.json',
+    };
+    const clean = diffEntry('source newer', 'template-vue/src/app.ts');
+    const dirty = new Set(['template-vue/src/main.ts', 'template-vue/package.json']);
+
+    const plan = planWrites([copy, deps, clean], ALL_KINDS, target => dirty.has(target));
+
+    expect(plan.copies).toEqual([{ framework: 'vue', sourcePath: 'src/main.ts', target: 'template-vue/src/app.ts' }]);
+    expect(plan.upgrades).toEqual([]);
+    expect(plan.remaining).toEqual([
+      { ...copy, note: 'template 有未 commit 的修改' },
+      { ...deps, note: 'template 有未 commit 的修改' },
+    ]);
+  });
+
   it('never writes NEW, CONFLICT or MANUAL entries', () => {
     const entries: Entry[] = [
       { framework: 'vue', sourcePath: 'src/extra.ts', status: 'new', target: 'template-vue/src/extra.ts' },

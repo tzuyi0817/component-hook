@@ -1,7 +1,7 @@
 import { styleText } from 'node:util';
 import { newerSideOf } from './compare.ts';
+import { UNCOMMITTED_NOTE, type WritePlan } from './write.ts';
 import type { Entry, EntryStatus, Framework, LineMismatch, PackageDiff } from './types.ts';
-import type { WritePlan } from './write.ts';
 
 type Style = Parameters<typeof styleText>[0];
 
@@ -97,7 +97,7 @@ export function printTemplateOnly(labels: string[]) {
   for (const label of labels) console.info(`  ${label}`);
 }
 
-export function printWrites({ copies, upgrades }: WritePlan) {
+function printWritten({ copies, upgrades }: WritePlan) {
   const count = copies.length + upgrades.length;
 
   if (count === 0) return;
@@ -115,4 +115,20 @@ export function printWrites({ copies, upgrades }: WritePlan) {
 
     if (packageManager) console.info(`    packageManager: ${packageManager.template} → ${packageManager.source}`);
   }
+}
+
+/** 因 template 有未 commit 修改而沒寫的項目，讓使用者知道不是漏掉 */
+function printUncommitted({ remaining }: WritePlan) {
+  const skipped = remaining.filter(({ note }) => note === UNCOMMITTED_NOTE);
+
+  if (skipped.length === 0) return;
+
+  console.info(styleText(['bold', 'yellow'], `\n# 未寫入 ${skipped.length}，${UNCOMMITTED_NOTE}`));
+
+  for (const { target } of skipped) console.info(`  ${target}`);
+}
+
+export function printWrites(plan: WritePlan) {
+  printWritten(plan);
+  printUncommitted(plan);
 }

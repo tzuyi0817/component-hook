@@ -4,7 +4,7 @@ import { parseOnly, parseSourceOverride } from './args.ts';
 import { classify, type Context } from './classify.ts';
 import { countDrift, findTemplateOnly, templateKindsOf } from './compare.ts';
 import { DEFAULT_SOURCE_DIRS, FRAMEWORKS } from './config.ts';
-import { isGitRepository, listTrackedFiles } from './git.ts';
+import { hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
 import { printFrameworkReport, printTemplateOnly, printWrites } from './report.ts';
 import { applyWrites, planWrites } from './write.ts';
 import type { Framework } from './types.ts';
@@ -93,7 +93,9 @@ function main() {
 
   printTemplateOnly(templateOnly);
 
-  const plan = write ? planWrites(entries, kinds) : undefined;
+  const isDirty = (target: string) => hasUncommittedChanges(createAppRoot, target);
+
+  const plan = write ? planWrites(entries, kinds, isDirty) : undefined;
 
   if (plan) {
     applyWrites(plan, { sources, templateRoot: createAppRoot });

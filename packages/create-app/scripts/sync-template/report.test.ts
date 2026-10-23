@@ -97,4 +97,31 @@ describe('printWrites', () => {
   it('prints nothing when there was nothing to write', () => {
     expect(captureInfo(() => printWrites({ copies: [], remaining: [], upgrades: [] }))).toEqual([]);
   });
+
+  it('lists targets left alone because the template has uncommitted changes', () => {
+    const lines = captureInfo(() =>
+      printWrites({
+        copies: [],
+        remaining: [
+          {
+            framework: 'vue',
+            note: 'template 有未 commit 的修改',
+            sourcePath: 'src/main.ts',
+            status: 'diff',
+            target: 'template-vue/src/main.ts',
+          },
+          {
+            framework: 'vue',
+            note: 'template newer',
+            sourcePath: 'src/app.ts',
+            status: 'diff',
+            target: 'template-vue/src/app.ts',
+          },
+        ],
+        upgrades: [],
+      }),
+    );
+
+    expect(lines).toEqual(['\n# 未寫入 1，template 有未 commit 的修改', '  template-vue/src/main.ts']);
+  });
 });

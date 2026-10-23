@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { isGitRepository, listTrackedFiles } from './git.ts';
+import { hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
 
 /** 與 git.ts 相同：用固定路徑執行 git，不依賴 PATH */
 const GIT_PATH = process.platform === 'win32' ? String.raw`C:\Program Files\Git\bin\git.exe` : '/usr/bin/git';
@@ -72,5 +72,21 @@ describe('listTrackedFiles', () => {
 
   it('limits the result to the pathspec', () => {
     expect(listTrackedFiles(repoDir, 'src/*')).toEqual(['src/main.ts']);
+  });
+});
+
+describe('hasUncommittedChanges', () => {
+  it('is false for a file that matches HEAD', () => {
+    expect(hasUncommittedChanges(repoDir, 'src/main.ts')).toBe(false);
+  });
+
+  it('is true once the work tree differs from HEAD, staged or not', () => {
+    writeFile('README.md', 'readme edited');
+
+    expect(hasUncommittedChanges(repoDir, 'README.md')).toBe(true);
+
+    git(repoDir, 'add', 'README.md');
+
+    expect(hasUncommittedChanges(repoDir, 'README.md')).toBe(true);
   });
 });

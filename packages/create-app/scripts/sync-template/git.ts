@@ -34,3 +34,8 @@ export function lastCommitTime(repoDir: string, filePath: string): number | unde
 
   return output ? Number(output) : undefined;
 }
+
+/** 工作樹中該檔與 HEAD 不同，不論有沒有 stage */
+export function hasUncommittedChanges(repoDir: string, filePath: string) {
+  return git(repoDir, ['status', '--porcelain', '--', filePath]).trim() !== '';
+}

@@ -51,15 +51,14 @@ function splitPackageDiff(diff: PackageDiff) {
 
 const planOf = (partial: Partial<WritePlan>): WritePlan => ({ copies: [], remaining: [], upgrades: [], ...partial });
 
-/** 單一項目的寫入決定：SAME、SKIP 不需處理；能寫的才寫，其餘留給人工 */
-function planEntry(entry: Entry, kinds: ReadonlySet<string>): WritePlan {
-  const { framework, packageDiff, sourcePath, status, target } = entry;
+/** 寫入會蓋掉 template 工作樹裡未 commit 的內容，git 救不回來，所以這種 target 先跳過並說明 */
+export const UNCOMMITTED_NOTE = 'template 有未 commit 的修改';
 
-  if (status === 'same' || status === 'skip') return planOf({});
+type DirtyCheck = (target: string) => boolean;
 
-  const writable = target !== undefined && kinds.has(kindOfLabel(target));
-
-  if (!writable) return planOf({ remaining: [entry] });
+/** 能寫的只有來源較新的 DIFF 與 DEPS 裡可升版的部分，其餘留給人工 */
+function planWritable(entry: Entry, target: string): WritePlan {
+  const { framework, packageDiff, sourcePath, status } = entry;
 
   if (status === 'diff' && entry.note === 'source newer') {
     return planOf({ copies: [{ framework, sourcePath, target }] });
@@ -75,9 +74,26 @@ function planEntry(entry: Entry, kinds: ReadonlySet<string>): WritePlan {
   });
 }
 
-/** 決定哪些項目可以自動寫入：只動來源較新的 DIFF 與 DEPS 升版；kinds 以外的 template 目錄（--only 時的 shared）不碰 */
-export function planWrites(entries: readonly Entry[], kinds: ReadonlySet<string>): WritePlan {
-  const plans = entries.map(entry => planEntry(entry, kinds));
+/** 單一項目的寫入決定：SAME、SKIP 不需處理；kinds 以外的 target 不碰；真的要寫時才查工作樹，髒了就整項留給人工 */
+function planEntry(entry: Entry, kinds: ReadonlySet<string>, isDirty: DirtyCheck): WritePlan {
+  const { status, target } = entry;
+
+  if (status === 'same' || status === 'skip') return planOf({});
+  if (target === undefined || !kinds.has(kindOfLabel(target))) return planOf({ remaining: [entry] });
+
+  const plan = planWritable(entry, target);
+  const writes = plan.copies.length > 0 || plan.upgrades.length > 0;
+
+  return writes && isDirty(target) ? planOf({ remaining: [{ ...entry, note: UNCOMMITTED_NOTE }] }) : plan;
+}
+
+/** 決定哪些項目可以自動寫入：只動來源較新的 DIFF 與 DEPS 升版 */
+export function planWrites(
+  entries: readonly Entry[],
+  kinds: ReadonlySet<string>,
+  isDirty: DirtyCheck = () => false,
+): WritePlan {
+  const plans = entries.map(entry => planEntry(entry, kinds, isDirty));
 
   return {
     copies: plans.flatMap(({ copies }) => copies),
