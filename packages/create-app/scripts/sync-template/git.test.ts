@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { isGitRepository, listTrackedFiles } from './git.ts';
+import { blobHistoryOf, hashObject, hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
 
 /** 與 git.ts 相同：用固定路徑執行 git，不依賴 PATH */
 const GIT_PATH = process.platform === 'win32' ? String.raw`C:\Program Files\Git\bin\git.exe` : '/usr/bin/git';
@@ -72,5 +72,42 @@ describe('listTrackedFiles', () => {
 
   it('limits the result to the pathspec', () => {
     expect(listTrackedFiles(repoDir, 'src/*')).toEqual(['src/main.ts']);
+  });
+});
+
+describe('hasUncommittedChanges', () => {
+  it('is false for a file that matches HEAD', () => {
+    expect(hasUncommittedChanges(repoDir, 'src/main.ts')).toBe(false);
+  });
+
+  it('is true once the work tree differs from HEAD, staged or not', () => {
+    writeFile('README.md', 'readme edited');
+
+    expect(hasUncommittedChanges(repoDir, 'README.md')).toBe(true);
+
+    git(repoDir, 'add', 'README.md');
+
+    expect(hasUncommittedChanges(repoDir, 'README.md')).toBe(true);
+  });
+});
+
+describe('blobHistoryOf / hashObject', () => {
+  it('finds every committed version of a file, and nothing it never contained', () => {
+    writeFile('src/history.ts', 'v1');
+    git(repoDir, 'add', 'src/history.ts');
+    git(repoDir, 'commit', '--quiet', '--no-gpg-sign', '-m', 'v1', '--', 'src/history.ts');
+    writeFile('src/history.ts', 'v2');
+    git(repoDir, 'commit', '--quiet', '--no-gpg-sign', '-m', 'v2', '--', 'src/history.ts');
+
+    const history = blobHistoryOf(repoDir, 'src/history.ts');
+
+    writeFile('src/history.ts', 'v1');
+    expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(true);
+
+    writeFile('src/history.ts', 'v2');
+    expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(true);
+
+    writeFile('src/history.ts', 'never committed');
+    expect(history.has(hashObject(repoDir, 'src/history.ts'))).toBe(false);
   });
 });

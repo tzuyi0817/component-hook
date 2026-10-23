@@ -4,9 +4,10 @@ import { parseOnly, parseSourceOverride } from './args.ts';
 import { classify, type Context } from './classify.ts';
 import { countDrift, findTemplateOnly, templateKindsOf } from './compare.ts';
 import { DEFAULT_SOURCE_DIRS, FRAMEWORKS } from './config.ts';
-import { isGitRepository, listTrackedFiles } from './git.ts';
-import { printFrameworkReport, printTemplateOnly } from './report.ts';
-import type { Framework } from './types.ts';
+import { blobHistoryOf, hashObject, hasUncommittedChanges, isGitRepository, listTrackedFiles } from './git.ts';
+import { printFrameworkReport, printTemplateOnly, printWrites } from './report.ts';
+import { applyWrites, planWrites } from './write.ts';
+import type { Entry, Framework } from './types.ts';
 
 const repoRoot = path.resolve(import.meta.dirname, '../../../..');
 const createAppRoot = path.resolve(import.meta.dirname, '../..');
@@ -26,12 +27,13 @@ function parseCli() {
       options: {
         only: { type: 'string' },
         source: { default: [], multiple: true, type: 'string' },
+        write: { default: false, type: 'boolean' },
       },
     });
 
     const sources = parseSources(values.source);
 
-    return { frameworks: parseOnly(values.only), sources };
+    return { frameworks: parseOnly(values.only), sources, write: values.write };
   } catch (error) {
     console.error(styleText('red', error instanceof Error ? error.message : String(error)));
     return;
@@ -46,7 +48,7 @@ function main() {
     return;
   }
 
-  const { frameworks, sources } = cli;
+  const { frameworks, sources, write } = cli;
   const missing = frameworks.filter(framework => !isGitRepository(sources[framework]));
 
   if (missing.length > 0) {
@@ -86,16 +88,34 @@ function main() {
   }
 
   const isPartial = frameworks.length < FRAMEWORKS.length;
-  const templateOnly = findTemplateOnly(context.templateFiles, context.claimed, templateKindsOf(frameworks));
+  const kinds = templateKindsOf(frameworks);
+  const templateOnly = findTemplateOnly(context.templateFiles, context.claimed, kinds);
 
   printTemplateOnly(templateOnly);
 
-  const drift = countDrift(entries, templateOnly);
+  const isDirty = (target: string) => hasUncommittedChanges(createAppRoot, target);
+
+  const isBehindSource = ({ framework, sourcePath, target }: Entry) => {
+    return target !== undefined && blobHistoryOf(sources[framework], sourcePath).has(hashObject(createAppRoot, target));
+  };
+
+  const plan = write ? planWrites(entries, kinds, { isBehindSource, isDirty }) : undefined;
+
+  if (plan) {
+    applyWrites(plan, { sources, templateRoot: createAppRoot });
+    printWrites(plan);
+  }
+
+  const drift = countDrift(plan ? plan.remaining : entries, templateOnly);
   const success = isPartial ? `\n✔ ${frameworks.join('、')} 與來源一致` : '\n✔ template 與來源一致';
 
   console.info(drift === 0 ? styleText('green', success) : styleText('yellow', `\n${drift} 項需要處理`));
 
-  if (isPartial) console.info(styleText('dim', 'shared 檔的孤兒與 CONFLICT 需要不加 --only 執行才會檢查'));
+  if (isPartial) {
+    const message = `shared 檔的孤兒與 CONFLICT 需要不加 --only 執行才會檢查${write ? '，也不會寫入' : ''}`;
+
+    console.info(styleText('dim', message));
+  }
 
   if (drift > 0) process.exitCode = 1;
 }

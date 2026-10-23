@@ -1,5 +1,6 @@
 import { styleText } from 'node:util';
 import { newerSideOf } from './compare.ts';
+import { DIVERGED_NOTE, UNCOMMITTED_NOTE, type WritePlan } from './write.ts';
 import type { Entry, EntryStatus, Framework, LineMismatch, PackageDiff } from './types.ts';
 
 type Style = Parameters<typeof styleText>[0];
@@ -94,4 +95,42 @@ export function printTemplateOnly(labels: string[]) {
   console.info(styleText(['bold', 'magenta'], `\n# 只在 template，沒有任何來源對應 ${labels.length}`));
 
   for (const label of labels) console.info(`  ${label}`);
+}
+
+function printWritten({ copies, upgrades }: WritePlan) {
+  const count = copies.length + upgrades.length;
+
+  if (count === 0) return;
+
+  console.info(styleText(['bold', 'magenta'], `\n# 已寫入 ${count}`));
+
+  for (const { sourcePath, target } of copies) console.info(`  ${target} ← ${sourcePath}`);
+
+  for (const { packageManager, ranges, target } of upgrades) {
+    console.info(`  ${target}`);
+
+    for (const { name, source, template } of ranges) {
+      console.info(`    ${name}: ${template} → ${source}`);
+    }
+
+    if (packageManager) console.info(`    packageManager: ${packageManager.template} → ${packageManager.source}`);
+  }
+}
+
+/** 可以寫卻刻意沒寫的項目，依原因分段，讓使用者知道不是漏掉 */
+function printSkipped({ remaining }: WritePlan) {
+  for (const reason of [UNCOMMITTED_NOTE, DIVERGED_NOTE]) {
+    const skipped = remaining.filter(({ note }) => note === reason);
+
+    if (skipped.length === 0) continue;
+
+    console.info(styleText(['bold', 'yellow'], `\n# 未寫入 ${skipped.length}，${reason}`));
+
+    for (const { target } of skipped) console.info(`  ${target}`);
+  }
+}
+
+export function printWrites(plan: WritePlan) {
+  printWritten(plan);
+  printSkipped(plan);
 }
