@@ -170,6 +170,8 @@ export function countDrift(entries: readonly Entry[], templateOnly: readonly str
 
 /** 去掉 range 前綴後以數字順序比較版本，只是方向提示；複雜 range 不保證正確 */
 export function newerSideOf(template: string, source: string) {
+  if (!template || !source) return;
+
   const version = (range: string) => range.replace(/^\D*/, '');
   const order = version(source).localeCompare(version(template), undefined, { numeric: true });
 

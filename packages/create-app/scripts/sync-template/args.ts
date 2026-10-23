@@ -8,14 +8,13 @@ export function isFramework(value: string | undefined): value is Framework {
   return value !== undefined && FRAMEWORK_NAMES.has(value);
 }
 
-/** 解析 --source <vue|react>=<path>：只在第一個 = 切開，路徑本身可以含 = */
 export function parseSourceOverride(override: string): readonly [Framework, string] {
   const [, framework, dir] = /^([^=]*)=(.*)$/s.exec(override) ?? [];
 
   if (!isFramework(framework) || !dir) {
     throw new Error(`--source 格式為 <vue|react>=<path>，收到：${override}`);
   }
-  return [framework, path.resolve(dir)];
+  return [framework, path.resolve(process.env.INIT_CWD ?? process.cwd(), dir)];
 }
 
 /** 解析 --only：不給時比對全部框架，給了就必須是其中之一 */

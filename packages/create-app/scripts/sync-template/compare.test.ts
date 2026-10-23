@@ -195,4 +195,9 @@ describe('newerSideOf', () => {
   it('returns undefined when only the prefix differs', () => {
     expect(newerSideOf('^1.2.3', '~1.2.3')).toBeUndefined();
   });
+
+  it('returns undefined when one side is missing', () => {
+    expect(newerSideOf('pnpm@12.15.0', '')).toBeUndefined();
+    expect(newerSideOf('', 'pnpm@12.15.0')).toBeUndefined();
+  });
 });
