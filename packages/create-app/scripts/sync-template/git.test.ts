@@ -9,9 +9,13 @@ import { isGitRepository, listTrackedFiles } from './git.ts';
 const GIT_PATH = process.platform === 'win32' ? String.raw`C:\Program Files\Git\bin\git.exe` : '/usr/bin/git';
 const tempRoot = mkdtempSync(path.join(os.tmpdir(), 'sync-template-git-'));
 const repoDir = path.join(tempRoot, 'repo');
+/** 指向不存在的目錄以停用所有 hook，避免貢獻者的全域 core.hooksPath / init.templateDir 影響 fixture */
+const NO_HOOKS_DIR = path.join(tempRoot, 'no-hooks');
 
 function git(cwd: string, ...args: string[]) {
-  execFileSync(GIT_PATH, ['-c', 'user.name=test', '-c', 'user.email=test@example.com', ...args], {
+  const config = ['-c', 'user.name=test', '-c', 'user.email=test@example.com', '-c', `core.hooksPath=${NO_HOOKS_DIR}`];
+
+  execFileSync(GIT_PATH, [...config, ...args], {
     cwd,
     stdio: 'ignore',
   });
@@ -44,7 +48,7 @@ describe('isGitRepository', () => {
     expect(isGitRepository(repoDir)).toBe(true);
   });
 
-  it('rejects a subdirectory, where ls-files paths would be relative to it', () => {
+  it('rejects a subdirectory, since sources are standalone repositories', () => {
     expect(isGitRepository(path.join(repoDir, 'src'))).toBe(false);
   });
 

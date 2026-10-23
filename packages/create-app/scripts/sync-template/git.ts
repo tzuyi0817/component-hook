@@ -2,14 +2,13 @@ import { execFileSync } from 'node:child_process';
 import { statSync } from 'node:fs';
 import path from 'node:path';
 
-/** 與 template-shared/scripts/build-info 相同：用固定路徑執行 git，不依賴 PATH */
 const GIT_PATH = process.platform === 'win32' ? String.raw`C:\Program Files\Git\bin\git.exe` : '/usr/bin/git';
 
 function git(repoDir: string, args: string[]) {
   return execFileSync(GIT_PATH, ['-C', repoDir, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
 }
 
-/** 必須是 repo 根目錄：在子目錄下 ls-files 回傳的路徑相對於子目錄，整份比對會錯位 */
+/** 必須是 repo 根目錄：來源都是獨立的參考專案，指到子目錄（例如 <repo>/src）多半是手誤，比對結果會全部錯位 */
 export function isGitRepository(dir: string) {
   try {
     const [insideWorkTree, prefix] = git(dir, ['rev-parse', '--is-inside-work-tree', '--show-prefix']).split('\n', 2);
