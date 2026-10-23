@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.7.0](https://github.com/tzuyi0817/component-hook/compare/v1.6.0...v1.7.0) (2026-10-23)
+
+### Breaking Changes
+
+- require Node.js `^22.23.4 || ^24.22.1 || >=26.12.1` ([e068c1a](https://github.com/tzuyi0817/component-hook/commit/e068c1a6bd28285f0fb9d9122a9595c18933d17d))
+
+### Features
+
+- **eslint-plugin:** upgrade `eslint-plugin-jsdoc` to v65 ([5804709](https://github.com/tzuyi0817/component-hook/commit/58047096b2ba29108607a443b63180172cf0203b))
+- **create-app:** add `--write` to `sync-template` ([971b369](https://github.com/tzuyi0817/component-hook/commit/971b369a586ffa1b50603cdfa2b8d9f138582eb7))
+- **create-app:** add `sync-template` check script ([b567be0](https://github.com/tzuyi0817/component-hook/commit/b567be060e0d2d16ce4127ec244ca4cd7dd2ca52))
+- **create-app:** upgrade `msw` to v3 in `react` template ([72f898a](https://github.com/tzuyi0817/component-hook/commit/72f898a4e1f1d4e186b18d2b0dd14c3c6828a3b7))
+- **create-app:** update `vue` template ([83b8630](https://github.com/tzuyi0817/component-hook/commit/83b86306a57df421e2c9ca633fe2c4d1b8fa2ecf))
+- **create-app:** switch templates from `prettier` to `oxfmt` ([7634a68](https://github.com/tzuyi0817/component-hook/commit/7634a68a01b514752bc2a306c5b5c1797dac3e91))
+
+### Bug Fixes
+
+- **create-app:** lowercase the doctype in the `vue` template like `oxfmt` does ([682f15e](https://github.com/tzuyi0817/component-hook/commit/682f15e372d5909f038d45b4e33d72ea0a42afe6))
+- **create-app:** bump template Node.js to 24.22.1 ([601e6c7](https://github.com/tzuyi0817/component-hook/commit/601e6c73e658ae242f8f4f1e6c0ab3893a69a640))
+- **create-app:** point `oxfmt` tailwind sorting at the template stylesheet ([1221dee](https://github.com/tzuyi0817/component-hook/commit/1221deee1a749cc40f4d04bbc75e0441a1ad2669))
+- **create-app:** normalize whitespace in `react` template build-time assertion ([3c6e82b](https://github.com/tzuyi0817/component-hook/commit/3c6e82b84531735593f409d585f4ebdd7463e62e))
+- **create-app:** migrate template build config to `vite` 8 ([579cfe7](https://github.com/tzuyi0817/component-hook/commit/579cfe7a0f911d7a0fad96e0bc51b80e5bc7fadf))
+
 ## [1.6.0](https://github.com/tzuyi0817/component-hook/compare/v1.5.1...v1.6.0) (2026-10-06)
 
 ### Features
