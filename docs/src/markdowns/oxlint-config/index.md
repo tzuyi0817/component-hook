@@ -28,7 +28,7 @@ $ bun install oxlint @component-hook/oxlint-config --save-dev
 
 ::: tip Compatibility Note
 
-Require `oxlint` >= 1.89.0. `oxlint` is an optional peer dependency, add it yourself as shown above.
+Require `oxlint` >= 1.91.0. `oxlint` is an optional peer dependency, add it yourself as shown above.
 
 :::
 
