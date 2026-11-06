@@ -51,14 +51,14 @@ function printPackageDiff(diff: PackageDiff) {
 
     console.info(`    packageManager: ${template} → ${source}${newerSide(template, source)}`);
   }
-  for (const { name, source, template } of diff.scripts) {
-    console.info(`    scripts.${name}: ${template ?? '(無)'} → ${source ?? '(無)'}`);
+  for (const { name, source = '(無)', template = '(無)' } of diff.scripts) {
+    console.info(`    scripts.${name}: ${template} → ${source}`);
   }
   for (const { name, source, template } of diff.sections) {
     console.info(`    ${template}.${name} → ${source}.${name}`);
   }
-  for (const { name, source, template } of diff.fields) {
-    console.info(`    ${name}: ${template ?? '(無)'} → ${source ?? '(無)'}`);
+  for (const { name, source = '(無)', template = '(無)' } of diff.fields) {
+    console.info(`    ${name}: ${template} → ${source}`);
   }
 }
 

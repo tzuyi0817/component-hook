@@ -33,7 +33,7 @@ export function DropPdf() {
     const offsetX = event.nativeEvent.offsetX / offsetWidth;
     const offsetY = event.nativeEvent.offsetY / offsetHeight;
 
-    event.dataTransfer?.setData('text/plain', textContent ?? '');
+    event.dataTransfer?.setData('text/plain', textContent);
     event.dataTransfer?.setData('custom/offset', JSON.stringify({ offsetX, offsetY }));
   };
 
