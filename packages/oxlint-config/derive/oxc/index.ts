@@ -33,11 +33,12 @@ export function readOxcCorrectnessRules(): OxlintRules {
   const cwd = mkdtempSync(join(tmpdir(), 'oxlint-rules-'));
 
   try {
-    const { status, stdout, stderr } = runOxlint(['--rules', '--format', 'json'], cwd);
+    const result = runOxlint(['--rules', '--format', 'json'], cwd);
 
-    if (status !== 0) throw new Error(`oxlint --rules 失敗：${stderr || stdout}`);
+    // stderr 為空字串時改印 stdout，因此不能改成解構預設值（預設值只在 undefined 時生效）
+    if (result.status !== 0) throw new Error(`oxlint --rules 失敗：${result.stderr || result.stdout}`);
 
-    const names = (JSON.parse(stdout) as OxlintRuleInfo[])
+    const names = (JSON.parse(result.stdout) as OxlintRuleInfo[])
       .filter(rule => rule.scope === 'oxc' && rule.category === 'correctness' && !rule.type_aware)
       .map(rule => `oxc/${rule.value}`)
       .toSorted((a, b) => a.localeCompare(b));

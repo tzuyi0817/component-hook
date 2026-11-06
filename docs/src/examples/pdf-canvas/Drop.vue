@@ -31,7 +31,7 @@ function dragText(event: DragEvent) {
   const offsetX = event.offsetX / offsetWidth;
   const offsetY = event.offsetY / offsetHeight;
 
-  event.dataTransfer?.setData('text/plain', textContent ?? '');
+  event.dataTransfer?.setData('text/plain', textContent);
   event.dataTransfer?.setData('custom/offset', JSON.stringify({ offsetX, offsetY }));
 }
 </script>
