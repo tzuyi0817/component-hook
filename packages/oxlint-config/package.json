@@ -1,28 +1,26 @@
 {
   "name": "@component-hook/oxlint-config",
+  "type": "module",
   "version": "1.7.0",
+  "packageManager": "pnpm@12.15.0",
   "description": "oxlint config derived from @component-hook/eslint-plugin",
+  "author": "Tzuyi",
+  "license": "MIT",
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/oxlint-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzuyi0817/component-hook.git",
+    "directory": "packages/oxlint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
+  },
   "keywords": [
     "lint",
     "oxc",
     "oxlint",
     "oxlint-config"
   ],
-  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/oxlint-config#readme",
-  "bugs": {
-    "url": "https://github.com/tzuyi0817/component-hook/issues"
-  },
-  "license": "MIT",
-  "author": "Tzuyi",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tzuyi0817/component-hook.git",
-    "directory": "packages/oxlint-config"
-  },
-  "files": [
-    "dist"
-  ],
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
@@ -32,6 +30,9 @@
     "./react.json": "./dist/react.json",
     "./vue.json": "./dist/vue.json"
   },
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "tag": "latest"
   },
@@ -39,12 +40,6 @@
     "build": "pnpm run build:generate && tsdown && node scripts/build-json.ts",
     "build:generate": "pnpm -C ../eslint-plugin build && node scripts/generate.ts",
     "typecheck": "tsc --noEmit --skipLibCheck"
-  },
-  "devDependencies": {
-    "@component-hook/eslint-plugin": "workspace:^",
-    "eslint": "catalog:",
-    "eslint-plugin-oxlint": "^1.90.0",
-    "oxlint": "catalog:"
   },
   "peerDependencies": {
     "oxlint": ">=1.91.0"
@@ -54,5 +49,10 @@
       "optional": true
     }
   },
-  "packageManager": "pnpm@12.15.0"
+  "devDependencies": {
+    "@component-hook/eslint-plugin": "workspace:^",
+    "eslint": "catalog:",
+    "eslint-plugin-oxlint": "^1.90.0",
+    "oxlint": "catalog:"
+  }
 }

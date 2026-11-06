@@ -4,8 +4,13 @@ import { configPrettier, typescriptEslint, vueParser } from '../../plugins.ts';
 import { jsoncConfigs } from '../jsonc/index.ts';
 import { oxfmtConfig } from './index.ts';
 
+const presetOxfmtRule = oxfmtConfig.rules?.['oxfmt/oxfmt'];
+/** preset 傳給 oxfmt 規則的選項，隔離測試沿用以驗證 preset 本身的行為 */
+const presetOxfmtOptions = Array.isArray(presetOxfmtRule) ? presetOxfmtRule[1] : {};
+
 /** 關閉設定檔與 ignore 探索，讓測試結果不受 repo 內的 oxfmt 設定影響 */
 const isolatedOptions = {
+  ...presetOxfmtOptions,
   useConfig: false,
   editorconfig: false,
   respectOxfmtDefaultIgnores: false,
@@ -40,10 +45,10 @@ const vueLanguageConfig: Linter.Config = {
 };
 
 describe('oxfmt config', () => {
-  it('registers the oxfmt plugin and rule as warning', () => {
+  it('registers the oxfmt plugin and rule as warning with package.json sorting left to jsonc', () => {
     expect(oxfmtConfig.name).toBe('component-hook/oxfmt');
     expect(oxfmtConfig.plugins?.oxfmt).toBeDefined();
-    expect(oxfmtConfig.rules?.['oxfmt/oxfmt']).toBe('warn');
+    expect(oxfmtConfig.rules?.['oxfmt/oxfmt']).toEqual(['warn', { sortPackageJson: false }]);
   });
 
   it('turns off every eslint-config-prettier rule except vue/html-self-closing', () => {
@@ -102,16 +107,26 @@ describe('oxfmt config', () => {
     expect(result.output).toBe('const x: { a: number } = { a: 1 };\n');
   });
 
-  it('sorts package.json keys with oxfmt without fighting jsonc rules', () => {
+  it('leaves package.json key order to jsonc rules without fighting them', () => {
     const linter = new Linter({ cwd: import.meta.dirname });
-    const code = '{\n  "version": "1.0.0",\n  "name": "sample"\n}\n';
+    const code = [
+      '{',
+      '  "version": "1.0.0",',
+      '  "license": "MIT",',
+      '  "name": "sample",',
+      '  "author": "someone",',
+      '  "devEngines": { "runtime": { "name": "node" }, "cpu": { "name": "x64" } }',
+      '}',
+      '',
+    ].join('\n');
 
     const result = linter.verifyAndFix(code, [...jsoncConfigs, isolatedOxfmtConfig], {
       filename: 'package.json',
     });
 
-    expect(result.output).toBe('{\n  "name": "sample",\n  "version": "1.0.0"\n}\n');
-    expect(result.messages.filter(message => message.ruleId === 'jsonc/sort-keys')).toHaveLength(0);
+    expect(Object.keys(JSON.parse(result.output))).toEqual(['name', 'version', 'author', 'license', 'devEngines']);
+    expect(Object.keys(JSON.parse(result.output).devEngines)).toEqual(['cpu', 'runtime']);
+    expect(result.messages).toHaveLength(0);
   });
 
   it('formats vue single file components', () => {

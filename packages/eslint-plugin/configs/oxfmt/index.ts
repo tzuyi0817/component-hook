@@ -14,6 +14,6 @@ export const oxfmtConfig: Config<OxfmtRules> = {
   rules: {
     ...rules,
     ...configPrettierOverrides.rules,
-    'oxfmt/oxfmt': 'warn',
+    'oxfmt/oxfmt': ['warn', { sortPackageJson: false }],
   },
 };

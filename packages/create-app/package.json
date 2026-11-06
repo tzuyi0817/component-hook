@@ -1,17 +1,19 @@
 {
   "name": "@component-hook/create-app",
+  "type": "module",
   "version": "1.7.0",
+  "packageManager": "pnpm@12.15.0",
   "description": "Scaffolding a basic typescript project",
-  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
-  "bugs": {
-    "url": "https://github.com/tzuyi0817/component-hook/issues"
-  },
-  "license": "MIT",
   "author": "Tzuyi",
+  "license": "MIT",
+  "homepage": "https://github.com/tzuyi0817/component-hook/tree/master/packages/create-app#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tzuyi0817/component-hook.git",
     "directory": "packages/create-app"
+  },
+  "bugs": {
+    "url": "https://github.com/tzuyi0817/component-hook/issues"
   },
   "bin": {
     "create-component-hook": "bin/index.js"
@@ -21,7 +23,9 @@
     "dist",
     "template-*"
   ],
-  "type": "module",
+  "engines": {
+    "node": ">=20.19.6"
+  },
   "scripts": {
     "dev": "tsdown --watch",
     "build": "tsdown",
@@ -41,9 +45,5 @@
     "@types/fs-extra": "^11.0.4",
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9"
-  },
-  "engines": {
-    "node": ">=20.19.6"
-  },
-  "packageManager": "pnpm@12.15.0"
+  }
 }

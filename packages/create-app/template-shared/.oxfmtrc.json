@@ -7,6 +7,7 @@
   "proseWrap": "preserve",
   "arrowParens": "avoid",
   "singleAttributePerLine": true,
+  "sortPackageJson": false,
   "sortTailwindcss": {
     "stylesheet": "src/styles/tailwind.css"
   }

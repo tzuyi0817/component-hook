@@ -1,8 +1,12 @@
 {
   "name": "component-hook",
-  "private": true,
-  "license": "MIT",
   "type": "module",
+  "private": true,
+  "packageManager": "pnpm@12.15.0",
+  "license": "MIT",
+  "engines": {
+    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
+  },
   "scripts": {
     "dev": "pnpm -C docs dev",
     "build": "pnpm -C docs build",
@@ -20,6 +24,17 @@
     "typecheck": "turbo run typecheck",
     "playground:react": "pnpm -C playground/react dev",
     "prepare": "husky"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "vue": "catalog:"
+  },
+  "optionalDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0"
   },
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
@@ -46,20 +61,5 @@
     "vite": "^8.3.5",
     "vitest": "^5.0.5",
     "vue-tsc": "^3.3.13"
-  },
-  "peerDependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "vue": "catalog:"
-  },
-  "optionalDependencies": {
-    "@commitlint/cli": "^21.2.4",
-    "@commitlint/config-conventional": "^21.2.4",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.6.0"
-  },
-  "engines": {
-    "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
-  },
-  "packageManager": "pnpm@12.15.0"
+  }
 }

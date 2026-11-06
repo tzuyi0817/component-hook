@@ -1,7 +1,16 @@
+minimumReleaseAge: 0
+trustLockfile: true
+shellEmulator: true
+
 packages:
   - 'packages/*'
   - docs
   - 'playground/*'
+
+allowBuilds:
+  '@parcel/watcher': true
+  canvas: true
+  esbuild: true
 
 catalog:
   '@microsoft/api-extractor': ^7.59.4
@@ -11,12 +20,3 @@ catalog:
   react-dom: ^19.3.1
   vite-plugin-dts: ^5.1.2
   vue: ^3.5.44
-
-allowBuilds:
-  '@parcel/watcher': true
-  canvas: true
-  esbuild: true
-
-minimumReleaseAge: 0
-shellEmulator: true
-trustLockfile: true
