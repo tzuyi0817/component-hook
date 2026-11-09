@@ -26,10 +26,7 @@ defineProps<Props>();
   <div>
     <h2>Time Picker</h2>
 
-    <p>
-      Time Picker component with <code>{{ frontEndFrame }}</code
-      >.
-    </p>
+    <p>Time Picker component with <code>{{ frontEndFrame }}</code>.</p>
 
     <div v-html="md.render(installationMd)"></div>
 

@@ -28,10 +28,7 @@ defineProps<Props>();
   <div>
     <h2>Picker</h2>
 
-    <p>
-      Picker component with <code>{{ frontEndFrame }}</code
-      >.
-    </p>
+    <p>Picker component with <code>{{ frontEndFrame }}</code>.</p>
 
     <div v-html="md.render(installationMd)"></div>
 

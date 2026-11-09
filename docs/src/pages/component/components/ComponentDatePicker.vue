@@ -26,10 +26,7 @@ defineProps<Props>();
   <div>
     <h2>Date Picker</h2>
 
-    <p>
-      Date Picker component with <code>{{ frontEndFrame }}</code
-      >.
-    </p>
+    <p>Date Picker component with <code>{{ frontEndFrame }}</code>.</p>
 
     <div v-html="md.render(installationMd)"></div>
 

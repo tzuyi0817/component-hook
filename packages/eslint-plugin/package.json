@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "eslint": "catalog:",
-    "oxfmt": ">=0.76.0"
+    "oxfmt": ">=0.77.0"
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",

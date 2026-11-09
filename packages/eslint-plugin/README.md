@@ -103,7 +103,7 @@ The preset sorts `package.json` keys itself with `jsonc/sort-keys`, both at the 
 
 This only applies when you lint with ESLint. If you use `@component-hook/oxlint-config` instead, keep `sortPackageJson` on: oxlint has no `jsonc` rules, so oxfmt is the only thing sorting `package.json`.
 
-`oxfmt` >= 0.76.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself:
+`oxfmt` >= 0.77.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself:
 
 ```bash
 $ pnpm add -D oxfmt
