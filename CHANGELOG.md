@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.8.1](https://github.com/tzuyi0817/component-hook/compare/v1.8.0...v1.8.1) (2026-11-09)
+
+### Documentation
+
+- **eslint-plugin:** document `package.json` sorting for every formatter, including removing `prettier-plugin-packagejson` for Prettier users ([3628508](https://github.com/tzuyi0817/component-hook/commit/36285088da31b643102a6739afb373b06eab8f2c))
+
 ## [1.8.0](https://github.com/tzuyi0817/component-hook/compare/v1.7.0...v1.8.0) (2026-11-09)
 
 ### Breaking Changes
