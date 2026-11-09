@@ -4,7 +4,7 @@
 
 ### Breaking Changes
 
-- **eslint-plugin:** sort top-level `package.json` keys with `jsonc/sort-keys` and turn off oxfmt's `sortPackageJson`; set `"sortPackageJson": false` in your oxfmt config as well ([d603622](https://github.com/tzuyi0817/component-hook/commit/d603622e087009e8a7df0488384bdc1ab171899b))
+- **eslint-plugin:** sort top-level `package.json` keys with `jsonc/sort-keys` and turn off oxfmt's `sortPackageJson`; set `"sortPackageJson": false` in your oxfmt config as well, or remove `prettier-plugin-packagejson` if you use Prettier ([d603622](https://github.com/tzuyi0817/component-hook/commit/d603622e087009e8a7df0488384bdc1ab171899b))
 - **eslint-plugin:** require `oxfmt` >= 0.77.0 ([c29b668](https://github.com/tzuyi0817/component-hook/commit/c29b6686f5075a1a25727411fde22e9487c8ddb9))
 - **oxlint-config:** require `oxlint` >= 1.92.0 ([d2aa381](https://github.com/tzuyi0817/component-hook/commit/d2aa3818e6ffb51b45b8f2f92a9a7d3c1e874d10))
 

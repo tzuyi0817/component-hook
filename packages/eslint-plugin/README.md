@@ -16,6 +16,7 @@ A opinionated ESLint config preset for `JavaScript`, `TypeScript`, `Vue3`, `Reac
 - Support `TypeScript`, `Vue3` and `React` out-of-box.
 - Format with `Prettier` or [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter).
 - Ignores common files like `dist`, `node_modules`, `coverage`, and files in `.gitignore`.
+- Sorts keys in `package.json`, `pnpm-workspace.yaml` and `tsconfig.json`.
 - Various built-in configurations can be referenced according to respective needs.
 - Reasonable defaults, best practices, and just a few lines of configuration.
 - Prefer [oxlint](https://oxc.rs/docs/guide/usage/linter)? [`@component-hook/oxlint-config`](https://github.com/tzuyi0817/component-hook/tree/master/packages/oxlint-config) is generated from this preset.
@@ -91,17 +92,7 @@ export default vuePreset;
 
 ## Formatting with oxfmt
 
-Use `configs.oxfmt` instead of `configs.prettier` to format with [oxfmt](https://oxc.rs/docs/guide/usage/formatter). It discovers `.oxfmtrc.json` (or other oxfmt config files) the same way as the oxfmt CLI, and turns off the stylistic rules that conflict with the formatter.
-
-The preset sorts `package.json` keys itself with `jsonc/sort-keys`, both at the top level and in nested fields such as `devEngines`, `exports` conditions and dependency maps. oxfmt also sorts `package.json` by default (`sortPackageJson`) in a different order, so `configs.oxfmt` turns that off inside ESLint. Turn it off in your oxfmt config as well, otherwise the oxfmt CLI and your editor will keep reordering what ESLint sorted:
-
-```json
-{
-  "sortPackageJson": false
-}
-```
-
-This only applies when you lint with ESLint. If you use `@component-hook/oxlint-config` instead, keep `sortPackageJson` on: oxlint has no `jsonc` rules, so oxfmt is the only thing sorting `package.json`.
+Use `configs.oxfmt` instead of `configs.prettier` to format with [oxfmt](https://oxc.rs/docs/guide/usage/formatter). It discovers `.oxfmtrc.json` (or other oxfmt config files) the same way as the oxfmt CLI, and turns off the stylistic rules that conflict with the formatter. See [Sorting](#sorting) for how this affects `package.json`.
 
 `oxfmt` >= 0.77.0 is a peer dependency. Most package managers install it automatically; otherwise add it yourself:
 
@@ -119,6 +110,23 @@ export default [
   // your custom config
 ];
 ```
+
+## Sorting
+
+The preset sorts keys in `package.json`, `pnpm-workspace.yaml` and `tsconfig.json`. In `package.json` this covers the top level as well as nested fields such as `devEngines`, `exports` conditions, dependency maps, `workspaces` catalogs and git hooks.
+
+Formatters that also sort `package.json` use a different order and would keep undoing what ESLint sorted, so turn their sorting off:
+
+- **oxfmt**: `configs.oxfmt` turns off `sortPackageJson` inside ESLint. Set it in your oxfmt config as well, so the oxfmt CLI and your editor keep the same order:
+
+  ```json
+  {
+    "sortPackageJson": false
+  }
+  ```
+
+- **Prettier**: remove [`prettier-plugin-packagejson`](https://github.com/matzkoh/prettier-plugin-packagejson) from your Prettier config if you added it. `configs.prettier` runs Prettier with your plugins, so the plugin would reorder `package.json` on every `eslint --fix`.
+- **oxlint**: if you lint with `@component-hook/oxlint-config` instead of ESLint, keep oxfmt's `sortPackageJson` on. oxlint has no `jsonc` rules, so oxfmt is the only thing sorting `package.json`.
 
 ## Configs
 
