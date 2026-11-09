@@ -105,14 +105,14 @@ watchEffect(
   >
     <template v-if="loading">
       <div class="chook-picker-loading">
-        <slot name="loading"></slot>
+        <slot name="loading" />
       </div>
       <div class="chook-picker-columns"></div>
     </template>
 
     <template v-else-if="!columns.length">
       <div class="chook-picker-columns">
-        <slot name="empty"></slot>
+        <slot name="empty" />
       </div>
     </template>
 

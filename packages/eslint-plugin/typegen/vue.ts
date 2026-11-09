@@ -1018,10 +1018,20 @@ export interface VueRules {
    */
   'vue/no-constant-condition'?: Linter.RuleEntry<VueNoConstantCondition>
   /**
+   * disallow content outside of the top-level blocks
+   * @see https://eslint.vuejs.org/rules/no-content-outside-block.html
+   */
+  'vue/no-content-outside-block'?: Linter.RuleEntry<[]>
+  /**
    * disallow custom modifiers on v-model used on the component
    * @see https://eslint.vuejs.org/rules/no-custom-modifiers-on-v-model.html
    */
   'vue/no-custom-modifiers-on-v-model'?: Linter.RuleEntry<[]>
+  /**
+   * disallow default values in `defineModel`
+   * @see https://eslint.vuejs.org/rules/no-define-model-default.html
+   */
+  'vue/no-define-model-default'?: Linter.RuleEntry<[]>
   /**
    * disallow using deprecated object declaration on data (in Vue.js 3.0.0+)
    * @see https://eslint.vuejs.org/rules/no-deprecated-data-object-declaration.html
@@ -1257,6 +1267,11 @@ export interface VueRules {
    * @see https://eslint.vuejs.org/rules/no-potential-component-option-typo.html
    */
   'vue/no-potential-component-option-typo'?: Linter.RuleEntry<VueNoPotentialComponentOptionTypo>
+  /**
+   * disallow declarations that shadow props in `<script setup>`
+   * @see https://eslint.vuejs.org/rules/no-props-shadow.html
+   */
+  'vue/no-props-shadow'?: Linter.RuleEntry<[]>
   /**
    * disallow use of value wrapped by `ref()` (Composition API) as an operand
    * @see https://eslint.vuejs.org/rules/no-ref-as-operand.html
@@ -3241,6 +3256,7 @@ type VueBlockLang = []|[{
   [k: string]: {
     lang?: (string | string[])
     allowNoLang?: boolean
+    required?: boolean
   }
 }]
 // ----- vue/block-order -----
@@ -4291,6 +4307,7 @@ type VueRequireDirectExport = []|[{
 // ----- vue/require-explicit-emits -----
 type VueRequireExplicitEmits = []|[{
   allowProps?: boolean
+  ignoreMixins?: boolean
 }]
 // ----- vue/require-macro-variable-name -----
 type VueRequireMacroVariableName = []|[{

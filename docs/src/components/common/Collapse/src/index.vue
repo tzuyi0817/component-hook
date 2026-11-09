@@ -62,7 +62,7 @@ watch(
     class="collapse-wrapper"
     @transitionend="onTransitionend"
   >
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

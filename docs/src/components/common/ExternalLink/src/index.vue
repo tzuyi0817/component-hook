@@ -16,6 +16,6 @@ defineProps<Props>();
     class="link"
     :aria-label="title"
   >
-    <slot></slot>
+    <slot />
   </a>
 </template>

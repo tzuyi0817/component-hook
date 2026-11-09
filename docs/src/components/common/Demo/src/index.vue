@@ -33,12 +33,12 @@ async function toggleSource() {
     <h3>{{ title }}</h3>
 
     <p class="mb-4 leading-8">
-      <slot name="description"></slot>
+      <slot name="description" />
     </p>
 
     <div class="example-wrapper rounded border border-border">
       <div class="border-b border-b-border p-3 lg:p-6">
-        <slot></slot>
+        <slot />
       </div>
 
       <div class="flex items-center justify-end gap-3 px-4 py-3">

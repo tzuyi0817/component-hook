@@ -51,7 +51,7 @@ function cleanupTimer() {
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <slot></slot>
+    <slot />
 
     <p
       v-if="isDisplayDescription"

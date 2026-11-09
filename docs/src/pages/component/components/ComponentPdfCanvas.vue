@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { Demo, ExternalLink } from '@/components/common';
 import { DrawPdf, DropPdf, EncryptedPdf, ManualPdf, MultiplePdf } from '@/examples/pdf-canvas';
 import apiMd from '@/markdowns/pdf-canvas/api.md?raw';
@@ -22,7 +23,12 @@ interface Props {
   eventMd: string;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+const installationHtml = md.render(installationMd);
+const tipHtml = md.render(tipMd);
+const apiHtml = md.render(apiMd);
+
+const eventHtml = computed(() => md.render(props.eventMd));
 </script>
 
 <template>
@@ -45,8 +51,8 @@ defineProps<Props>();
       </external-link>
     </p>
 
-    <div v-html="md.render(installationMd)"></div>
-    <div v-html="md.render(tipMd)"></div>
+    <div v-html="installationHtml"></div>
+    <div v-html="tipHtml"></div>
 
     <demo
       title="Basic Usage"
@@ -103,7 +109,7 @@ defineProps<Props>();
     </demo>
 
     <h3>API</h3>
-    <div v-html="md.render(apiMd)"></div>
-    <div v-html="md.render(eventMd)"></div>
+    <div v-html="apiHtml"></div>
+    <div v-html="eventHtml"></div>
   </div>
 </template>

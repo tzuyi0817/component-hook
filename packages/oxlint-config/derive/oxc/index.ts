@@ -35,7 +35,6 @@ export function readOxcCorrectnessRules(): OxlintRules {
   try {
     const result = runOxlint(['--rules', '--format', 'json'], cwd);
 
-    // stderr 為空字串時改印 stdout，因此不能改成解構預設值（預設值只在 undefined 時生效）
     if (result.status !== 0) throw new Error(`oxlint --rules 失敗：${result.stderr || result.stdout}`);
 
     const names = (JSON.parse(result.stdout) as OxlintRuleInfo[])
