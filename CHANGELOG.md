@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.8.0](https://github.com/tzuyi0817/component-hook/compare/v1.7.0...v1.8.0) (2026-11-09)
+
+### Breaking Changes
+
+- **eslint-plugin:** sort top-level `package.json` keys with `jsonc/sort-keys` and turn off oxfmt's `sortPackageJson`; set `"sortPackageJson": false` in your oxfmt config as well ([d603622](https://github.com/tzuyi0817/component-hook/commit/d603622e087009e8a7df0488384bdc1ab171899b))
+- **eslint-plugin:** require `oxfmt` >= 0.77.0 ([c29b668](https://github.com/tzuyi0817/component-hook/commit/c29b6686f5075a1a25727411fde22e9487c8ddb9))
+- **oxlint-config:** require `oxlint` >= 1.92.0 ([d2aa381](https://github.com/tzuyi0817/component-hook/commit/d2aa3818e6ffb51b45b8f2f92a9a7d3c1e874d10))
+
+### Features
+
+- **eslint-plugin:** sort `devEngines`, `workspaces` catalogs and git hooks in `package.json`, and settings in `pnpm-workspace.yaml` ([d603622](https://github.com/tzuyi0817/component-hook/commit/d603622e087009e8a7df0488384bdc1ab171899b))
+- **eslint-plugin:** upgrade `eslint-plugin-unicorn` to v79 ([a2eee79](https://github.com/tzuyi0817/component-hook/commit/a2eee7954e4ff1710f9a9aee129ec13cc697804f))
+- **eslint-plugin:** upgrade `eslint-plugin-oxfmt` to v0.32 ([cd29474](https://github.com/tzuyi0817/component-hook/commit/cd294743272d8ce030ef3b824f526518e56a365a))
+- **create-app:** turn off oxfmt's `sortPackageJson` in templates so `package.json` keeps the order ESLint sorts ([d603622](https://github.com/tzuyi0817/component-hook/commit/d603622e087009e8a7df0488384bdc1ab171899b))
+
+### Bug Fixes
+
+- **create-app:** format the `react` template `index.html` like `oxfmt` does ([c58e686](https://github.com/tzuyi0817/component-hook/commit/c58e686f93f962dc0853386a09aca9d857cbb748))
+
 ## [1.7.0](https://github.com/tzuyi0817/component-hook/compare/v1.6.0...v1.7.0) (2026-10-23)
 
 ### Breaking Changes
