@@ -52,7 +52,7 @@
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
     "eslint": "catalog:",
-    "eslint-plugin-oxlint": "^1.90.0",
+    "eslint-plugin-oxlint": "^1.92.0",
     "oxlint": "catalog:"
   }
 }
