@@ -42,7 +42,7 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
-    "oxlint": ">=1.91.0"
+    "oxlint": ">=1.92.0"
   },
   "peerDependenciesMeta": {
     "oxlint": {
