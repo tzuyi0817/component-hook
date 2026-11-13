@@ -14,7 +14,7 @@ allowBuilds:
 
 catalog:
   '@microsoft/api-extractor': ^7.60.1
-  eslint: ^9.39.5
+  eslint: ^10.15.0
   oxlint: ^1.92.0
   react: ^19.3.1
   react-dom: ^19.3.1
