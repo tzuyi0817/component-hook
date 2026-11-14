@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
-    "sass-embedded": "^1.108.1",
+    "sass-embedded": "^1.108.2",
     "vite-plugin-dts": "catalog:"
   }
 }
