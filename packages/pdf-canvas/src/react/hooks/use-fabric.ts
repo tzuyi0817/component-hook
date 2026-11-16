@@ -17,6 +17,7 @@ import {
   deleteActiveFabric as deleteActive,
   deleteFabricCanvas,
   specifyPage as drawSpecifyPage,
+  exportFabricOverlay,
   fabricMap,
   generateCloseFabric,
   loadFile as loadFileToCanvas,
@@ -33,6 +34,7 @@ import type {
   CloseSvgOptions,
   CreateCloseFabricArgs,
   DropOffset,
+  ExportOverlayOptions,
   FabricHookParams,
   RenderImageArgs,
   SpecifyPageArgs,
@@ -231,6 +233,10 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: TOpti
     deleteActive(id);
   }
 
+  function exportOverlay(options?: ExportOverlayOptions) {
+    return exportFabricOverlay(id, options, fabric => fabric === closeFabric.current);
+  }
+
   return {
     createCanvas,
     loadFile,
@@ -245,5 +251,6 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: TOpti
     setActiveFabric,
     copyActiveFabric,
     deleteActiveFabric,
+    exportOverlay,
   };
 }
