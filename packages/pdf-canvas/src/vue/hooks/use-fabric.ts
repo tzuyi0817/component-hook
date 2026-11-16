@@ -105,7 +105,12 @@ export function useFabric(params?: FabricHookParams & { selectionOptions?: Ref<T
     const canvas = fabricMap.get(id);
 
     if (!canvas) return;
-    const image = await FabricImage.fromURL(src, {}, { ...DEFAULT_IMAGE_OPTIONS, ...options });
+
+    const image = await FabricImage.fromURL(
+      src,
+      { crossOrigin: options?.crossOrigin },
+      { ...DEFAULT_IMAGE_OPTIONS, ...options },
+    );
 
     setFabricOffset(image, offset);
     canvas.add(image);

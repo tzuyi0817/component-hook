@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import PdfCanvas, { loadFile, type PDF } from '@component-hook/pdf-canvas/vue';
-import { ref } from 'vue';
+import PdfCanvas, { loadFile, type FabricOverlay, type PDF } from '@component-hook/pdf-canvas/vue';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
 
 const currentPdf = ref<PDF>();
+const overlay = ref<FabricOverlay | null>();
 const pdfCanvasRef = ref<InstanceType<typeof PdfCanvas> | null>(null);
+
+const overlayUrl = computed(() => (overlay.value ? URL.createObjectURL(overlay.value.blob) : ''));
 
 async function uploadFile(event: Event) {
   const target = event.target as HTMLInputElement;
@@ -20,7 +23,7 @@ async function uploadFile(event: Event) {
 function addImage() {
   if (!pdfCanvasRef.value) return;
 
-  pdfCanvasRef.value.addImage('https://pdf-signature-puce.vercel.app/cover.jpg');
+  pdfCanvasRef.value.addImage('https://pdf-signature-puce.vercel.app/cover.jpg', { crossOrigin: 'anonymous' });
 }
 
 function addText() {
@@ -28,6 +31,20 @@ function addText() {
 
   pdfCanvasRef.value.addText('Can drag the text onto canvas.');
 }
+
+async function exportOverlay() {
+  if (!pdfCanvasRef.value) return;
+
+  overlay.value = await pdfCanvasRef.value.exportOverlay({ dpi: 150 });
+}
+
+function toPercent(value: number) {
+  return `${(value * 100).toFixed(1)}%`;
+}
+
+watch(overlayUrl, (_, url) => URL.revokeObjectURL(url));
+
+onBeforeUnmount(() => URL.revokeObjectURL(overlayUrl.value));
 </script>
 
 <template>
@@ -62,6 +79,27 @@ function addText() {
 
       <button @click="addImage">add image</button>
       <button @click="addText">add text</button>
+      <button @click="exportOverlay">export overlay</button>
     </div>
+
+    <template v-if="overlay">
+      <img
+        :src="overlayUrl"
+        class="max-w-full border border-dashed"
+        alt="Exported overlay"
+      />
+
+      <p class="font-mono text-sm">
+        x: {{ toPercent(overlay.x) }}, y: {{ toPercent(overlay.y) }}, width: {{ toPercent(overlay.width) }}, height:
+        {{ toPercent(overlay.height) }}
+      </p>
+    </template>
+
+    <p
+      v-else-if="overlay === null"
+      class="font-mono text-sm"
+    >
+      There is nothing to export.
+    </p>
   </div>
 </template>

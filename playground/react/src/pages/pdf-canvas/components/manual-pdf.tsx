@@ -1,8 +1,19 @@
-import PdfCanvas, { loadFile, type PDF, type PdfCanvasHandle } from '@component-hook/pdf-canvas/react';
-import { useRef, useState, type ChangeEvent } from 'react';
+import PdfCanvas, {
+  loadFile,
+  type FabricOverlay,
+  type PDF,
+  type PdfCanvasHandle,
+} from '@component-hook/pdf-canvas/react';
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
+
+function toPercent(value: number) {
+  return `${(value * 100).toFixed(1)}%`;
+}
 
 export function ManualPdf() {
   const [currentPdf, setCurrentPdf] = useState<PDF>();
+  const [overlay, setOverlay] = useState<FabricOverlay | null>();
+  const overlayUrl = useMemo(() => (overlay ? URL.createObjectURL(overlay.blob) : ''), [overlay]);
   const pdfCanvasRef = useRef<PdfCanvasHandle | null>(null);
 
   const uploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +32,7 @@ export function ManualPdf() {
   const addImage = () => {
     if (!pdfCanvasRef.current) return;
 
-    pdfCanvasRef.current.addImage('https://pdf-signature-puce.vercel.app/cover.jpg');
+    pdfCanvasRef.current.addImage('https://pdf-signature-puce.vercel.app/cover.jpg', { crossOrigin: 'anonymous' });
   };
 
   const addText = () => {
@@ -29,6 +40,16 @@ export function ManualPdf() {
 
     pdfCanvasRef.current.addText('Can drag the text onto canvas.');
   };
+
+  const exportOverlay = async () => {
+    if (!pdfCanvasRef.current) return;
+
+    setOverlay(await pdfCanvasRef.current.exportOverlay({ dpi: 150 }));
+  };
+
+  useEffect(() => {
+    return () => URL.revokeObjectURL(overlayUrl);
+  }, [overlayUrl]);
 
   return (
     <div>
@@ -57,7 +78,25 @@ export function ManualPdf() {
 
         <button onClick={addImage}>add image</button>
         <button onClick={addText}>add text</button>
+        <button onClick={exportOverlay}>export overlay</button>
       </div>
+
+      {overlay && (
+        <>
+          <img
+            src={overlayUrl}
+            className="max-w-full border border-dashed"
+            alt="Exported overlay"
+          />
+
+          <p className="font-mono text-sm">
+            x: {toPercent(overlay.x)}, y: {toPercent(overlay.y)}, width: {toPercent(overlay.width)}, height:{' '}
+            {toPercent(overlay.height)}
+          </p>
+        </>
+      )}
+
+      {overlay === null && <p className="font-mono text-sm">There is nothing to export.</p>}
     </div>
   );
 }

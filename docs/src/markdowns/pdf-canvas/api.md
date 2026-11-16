@@ -59,7 +59,9 @@ The canvas size depends on the device pixel ratio, so prefer `dpi` for PDF pages
 | width  | `number` | Width, as a 0–1 fraction of the page width                   |
 | height | `number` | Height, as a 0–1 fraction of the page height                 |
 
-Parts of an object outside the page are cropped. PDF coordinates start at the bottom-left corner, so flip `y` when drawing onto a PDF page:
+Parts of an object outside the page are cropped. Images loaded from another origin must be added with `crossOrigin: 'anonymous'` (and served with CORS headers), otherwise the browser refuses to export the canvas.
+
+The position is relative to the page as displayed, so pages with a `/Rotate` entry or a CropBox offset need to be mapped through both. For an unrotated page whose CropBox starts at the origin, only `y` has to be flipped because PDF coordinates start at the bottom-left corner:
 
 ```js
 const overlay = await pdfCanvasRef.value?.exportOverlay({ dpi: 300 });
