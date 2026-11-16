@@ -72,3 +72,16 @@ interface CacheProperties {
 export type CacheFabricImage = FabricImage & CacheProperties;
 export type CacheFabricText = FabricText & CacheProperties;
 export type CacheFabricObject = FabricObject & CacheProperties;
+
+export interface ExportOverlayOptions {
+  multiplier?: number;
+  dpi?: number;
+}
+
+export interface FabricOverlay {
+  blob: Blob;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}

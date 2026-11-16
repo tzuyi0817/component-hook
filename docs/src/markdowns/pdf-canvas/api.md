@@ -27,14 +27,53 @@
 
 #### Exposes
 
-| Event              | Description                             | Type                                                             |
-| :----------------- | :-------------------------------------- | :--------------------------------------------------------------- |
-| reload             | Manually reload the canvas              | `Function () => Promise<void>`                                   |
-| addImage           | Manually add the images onto the canvas | `Function (src: string, options?: TOptions<ImageProps>) => void` |
-| addText            | Manually add the text onto the canvas   | `Function (text: string, options?: TOptions<TextProps>) => void` |
-| clearActive        | Manually deactivate status              | `Function () => void`                                            |
-| deleteCanvas       | Delete the current canvas               | `Function () => void`                                            |
-| setActiveFabric    | Setup the active fabric                 | `Function (options: TOptions<FabricObjectProps>) => void`        |
-| copyActiveFabric   | Copy the active fabric                  | `Function () => Promise<void>`                                   |
-| deleteActiveFabric | Delete the active fabric                | `Function () => void`                                            |
-| canvasRef          | The current canvas dom ref              | `object Ref<HTMLCanvasElement>`                                  |
+| Event              | Description                               | Type                                                                          |
+| :----------------- | :---------------------------------------- | :---------------------------------------------------------------------------- |
+| reload             | Manually reload the canvas                | `Function () => Promise<void>`                                                |
+| addImage           | Manually add the images onto the canvas   | `Function (src: string, options?: TOptions<ImageProps>) => void`              |
+| addText            | Manually add the text onto the canvas     | `Function (text: string, options?: TOptions<TextProps>) => void`              |
+| clearActive        | Manually deactivate status                | `Function () => void`                                                         |
+| deleteCanvas       | Delete the current canvas                 | `Function () => void`                                                         |
+| setActiveFabric    | Setup the active fabric                   | `Function (options: TOptions<FabricObjectProps>) => void`                     |
+| copyActiveFabric   | Copy the active fabric                    | `Function () => Promise<void>`                                                |
+| deleteActiveFabric | Delete the active fabric                  | `Function () => void`                                                         |
+| exportOverlay      | Export the objects without the background | `Function (options?: ExportOverlayOptions) => Promise<FabricOverlay \| null>` |
+| canvasRef          | The current canvas dom ref                | `object Ref<HTMLCanvasElement>`                                               |
+
+#### exportOverlay
+
+Exports every object on the page as one transparent PNG, cropped to the bounding box of the objects. The page background, the selection controls and the close button are not included. Resolves to `null` when the page has no objects.
+
+| Option     | Type     | Description                                                                              | Default |
+| :--------- | :------- | :--------------------------------------------------------------------------------------- | :------ |
+| multiplier | `number` | Output resolution relative to the canvas size                                            | 1       |
+| dpi        | `number` | Output resolution in pixels per inch. PDF pages only, takes precedence over `multiplier` | -       |
+
+The canvas size depends on the device pixel ratio, so prefer `dpi` for PDF pages to get the same output on every device. Image pages ignore `dpi` and use `multiplier`.
+
+| Result | Type     | Description                                                  |
+| :----- | :------- | :----------------------------------------------------------- |
+| blob   | `Blob`   | The PNG image                                                |
+| x      | `number` | Left edge, as a 0–1 fraction of the page width               |
+| y      | `number` | Top edge, as a 0–1 fraction of the page height, from the top |
+| width  | `number` | Width, as a 0–1 fraction of the page width                   |
+| height | `number` | Height, as a 0–1 fraction of the page height                 |
+
+Parts of an object outside the page are cropped. Images loaded from another origin must be added with `crossOrigin: 'anonymous'` (and served with CORS headers), otherwise the browser refuses to export the canvas.
+
+The position is relative to the page as displayed, so pages with a `/Rotate` entry or a CropBox offset need to be mapped through both. For an unrotated page whose CropBox starts at the origin, only `y` has to be flipped because PDF coordinates start at the bottom-left corner:
+
+```js
+const overlay = await pdfCanvasRef.value?.exportOverlay({ dpi: 300 });
+
+if (overlay) {
+  const { width: pageWidth, height: pageHeight } = pdfPage.getSize();
+
+  pdfPage.drawImage(await pdfDoc.embedPng(await overlay.blob.arrayBuffer()), {
+    x: overlay.x * pageWidth,
+    y: (1 - overlay.y - overlay.height) * pageHeight,
+    width: overlay.width * pageWidth,
+    height: overlay.height * pageHeight,
+  });
+}
+```

@@ -5,6 +5,8 @@ import { useResize } from '../hooks/use-resize';
 import type { ComponentProps } from '../../shared/types/common';
 import type {
   DropOffset,
+  ExportOverlayOptions,
+  FabricOverlay,
   FabricPointerEvent,
   FabricSelectionClearedEvent,
   FabricSelectionCreatedEvent,
@@ -20,6 +22,7 @@ export interface PdfCanvasHandle {
   setActiveFabric: (options: TOptions<FabricObjectProps>) => void;
   copyActiveFabric: () => Promise<void>;
   deleteActiveFabric: () => void;
+  exportOverlay: (options?: ExportOverlayOptions) => Promise<FabricOverlay | null>;
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
 }
 
@@ -82,6 +85,7 @@ function PdfCanvasComponent(
     setCloseSvgOptions,
     copyActiveFabric,
     deleteActiveFabric,
+    exportOverlay,
   } = useFabric({
     id: computedCanvasId,
     selectionOptions: computedSelectionOptions,
@@ -168,6 +172,7 @@ function PdfCanvasComponent(
     setActiveFabric,
     copyActiveFabric,
     deleteActiveFabric,
+    exportOverlay,
     canvasRef,
   }));
 

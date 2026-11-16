@@ -54,6 +54,7 @@ const {
   setCloseSvgOptions,
   copyActiveFabric,
   deleteActiveFabric,
+  exportOverlay,
 } = useFabric({
   id: canvasId,
   selectionOptions,
@@ -144,6 +145,7 @@ defineExpose({
   setActiveFabric,
   copyActiveFabric,
   deleteActiveFabric,
+  exportOverlay,
   canvasRef,
 });
 </script>
