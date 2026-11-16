@@ -31,15 +31,12 @@ function supportsOffscreenCanvas() {
   }
 }
 
-export function renderPageCanvas(args: SpecifyPageArgs, id?: string) {
+export async function renderPageCanvas(args: SpecifyPageArgs, id?: string) {
   const CSS_UNITS = getPixelsPerPoint() / window.devicePixelRatio;
   const options = { ...args, id, units: CSS_UNITS };
+  const result = supportsOffscreenCanvas() ? await renderWithWorker(options) : await renderWithMainThread(options);
 
-  if (supportsOffscreenCanvas()) {
-    return renderWithWorker(options);
-  } else {
-    return renderWithMainThread(options);
-  }
+  return { ...result, units: CSS_UNITS };
 }
 
 async function renderWithWorker({

@@ -4,24 +4,32 @@ import {
   Group,
   loadSVGFromURL,
   util,
+  type BaseFabricObject,
   type FabricObject,
   type FabricObjectProps,
   type TOptions,
 } from 'fabric';
-import { CLONE_PROPERTIES } from '../constants';
-import { renderPageCanvas } from './pdf-js';
+import { CLONE_PROPERTIES } from '../../constants';
+import { renderPageCanvas } from '../pdf-js';
 import type {
   CacheFabricImage,
   CacheFabricObject,
   CacheFabricText,
   CloseSvgOptions,
   DropOffset,
+  ExportOverlayOptions,
+  FabricOverlay,
   RenderImageArgs,
   SpecifyPageArgs,
   SupportFileType,
-} from '../types/fabric';
+} from '../../types/fabric';
+
+const POINTS_PER_INCH = 72;
+const PAGE_IMAGE_SCALE = 1 / 3;
 
 export const fabricMap = new Map<string, Canvas>();
+
+const pixelsPerPointMap = new Map<string, number>();
 
 export function createFabricCanvas(id: string) {
   const canvas = new Canvas(id);
@@ -62,8 +70,7 @@ export function renderFabricCanvas(id: string, canvasTemp: HTMLCanvasElement) {
 
   if (!canvas) return;
 
-  const scale = 1 / 3;
-  const image = canvasToImage(canvasTemp, scale);
+  const image = canvasToImage(canvasTemp, PAGE_IMAGE_SCALE);
 
   setFabricCanvas(id, image);
 }
@@ -95,6 +102,7 @@ export async function renderFabricImage(id: string, { data, scale = 0.5 }: Rende
 
   image.scale(scale);
   setFabricCanvas(id, image);
+  pixelsPerPointMap.delete(id);
   URL.revokeObjectURL(url);
 }
 
@@ -164,6 +172,7 @@ export function deleteFabricCanvas(id: string) {
 
   canvas.clear();
   fabricMap.delete(id);
+  pixelsPerPointMap.delete(id);
 }
 
 function canvasToImage(canvas: HTMLCanvasElement, scale: number) {
@@ -199,10 +208,11 @@ async function drawPDF(file: File, password?: string, id?: string) {
 }
 
 export async function specifyPage(options: SpecifyPageArgs, id?: string) {
-  const { canvas, pages } = await renderPageCanvas(options, id);
+  const { canvas, pages, units } = await renderPageCanvas(options, id);
 
   if (canvas && id) {
     renderFabricCanvas(id, canvas);
+    pixelsPerPointMap.set(id, options.scale * units * PAGE_IMAGE_SCALE);
   }
 
   return pages;
@@ -273,5 +283,81 @@ export function deleteActiveFabric(id: string) {
     canvas.discardActiveObject();
   } else {
     canvas.remove(active);
+  }
+}
+
+export async function exportFabricOverlay(
+  id: string,
+  options: ExportOverlayOptions = {},
+  isExcluded: (fabric: BaseFabricObject) => boolean = () => false,
+): Promise<FabricOverlay | null> {
+  const canvas = fabricMap.get(id);
+
+  if (!canvas) return null;
+
+  const isIncluded = (fabric: BaseFabricObject) => !isExcluded(fabric);
+  const rects = canvas
+    .getObjects()
+    .filter(fabric => isIncluded(fabric))
+    .map(fabric => fabric.getBoundingRect());
+
+  if (!rects.length) return null;
+
+  const { width: pageWidth, height: pageHeight } = canvas;
+  const left = Math.max(0, Math.floor(Math.min(...rects.map(rect => rect.left))));
+  const top = Math.max(0, Math.floor(Math.min(...rects.map(rect => rect.top))));
+  const right = Math.min(pageWidth, Math.ceil(Math.max(...rects.map(rect => rect.left + rect.width))));
+  const bottom = Math.min(pageHeight, Math.ceil(Math.max(...rects.map(rect => rect.top + rect.height))));
+  const width = right - left;
+  const height = bottom - top;
+
+  if (width <= 0 || height <= 0) return null;
+
+  const multiplier = resolveOverlayMultiplier(id, options);
+  const element = renderOverlayElement(canvas, multiplier, { left, top, width, height, filter: isIncluded });
+  const blob = await new Promise<Blob | null>(resolve => element.toBlob(resolve, 'image/png'));
+
+  if (!blob) return null;
+
+  return {
+    blob,
+    x: left / pageWidth,
+    y: top / pageHeight,
+    width: width / pageWidth,
+    height: height / pageHeight,
+  };
+}
+
+function resolveOverlayMultiplier(id: string, { multiplier = 1, dpi }: ExportOverlayOptions) {
+  const pixelsPerPoint = pixelsPerPointMap.get(id);
+
+  if (!dpi || !pixelsPerPoint) return multiplier;
+
+  return dpi / POINTS_PER_INCH / pixelsPerPoint;
+}
+
+function renderOverlayElement(
+  canvas: Canvas,
+  multiplier: number,
+  options: NonNullable<Parameters<Canvas['toCanvasElement']>[1]>,
+) {
+  const active = canvas.getActiveObject();
+  const background = canvas.backgroundImage;
+  const selectionBackgroundColor = active?.selectionBackgroundColor;
+
+  canvas.backgroundImage = undefined;
+
+  if (active) {
+    active.selectionBackgroundColor = '';
+  }
+
+  try {
+    return canvas.toCanvasElement(multiplier, options);
+  } finally {
+    canvas.backgroundImage = background;
+
+    if (active && selectionBackgroundColor !== undefined) {
+      active.selectionBackgroundColor = selectionBackgroundColor;
+    }
   }
 }
