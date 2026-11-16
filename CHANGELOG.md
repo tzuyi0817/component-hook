@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.9.0](https://github.com/tzuyi0817/component-hook/compare/v1.8.1...v1.9.0) (2026-11-16)
+
+### Breaking Changes
+
+- require Node.js `^22.23.5 || ^24.22.3 || >=26.13.1` ([001b8c4](https://github.com/tzuyi0817/component-hook/commit/001b8c4de38bfe8eba702655a5a54447894fcc09))
+
+### Features
+
+- **pdf-canvas:** add `exportOverlay` to export the added objects as a transparent PNG without the PDF background, with its position on the page ([5f02116](https://github.com/tzuyi0817/component-hook/commit/5f021162ee392ae4a3bde581ae03d53ce523c8db))
+
+### Bug Fixes
+
+- **pdf-canvas:** pass the `crossOrigin` option of `addImage` to the image loader ([5f02116](https://github.com/tzuyi0817/component-hook/commit/5f021162ee392ae4a3bde581ae03d53ce523c8db))
+- **create-app:** bump template Node.js to 24.22.3 ([4d7a90d](https://github.com/tzuyi0817/component-hook/commit/4d7a90df36618cc7660f2c728ef3031ee15b6cfe))
+
 ## [1.8.1](https://github.com/tzuyi0817/component-hook/compare/v1.8.0...v1.8.1) (2026-11-09)
 
 ### Documentation
