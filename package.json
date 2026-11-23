@@ -39,7 +39,7 @@
   "devDependencies": {
     "@component-hook/eslint-plugin": "workspace:^",
     "@component-hook/oxlint-config": "workspace:^",
-    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
     "@testing-library/vue": "^8.1.0",

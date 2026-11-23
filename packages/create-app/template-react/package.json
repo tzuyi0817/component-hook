@@ -36,7 +36,7 @@
     "@component-hook/eslint-plugin": "^1.7.0",
     "@playwright/test": "^1.65.0",
     "@tailwindcss/vite": "^4.3.5",
-    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.8",
     "@tsconfig/node24": "^24.0.5",
